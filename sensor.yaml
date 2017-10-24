@@ -1,0 +1,344 @@
+        ##########################################################
+        ## Weather
+        ##########################################################
+
+  - platform: wunderground
+    api_key: !secret wu_api_key
+    monitored_conditions:
+      - alerts
+      - temp_f
+      - precip_today_in
+      - relative_humidity
+      - UV
+      - wind_mph
+      - temp_high_1d_f
+      - temp_low_1d_f
+      - weather_1d
+      
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    monitored_conditions:
+      - summary
+      - temperature
+      - hourly_summary
+      - temperature_max
+      
+        ##########################################################
+        ## PiHole
+        ##########################################################
+      
+  - platform: pi_hole
+    host: REDACTED
+    
+        ##########################################################
+        ## HA Instance
+        ##########################################################
+      
+  - platform: command_line
+    command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
+    name: Current HA Release
+    scan_interval: 3600
+    
+  - platform: command_line
+    command: /srv/homeassistant/bin/hass --version
+    name: Installed HA Version
+    scan_interval: 3600
+    
+  - platform: command_line
+    command: ./home/homeassistant/.homeassistant/check_db_size.sh
+    name: HA DB Size
+#    scan_interval: 300
+    unit_of_measurement: "GB"
+    
+  - platform: command_line
+    name: CPU Temp
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "C"
+    value_template: '{{ value | multiply(0.001) }}'
+    
+  - platform: command_line
+    name: "HA Last Reboot"
+    command: cat /proc/uptime | awk '{printf "%0.f", $1}'
+    scan_interval: 60
+    value_template: >-
+      {% set uptime = value | int %}
+      {% set seconds = uptime % 60 %}
+      {% set minutes = ((uptime % 3600) / 60) | int %}
+      {% set hours = ((uptime % 86400) / 3600) | int %}
+      {% set days = (uptime / 86400) | int %}
+      {%- if days > 0 -%}
+        {%- if days == 1 -%}
+          1 day
+        {%- else -%}
+          {{ days }} days
+        {%- endif -%}
+        {{ ', ' }}
+      {%- endif -%}
+      {{ '%02d' % hours }}:{{ '%02d' % minutes }}
+
+  - platform: command_line
+    name: "HA Uptime"
+    command: echo "$(($(date +%s) - $(date -d "$(head -n1 /home/homeassistant/.homeassistant/home-assistant.log | cut -d' ' -f-2)" +%s)))"
+    scan_interval: 60
+    value_template: >-
+      {% set uptime = value | int %}
+      {% set seconds = uptime % 60 %}
+      {% set minutes = ((uptime % 3600) / 60) | int %}
+      {% set hours = ((uptime % 86400) / 3600) | int %}
+      {% set days = (uptime / 86400) | int %}
+      {%- if days > 0 -%}
+        {%- if days == 1 -%}
+          1 day
+        {%- else -%}
+          {{ days }} days
+        {%- endif -%}
+        {{ ', ' }}
+      {%- endif -%}
+      {{ '%02d' % hours }}:{{ '%02d' % minutes }} 
+      
+  - platform: cpuspeed
+    name: CPU
+    
+  - platform: systemmonitor
+    resources:
+      - type: memory_free
+      - type: memory_use_percent
+      - type: processor_use
+#      - type: since_last_boot
+      
+      
+        ##########################################################
+        ## Sensor Node 1 - Office
+        ##########################################################  
+        
+  - platform: mqtt  
+    state_topic: "ntalekt/sensornode1"  
+    name: "Office Humidity"  
+    unit_of_measurement: "%"    
+    value_template: '{{ value_json.humidity | round(1) }}'  
+  
+  - platform: mqtt  
+    state_topic: "ntalekt/sensornode1"  
+    name: "Office LDR"
+    ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
+    unit_of_measurement: "LUX" 
+    force_update: true    
+    value_template: '{{ value_json.ldr }}'  
+  
+  - platform: mqtt  
+    state_topic: "ntalekt/sensornode1"  
+    name: "Office PIR"  
+    value_template: '{{ value_json.motion }}'  
+  
+  - platform: mqtt  
+    state_topic: "ntalekt/sensornode1"  
+    name: "Office Temperature"  
+    unit_of_measurement: "°F"  
+    value_template: '{{ value_json.temperature | round(1) }}' 
+    
+        ##########################################################
+        ## Doorbell
+        ########################################################## 
+  
+  - platform: ring
+    monitored_conditions:
+      - last_activity
+      - last_ding
+      - last_motion
+      - volume
+      
+        ##########################################################
+        ## NAS
+        ########################################################## 
+      
+  - platform: synologydsm
+    host: REDACTED
+    username: !secret nas_username
+    password: !secret nas_pass
+    monitored_conditions:
+      - cpu_total_load
+      - memory_real_usage
+      - network_up
+      - network_down
+      - volume_status
+      - volume_percentage_used
+      - volume_size_used
+      
+  - platform: qnap
+    host: REDACTED
+    username: !secret nas_username
+    password: !secret nas_pass
+    nics: eth0
+    monitored_conditions:
+      - status
+      - memory_percent_used
+      - system_temp
+      - cpu_usage
+      - cpu_temp
+      - network_tx
+      - network_rx
+      - volume_size_free
+      - volume_size_used
+      - volume_percentage_used
+      
+
+       
+  - platform: yahoo_finance
+    symbols:
+      - WFC
+      
+#  - platform: coinmarketcap
+#    currency: ethereum
+    
+#  - platform: coinmarketcap
+#    currency: bitcoin
+    
+#  - platform: coinmarketcap
+#    currency: dash
+
+        ##########################################################
+        ## Templates
+        ########################################################## 
+      
+  - platform: template
+    sensors:
+      media_center:
+        value_template: '{{ states.remote.media_center.attributes.current_activity }}'
+        friendly_name: 'Media Center'
+      master_remote:
+        value_template: '{{ states.remote.master.attributes.current_activity }}'
+        friendly_name: 'Master'
+      ring_last_ding:
+       friendly_name: Last Ding Time
+       value_template: "{{ as_timestamp(states.sensor.ring_front_door_last_ding.attributes.created_at) |  timestamp_custom('%D %-I:%M %P') }}" 
+      ring_last_motion:
+       friendly_name: Last Motion Time
+       value_template: "{{ as_timestamp(states.sensor.ring_front_door_last_motion.attributes.created_at) |  timestamp_custom('%D %-I:%M %P') }}"
+      downstairs_thermostat_away_mode:
+       value_template: '{{ states.climate.downstairs.attributes.away_mode }}'  
+      upstairs_thermostat_away_mode:
+       value_template: '{{ states.climate.upstairs.attributes.away_mode }}'
+      living_room_temperature:
+        value_template: '{{ states.climate.downstairs.attributes.current_temperature }}'
+        friendly_name: 'Living Temperature' 
+        unit_of_measurement: "°F"
+      loft_temperature:
+        value_template: '{{ states.climate.upstairs.attributes.current_temperature }}'
+        friendly_name: 'Loft Temperature' 
+        unit_of_measurement: "°F"
+        
+        ##########################################################
+        ## Location
+        ##########################################################        
+    
+  - platform: google_travel_time
+    name: USER2 To Home
+    api_key: REDACTED
+    origin: device_tracker.USER2DEVICE
+    destination: zone.home
+    
+  - platform: google_travel_time
+    name: USER2 To REDACTED
+    api_key: REDACTED
+    origin: device_tracker.USER2DEVICE
+    destination: zone.REDACTED
+    
+  - platform: google_travel_time
+    name: USER2 To REDACTED
+    api_key: REDACTED
+    origin: device_tracker.USER2DEVICE
+    destination: zone.REDACTED
+    
+  - platform: google_travel_time
+    name: USER2 To Work
+    api_key: REDACTED
+    origin: device_tracker.USER2DEVICE
+    destination: zone.work
+    
+  - platform: google_travel_time
+    name: USER1 To Home
+    api_key: REDACTED
+    origin: device_tracker.USER1DEVICE
+    destination: zone.home
+    
+  - platform: google_travel_time
+    name: USER1 To REDACTED
+    api_key: REDACTED
+    origin: device_tracker.USER1DEVICE
+    destination: zone.REDACTED
+    
+  - platform: google_travel_time
+    name: USER1 To REDACTED
+    api_key: REDACTED
+    origin: device_tracker.USER1DEVICE
+    destination: zone.REDACTED
+    
+        ##########################################################
+        ## Cox Internet Usage
+        ########################################################## 
+
+  - platform: file
+    name: Cox Utilization
+    file_path: /home/homeassistant/.homeassistant/cox_usage.json
+    value_template: >
+      {% if value_json is defined %}
+        {% if value_json.dumUsage | int == 0 and value_json.dumLimit | int == 0 and value_json.dumUtilization | int == 0 %}
+          stats unavailable
+        {% else %}
+          {{ value_json.dumUsage | int }} / {{ value_json.dumLimit | int }} GB ({{ value_json.dumUtilization | int }} %)
+        {% endif %}
+      {% else %}
+        undefined
+      {% endif %}
+
+  - platform: file
+    name: Cox Time Left
+    file_path: /home/homeassistant/.homeassistant/cox_usage.json
+    value_template: >
+      {% if value_json is defined %}
+        {% if value_json.dumDaysLeft is defined %}
+          {{ value_json.dumDaysLeft | int }} Days
+        {% else %}
+          unknown
+        {% endif %}
+      {% else %}
+        undefined
+      {% endif %}
+      
+  - platform: file
+    name: Cox Avg GB Current
+    file_path: /home/homeassistant/.homeassistant/cox_usage.json
+    value_template: >
+      {% if value_json is defined %}
+        {% if value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
+          stats unavailable
+        {% elif states.sensor.days_in_current_month.state is defined %}
+          {{ (float(value_json.dumUsage) / (float(states.sensor.days_in_current_month.state) - float(value_json.dumDaysLeft))) | round(1) }} GB per day
+        {% else %}
+          month_undefined
+        {% endif %}
+      {% else %}
+        undefined
+      {% endif %}
+      
+  - platform: file
+    name: Cox Avg GB Remaining
+    file_path: /home/homeassistant/.homeassistant/cox_usage.json
+    value_template: >
+      {% if value_json is defined %}
+        {% if value_json.dumLimit | int == 0 and value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
+          stats unavailable
+        {% else %}
+          {{ ((float(value_json.dumLimit) - float(value_json.dumUsage)) / float(value_json.dumDaysLeft)) | round(1) }} GB per day
+        {% endif %}
+      {% else %}
+        undefined
+      {% endif %}
+      
+  - platform: command_line
+    command: cal $(date +"%m %Y") | awk 'NF {DAYS = $NF}; END {print DAYS}'
+    name: Days In Current Month
+    scan_interval: 3600
+    
+    
+

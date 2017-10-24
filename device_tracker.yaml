@@ -1,0 +1,7 @@
+  - platform: nmap_tracker
+    hosts: REDACTED
+    consider_home: 300
+#    home_interval: 10
+    interval_seconds: 20
+    track_new_devices: no
+  - platform: owntracks

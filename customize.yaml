@@ -1,0 +1,193 @@
+#################################################################
+## Customize
+#################################################################
+
+        ##########################################################
+        ## Sensors
+        ##########################################################    
+    
+    sensor.cox_utilization:
+      icon: mdi:percent
+      friendly_name: Utilization
+    sensor.cox_time_left:
+      icon: mdi:calendar-clock
+      friendly_name: Time Left
+    sensor.cox_avg_gb_current:
+      icon: mdi:chart-line
+      friendly_name: Current Daily Avg.
+    sensor.cox_avg_gb_remaining:
+      icon: mdi:chart-line-stacked
+      friendly_name: Remaining Daily Avg.
+    sensor.living_room_temperature:
+      icon: mdi:thermometer-lines
+    sensor.cpu_temp:
+      icon: mdi:temperature-celsius
+    sensor.cpu:
+      icon: mdi:chip
+    sensor.ha_db_size:
+      icon: mdi:database
+    sensor.ha_last_reboot:
+      icon: mdi:restart
+    sensor.ha_uptime:
+      icon: mdi:av-timer
+      
+        ##########################################################
+        ## Office Sensor Node
+        ##########################################################    
+    
+    sensor.office_temperature:
+      icon: mdi:thermometer-lines
+      friendly_name: Temperature
+    sensor.office_humidity:
+      icon: mdi:water-percent
+      friendly_name: Humidity
+    sensor.office_pir:
+      icon: mdi:run-fast
+      friendly_name: Motion
+    sensor.office_ldr:
+      icon: mdi:lightbulb-on
+      friendly_name: Ambient light
+    light.office_led:
+      icon: mdi:led-on
+      friendly_name: LED
+      
+      
+        ##########################################################
+        ## Thermostat
+        ##########################################################
+        
+    climate.upstairs:
+      friendly_name: Nest Thermostat
+      entity_picture: /local/nest.png
+    climate.downstairs:
+      friendly_name: Nest Thermostat
+      entity_picture: /local/nest.png
+    sensor.upstairs_thermostat_hvac_state:
+      friendly_name: State
+      icon: mdi:power
+    sensor.downstairs_thermostat_hvac_state:
+      friendly_name: State
+      icon: mdi:power
+    sensor.upstairs_thermostat_humidity:
+      friendly_name: Humidity
+      icon: mdi:water-percent
+    sensor.downstairs_thermostat_humidity:
+      friendly_name: Humidity
+      icon: mdi:water-percent
+    binary_sensor.upstairs_thermostat_fan:
+      friendly_name: Fan
+      icon: mdi:fan      
+    binary_sensor.downstairs_thermostat_fan:
+      friendly_name: Fan
+      icon: mdi:fan     
+    binary_sensor.upstairs_thermostat_online:
+      friendly_name: Nest Upstairs
+      icon: mdi:nest-thermostat        
+    binary_sensor.downstairs_thermostat_online:
+      friendly_name: Nest Downstairs
+      icon: mdi:nest-thermostat     
+      
+      
+        ##########################################################
+        ## Doorbell
+        ##########################################################
+        
+    sensor.ring_front_door_last_ding:
+      friendly_name: Last Ring
+    sensor.ring_front_door_last_motion:
+      friendly_name: Last Motion
+    sensor.ring_last_ding:
+      friendly_name: Last Ring
+      icon: mdi:bell-ring
+    sensor.ring_last_motion:
+      friendly_name: Last Motion
+      icon: mdi:run-fast
+      
+      
+        ##########################################################
+        ## Finance
+        ##########################################################
+        
+    sensor.exchange_rate_1_btc:
+      friendly_name: BTC
+      
+      
+        ##########################################################
+        ## Remote
+        ##########################################################
+        
+    sensor.media_center:
+      icon: mdi:television
+
+      
+        ##########################################################
+        ## Lights
+        ##########################################################
+        
+    light.ge_14294_porch_level:
+      friendly_name: Porch
+      icon: mdi:ceiling-light     
+    light.ge_14294_exterior_side_level:
+      friendly_name: Side
+      icon: mdi:ceiling-light      
+    light.loft_floor_lamp:
+      friendly_name: Floor Lamp
+      icon: mdi:lamp
+      
+        ##########################################################
+        ## Devices
+        ##########################################################
+        
+    binary_sensor.wan:
+      icon: mdi:wan
+    binary_sensor.baby_camera:
+      icon: mdi:camera
+    binary_sensor.living_camera:
+      icon: mdi:camera
+    binary_sensor.garage_camera:
+      icon: mdi:camera
+    binary_sensor.chalkboard_camera:
+      icon: mdi:camera
+    binary_sensor.shop_camera:
+      icon: mdi:camera
+    binary_sensor.synology_nas:
+      icon: mdi:harddisk 
+    binary_sensor.qnap_nas:
+      icon: mdi:harddisk
+    binary_sensor.hue_hub:
+      icon: mdi:lightbulb-on
+    binary_sensor.harmony_hub:
+      icon: mdi:remote
+    binary_sensor.master_harmony_hub:
+      icon: mdi:remote
+    binary_sensor.sonos_chalkboard:
+      icon: mdi:speaker-wireless
+    binary_sensor.sonos_den:
+      icon: mdi:speaker-wireless
+    binary_sensor.sonos_kitchen:
+      icon: mdi:speaker-wireless
+    binary_sensor.ring_pro:
+      icon: mdi:bell-ring       
+    binary_sensor.opensprinkler_pi:
+      icon: mdi:water    
+
+        ##########################################################
+        ## DNS
+        ##########################################################
+        
+    sensor.pihole_ads_blocked_today:
+      icon: mdi:dns
+      friendly_name: DNS Queries Blocked
+    sensor.pihole_ads_percentage_blocked_today:
+      icon: mdi:dns
+      friendly_name: DNS Percentage Blocked
+     
+        ##########################################################
+        ## All Groups / Troubleshooting
+        ##########################################################
+        
+        
+#    group.all_automations:
+#      hidden: false
+#    group.all_scripts:
+#      hidden: false

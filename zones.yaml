@@ -1,0 +1,51 @@
+#################################################################
+## Zones
+#################################################################
+  
+- name: Home
+  latitude: REDACTED
+  longitude: REDACTED
+  radius: 150
+  icon: mdi:home
+
+- name: REDACTED
+  latitude: REDACTED
+  longitude: REDACTED
+  radius: 150
+  icon: mdi:school
+
+- name: Swim
+  latitude: REDACTED
+  longitude: REDACTED
+  radius: 150
+  icon: mdi:swim
+
+- name: Music
+  latitude: REDACTED
+  longitude: REDACTED
+  radius: 150
+  icon: mdi:music
+
+- name: Work
+  latitude: REDACTED
+  longitude: REDACTED
+  radius: 150
+  icon: mdi:domain
+
+- name: REDACTED & REDACTED's
+  latitude: REDACTED
+  longitude: REDACTED
+  radius: 150
+  icon: mdi:home
+
+- name: Target
+  latitude: REDACTED
+  longitude: REDACTED
+  radius: 150
+  icon: mdi:target
+
+- name: REDACTED
+  latitude: REDACTED
+  longitude: REDACTED
+  radius: 150
+  icon: mdi:school

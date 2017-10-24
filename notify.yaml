@@ -1,0 +1,7 @@
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_api_key
+  - platform: webostv
+    host: REDACTED
+    name: livingroom_tv
+    filename: webostv.conf

@@ -1,0 +1,143 @@
+#################################################################
+## Home Assistant
+#################################################################
+
+homeassistant:
+  name: Home
+  latitude: REDACTED
+  longitude: REDACTED
+  elevation: 463
+  unit_system: imperial
+  time_zone: America/REDACTED
+  customize: !include customize.yaml
+
+frontend:
+updater:
+  reporting: no
+  include_used_components: true
+sun:
+map:
+config:
+discovery:
+  ignore:
+    - sonos
+    - netgear_router
+    - harmony
+    - google_cast
+    - philips_hue
+#conversation:
+logbook:
+  exclude:
+    entities:
+      - sensor.since_last_boot
+
+http:
+  # Uncomment this to add a password (recommended!)
+  api_password: !secret ha_password
+  # Uncomment this if you are using SSL or running in Docker etc
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+
+  
+#################################################################
+## Components
+#################################################################
+      
+amcrest:
+  - host: REDACTED
+    name: Living Room
+    username: !secret amcrest_user
+    password: !secret amcrest_pass
+    sensors:
+      - motion_detector
+    stream_source: rtsp
+    
+  - host: REDACTED
+    name: Garage
+    username: !secret amcrest_user
+    password: !secret amcrest_pass
+    sensors:
+      - motion_detector
+    stream_source: rtsp
+    
+  - host: REDACTED
+    name: Chalkboard Room
+    username: !secret amcrest_user
+    password: !secret amcrest_pass
+    sensors:
+      - motion_detector
+    stream_source: rtsp
+    
+  - host: REDACTED
+    name: Shop
+    username: !secret amcrest_user
+    password: !secret amcrest_pass
+    sensors:
+      - motion_detector
+    stream_source: rtsp
+    
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+  
+mqtt:  
+  broker: REDACTED33 
+  port: 1883  
+  client_id: REDACTED
+  username: !secret mqtt_user
+  password: !secret mqtt_pass
+  
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+  
+ring:
+  username: !secret ring_username
+  password: !secret ring_password
+  
+shell_command:
+  query_cox_data_usage: 'python /home/homeassistant/.homeassistant/cox_usage.py'
+
+tts:
+  - platform: google
+    cache: true
+    time_memory: 300
+  
+zwave:
+  usb_path: /dev/ttyACM0
+  new_entity_ids: true
+#  config_path: /srv/homeassistant/lib/python3.4/site-packages/python_openzwave/ozw_config
+  polling_interval: 30000
+  device_config:
+    light.ge_14294_porch_level:
+      polling_intensity: 1
+      refresh_value: true
+    light.ge_14294_exterior_side_level:
+      polling_intensity: 1
+      refresh_value: true 
+
+  
+#################################################################
+## Includes
+#################################################################
+    
+automation: !include automations.yaml
+recorder: !include recorder.yaml
+history: !include history.yaml
+zone: !include zones.yaml
+group: !include groups.yaml
+sensor: !include sensor.yaml
+binary_sensor: !include binary_sensor.yaml
+input_select: !include input_select.yaml
+input_boolean: !include input_boolean.yaml
+light: !include light.yaml
+camera: !include camera.yaml
+device_tracker: !include device_tracker.yaml   
+notify: !include notify.yaml
+script: !include scripts.yaml
+remote: !include remote.yaml
+media_player: !include media_player.yaml

@@ -1,0 +1,223 @@
+#################################################################
+## Scripts
+#################################################################
+
+        ##########################################################
+        ## Harmony Remote
+        ##########################################################
+
+input_select_harmony:
+  alias: "Start Remote activity from input select"
+  sequence:
+      service: remote.turn_on
+      data_template:
+        entity_id: remote.media_center
+        activity: >
+          {% if is_state("input_select.remote", "PowerOff") %}
+              -1
+          {% elif is_state("input_select.remote", "Shield") %}
+              26199213
+          {% elif is_state("input_select.remote", "TV") %}
+              16835075
+          {% elif is_state("input_select.remote", "Prime") %}
+              20123015
+          {% elif is_state("input_select.remote", "Netflix") %}
+              20122215
+          {% elif is_state("input_select.remote", "Blueray") %}
+              16835304
+          {% endif %}
+          
+input_select_master_harmony:
+  alias: "Start Remote activity from input select"
+  sequence:
+      service: remote.turn_on
+      data_template:
+        entity_id: remote.master
+        activity: >
+          {% if is_state("input_select.master_remote", "PowerOff") %}
+              -1
+          {% elif is_state("input_select.master_remote", "Master Fire TV") %}
+              27717507
+          {% elif is_state("input_select.master_remote", "Master TV") %}
+              27717176
+          {% endif %}
+          
+        ##########################################################
+        ## Sonos Text to Speech
+        ##########################################################
+          
+say:
+  alias: Sonos TTS
+  sequence:
+    - service: media_player.sonos_snapshot
+      data_template:
+        with_group: yes
+    - delay: '00:00:03'
+    - service: media_player.sonos_unjoin
+      data_template:
+        entity_id: "{{ where }}"
+    - delay: '00:00:01'
+    - service: media_player.sonos_join
+      data_template:
+        master: "{{ master }}"
+        entity_id: "{{ where }}"
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: "{{ where }}"
+        volume_level: "{{ volume }}"
+    - delay: '00:00:02'
+    - service: tts.google_say
+      data_template:
+        entity_id: "{{ master }}"
+        message: "{{ what }}"
+    - delay: '00:00:25'
+    - service: media_player.sonos_restore
+      data_template:
+        with_group: yes
+
+        ##########################################################
+        ## Sonos - Good morning announcement
+        ##########################################################
+        
+good_morning:
+  alias: Sonos TTS
+  sequence:
+    - service: media_player.sonos_snapshot
+      data_template:
+        with_group: yes
+    - delay: '00:00:03'
+    - service: media_player.sonos_unjoin
+      data_template:
+        entity_id:
+          - media_player.kitchen
+          - media_player.chalkboard_room
+          - media_player.loft
+    - delay: '00:00:01'
+    - service: media_player.sonos_join
+      data_template:
+        master: media_player.kitchen
+        entity_id:
+          - media_player.kitchen
+          - media_player.chalkboard_room
+          - media_player.loft
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      data_template:
+        entity_id:
+          - media_player.kitchen
+          - media_player.chalkboard_room
+          - media_player.loft
+        volume_level: '.6'
+    - delay: '00:00:02'
+    - service: tts.google_say
+      data_template:
+        entity_id:
+        - media_player.kitchen
+        - media_player.chalkboard_room
+        - media_player.loft
+        message: >
+          {% if now().strftime("%H")|int < 12 %}
+          Good morning. Today is {{now().strftime("%A %B")}} the 
+            {% if now().strftime("%-m")|int == 1 or now().strftime("%-m")|int == 21 or now().strftime("%-m")|int == 31 %}
+              {{now().strftime("%-m")}}st
+            {% elif now().strftime("%-m")|int == 2 or now().strftime("%-m")|int == 22 %}
+              {{now().strftime("%-m")}}nd
+            {% elif now().strftime("%-m")|int == 3 or now().strftime("%-m")|int == 23 %}
+              {{now().strftime("%-m")}}rd
+            {% else %}
+              {{now().strftime("%-m")}}th
+            {% endif %}.
+          {% elif now().strftime("%H")|int < 18 %}
+          Good afternoon.
+          {% else %}
+          Good evening.
+          {% endif %}
+          {% if now().strftime("%w")|int > 0and now().strftime("%w")|int < 5 %}
+            Today is a school day.
+          {% endif %}
+          {% if now().strftime("%w")|int == 5 %}
+            Today is a school day and donut day!
+          {% endif %}
+          {% if now().strftime("%w")|int == 2 %}
+            REDACTED, today is Play Date sports day.
+          {% endif %}
+          {% if now().strftime("%w")|int == 4 %}
+            REDACTED, today is music day.
+          {% endif %}
+          {% if now().strftime("%w")|int == 6 %}
+            REDACTED, I hope you have a wonderful time at swim class. REDACTED, I hope you have fun at sports class.
+          {% endif %}
+          {% if now().strftime("%w")|int == 2 %}
+            USER1, today is trash day.
+          {% endif %}
+          {% if now().strftime("%H")|int < 9 and now().strftime("%w")|int > 0and now().strftime("%w")|int < 6 %}
+            USER2, your current drive to work in traffic is {{states.sensor.USER2_to_work.state}} minutes.
+          {% endif %}
+          It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state|round}} degrees in REDACTED. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}, with a high of {{states.sensor.dark_sky_daily_high_temperature.state|round}} degrees.
+          Have a great day REDACTED family!
+    - delay: '00:00:30'
+    - service: media_player.sonos_restore
+      data_template:
+        with_group: yes
+        
+        ##########################################################
+        ## Sonos - Turn on exterior lights
+        ##########################################################
+        
+dark_outside:
+  alias: Sonos TTS
+  sequence:
+    - service: media_player.sonos_snapshot
+      data_template:
+        with_group: yes
+    - delay: '00:00:03'
+    - service: media_player.sonos_unjoin
+      data_template:
+        entity_id:
+          - media_player.kitchen
+          - media_player.chalkboard_room
+          - media_player.loft
+    - delay: '00:00:01'
+    - service: media_player.sonos_join
+      data_template:
+        master: media_player.kitchen
+        entity_id:
+          - media_player.kitchen
+          - media_player.chalkboard_room
+          - media_player.loft
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      data_template:
+        entity_id:
+          - media_player.kitchen
+          - media_player.chalkboard_room
+          - media_player.loft
+        volume_level: '.6'
+    - delay: '00:00:01'
+    - service: tts.google_say
+      data_template:
+        entity_id:
+        - media_player.kitchen
+        - media_player.chalkboard_room
+        - media_player.loft
+        message: >
+          {% if now().strftime("%w")|int == 2 %}
+              {{ [
+              "It's getting dark outside.  I will turn on the outside lights now.",
+              "It is almost Sunset. Time to turn on the outside lights. I am on it.",
+              "I will switch on the outside lights.  It is getting dark outside.",
+              "Time to turn on the front lights. I will take care of it."
+              ] | random }} USER1, I hope your brought the trash in.
+          {% else %}
+              {{ [
+              "It's getting dark outside.  I will turn on the outside lights now.",
+              "It is almost Sunset. Time to turn on the outside lights. I am on it.",
+              "I will switch on the outside lights.  It is getting dark outside.",
+              "Time to turn on the front lights. I will take care of it."
+              ] | random }}
+          {% endif %}
+    - delay: '00:00:07'
+    - service: media_player.sonos_restore
+      data_template:
+        with_group: yes

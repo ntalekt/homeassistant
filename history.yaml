@@ -1,0 +1,73 @@
+#################################################################
+## History
+#################################################################
+
+  include:
+    domains:
+      - sensor
+      - switch
+      - media_player
+      - light
+  exclude:
+    entities:
+     - sensor.cox_avg_gb_current
+     - sensor.cox_avg_gb_remaining
+     - sensor.cox_time_left
+     - sensor.cox_utilization
+     - sensor.cpu
+     - sensor.cpu_load_total
+     - sensor.cpu_temp
+     - sensor.cpu_use
+     - sensor.current_ha_release
+     - sensor.dark_sky_daily_high_temperature
+     - sensor.dark_sky_hourly_summary
+     - sensor.dark_sky_summary
+     - sensor.days_in_current_month
+     - sensor.downstairs_thermostat_operation_mode
+     - sensor.downstairs_thermostat_target
+     - sensor.installed_ha_version
+     - sensor.memory_usage_real
+     - sensor.nas2_cpu_temperature
+     - sensor.nas2_cpu_usage
+     - sensor.nas2_memory_usage
+     - sensor.nas2_status
+     - sensor.nas2_system_temperature
+     - sensor.nas2_used_space_datavol1
+     - sensor.nas2_volume_used_datavol1
+     - sensor.USER2_to_REDACTED
+     - sensor.USER2_to_REDACTED
+     - sensor.USER2_to_work
+     - sensor.office_ldr
+     - sensor.pihole_ads_blocked_today
+     - sensor.pihole_ads_percentage_blocked_today
+     - sensor.pihole_dns_queries_cached
+     - sensor.pihole_dns_queries_forwarded
+     - sensor.pihole_dns_queries_today
+     - sensor.pihole_dns_unique_clients
+     - sensor.pihole_dns_unique_domains
+     - sensor.pihole_domains_blocked
+     - sensor.pws_alerts
+     - sensor.pws_temp_high_1d_f
+     - sensor.pws_temp_low_1d_f
+     - sensor.pws_uv
+     - sensor.pws_weather_1d
+     - sensor.ram_free
+     - sensor.ram_use
+     - sensor.USER1_to_REDACTED
+     - sensor.USER1_to_REDACTED
+     - sensor.USER1_to_home
+     - sensor.ring_front_door_last_activity
+     - sensor.ring_front_door_last_ding
+     - sensor.ring_front_door_last_motion
+     - sensor.ring_front_door_volume
+     - sensor.ring_last_ding
+     - sensor.ring_last_motion
+     - sensor.ring_upstairs_volume
+     - sensor.since_last_boot
+     - sensor.status_volume_1
+     - sensor.upstairs_thermostat_operation_mode
+     - sensor.upstairs_thermostat_target
+     - sensor.used_space_volume_1
+     - sensor.volume_used_volume_1
+     - sensor.downstairs_thermostat_temperature
+     - sensor.upstairs_thermostat_temperature

@@ -1,0 +1,97 @@
+  - platform: ring
+    monitored_conditions:
+      - ding
+      - motion
+  - platform: template
+    sensors:
+      office_occupancy_on:
+        friendly_name: Office Occupancy
+        value_template: "{{ states.input_boolean.office_occupancy.state == 'on' }}"
+        entity_id: input_boolean.office_occupancy
+        device_class: occupancy   
+
+  - platform: template
+    sensors:
+      living_occupancy_on:
+        friendly_name: Living Occupancy
+        value_template: "{{ states.input_boolean.living_occupancy.state == 'on' }}"
+        entity_id: input_boolean.living_occupancy
+        device_class: occupancy
+
+  - platform: template
+    sensors:
+      garage_occupancy_on:
+        friendly_name: Garage Occupancy
+        value_template: "{{ states.input_boolean.garage_occupancy.state == 'on' }}"
+        entity_id: input_boolean.garage_occupancy
+        device_class: occupancy  
+
+  - platform: template
+    sensors:
+      chalkboard_occupancy_on:
+        friendly_name: Chalkboard Occupancy
+        value_template: "{{ states.input_boolean.chalkboard_occupancy.state == 'on' }}"
+        entity_id: input_boolean.chalkboard_occupancy
+        device_class: occupancy  
+
+  - platform: template
+    sensors:
+      shop_occupancy_on:
+        friendly_name: Shop Occupancy
+        value_template: "{{ states.input_boolean.shop_occupancy.state == 'on' }}"
+        entity_id: input_boolean.shop_occupancy
+        device_class: occupancy        
+      
+      
+  - platform: ping
+    host: REDACTED
+    name: Synology NAS
+  - platform: ping
+    host: REDACTED
+    name: QNAP NAS
+  - platform: ping
+    host: REDACTED
+    name: Hue Hub
+  - platform: ping
+    host: REDACTED
+    name: Harmony Hub
+  - platform: ping
+    host: REDACTED
+    name: Master Harmony Hub
+  - platform: ping
+    host: REDACTED
+    name: Sonos Chalkboard
+  - platform: ping
+    host: REDACTED
+    name: Sonos Den
+  - platform: ping
+    host: REDACTED
+    name: Sonos Kitchen
+  - platform: ping
+    host: REDACTED
+    name: Ring Pro
+  - platform: ping
+    host: REDACTED
+    name: OpenSprinkler Pi   
+  - platform: ping
+    host: REDACTED
+    name: Baby Camera 
+  - platform: ping
+    host: REDACTED
+    name: Living Camera
+  - platform: ping
+    host: REDACTED
+    name: Garage Camera 
+  - platform: ping
+    host: REDACTED
+    name: Chalkboard Camera
+  - platform: ping
+    host: REDACTED
+    name: Shop Camera 
+  - platform: command_line
+#    scan_interval: 30
+    name: WAN
+    command: "/home/pi/wan_test.sh"
+    device_class: connectivity
+    payload_on: "Up"
+    payload_off: "Down"      

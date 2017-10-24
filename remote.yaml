@@ -1,0 +1,8 @@
+  - platform: harmony
+    name: Media Center
+    host: REDACTED
+    scan_interval: 25
+  - platform: harmony
+    name: Master
+    host: REDACTED
+    scan_interval: 25

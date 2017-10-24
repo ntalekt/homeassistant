@@ -1,0 +1,33 @@
+  remote:
+    name: Media Center Remote
+    options:
+      - PowerOff
+      - Shield
+      - TV
+      - Prime
+      - Netflix
+      - Blueray
+    icon: mdi:remote
+    
+  master_remote:
+    name: Master Remote
+    options:
+      - PowerOff
+      - Master Fire TV
+      - Master TV
+    icon: mdi:remote
+    
+  sonos:
+    name: Sonos
+    options:
+      - None
+      - Play All '90s Station
+      - Play Classical Station
+      - Play Little Kids Station
+      - Play Smooth Jazz Station
+      - Play Top Hip-hop Station
+      - Play Top Pop Station
+      - Play Caffeine for Your Ears Playlist
+      - Play Coffee Shop Pop Playlist
+      - Play Devastating Dubstep Drops Playlist
+    icon: mdi:speaker

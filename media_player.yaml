@@ -1,0 +1,10 @@
+  - platform: kodi
+    host: REDACTED
+    username: kodi
+    password: kodi
+  - platform: sonos
+    hosts:
+      - REDACTED
+      - REDACTED
+      - REDACTED
+
