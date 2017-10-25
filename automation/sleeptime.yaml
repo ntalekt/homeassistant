@@ -1,0 +1,33 @@
+        ##########################################################
+        ## Sleep Time
+        ##########################################################
+        
+- alias: SleepTime
+  trigger:
+    - platform: state
+      entity_id: input_boolean.sleep_time
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+  action:
+    - delay: '00:30:00'
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.master_remote
+        option: PowerOff   
+        
+- alias: SleepTime Reset
+  trigger:
+    - platform: state
+      entity_id: input_boolean.sleep_time
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 31
+        seconds: 0
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.sleep_time

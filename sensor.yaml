@@ -1,19 +1,6 @@
         ##########################################################
         ## Weather
         ##########################################################
-
-  - platform: wunderground
-    api_key: !secret wu_api_key
-    monitored_conditions:
-      - alerts
-      - temp_f
-      - precip_today_in
-      - relative_humidity
-      - UV
-      - wind_mph
-      - temp_high_1d_f
-      - temp_low_1d_f
-      - weather_1d
       
   - platform: darksky
     api_key: !secret darksky_api_key
@@ -22,6 +9,11 @@
       - temperature
       - hourly_summary
       - temperature_max
+      - wind_speed
+      - humidity
+      - pressure
+      - temperature_min
+      - precip_intensity
       
         ##########################################################
         ## PiHole
@@ -29,6 +21,10 @@
       
   - platform: pi_hole
     host: REDACTED
+    monitored_conditions:
+      - ads_blocked_today
+      - ads_percentage_today
+      - dns_queries_today
     
         ##########################################################
         ## HA Instance
@@ -96,8 +92,8 @@
       {%- endif -%}
       {{ '%02d' % hours }}:{{ '%02d' % minutes }} 
       
-  - platform: cpuspeed
-    name: CPU
+#  - platform: cpuspeed
+#    name: CPU
     
   - platform: systemmonitor
     resources:
@@ -145,7 +141,7 @@
       - last_activity
       - last_ding
       - last_motion
-      - volume
+#      - volume
       
         ##########################################################
         ## NAS
@@ -172,7 +168,7 @@
     monitored_conditions:
       - status
       - memory_percent_used
-      - system_temp
+#      - system_temp
       - cpu_usage
       - cpu_temp
       - network_tx
@@ -180,9 +176,7 @@
       - volume_size_free
       - volume_size_used
       - volume_percentage_used
-      
-
-       
+         
   - platform: yahoo_finance
     symbols:
       - WFC
@@ -205,23 +199,30 @@
       media_center:
         value_template: '{{ states.remote.media_center.attributes.current_activity }}'
         friendly_name: 'Media Center'
+        
       master_remote:
         value_template: '{{ states.remote.master.attributes.current_activity }}'
         friendly_name: 'Master'
+        
       ring_last_ding:
        friendly_name: Last Ding Time
        value_template: "{{ as_timestamp(states.sensor.ring_front_door_last_ding.attributes.created_at) |  timestamp_custom('%D %-I:%M %P') }}" 
+       
       ring_last_motion:
        friendly_name: Last Motion Time
        value_template: "{{ as_timestamp(states.sensor.ring_front_door_last_motion.attributes.created_at) |  timestamp_custom('%D %-I:%M %P') }}"
+       
       downstairs_thermostat_away_mode:
-       value_template: '{{ states.climate.downstairs.attributes.away_mode }}'  
+       value_template: '{{ states.climate.downstairs.attributes.away_mode }}' 
+       
       upstairs_thermostat_away_mode:
        value_template: '{{ states.climate.upstairs.attributes.away_mode }}'
+       
       living_room_temperature:
         value_template: '{{ states.climate.downstairs.attributes.current_temperature }}'
         friendly_name: 'Living Temperature' 
         unit_of_measurement: "°F"
+        
       loft_temperature:
         value_template: '{{ states.climate.upstairs.attributes.current_temperature }}'
         friendly_name: 'Loft Temperature' 

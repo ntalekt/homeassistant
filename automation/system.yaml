@@ -1,0 +1,30 @@
+#################################################################
+## System Automations
+#################################################################
+
+        ##########################################################
+        ## Run Cox Usage Script Hourly
+        ##########################################################
+
+- alias: System - Query Cox Data Usage
+  trigger:
+    platform: time
+    minutes: '/60'
+    seconds: 00
+  action:
+    service: shell_command.query_cox_data_usage
+    
+        ##########################################################
+        ## Clean TTS Cache once a week
+        ##########################################################
+
+- alias: System - Clear TTS Cache
+  trigger:
+    platform: time
+    hours: '/24'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+  action:
+    service: tts.clear_cache

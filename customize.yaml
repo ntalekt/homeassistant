@@ -32,6 +32,25 @@
       icon: mdi:av-timer
       
         ##########################################################
+        ## Weather
+        ##########################################################    
+    
+    sensor.dark_sky_temperature:
+      friendly_name: Current Temperature
+    sensor.dark_sky_daily_high_temperature:
+      friendly_name: High Temperature
+    sensor.dark_sky_daily_low_temperature:
+      friendly_name: Low Temperature
+    sensor.dark_sky_humidity:
+      friendly_name: Humidity
+    sensor.dark_sky_precip_intensity:
+      friendly_name: Precipitation
+    sensor.dark_sky_wind_speed:
+      friendly_name: Wind Speed
+    sensor.dark_sky_pressure:
+      friendly_name: Pressure
+      
+        ##########################################################
         ## Office Sensor Node
         ##########################################################    
     

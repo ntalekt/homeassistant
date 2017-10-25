@@ -1,0 +1,117 @@
+#################################################################
+## Text Notification Automations
+#################################################################
+
+        ##########################################################
+        ## New version of Home Assistant
+        ##########################################################
+
+- alias: Notification - New Version of Home Assistant
+  trigger:
+    - platform: state
+      entity_id: sensor.current_ha_release
+  action:
+    - service: notify.pushbullet
+      data:
+        title: "New Home Assistant Release"
+        message: "Home Assistant {{ states.sensor.current_ha_release.state }} is now available."
+        
+        ##########################################################
+        ## Notify if Nest has gone into Away Mode
+        ##########################################################
+
+- alias: Notification - Nest has gone into away mode
+  trigger:
+    - platform: state
+      entity_id: sensor.downstairs_thermostat_away_mode
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: sensor.upstairs_thermostat_away_mode
+      from: 'off'
+      to: 'on'  
+  condition:
+    - condition: state
+      entity_id: sensor.downstairs_thermostat_away_mode
+      state: 'on'
+    - condition: state
+      entity_id: sensor.upstairs_thermostat_away_mode
+      state: 'on'
+  action:
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: "Nests have entered away mode"
+        
+        ##########################################################
+        ## Notify if Nest has gone into Home Mode
+        ##########################################################
+
+- alias: Notification - Nest has gone into home mode
+  trigger:
+    - platform: state
+      entity_id: sensor.downstairs_thermostat_away_mode
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: sensor.upstairs_thermostat_away_mode
+      from: 'on'
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: sensor.downstairs_thermostat_away_mode
+      state: 'off'
+    - condition: state
+      entity_id: sensor.upstairs_thermostat_away_mode
+      state: 'off'
+  action:
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: "Nests have exited away mode"
+        
+        ##########################################################
+        ## Notify if critical device goes offline
+        ##########################################################
+        
+- alias: Notification - Alert when a critical device goes offline
+  trigger:
+    - platform: state
+      entity_id:
+      - binary_sensor.synology_nas
+      - binary_sensor.qnap_nas
+      - binary_sensor.hue_hub
+      - binary_sensor.harmony_hub
+      - binary_sensor.master_harmony_hub      
+      - binary_sensor.sonos_chalkboard
+      - binary_sensor.sonos_den    
+      - binary_sensor.sonos_kitchen
+      - binary_sensor.ring_pro   
+      - binary_sensor.opensprinkler_pi
+      - binary_sensor.upstairs_thermostat_online
+      - binary_sensor.downstairs_thermostat_online
+      - binary_sensor.baby_camera
+      - binary_sensor.living_camera
+      - binary_sensor.chalkboard_camera
+      - binary_sensor.garage_camera
+      - binary_sensor.shop_camera
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 2
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: >
+          {% if states.automation.alert_when_a_critical_device_goes_offline.last_triggered is not none %}
+            {% if as_timestamp(now()) | int   -  as_timestamp(states.automation.alert_when_a_critical_device_goes_offline.attributes.last_triggered) | int > 3600 %} true {% else %} false
+            {% endif %}
+          {% else %}
+          false
+          {% endif %}
+  action:
+    - service: notify.pushbullet
+      data_template:
+        title: "Home Assistant - Device Alert"
+        message: '{{trigger.to_state.attributes.friendly_name}} has gone offline.'

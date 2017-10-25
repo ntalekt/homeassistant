@@ -1,7 +1,8 @@
   - platform: kodi
     host: REDACTED
-    username: kodi
-    password: kodi
+    username: !secret kodi_user
+    password: !secret kodi_pass
+    
   - platform: sonos
     hosts:
       - REDACTED

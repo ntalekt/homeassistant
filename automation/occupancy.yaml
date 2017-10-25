@@ -1,0 +1,148 @@
+#################################################################
+## Occupancy Automations
+#################################################################
+
+      #################################################################
+      ## Office Occupancy
+      #################################################################
+      
+- alias: Occupancy - Office turn on if motion detected
+  trigger:
+    - platform: state
+      entity_id: sensor.office_pir
+      from: 'standby'
+      to: 'motion detected'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.office_occupancy
+      
+      #################################################################
+      ## Reset Office Occupancy
+      #################################################################
+      
+- alias: Occupancy - Office turn off after 30min of no motion
+  trigger:
+    - platform: state
+      entity_id: sensor.office_pir
+      to: 'standby'
+      for:
+        minutes: 30
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.office_occupancy
+      
+      #################################################################
+      ## Living Room Occupancy
+      #################################################################
+      
+- alias: Occupancy - Living turn on if motion detected
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_motion_detected
+      from: 'False'
+      to: 'True'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.living_occupancy
+      
+      #################################################################
+      ## Reset Living Room Occupancy
+      #################################################################
+      
+- alias: Occupancy - Living turn off after 30min of no motion
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_motion_detected
+      to: 'False'
+      for:
+        minutes: 30
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.living_occupancy
+      
+      #################################################################
+      ## Garage Occupancy
+      #################################################################
+
+- alias: Occupancy - Garage turn on if motion detected
+  trigger:
+    - platform: state
+      entity_id: sensor.garage_motion_detected
+      from: 'False'
+      to: 'True'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.garage_occupancy
+      
+      #################################################################
+      ## Reset Garage Occupancy
+      #################################################################
+      
+- alias: Occupancy - Garage turn off after 10min of no motion
+  trigger:
+    - platform: state
+      entity_id: sensor.garage_motion_detected
+      to: 'False'
+      for:
+        minutes: 10
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garage_occupancy
+
+      #################################################################
+      ## Chalkboard Room Occupancy
+      #################################################################      
+
+- alias: Occupancy - Chalkboard turn on if motion detected
+  trigger:
+    - platform: state
+      entity_id: sensor.chalkboard_room_motion_detected
+      from: 'False'
+      to: 'True'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.chalkboard_occupancy
+      
+      #################################################################
+      ## Reset Chalkboard Room Occupancy
+      #################################################################
+      
+- alias: Occupancy - Chalkboard turn off after 30min of no motion
+  trigger:
+    - platform: state
+      entity_id: sensor.chalkboard_room_motion_detected
+      to: 'False'
+      for:
+        minutes: 30
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.chalkboard_occupancy
+      
+      #################################################################
+      ## Shop Occupancy
+      #################################################################
+
+- alias: Occupancy - Shop turn on if motion detected
+  trigger:
+    - platform: state
+      entity_id: sensor.shop_motion_detected
+      from: 'False'
+      to: 'True'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.shop_occupancy
+      
+      #################################################################
+      ## Reset Shop Occupancy
+      #################################################################
+      
+- alias: Occupancy - Shop turn off after 10min of no motion
+  trigger:
+    - platform: state
+      entity_id: sensor.shop_motion_detected
+      to: 'False'
+      for:
+        minutes: 10
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.shop_occupancy     

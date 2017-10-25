@@ -1,0 +1,83 @@
+#################################################################
+## Vacation Mode Automations
+#################################################################
+
+        ##########################################################
+        ## Turn on Vacation Mode when Gone 24 Hours
+        ##########################################################
+
+- alias: Vacation - Turn on when Gone 24 Hours
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 24
+        minutes: 0
+        seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.vacation_mode
+      
+        ##########################################################
+        ## Turn off Vacation Mode when Home
+        ##########################################################
+
+- alias: Vacation - Turn off when Home
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.vacation_mode
+      
+        ##########################################################
+        ## Set Nest to Away if Vacation Mode is On
+        ##########################################################
+
+- alias: Vacation - Set Nest to Away in Vacation Mode
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+      from: 'off'
+      to: 'on'
+  action:
+    - service: climate.set_away_mode
+      entity_id: climate.downstairs
+      data:
+        away_mode: 'True'      
+    - service: climate.set_away_mode
+      entity_id: climate.upstairs
+      data:
+        away_mode: 'True'  
+
+        ##########################################################
+        ## Set Nest to Home if Vacation Mode is Off
+        ##########################################################
+
+- alias: Vacation - Set Nest to Home if Vacation Mode Turns Off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+      from: 'on'
+      to: 'off'
+  action:
+    - service: climate.set_away_mode
+      entity_id: climate.downstairs
+      data:
+        away_mode: 'False'      
+    - service: climate.set_away_mode
+      entity_id: climate.upstairs
+      data:
+        away_mode: 'False'          

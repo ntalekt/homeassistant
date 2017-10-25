@@ -132,14 +132,13 @@
   current_weather:
       name: Current Weather
       entities:
-        - sensor.pws_temp_f
-        - sensor.pws_temp_high_1d_f
-        - sensor.pws_temp_low_1d_f
-        - sensor.pws_relative_humidity
-        - sensor.pws_precip_today_in
-        - sensor.pws_uv
-        - sensor.pws_wind_mph
-        - sensor.pws_alerts
+        - sensor.dark_sky_temperature
+        - sensor.dark_sky_daily_high_temperature
+        - sensor.dark_sky_daily_low_temperature
+        - sensor.dark_sky_humidity
+        - sensor.dark_sky_precip_intensity
+        - sensor.dark_sky_wind_speed
+        - sensor.dark_sky_pressure
         
   nest_downstairs_card:  
     name: Downstairs Nest 
@@ -256,7 +255,7 @@
       
   System:
     entities: 
-      - sensor.cpu
+#      - sensor.cpu
 #      - sensor.cpu_use
       - sensor.cpu_used
       - sensor.cpu_temp
@@ -297,7 +296,7 @@
       - sensor.nas2_network_up_eth0
       - sensor.nas2_network_down_eth0          
       - sensor.nas2_status
-      - sensor.nas2_system_temperature    
+#      - sensor.nas2_system_temperature    
       - sensor.nas2_free_space_datavol1
       - sensor.nas2_used_space_datavol1
       - sensor.nas2_volume_used_datavol1
@@ -336,6 +335,7 @@
     entities:
       - sensor.pihole_ads_blocked_today
       - sensor.pihole_ads_percentage_blocked_today
+      - sensor.pihole_dns_queries_today
       
 
       

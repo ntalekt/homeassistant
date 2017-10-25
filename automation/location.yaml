@@ -1,0 +1,257 @@
+#################################################################
+## Location Automations
+#################################################################
+
+        ##########################################################
+        ## Set USER1 Away after 2 Min
+        ##########################################################
+
+- alias: Location - Set USER1 Away after 2 Mins
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER1DEVICE
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.USER1_greeting
+        - input_boolean.USER1_away
+        
+        ##########################################################
+        ## Set USER2 Away after 2 Min
+        ##########################################################
+
+- alias: Location - Set USER2 Away after 2 Mins
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2DEVICE
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.USER2_greeting
+        - input_boolean.USER2_away
+
+        ##########################################################
+        ## Set USER1 Home after 10 Mins
+        ##########################################################
+
+- alias: Location - Set USER1 Home after 10 Mins
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER1DEVICE
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.USER1_away
+        - input_boolean.USER1_away_driving
+        - input_boolean.USER1_greeting  
+
+        ##########################################################
+        ## Set USER2 Home after 10 Mins
+        ##########################################################
+
+- alias: Location - Set USER2 Home after 10 Mins
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2DEVICE
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.USER2_away
+        - input_boolean.USER2_away_driving
+        - input_boolean.USER2_greeting   
+
+        ##########################################################
+        ## Set USER1 Away Driving
+        ##########################################################
+
+- alias: Location - Set USER1 Away Driving
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER1DEVICE
+      from: 'home'
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.garage_occupancy
+      state: 'on'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.USER1_away_driving 
+
+        ##########################################################
+        ## Set USER2 Away Driving
+        ##########################################################
+
+- alias: Location - Set USER2 Away Driving
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2DEVICE
+      from: 'home'
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.garage_occupancy
+      state: 'on'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.USER2_away_driving      
+
+        ##########################################################
+        ## Manually Set USER1 Away
+        ##########################################################
+
+- alias: Location - Manually Set USER1 Away
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_USER1_away
+      from: 'off'
+      to: 'on'
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: USER1DEVICE
+        location_name: 'not_home'
+
+        ##########################################################
+        ## Reset Manually Set USER1 Away Switch
+        ##########################################################
+
+- alias: Location - Reset Manually Set USER1 Away
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_USER1_away
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.manual_USER1_away  
+
+        ##########################################################
+        ## Manually Set USER2 Away
+        ##########################################################
+
+- alias: Location - Manually Set USER2 Away
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_USER2_away
+      from: 'off'
+      to: 'on'
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: USER2DEVICE
+        location_name: 'not_home'
+
+        ##########################################################
+        ## Reset Manually Set USER2 Away Switch
+        ##########################################################
+
+- alias: Location - Reset Manually Set USER2 Away
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_USER2_away
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.manual_USER2_away   
+
+        ##########################################################
+        ## Manually Set USER1 Home
+        ##########################################################
+
+- alias: Location - Manually Set USER1 Home
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_USER1_home
+      from: 'off'
+      to: 'on'
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: USER1DEVICE
+        location_name: 'home'
+
+        ##########################################################
+        ## Reset Manually Set USER1 Home Switch
+        ##########################################################
+
+- alias: Location - Reset USER1 Home
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_USER1_home
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.manual_USER1_home   
+
+        ##########################################################
+        ## Manually Set USER2 Home
+        ##########################################################
+
+- alias: Location - Manually Set USER2 Home
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_USER2_home
+      from: 'off'
+      to: 'on'
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: USER2DEVICE
+        location_name: 'home'
+
+        ##########################################################
+        ## Reset Manually Set USER2 Home Switch
+        ##########################################################
+
+- alias: Location - Reset USER2 Home
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_USER2_home
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.manual_USER2_home
