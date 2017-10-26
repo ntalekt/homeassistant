@@ -30,6 +30,11 @@ logbook:
   exclude:
     entities:
       - sensor.since_last_boot
+      - sensor.ha_uptime
+      - sensor.ha_last_reboot
+      - sensor.pihole_ads_blocked_today
+      - sensor.pihole_ads_percentage_blocked_today
+      - sensor.pihole_dns_queries_today
 
 http:
   # Uncomment this to add a password (recommended!)
@@ -43,11 +48,11 @@ http:
 # For more information, please see:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 
-  
+
 #################################################################
 ## Components
 #################################################################
-      
+
 amcrest:
   - host: REDACTED
     name: Living Room
@@ -56,7 +61,7 @@ amcrest:
     sensors:
       - motion_detector
     stream_source: rtsp
-    
+
   - host: REDACTED
     name: Garage
     username: !secret amcrest_user
@@ -64,7 +69,7 @@ amcrest:
     sensors:
       - motion_detector
     stream_source: rtsp
-    
+
   - host: REDACTED
     name: Chalkboard Room
     username: !secret amcrest_user
@@ -72,7 +77,7 @@ amcrest:
     sensors:
       - motion_detector
     stream_source: rtsp
-    
+
   - host: REDACTED
     name: Shop
     username: !secret amcrest_user
@@ -80,25 +85,25 @@ amcrest:
     sensors:
       - motion_detector
     stream_source: rtsp
-    
+
 ffmpeg:
   ffmpeg_bin: /usr/bin/ffmpeg
-  
-mqtt:  
-  broker: REDACTED33 
-  port: 1883  
+
+mqtt:
+  broker: REDACTED33
+  port: 1883
   client_id: REDACTED
   username: !secret mqtt_user
   password: !secret mqtt_pass
-  
+
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
-  
+
 ring:
   username: !secret ring_username
   password: !secret ring_password
-  
+
 shell_command:
   query_cox_data_usage: 'python /home/homeassistant/.homeassistant/cox_usage.py'
 
@@ -106,7 +111,7 @@ tts:
   - platform: google
     cache: true
     time_memory: 300
-  
+
 zwave:
   usb_path: /dev/ttyACM0
   new_entity_ids: true
@@ -118,13 +123,13 @@ zwave:
       refresh_value: true
     light.ge_14294_exterior_side_level:
       polling_intensity: 1
-      refresh_value: true 
+      refresh_value: true
 
-  
+
 #################################################################
 ## Includes
 #################################################################
-    
+
 automation: !include_dir_merge_list automation
 recorder: !include recorder.yaml
 history: !include history.yaml
@@ -136,7 +141,7 @@ input_select: !include input_select.yaml
 input_boolean: !include input_boolean.yaml
 light: !include light.yaml
 camera: !include camera.yaml
-device_tracker: !include device_tracker.yaml   
+device_tracker: !include device_tracker.yaml
 notify: !include notify.yaml
 script: !include scripts.yaml
 remote: !include remote.yaml
