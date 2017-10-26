@@ -5,12 +5,45 @@
   purge_interval: 1
   purge_keep_days: 7
   db_url: mysql://REDACTED:REDACTED@127.0.0.1/hass_db
-      
+
   exclude:
     domains:
       - updater
       - camera
+      - group
       - media_player
       - script
       - sun
       - automation
+      - sensor
+      - zone
+      - zwave
+  include:
+    domains:
+      - automation
+      - binary_sensor
+      - climate
+      - device_tracker
+      - group
+      - input_boolean
+      - media_player
+      - sensor
+      - switch
+    entities:
+      - group.household
+      - sensor.nas2_free_space_datavol1
+      - sensor.nas2_network_down_eth0
+      - sensor.nas2_network_up_eth0
+      - sensor.USER2_to_home
+      - sensor.USER1_to_home
+      - sensor.ha_db_size
+      - sensor.pihole_ads_blocked_today
+      - sensor.pihole_ads_percentage_blocked_today
+      - sensor.pihole_dns_queries_today
+      - sensor.office_temperature
+      - sensor.loft_temperature
+      - sensor.living_room_temperature
+      - sensor.master_remote
+      - sensor.media_center
+      - sensor.upstairs_thermostat_hvac_state
+      - sensor.downstairs_thermostat_hvac_state
