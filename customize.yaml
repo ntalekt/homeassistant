@@ -4,8 +4,8 @@
 
         ##########################################################
         ## Sensors
-        ##########################################################    
-    
+        ##########################################################
+
     sensor.cox_utilization:
       icon: mdi:percent
       friendly_name: Utilization
@@ -30,11 +30,11 @@
       icon: mdi:restart
     sensor.ha_uptime:
       icon: mdi:av-timer
-      
+
         ##########################################################
         ## Weather
-        ##########################################################    
-    
+        ##########################################################
+
     sensor.dark_sky_temperature:
       friendly_name: Current Temperature
     sensor.dark_sky_daily_high_temperature:
@@ -49,14 +49,14 @@
       friendly_name: Wind Speed
     sensor.dark_sky_pressure:
       friendly_name: Pressure
-      
+
         ##########################################################
         ## Office Sensor Node
-        ##########################################################    
-    
+        ##########################################################
+
     sensor.office_temperature:
       icon: mdi:thermometer-lines
-      friendly_name: Temperature
+      friendly_name: Office Temperature
     sensor.office_humidity:
       icon: mdi:water-percent
       friendly_name: Humidity
@@ -69,12 +69,12 @@
     light.office_led:
       icon: mdi:led-on
       friendly_name: LED
-      
-      
+
+
         ##########################################################
         ## Thermostat
         ##########################################################
-        
+
     climate.upstairs:
       friendly_name: Nest Thermostat
       entity_picture: /local/nest.png
@@ -95,22 +95,22 @@
       icon: mdi:water-percent
     binary_sensor.upstairs_thermostat_fan:
       friendly_name: Fan
-      icon: mdi:fan      
+      icon: mdi:fan
     binary_sensor.downstairs_thermostat_fan:
       friendly_name: Fan
-      icon: mdi:fan     
+      icon: mdi:fan
     binary_sensor.upstairs_thermostat_online:
       friendly_name: Nest Upstairs
-      icon: mdi:nest-thermostat        
+      icon: mdi:nest-thermostat
     binary_sensor.downstairs_thermostat_online:
       friendly_name: Nest Downstairs
-      icon: mdi:nest-thermostat     
-      
-      
+      icon: mdi:nest-thermostat
+
+
         ##########################################################
         ## Doorbell
         ##########################################################
-        
+
     sensor.ring_front_door_last_ding:
       friendly_name: Last Ring
     sensor.ring_front_door_last_motion:
@@ -121,42 +121,42 @@
     sensor.ring_last_motion:
       friendly_name: Last Motion
       icon: mdi:run-fast
-      
-      
+
+
         ##########################################################
         ## Finance
         ##########################################################
-        
+
     sensor.exchange_rate_1_btc:
       friendly_name: BTC
-      
-      
+
+
         ##########################################################
         ## Remote
         ##########################################################
-        
+
     sensor.media_center:
       icon: mdi:television
 
-      
+
         ##########################################################
         ## Lights
         ##########################################################
-        
+
     light.ge_14294_porch_level:
       friendly_name: Porch
-      icon: mdi:ceiling-light     
+      icon: mdi:ceiling-light
     light.ge_14294_exterior_side_level:
       friendly_name: Side
-      icon: mdi:ceiling-light      
+      icon: mdi:ceiling-light
     light.loft_floor_lamp:
       friendly_name: Floor Lamp
       icon: mdi:lamp
-      
+
         ##########################################################
         ## Devices
         ##########################################################
-        
+
     binary_sensor.wan:
       icon: mdi:wan
     binary_sensor.baby_camera:
@@ -170,7 +170,7 @@
     binary_sensor.shop_camera:
       icon: mdi:camera
     binary_sensor.synology_nas:
-      icon: mdi:harddisk 
+      icon: mdi:harddisk
     binary_sensor.qnap_nas:
       icon: mdi:harddisk
     binary_sensor.hue_hub:
@@ -186,26 +186,26 @@
     binary_sensor.sonos_kitchen:
       icon: mdi:speaker-wireless
     binary_sensor.ring_pro:
-      icon: mdi:bell-ring       
+      icon: mdi:bell-ring
     binary_sensor.opensprinkler_pi:
-      icon: mdi:water    
+      icon: mdi:water
 
         ##########################################################
         ## DNS
         ##########################################################
-        
+
     sensor.pihole_ads_blocked_today:
       icon: mdi:dns
       friendly_name: DNS Queries Blocked
     sensor.pihole_ads_percentage_blocked_today:
       icon: mdi:dns
       friendly_name: DNS Percentage Blocked
-     
+
         ##########################################################
         ## All Groups / Troubleshooting
         ##########################################################
-        
-        
+
+
 #    group.all_automations:
 #      hidden: false
 #    group.all_scripts:
