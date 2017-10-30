@@ -118,8 +118,8 @@
     - input_select.sonos
     
   Household:
-    - device_tracker.USERTWODEVICE
-    - device_tracker.USERONEDEVICE
+    - device_tracker.usertwodevice
+    - device_tracker.useronedevice
     
   door_bell:
     name: Door Bell
@@ -219,22 +219,22 @@
       
   Input Boolean:
     entities: 
-      - input_boolean.USERONE_greeting
-      - input_boolean.USERTWO_greeting
-      - input_boolean.USERONE_away
-      - input_boolean.USERTWO_away     
+      - input_boolean.userone_greeting
+      - input_boolean.usertwo_greeting
+      - input_boolean.userone_away
+      - input_boolean.usertwo_away     
 
   Location Controls:
     control: hidden
     entities:
-      - input_boolean.USERONE_away
-      - input_boolean.USERONE_away_driving
-      - input_boolean.USERTWO_away
-      - input_boolean.USERTWO_away_driving
-      - input_boolean.manual_USERONE_home
-      - input_boolean.manual_USERTWO_home
-      - input_boolean.manual_USERONE_away
-      - input_boolean.manual_USERTWO_away
+      - input_boolean.userone_away
+      - input_boolean.userone_away_driving
+      - input_boolean.usertwo_away
+      - input_boolean.usertwo_away_driving
+      - input_boolean.manual_userone_home
+      - input_boolean.manual_usertwo_home
+      - input_boolean.manual_userone_away
+      - input_boolean.manual_usertwo_away
       - input_boolean.vacation_mode     
   
   Sonos:

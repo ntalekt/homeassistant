@@ -59,37 +59,37 @@
     name: Vacation Mode
     icon: mdi:airplane
 
-  USERONE_greeting:
-    name: USERONE Greeting Enabled
+  userone_greeting:
+    name: userone Greeting Enabled
     initial: off
 
-  USERTWO_greeting:
-    name: USERTWO Greeting Enabled
+  usertwo_greeting:
+    name: usetwo Greeting Enabled
     initial: off
     
-  USERONE_away:
-    name: USERONE Away
+  userone_away:
+    name: userone Away
 
-  USERTWO_away:
-    name: USERTWO Away
+  usertwo_away:
+    name: usetwo Away
     
-  USERONE_away_driving:
-    name: USERONE Away Driving
+  userone_away_driving:
+    name: userone Away Driving
 
-  USERTWO_away_driving:
-    name: USERTWO Away Driving
+  usertwo_away_driving:
+    name: usetwo Away Driving
     
-  manual_USERONE_away:
-    name: Manually set USERONE Away
+  manual_userone_away:
+    name: Manually set userone Away
 
-  manual_USERTWO_away:
-    name: Manually set USERTWO Away
+  manual_usertwo_away:
+    name: Manually set usetwo Away
     
-  manual_USERONE_home:
-    name: Manually set USERONE Home
+  manual_userone_home:
+    name: Manually set userone Home
 
-  manual_USERTWO_home:
-    name: Manually set USERTWO Home
+  manual_usertwo_home:
+    name: Manually set usetwo Home
     
   group_all_sonos:
     name: Play on all Speakers
