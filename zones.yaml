@@ -1,51 +1,45 @@
 #################################################################
 ## Zones
 #################################################################
-  
+
 - name: Home
-  latitude: REDACTED
-  longitude: REDACTED
+  latitude: !secret homeassistant_latitude
+  longitude: !secret homeassistant_longitude
   radius: 150
   icon: mdi:home
 
-- name: REDACTED
-  latitude: REDACTED
-  longitude: REDACTED
+- name: !secret prek_name
+  latitude: !secret prek_latitude
+  longitude: !secret prek_longitude
   radius: 150
   icon: mdi:school
 
 - name: Swim
-  latitude: REDACTED
-  longitude: REDACTED
+  latitude: !secret swim_latitude
+  longitude: !secret swim_longitude
   radius: 150
   icon: mdi:swim
 
-- name: Music
-  latitude: REDACTED
-  longitude: REDACTED
-  radius: 150
-  icon: mdi:music
-
 - name: Work
-  latitude: REDACTED
-  longitude: REDACTED
+  latitude: !secret work_latitude
+  longitude: !secret work_longitude
   radius: 150
   icon: mdi:domain
 
-- name: REDACTED & REDACTED's
-  latitude: REDACTED
-  longitude: REDACTED
+- name: !secret gran_name
+  latitude: !secret gran_latitude
+  longitude: !secret gran_longitude
   radius: 150
   icon: mdi:home
 
 - name: Target
-  latitude: REDACTED
-  longitude: REDACTED
+  latitude: !secret target_latitude
+  longitude: !secret target_longitude
   radius: 150
   icon: mdi:target
 
-- name: REDACTED
-  latitude: REDACTED
-  longitude: REDACTED
+- name: !secret k_name
+  latitude: !secret k_latitude
+  longitude: !secret k_longitude
   radius: 150
   icon: mdi:school

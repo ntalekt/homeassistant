@@ -1,13 +1,26 @@
+##############################################################
+## Light  ##
+##############################################################
+
+        ##########################################################
+        ## Hue Lights
+        ##########################################################
+
   - platform: hue
-    host: REDACTED
+    host: !secret hue_hub_host
     allow_hue_groups: false
     allow_unreachable: true
-  - platform: mqtt_json  
-    name: "Office LED"  
-    state_topic: "ntalekt/sensornode1"  
-    command_topic: "ntalekt/sensornode1/set"  
-    brightness: true  
-    flash: true  
-    rgb: true  
-    optimistic: false  
-    qos: 0  
+
+            ##########################################################
+            ## MQTT Lights
+            ##########################################################
+
+  - platform: mqtt_json
+    name: "Office LED"
+    state_topic: "ntalekt/sensornode1"
+    command_topic: "ntalekt/sensornode1/set"
+    brightness: true
+    flash: true
+    rgb: true
+    optimistic: false
+    qos: 0

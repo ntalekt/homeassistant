@@ -1,8 +1,17 @@
+##############################################################
+## Remote  ##
+##############################################################
+
+        ##########################################################
+        ## Harmony Hub
+        ##########################################################
+
   - platform: harmony
     name: Media Center
-    host: REDACTED
+    host: !secret harmony_hub_host
     scan_interval: 25
+
   - platform: harmony
     name: Master
-    host: REDACTED
+    host: !secret master_harmony_hub_host
     scan_interval: 25

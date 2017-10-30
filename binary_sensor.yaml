@@ -1,3 +1,7 @@
+##############################################################
+## Binary Sensor  ##
+##############################################################
+
         ##########################################################
         ## Doorbell
         ##########################################################
@@ -56,63 +60,63 @@
         ##########################################################
 
   - platform: ping
-    host: REDACTED
+    host: !secret nas_host
     name: Synology NAS
 
   - platform: ping
-    host: REDACTED
+    host: !secret nas2_host
     name: QNAP NAS
 
   - platform: ping
-    host: REDACTED
+    host: !secret hue_hub_host
     name: Hue Hub
 
   - platform: ping
-    host: REDACTED
+    host: !secret harmony_hub_host
     name: Harmony Hub
 
   - platform: ping
-    host: REDACTED
+    host: !secret master_harmony_hub_host
     name: Master Harmony Hub
 
   - platform: ping
-    host: REDACTED
+    host: !secret sonos_chalkboard_host
     name: Sonos Chalkboard
 
   - platform: ping
-    host: REDACTED
+    host: !secret sonos_den_host
     name: Sonos Den
 
   - platform: ping
-    host: REDACTED
+    host: !secret sonos_kitchen_host
     name: Sonos Kitchen
 
   - platform: ping
-    host: REDACTED
+    host: !secret ring_pro_host
     name: Ring Pro
 
   - platform: ping
-    host: REDACTED
+    host: !secret opensprinkler_pi_host
     name: OpenSprinkler Pi
 
   - platform: ping
-    host: REDACTED
+    host: !secret baby_cam_host
     name: Baby Camera
 
   - platform: ping
-    host: REDACTED
+    host: !secret amcrest_living_host
     name: Living Camera
 
   - platform: ping
-    host: REDACTED
+    host: !secret amcrest_garage_host
     name: Garage Camera
 
   - platform: ping
-    host: REDACTED
+    host: !secret amcrest_chalkboard_host
     name: Chalkboard Camera
 
   - platform: ping
-    host: REDACTED
+    host: !secret amcrest_shop_host
     name: Shop Camera
 
         ##########################################################

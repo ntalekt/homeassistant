@@ -1,11 +1,22 @@
+##############################################################
+## Media Player  ##
+##############################################################
+
+        ##########################################################
+        ## Kodi
+        ##########################################################
+
   - platform: kodi
-    host: REDACTED
+    host: !secret nvidia_shield_host
     username: !secret kodi_user
     password: !secret kodi_pass
-    
+
+        ##########################################################
+        ## Sonos
+        ##########################################################
+
   - platform: sonos
     hosts:
-      - REDACTED
-      - REDACTED
-      - REDACTED
-
+      - !secret sonos_chalkboard_host
+      - !secret sonos_den_host
+      - !secret sonos_kitchen_host

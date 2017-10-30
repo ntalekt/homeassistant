@@ -1,3 +1,7 @@
+##############################################################
+## Sensor  ##
+##############################################################
+
         ##########################################################
         ## Weather
         ##########################################################
@@ -20,7 +24,7 @@
         ##########################################################
 
   - platform: pi_hole
-    host: REDACTED
+    host: !secret pihole_host
     monitored_conditions:
       - ads_blocked_today
       - ads_percentage_today
@@ -148,7 +152,7 @@
         ##########################################################
 
   - platform: synologydsm
-    host: REDACTED
+    host: !secret nas_host
     username: !secret nas_username
     password: !secret nas_pass
     monitored_conditions:
@@ -161,7 +165,7 @@
       - volume_size_used
 
   - platform: qnap
-    host: REDACTED
+    host: !secret nas2_host
     username: !secret nas_username
     password: !secret nas_pass
     nics: eth0
@@ -244,44 +248,44 @@
 
   - platform: google_travel_time
     name: USER2 To Home
-    api_key: REDACTED
-    origin: device_tracker.USER2DEVICE
+    api_key: !secret google_travel_api
+    origin: !secret device_tracker_USER2
     destination: zone.home
 
   - platform: google_travel_time
     name: USER2 To REDACTED
-    api_key: REDACTED
-    origin: device_tracker.USER2DEVICE
+    api_key: !secret google_travel_api
+    origin: !secret device_tracker_USER2
     destination: zone.REDACTED
 
   - platform: google_travel_time
     name: USER2 To REDACTED
-    api_key: REDACTED
-    origin: device_tracker.USER2DEVICE
+    api_key: !secret google_travel_api
+    origin: !secret device_tracker_USER2
     destination: zone.REDACTED
 
   - platform: google_travel_time
     name: USER2 To Work
-    api_key: REDACTED
-    origin: device_tracker.USER2DEVICE
+    api_key: !secret google_travel_api
+    origin: !secret device_tracker_USER2
     destination: zone.work
 
   - platform: google_travel_time
     name: USER1 To Home
-    api_key: REDACTED
-    origin: device_tracker.USER1DEVICE
+    api_key: !secret google_travel_api
+    origin: !secret device_tracker_USER1
     destination: zone.home
 
   - platform: google_travel_time
     name: USER1 To REDACTED
-    api_key: REDACTED
-    origin: device_tracker.USER1DEVICE
+    api_key: !secret google_travel_api
+    origin: !secret device_tracker_USER1
     destination: zone.REDACTED
 
   - platform: google_travel_time
     name: USER1 To REDACTED
-    api_key: REDACTED
-    origin: device_tracker.USER1DEVICE
+    api_key: !secret google_travel_api
+    origin: !secret device_tracker_USER1
     destination: zone.REDACTED
 
         ##########################################################
@@ -308,13 +312,14 @@
     value_template: >
       {% if value_json is defined %}
         {% if value_json.dumDaysLeft is defined %}
-          {{ value_json.dumDaysLeft | int }} Days
+          {{ value_json.dumDaysLeft | int }}
         {% else %}
           unknown
         {% endif %}
       {% else %}
         undefined
       {% endif %}
+    unit_of_measurement: "Days"
 
   - platform: file
     name: Cox Avg GB Current
@@ -324,13 +329,14 @@
         {% if value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
           stats unavailable
         {% elif states.sensor.days_in_current_month.state is defined %}
-          {{ (float(value_json.dumUsage) / (float(states.sensor.days_in_current_month.state) - float(value_json.dumDaysLeft))) | round(1) }} GB per day
+          {{ (float(value_json.dumUsage) / (float(states.sensor.days_in_current_month.state) - float(value_json.dumDaysLeft))) | round(1) }}
         {% else %}
           month_undefined
         {% endif %}
       {% else %}
         undefined
       {% endif %}
+    unit_of_measurement: "GB per day"
 
   - platform: file
     name: Cox Avg GB Remaining
@@ -340,11 +346,12 @@
         {% if value_json.dumLimit | int == 0 and value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
           stats unavailable
         {% else %}
-          {{ ((float(value_json.dumLimit) - float(value_json.dumUsage)) / float(value_json.dumDaysLeft)) | round(1) }} GB per day
+          {{ ((float(value_json.dumLimit) - float(value_json.dumUsage)) / float(value_json.dumDaysLeft)) | round(1) }}
         {% endif %}
       {% else %}
         undefined
       {% endif %}
+    unit_of_measurement: "GB per day"
 
   - platform: command_line
     command: cal $(date +"%m %Y") | awk 'NF {DAYS = $NF}; END {print DAYS}'
