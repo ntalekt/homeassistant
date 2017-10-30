@@ -79,13 +79,13 @@
 #      entity_id: script.dark_outside 
 
         ##########################################################
-        ## Sonos - Welcome Home USER1
+        ## Sonos - Welcome Home USERONE
         ##########################################################
 
-- alias: Notification Audio - Welcome Home USER1
+- alias: Notification Audio - Welcome Home USERONE
   trigger:
     - platform: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USERONEDEVICE
       from: 'not_home'
       to: 'home'
   condition:
@@ -96,7 +96,7 @@
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
     - condition: state
-      entity_id: input_boolean.USER1_greeting
+      entity_id: input_boolean.USERONE_greeting
       state: 'on'
   action:
     - delay: '00:00:30'
@@ -107,19 +107,19 @@
           master: 'media_player.kitchen'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.5'
-          what: 'Welcome home USER1.'
+          what: 'Welcome home USERONE.'
     - delay: '00:01:00'
     - service: homeassistant.turn_off
-      entity_id: input_boolean.USER1_greeting
+      entity_id: input_boolean.USERONE_greeting
 
         ##########################################################
-        ## Sonos - Welcome Home USER2
+        ## Sonos - Welcome Home USERTWO
         ##########################################################
 
-- alias: Notification Audio - Welcome Home USER2
+- alias: Notification Audio - Welcome Home USERTWO
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USERTWODEVICE
       from: 'not_home'
       to: 'home'
   condition:
@@ -127,7 +127,7 @@
       after: '08:00'
       before: '19:00'
     - condition: state
-      entity_id: input_boolean.USER2_greeting
+      entity_id: input_boolean.USERTWO_greeting
       state: 'on'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
@@ -141,24 +141,24 @@
           master: 'media_player.kitchen'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.5'
-          what: 'Welcome home USER2.'
+          what: 'Welcome home USERTWO.'
     - delay: '00:01:00'
     - service: homeassistant.turn_off
-      entity_id: input_boolean.USER2_greeting
+      entity_id: input_boolean.USERTWO_greeting
 
         ##########################################################
-        ## Sonos - USER2 has arrived at work
+        ## Sonos - USERTWO has arrived at work
         ##########################################################
 
-- alias: Notification Audio - USER2 arrived at work
+- alias: Notification Audio - USERTWO arrived at work
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USERTWODEVICE
       from: 'not_home'
       to: 'Work'
   condition:
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USERONEDEVICE
       state: 'home'
     - condition: time
       after: '07:00'
@@ -175,21 +175,21 @@
           master: 'media_player.kitchen'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.6'
-          what: 'USER2 has arrived at work.'
+          what: 'USERTWO has arrived at work.'
 
         ##########################################################
-        ## Sonos - USER2 Left Work to REDACTED
+        ## Sonos - USERTWO Left Work to REDACTED
         ##########################################################
 
-- alias: Notification Audio - USER2 Left Work
+- alias: Notification Audio - USERTWO Left Work
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USERTWODEVICE
       from: 'Work'
       to: 'not_home'
   condition:
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USERONEDEVICE
       state: 'home'
     - condition: time
       after: '15:00'
@@ -230,25 +230,25 @@
           - media_player.kitchen
           - media_player.chalkboard_room
           - media_player.loft
-        message: "USER2 has left work and will arrive at REDACTED REDACTED in about {{states('sensor.USER2_to_REDACTED')}} minutes"
+        message: "USERTWO has left work and will arrive at REDACTED REDACTED in about {{states('sensor.USERTWO_to_REDACTED')}} minutes"
     - delay: '00:00:25'
     - service: media_player.sonos_restore
       data:
         with_group: yes
 
         ##########################################################
-        ## Sonos - USER2 Arrived REDACTED
+        ## Sonos - USERTWO Arrived REDACTED
         ##########################################################
 
-- alias: Notification Audio - USER2 Arrived REDACTED
+- alias: Notification Audio - USERTWO Arrived REDACTED
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USERTWODEVICE
       from: 'not_home'
       to: 'REDACTED'
   condition:
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USERONEDEVICE
       state: 'home'
     - condition: time
       after: '13:00'
@@ -265,21 +265,21 @@
           master: 'media_player.kitchen'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.6'
-          what: 'USER2 has arrived at REDACTED REDACTED.'
+          what: 'USERTWO has arrived at REDACTED REDACTED.'
 
         ##########################################################
-        ## Sonos - USER2 Left REDACTED to REDACTED
+        ## Sonos - USERTWO Left REDACTED to REDACTED
         ##########################################################
 
-- alias: Notification Audio - USER2 Left REDACTED to REDACTED
+- alias: Notification Audio - USERTWO Left REDACTED to REDACTED
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USERTWODEVICE
       from: 'REDACTED'
       to: 'not_home'
   condition:
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USERONEDEVICE
       state: 'home'
     - condition: time
       after: '13:00'
@@ -320,25 +320,25 @@
           - media_player.kitchen
           - media_player.chalkboard_room
           - media_player.loft
-        message: "USER2 has left REDACTED REDACTED and will arrive at REDACTED REDACTED in about {{states('sensor.USER2_to_REDACTED')}} minutes"
+        message: "USERTWO has left REDACTED REDACTED and will arrive at REDACTED REDACTED in about {{states('sensor.USERTWO_to_REDACTED')}} minutes"
     - delay: '00:00:25'
     - service: media_player.sonos_restore
       data:
         with_group: yes
 
         ##########################################################
-        ## Sonos - USER2 Arrived REDACTED
+        ## Sonos - USERTWO Arrived REDACTED
         ##########################################################
 
-- alias: Notification Audio - USER2 Arrived REDACTED
+- alias: Notification Audio - USERTWO Arrived REDACTED
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USERTWODEVICE
       from: 'not_home'
       to: 'REDACTED'
   condition:
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USERONEDEVICE
       state: 'home'
     - condition: time
       after: '13:00'
@@ -355,21 +355,21 @@
           master: 'media_player.kitchen'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.6'
-          what: 'USER2 has arrived at REDACTED school.'
+          what: 'USERTWO has arrived at REDACTED school.'
 
         ##########################################################
-        ## Sonos - USER2 Left REDACTED to Home
+        ## Sonos - USERTWO Left REDACTED to Home
         ##########################################################
 
 - alias: Notification Audio - REDACTED to Home
   trigger:
     - platform: state
-      entity_id: device_tracker.USER2DEVICE
+      entity_id: device_tracker.USERTWODEVICE
       from: 'REDACTED'
       to: 'not_home'
   condition:
     - condition: state
-      entity_id: device_tracker.USER1DEVICE
+      entity_id: device_tracker.USERONEDEVICE
       state: 'home'
     - condition: time
       after: '13:00'
@@ -410,7 +410,7 @@
           - media_player.kitchen
           - media_player.chalkboard_room
           - media_player.loft
-        message: "USER2 has left REDACTED REDACTED and will arrive home in about {{states('sensor.USER2_to_home')}} minutes"
+        message: "USERTWO has left REDACTED REDACTED and will arrive home in about {{states('sensor.USERTWO_to_home')}} minutes"
     - delay: '00:00:25'
     - service: media_player.sonos_restore
       data:

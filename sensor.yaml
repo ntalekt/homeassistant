@@ -232,14 +232,14 @@
         friendly_name: 'Loft Temperature'
         unit_of_measurement: "°F"
 
-      USER1_phone_battery:
-        value_template: '{{ states.device_tracker.USER1DEVICE.attributes.battery }}'
-        friendly_name: 'USER1 Phone Battery'
+      USERONE_phone_battery:
+        value_template: '{{ states.device_tracker.USERONEDEVICE.attributes.battery }}'
+        friendly_name: 'USERONE Phone Battery'
         unit_of_measurement: "%"
 
-      USER2_phone_battery:
-        value_template: '{{ states.device_tracker.USER2DEVICE.attributes.battery }}'
-        friendly_name: 'USER2 Phone Battery'
+      USERTWO_phone_battery:
+        value_template: '{{ states.device_tracker.USERTWODEVICE.attributes.battery }}'
+        friendly_name: 'USERTWO Phone Battery'
         unit_of_measurement: "%"
 
         ##########################################################
@@ -247,45 +247,45 @@
         ##########################################################
 
   - platform: google_travel_time
-    name: USER2 To Home
+    name: USERTWO To Home
     api_key: !secret google_travel_api
-    origin: !secret device_tracker_USER2
+    origin: !secret device_tracker_USERTWO
     destination: zone.home
 
   - platform: google_travel_time
-    name: USER2 To REDACTED
+    name: USERTWO To REDACTED
     api_key: !secret google_travel_api
-    origin: !secret device_tracker_USER2
+    origin: !secret device_tracker_USERTWO
     destination: zone.REDACTED
 
   - platform: google_travel_time
-    name: USER2 To REDACTED
+    name: USERTWO To REDACTED
     api_key: !secret google_travel_api
-    origin: !secret device_tracker_USER2
+    origin: !secret device_tracker_USERTWO
     destination: zone.REDACTED
 
   - platform: google_travel_time
-    name: USER2 To Work
+    name: USERTWO To Work
     api_key: !secret google_travel_api
-    origin: !secret device_tracker_USER2
+    origin: !secret device_tracker_USERTWO
     destination: zone.work
 
   - platform: google_travel_time
-    name: USER1 To Home
+    name: USERONE To Home
     api_key: !secret google_travel_api
-    origin: !secret device_tracker_USER1
+    origin: !secret device_tracker_USERONE
     destination: zone.home
 
   - platform: google_travel_time
-    name: USER1 To REDACTED
+    name: USERONE To REDACTED
     api_key: !secret google_travel_api
-    origin: !secret device_tracker_USER1
+    origin: !secret device_tracker_USERONE
     destination: zone.REDACTED
 
   - platform: google_travel_time
-    name: USER1 To REDACTED
+    name: USERONE To REDACTED
     api_key: !secret google_travel_api
-    origin: !secret device_tracker_USER1
+    origin: !secret device_tracker_USERONE
     destination: zone.REDACTED
 
         ##########################################################

@@ -21,8 +21,8 @@ include:
     - sensor.nas2_free_space_datavol1
     - sensor.nas2_network_down_eth0
     - sensor.nas2_network_up_eth0
-    - sensor.USER2_to_home
-    - sensor.USER1_to_home
+    - sensor.USERTWO_to_home
+    - sensor.USERONE_to_home
     - sensor.ha_db_size
     - sensor.pihole_ads_blocked_today
     - sensor.pihole_dns_queries_today
@@ -32,8 +32,8 @@ include:
     - sensor.living_room_temperature
     - sensor.master_remote
     - sensor.media_center
-    - sensor.USER2_phone_battery
-    - sensor.USER1_phone_battery
+    - sensor.USERTWO_phone_battery
+    - sensor.USERONE_phone_battery
     - binary_sensor.chalkboard_occupancy_on
     - binary_sensor.garage_occupancy_on
     - binary_sensor.living_occupancy_on

@@ -149,10 +149,10 @@ good_morning:
             REDACTED, I hope you have a wonderful time at swim class. REDACTED, I hope you have fun at sports class.
           {% endif %}
           {% if now().strftime("%w")|int == 2 %}
-            USER1, today is trash day.
+            USERONE, today is trash day.
           {% endif %}
           {% if now().strftime("%H")|int < 9 and now().strftime("%w")|int > 0and now().strftime("%w")|int < 6 %}
-            USER2, your current drive to work in traffic is {{states.sensor.USER2_to_work.state}} minutes.
+            USERTWO, your current drive to work in traffic is {{states.sensor.USERTWO_to_work.state}} minutes.
           {% endif %}
           It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state|round}} degrees in REDACTED. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}, with a high of {{states.sensor.dark_sky_daily_high_temperature.state|round}} degrees.
           Have a great day REDACTED family!
@@ -208,7 +208,7 @@ dark_outside:
               "It is almost Sunset. Time to turn on the outside lights. I am on it.",
               "I will switch on the outside lights.  It is getting dark outside.",
               "Time to turn on the front lights. I will take care of it."
-              ] | random }} USER1, I hope your brought the trash in.
+              ] | random }} USERONE, I hope your brought the trash in.
           {% else %}
               {{ [
               "It's getting dark outside.  I will turn on the outside lights now.",
