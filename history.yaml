@@ -25,15 +25,19 @@ include:
     - sensor.USER1_to_home
     - sensor.ha_db_size
     - sensor.pihole_ads_blocked_today
-    - sensor.pihole_ads_percentage_blocked_today
     - sensor.pihole_dns_queries_today
+    - sensor.dark_sky_temperature
     - sensor.office_temperature
     - sensor.loft_temperature
     - sensor.living_room_temperature
     - sensor.master_remote
     - sensor.media_center
+    - sensor.USER2_phone_battery
+    - sensor.USER1_phone_battery
     - binary_sensor.chalkboard_occupancy_on
     - binary_sensor.garage_occupancy_on
     - binary_sensor.living_occupancy_on
     - binary_sensor.office_occupancy_on
     - binary_sensor.shop_occupancy_on
+    - sensor.cox_avg_gb_current
+    - sensor.cox_avg_gb_remaining
