@@ -1,4 +1,4 @@
-# Home Assistant
+# [![Build Status](https://travis-ci.org/ntalekt/homeassistant.svg?branch=master)](https://travis-ci.org/ntalekt/homeassistant) Home Assistant Config by ntalekt
 Example [Home Assistant](https://home-assistant.io) Configs
 
 Home Assistant Version: 0.56.2
