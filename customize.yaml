@@ -1,6 +1,40 @@
 #################################################################
 ## Customize
 #################################################################
+        ##########################################################
+        ## Amazon Echo Integration
+        ##########################################################
+
+    input_boolean.group_all_sonos:
+      emulated_hue_hidden: false
+      emulated_hue_name: "All Speakers"
+    input_boolean.90_station:
+      emulated_hue_hidden: false
+      emulated_hue_name: "90s Music"
+    input_boolean.classical_station:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Classical Music"
+    input_boolean.kids_station:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Kids Music"
+    input_boolean.jazz_station:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Jazz Music"
+    input_boolean.hiphop_station:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Hiphop Music"
+    input_boolean.pop_station:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Pop Music"
+    input_boolean.caffeine_playlist:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Energetic Playlist"
+    input_boolean.coffee_shop_playlist:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Coffee Shop Playlist"
+    input_boolean.dubstep_playlist:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Dubstep Playlist"
 
         ##########################################################
         ## Sensors

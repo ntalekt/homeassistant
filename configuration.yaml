@@ -79,6 +79,12 @@ amcrest:
       - motion_detector
     stream_source: rtsp
 
+emulated_hue:
+  type: alexa
+  host_ip: !secret ha_host
+  listen_port: 8300
+  expose_by_default: false
+
 ffmpeg:
   ffmpeg_bin: /usr/bin/ffmpeg
 

@@ -15,7 +15,7 @@ Home Assistant Version: 0.56.2
 * [Amcrest IPM-HX1W Camera](https://www.amazon.com/gp/product/B01LZHOILC/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LZHOILC&linkCode=as2&tag=ntalekt-20&linkId=fd29fa84ba58e8747400ea53e05b8459) x4
 * [Hikvision DS-2CD2032-I Camera](https://www.amazon.com/gp/product/B00G7GMEOG/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00G7GMEOG&linkCode=as2&tag=ntalekt-20&linkId=199e0a6b51f0f83c21855d62219693c0)
 * [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt-20&linkId=100ed966ea93c748bf857696167a167c)
-* [Amazon Echo Dot](https://www.amazon.com/gp/product/B015TJD0Y4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015TJD0Y4&linkCode=as2&tag=ntalekt-20&linkId=f75a8b4c616563e31e98c9cefd43d032) x2
+* [Amazon Echo Dot](https://www.amazon.com/gp/product/B015TJD0Y4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015TJD0Y4&linkCode=as2&tag=ntalekt-20&linkId=f75a8b4c616563e31e98c9cefd43d032) x2 (via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/))
 * [Sonos PLAY:1](https://www.amazon.com/gp/product/B00EWCUK98/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK98&linkCode=as2&tag=ntalekt-20&linkId=35105866ec0a7f4c67dd1abea7958f5a) x3
 * [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt-20&linkId=a3f1b5dc6cded9429966fb2cbe90ecf0) x2
 * [Netgear Nighthawk X4S Router](https://www.amazon.com/gp/product/B0192911RA/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0192911RA&linkCode=as2&tag=ntalekt-20&linkId=2db37b7e2526db6b90a33fd18b482e14)
@@ -43,30 +43,32 @@ Home Assistant Version: 0.56.2
 * [LG WebOS TV Notification](https://home-assistant.io/components/notify.webostv/) when [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt-20&linkId=100ed966ea93c748bf857696167a167c) detects motion or is pressed.
 
 ### Lights
-* Exterior lights on 5 minutes before sunset.
-* Exterior lights off 30 minutes after sunrise.
-* Exterior lights dim to 35% at 9:00pm
-* Interior loft lights on at 30% 60 minutes before sunset if home.
-* Interior loft lights off at 8:10pm.
+* Exterior lights ([GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt-20&linkId=28f9845f77c4f9b01c7ad84871a799ab)) on 5 minutes before sunset.
+* Exterior lights ([GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt-20&linkId=28f9845f77c4f9b01c7ad84871a799ab)) off 30 minutes after sunrise.
+* Exterior lights ([GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt-20&linkId=28f9845f77c4f9b01c7ad84871a799ab)) dim to 35% at 9:00pm
+* Interior loft lights ([Hue White Bulb](https://www.amazon.com/gp/product/B073SSK6P8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B073SSK6P8&linkCode=as2&tag=ntalekt-20&linkId=e23e56d9f8e7207899d06d1e65d1a44a)) on at 30% 60 minutes before sunset if home.
+* Interior loft lights ([Hue White Bulb](https://www.amazon.com/gp/product/B073SSK6P8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B073SSK6P8&linkCode=as2&tag=ntalekt-20&linkId=e23e56d9f8e7207899d06d1e65d1a44a)) off at 8:10pm.
 
 ### Doorbell
-* Exterior lights to 100% if Ring Pro Doorbell detects motion or is pressed after 9:00pm.
+* Exterior lights to 100% if [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt-20&linkId=100ed966ea93c748bf857696167a167c) detects motion or is pressed after 9:00pm.
 * Exterior lights back to 35% after 30 minutes after doorbell motion or press.
 
-### Remote
-* Start Harmony activity if user selects from HA UI input select.
-* Update input select status if physical Harmony remote is used to start activity.
+### Media
+* Start [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt-20&linkId=a3f1b5dc6cded9429966fb2cbe90ecf0) activity if user selects from HA UI `input_select`.
+* Update `input_select` status if physical [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt-20&linkId=a3f1b5dc6cded9429966fb2cbe90ecf0) remote is used to start activity.
+* Start playing music on [Sonos PLAY:1](https://www.amazon.com/gp/product/B00EWCUK98/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK98&linkCode=as2&tag=ntalekt-20&linkId=35105866ec0a7f4c67dd1abea7958f5a) speakers if user selects music station from `input_select`.
+* Start playing music on [Sonos PLAY:1](https://www.amazon.com/gp/product/B00EWCUK98/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK98&linkCode=as2&tag=ntalekt-20&linkId=35105866ec0a7f4c67dd1abea7958f5a) speakers if user starts music station using [Amazon Echo Dot](https://www.amazon.com/gp/product/B015TJD0Y4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015TJD0Y4&linkCode=as2&tag=ntalekt-20&linkId=f75a8b4c616563e31e98c9cefd43d032) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/).
 
 ### Sonos
-* Reset/Regroup all Sonos speakers at 6:00am every morning.
+* Reset/Regroup all [Sonos PLAY:1](https://www.amazon.com/gp/product/B00EWCUK98/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK98&linkCode=as2&tag=ntalekt-20&linkId=35105866ec0a7f4c67dd1abea7958f5a) speakers at 6:00am every morning.
 * Group all Sonos' button.
 
 ### Occupancy
-* If motion is detected via [BRUH Automation multisensor](https://github.com/bruhautomation/ESP-MQTT-JSON-Multisensor) or [Amcrest  cameras](https://www.amazon.com/gp/product/B01LZHOILC/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LZHOILC&linkCode=as2&tag=ntalekt-20&linkId=fd29fa84ba58e8747400ea53e05b8459) turn on input_boolean.
-* If no motion is detected after certain period of time turn off input_boolean.
+* If motion is detected via [BRUH Automation multisensor](https://github.com/bruhautomation/ESP-MQTT-JSON-Multisensor) or [Amcrest  cameras](https://www.amazon.com/gp/product/B01LZHOILC/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LZHOILC&linkCode=as2&tag=ntalekt-20&linkId=fd29fa84ba58e8747400ea53e05b8459) turn on `input_boolean` (used in `binary_sensor` for occupancy tracking).
+* If no motion is detected after certain period of time turn off `input_boolean`.
 
 ### Sleep time
-* Turn off master TV after 30 minutes.
+* Turn off master TV after 30 minutes via [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt-20&linkId=a3f1b5dc6cded9429966fb2cbe90ecf0).
 
 ### System
 * Run script to collect Cox Internet usage hourly.
@@ -74,7 +76,7 @@ Home Assistant Version: 0.56.2
 
 ### Vacation
 * Turn vacation mode on when household is gone for 24 hours.
-* Put Nest thermostats in away mode when vacation mode active.
+* Put [Nest Thermostats](https://www.amazon.com/gp/product/B0131RG6VK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0131RG6VK&linkCode=as2&tag=ntalekt-20&linkId=e0db21f4ff5fe08d4d88f64ae040fcc3) in away mode when vacation mode active.
 
 ## Scripts/Customizations
 * Life360 integration via shell mqtt broker found [here](https://community.home-assistant.io/t/life-360-support/1690)

@@ -16,7 +16,7 @@
         entity_id: input_select.remote
         option: >
           {{ states.remote.media_center.attributes.current_activity }}
-          
+
 - alias: Media - Master remote external update Media Center
   trigger:
     - platform: state
@@ -27,8 +27,8 @@
         entity_id: input_select.master_remote
         option: >
           {{ states.remote.master.attributes.current_activity }}
-          
-          
+
+
 - alias: Media - Media center remote start activity from input select media center
   trigger:
     - platform: state
@@ -36,7 +36,7 @@
   action:
     - service: script.turn_on
       entity_id: script.input_select_harmony
-      
+
 - alias: Media - Master remote start activity from input select media center
   trigger:
     - platform: state
@@ -44,7 +44,7 @@
   action:
     - service: script.turn_on
       entity_id: script.input_select_master_harmony
-      
+
 - alias: Media - Spam TV PowerOn
   trigger:
     - platform: state
@@ -56,27 +56,27 @@
       data_template:
         entity_id: remote.media_center
         command: 'PowerOn'
-        device: 35212312     
+        device: 35212312
     - service: remote.send_command
       data_template:
         entity_id: remote.media_center
         command: 'PowerOn'
-        device: 35212312  
+        device: 35212312
     - service: remote.send_command
       data_template:
         entity_id: remote.media_center
         command: 'PowerOn'
-        device: 35212312  
+        device: 35212312
     - service: remote.send_command
       data_template:
         entity_id: remote.media_center
         command: 'PowerOn'
-        device: 35212312  
+        device: 35212312
     - service: remote.send_command
       data_template:
         entity_id: remote.media_center
         command: 'PowerOn'
-        device: 35212312          
+        device: 35212312
 
         ##########################################################
         ## Reset Sonos Every Morning
@@ -109,7 +109,7 @@
       data:
         entity_id: input_select.sonos
         option: "None"
-        
+
         ##########################################################
         ## Group All Sonos
         ##########################################################
@@ -132,7 +132,7 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
-        
+
         ##########################################################
         ## Play All '90s Station
         ##########################################################
@@ -182,7 +182,7 @@
       data:
         entity_id: input_select.sonos
         option: "Play All '90s Station"
-        
+
         ##########################################################
         ## Play Classical Station
         ##########################################################
@@ -232,7 +232,7 @@
       data:
         entity_id: input_select.sonos
         option: "Play Classical Station"
-        
+
         ##########################################################
         ## Play Little Kids Station
         ##########################################################
@@ -282,7 +282,7 @@
       data:
         entity_id: input_select.sonos
         option: "Play Little Kids Station"
-        
+
         ##########################################################
         ## Play Smooth Jazz Station
         ##########################################################
@@ -332,7 +332,7 @@
       data:
         entity_id: input_select.sonos
         option: "Play Smooth Jazz Station"
-        
+
         ##########################################################
         ## Play Top Hip-hop Station
         ##########################################################
@@ -382,7 +382,7 @@
       data:
         entity_id: input_select.sonos
         option: "Play Top Hip-hop Station"
-        
+
         ##########################################################
         ## Play Top Pop Station
         ##########################################################
@@ -432,7 +432,7 @@
       data:
         entity_id: input_select.sonos
         option: "Play Top Pop Station"
-        
+
         ##########################################################
         ## Play Caffeine for Your Ears Playlist
         ##########################################################
@@ -482,7 +482,7 @@
       data:
         entity_id: input_select.sonos
         option: "Play Caffeine for Your Ears Playlist"
-        
+
         ##########################################################
         ## Play Coffee Shop Pop Playlist
         ##########################################################
@@ -531,9 +531,9 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
-        option: "Play Coffee Shop Pop Playlist"   
+        option: "Play Coffee Shop Pop Playlist"
 
-        
+
         ##########################################################
         ## Play Devastating Dubstep Drops Playlist
         ##########################################################
@@ -583,7 +583,7 @@
       data:
         entity_id: input_select.sonos
         option: "Play Devastating Dubstep Drops Playlist"
-        
+
         ##########################################################
         ## Sonos start activity from input select All '90s
         ##########################################################
@@ -596,7 +596,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.90_station
-      
+
         ##########################################################
         ## Sonos start activity from input select Classical
         ##########################################################
@@ -609,7 +609,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.classical_station
-      
+
         ##########################################################
         ## Sonos start activity from input select Kids
         ##########################################################
@@ -622,7 +622,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.kids_station
-      
+
         ##########################################################
         ## Sonos start activity from input select Jazz
         ##########################################################
@@ -635,7 +635,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.jazz_station
-      
+
         ##########################################################
         ## Sonos start activity from input select Hiphop
         ##########################################################
@@ -648,7 +648,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.hiphop_station
-      
+
         ##########################################################
         ## Sonos start activity from input select Pop
         ##########################################################
@@ -661,7 +661,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.pop_station
-      
+
         ##########################################################
         ## Sonos start activity from input select Caffeine
         ##########################################################
@@ -674,7 +674,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.caffeine_playlist
-      
+
         ##########################################################
         ## Sonos start activity from input select Coffee Shop
         ##########################################################
@@ -687,7 +687,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.coffee_shop_playlist
-      
+
         ##########################################################
         ## Sonos start activity from input select Dubstep
         ##########################################################
@@ -700,7 +700,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.dubstep_playlist
-      
+
         ##########################################################
         ## Sonos stop activity from input select Off
         ##########################################################
@@ -716,3 +716,46 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        ##########################################################
+        ## Sonos stop activity from input boolean Off
+        ##########################################################
+
+- alias: Media - Sonos stop activity from input select Off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.90_station
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.classical_station
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.kids_station
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.jazz_station
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.hiphop_station
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.pop_station
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.caffeine_playlist
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.coffee_shop_playlist
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.dubstep_playlist
+      to: 'off'
+  action:
+    - service: media_player.media_stop
+      entity_id:
+        - media_player.chalkboard_room
+        - media_player.kitchen
+        - media_player.loft
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.sonos
+        option: 'None'
