@@ -81,3 +81,12 @@ Home Assistant Version: 0.56.2
 * Home Assistant mysql database size sensor found [here](https://community.home-assistant.io/t/large-homeassistant-database-files/4201/234?u=ntalekt)
 * Cox internet usage web parser script found [here](https://community.home-assistant.io/t/cox-communications-internet-usage/28565?u=ntalekt)
 * WAN test script found [here](https://community.home-assistant.io/t/wan-test-script-quick-and-dirty/30699)
+
+# Interface
+![UI](images/home-screenshot.jpg)
+![UI](images/lights-screenshot.jpg)
+![UI](images/first-floor-screenshot.jpg)
+![UI](images/second-floor-screenshot.jpg)
+![UI](images/media-screenshot.jpg)
+![UI](images/automation-screenshot.jpg)
+![UI](images/sensor-screenshot.jpg)
