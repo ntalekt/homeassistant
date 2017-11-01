@@ -12,12 +12,12 @@
       - group.current_weather
       - group.nest_downstairs_card
       - group.nest_upstairs_card
-      - group.sensor_node_1_card     
+      - group.sensor_node_1_card
       - group.exterior_lights
-      - group.loft_lights       
+      - group.loft_lights
       - group.finance
       - group.cox_internet_usage
-      
+
   lights:
     name: Lights
     view: yes
@@ -25,7 +25,7 @@
     entities:
       - group.loft_lights
       - group.exterior_lights
-      
+
   first_floor:
     name: First Floor
     view: yes
@@ -38,7 +38,7 @@
       - media_player.chalkboard_room
       - media_player.kitchen
 
-      
+
   second_floor:
     name: Second Floor
     view: yes
@@ -47,8 +47,8 @@
       - group.nest_upstairs_card
       - group.master_remote
       - group.office
-      - group.loft 
-      - group.sensor_node_1_card  
+      - group.loft
+      - group.sensor_node_1_card
 
   media:
     name: Media
@@ -57,8 +57,8 @@
     entities:
       - group.remote
       - media_player.kodi
-      - group.sonos   
-      
+      - group.sonos
+
   automation:
     name: Automation
     view: yes
@@ -68,7 +68,7 @@
       - group.automation_on_demand
       - group.location_controls
       - group.all_automations
-      
+
   sensors:
     name: Sensors
     view: yes
@@ -82,7 +82,7 @@
       - group.dns
       - group.synology_nas
       - group.qnap_nas
-      
+
   cameras:
     name: Cameras
     view: yes
@@ -94,7 +94,7 @@
 #      - camera.garage
 #      - camera.chalkboard_room
 #      - camera.shop
-      
+
   troubleshooting:
     name: Troubleshooting
     view: yes
@@ -116,72 +116,71 @@
     - input_select.remote
     - input_select.master_remote
     - input_select.sonos
-    
+
   Household:
     - device_tracker.usertwodevice
     - device_tracker.useronedevice
-    
+
   door_bell:
     name: Door Bell
-    entities: 
+    entities:
       - binary_sensor.ring_front_door_ding
       - binary_sensor.ring_front_door_motion
       - sensor.ring_last_ding
       - sensor.ring_last_motion
-    
+
   current_weather:
       name: Current Weather
       entities:
-        - sensor.dark_sky_temperature
-        - sensor.dark_sky_daily_high_temperature
-        - sensor.dark_sky_daily_low_temperature
+        - sensor.dark_sky_temperature_template
+        - sensor.dark_sky_daily_high_low_template
         - sensor.dark_sky_humidity
         - sensor.dark_sky_precip_intensity
         - sensor.dark_sky_wind_speed
         - sensor.dark_sky_pressure
-        
-  nest_downstairs_card:  
-    name: Downstairs Nest 
-    entities:  
+
+  nest_downstairs_card:
+    name: Downstairs Nest
+    entities:
       - climate.downstairs
-      - sensor.downstairs_thermostat_hvac_state 
-      - sensor.downstairs_thermostat_humidity  
+      - sensor.downstairs_thermostat_hvac_state
+      - sensor.downstairs_thermostat_humidity
       - binary_sensor.downstairs_thermostat_fan
-      
-  nest_upstairs_card:  
+
+  nest_upstairs_card:
     name: Upstairs Nest
-    entities:  
-      - climate.upstairs 
-      - sensor.upstairs_thermostat_hvac_state 
-      - sensor.upstairs_thermostat_humidity  
+    entities:
+      - climate.upstairs
+      - sensor.upstairs_thermostat_hvac_state
+      - sensor.upstairs_thermostat_humidity
       - binary_sensor.upstairs_thermostat_fan
-      
-  sensor_node_1_card:  
-    name: Office  
-    entities:  
-      - sensor.office_temperature  
-      - sensor.office_humidity  
-      - sensor.office_ldr  
-      - sensor.office_pir  
+
+  sensor_node_1_card:
+    name: Office
+    entities:
+      - sensor.office_temperature
+      - sensor.office_humidity
+      - sensor.office_ldr
+      - sensor.office_pir
       - light.office_led
-      - binary_sensor.office_occupancy_on        
+      - binary_sensor.office_occupancy_on
 
   exterior_lights:
     name: Exterior Lights
     entities:
       - light.ge_14294_porch_level
       - light.ge_14294_exterior_side_level
-      
+
   loft_lights:
     name: Loft Lights
     entities:
       - light.loft_floor_lamp
-      
+
   loft:
     name: Loft
     entities:
       - light.loft_floor_lamp
-      - media_player.loft  
+      - media_player.loft
 
   Remote:
     control: hidden
@@ -189,40 +188,40 @@
       - input_select.remote
       - input_select.master_remote
       - input_select.sonos
-      - input_boolean.group_all_sonos      
-      
+      - input_boolean.group_all_sonos
+
   finance:
     name: Finance
-    entities: 
+    entities:
       - sensor.wfc
       - sensor.bitcoin
       - sensor.ethereum
       - sensor.dash
-      
+
   media_center_remote:
     name: Media Center Remote
     entities:
       - sensor.media_center
       - input_select.remote
-      
+
   Living Room:
     control: hidden
     entities:
       - binary_sensor.living_occupancy_on
       - sensor.living_room_temperature
-      
+
   master_remote:
     name: Master Remote
     entities:
       - sensor.master_remote
       - input_select.master_remote
-      
+
   Input Boolean:
-    entities: 
+    entities:
       - input_boolean.userone_greeting
       - input_boolean.usertwo_greeting
       - input_boolean.userone_away
-      - input_boolean.usertwo_away     
+      - input_boolean.usertwo_away
 
   Location Controls:
     control: hidden
@@ -235,26 +234,26 @@
       - input_boolean.manual_usertwo_home
       - input_boolean.manual_userone_away
       - input_boolean.manual_usertwo_away
-      - input_boolean.vacation_mode     
-  
+      - input_boolean.vacation_mode
+
   Sonos:
-    entities: 
+    entities:
       - media_player.kitchen
       - media_player.loft
       - media_player.chalkboard_room
-      
+
   Automation Override:
-    entities: 
+    entities:
       - input_boolean.disable_home_away
       - input_boolean.disable_voice_greeting
       - input_boolean.disable_exterior_on_sunset
       - input_boolean.disable_exterior_off_sunrise
-      - input_boolean.disable_loft_on_sunset   
-      - input_boolean.disable_loft_off_8pm  
-      - input_boolean.disable_exterior_dim_9pm      
-      
+      - input_boolean.disable_loft_on_sunset
+      - input_boolean.disable_loft_off_8pm
+      - input_boolean.disable_exterior_dim_9pm
+
   System:
-    entities: 
+    entities:
 #      - sensor.cpu
 #      - sensor.cpu_use
       - sensor.cpu_used
@@ -269,38 +268,38 @@
       - sensor.current_ha_release
       - sensor.installed_ha_version
 
-      
+
   Occupancy:
-    entities: 
+    entities:
       - binary_sensor.office_occupancy_on
       - binary_sensor.living_occupancy_on
       - binary_sensor.chalkboard_occupancy_on
       - binary_sensor.garage_occupancy_on
-      - binary_sensor.shop_occupancy_on    
-      
+      - binary_sensor.shop_occupancy_on
+
   Synology NAS:
-    entities: 
+    entities:
       - sensor.cpu_load_total
       - sensor.memory_usage_real
       - sensor.network_up
-      - sensor.network_down              
-      - sensor.status_volume_1      
+      - sensor.network_down
+      - sensor.status_volume_1
       - sensor.used_space_volume_1
       - sensor.volume_used_volume_1
-      
+
   QNAP NAS:
-    entities: 
+    entities:
       - sensor.nas2_cpu_usage
-      - sensor.nas2_memory_usage 
+      - sensor.nas2_memory_usage
       - sensor.nas2_cpu_temperature
       - sensor.nas2_network_up_eth0
-      - sensor.nas2_network_down_eth0          
+      - sensor.nas2_network_down_eth0
       - sensor.nas2_status
-#      - sensor.nas2_system_temperature    
+#      - sensor.nas2_system_temperature
       - sensor.nas2_free_space_datavol1
       - sensor.nas2_used_space_datavol1
       - sensor.nas2_volume_used_datavol1
-      
+
   Devices:
     entities:
       - binary_sensor.wan
@@ -308,11 +307,11 @@
       - binary_sensor.qnap_nas
       - binary_sensor.hue_hub
       - binary_sensor.harmony_hub
-      - binary_sensor.master_harmony_hub      
+      - binary_sensor.master_harmony_hub
       - binary_sensor.sonos_chalkboard
-      - binary_sensor.sonos_den    
+      - binary_sensor.sonos_den
       - binary_sensor.sonos_kitchen
-      - binary_sensor.ring_pro   
+      - binary_sensor.ring_pro
       - binary_sensor.opensprinkler_pi
       - binary_sensor.upstairs_thermostat_online
       - binary_sensor.downstairs_thermostat_online
@@ -321,7 +320,7 @@
       - binary_sensor.chalkboard_camera
       - binary_sensor.garage_camera
       - binary_sensor.shop_camera
-      
+
   Cox Internet Usage:
     entities:
       - sensor.cox_usage
@@ -330,14 +329,9 @@
       - sensor.cox_time_left
       - sensor.cox_avg_gb_current
       - sensor.cox_avg_gb_remaining
-      
+
   DNS:
     entities:
       - sensor.pihole_ads_blocked_today
       - sensor.pihole_ads_percentage_blocked_today
       - sensor.pihole_dns_queries_today
-      
-
-      
-
-      

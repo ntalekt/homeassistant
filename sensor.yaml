@@ -18,6 +18,7 @@
       - pressure
       - temperature_min
       - precip_intensity
+      - icon
 
         ##########################################################
         ## PiHole
@@ -200,6 +201,37 @@
 
   - platform: template
     sensors:
+      dark_sky_temperature_template:
+        value_template: "{{ states('sensor.dark_sky_temperature') }}"
+        icon_template: >
+          {% if is_state('sensor.dark_sky_icon', 'clear-day') %}
+            mdi:weather-sunny
+          {% elif is_state('sensor.dark_sky_icon', 'clear-night') %}
+            mdi:weather-night
+          {% elif is_state('sensor.dark_sky_icon', 'rain') %}
+            mdi:weather-rainy
+          {% elif is_state('sensor.dark_sky_icon', 'snow') %}
+            mdi:weather-snowy
+          {% elif is_state('sensor.dark_sky_icon', 'sleet') %}
+            mdi:weather-snowy-rainy
+          {% elif is_state('sensor.dark_sky_icon', 'wind') %}
+            mdi:weather-windy-variant
+          {% elif is_state('sensor.dark_sky_icon', 'fog') %}
+            mdi:weather-fog
+          {% elif is_state('sensor.dark_sky_icon', 'cloudy') %}
+            mdi:weather-cloudy
+          {% elif is_state('sensor.dark_sky_icon', 'partly-cloudy-day') or is_state('sensor.dark_sky_icon', 'partly-cloudy-night') %}
+            mdi:weather-partlycloudy
+          {% elif is_state('sensor.dark_sky_icon', 'hail') %}
+            mdi:weather-hail
+          {% elif is_state('sensor.dark_sky_icon', 'thunderstorm') %}
+            mdi:weather-lightning
+          {% else %}
+            mdi:help-circle
+          {% endif %}
+        friendly_name: "Current Temperature"
+        unit_of_measurement: '°F'
+
       media_center:
         value_template: '{{ states.remote.media_center.attributes.current_activity }}'
         friendly_name: 'Media Center'
@@ -241,6 +273,11 @@
         value_template: '{{ states.device_tracker.usertwodevice.attributes.battery }}'
         friendly_name: 'usetwo Phone Battery'
         unit_of_measurement: "%"
+
+      dark_sky_daily_high_low_template:
+        value_template: "{{ states('sensor.dark_sky_daily_high_temperature') }} / {{ states('sensor.dark_sky_daily_low_temperature') }}"
+        friendly_name: 'High / Low Temperature'
+        unit_of_measurement: "°F"
 
         ##########################################################
         ## Location

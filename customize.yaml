@@ -75,6 +75,8 @@
       friendly_name: High Temperature
     sensor.dark_sky_daily_low_temperature:
       friendly_name: Low Temperature
+    sensor.dark_sky_daily_high_low_template:
+      icon: mdi:thermometer
     sensor.dark_sky_humidity:
       friendly_name: Humidity
     sensor.dark_sky_precip_intensity:
