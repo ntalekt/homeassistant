@@ -97,7 +97,6 @@
         - input_boolean.90_station
         - input_boolean.classical_station
         - input_boolean.kids_station
-        - input_boolean.jazz_station
         - input_boolean.hiphop_station
         - input_boolean.pop_station
         - input_boolean.jazz_station
@@ -172,12 +171,13 @@
       entity_id:
         - input_boolean.classical_station
         - input_boolean.kids_station
-        - input_boolean.jazz_station
         - input_boolean.hiphop_station
         - input_boolean.pop_station
+        - input_boolean.jazz_station
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
+        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -222,12 +222,13 @@
       entity_id:
         - input_boolean.90_station
         - input_boolean.kids_station
-        - input_boolean.jazz_station
         - input_boolean.hiphop_station
         - input_boolean.pop_station
+        - input_boolean.jazz_station
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
+        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -272,12 +273,13 @@
       entity_id:
         - input_boolean.90_station
         - input_boolean.classical_station
-        - input_boolean.jazz_station
         - input_boolean.hiphop_station
         - input_boolean.pop_station
+        - input_boolean.jazz_station
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
+        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -328,6 +330,7 @@
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
+        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -373,11 +376,12 @@
         - input_boolean.90_station
         - input_boolean.classical_station
         - input_boolean.kids_station
-        - input_boolean.jazz_station
         - input_boolean.pop_station
+        - input_boolean.jazz_station
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
+        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -423,11 +427,12 @@
         - input_boolean.90_station
         - input_boolean.classical_station
         - input_boolean.kids_station
-        - input_boolean.jazz_station
         - input_boolean.hiphop_station
+        - input_boolean.jazz_station
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
+        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -473,11 +478,12 @@
         - input_boolean.90_station
         - input_boolean.classical_station
         - input_boolean.kids_station
-        - input_boolean.jazz_station
         - input_boolean.hiphop_station
         - input_boolean.pop_station
+        - input_boolean.jazz_station
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
+        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -523,11 +529,12 @@
         - input_boolean.90_station
         - input_boolean.classical_station
         - input_boolean.kids_station
-        - input_boolean.jazz_station
         - input_boolean.hiphop_station
         - input_boolean.pop_station
+        - input_boolean.jazz_station
         - input_boolean.caffeine_playlist
         - input_boolean.dubstep_playlist
+        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -574,11 +581,12 @@
         - input_boolean.90_station
         - input_boolean.classical_station
         - input_boolean.kids_station
-        - input_boolean.jazz_station
         - input_boolean.hiphop_station
         - input_boolean.pop_station
+        - input_boolean.jazz_station
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
+        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
