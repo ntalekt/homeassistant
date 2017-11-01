@@ -354,6 +354,6 @@
     unit_of_measurement: "GB per day"
 
   - platform: command_line
-    command: cal $(date +"%m %Y") | awk 'NF {DAYS = $NF}; END {print DAYS}'
+    command: cal -h $(date +"%m %Y") | awk 'NF {DAYS = $NF}; END {print DAYS}'
     name: Days In Current Month
     scan_interval: 3600
