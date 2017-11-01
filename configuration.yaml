@@ -37,10 +37,14 @@ logbook:
       - sensor.pihole_dns_queries_today
 
 http:
-  # Uncomment this to add a password (recommended!)
+  base_url: !secret http_base_url
   api_password: !secret ha_password
-  # Uncomment this if you are using SSL or running in Docker etc
-  # base_url: example.duckdns.org:8123
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  trusted_networks:
+    - 192.168.1.0/24
+  ip_ban_enabled: True
+  login_attempts_threshold: 3
 
 #################################################################
 ## Components
