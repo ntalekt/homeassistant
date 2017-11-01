@@ -234,6 +234,9 @@
     sensor.pihole_ads_percentage_blocked_today:
       icon: mdi:dns
       friendly_name: DNS Percentage Blocked
+    sensor.pihole_dns_queries_today:
+      icon: mdi:dns
+      friendly_name: DNS Queries Today
 
         ##########################################################
         ## All Groups / Troubleshooting
