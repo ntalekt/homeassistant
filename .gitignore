@@ -1,3 +1,7 @@
+*.csr
+*.crt
+*.key
+*.pem
 secrets.yaml
 known_devices.yaml
 *.conf
