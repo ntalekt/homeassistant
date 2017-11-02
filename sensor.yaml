@@ -265,7 +265,7 @@
         unit_of_measurement: "°F"
 
       userone_phone_battery:
-        value_template: '{{ states.device_tracker.useronedevice.attributes.battery }}'
+        value_template: '{{ states.device_tracker.useronedevice.attributes.battery | int }}'
         friendly_name: 'userone Phone Battery'
         unit_of_measurement: "%"
         icon_template: >
@@ -280,7 +280,7 @@
           {% endif %}
 
       usertwo_phone_battery:
-        value_template: '{{ states.device_tracker.usertwodevice.attributes.battery }}'
+        value_template: '{{ states.device_tracker.usertwodevice.attributes.battery | int }}'
         friendly_name: 'usetwo Phone Battery'
         unit_of_measurement: "%"
         icon_template: >
