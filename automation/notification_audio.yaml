@@ -76,7 +76,7 @@
 #  action:
 #    - delay: '00:00:30'
 #    - service: script.turn_on
-#      entity_id: script.dark_outside 
+#      entity_id: script.dark_outside
 
         ##########################################################
         ## Sonos - Welcome Home userone
@@ -104,7 +104,7 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.kitchen'
+          master: 'media_player.chalkboard_room'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.5'
           what: 'Welcome home userone.'
@@ -138,7 +138,7 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.kitchen'
+          master: 'media_player.chalkboard_room'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.5'
           what: 'Welcome home usetwo.'
@@ -172,7 +172,7 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.kitchen'
+          master: 'media_player.chalkboard_room'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.6'
           what: 'usetwo has arrived at work.'
@@ -210,7 +210,7 @@
     - delay: '00:00:01'
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
         - media_player.kitchen
         - media_player.chalkboard_room
@@ -262,7 +262,7 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.kitchen'
+          master: 'media_player.chalkboard_room'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.6'
           what: 'usetwo has arrived at REDACTED REDACTED.'
@@ -300,7 +300,7 @@
     - delay: '00:00:01'
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
         - media_player.kitchen
         - media_player.chalkboard_room
@@ -352,7 +352,7 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.kitchen'
+          master: 'media_player.chalkboard_room'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.6'
           what: 'usetwo has arrived at REDACTED school.'
@@ -390,7 +390,7 @@
     - delay: '00:00:01'
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
         - media_player.kitchen
         - media_player.chalkboard_room
