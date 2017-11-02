@@ -76,6 +76,7 @@
     entities:
       - group.system
       - group.household
+      - group.battery_level
       - group.occupancy
       - group.door_bell
       - group.devices
@@ -120,6 +121,12 @@
   Household:
     - device_tracker.usertwodevice
     - device_tracker.useronedevice
+
+  battery_level:
+    name: Battery Levels
+    entities:
+      - sensor.userone_phone_battery
+      - sensor.usertwo_phone_battery
 
   door_bell:
     name: Door Bell
