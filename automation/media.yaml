@@ -177,7 +177,6 @@
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
-        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -228,7 +227,6 @@
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
-        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -279,7 +277,6 @@
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
-        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -330,7 +327,6 @@
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
-        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -381,7 +377,6 @@
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
-        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -432,7 +427,6 @@
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
-        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -483,7 +477,6 @@
         - input_boolean.jazz_station
         - input_boolean.coffee_shop_playlist
         - input_boolean.dubstep_playlist
-        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -534,7 +527,6 @@
         - input_boolean.jazz_station
         - input_boolean.caffeine_playlist
         - input_boolean.dubstep_playlist
-        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
@@ -586,7 +578,6 @@
         - input_boolean.jazz_station
         - input_boolean.caffeine_playlist
         - input_boolean.coffee_shop_playlist
-        - input_boolean.group_all_sonos
     - service: input_select.select_option
       data:
         entity_id: input_select.sonos
