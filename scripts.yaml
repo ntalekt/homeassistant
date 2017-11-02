@@ -26,7 +26,7 @@ input_select_harmony:
           {% elif is_state("input_select.remote", "Blueray") %}
               16835304
           {% endif %}
-          
+
 input_select_master_harmony:
   alias: "Start Remote activity from input select"
   sequence:
@@ -41,11 +41,11 @@ input_select_master_harmony:
           {% elif is_state("input_select.master_remote", "Master TV") %}
               27717176
           {% endif %}
-          
+
         ##########################################################
         ## Sonos Text to Speech
         ##########################################################
-          
+
 say:
   alias: Sonos TTS
   sequence:
@@ -79,7 +79,7 @@ say:
         ##########################################################
         ## Sonos - Good morning announcement
         ##########################################################
-        
+
 good_morning:
   alias: Sonos TTS
   sequence:
@@ -96,7 +96,7 @@ good_morning:
     - delay: '00:00:01'
     - service: media_player.sonos_join
       data_template:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
         entity_id:
           - media_player.kitchen
           - media_player.chalkboard_room
@@ -118,15 +118,15 @@ good_morning:
         - media_player.loft
         message: >
           {% if now().strftime("%H")|int < 12 %}
-          Good morning. Today is {{now().strftime("%A %B")}} the 
-            {% if now().strftime("%-m")|int == 1 or now().strftime("%-m")|int == 21 or now().strftime("%-m")|int == 31 %}
-              {{now().strftime("%-m")}}st
-            {% elif now().strftime("%-m")|int == 2 or now().strftime("%-m")|int == 22 %}
-              {{now().strftime("%-m")}}nd
-            {% elif now().strftime("%-m")|int == 3 or now().strftime("%-m")|int == 23 %}
-              {{now().strftime("%-m")}}rd
+          Good morning. Today is {{now().strftime("%A %B")}} the
+            {% if now().strftime("%-d")|int == 1 or now().strftime("%-d")|int == 21 or now().strftime("%-d")|int == 31 %}
+              {{now().strftime("%-d")}}st
+            {% elif now().strftime("%-d")|int == 2 or now().strftime("%-d")|int == 22 %}
+              {{now().strftime("%-d")}}nd
+            {% elif now().strftime("%-d")|int == 3 or now().strftime("%-d")|int == 23 %}
+              {{now().strftime("%-d")}}rd
             {% else %}
-              {{now().strftime("%-m")}}th
+              {{now().strftime("%-d")}}th
             {% endif %}.
           {% elif now().strftime("%H")|int < 18 %}
           Good afternoon.
@@ -160,11 +160,11 @@ good_morning:
     - service: media_player.sonos_restore
       data_template:
         with_group: yes
-        
+
         ##########################################################
         ## Sonos - Turn on exterior lights
         ##########################################################
-        
+
 dark_outside:
   alias: Sonos TTS
   sequence:
@@ -181,7 +181,7 @@ dark_outside:
     - delay: '00:00:01'
     - service: media_player.sonos_join
       data_template:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
         entity_id:
           - media_player.kitchen
           - media_player.chalkboard_room
