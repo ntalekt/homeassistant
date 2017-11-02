@@ -92,6 +92,11 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+    - service: media_player.clear_playlist
+      entity_id:
+        - media_player.chalkboard_room
+        - media_player.kitchen
+        - media_player.loft
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.90_station
@@ -722,39 +727,11 @@
 - alias: Media - Sonos stop activity from input select Off
   trigger:
     - platform: state
-      entity_id: input_boolean.90_station
-      to: 'off'
-    - platform: state
-      entity_id: input_boolean.classical_station
-      to: 'off'
-    - platform: state
-      entity_id: input_boolean.kids_station
-      to: 'off'
-    - platform: state
-      entity_id: input_boolean.jazz_station
-      to: 'off'
-    - platform: state
-      entity_id: input_boolean.hiphop_station
-      to: 'off'
-    - platform: state
-      entity_id: input_boolean.pop_station
-      to: 'off'
-    - platform: state
-      entity_id: input_boolean.caffeine_playlist
-      to: 'off'
-    - platform: state
-      entity_id: input_boolean.coffee_shop_playlist
-      to: 'off'
-    - platform: state
-      entity_id: input_boolean.dubstep_playlist
-      to: 'off'
+      entity_id: input_select.sonos
+      to: 'None'
   action:
     - service: media_player.media_stop
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
-    - service: input_select.select_option
-      data_template:
-        entity_id: input_select.sonos
-        option: 'None'
