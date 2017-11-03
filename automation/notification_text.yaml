@@ -15,7 +15,7 @@
       data:
         title: "New Home Assistant Release"
         message: "Home Assistant {{ states.sensor.current_ha_release.state }} is now available."
-        
+
         ##########################################################
         ## Notify if Nest has gone into Away Mode
         ##########################################################
@@ -29,7 +29,7 @@
     - platform: state
       entity_id: sensor.upstairs_thermostat_away_mode
       from: 'off'
-      to: 'on'  
+      to: 'on'
   condition:
     - condition: state
       entity_id: sensor.downstairs_thermostat_away_mode
@@ -42,7 +42,7 @@
       data:
         title: "Home Assistant"
         message: "Nests have entered away mode"
-        
+
         ##########################################################
         ## Notify if Nest has gone into Home Mode
         ##########################################################
@@ -69,11 +69,11 @@
       data:
         title: "Home Assistant"
         message: "Nests have exited away mode"
-        
+
         ##########################################################
         ## Notify if critical device goes offline
         ##########################################################
-        
+
 - alias: Notification - Alert when a critical device goes offline
   trigger:
     - platform: state
@@ -82,11 +82,11 @@
       - binary_sensor.qnap_nas
       - binary_sensor.hue_hub
       - binary_sensor.harmony_hub
-      - binary_sensor.master_harmony_hub      
+      - binary_sensor.master_harmony_hub
       - binary_sensor.sonos_chalkboard
-      - binary_sensor.sonos_den    
+      - binary_sensor.sonos_den
       - binary_sensor.sonos_kitchen
-      - binary_sensor.ring_pro   
+      - binary_sensor.ring_pro
       - binary_sensor.opensprinkler_pi
       - binary_sensor.upstairs_thermostat_online
       - binary_sensor.downstairs_thermostat_online
@@ -113,5 +113,59 @@
   action:
     - service: notify.pushbullet
       data_template:
-        title: "Home Assistant - Device Alert"
+        title: "Home Assistant"
         message: '{{trigger.to_state.attributes.friendly_name}} has gone offline.'
+
+        ##########################################################
+        ## Garage Door - Left it open
+        ##########################################################
+
+- alias: Notification - Garage door left it open
+  trigger:
+    - platform: state
+      entity_id: group.household
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.ecolink_tilt_big_garage_sensor
+      state: 'on'
+  action:
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: "Come back, the garage door is open!"
+
+- alias: Notification - Garage door open and noone is home
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ecolink_tilt_big_garage_sensor
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+  action:
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: "The garage door is open and noone is home!"
+
+- alias: Notification - Garage open for 30min
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ecolink_tilt_big_garage_sensor
+      to: 'on'
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.garage_occupancy_on
+      state: 'off'
+  action:
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: "The garage door has been open for 30 minutes."
