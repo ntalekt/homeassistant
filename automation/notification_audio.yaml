@@ -104,11 +104,11 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.kitchen'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.5'
           what: 'Welcome home userone.'
-    - delay: '00:01:00'
+    - delay: '00:00:10'
     - service: homeassistant.turn_off
       entity_id: input_boolean.userone_greeting
 
@@ -136,13 +136,13 @@
     - delay: '00:01:30'
     - service: script.turn_on
       entity_id: script.say
-      data:
+      data_template:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.kitchen'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.5'
-          what: 'Welcome home usetwo.'
-    - delay: '00:01:00'
+          what: '{{ ["Welcome home usetwo.","It is great to see you usetwo, I hope you had a great day!","You look amazing usetwo, glad to see you are home.","usetwo, I missed you so much, glad you are home."] | random }}'
+    - delay: '00:00:10'
     - service: homeassistant.turn_off
       entity_id: input_boolean.usertwo_greeting
 
@@ -167,12 +167,12 @@
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
   action:
-    - delay: '00:00:30'
+    - delay: '00:00:05'
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.kitchen'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.6'
           what: 'usetwo has arrived at work.'
@@ -198,43 +198,15 @@
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
   action:
-    - service: media_player.sonos_snapshot
-      data:
-        with_group: yes
-    - delay: '00:00:03'
-    - service: media_player.sonos_unjoin
-      entity_id:
-        - media_player.kitchen
-        - media_player.chalkboard_room
-        - media_player.loft
-    - delay: '00:00:01'
-    - service: media_player.sonos_join
-      data:
-        master: media_player.chalkboard_room
-      entity_id:
-        - media_player.kitchen
-        - media_player.chalkboard_room
-        - media_player.loft
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.kitchen
-        - media_player.chalkboard_room
-        - media_player.loft
-      data:
-        volume_level: '.6'
-    - delay: '00:00:02'
-    - service: tts.google_say
+    - delay: '00:00:10'
+    - service: script.turn_on
+      entity_id: script.say
       data_template:
-        entity_id:
-          - media_player.kitchen
-          - media_player.chalkboard_room
-          - media_player.loft
-        message: "usetwo has left work and will arrive at REDACTED REDACTED in about {{states('sensor.usertwo_to_REDACTED')}} minutes"
-    - delay: '00:00:25'
-    - service: media_player.sonos_restore
-      data:
-        with_group: yes
+        variables:
+          master: 'media_player.kitchen'
+          where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
+          volume: '.6'
+          what: "usetwo has left work and will arrive at REDACTED REDACTED in about {{states('sensor.usertwo_to_REDACTED')}} minutes."
 
         ##########################################################
         ## Sonos - usetwo Arrived REDACTED
@@ -257,12 +229,12 @@
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
   action:
-    - delay: '00:00:30'
+    - delay: '00:00:05'
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.kitchen'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.6'
           what: 'usetwo has arrived at REDACTED REDACTED.'
@@ -288,43 +260,15 @@
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
   action:
-    - service: media_player.sonos_snapshot
-      data:
-        with_group: yes
-    - delay: '00:00:03'
-    - service: media_player.sonos_unjoin
-      entity_id:
-        - media_player.kitchen
-        - media_player.chalkboard_room
-        - media_player.loft
-    - delay: '00:00:01'
-    - service: media_player.sonos_join
-      data:
-        master: media_player.chalkboard_room
-      entity_id:
-        - media_player.kitchen
-        - media_player.chalkboard_room
-        - media_player.loft
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.kitchen
-        - media_player.chalkboard_room
-        - media_player.loft
-      data:
-        volume_level: '.6'
-    - delay: '00:00:02'
-    - service: tts.google_say
+    - delay: '00:00:10'
+    - service: script.turn_on
+      entity_id: script.say
       data_template:
-        entity_id:
-          - media_player.kitchen
-          - media_player.chalkboard_room
-          - media_player.loft
-        message: "usetwo has left REDACTED REDACTED and will arrive at REDACTED REDACTED in about {{states('sensor.usertwo_to_REDACTED')}} minutes"
-    - delay: '00:00:25'
-    - service: media_player.sonos_restore
-      data:
-        with_group: yes
+        variables:
+          master: 'media_player.kitchen'
+          where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
+          volume: '.6'
+          what: "usetwo has left REDACTED REDACTED and will arrive at REDACTED REDACTED in about {{states('sensor.usertwo_to_REDACTED')}} minutes."
 
         ##########################################################
         ## Sonos - usetwo Arrived REDACTED
@@ -347,12 +291,12 @@
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
   action:
-    - delay: '00:00:30'
+    - delay: '00:00:05'
     - service: script.turn_on
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.kitchen'
           where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
           volume: '.6'
           what: 'usetwo has arrived at REDACTED school.'
@@ -378,40 +322,12 @@
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
   action:
-    - service: media_player.sonos_snapshot
-      data:
-        with_group: yes
-    - delay: '00:00:03'
-    - service: media_player.sonos_unjoin
-      entity_id:
-        - media_player.kitchen
-        - media_player.chalkboard_room
-        - media_player.loft
-    - delay: '00:00:01'
-    - service: media_player.sonos_join
-      data:
-        master: media_player.chalkboard_room
-      entity_id:
-        - media_player.kitchen
-        - media_player.chalkboard_room
-        - media_player.loft
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.kitchen
-        - media_player.chalkboard_room
-        - media_player.loft
-      data:
-        volume_level: '.6'
-    - delay: '00:00:02'
-    - service: tts.google_say
+    - delay: '00:00:10'
+    - service: script.turn_on
+      entity_id: script.say
       data_template:
-        entity_id:
-          - media_player.kitchen
-          - media_player.chalkboard_room
-          - media_player.loft
-        message: "usetwo has left REDACTED REDACTED and will arrive home in about {{states('sensor.usertwo_to_home')}} minutes"
-    - delay: '00:00:25'
-    - service: media_player.sonos_restore
-      data:
-        with_group: yes
+        variables:
+          master: 'media_player.kitchen'
+          where: 'media_player.kitchen, media_player.chalkboard_room, media_player.loft'
+          volume: '.6'
+          what: "usetwo has left REDACTED REDACTED and will arrive home in about {{states('sensor.usertwo_to_home')}} minutes."
