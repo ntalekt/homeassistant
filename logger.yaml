@@ -1,0 +1,25 @@
+#################################################################
+## Logger
+#################################################################
+# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
+
+default: warn
+logs:
+  aiohttp.access: critical
+  aiohttp.server: critical
+  homeassistant.core: error
+  homeassistant.components.automation: warn
+  homeassistant.components.climate.nest: warn
+  homeassistant.components.device_tracker: warn
+  homeassistant.components.discovery: warn
+  homeassistant.components.http: warn
+  homeassistant.components.media_player: warn
+  homeassistant.components.sensor.pi_hole: critical
+  homeassistant.components.recorder: error
+  homeassistant.components.sensor.darksky: warn
+  homeassistant.components.zwave: warn
+  homeassistant.helpers.script: info
+  homeassistant.helpers.entity: critical
+  homeassistant.exceptions: info
+  py.warnings: error
+  root: warn
