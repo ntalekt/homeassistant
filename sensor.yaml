@@ -294,6 +294,34 @@
             mdi:battery-alert
           {% endif %}
 
+      big_garage_tilt_battery:
+        value_template: '{{ states.zwave.ecolink_tilt_big_garage.attributes.battery_level | int }}'
+        friendly_name: 'Big Garage Tilt Sensor'
+        unit_of_measurement: "%"
+        icon_template: >
+          {% set battery_level = states.zwave.ecolink_tilt_big_garage.attributes.battery_level | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+
+      big_garage_tilt:
+        value_template: '{% if is_state("binary_sensor.ecolink_tilt_big_garage_sensor", "on") %}Open{% elif is_state("binary_sensor.ecolink_tilt_big_garage_sensor", "off") %}Closed{% else %}Unknown{% endif %}'
+        friendly_name: 'Big Garage Status'
+        icon_template: >
+          {% set big_garage_state = states.binary_sensor.ecolink_tilt_big_garage_sensor.state %}
+          {% if big_garage_state == 'on' %}
+            mdi:garage-open
+          {% elif big_garage_state == 'off' %}
+            mdi:garage
+          {% else %}
+            mdi:alert-outline
+          {% endif %}
+
       dark_sky_daily_high_low_template:
         value_template: "{{ states('sensor.dark_sky_daily_high_temperature') }} / {{ states('sensor.dark_sky_daily_low_temperature') }}"
         friendly_name: 'High / Low Temperature'
