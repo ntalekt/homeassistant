@@ -149,6 +149,19 @@
 #      - volume
 
         ##########################################################
+        ## Deluge
+        ##########################################################
+
+  - platform: deluge
+    host: !secret deluge_pi_host
+    username: !secret deluge_user
+    password: !secret deluge_pass
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'
+
+        ##########################################################
         ## NAS
         ##########################################################
 
@@ -266,7 +279,7 @@
 
       userone_phone_battery:
         value_template: '{{ states.device_tracker.useronedevice.attributes.battery | int }}'
-        friendly_name: 'userone Phone Battery'
+        friendly_name: 'userone Nexus 6P'
         unit_of_measurement: "%"
         icon_template: >
           {% set battery_level = states.device_tracker.useronedevice.attributes.battery | default(0) | int %}
@@ -281,10 +294,25 @@
 
       usertwo_phone_battery:
         value_template: '{{ states.device_tracker.usertwodevice.attributes.battery | int }}'
-        friendly_name: 'usetwo Phone Battery'
+        friendly_name: 'usetwo iPhone X'
         unit_of_measurement: "%"
         icon_template: >
           {% set battery_level = states.device_tracker.usertwodevice.attributes.battery | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+
+      userone_tablet_battery:
+        value_template: '{{ states.device_tracker.mqtt_flounder.attributes.battery | int }}'
+        friendly_name: 'userone Nexus 9'
+        unit_of_measurement: "%"
+        icon_template: >
+          {% set battery_level = states.device_tracker.mqtt_flounder.attributes.battery | default(0) | int %}
           {% set battery_round = (battery_level / 10) |int * 10 %}
           {% if battery_round >= 100 %}
             mdi:battery
@@ -310,7 +338,7 @@
           {% endif %}
 
       big_garage_tilt:
-        value_template: '{% if is_state("binary_sensor.ecolink_tilt_big_garage_sensor", "on") %}Open{% elif is_state("binary_sensor.ecolink_tilt_big_garage_sensor", "off") %}Closed{% else %}Unknown{% endif %}'
+        value_template: '{% if is_state("binary_sensor.ecolink_tilt_big_garage_sensor", "on") %}open{% elif is_state("binary_sensor.ecolink_tilt_big_garage_sensor", "off") %}closed{% else %}unknown{% endif %}'
         friendly_name: 'Big Garage Status'
         icon_template: >
           {% set big_garage_state = states.binary_sensor.ecolink_tilt_big_garage_sensor.state %}

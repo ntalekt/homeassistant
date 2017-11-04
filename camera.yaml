@@ -2,3 +2,5 @@
     mjpeg_url: http://REDACTED:8082/Streaming/channels/102/httppreview
     username: !secret REDACTED_camera_user
     password: !secret REDACTED_camera_pass
+
+  - platform: ring

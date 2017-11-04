@@ -14,8 +14,6 @@ exclude:
     - zwave
     - input_boolean
 include:
-  domains:
-    - device_tracker
   entities:
     - group.household
     - sensor.nas2_free_space_datavol1
@@ -34,6 +32,7 @@ include:
     - sensor.media_center
     - sensor.usertwo_phone_battery
     - sensor.userone_phone_battery
+    - sensor.userone_tablet_battery
     - binary_sensor.chalkboard_occupancy_on
     - binary_sensor.garage_occupancy_on
     - binary_sensor.living_occupancy_on
@@ -41,3 +40,7 @@ include:
     - binary_sensor.shop_occupancy_on
     - sensor.cox_avg_gb_current
     - sensor.cox_avg_gb_remaining
+    - device_tracker.usertwodevice
+    - device_tracker.useronedevice
+    - sensor.deluge_down_speed
+    - sensor.deluge_up_speed

@@ -81,6 +81,7 @@
       - group.battery_level
       - group.occupancy
       - group.door_bell
+      - group.deluge
       - group.devices
       - group.dns
       - group.synology_nas
@@ -93,6 +94,7 @@
     entities:
 #      - camera.ffmpeg
       - camera.mjpeg_camera
+      - camera.front_door
 #      - camera.living_room
 #      - camera.garage
 #      - camera.chalkboard_room
@@ -133,6 +135,7 @@
     name: Battery Levels
     entities:
       - sensor.userone_phone_battery
+      - sensor.userone_tablet_battery
       - sensor.usertwo_phone_battery
       - sensor.big_garage_tilt_battery
 
@@ -143,6 +146,7 @@
       - binary_sensor.ring_front_door_motion
       - sensor.ring_last_ding
       - sensor.ring_last_motion
+      - camera.front_door
 
   current_weather:
       name: Current Weather
@@ -350,3 +354,8 @@
       - sensor.pihole_ads_blocked_today
       - sensor.pihole_ads_percentage_blocked_today
       - sensor.pihole_dns_queries_today
+
+  Deluge:
+    entities:
+      - sensor.deluge_down_speed
+      - sensor.deluge_up_speed
