@@ -1,6 +1,28 @@
-  - platform: mjpeg
-    mjpeg_url: http://REDACTED:8082/Streaming/channels/102/httppreview
-    username: !secret REDACTED_camera_user
-    password: !secret REDACTED_camera_pass
-
   - platform: ring
+#    ffmpeg_arguments: -pred 1 -q:v 25
+
+  - platform: mjpeg
+    name: Baby Camera
+    mjpeg_url: !secret baby_cam_mjpeg
+    username: !secret baby_camera_user
+    password: !secret baby_camera_pass
+
+#  - platform: ffmpeg
+#    name: Living Room
+#    input: !secret living_room_cam_rtsp
+#    extra_arguments: -an -q:v 25
+
+#  - platform: ffmpeg
+#    name: Chalkboard Room
+#    input: !secret chalkboard_room_cam_rtsp
+#    extra_arguments: -an -q:v 25
+
+#  - platform: ffmpeg
+#    name: Garage
+#    input: !secret garage_cam_rtsp
+#    extra_arguments: -an -q:v 25
+
+#  - platform: ffmpeg
+#    name: Shop
+#    input: !secret shop_cam_rtsp
+#    extra_arguments: -an -q:v 25

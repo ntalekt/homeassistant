@@ -92,12 +92,11 @@
     view: yes
     icon: mdi:camera
     entities:
-#      - camera.ffmpeg
-      - camera.mjpeg_camera
       - camera.front_door
+      - camera.baby_camera
 #      - camera.living_room
-#      - camera.garage
 #      - camera.chalkboard_room
+#      - camera.garage
 #      - camera.shop
 
   troubleshooting:
