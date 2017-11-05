@@ -44,3 +44,5 @@ include:
     - device_tracker.useronedevice
     - sensor.deluge_down_speed
     - sensor.deluge_up_speed
+    - sensor.ring_front_door_wifi_signal_strength
+    - sensor.ring_upstairs_wifi_signal_strength

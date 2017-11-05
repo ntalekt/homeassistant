@@ -146,6 +146,8 @@
       - last_activity
       - last_ding
       - last_motion
+      - wifi_signal_category
+      - wifi_signal_strength
 #      - volume
 
         ##########################################################
