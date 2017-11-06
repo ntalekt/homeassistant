@@ -93,7 +93,7 @@ emulated_hue:
 
 ffmpeg:
 #  ffmpeg_bin: /usr/local/bin/ffmpeg
-  ffmpeg_bin: /usr/bin/avconv
+#  ffmpeg_bin: /usr/bin/avconv
 mqtt:
   broker: !secret mqtt_host
   port: 1883

@@ -1,5 +1,5 @@
   - platform: ring
-#    ffmpeg_arguments: -pred 1 -q:v 25
+    ffmpeg_arguments: -pred 1 -q:v 2
 
   - platform: mjpeg
     name: Baby Camera
