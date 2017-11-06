@@ -9,7 +9,7 @@
   - platform: nmap_tracker
     hosts: REDACTED
     consider_home: 300
-    interval_seconds: 20
+    interval_seconds: 10
     track_new_devices: no
 
       #################################################################
