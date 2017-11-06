@@ -1,0 +1,268 @@
+##################################################################
+## Holiday Automations
+##################################################################
+
+        ##########################################################
+        ## Enable Christmas Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Christmas Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.holidays_calendar
+        state: 'Christmas Eve'
+      - condition: state
+        entity_id: sensor.holidays_calendar
+        state: 'Christmas Day'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Christmas'
+
+        ##########################################################
+        ## Enable Halloween Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Halloween Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: 'Halloween'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Halloween'
+
+        ##########################################################
+        ## Enable St. Patuserones Day Lighting
+        ##########################################################
+
+- alias: Holiday - Enable St. Patuserones Day Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "St. Patuserones Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: "St. Patuserones Day"
+
+        ##########################################################
+        ## Enable Valentine's Day Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Valentine's Day Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Valentine's Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: "Valentine's Day"
+
+        ##########################################################
+        ## Enable Easter Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Easter Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Easter Sunday"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Easter'
+
+        ##########################################################
+        ## Enable Thanksgiving Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Thanksgiving Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Thanksgiving Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Thanksgiving'
+
+        ##########################################################
+        ## Enable Independence Day Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Independence Day Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Independence Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Independence Day'
+
+        ##########################################################
+        ## Enable Memorial Day Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Memorial Day Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Memorial Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Memorial Day'
+
+        ##########################################################
+        ## Enable Veterans Day Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Veterans Day Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Veterans Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Veterans Day'
+
+        ##########################################################
+        ## Enable Labor Day Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Labor Day Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: "Labor Day"
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Labor Day'

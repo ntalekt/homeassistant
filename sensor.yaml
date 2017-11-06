@@ -357,6 +357,10 @@
         friendly_name: 'High / Low Temperature'
         unit_of_measurement: "°F"
 
+      holidays_calendar:
+        friendly_name: 'Upcoming Holiday'
+        value_template: '{{ states.calendar.holidays_in_united_states.attributes.message }}'
+
         ##########################################################
         ## Location
         ##########################################################

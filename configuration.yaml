@@ -52,6 +52,11 @@ http:
 ## Components
 #################################################################
 
+google:
+  client_id: !secret google_oauth_id
+  client_secret: !secret google_oauth_secret
+  track_new_calendar: false
+
 amcrest:
   - host: !secret amcrest_living_host
     name: Living Room

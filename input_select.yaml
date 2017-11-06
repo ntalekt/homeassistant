@@ -8,7 +8,7 @@
       - Netflix
       - Blueray
     icon: mdi:remote
-    
+
   master_remote:
     name: Master Remote
     options:
@@ -16,7 +16,7 @@
       - Master Fire TV
       - Master TV
     icon: mdi:remote
-    
+
   sonos:
     name: Sonos
     options:
@@ -31,3 +31,19 @@
       - Play Coffee Shop Pop Playlist
       - Play Devastating Dubstep Drops Playlist
     icon: mdi:speaker
+
+  holiday:
+    name: Holiday Lighting
+    options:
+      - None
+      - Valentine's Day
+      - St. Patuserone's Day
+      - Easter
+      - Memorial Day
+      - Independence Day
+      - Labor Day
+      - Halloween
+      - Veterans Day
+      - Thanksgiving
+      - Christmas
+    icon: mdi:gift

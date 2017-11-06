@@ -67,6 +67,7 @@
     entities:
       - group.automation_override
       - group.automation_on_demand
+      - group.holiday_modes
       - group.location_controls
       - group.all_automations
 
@@ -151,6 +152,13 @@
       - sensor.ring_last_ding
       - sensor.ring_last_motion
       - camera.front_door
+
+  Holiday Modes:
+    control: hidden
+    entities:
+      - sensor.holidays_calendar
+      - input_select.holiday
+      - input_boolean.interior_holiday
 
   current_weather:
       name: Current Weather

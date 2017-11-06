@@ -161,3 +161,8 @@
     name: Sleep Time
     initial: off
     icon: mdi:sleep
+
+  interior_holiday:
+    name: Interior Holiday Lighting
+    initial: on
+    icon: mdi:gift

@@ -74,6 +74,8 @@
       icon: mdi:language-python-text
     sensor.installed_ha_version:
       icon: mdi:code-tags
+    sensor.holidays_calendar:
+      icon: mdi:calendar
 
         ##########################################################
         ## Weather

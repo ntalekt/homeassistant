@@ -4,6 +4,7 @@
 *.pem
 secrets.yaml
 known_devices.yaml
+google_calendars.yaml
 *.conf
 *.log
 *.txt
