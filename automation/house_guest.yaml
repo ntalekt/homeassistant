@@ -1,0 +1,47 @@
+#################################################################
+## Known house guest
+#################################################################
+
+        ##########################################################
+        ## Set House Guest Away after 5 Min
+        ##########################################################
+
+- alias: Guest - Set House Guest Away after 5 Mins
+
+  trigger:
+    - platform: state
+      entity_id: group.house_guest
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.house_guest_away
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.guest_mode
+
+        ##########################################################
+        ## Set House Guest after 10 Mins
+        ##########################################################
+
+- alias: Guest - Set House Guest Home after 10 Mins
+
+  trigger:
+    - platform: state
+      entity_id: group.house_guest
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.house_guest_away
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.guest_mode

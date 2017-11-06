@@ -117,6 +117,7 @@
     entities:
     - input_boolean.sleep_time
     - input_boolean.vacation_mode
+    - input_boolean.guest_mode
     - input_select.remote
     - input_select.master_remote
     - input_select.sonos
@@ -124,6 +125,10 @@
   Household:
     - device_tracker.usertwodevice
     - device_tracker.useronedevice
+
+  house_guest:
+    - device_tracker.REDACTED_phone
+    - device_tracker.REDACTED_phone
 
   garage_door_status:
     name: Garage
@@ -252,7 +257,9 @@
       - input_boolean.manual_usertwo_home
       - input_boolean.manual_userone_away
       - input_boolean.manual_usertwo_away
+      - input_boolean.house_guest_away
       - input_boolean.vacation_mode
+      - input_boolean.guest_mode
 
   Sonos:
     entities:

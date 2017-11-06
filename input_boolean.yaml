@@ -59,6 +59,14 @@
     name: Vacation Mode
     icon: mdi:airplane
 
+  guest_mode:
+    name: Guest Mode
+    icon: mdi:human-male-female
+
+  house_guest_away:
+    name: House Guest Away
+    icon: mdi:human-male-female
+
   userone_greeting:
     name: userone Greeting Enabled
     initial: off
