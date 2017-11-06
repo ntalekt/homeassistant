@@ -64,6 +64,16 @@
       icon: mdi:restart
     sensor.ha_uptime:
       icon: mdi:av-timer
+    sensor.deluge_down_speed:
+      icon: mdi:download
+      friendly_name: Download Speed
+    sensor.deluge_up_speed:
+      icon: mdi:upload
+      friendly_name: Upload Speed
+    sensor.current_ha_release:
+      icon: mdi:language-python-text
+    sensor.installed_ha_version:
+      icon: mdi:code-tags
 
         ##########################################################
         ## Weather
