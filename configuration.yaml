@@ -156,3 +156,4 @@ notify: !include notify.yaml
 script: !include scripts.yaml
 remote: !include remote.yaml
 media_player: !include media_player.yaml
+proximity: !include proximity.yaml
