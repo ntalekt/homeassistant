@@ -129,3 +129,10 @@
     device_class: connectivity
     payload_on: "Up"
     payload_off: "Down"
+
+  - platform: command_line
+    name: NGINX Status
+    command: "/home/pi/web_check.sh"
+    device_class: connectivity
+    payload_on: "Up"
+    payload_off: "Down"

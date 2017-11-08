@@ -207,6 +207,8 @@
 
     binary_sensor.wan:
       icon: mdi:wan
+    binary_sensor.nginx_status:
+      icon: mdi:web
     binary_sensor.baby_camera:
       icon: mdi:camera
     binary_sensor.living_camera:
