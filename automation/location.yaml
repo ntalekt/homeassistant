@@ -23,10 +23,10 @@
         - input_boolean.userone_away
         
         ##########################################################
-        ## Set usetwo Away after 2 Min
+        ## Set usertwo Away after 2 Min
         ##########################################################
 
-- alias: Location - Set usetwo Away after 2 Mins
+- alias: Location - Set usertwo Away after 2 Mins
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
@@ -64,10 +64,10 @@
         - input_boolean.userone_greeting  
 
         ##########################################################
-        ## Set usetwo Home after 10 Mins
+        ## Set usertwo Home after 10 Mins
         ##########################################################
 
-- alias: Location - Set usetwo Home after 10 Mins
+- alias: Location - Set usertwo Home after 10 Mins
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
@@ -103,10 +103,10 @@
       entity_id: input_boolean.userone_away_driving 
 
         ##########################################################
-        ## Set usetwo Away Driving
+        ## Set usertwo Away Driving
         ##########################################################
 
-- alias: Location - Set usetwo Away Driving
+- alias: Location - Set usertwo Away Driving
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
@@ -155,10 +155,10 @@
       entity_id: input_boolean.manual_userone_away  
 
         ##########################################################
-        ## Manually Set usetwo Away
+        ## Manually Set usertwo Away
         ##########################################################
 
-- alias: Location - Manually Set usetwo Away
+- alias: Location - Manually Set usertwo Away
   trigger:
     - platform: state
       entity_id: input_boolean.manual_usertwo_away
@@ -171,10 +171,10 @@
         location_name: 'not_home'
 
         ##########################################################
-        ## Reset Manually Set usetwo Away Switch
+        ## Reset Manually Set usertwo Away Switch
         ##########################################################
 
-- alias: Location - Reset Manually Set usetwo Away
+- alias: Location - Reset Manually Set usertwo Away
   trigger:
     - platform: state
       entity_id: input_boolean.manual_usertwo_away
@@ -223,10 +223,10 @@
       entity_id: input_boolean.manual_userone_home   
 
         ##########################################################
-        ## Manually Set usetwo Home
+        ## Manually Set usertwo Home
         ##########################################################
 
-- alias: Location - Manually Set usetwo Home
+- alias: Location - Manually Set usertwo Home
   trigger:
     - platform: state
       entity_id: input_boolean.manual_usertwo_home
@@ -239,10 +239,10 @@
         location_name: 'home'
 
         ##########################################################
-        ## Reset Manually Set usetwo Home Switch
+        ## Reset Manually Set usertwo Home Switch
         ##########################################################
 
-- alias: Location - Reset usetwo Home
+- alias: Location - Reset usertwo Home
   trigger:
     - platform: state
       entity_id: input_boolean.manual_usertwo_home

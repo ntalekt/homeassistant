@@ -3,9 +3,9 @@
 #################################################################
 
         ##########################################################
-        ## Lights
+        ## Exterior
         ##########################################################
-        
+
 - alias: Lights - Exterior lights on 5min before sunset
   trigger:
     - platform: sun
@@ -20,7 +20,7 @@
       entity_id: group.exterior_lights
       data:
         brightness: 254
-      
+
 - alias: Lights - Exterior lights dim at 9:00pm
   trigger:
     - platform: time
@@ -34,8 +34,8 @@
       entity_id: group.exterior_lights
       data:
         transition: 60
-        brightness: 85  
-      
+        brightness: 85
+
 - alias: Lights - Exterior lights off 30min after sunrise
   trigger:
     - platform: sun
@@ -50,25 +50,29 @@
       entity_id: group.exterior_lights
       data:
         transition: 60
-        
+
+        ##########################################################
+        ## Interior Loft
+        ##########################################################
+
 - alias: Lights - Interior Loft Turn on 30% at Sunset if Home
   trigger:
     - platform: sun
       event: sunset
-      offset: "-00:01:00"
+      offset: "-00:00:30"
   condition:
     - condition: state
       entity_id: input_boolean.disable_loft_on_sunset
       state: 'off'
     - condition: state
       entity_id: group.household
-      state: 'home'      
+      state: 'home'
   action:
     - service: light.turn_on
       entity_id: group.loft_lights
       data:
         brightness: 75
-        transition: 5        
+        transition: 5
 
 - alias: Lights - Interior Loft Turn off at 8:10PM
   trigger:
@@ -77,12 +81,13 @@
   condition:
     - condition: state
       entity_id: input_boolean.disable_loft_off_8pm
-      state: 'off'     
+      state: 'off'
   action:
     - service: light.turn_off
       entity_id: group.loft_lights
       data:
-       transition: 60            
+       transition: 60
+
         ##########################################################
         ## Interior Master
         ##########################################################

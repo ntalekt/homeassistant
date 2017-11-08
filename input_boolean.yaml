@@ -80,7 +80,7 @@
     initial: off
 
   usertwo_greeting:
-    name: usetwo Greeting Enabled
+    name: usertwo Greeting Enabled
     initial: off
 
   userone_away:
@@ -88,7 +88,7 @@
     initial: off
 
   usertwo_away:
-    name: usetwo Away
+    name: usertwo Away
     initial: off
 
   userone_away_driving:
@@ -96,7 +96,7 @@
     initial: off
 
   usertwo_away_driving:
-    name: usetwo Away Driving
+    name: usertwo Away Driving
     initial: off
 
   manual_userone_away:
@@ -104,7 +104,7 @@
     initial: off
 
   manual_usertwo_away:
-    name: Manually set usetwo Away
+    name: Manually set usertwo Away
     initial: off
 
   manual_userone_home:
@@ -112,7 +112,7 @@
     initial: off
 
   manual_usertwo_home:
-    name: Manually set usetwo Home
+    name: Manually set usertwo Home
     initial: off
 
   group_all_sonos:
