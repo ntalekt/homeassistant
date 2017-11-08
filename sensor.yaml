@@ -188,7 +188,6 @@
     monitored_conditions:
       - status
       - memory_percent_used
-#      - system_temp
       - cpu_usage
       - cpu_temp
       - network_tx
@@ -280,7 +279,7 @@
         unit_of_measurement: "°F"
 
       userone_phone_battery:
-        value_template: '{{ states.device_tracker.useronedevice.attributes.battery | int }}'
+        value_template: '{{ states.device_tracker.useronedevice.attributes.battery | default(0) | int }}'
         friendly_name: 'userone Nexus 6P'
         unit_of_measurement: "%"
         icon_template: >
@@ -295,8 +294,8 @@
           {% endif %}
 
       usertwo_phone_battery:
-        value_template: '{{ states.device_tracker.usertwodevice.attributes.battery | int }}'
-        friendly_name: 'usetwo iPhone X'
+        value_template: '{{ states.device_tracker.usertwodevice.attributes.battery | default(0) | int }}'
+        friendly_name: 'usertwo iPhone X'
         unit_of_measurement: "%"
         icon_template: >
           {% set battery_level = states.device_tracker.usertwodevice.attributes.battery | default(0) | int %}
@@ -310,7 +309,7 @@
           {% endif %}
 
       userone_tablet_battery:
-        value_template: '{{ states.device_tracker.mqtt_flounder.attributes.battery | int }}'
+        value_template: '{{ states.device_tracker.mqtt_flounder.attributes.battery | default(0) | int }}'
         friendly_name: 'userone Nexus 9'
         unit_of_measurement: "%"
         icon_template: >
@@ -325,7 +324,7 @@
           {% endif %}
 
       big_garage_tilt_battery:
-        value_template: '{{ states.zwave.ecolink_tilt_big_garage.attributes.battery_level | int }}'
+        value_template: '{{ states.zwave.ecolink_tilt_big_garage.attributes.battery_level | default(0) | int }}'
         friendly_name: 'Big Garage Tilt Sensor'
         unit_of_measurement: "%"
         icon_template: >
