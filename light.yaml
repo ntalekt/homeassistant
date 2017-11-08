@@ -24,3 +24,13 @@
     rgb: true
     optimistic: false
     qos: 0
+
+            ##########################################################
+            ## Yeelight
+            ##########################################################
+
+  - platform: yeelight
+    devices:
+      REDACTED:
+        name: Master Strip
+        transition: 2000

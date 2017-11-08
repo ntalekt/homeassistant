@@ -25,6 +25,7 @@ discovery:
     - harmony
     - google_cast
     - philips_hue
+    - yeelight
 #conversation:
 logger: !include logger.yaml
 logbook:

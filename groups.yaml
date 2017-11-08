@@ -15,6 +15,7 @@
       - group.nest_upstairs_card
       - group.sensor_node_1_card
       - group.exterior_lights
+      - group.master_lights
       - group.loft_lights
       - group.finance
       - group.cox_internet_usage
@@ -25,6 +26,7 @@
     icon: mdi:lightbulb-outline
     entities:
       - group.loft_lights
+      - group.master_lights
       - group.exterior_lights
 
   first_floor:
@@ -201,6 +203,11 @@
     entities:
       - light.ge_14294_porch_level
       - light.ge_14294_exterior_side_level
+
+  master_lights:
+    name: Master Lights
+    entities:
+      - light.master_strip
 
   loft_lights:
     name: Loft Lights

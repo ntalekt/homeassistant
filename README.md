@@ -19,6 +19,7 @@ Home Assistant Version: 0.57.2
 * [Nest Thermostat](https://www.amazon.com/gp/product/B0131RG6VK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0131RG6VK&linkCode=as2&tag=ntalekt-20&linkId=e0db21f4ff5fe08d4d88f64ae040fcc3) x2
 * [Hue Hub](https://www.amazon.com/gp/product/B014H2P42K/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B014H2P42K&linkCode=as2&tag=ntalekt-20&linkId=f7c4c6761bc4d3ee0ec55b55dac43419)
 * [Hue White Bulb](https://www.amazon.com/gp/product/B073SSK6P8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B073SSK6P8&linkCode=as2&tag=ntalekt-20&linkId=e23e56d9f8e7207899d06d1e65d1a44a) x4
+* [Yeelight WIFI RGB Strip](https://www.amazon.com/gp/product/B01LRT0B56/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&linkCode=as2&tag=ntalekt-20&linkId=f494661c2bfcea4e57c2ee133a4b4caf)
 * [GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt-20&linkId=28f9845f77c4f9b01c7ad84871a799ab) x3
 * [Ecolink Z-wave Plus Garage Door Tilt Sensor](https://www.amazon.com/gp/product/B01MRZB0NT/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MRZB0NT&linkCode=as2&tag=ntalekt-20&linkId=ba67bb773710bc24f062775d66fe51b1)
 * [Amcrest IPM-HX1W Camera](https://www.amazon.com/gp/product/B01LZHOILC/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LZHOILC&linkCode=as2&tag=ntalekt-20&linkId=fd29fa84ba58e8747400ea53e05b8459) x4
