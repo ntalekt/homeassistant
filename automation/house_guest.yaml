@@ -25,7 +25,7 @@
       entity_id: input_boolean.guest_mode
 
         ##########################################################
-        ## Set House Guest after 10 Mins
+        ## Set House Guest Home after 10 Mins
         ##########################################################
 
 - alias: Guest - Set House Guest Home after 10 Mins

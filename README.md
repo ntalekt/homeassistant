@@ -7,6 +7,7 @@ Home Assistant Version: 0.57.2
 * [Raspberry PI 3 Model B](https://www.amazon.com/gp/product/B01CD5VC92/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01CD5VC92&linkCode=as2&tag=ntalekt-20&linkId=85008d89d44170ee683cbe85480e5522)
 * [SanDisk Ultra 32GB microSDHC](https://www.amazon.com/gp/product/B010Q57T02/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B010Q57T02&linkCode=as2&tag=ntalekt-20&linkId=1f3a281d1767ccf9e81b1eecfb3dc17a)
 * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt-20&linkId=ffe37e67106ed75d94683035242bfdc4)
+* [NGNIX proxy](https://home-assistant.io/docs/ecosystem/nginx/)
 * SSL via [SSLs](https://www.ssls.com/)
 
 

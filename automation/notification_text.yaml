@@ -3,6 +3,20 @@
 #################################################################
 
         ##########################################################
+        ## Failed Login
+        ##########################################################
+
+- alias: Notification - Failed Login
+  trigger:
+    platform: template
+    value_template: "{{ states('persistent_notification.httplogin') != 'unknown' }}"
+  action:
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: "Failed Home Assistant login!"
+
+        ##########################################################
         ## New version of Home Assistant
         ##########################################################
 
@@ -95,6 +109,7 @@
       - binary_sensor.chalkboard_camera
       - binary_sensor.garage_camera
       - binary_sensor.shop_camera
+      - binary_sensor.nginx_status
       from: 'on'
       to: 'off'
       for:
