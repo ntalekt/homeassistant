@@ -47,6 +47,14 @@
     name: Disable Loft Lights Off at 8PM
     icon: mdi:lightbulb-outline
 
+  disable_master_on_sunset:
+    name: Disable Master Lights On at Sunset
+    icon: mdi:weather-sunset-down
+
+  disable_master_off_845pm:
+    name: Disable Loft Lights Off at 845PM
+    icon: mdi:lightbulb-outline
+
   disable_exterior_dim_9pm:
     name: Disable Exterior Lights Dim at 9PM
     icon: mdi:lightbulb-outline
