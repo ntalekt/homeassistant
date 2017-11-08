@@ -266,3 +266,50 @@
       data:
         entity_id: input_select.holiday
         option: 'Labor Day'
+
+        ##########################################################
+        ## Reset Holiday Lighting at 4a
+        ##########################################################
+
+- alias: Holiday - Reset Lighting at 4a
+
+  trigger:
+    - platform: time
+      at: '04:00'
+
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Halloween'
+      - condition: state
+        entity_id: input_select.holiday
+        state: "St. Patuserone's Day"
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Easter'
+      - condition: state
+        entity_id: input_select.holiday
+        state: "Valentine's Day"
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Thanksgiving'
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Labor Day'
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Memorial Day'
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Independence Day'
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Veterans Day'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: "None"
