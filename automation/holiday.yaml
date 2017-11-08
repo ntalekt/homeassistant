@@ -268,6 +268,197 @@
         option: 'Labor Day'
 
         ##########################################################
+        ## Christmas Lighting Interior
+        ##########################################################
+
+- alias: Holiday - Christmas Lighting Interior
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.interior_holiday
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Christmas'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.master_strip
+      data:
+        effect: Christmas
+        brightness: 255
+        transition: 60
+
+        ##########################################################
+        ## Halloween Lighting Interior
+        ##########################################################
+
+- alias: Holiday - Halloween Lighting Interior
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.interior_holiday
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Halloween'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.master_strip
+      data:
+        transition: 5
+        brightness: 255
+        # Dark Orange
+        xy_color: [ 0.6164, 0.3645 ]
+
+        ##########################################################
+        ## St. Patuserones Day Lighting Interior
+        ##########################################################
+
+- alias: Holiday - St. Patuserones Day Lighting Interior
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.interior_holiday
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: "St. Patuserone's Day"
+
+  action:
+    - service: light.turn_on
+      entity_id: light.master_strip
+      data:
+        transition: 5
+        brightness: 255
+        color_name: green
+
+        ##########################################################
+        ## Valentine's Day Lighting Interior
+        ##########################################################
+
+- alias: Holiday - Valentine's Day Lighting Interior
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.interior_holiday
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_exterior_on_sunset
+      state: 'off'
+    - condition: state
+      entity_id: input_select.holiday
+      state: "Valentine's Day"
+
+  action:
+    - service: light.turn_on
+      entity_id: light.master_strip
+      data:
+        transition: 5
+        brightness: 255
+        color_name: "hot pink"
+
+        ##########################################################
+        ## Easter Lighting Interior
+        ##########################################################
+
+- alias: Holiday - Easter Lighting Interior
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.interior_holiday
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Easter'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.master_strip
+      data:
+        transition: 5
+        brightness: 255
+        color_name: indigo
+
+        ##########################################################
+        ## Thanksgiving Lighting Interior
+        ##########################################################
+
+- alias: Holiday - Thanksgiving Lighting Interior
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.interior_holiday
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'Thanksgiving'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.master_strip
+      data:
+        transition: 5
+        brightness: 255
+        # Orange
+        xy_color: [ 0.5781, 0.3921 ]
+
+        ##########################################################
+        ## Independence / Memorial / Veterans / Labor Day Lighting Interior
+        ##########################################################
+
+- alias: Holiday - Independence / Memorial / Veterans / Labor Day Lighting Interior
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.interior_holiday
+      from: 'off'
+      to: 'on'
+
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Labor Day'
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Memorial Day'
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Independence Day'
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Veterans Day'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.master_strip
+      data:
+        transition: 5
+        brightness: 255
+        color_name: blue
+
+        ##########################################################
         ## Reset Holiday Lighting at 4a
         ##########################################################
 
