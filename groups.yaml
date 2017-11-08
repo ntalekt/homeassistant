@@ -18,7 +18,6 @@
       - group.master_lights
       - group.loft_lights
       - group.finance
-      - group.cox_internet_usage
 
   lights:
     name: Lights
@@ -85,8 +84,9 @@
       - group.occupancy
       - group.door_bell
       - group.deluge
-      - group.devices
+      - group.cox_internet_usage
       - group.dns
+      - group.devices
       - group.synology_nas
       - group.qnap_nas
 
