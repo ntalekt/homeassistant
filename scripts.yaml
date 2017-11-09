@@ -117,41 +117,59 @@ good_morning:
         - media_player.chalkboard_room
         - media_player.loft
         message: >
-          {% if now().strftime("%H")|int < 12 %}
-          Good morning. Today is {{now().strftime("%A %B")}} the
-            {% if now().strftime("%-d")|int == 1 or now().strftime("%-d")|int == 21 or now().strftime("%-d")|int == 31 %}
-              {{now().strftime("%-d")}}st
-            {% elif now().strftime("%-d")|int == 2 or now().strftime("%-d")|int == 22 %}
-              {{now().strftime("%-d")}}nd
-            {% elif now().strftime("%-d")|int == 3 or now().strftime("%-d")|int == 23 %}
-              {{now().strftime("%-d")}}rd
+          {% set hour = now().strftime("%H") %}
+          {% set weekday_full_name = now().strftime("%A") %}
+          {% set month_full_name = now().strftime("%B") %}
+          {% set day = now().strftime("%-d") %}
+          {% set weekday = now().strftime("%w") %}
+          {% if hour | int < 12 %}
+          Good morning. Today is {{ weekday_full_name }} {{ month_full_name }} the
+            {% if day | int == 1 or day | int == 21 or day | int == 31 %}
+              {{ day }}st
+            {% elif day | int == 2 or day | int == 22 %}
+              {{ day }}nd
+            {% elif day | int == 3 or day | int == 23 %}
+              {{ day }}rd
             {% else %}
-              {{now().strftime("%-d")}}th
+              {{ day }}th
             {% endif %}.
-          {% elif now().strftime("%H")|int < 18 %}
+          {% elif hour | int < 18 %}
           Good afternoon.
           {% else %}
           Good evening.
           {% endif %}
-          {% if now().strftime("%w")|int > 0and now().strftime("%w")|int < 5 %}
+          {% if weekday | int > 0 and weekday | int < 5 %}
             Today is a school day.
           {% endif %}
-          {% if now().strftime("%w")|int == 5 %}
+          {% if weekday | int == 5 %}
             Today is a school day and donut day!
           {% endif %}
-          {% if now().strftime("%w")|int == 2 %}
+          {% if month_full_name == 'November' %}
+            {% if day | int == 1 or day | int == 8 or day | int == 16 or day | int == 28 %}
+              REDACTED, today is art day.
+            {% elif day | int == 2 or day | int == 7 or day | int == 9 or day | int == 15 or day | int == 17 or day | int == 27 or day | int == 29 %}
+              REDACTED, today is P.E. day.
+            {% elif day | int == 3 or day | int == 13 or day | int == 20 or day | int == 30 %}
+              REDACTED, today is music day.
+            {% elif day | int == 6 or day | int == 14 or day | int == 21 %}
+              REDACTED, today is technology day.
+            {% elif day | int == 10 or day | int == 22 or day | int == 23 or day | int == 24 %}
+              REDACTED, you don't have school today even though it's a school day.
+            {% endif %}
+          {% endif %}
+          {% if weekday | int == 2 %}
             REDACTED, today is Play Date sports day.
           {% endif %}
-          {% if now().strftime("%w")|int == 4 %}
+          {% if weekday | int == 4 %}
             REDACTED, today is music day.
           {% endif %}
-          {% if now().strftime("%w")|int == 6 %}
+          {% if weekday | int == 6 %}
             REDACTED, I hope you have a wonderful time at swim class. REDACTED, I hope you have fun at sports class.
           {% endif %}
-          {% if now().strftime("%w")|int == 2 %}
+          {% if weekday | int == 2 %}
             userone, today is trash day.
           {% endif %}
-          {% if now().strftime("%H")|int < 9 and now().strftime("%w")|int > 0and now().strftime("%w")|int < 6 %}
+          {% if hour | int < 9 and weekday |int > 0 and weekday | int < 6 %}
             usertwo, your current drive to work in traffic is {{states.sensor.usertwo_to_work.attributes.duration_in_traffic.split(' ')[0]}} minutes.
           {% endif %}
           It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state|round}} degrees in REDACTED. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}, with a high of {{states.sensor.dark_sky_daily_high_temperature.state|round}} degrees.
