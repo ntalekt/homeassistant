@@ -81,6 +81,8 @@
 
   usertwo_greeting:
     name: usertwo Greeting Enabled
+  garage_notification:
+    name: Garage Notification Enabled
     initial: off
 
   userone_away:

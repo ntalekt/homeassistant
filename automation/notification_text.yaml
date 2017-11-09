@@ -159,6 +159,9 @@
     - condition: state
       entity_id: group.household
       state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.garage_notification
+      state: 'on'
   action:
     - service: notify.pushbullet
       data:

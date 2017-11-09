@@ -260,6 +260,7 @@
       - input_boolean.usertwo_greeting
       - input_boolean.userone_away
       - input_boolean.usertwo_away
+      - input_boolean.garage_notification
 
   Location Controls:
     control: hidden

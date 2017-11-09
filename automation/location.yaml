@@ -43,6 +43,49 @@
         - input_boolean.usertwo_away
 
         ##########################################################
+        ## Set Garage Notification On if 1 mile away
+        ##########################################################
+
+- alias: Location - Set Garage Notification On after 2 Mins
+  trigger:
+    - platform: numeric_state
+      entity_id: proximity.usertwo_home
+      above: 0
+    - platform: numeric_state
+      entity_id: proximity.userone_home
+      above: 0
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.garage_notification
+
+        ##########################################################
+        ## Set Garage Notification Off If Close To Home
+        ##########################################################
+
+- alias: Location - Set Garage Notication Off If Close To Home
+  trigger:
+    - platform: numeric_state
+      entity_id: proximity.usertwo_home
+      below: 2
+      above: 0
+    - platform: numeric_state
+      entity_id: proximity.userone_home
+      below: 2
+      above: 0
+  condition:
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: '{{ states.proximity.usertwo_home.attributes.dir_of_travel == "towards" }}'
+        - condition: template
+          value_template: '{{ states.proximity.userone_home.attributes.dir_of_travel == "towards" }}'
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.garage_notification
+
+        ##########################################################
         ## Set userone Home after 10 Mins
         ##########################################################
 
