@@ -58,27 +58,6 @@
       entity_id: script.good_morning
 
         ##########################################################
-        ## Sonos - Turn on exterior lights
-        ##########################################################
-
-#- alias: Notification Audio - Turn on exterior lights
-#  trigger:
-#    - platform: sun
-#      event: sunset
-#      offset: "-00:05:00"
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_voice_greeting
-#      state: 'off'
-#    - condition: state
-#      entity_id: group.household
-#      state: 'home'
-#  action:
-#    - delay: '00:00:30'
-#    - service: script.turn_on
-#      entity_id: script.dark_outside
-
-        ##########################################################
         ## Sonos - Welcome Home userone
         ##########################################################
 

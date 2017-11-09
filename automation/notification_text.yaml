@@ -150,7 +150,11 @@
         title: "Home Assistant"
         message: "Come back, the garage door is open!"
 
-- alias: Notification - Garage door open and noone is home
+        ##########################################################
+        ## Garage Door - Open and no one home
+        ##########################################################
+
+- alias: Notification - Garage door open and no one is home
   trigger:
     - platform: state
       entity_id: binary_sensor.ecolink_tilt_big_garage_sensor
@@ -167,6 +171,10 @@
       data:
         title: "Home Assistant"
         message: "The garage door is open and noone is home!"
+
+        ##########################################################
+        ## Garage Door - Open for 30 minutes
+        ##########################################################
 
 - alias: Notification - Garage open for 30min
   trigger:

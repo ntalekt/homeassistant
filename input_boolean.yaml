@@ -52,7 +52,7 @@
     icon: mdi:weather-sunset-down
 
   disable_master_off_845pm:
-    name: Disable Loft Lights Off at 845PM
+    name: Disable Master Lights Off at 845PM
     icon: mdi:lightbulb-outline
 
   disable_exterior_dim_9pm:
