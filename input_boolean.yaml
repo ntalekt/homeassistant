@@ -73,14 +73,17 @@
 
   house_guest_away:
     name: House Guest Away
+    initial: on
     icon: mdi:human-male-female
 
   userone_greeting:
     name: userone Greeting Enabled
-    initial: off
+    initial: on
 
   usertwo_greeting:
     name: usertwo Greeting Enabled
+    initial: on
+
   garage_notification:
     name: Garage Notification Enabled
     initial: off
