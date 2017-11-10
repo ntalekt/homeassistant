@@ -178,14 +178,12 @@
     sensor.exchange_rate_1_btc:
       friendly_name: BTC
 
-
         ##########################################################
         ## Remote
         ##########################################################
 
     sensor.media_center:
       icon: mdi:television
-
 
         ##########################################################
         ## Lights
@@ -210,15 +208,15 @@
     binary_sensor.nginx_status:
       icon: mdi:web
     binary_sensor.baby_camera:
-      icon: mdi:camera
+      icon: mdi:cctv
     binary_sensor.living_camera:
-      icon: mdi:camera
+      icon: mdi:cctv
     binary_sensor.garage_camera:
-      icon: mdi:camera
+      icon: mdi:cctv
     binary_sensor.chalkboard_camera:
-      icon: mdi:camera
+      icon: mdi:cctv
     binary_sensor.shop_camera:
-      icon: mdi:camera
+      icon: mdi:cctv
     binary_sensor.synology_nas:
       icon: mdi:harddisk
     binary_sensor.qnap_nas:

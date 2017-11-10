@@ -79,51 +79,62 @@
   userone_greeting:
     name: userone Greeting Enabled
     initial: on
+    icon: mdi:voice
 
   usertwo_greeting:
     name: usertwo Greeting Enabled
     initial: on
+    icon: mdi:voice
 
   garage_notification:
     name: Garage Notification Enabled
     initial: off
+    icon: mdi:garage
 
   userone_away:
     name: userone Away
     initial: off
+    icon: mdi:human-male
 
   usertwo_away:
     name: usertwo Away
     initial: off
+    icon: mdi:human-female
 
   userone_away_driving:
     name: userone Away Driving
     initial: off
+    icon: mdi:car-sports
 
   usertwo_away_driving:
     name: usertwo Away Driving
     initial: off
+    icon: mdi:car-estate
 
   manual_userone_away:
     name: Manually set userone Away
     initial: off
+    icon: mdi:home-outline
 
   manual_usertwo_away:
     name: Manually set usertwo Away
     initial: off
+    icon: mdi:home-outline
 
   manual_userone_home:
     name: Manually set userone Home
     initial: off
+    icon: mdi:home
 
   manual_usertwo_home:
     name: Manually set usertwo Home
     initial: off
+    icon: mdi:home
 
   group_all_sonos:
     name: Play on all Speakers
     initial: off
-    icon: mdi:speaker
+    icon: mdi:speaker-wireless
 
   90_station:
     name: Play All '90s Station
@@ -173,7 +184,7 @@
   sleep_time:
     name: Sleep Time
     initial: off
-    icon: mdi:sleep
+    icon: mdi:hotel
 
   interior_holiday:
     name: Interior Holiday Lighting
