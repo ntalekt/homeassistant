@@ -85,13 +85,13 @@
       entity_id: proximity.userone_home
       below: 2
       above: 0
-  condition:
-    - condition: or
-      conditions:
-        - condition: template
-          value_template: '{{ states.proximity.usertwo_home.attributes.dir_of_travel == "towards" }}'
-        - condition: template
-          value_template: '{{ states.proximity.userone_home.attributes.dir_of_travel == "towards" }}'
+#  condition:
+#    - condition: or
+#      conditions:
+#        - condition: template
+#          value_template: '{{ states.proximity.usertwo_home.attributes.dir_of_travel == "towards" }}'
+#        - condition: template
+#          value_template: '{{ states.proximity.userone_home.attributes.dir_of_travel == "towards" }}'
   action:
     - service: homeassistant.turn_off
       entity_id:
