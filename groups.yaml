@@ -367,3 +367,5 @@
     entities:
       - sensor.deluge_down_speed
       - sensor.deluge_up_speed
+      - binary_sensor.deluge_process
+      - binary_sensor.killswitch_process

@@ -241,6 +241,10 @@
       icon: mdi:bell-ring
     binary_sensor.opensprinkler_pi:
       icon: mdi:water
+    binary_sensor.deluge_process:
+      icon: mdi:download-network
+    binary_sensor.killswitch_process:
+      icon: mdi:vpn
 
         ##########################################################
         ## DNS

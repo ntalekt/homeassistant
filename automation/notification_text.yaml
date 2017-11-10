@@ -110,6 +110,8 @@
       - binary_sensor.garage_camera
       - binary_sensor.shop_camera
       - binary_sensor.nginx_status
+      - binary_sensor.deluge_process
+      - binary_sensor.killswitch_process
       from: 'on'
       to: 'off'
       for:
