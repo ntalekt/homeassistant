@@ -62,6 +62,9 @@ Home Assistant Version: 0.57.2
 * Exterior lights ([GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt-20&linkId=28f9845f77c4f9b01c7ad84871a799ab)) dim to 35% at 9:00pm
 * Interior loft lights ([Hue White Bulb](https://www.amazon.com/gp/product/B073SSK6P8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B073SSK6P8&linkCode=as2&tag=ntalekt-20&linkId=e23e56d9f8e7207899d06d1e65d1a44a)) on at 30% 60 minutes before sunset if home.
 * Interior loft lights ([Hue White Bulb](https://www.amazon.com/gp/product/B073SSK6P8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B073SSK6P8&linkCode=as2&tag=ntalekt-20&linkId=e23e56d9f8e7207899d06d1e65d1a44a)) off at 8:10pm.
+* Interior Master lights ([Yeelight WIFI RGB Strip](https://www.amazon.com/gp/product/B01LRT0B56/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&linkCode=as2&tag=ntalekt-20&linkId=f494661c2bfcea4e57c2ee133a4b4caf)) on at sunset.
+* Interior Master lights ([Yeelight WIFI RGB Strip](https://www.amazon.com/gp/product/B01LRT0B56/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&linkCode=as2&tag=ntalekt-20&linkId=f494661c2bfcea4e57c2ee133a4b4caf)) off at 8:45pm.
+* Holiday lighting
 
 ### Doorbell
 * Exterior lights to 100% if [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt-20&linkId=100ed966ea93c748bf857696167a167c) detects motion or is pressed after 9:00pm.
