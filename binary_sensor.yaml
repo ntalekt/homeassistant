@@ -119,6 +119,14 @@
     host: !secret amcrest_shop_host
     name: Shop Camera
 
+  - platform: ping
+    host: !secret pihole_host
+    name: Pihole
+
+  - platform: ping
+    host: !secret tplink_host
+    name: Powerline Wifi
+
         ##########################################################
         ## WAN test script
         ##########################################################

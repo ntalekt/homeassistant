@@ -205,6 +205,10 @@
 
     binary_sensor.wan:
       icon: mdi:wan
+    binary_sensor.pihole:
+      icon: mdi:dns
+    binary_sensor.powerline_wifi:
+      icon: mdi:wifi
     binary_sensor.nginx_status:
       icon: mdi:web
     binary_sensor.baby_camera:

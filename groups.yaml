@@ -328,6 +328,8 @@
   Devices:
     entities:
       - binary_sensor.wan
+      - binary_sensor.pihole
+      - binary_sensor.powerline_wifi
       - binary_sensor.synology_nas
       - binary_sensor.qnap_nas
       - binary_sensor.hue_hub
