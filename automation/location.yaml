@@ -46,7 +46,7 @@
         ## Set Garage Notification On if 1 mile away
         ##########################################################
 
-- alias: Location - Set Garage Notification On after 2 Mins
+- alias: Location - Set Garage Notification On If 1 Mile Away
   trigger:
     - platform: numeric_state
       entity_id: proximity.usertwo_home
@@ -54,6 +54,18 @@
     - platform: numeric_state
       entity_id: proximity.userone_home
       above: 0
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'not_home'
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: '{{ states.proximity.usertwo_home.attributes.dir_of_travel != "towards" }}'
+          - condition: template
+            value_template: '{{ states.proximity.userone_home.attributes.dir_of_travel != "towards" }}'
   action:
     - service: homeassistant.turn_on
       entity_id:
