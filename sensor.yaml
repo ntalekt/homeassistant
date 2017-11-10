@@ -97,16 +97,10 @@
       {%- endif -%}
       {{ '%02d' % hours }}:{{ '%02d' % minutes }}
 
-#  - platform: cpuspeed
-#    name: CPU
-
   - platform: systemmonitor
     resources:
-      - type: memory_free
       - type: memory_use_percent
       - type: processor_use
-#      - type: since_last_boot
-
 
         ##########################################################
         ## Sensor Node 1 - Office

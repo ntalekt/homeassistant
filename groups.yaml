@@ -68,9 +68,10 @@
     entities:
       - group.automation_override
       - group.automation_on_demand
-      - group.holiday_modes
       - group.location_controls
+      - group.holiday_modes
       - group.all_automations
+      - group.all_scripts
 
   sensors:
     name: Sensors
@@ -102,15 +103,6 @@
 #      - camera.garage
 #      - camera.shop
 
-  troubleshooting:
-    name: Troubleshooting
-    view: yes
-    icon: mdi:exclamation
-    entities:
-      - group.all_automations
-      - group.all_scripts
-      - group.input_boolean
-
 #################################################################
 ## Groups
 #################################################################
@@ -119,7 +111,6 @@
     control: hidden
     entities:
     - input_boolean.sleep_time
-    - input_boolean.vacation_mode
     - input_boolean.guest_mode
     - input_select.remote
     - input_select.master_remote
@@ -254,25 +245,20 @@
       - sensor.master_remote
       - input_select.master_remote
 
-  Input Boolean:
-    entities:
-      - input_boolean.userone_greeting
-      - input_boolean.usertwo_greeting
-      - input_boolean.userone_away
-      - input_boolean.usertwo_away
-      - input_boolean.garage_notification
-
   Location Controls:
     control: hidden
     entities:
       - input_boolean.userone_away
       - input_boolean.userone_away_driving
+      - input_boolean.userone_greeting
       - input_boolean.usertwo_away
       - input_boolean.usertwo_away_driving
+      - input_boolean.usertwo_greeting
       - input_boolean.manual_userone_home
       - input_boolean.manual_usertwo_home
       - input_boolean.manual_userone_away
       - input_boolean.manual_usertwo_away
+      - input_boolean.garage_notification
       - input_boolean.house_guest_away
       - input_boolean.vacation_mode
       - input_boolean.guest_mode
@@ -284,6 +270,7 @@
       - media_player.chalkboard_room
 
   Automation Override:
+    control: hidden
     entities:
       - input_boolean.disable_home_away
       - input_boolean.disable_voice_greeting
@@ -297,21 +284,15 @@
 
   System:
     entities:
-#      - sensor.cpu
-#      - sensor.cpu_use
       - sensor.cpu_used
       - sensor.cpu_temp
-#      - sensor.ram_use
       - sensor.ram_used
-#      - sensor.ram_free
-      - sensor.ram_available
       - sensor.ha_db_size
       - sensor.ha_uptime
       - sensor.ha_last_reboot
       - binary_sensor.nginx_status
       - sensor.current_ha_release
       - sensor.installed_ha_version
-
 
   Occupancy:
     entities:
