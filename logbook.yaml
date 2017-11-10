@@ -1,0 +1,45 @@
+#################################################################
+## Logbook
+#################################################################
+
+  exclude:
+    entities:
+      - sensor.since_last_boot
+      - sensor.ha_uptime
+      - sensor.ha_last_reboot
+      - sensor.pihole_ads_blocked_today
+      - sensor.pihole_ads_percentage_blocked_today
+      - sensor.pihole_dns_queries_today
+      - sensor.office_pir
+      - sensor.ring_front_door_last_activity
+      - sensor.ring_front_door_last_ding
+      - sensor.chalkboard_room_motion_detected
+      - sensor.garage_motion_detected
+      - sensor.living_room_motion_detected
+      - sensor.shop_motion_detected
+      - sensor.ecolink_tilt_big_garage_access_control
+      - sensor.ecolink_tilt_big_garage_alarm_level
+      - sensor.ecolink_tilt_big_garage_alarm_type
+      - sensor.ecolink_tilt_big_garage_burglar
+      - sensor.ecolink_tilt_big_garage_power_management
+      - sensor.ecolink_tilt_big_garage_sourcenodeid
+      - binary_sensor.downstairs_thermostat_has_leaf
+      - binary_sensor.upstairs_thermostat_has_leaf
+      - input_boolean.chalkboard_occupancy
+      - input_boolean.garage_occupancy
+      - input_boolean.living_occupancy
+      - input_boolean.office_occupancy
+      - input_boolean.shop_occupancy
+      - group.door_bell
+      - group.office
+      - group.garage_door_status
+      - automation.occupancy__chalkboard_turn_off_after_30min_of_no_motion
+      - automation.occupancy__chalkboard_turn_on_if_motion_detected
+      - automation.occupancy__garage_turn_off_after_10min_of_no_motion
+      - automation.occupancy__garage_turn_on_if_motion_detected
+      - automation.occupancy__living_turn_off_after_30min_of_no_motion
+      - automation.occupancy__living_turn_on_if_motion_detected
+      - automation.occupancy__office_turn_off_after_30min_of_no_motion
+      - automation.occupancy__office_turn_on_if_motion_detected
+      - automation.occupancy__shop_turn_off_after_10min_of_no_motion
+      - automation.occupancy__shop_turn_on_if_motion_detected

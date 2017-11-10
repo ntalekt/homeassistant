@@ -28,15 +28,7 @@ discovery:
     - yeelight
 #conversation:
 logger: !include logger.yaml
-logbook:
-  exclude:
-    entities:
-      - sensor.since_last_boot
-      - sensor.ha_uptime
-      - sensor.ha_last_reboot
-      - sensor.pihole_ads_blocked_today
-      - sensor.pihole_ads_percentage_blocked_today
-      - sensor.pihole_dns_queries_today
+logbook: !include logbook.yaml
 
 http:
   # Using NGINX Reverse Proxy with SSL
