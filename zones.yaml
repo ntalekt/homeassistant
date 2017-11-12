@@ -5,7 +5,7 @@
 - name: Home
   latitude: !secret homeassistant_latitude
   longitude: !secret homeassistant_longitude
-  radius: 150
+  radius: 450
   icon: mdi:home
 
 - name: !secret prek_name

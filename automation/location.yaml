@@ -79,11 +79,11 @@
   trigger:
     - platform: numeric_state
       entity_id: proximity.usertwo_home
-      below: 2
+      below: 3
       above: 0
     - platform: numeric_state
       entity_id: proximity.userone_home
-      below: 2
+      below: 3
       above: 0
 #  condition:
 #    - condition: or
@@ -98,10 +98,10 @@
         - input_boolean.garage_notification
 
         ##########################################################
-        ## Set userone Home after 10 Mins
+        ## Set userone Home after 5 Mins
         ##########################################################
 
-- alias: Location - Set userone Home after 10 Mins
+- alias: Location - Set userone Home after 5 Mins
   trigger:
     - platform: state
       entity_id: device_tracker.useronedevice
@@ -109,7 +109,7 @@
       to: 'home'
       for:
         hours: 0
-        minutes: 10
+        minutes: 5
         seconds: 0
   action:
     - service: homeassistant.turn_off
@@ -119,10 +119,10 @@
         - input_boolean.userone_greeting
 
         ##########################################################
-        ## Set usertwo Home after 10 Mins
+        ## Set usertwo Home after 5 Mins
         ##########################################################
 
-- alias: Location - Set usertwo Home after 10 Mins
+- alias: Location - Set usertwo Home after 5 Mins
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
@@ -130,7 +130,7 @@
       to: 'home'
       for:
         hours: 0
-        minutes: 10
+        minutes: 5
         seconds: 0
   action:
     - service: homeassistant.turn_off
