@@ -90,32 +90,30 @@ good_morning:
     - service: media_player.sonos_unjoin
       data_template:
         entity_id:
-          - media_player.kitchen
           - media_player.chalkboard_room
+          - media_player.kitchen
           - media_player.loft
     - delay: '00:00:01'
     - service: media_player.sonos_join
       data_template:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
         entity_id:
-          - media_player.kitchen
           - media_player.chalkboard_room
+          - media_player.kitchen
           - media_player.loft
     - delay: '00:00:01'
     - service: media_player.volume_set
       data_template:
         entity_id:
-          - media_player.kitchen
           - media_player.chalkboard_room
+          - media_player.kitchen
           - media_player.loft
         volume_level: '.6'
     - delay: '00:00:02'
     - service: tts.google_say
       data_template:
         entity_id:
-        - media_player.kitchen
         - media_player.chalkboard_room
-        - media_player.loft
         message: >
           {% set hour = now().strftime("%H") %}
           {% set weekday_full_name = now().strftime("%A") %}

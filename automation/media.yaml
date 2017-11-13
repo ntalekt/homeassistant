@@ -115,10 +115,10 @@
         option: "None"
     - service: media_player.sonos_join
       data_template:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
         entity_id:
-          - media_player.kitchen
           - media_player.chalkboard_room
+          - media_player.kitchen
           - media_player.loft
 
         ##########################################################
@@ -138,10 +138,10 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
-        - media_player.kitchen
         - media_player.chalkboard_room
+        - media_player.kitchen
         - media_player.loft
 
         ##########################################################
@@ -161,10 +161,10 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
-        - media_player.kitchen
         - media_player.chalkboard_room
+        - media_player.kitchen
         - media_player.loft
     - delay: '00:00:02'
     - service: media_player.volume_set
@@ -211,10 +211,10 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
-        - media_player.kitchen
         - media_player.chalkboard_room
+        - media_player.kitchen
         - media_player.loft
     - delay: '00:00:02'
     - service: media_player.volume_set
@@ -261,10 +261,10 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
-        - media_player.kitchen
         - media_player.chalkboard_room
+        - media_player.kitchen
         - media_player.loft
     - delay: '00:00:02'
     - service: media_player.volume_set
@@ -311,10 +311,10 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
-        - media_player.kitchen
         - media_player.chalkboard_room
+        - media_player.kitchen
         - media_player.loft
     - delay: '00:00:02'
     - service: media_player.volume_set
@@ -361,10 +361,10 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
-        - media_player.kitchen
         - media_player.chalkboard_room
+        - media_player.kitchen
         - media_player.loft
     - delay: '00:00:02'
     - service: media_player.volume_set
@@ -411,10 +411,10 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
-        - media_player.kitchen
         - media_player.chalkboard_room
+        - media_player.kitchen
         - media_player.loft
     - delay: '00:00:02'
     - service: media_player.volume_set
@@ -461,10 +461,10 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
-        - media_player.kitchen
         - media_player.chalkboard_room
+        - media_player.kitchen
         - media_player.loft
     - delay: '00:00:02'
     - service: media_player.volume_set
@@ -511,10 +511,10 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
-        - media_player.kitchen
         - media_player.chalkboard_room
+        - media_player.kitchen
         - media_player.loft
     - delay: '00:00:02'
     - service: media_player.volume_set
@@ -562,10 +562,10 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.kitchen
+        master: media_player.chalkboard_room
       entity_id:
-        - media_player.kitchen
         - media_player.chalkboard_room
+        - media_player.kitchen
         - media_player.loft
     - delay: '00:00:02'
     - service: media_player.volume_set
