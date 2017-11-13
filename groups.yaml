@@ -72,6 +72,7 @@
       - group.holiday_modes
       - group.all_automations
       - group.all_scripts
+      - group.tests
 
   sensors:
     name: Sensors
@@ -369,3 +370,7 @@
       - sensor.deluge_up_speed
       - binary_sensor.deluge_process
       - binary_sensor.killswitch_process
+
+  Tests:
+    entities:
+      - input_boolean.test_audio_notification

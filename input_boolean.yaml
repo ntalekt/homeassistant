@@ -2,6 +2,11 @@
 ## Input Boolean  ##
 ##############################################################
 
+  test_audio_notification:
+    name: Test Audio Notification
+    initial: off
+    icon: mdi:test-tube
+
   office_occupancy:
     name: Office Occupancy
     initial: off
