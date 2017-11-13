@@ -54,6 +54,7 @@
 
   disable_master_on_sunset:
     name: Disable Master Lights On at Sunset
+    initial: on
     icon: mdi:weather-sunset-down
 
   disable_master_off_845pm:

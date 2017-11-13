@@ -112,13 +112,13 @@
     unit_of_measurement: "%"
     value_template: '{{ value_json.humidity | round(1) }}'
 
-  - platform: mqtt
-    state_topic: "ntalekt/sensornode1"
-    name: "Office LDR"
+#  - platform: mqtt
+#    state_topic: "ntalekt/sensornode1"
+#    name: "Office LDR"
     ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
-    unit_of_measurement: "LUX"
-    force_update: true
-    value_template: '{{ value_json.ldr }}'
+#    unit_of_measurement: "LUX"
+#    force_update: true
+#    value_template: '{{ value_json.ldr }}'
 
   - platform: mqtt
     state_topic: "ntalekt/sensornode1"
@@ -153,7 +153,7 @@
     username: !secret deluge_user
     password: !secret deluge_pass
     monitored_variables:
-      - 'current_status'
+#      - 'current_status'
       - 'download_speed'
       - 'upload_speed'
 
@@ -382,7 +382,7 @@
     origin: !secret device_tracker_usertwo
     destination: zone.work
     options:
-      departure_time: 07:00:00
+      departure_time: 07:05:00
 
   - platform: google_travel_time
     name: userone To Home

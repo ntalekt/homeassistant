@@ -185,8 +185,8 @@
     entities:
       - sensor.office_temperature
       - sensor.office_humidity
-      - sensor.office_ldr
-      - sensor.office_pir
+#      - sensor.office_ldr
+#      - sensor.office_pir
       - light.office_led
       - binary_sensor.office_occupancy_on
 

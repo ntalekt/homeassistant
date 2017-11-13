@@ -174,10 +174,6 @@ good_morning:
           {% if weekday | int == 2 %}
             userone, today is trash day.
           {% endif %}
-          {% if hour | int < 9 and weekday |int > 0 and weekday | int < 6 %}
-            usertwo, your current drive to work in traffic is {{states.sensor.usertwo_to_work.attributes.duration_in_traffic.split(' ')[0]}} minutes.
-          {% endif %}
-          It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state|round}} degrees in REDACTED. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}, with a high of {{states.sensor.dark_sky_daily_high_temperature.state|round}} degrees.
           Have a great day REDACTED family!
     - delay: '00:00:30'
     - service: media_player.sonos_restore
