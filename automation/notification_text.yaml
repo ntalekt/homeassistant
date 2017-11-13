@@ -114,6 +114,7 @@
       - binary_sensor.powerline_wifi
       - binary_sensor.deluge_process
       - binary_sensor.killswitch_process
+      - binary_sensor.master_yeestrip
       from: 'on'
       to: 'off'
       for:

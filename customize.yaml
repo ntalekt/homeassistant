@@ -245,6 +245,8 @@
       icon: mdi:download-network
     binary_sensor.killswitch_process:
       icon: mdi:vpn
+    binary_sensor.master_yeestrip:
+      icon: mdi:led-strip
 
         ##########################################################
         ## DNS

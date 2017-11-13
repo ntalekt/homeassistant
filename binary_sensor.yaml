@@ -127,6 +127,10 @@
     host: !secret tplink_host
     name: Powerline Wifi
 
+  - platform: ping
+    host: !secret master_yeestrip_host
+    name: Master Yeestrip
+
         ##########################################################
         ## WAN test script
         ##########################################################

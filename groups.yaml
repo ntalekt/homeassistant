@@ -349,6 +349,7 @@
       - binary_sensor.chalkboard_camera
       - binary_sensor.garage_camera
       - binary_sensor.shop_camera
+      - binary_sensor.master_yeestrip
 
   Cox Internet Usage:
     entities:
