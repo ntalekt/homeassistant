@@ -102,7 +102,7 @@
           entity_id: group.household
           state: 'home'
         - condition: state
-          entity_id: input_boolean.disable_voice_greeting
+          entity_id: input_boolean.disable_morning_announcement
           state: 'off'
   action:
     - delay: '00:00:30'
@@ -128,7 +128,7 @@
           entity_id: group.household
           state: 'home'
         - condition: state
-          entity_id: input_boolean.disable_voice_greeting
+          entity_id: input_boolean.disable_morning_announcement
           state: 'off'
   action:
     - delay: '00:00:30'

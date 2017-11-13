@@ -68,6 +68,11 @@
     name: Disable Audio Notifications
     icon: mdi:speaker-off
 
+  disable_morning_announcement:
+    name: Disable Morning Announcements
+    initial: off
+    icon: mdi:speaker-off
+
   vacation_mode:
     name: Vacation Mode
     icon: mdi:airplane
