@@ -7,6 +7,11 @@
     initial: off
     icon: mdi:test-tube
 
+  test_text_notification:
+    name: Test Text Notification
+    initial: off
+    icon: mdi:test-tube
+
   office_occupancy:
     name: Office Occupancy
     initial: off

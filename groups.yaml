@@ -375,5 +375,7 @@
       - binary_sensor.killswitch_process
 
   Tests:
+    control: hidden
     entities:
       - input_boolean.test_audio_notification
+      - input_boolean.test_text_notification

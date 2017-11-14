@@ -3,6 +3,24 @@
 #################################################################
 
         ##########################################################
+        ## Pushbullet - Notification Test
+        ##########################################################
+
+- alias: Notification Text - Test
+  trigger:
+    - platform: state
+      entity_id: input_boolean.test_text_notification
+      from: 'off'
+      to: 'on'
+  action:
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: "This is a test."
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.test_text_notification
+
+        ##########################################################
         ## Pushbullet - SSL Expiration < 10
         ##########################################################
 

@@ -53,6 +53,7 @@ Home Assistant Version: 0.57.3
 * [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) notification when garage door is left open after we left the house.
 * [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) notification if the garage door is opened and no one is home.
 * [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) notification if the garage door has been open for 30 minutes with no motion in garage.
+* [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) notification test.
 * [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) when SSL certificate expiration sensor <= 10 days.
 
 ### Notification Visual
