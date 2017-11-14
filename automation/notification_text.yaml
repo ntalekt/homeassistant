@@ -36,6 +36,31 @@
         message: "SSL expiring in {{ states.sensor.ssl_cert_expiry.state }} days!"
 
         ##########################################################
+        ## Pushbullet - Low Battery Alert
+        ##########################################################
+
+- alias: Notification Text - Low Battery Alert
+  initial_state: 'on'
+  trigger:
+    - platform: time
+      at: '10:00:00'
+    - platform: time
+      at: '18:00:00'
+  condition:
+    condition: template
+    value_template: "{% if states('sensor.low_battery') %}true{% endif %}"
+  action:
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: "Low battery levels: {{ states('sensor.low_battery') }}"
+    - service: persistent_notification.create
+      data_template:
+        title: Low Battery
+        message: "{{ states('sensor.low_battery') }}"
+        notification_id: low-battery-alert
+
+        ##########################################################
         ## Failed Login
         ##########################################################
 
