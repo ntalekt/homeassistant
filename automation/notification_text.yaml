@@ -27,7 +27,7 @@
 - alias: Notification Text - SSL Expiration 10 days
   trigger:
     - platform: numeric_state
-      entity_id: sensor.ssl_cert_expiry
+      entity_id: sensor.ssl_cert_expiration
       below: 11
   action:
     - service: notify.pushbullet

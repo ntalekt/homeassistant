@@ -76,6 +76,8 @@
       icon: mdi:code-tags
     sensor.holidays_calendar:
       icon: mdi:calendar
+    sensor.ssl_cert_expiration:
+      icon: mdi:certificate
 
         ##########################################################
         ## Weather
