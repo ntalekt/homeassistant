@@ -102,6 +102,12 @@
       - type: memory_use_percent
       - type: processor_use
 
+  - platform: command_line
+    name: SSL cert expiry
+    unit_of_measurement: days
+    scan_interval: 3600
+    command: "ssl-cert-check -b -c /home/homeassistant/.homeassistant/ha.ntalekt.com.pem | awk '{ print $NF }'"
+
         ##########################################################
         ## Sensor Node 1 - Office
         ##########################################################

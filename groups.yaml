@@ -293,6 +293,7 @@
       - sensor.ha_uptime
       - sensor.ha_last_reboot
       - binary_sensor.nginx_status
+      - sensor.ssl_cert_expiry
       - sensor.current_ha_release
       - sensor.installed_ha_version
 

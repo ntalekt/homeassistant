@@ -3,6 +3,21 @@
 #################################################################
 
         ##########################################################
+        ## Pushbullet - SSL Expiration < 10
+        ##########################################################
+
+- alias: Notification Text - SSL Expiration 10 days
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.ssl_cert_expiry
+      below: 11
+  action:
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: "SSL expiring in {{ states.sensor.ssl_cert_expiry.state }} days!"
+
+        ##########################################################
         ## Failed Login
         ##########################################################
 

@@ -53,6 +53,7 @@ Home Assistant Version: 0.57.3
 * [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) notification when garage door is left open after we left the house.
 * [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) notification if the garage door is opened and no one is home.
 * [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) notification if the garage door has been open for 30 minutes with no motion in garage.
+* [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) when SSL certificate expiration sensor <= 10 days.
 
 ### Notification Visual
 * [LG WebOS TV Notification](https://home-assistant.io/components/notify.webostv/) when [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt-20&linkId=100ed966ea93c748bf857696167a167c) detects motion or is pressed.

@@ -26,6 +26,7 @@
       - sensor.ecolink_tilt_big_garage_burglar
       - sensor.ecolink_tilt_big_garage_power_management
       - sensor.ecolink_tilt_big_garage_sourcenodeid
+      - sensor.ssl_cert_expiry
       - binary_sensor.downstairs_thermostat_has_leaf
       - binary_sensor.upstairs_thermostat_has_leaf
       - input_boolean.chalkboard_occupancy
