@@ -36,13 +36,6 @@
         - media_player.loft
       data:
         volume_level: '.6'
-    - service: media_player.play_media
-      data:
-        entity_id:
-          - media_player.chalkboard_room
-        media_content_id: http://REDACTED33:8123/local/sounds/two-tone-chime.mp3
-        media_content_type: music
-    - delay: '00:00:02'
     - service: tts.google_say
       data_template:
         entity_id:
