@@ -323,6 +323,51 @@
             mdi:battery-alert
           {% endif %}
 
+      pink_ipad_battery:
+        value_template: '{{ states.device_tracker.REDACTED.attributes.battery | default(0) | int }}'
+        friendly_name: 'usertwo Pink iPad'
+        unit_of_measurement: "%"
+        icon_template: >
+          {% set battery_level = states.device_tracker.REDACTED.attributes.battery | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+
+      green_ipad_battery:
+        value_template: '{{ states.device_tracker.REDACTED.attributes.battery | default(0) | int }}'
+        friendly_name: 'usertwo Green iPad'
+        unit_of_measurement: "%"
+        icon_template: >
+          {% set battery_level = states.device_tracker.REDACTED.attributes.battery | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+
+      userone_iphone_battery:
+        value_template: '{{ states.device_tracker.REDACTED.attributes.battery | default(0) | int }}'
+        friendly_name: 'userone iPhone'
+        unit_of_measurement: "%"
+        icon_template: >
+          {% set battery_level = states.device_tracker.REDACTED.attributes.battery | default(0) | int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+
       big_garage_tilt_battery:
         value_template: '{{ states.zwave.ecolink_tilt_big_garage.attributes.battery_level | default(0) | int }}'
         friendly_name: 'Big Garage Tilt Sensor'
