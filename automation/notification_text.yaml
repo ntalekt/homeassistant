@@ -48,16 +48,49 @@
       at: '18:00:00'
   condition:
     condition: template
-    value_template: "{% if states('sensor.low_battery') %}true{% endif %}"
+    value_template: >
+          {% macro battery_level() %}
+          {%- set threshold = 20 -%}
+          {% set domains = ['sensor'] %}
+          {% for domain in domains -%}
+          {% for item in states[domain] if (("battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown"))) -%}
+          {% if "battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown") -%}
+          {{ item.name }} ({{ item.state }}){% if not loop.last %}, {%- endif %} {% endif -%}
+          {% endfor %}
+          {%- endfor %}
+          {% endmacro %}
+          {{ battery_level() |trim != "" }}
   action:
     - service: notify.pushbullet
-      data:
+      data_template:
         title: "Home Assistant"
-        message: "Low battery levels: {{ states('sensor.low_battery') }}"
+        message: >
+          {% macro battery_level() %}
+          {%- set threshold = 20 -%}
+          {% set domains = ['sensor'] %}
+          {% for domain in domains -%}
+          {% for item in states[domain] if (("battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown"))) -%}
+          {% if "battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown") -%}
+          {{ item.name }} ({{ item.state }}%){% if not loop.last %}, {%- endif %} {% endif -%}
+          {% endfor %}
+          {%- endfor %}
+          {% endmacro %}
+          {{ battery_level() }}
     - service: persistent_notification.create
       data_template:
         title: Low Battery
-        message: "{{ states('sensor.low_battery') }}"
+        message: >
+          {% macro battery_level() %}
+          {%- set threshold = 20 -%}
+          {% set domains = ['sensor'] %}
+          {% for domain in domains -%}
+          {% for item in states[domain] if (("battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown"))) -%}
+          {% if "battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown") -%}
+          {{ item.name }} ({{ item.state }}%){% if not loop.last %}, {%- endif %} {% endif -%}
+          {% endfor %}
+          {%- endfor %}
+          {% endmacro %}
+          {{ battery_level() }}
         notification_id: low-battery-alert
 
         ##########################################################
