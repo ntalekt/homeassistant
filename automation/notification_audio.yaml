@@ -145,7 +145,7 @@
       entity_id: device_tracker.useronedevice
       from: 'not_home'
       to: 'home'
-      for: '00:02:00'
+      for: '00:03:00'
   condition:
     - condition: time
       after: '07:30'
@@ -180,7 +180,7 @@
       entity_id: device_tracker.usertwodevice
       from: 'not_home'
       to: 'home'
-      for: '00:02:30'
+      for: '00:04:00'
   condition:
     - condition: time
       after: '08:00'
