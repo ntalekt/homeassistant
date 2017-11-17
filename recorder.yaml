@@ -19,7 +19,6 @@
       - zwave
   include:
     domains:
-      - automation
       - binary_sensor
       - climate
       - device_tracker
