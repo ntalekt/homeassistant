@@ -36,6 +36,8 @@ include:
     - sensor.userones_iphone_battery_level
     - sensor.REDACTEDs_ipad_battery_level
     - sensor.ipad_battery_level
+    - sensor.upstairs_thermostat_hvac_state
+    - sensor.downstairs_thermostat_hvac_state
     - binary_sensor.chalkboard_occupancy_on
     - binary_sensor.garage_occupancy_on
     - binary_sensor.living_occupancy_on
