@@ -43,29 +43,18 @@
         - input_boolean.usertwo_away
 
         ##########################################################
-        ## Set Garage Notification On if 1 mile away
+        ## Set Garage Notification On If No One Home
         ##########################################################
 
-- alias: Location - Set Garage Notification On If 1 Mile Away
+- alias: Location - Set Garage Notification On If No One Home
   trigger:
-    - platform: numeric_state
-      entity_id: proximity.usertwo_home
-      above: 0
-    - platform: numeric_state
-      entity_id: proximity.userone_home
-      above: 0
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'not_home'
-      - condition: or
-        conditions:
-          - condition: template
-            value_template: '{{ states.proximity.usertwo_home.attributes.dir_of_travel != "towards" }}'
-          - condition: template
-            value_template: '{{ states.proximity.userone_home.attributes.dir_of_travel != "towards" }}'
+    - platform: state
+      entity_id: group.household
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
   action:
     - service: homeassistant.turn_on
       entity_id:
@@ -78,20 +67,19 @@
 - alias: Location - Set Garage Notication Off If Close To Home
   trigger:
     - platform: numeric_state
-      entity_id: proximity.usertwo_home
-      below: 3
+      entity_id: sensor.usertwo_to_home
+      below: 5
       above: 0
     - platform: numeric_state
-      entity_id: proximity.userone_home
-      below: 3
+      entity_id: sensor.userone_to_home
+      below: 5
       above: 0
-#  condition:
-#    - condition: or
-#      conditions:
-#        - condition: template
-#          value_template: '{{ states.proximity.usertwo_home.attributes.dir_of_travel == "towards" }}'
-#        - condition: template
-#          value_template: '{{ states.proximity.userone_home.attributes.dir_of_travel == "towards" }}'
+    - platform: state
+      entity_id: device_tracker.useronedevice
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.usertwodevice
+      to: 'home'
   action:
     - service: homeassistant.turn_off
       entity_id:
