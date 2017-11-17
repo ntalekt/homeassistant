@@ -13,63 +13,40 @@
       from: 'off'
       to: 'on'
   action:
-    - service: media_player.sonos_snapshot
-      data:
-        with_group: yes
-    - service: media_player.sonos_unjoin
-      entity_id:
-        - media_player.chalkboard_room
-        - media_player.kitchen
-        - media_player.loft
-    - delay: '00:00:01'
-    - service: media_player.sonos_join
-      data:
-        master: media_player.chalkboard_room
-      entity_id:
-        - media_player.chalkboard_room
-        - media_player.kitchen
-        - media_player.loft
-    - service: media_player.volume_set
-      entity_id:
-        - media_player.chalkboard_room
-        - media_player.kitchen
-        - media_player.loft
-      data:
-        volume_level: '.6'
-    - service: tts.google_say
+    - service: script.turn_on
+      entity_id: script.say
       data_template:
-        entity_id:
-        - media_player.chalkboard_room
-        message: >
-          {% set hour = now().strftime("%H") %}
-          {% set weekday_full_name = now().strftime("%A") %}
-          {% set month_full_name = now().strftime("%B") %}
-          {% set day = now().strftime("%-d") %}
-          {% set weekday = now().strftime("%w") %}
-          {% if hour | int < 12 %}
-          Good morning.
-          {% elif hour | int < 18 %}
-          Good afternoon.
-          {% else %}
-          Good evening.
-          {% endif %}
-          This is a test of the text to speech engine.
-          Today is {{ weekday_full_name }} {{ month_full_name }} the
-            {% if day | int == 1 or day | int == 21 or day | int == 31 %}
-              {{ day }}st
-            {% elif day | int == 2 or day | int == 22 %}
-              {{ day }}nd
-            {% elif day | int == 3 or day | int == 23 %}
-              {{ day }}rd
+        variables:
+          master: 'media_player.chalkboard_room'
+          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft'
+          volume: '.6'
+          what: >
+            {% set hour = now().strftime("%H") %}
+            {% set weekday_full_name = now().strftime("%A") %}
+            {% set month_full_name = now().strftime("%B") %}
+            {% set day = now().strftime("%-d") %}
+            {% set weekday = now().strftime("%w") %}
+            {% if hour | int < 12 %}
+            Good morning.
+            {% elif hour | int < 18 %}
+            Good afternoon.
             {% else %}
-              {{ day }}th
-            {% endif %}.
-          It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state|round}} degrees in REDACTED. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}, with a high of {{states.sensor.dark_sky_daily_high_temperature.state|round}} degrees.
-          End of test.
-    - delay: '00:00:20'
-    - service: media_player.sonos_restore
-      data_template:
-        with_group: yes
+            Good evening.
+            {% endif %}
+            This is a test of the text to speech engine.
+            Today is {{ weekday_full_name }} {{ month_full_name }} the
+              {% if day | int == 1 or day | int == 21 or day | int == 31 %}
+                {{ day }}st
+              {% elif day | int == 2 or day | int == 22 %}
+                {{ day }}nd
+              {% elif day | int == 3 or day | int == 23 %}
+                {{ day }}rd
+              {% else %}
+                {{ day }}th
+              {% endif %}.
+            It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state|round}} degrees in REDACTED. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}, with a high of {{states.sensor.dark_sky_daily_high_temperature.state|round}} degrees.
+            End of text to speech test.
+    - delay: '00:00:01'
     - service: homeassistant.turn_off
       entity_id: input_boolean.test_audio_notification
 
@@ -136,7 +113,6 @@
   trigger:
     - platform: state
       entity_id: device_tracker.useronedevice
-      from: 'not_home'
       to: 'home'
       for: '00:03:00'
   condition:
@@ -157,7 +133,7 @@
         variables:
           master: 'media_player.chalkboard_room'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft'
-          volume: '.5'
+          volume: '.6'
           what: 'Welcome home userone.'
     - delay: '00:00:10'
     - service: homeassistant.turn_off
@@ -171,7 +147,6 @@
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
-      from: 'not_home'
       to: 'home'
       for: '00:04:00'
   condition:
@@ -192,7 +167,7 @@
         variables:
           master: 'media_player.chalkboard_room'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft'
-          volume: '.5'
+          volume: '.6'
           # {% set person = entity.split('.')[1].split('_')[0]|replace('REDACTED','usertwo') %}
           what: '{{ ["Welcome home usertwo.","It is great to see you usertwo, I hope you had a great day!","You look amazing usertwo, glad to see you are home.","usertwo, I missed you so much, glad you are home."] | random }}'
     - delay: '00:00:10'
@@ -207,7 +182,6 @@
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
-      from: 'not_home'
       to: 'Work'
   condition:
     - condition: state
@@ -269,7 +243,6 @@
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
-      from: 'not_home'
       to: 'REDACTED'
   condition:
     - condition: state
@@ -331,7 +304,6 @@
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
-      from: 'not_home'
       to: 'REDACTED'
   condition:
     - condition: state
