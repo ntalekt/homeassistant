@@ -135,10 +135,10 @@
     entities:
       - sensor.userone_phone_battery
       - sensor.userone_tablet_battery
-      - sensor.userone_iphone_battery
+      - sensor.userones_iphone_battery_level
       - sensor.usertwo_phone_battery
-      - sensor.pink_ipad_battery
-      - sensor.green_ipad_battery
+      - sensor.REDACTEDs_ipad_battery_level
+      - sensor.ipad_battery_level
       - sensor.big_garage_tilt_battery
 
   door_bell:

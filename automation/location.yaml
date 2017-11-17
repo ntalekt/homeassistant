@@ -310,3 +310,19 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.manual_usertwo_home
+
+- alias: Location - Request Location Update iOS
+  trigger:
+    platform: time
+    minutes: '/30'
+    seconds: 00
+  action:
+    - service: notify.ios_green_ipad
+      data:
+       message: "request_location_update"
+    - service: notify.ios_pink_ipad
+      data:
+       message: "request_location_update"
+    - service: notify.ios_userones_iphone
+      data:
+       message: "request_location_update"

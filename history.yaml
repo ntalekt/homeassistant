@@ -33,9 +33,9 @@ include:
     - sensor.usertwo_phone_battery
     - sensor.userone_phone_battery
     - sensor.userone_tablet_battery
-    - sensor.userone_iphone_battery
-    - sensor.pink_ipad_battery
-    - sensor.green_ipad_battery
+    - sensor.userones_iphone_battery_level
+    - sensor.REDACTEDs_ipad_battery_level
+    - sensor.ipad_battery_level
     - binary_sensor.chalkboard_occupancy_on
     - binary_sensor.garage_occupancy_on
     - binary_sensor.living_occupancy_on

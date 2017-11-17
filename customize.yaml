@@ -78,6 +78,12 @@
       icon: mdi:calendar
     sensor.ssl_cert_expiration:
       icon: mdi:certificate
+    sensor.userones_iphone_battery_level:
+      friendly_name: userone iPhone (Work)
+    sensor.ipad_battery_level:
+      friendly_name: Green iPad
+    sensor.REDACTEDs_ipad_battery_level:
+      friendly_name: Pink iPad
 
         ##########################################################
         ## Weather
@@ -120,7 +126,6 @@
       icon: mdi:led-on
       friendly_name: LED
 
-
         ##########################################################
         ## Thermostat
         ##########################################################
@@ -156,7 +161,6 @@
       friendly_name: Nest Downstairs
       icon: mdi:nest-thermostat
 
-
         ##########################################################
         ## Doorbell
         ##########################################################
@@ -171,7 +175,6 @@
     sensor.ring_last_motion:
       friendly_name: Last Motion
       icon: mdi:run-fast
-
 
         ##########################################################
         ## Finance
@@ -267,7 +270,6 @@
         ##########################################################
         ## All Groups / Troubleshooting
         ##########################################################
-
 
 #    group.all_automations:
 #      hidden: false
