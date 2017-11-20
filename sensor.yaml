@@ -148,7 +148,7 @@
       - last_motion
       - wifi_signal_category
       - wifi_signal_strength
-#      - volume
+      - volume
 
         ##########################################################
         ## Deluge
