@@ -55,6 +55,15 @@
         hours: 0
         minutes: 2
         seconds: 0
+  condition:
+    condition: or
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.usertwo_to_home
+        above: 5
+      - condition: numeric_state
+        entity_id: sensor.userone_to_home
+        above: 5
   action:
     - service: homeassistant.turn_on
       entity_id:
