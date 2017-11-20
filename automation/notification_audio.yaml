@@ -381,6 +381,9 @@
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.house_cleaning_mode
+      state: 'off'
   action:
     - delay: '00:00:05'
     - service: script.turn_on

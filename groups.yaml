@@ -272,6 +272,7 @@
       - input_boolean.house_guest_away
       - input_boolean.vacation_mode
       - input_boolean.guest_mode
+      - input_boolean.house_cleaning_mode
 
   Sonos:
     entities:

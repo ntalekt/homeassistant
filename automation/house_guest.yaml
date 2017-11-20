@@ -45,3 +45,31 @@
       entity_id: input_boolean.house_guest_away
     - service: homeassistant.turn_on
       entity_id: input_boolean.guest_mode
+
+        ##########################################################
+        ## Set House Cleaning Mode On Mondays
+        ##########################################################
+
+- alias: Guest - Set House Cleaning Mode on at 11am Mondays
+  trigger:
+    - platform: time
+      at: '11:00:00'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.house_cleaning_mode
+
+- alias: Guest - Set House Cleaning Mode off after 3 hours
+  trigger:
+    - platform: time
+      at: '14:00:00'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.house_cleaning_mode

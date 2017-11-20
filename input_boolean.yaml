@@ -86,6 +86,10 @@
     name: Guest Mode
     icon: mdi:human-male-female
 
+  house_cleaning_mode:
+    name: House Cleaning Mode
+    icon: mdi:broom
+
   house_guest_away:
     name: House Guest Away
     initial: on
