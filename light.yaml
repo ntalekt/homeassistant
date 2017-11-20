@@ -32,5 +32,8 @@
   - platform: yeelight
     devices:
       REDACTED:
-        name: Master Strip
+        name: Media Center L Strip
+        transition: 2000
+      REDACTED:
+        name: Media Center R Strip
         transition: 2000

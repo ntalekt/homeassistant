@@ -15,7 +15,7 @@
       - group.nest_upstairs_card
       - group.sensor_node_1_card
       - group.exterior_lights
-      - group.master_lights
+      - group.living_room_lights
       - group.loft_lights
       - group.finance
 
@@ -25,7 +25,7 @@
     icon: mdi:lightbulb-outline
     entities:
       - group.loft_lights
-      - group.master_lights
+      - group.living_room_lights
       - group.exterior_lights
 
   first_floor:
@@ -199,10 +199,16 @@
       - light.ge_14294_porch_level
       - light.ge_14294_exterior_side_level
 
-  master_lights:
-    name: Master Lights
+  living_room_lights:
+    name: Living Room Lights
     entities:
-      - light.master_strip
+      - group.media_center_lights
+
+  media_center_lights:
+    name: Media Center Accents
+    entities:
+      - light.media_center_l_strip
+      - light.media_center_r_strip
 
   loft_lights:
     name: Loft Lights
@@ -353,7 +359,8 @@
       - binary_sensor.chalkboard_camera
       - binary_sensor.garage_camera
       - binary_sensor.shop_camera
-      - binary_sensor.master_yeestrip
+      - binary_sensor.media_center_l_yeestrip
+      - binary_sensor.media_center_r_yeestrip
 
   Cox Internet Usage:
     entities:

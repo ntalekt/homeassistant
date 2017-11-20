@@ -128,8 +128,12 @@
     name: Powerline Wifi
 
   - platform: ping
-    host: !secret master_yeestrip_host
-    name: Master Yeestrip
+    host: !secret yeestrip_media_l_host
+    name: Media Center L Yeestrip
+
+  - platform: ping
+    host: !secret yeestrip_media_r_host
+    name: Media Center R Yeestrip
 
         ##########################################################
         ## WAN test script

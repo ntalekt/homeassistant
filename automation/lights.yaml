@@ -89,39 +89,78 @@
        transition: 60
 
         ##########################################################
-        ## Interior Master
+        ## Interior Media Center
         ##########################################################
 
-- alias: Lights - Interior Master Turn on at Sunset if Home
+- alias: Lights - Interior Media Center Turn on at Sunset if Home
   trigger:
     - platform: sun
       event: sunset
       offset: "-00:00:30"
   condition:
     - condition: state
-      entity_id: input_boolean.disable_master_on_sunset
+      entity_id: input_boolean.disable_media_center_on_sunset
       state: 'off'
     - condition: state
       entity_id: group.household
       state: 'home'
   action:
     - service: light.turn_on
-      entity_id: light.master_strip
+      entity_id: group.media_center_lights
       data:
         transition: 5
-        brightness: 255
-        kelvin: 4500
+        brightness: 20
+        kelvin: 5000
 
-- alias: Lights - Interior Master Turn off at 845PM
+- alias: Lights - Interior Media Center Turn off at 800PM
   trigger:
     - platform: time
-      at: '20:45:00'
+      at: '20:00:00'
   condition:
     - condition: state
-      entity_id: input_boolean.disable_master_off_845pm
+      entity_id: input_boolean.disable_media_center_off_800pm
       state: 'off'
   action:
     - service: light.turn_off
-      entity_id: light.master_strip
+      entity_id: group.media_center_lights
       data:
        transition: 300
+
+- alias: Lights - Interior Media Center Turn on if Motion detected after 8pm
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_motion_detected
+      from: 'False'
+      to: 'True'
+  condition:
+    - condition: state
+      entity_id: sensor.media_center
+      state: 'PowerOff'
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      after: '20:00:00'
+      before: '05:00:00'
+  action:
+    - service: light.turn_on
+      entity_id: group.media_center_lights
+      data:
+        transition: 5
+        brightness: 100
+        kelvin: 5000
+
+- alias: Lights - Interior Media Center Turn off if Motion not detected after 8pm
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_motion_detected
+      from: 'True'
+      to: 'False'
+      for: '00:05:00'
+  condition:
+    - condition: time
+      after: '20:00:00'
+      before: '05:00:00'
+  action:
+    - service: light.turn_off
+      entity_id: group.media_center_lights

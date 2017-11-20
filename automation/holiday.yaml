@@ -286,7 +286,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.master_strip
+      entity_id: group.media_center_lights
       data:
         effect: Christmas
         brightness: 255
@@ -311,7 +311,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.master_strip
+      entity_id: group.media_center_lights
       data:
         transition: 5
         brightness: 255
@@ -337,7 +337,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.master_strip
+      entity_id: group.media_center_lights
       data:
         transition: 5
         brightness: 255
@@ -365,7 +365,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.master_strip
+      entity_id: group.media_center_lights
       data:
         transition: 5
         brightness: 255
@@ -390,7 +390,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.master_strip
+      entity_id: group.media_center_lights
       data:
         transition: 5
         brightness: 255
@@ -415,7 +415,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.master_strip
+      entity_id: group.media_center_lights
       data:
         transition: 5
         brightness: 255
@@ -452,7 +452,7 @@
 
   action:
     - service: light.turn_on
-      entity_id: light.master_strip
+      entity_id: group.media_center_lights
       data:
         transition: 5
         brightness: 255

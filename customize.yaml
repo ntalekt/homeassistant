@@ -203,6 +203,8 @@
     light.loft_floor_lamp:
       friendly_name: Floor Lamp
       icon: mdi:lamp
+    group.media_center_lights:
+      icon: mdi:led-strip
 
         ##########################################################
         ## Devices
@@ -250,7 +252,9 @@
       icon: mdi:download-network
     binary_sensor.killswitch_process:
       icon: mdi:vpn
-    binary_sensor.master_yeestrip:
+    binary_sensor.media_center_l_yeestrip:
+      icon: mdi:led-strip
+    binary_sensor.media_center_r_yeestrip:
       icon: mdi:led-strip
 
         ##########################################################
