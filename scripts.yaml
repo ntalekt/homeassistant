@@ -13,18 +13,21 @@ input_select_harmony:
       data_template:
         entity_id: remote.media_center
         activity: >
-          {% if is_state("input_select.remote", "PowerOff") %}
+          {% set current_activity = states.remote.media_center.attributes.current_activity %}
+          {% if is_state("input_select.remote", "PowerOff") and current_activity != 'PowerOff' %}
               -1
-          {% elif is_state("input_select.remote", "Shield") %}
+          {% elif is_state("input_select.remote", "Shield") and current_activity != 'Shield' %}
               26199213
-          {% elif is_state("input_select.remote", "TV") %}
+          {% elif is_state("input_select.remote", "TV") and current_activity != 'TV' %}
               16835075
-          {% elif is_state("input_select.remote", "Prime") %}
+          {% elif is_state("input_select.remote", "Prime") and current_activity != 'Prime' %}
               20123015
-          {% elif is_state("input_select.remote", "Netflix") %}
+          {% elif is_state("input_select.remote", "Netflix") and current_activity != 'Netflix' %}
               20122215
-          {% elif is_state("input_select.remote", "Blueray") %}
+          {% elif is_state("input_select.remote", "Blueray") and current_activity != 'Blueray' %}
               16835304
+          {% else %}
+              0
           {% endif %}
 
 input_select_master_harmony:
@@ -34,12 +37,15 @@ input_select_master_harmony:
       data_template:
         entity_id: remote.master
         activity: >
-          {% if is_state("input_select.master_remote", "PowerOff") %}
+          {% set current_activity = states.remote.master.attributes.current_activity %}
+          {% if is_state("input_select.master_remote", "PowerOff") and current_activity != 'PowerOff' %}
               -1
-          {% elif is_state("input_select.master_remote", "Master Fire TV") %}
+          {% elif is_state("input_select.master_remote", "Fire TV") and current_activity != 'Fire TV' %}
               27717507
-          {% elif is_state("input_select.master_remote", "Master TV") %}
+          {% elif is_state("input_select.master_remote", "TV") and current_activity != 'TV' %}
               27717176
+          {% else %}
+              0
           {% endif %}
 
         ##########################################################
