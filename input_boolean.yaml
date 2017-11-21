@@ -211,3 +211,33 @@
     name: Interior Holiday Lighting
     initial: off
     icon: mdi:gift
+
+  media_center_shield:
+    name: Media Center Shield
+    initial: off
+    icon: mdi:youtube-tv
+
+  media_center_tv:
+    name: Media Center TV
+    initial: off
+    icon: mdi:television-box
+
+  media_center_poweroff:
+    name: Media Center PowerOff
+    initial: off
+    icon: mdi:television-off
+
+  master_firetv:
+    name: Master Shield
+    initial: off
+    icon: mdi:youtube-tv
+
+  master_tv:
+    name: Master TV
+    initial: off
+    icon: mdi:television-box
+
+  master_poweroff:
+    name: Master PowerOff
+    initial: off
+    icon: mdi:television-off

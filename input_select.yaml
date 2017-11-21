@@ -13,8 +13,8 @@
     name: Master Remote
     options:
       - PowerOff
-      - Master Fire TV
-      - Master TV
+      - Fire TV
+      - TV
     icon: mdi:remote
 
   sonos:

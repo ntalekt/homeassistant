@@ -3,7 +3,7 @@
 #################################################################
 
       #################################################################
-      ## Remote
+      ## Remote Main Media Center
       #################################################################
 
 - alias: Media - Media Center remote external update Media Center
@@ -17,18 +17,6 @@
         option: >
           {{ states.remote.media_center.attributes.current_activity }}
 
-- alias: Media - Master remote external update Media Center
-  trigger:
-    - platform: state
-      entity_id: remote.master
-  action:
-    - service: input_select.select_option
-      data_template:
-        entity_id: input_select.master_remote
-        option: >
-          {{ states.remote.master.attributes.current_activity }}
-
-
 - alias: Media - Media center remote start activity from input select media center
   trigger:
     - platform: state
@@ -37,13 +25,53 @@
     - service: script.turn_on
       entity_id: script.input_select_harmony
 
-- alias: Media - Master remote start activity from input select media center
+- alias: Media - Media center remote input_boolean shield
   trigger:
     - platform: state
-      entity_id: input_select.master_remote
+      entity_id: input_boolean.media_center_shield
+      from: 'off'
+      to: 'on'
   action:
-    - service: script.turn_on
-      entity_id: script.input_select_master_harmony
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: 'Shield'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.media_center_shield
+
+- alias: Media - Media center remote input_boolean TV
+  trigger:
+    - platform: state
+      entity_id: input_boolean.media_center_tv
+      from: 'off'
+      to: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: 'TV'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.media_center_tv
+
+- alias: Media - Media center remote input_boolean poweroff
+  trigger:
+    - platform: state
+      entity_id: input_boolean.media_center_poweroff
+      from: 'off'
+      to: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: 'PowerOff'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.media_center_tv
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.media_center_shield
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.media_center_poweroff
+    - service: homeassistant.turn_off
+      entity_id: group.media_center_lights
 
 - alias: Media - Spam TV PowerOn
   trigger:
@@ -77,6 +105,75 @@
         entity_id: remote.media_center
         command: 'PowerOn'
         device: 35212312
+
+      #################################################################
+      ## Remote Master Bedroom
+      #################################################################
+
+- alias: Media - Master remote external update Media Center
+  trigger:
+    - platform: state
+      entity_id: remote.master
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.master_remote
+        option: >
+          {{ states.remote.master.attributes.current_activity }}
+
+- alias: Media - Master remote start activity from input select media center
+  trigger:
+    - platform: state
+      entity_id: input_select.master_remote
+  action:
+    - service: script.turn_on
+      entity_id: script.input_select_master_harmony
+
+- alias: Media - master remote input_boolean firetv
+  trigger:
+    - platform: state
+      entity_id: input_boolean.master_firetv
+      from: 'off'
+      to: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.master_remote
+        option: 'Fire TV'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.master_firetv
+
+- alias: Media - Master remote input_boolean TV
+  trigger:
+    - platform: state
+      entity_id: input_boolean.master_tv
+      from: 'off'
+      to: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.master_remote
+        option: 'TV'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.master_tv
+
+- alias: Media - Master remote input_boolean poweroff
+  trigger:
+    - platform: state
+      entity_id: input_boolean.master_poweroff
+      from: 'off'
+      to: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.master_remote
+        option: 'PowerOff'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.master_tv
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.master_firetv
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.master_poweroff
 
         ##########################################################
         ## Reset Sonos Every Morning

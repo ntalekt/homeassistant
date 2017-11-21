@@ -36,6 +36,26 @@
       emulated_hue_hidden: false
       emulated_hue_name: "Dubstep Playlist"
 
+    input_boolean.media_center_shield:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Shield"
+    input_boolean.media_center_tv:
+      emulated_hue_hidden: false
+      emulated_hue_name: "TV"
+    input_boolean.media_center_poweroff:
+      emulated_hue_hidden: false
+      emulated_hue_name: "PowerOff"
+
+    input_boolean.master_firetv:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Master Fire TV"
+    input_boolean.master_tv:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Master TV"
+    input_boolean.master_poweroff:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Master PowerOff"
+
         ##########################################################
         ## Sensors
         ##########################################################
@@ -203,8 +223,15 @@
     light.loft_floor_lamp:
       friendly_name: Floor Lamp
       icon: mdi:lamp
+      emulated_hue_hidden: false
+      emulated_hue_name: "Loft Lamp"
     group.media_center_lights:
       icon: mdi:led-strip
+      emulated_hue_hidden: false
+      emulated_hue_name: "TV Light"
+    group.exterior_lights:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Outside Lights"
 
         ##########################################################
         ## Devices

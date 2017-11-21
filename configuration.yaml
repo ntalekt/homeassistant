@@ -29,6 +29,7 @@ discovery:
     - yeelight
 #conversation:
 logger: !include logger.yaml
+
 logbook: !include logbook.yaml
 
 http:
@@ -90,8 +91,7 @@ emulated_hue:
   expose_by_default: false
 
 ffmpeg:
-#  ffmpeg_bin: /usr/local/bin/ffmpeg
-#  ffmpeg_bin: /usr/bin/avconv
+
 mqtt:
   broker: !secret mqtt_host
   port: 1883
@@ -127,7 +127,6 @@ zwave:
     light.ge_14294_exterior_side_level:
       polling_intensity: 1
       refresh_value: true
-
 
 #################################################################
 ## Includes
