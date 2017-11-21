@@ -263,7 +263,7 @@
       - input_boolean.userone_greeting
       - input_boolean.usertwo_away
       - input_boolean.usertwo_away_driving
-      - input_boolean.usertwo_greeting
+#      - input_boolean.usertwo_greeting
       - input_boolean.manual_userone_home
       - input_boolean.manual_usertwo_home
       - input_boolean.manual_userone_away

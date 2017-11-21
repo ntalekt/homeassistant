@@ -102,10 +102,10 @@
     initial: on
     icon: mdi:voice
 
-  usertwo_greeting:
-    name: usertwo Greeting Enabled
-    initial: on
-    icon: mdi:voice
+#  usertwo_greeting:
+#    name: usertwo Greeting Enabled
+#    initial: on
+#    icon: mdi:voice
 
   garage_notification:
     name: Garage Notification Enabled
