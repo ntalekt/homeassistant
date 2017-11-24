@@ -92,6 +92,20 @@
         ## Interior Media Center
         ##########################################################
 
+- alias: Lights - Interior Media Center Reset After Holiday Lights
+  trigger:
+    - platform: state
+      entity_id: input_boolean.interior_holiday
+      from: 'on'
+      to: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: group.media_center_lights
+      data:
+        transition: 5
+        brightness: 35
+        kelvin: 5000
+
 #- alias: Lights - Interior Media Center Turn on at Sunset if Home
 #  trigger:
 #    - platform: sun

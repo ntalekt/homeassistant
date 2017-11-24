@@ -56,6 +56,10 @@
       emulated_hue_hidden: false
       emulated_hue_name: "Master PowerOff"
 
+    input_boolean.interior_holiday:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Holiday Lights"
+
         ##########################################################
         ## Sensors
         ##########################################################
