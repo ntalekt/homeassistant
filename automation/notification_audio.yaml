@@ -114,7 +114,7 @@
     - platform: state
       entity_id: device_tracker.useronedevice
       to: 'home'
-      for: '00:03:00'
+      for: '00:02:00'
   condition:
     - condition: time
       after: '07:30'
