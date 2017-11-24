@@ -109,6 +109,34 @@
     command: "ssl-cert-check -b -c /home/homeassistant/.homeassistant/REDACTED.pem | awk '{ print $NF }'"
 
         ##########################################################
+        ## Birthdays
+        ##########################################################
+
+  - platform: command_line
+    name: Birthday Countdown REDACTED
+    unit_of_measurement: days
+    scan_interval: 3600
+    command: "BDAY=`date -d REDACTED +%j`; TODAY=`date +%j`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+
+  - platform: command_line
+    name: Birthday Countdown REDACTED
+    unit_of_measurement: days
+    scan_interval: 3600
+    command: "BDAY=`date -d REDACTED +%j`; TODAY=`date +%j`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+
+  - platform: command_line
+    name: Birthday Countdown usertwo
+    unit_of_measurement: days
+    scan_interval: 3600
+    command: "BDAY=`date -d REDACTED +%j`; TODAY=`date +%j`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+
+  - platform: command_line
+    name: Birthday Countdown userone
+    unit_of_measurement: days
+    scan_interval: 3600
+    command: "BDAY=`date -d REDACTED +%j`; TODAY=`date +%j`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+
+        ##########################################################
         ## Sensor Node 1 - Office
         ##########################################################
 

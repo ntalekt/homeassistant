@@ -156,6 +156,20 @@ good_morning:
           {% else %}
           Good evening.
           {% endif %}
+          {# Birthday notifications #}
+          {% macro birthday_countdown( name, days2go ) %}
+            {%- if days2go == 0 -%}
+              Today is {{name}}'s Birthday!. Happy Birthday to you, my dear {{name}}!!!.
+            {%- elif days2go == 1 -%}
+              Tomorrow is {{name}}'s Birthday! HURRAY!!!
+            {%- elif days2go > 1 and days2go <= 10 -%}
+            {{name}}s Birthday is in {{days2go}} days! HURRAY!!!
+            {%- endif -%}
+          {% endmacro %}
+          {{ birthday_countdown("REDACTED", states.sensor.birthday_countdown_REDACTED.state | int ) }}
+          {{ birthday_countdown("REDACTED", states.sensor.birthday_countdown_REDACTED.state | int ) }}
+          {{ birthday_countdown("REDACTED", states.sensor.birthday_countdown_usertwo.state | int ) }}
+          {{ birthday_countdown("REDACTED", states.sensor.birthday_countdown_userone.state | int ) }}
           {% if weekday | int > 0 and weekday | int < 5 %}
             Today is a school day.
           {% endif %}
