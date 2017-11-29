@@ -46,7 +46,7 @@
     scan_interval: 3600
 
   - platform: command_line
-    command: ./home/homeassistant/.homeassistant/check_db_size.sh
+    command: /home/homeassistant/.homeassistant/check_db_size.sh
     name: HA DB Size
 #    scan_interval: 300
     unit_of_measurement: "GB"
