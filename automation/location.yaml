@@ -102,7 +102,6 @@
   trigger:
     - platform: state
       entity_id: device_tracker.useronedevice
-      from: 'not_home'
       to: 'home'
       for:
         hours: 0
@@ -123,7 +122,6 @@
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
-      from: 'not_home'
       to: 'home'
       for:
         hours: 0
@@ -134,7 +132,6 @@
       entity_id:
         - input_boolean.usertwo_away
         - input_boolean.usertwo_away_driving
-        - input_boolean.usertwo_greeting
 
         ##########################################################
         ## Set userone Away Driving
