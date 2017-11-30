@@ -10,11 +10,6 @@ Home Assistant Version: 0.58.1
 * [NGNIX proxy](https://home-assistant.io/docs/ecosystem/nginx/)
 * SSL via [SSLs](https://www.ssls.com/)
 
-
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/acZDoaac6bfBmosUGBNhW9Wb/ntalekt/homeassistant'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/acZDoaac6bfBmosUGBNhW9Wb/ntalekt/homeassistant.svg' />
-</a>
-
 ## Devices
 #### Climate
 * [Nest Thermostat](https://www.amazon.com/gp/product/B0131RG6VK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0131RG6VK&linkCode=as2&tag=ntalekt-20&linkId=e0db21f4ff5fe08d4d88f64ae040fcc3) x2

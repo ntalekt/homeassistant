@@ -31,9 +31,9 @@
 
   - platform: yeelight
     devices:
-      REDACTED:
+      !secret media_center_l_strip_host:
         name: Media Center L Strip
         transition: 2000
-      REDACTED:
+      !secret media_center_r_strip_host:
         name: Media Center R Strip
         transition: 2000
