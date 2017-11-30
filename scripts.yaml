@@ -166,8 +166,8 @@ good_morning:
             {{name}}s Birthday is in {{days2go}} days! HURRAY!!!
             {%- endif -%}
           {% endmacro %}
-          {{ birthday_countdown("REDACTED", states.sensor.birthday_countdown_REDACTED.state | int ) }}
-          {{ birthday_countdown("REDACTED", states.sensor.birthday_countdown_REDACTED.state | int ) }}
+          {{ birthday_countdown("userthree", states.sensor.birthday_countdown_userthree.state | int ) }}
+          {{ birthday_countdown("userfour", states.sensor.birthday_countdown_userfour.state | int ) }}
           {{ birthday_countdown("REDACTED", states.sensor.birthday_countdown_usertwo.state | int ) }}
           {{ birthday_countdown("REDACTED", states.sensor.birthday_countdown_userone.state | int ) }}
           {% if weekday | int > 0 and weekday | int < 5 %}
@@ -178,25 +178,25 @@ good_morning:
           {% endif %}
           {% if month_full_name == 'November' %}
             {% if day | int == 1 or day | int == 8 or day | int == 16 or day | int == 28 %}
-              REDACTED, today is art day.
+              userthree, today is art day.
             {% elif day | int == 2 or day | int == 7 or day | int == 9 or day | int == 15 or day | int == 17 or day | int == 27 or day | int == 29 %}
-              REDACTED, today is P.E. day.
+              userthree, today is P.E. day.
             {% elif day | int == 3 or day | int == 13 or day | int == 20 or day | int == 30 %}
-              REDACTED, today is music day.
+              userthree, today is music day.
             {% elif day | int == 6 or day | int == 14 or day | int == 21 %}
-              REDACTED, today is technology day.
+              userthree, today is technology day.
             {% elif day | int == 10 or day | int == 22 or day | int == 23 or day | int == 24 %}
-              REDACTED, you don't have school today even though it's a school day.
+              userthree, you don't have school today even though it's a school day.
             {% endif %}
           {% endif %}
           {% if weekday | int == 2 %}
-            REDACTED, today is Play Date sports day.
+            userfour, today is Play Date sports day.
           {% endif %}
           {% if weekday | int == 4 %}
-            REDACTED, today is music day.
+            userfour, today is music day.
           {% endif %}
           {% if weekday | int == 6 %}
-            REDACTED, I hope you have a wonderful time at swim class. REDACTED, I hope you have fun at sports class.
+            userthree, I hope you have a wonderful time at swim class. userfour, I hope you have fun at sports class.
           {% endif %}
           {% if weekday | int == 2 %}
             userone, today is trash day.

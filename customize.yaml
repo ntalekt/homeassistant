@@ -69,10 +69,10 @@
       friendly_name: Utilization
     sensor.humidity_158d0001b9561c:
       icon: mdi:water-percent
-      friendly_name: REDACTED Humidity
+      friendly_name: userthree Humidity
     sensor.temperature_158d0001b9561c:
       icon: mdi:thermometer-lines
-      friendly_name: REDACTED Temperature
+      friendly_name: userthree Temperature
     sensor.cox_time_left:
       icon: mdi:calendar-clock
       friendly_name: Time Left

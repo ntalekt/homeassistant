@@ -113,13 +113,13 @@
         ##########################################################
 
   - platform: command_line
-    name: Birthday Countdown REDACTED
+    name: Birthday Countdown userthree
     unit_of_measurement: days
     scan_interval: 3600
     command: "BDAY=`date -d REDACTED +%j`; TODAY=`date +%j`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
 
   - platform: command_line
-    name: Birthday Countdown REDACTED
+    name: Birthday Countdown userfour
     unit_of_measurement: days
     scan_interval: 3600
     command: "BDAY=`date -d REDACTED +%j`; TODAY=`date +%j`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
@@ -351,9 +351,9 @@
             mdi:battery-alert
           {% endif %}
 
-      REDACTED_temp_battery:
+      userthree_temp_battery:
         value_template: '{{ states.sensor.temperature_158d0001b9561c.attributes.battery_level | default(0) | int }}'
-        friendly_name: 'REDACTED Temp.'
+        friendly_name: 'userthree Temp.'
         unit_of_measurement: "%"
         icon_template: >
           {% set battery_level = states.sensor.temperature_158d0001b9561c.attributes.battery_level | default(0) | int %}
