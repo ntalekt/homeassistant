@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.6.3"
+  - "3.5.3"
 install:
   - pip3 install homeassistant
 script:
