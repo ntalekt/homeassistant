@@ -48,6 +48,7 @@
     entities:
       - group.nest_upstairs_card
       - group.master_remote
+      - group.REDACTED
       - group.office
       - group.loft
       - group.sensor_node_1_card
@@ -140,6 +141,7 @@
       - sensor.REDACTEDs_ipad_battery_level
       - sensor.ipad_battery_level
       - sensor.big_garage_tilt_battery
+      - sensor.REDACTED_temp_battery
 
   door_bell:
     name: Door Bell
@@ -183,8 +185,15 @@
       - sensor.upstairs_thermostat_humidity
       - binary_sensor.upstairs_thermostat_fan
 
+  REDACTED:
+    control: hidden
+    entities:
+      - sensor.temperature_158d0001b9561c
+      - sensor.humidity_158d0001b9561c
+
   sensor_node_1_card:
     name: Office
+    control: hidden
     entities:
       - sensor.office_temperature
       - sensor.office_humidity
@@ -192,6 +201,7 @@
 #      - sensor.office_pir
       - light.office_led
       - binary_sensor.office_occupancy_on
+      - light.gateway_light_34ce009244d5
 
   exterior_lights:
     name: Exterior Lights

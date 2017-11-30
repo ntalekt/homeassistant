@@ -115,6 +115,11 @@ tts:
     cache: true
     time_memory: 300
 
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_key
+
 zwave:
   usb_path: /dev/ttyACM0
   new_entity_ids: true

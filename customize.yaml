@@ -67,6 +67,12 @@
     sensor.cox_utilization:
       icon: mdi:percent
       friendly_name: Utilization
+    sensor.humidity_158d0001b9561c:
+      icon: mdi:water-percent
+      friendly_name: REDACTED Humidity
+    sensor.temperature_158d0001b9561c:
+      icon: mdi:thermometer-lines
+      friendly_name: REDACTED Temperature
     sensor.cox_time_left:
       icon: mdi:calendar-clock
       friendly_name: Time Left
@@ -236,6 +242,10 @@
     group.exterior_lights:
       emulated_hue_hidden: false
       emulated_hue_name: "Outside Lights"
+    light.gateway_light_34ce009244d5:
+      friendly_name: Xiaomi Gateway
+      icon: mdi:lamp
+
 
         ##########################################################
         ## Devices
