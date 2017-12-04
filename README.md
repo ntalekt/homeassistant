@@ -1,7 +1,7 @@
 # [![Build Status](https://travis-ci.org/ntalekt/homeassistant.svg?branch=master)](https://travis-ci.org/ntalekt/homeassistant) Home Assistant Config by ntalekt
 This is my [Home Assistant](https://home-assistant.io) configuration which is running on a [Raspberry PI 3 ](https://www.amazon.com/gp/product/B01CD5VC92/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01CD5VC92&linkCode=as2&tag=ntalekt-20&linkId=85008d89d44170ee683cbe85480e5522) running [Hassbian](https://home-assistant.io/docs/installation/hassbian/installation/).
 
-Home Assistant Version: 0.58.1
+Home Assistant Version: 0.59.1
 
 ## Platform
 * [Raspberry PI 3 Model B](https://www.amazon.com/gp/product/B01CD5VC92/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01CD5VC92&linkCode=as2&tag=ntalekt-20&linkId=85008d89d44170ee683cbe85480e5522)
