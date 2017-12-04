@@ -8,7 +8,7 @@
     entities:
       - group.automation_on_demand
       - group.household
-      - group.garage_door_status
+      - group.door_status
       - group.door_bell
       - group.current_weather
       - group.nest_downstairs_card
@@ -82,7 +82,7 @@
     entities:
       - group.system
       - group.household
-      - group.garage_door_status
+      - group.door_status
       - group.battery_level
       - group.occupancy
       - group.door_bell
@@ -126,10 +126,11 @@
     - device_tracker.REDACTED_phone
     - device_tracker.REDACTED_phone
 
-  garage_door_status:
-    name: Garage
+  door_status:
+    name: Doors
     entities:
       - sensor.big_garage_tilt
+      - sensor.patio_door
 
   battery_level:
     name: Battery Levels
@@ -141,7 +142,8 @@
       - sensor.REDACTEDs_ipad_battery_level
       - sensor.ipad_battery_level
       - sensor.big_garage_tilt_battery
-      - sensor.REDACTED_temp_battery
+      - sensor.userthree_temp_battery
+      - sensor.patio_door_battery
 
   door_bell:
     name: Door Bell
