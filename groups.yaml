@@ -48,7 +48,7 @@
     entities:
       - group.nest_upstairs_card
       - group.master_remote
-      - group.REDACTED
+      - group.userthree
       - group.office
       - group.loft
       - group.sensor_node_1_card
@@ -189,7 +189,7 @@
       - sensor.upstairs_thermostat_humidity
       - binary_sensor.upstairs_thermostat_fan
 
-  REDACTED:
+  userthree:
     control: hidden
     entities:
       - sensor.temperature_158d0001b9561c
