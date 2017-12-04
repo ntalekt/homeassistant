@@ -552,7 +552,7 @@
     scan_interval: 3600
 
   - platform: history_stats
-    name: Downstairs HVAC On Today
+    name: Downstairs AC On Today
     entity_id: sensor.downstairs_thermostat_hvac_state
     state: 'cooling'
     type: time
@@ -560,7 +560,7 @@
     end: '{{ now() }}'
 
   - platform: history_stats
-    name: Upstairs HVAC On Today
+    name: Upstairs AC On Today
     entity_id: sensor.upstairs_thermostat_hvac_state
     state: 'cooling'
     type: time
@@ -568,7 +568,7 @@
     end: '{{ now() }}'
 
   - platform: history_stats
-    name: Downstairs HVAC On Week
+    name: Downstairs AC On Week
     entity_id: sensor.downstairs_thermostat_hvac_state
     state: 'cooling'
     type: time
@@ -576,9 +576,41 @@
     end: '{{ now() }}'
 
   - platform: history_stats
-    name: Upstairs HVAC On Week
+    name: Upstairs AC On Week
     entity_id: sensor.upstairs_thermostat_hvac_state
     state: 'cooling'
+    type: time
+    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+    end: '{{ now() }}'
+
+  - platform: history_stats
+    name: Downstairs Heat On Today
+    entity_id: sensor.downstairs_thermostat_hvac_state
+    state: 'heating'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
+  - platform: history_stats
+    name: Upstairs Heat On Today
+    entity_id: sensor.upstairs_thermostat_hvac_state
+    state: 'heating'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
+  - platform: history_stats
+    name: Downstairs Heat On Week
+    entity_id: sensor.downstairs_thermostat_hvac_state
+    state: 'heating'
+    type: time
+    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+    end: '{{ now() }}'
+
+  - platform: history_stats
+    name: Upstairs Heat On Week
+    entity_id: sensor.upstairs_thermostat_hvac_state
+    state: 'heating'
     type: time
     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
     end: '{{ now() }}'

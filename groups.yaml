@@ -90,6 +90,8 @@
       - group.cox_internet_usage
       - group.dns
       - group.devices
+      - group.downstairs_hvac
+      - group.upstairs_hvac
       - group.synology_nas
       - group.qnap_nas
 
@@ -402,3 +404,17 @@
     entities:
       - input_boolean.test_audio_notification
       - input_boolean.test_text_notification
+
+  Downstairs HVAC:
+    entities:
+      - sensor.downstairs_ac_on_today
+      - sensor.downstairs_ac_on_week
+      - sensor.downstairs_heat_on_today
+      - sensor.downstairs_heat_on_week
+
+  Upstairs HVAC:
+    entities:
+      - sensor.upstairs_ac_on_today
+      - sensor.upstairs_ac_on_week
+      - sensor.upstairs_heat_on_today
+      - sensor.upstairs_heat_on_week
