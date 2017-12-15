@@ -1,7 +1,7 @@
 # [![Build Status](https://travis-ci.org/ntalekt/homeassistant.svg?branch=master)](https://travis-ci.org/ntalekt/homeassistant) Home Assistant Config by ntalekt
 This is my [Home Assistant](https://home-assistant.io) configuration which is running on a [Raspberry PI 3 ](https://www.amazon.com/gp/product/B01CD5VC92/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01CD5VC92&linkCode=as2&tag=ntalekt-20&linkId=85008d89d44170ee683cbe85480e5522) running [Hassbian](https://home-assistant.io/docs/installation/hassbian/installation/).
 
-Home Assistant Version: 0.59.1
+Home Assistant Version: 0.59.2
 
 ## Platform
 * [Raspberry PI 3 Model B](https://www.amazon.com/gp/product/B01CD5VC92/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01CD5VC92&linkCode=as2&tag=ntalekt-20&linkId=85008d89d44170ee683cbe85480e5522)
@@ -24,7 +24,7 @@ Home Assistant Version: 0.59.1
 * [Ecolink Z-wave Plus Garage Door Tilt Sensor](https://www.amazon.com/gp/product/B01MRZB0NT/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MRZB0NT&linkCode=as2&tag=ntalekt-20&linkId=ba67bb773710bc24f062775d66fe51b1)
 * [BRUH Automation Multisensor](https://github.com/bruhautomation/ESP-MQTT-JSON-Multisensor)
 * [Xiaomi Mi Smart Gateway](https://www.gearbest.com/living-appliances/pp_344667.html)
-* [Xiaomi Aqara Temperature Humidity Sensor](https://www.gearbest.com/access-control/pp_626702.html)
+* [Xiaomi Aqara Temperature Humidity Sensor](https://www.gearbest.com/access-control/pp_626702.html) x5
 * [Xiaomi Aqara Window Door Sensor](https://www.gearbest.com/access-control/pp_626703.html)
 
 #### Camera
