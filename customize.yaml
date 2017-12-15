@@ -196,6 +196,22 @@
     binary_sensor.downstairs_thermostat_online:
       friendly_name: Nest Downstairs
       icon: mdi:nest-thermostat
+    sensor.upstairs_ac_on_today:
+      icon: mdi:air-conditioner
+    sensor.upstairs_ac_on_week:
+      icon: mdi:air-conditioner
+    sensor.downstairs_ac_on_today:
+      icon: mdi:air-conditioner
+    sensor.downstairs_ac_on_week:
+      icon: mdi:air-conditioner
+    sensor.upstairs_heat_on_today:
+      icon: mdi:fire
+    sensor.upstairs_heat_on_week:
+      icon: mdi:fire
+    sensor.downstairs_heat_on_today:
+      icon: mdi:fire
+    sensor.downstairs_heat_on_week:
+      icon: mdi:fire
 
         ##########################################################
         ## Doorbell
