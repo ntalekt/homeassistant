@@ -73,6 +73,12 @@
     sensor.temperature_158d0001b9561c:
       icon: mdi:thermometer-lines
       friendly_name: userthree Temperature
+    sensor.humidity_158d0001f50d5f:
+      icon: mdi:water-percent
+      friendly_name: userfour Humidity
+    sensor.temperature_158d0001f50d5f:
+      icon: mdi:thermometer-lines
+      friendly_name: userfour Temperature
     sensor.cox_time_left:
       icon: mdi:calendar-clock
       friendly_name: Time Left

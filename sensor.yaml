@@ -366,6 +366,21 @@
             mdi:battery-alert
           {% endif %}
 
+      userfour_temp_battery:
+        value_template: '{{ states.sensor.temperature_158d0001f50d5f.attributes.battery_level | default(0) | int }}'
+        friendly_name: 'userfour Temp.'
+        unit_of_measurement: "%"
+        icon_template: >
+          {% set battery_level = states.sensor.temperature_158d0001f50d5f.attributes.battery_level | default(0) | int %}
+          {% set battery_round = (battery_level / 10) | int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+
       patio_door_battery:
         value_template: '{{ states.binary_sensor.door_window_sensor_158d0001d85176.attributes.battery_level | default(0) | int }}'
         friendly_name: 'Patio Door'

@@ -49,6 +49,7 @@
       - group.nest_upstairs_card
       - group.master_remote
       - group.userthree
+      - group.userfour
       - group.office
       - group.loft
       - group.sensor_node_1_card
@@ -145,6 +146,7 @@
       - sensor.ipad_battery_level
       - sensor.big_garage_tilt_battery
       - sensor.userthree_temp_battery
+      - sensor.userfour_temp_battery
       - sensor.patio_door_battery
 
   door_bell:
@@ -194,6 +196,12 @@
     entities:
       - sensor.temperature_158d0001b9561c
       - sensor.humidity_158d0001b9561c
+
+  userfour:
+    control: hidden
+    entities:
+      - sensor.temperature_158d0001f50d5f
+      - sensor.humidity_158d0001f50d5f
 
   sensor_node_1_card:
     name: Office
