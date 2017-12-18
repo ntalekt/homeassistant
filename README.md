@@ -20,12 +20,13 @@ Home Assistant Version: 0.60
 * [Yeelight WIFI RGB Strip](https://www.amazon.com/gp/product/B01LRT0B56/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&linkCode=as2&tag=ntalekt-20&linkId=f494661c2bfcea4e57c2ee133a4b4caf) x2
 * [GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt-20&linkId=28f9845f77c4f9b01c7ad84871a799ab) x3
 
-#### Sensor
+#### Sensor / Switch
 * [Ecolink Z-wave Plus Garage Door Tilt Sensor](https://www.amazon.com/gp/product/B01MRZB0NT/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MRZB0NT&linkCode=as2&tag=ntalekt-20&linkId=ba67bb773710bc24f062775d66fe51b1)
 * [BRUH Automation Multisensor](https://github.com/bruhautomation/ESP-MQTT-JSON-Multisensor)
 * [Xiaomi Mi Smart Gateway](https://www.gearbest.com/living-appliances/pp_344667.html)
 * [Xiaomi Aqara Temperature Humidity Sensor](https://www.gearbest.com/access-control/pp_626702.html) x5
 * [Xiaomi Aqara Window Door Sensor](https://www.gearbest.com/access-control/pp_626703.html)
+* [Xiaomi Aqara Smart Wireless Switch](https://www.gearbest.com/access-control/pp_626695.html) x2
 
 #### Camera
 * [Amcrest IPM-HX1W Camera](https://www.amazon.com/gp/product/B01LZHOILC/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LZHOILC&linkCode=as2&tag=ntalekt-20&linkId=fd29fa84ba58e8747400ea53e05b8459) x4
@@ -99,6 +100,7 @@ Home Assistant Version: 0.60
 * Start playing music on [Sonos PLAY:1](https://www.amazon.com/gp/product/B00EWCUK98/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK98&linkCode=as2&tag=ntalekt-20&linkId=35105866ec0a7f4c67dd1abea7958f5a) speakers if user starts music station using [Amazon Echo Dot](https://www.amazon.com/gp/product/B015TJD0Y4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015TJD0Y4&linkCode=as2&tag=ntalekt-20&linkId=f75a8b4c616563e31e98c9cefd43d032) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/).
 * Start [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt-20&linkId=a3f1b5dc6cded9429966fb2cbe90ecf0) activity using [Amazon Echo Dot](https://www.amazon.com/gp/product/B015TJD0Y4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015TJD0Y4&linkCode=as2&tag=ntalekt-20&linkId=f75a8b4c616563e31e98c9cefd43d032) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/).
 * Power off [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt-20&linkId=a3f1b5dc6cded9429966fb2cbe90ecf0) activity using [Amazon Echo Dot](https://www.amazon.com/gp/product/B015TJD0Y4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015TJD0Y4&linkCode=as2&tag=ntalekt-20&linkId=f75a8b4c616563e31e98c9cefd43d032) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/).
+* Turn on SleepTime mode if [Xiaomi Aqara Smart Wireless Switch](https://www.gearbest.com/access-control/pp_626695.html) is pressed.
 
 ### Sonos
 * Reset/Regroup all [Sonos PLAY:1](https://www.amazon.com/gp/product/B00EWCUK98/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK98&linkCode=as2&tag=ntalekt-20&linkId=35105866ec0a7f4c67dd1abea7958f5a) speakers at 6:00am every morning.
