@@ -92,6 +92,10 @@ emulated_hue:
 
 ffmpeg:
 
+hue:
+  bridges:
+    - host: !secret hue_hub_host
+
 mqtt:
   broker: !secret mqtt_host
   port: 1883
