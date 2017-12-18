@@ -79,6 +79,12 @@
     sensor.temperature_158d0001f50d5f:
       icon: mdi:thermometer-lines
       friendly_name: userfour Temperature
+    sensor.humidity_158d0001fa9e02:
+      icon: mdi:water-percent
+      friendly_name: Master Humidity
+    sensor.temperature_158d0001fa9e02:
+      icon: mdi:thermometer-lines
+      friendly_name: Master Temperature
     sensor.cox_time_left:
       icon: mdi:calendar-clock
       friendly_name: Time Left

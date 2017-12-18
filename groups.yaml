@@ -50,6 +50,7 @@
       - group.master_remote
       - group.userthree
       - group.userfour
+      - group.master
       - group.office
       - group.loft
       - group.sensor_node_1_card
@@ -147,6 +148,7 @@
       - sensor.big_garage_tilt_battery
       - sensor.userthree_temp_battery
       - sensor.userfour_temp_battery
+      - sensor.master_temp_battery
       - sensor.master_switch_battery
       - sensor.patio_door_battery
 
@@ -203,6 +205,12 @@
     entities:
       - sensor.temperature_158d0001f50d5f
       - sensor.humidity_158d0001f50d5f
+
+  Master:
+    control: hidden
+    entities:
+      - sensor.temperature_158d0001fa9e02
+      - sensor.humidity_158d0001fa9e02
 
   sensor_node_1_card:
     name: Office
