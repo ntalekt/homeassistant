@@ -147,6 +147,7 @@
       - sensor.big_garage_tilt_battery
       - sensor.userthree_temp_battery
       - sensor.userfour_temp_battery
+      - sensor.master_switch_battery
       - sensor.patio_door_battery
 
   door_bell:
