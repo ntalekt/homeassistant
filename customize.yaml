@@ -247,6 +247,8 @@
 
     sensor.media_center:
       icon: mdi:television
+    sensor.master_remote:
+      icon: mdi:television
 
         ##########################################################
         ## Lights
