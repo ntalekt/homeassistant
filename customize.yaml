@@ -85,6 +85,12 @@
     sensor.temperature_158d0001fa9e02:
       icon: mdi:thermometer-lines
       friendly_name: Master Temperature
+    sensor.humidity_158d0001f51e9e:
+      icon: mdi:water-percent
+      friendly_name: Loft Humidity
+    sensor.temperature_158d0001f51e9e:
+      icon: mdi:thermometer-lines
+      friendly_name: Loft Temperature
     sensor.cox_time_left:
       icon: mdi:calendar-clock
       friendly_name: Time Left
