@@ -195,6 +195,11 @@
   action:
     - service: homeassistant.toggle
       entity_id: input_boolean.sleep_time
+    - service: remote.send_command
+      data_template:
+        entity_id: remote.master
+        command: 'VolumeUp'
+        device: 46622425
 
         ##########################################################
         ## Reset Sonos Every Morning
