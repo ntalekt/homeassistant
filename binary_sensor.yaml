@@ -166,3 +166,26 @@
     device_class: connectivity
     payload_on: "Up"
     payload_off: "Down"
+
+        ##########################################################
+        ## GearBest Price Decrease
+        ##########################################################
+
+  - platform: trend
+    sensors:
+      gearbest_door_sensor_decreasing:
+        entity_id: sensor.xiaomi_aqara_door_sensor
+        friendly_name: Aqara Window Door Sensor
+        invert: True
+      gearbest_motion_sensor_decreasing:
+        entity_id: sensor.xiaomi_aqara_motion_sensor
+        friendly_name: Aqara Human Body Sensor
+        invert: True
+      gearbest_switch_decreasing:
+        entity_id: sensor.xiaomi_aqara_switch
+        friendly_name: Aqara Smart Wireless Switch
+        invert: True
+      gearbest_temp_sensor_decreasing:
+        entity_id: sensor.xiaomi_aqara_temp_sensor
+        friendly_name: Aqara Temperature Humidity Sensor
+        invert: True

@@ -69,6 +69,7 @@ Home Assistant Version: 0.60
 * [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) when SSL certificate expiration sensor <= 10 days.
 * [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) when any battery sensor falls below 20%
 * [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) for a failed login attempt.
+* [Pushbullet](https://home-assistant.io/components/notify.pushbullet/) if tracked Gearbest item price drops.
 
 ### Notification Visual
 * [LG WebOS TV Notification](https://home-assistant.io/components/notify.webostv/) when [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt-20&linkId=100ed966ea93c748bf857696167a167c) detects motion or is pressed.

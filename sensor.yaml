@@ -678,3 +678,19 @@
     type: time
     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
     end: '{{ now() }}'
+
+        ##########################################################
+        ## Gearbest
+        ##########################################################
+
+  - platform: gearbest
+    currency: USD
+    items:
+      - id: 626695
+        name: Xiaomi Aqara Switch
+      - id: 626702
+        name: Xiaomi Aqara Temp Sensor
+      - id: 659226
+        name: Xiaomi Aqara Motion Sensor
+      - id: 626703
+        name: Xiaomi Aqara Door Sensor
