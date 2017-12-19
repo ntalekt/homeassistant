@@ -611,6 +611,10 @@
     name: Days In Current Month
     scan_interval: 3600
 
+        ##########################################################
+        ## History Stats
+        ##########################################################
+
   - platform: history_stats
     name: Downstairs AC On Today
     entity_id: sensor.downstairs_thermostat_hvac_state
