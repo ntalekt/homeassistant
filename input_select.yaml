@@ -1,3 +1,11 @@
+##############################################################
+## Input Select  ##
+##############################################################
+
+        ##########################################################
+        ## Main Media Center Remote Select
+        ##########################################################
+
   remote:
     name: Media Center Remote
     options:
@@ -9,6 +17,10 @@
       - Blueray
     icon: mdi:remote
 
+        ##########################################################
+        ## Master Remote Select
+        ##########################################################
+
   master_remote:
     name: Master Remote
     options:
@@ -16,6 +28,10 @@
       - Fire TV
       - TV
     icon: mdi:remote
+
+        ##########################################################
+        ## Sonos Station Select
+        ##########################################################
 
   sonos:
     name: Sonos
@@ -31,6 +47,10 @@
       - Play Coffee Shop Pop Playlist
       - Play Devastating Dubstep Drops Playlist
     icon: mdi:speaker-wireless
+
+        ##########################################################
+        ## Holiday Select
+        ##########################################################
 
   holiday:
     name: Holiday Lighting
