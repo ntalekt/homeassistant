@@ -92,6 +92,10 @@
     name: Sonos Kitchen
 
   - platform: ping
+    host: !secret sonos_office_host
+    name: Sonos Office
+
+  - platform: ping
     host: !secret ring_pro_host
     name: Ring Pro
 

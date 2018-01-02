@@ -36,6 +36,7 @@ Home Assistant Version: 0.60
 #### Media
 * [Amazon Echo Dot](https://www.amazon.com/gp/product/B015TJD0Y4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015TJD0Y4&linkCode=as2&tag=ntalekt-20&linkId=f75a8b4c616563e31e98c9cefd43d032) x2 (via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/))
 * [Sonos PLAY:1](https://www.amazon.com/gp/product/B00EWCUK98/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK98&linkCode=as2&tag=ntalekt-20&linkId=35105866ec0a7f4c67dd1abea7958f5a) x3
+* [Sonos One](https://www.amazon.com/All-new-Sonos-One-Controlled-Speaker/dp/B074XN1LH3/ref=sr_1_4?s=aht&ie=UTF8&qid=1514905485&sr=1-4&keywords=sonos%2Bone&th=1)
 * [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt-20&linkId=a3f1b5dc6cded9429966fb2cbe90ecf0) x2
 * [NVIDIA SHIELD TV](https://www.amazon.com/gp/product/B01N1NT9Y6/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01N1NT9Y6&linkCode=as2&tag=ntalekt-20&linkId=0c9356d35834fc3cb2fbfcf336ea2d8c)
 * [LG 65UH8500 65" TV](https://www.amazon.com/gp/product/B019O5F8CQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B019O5F8CQ&linkCode=as2&tag=ntalekt-20&linkId=8705839f33b90a8d4725c293c464d2e8)

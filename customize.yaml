@@ -321,6 +321,8 @@
       icon: mdi:speaker-wireless
     binary_sensor.sonos_kitchen:
       icon: mdi:speaker-wireless
+    binary_sensor.sonos_office:
+      icon: mdi:speaker-wireless
     binary_sensor.ring_pro:
       icon: mdi:bell-ring
     binary_sensor.opensprinkler_pi:

@@ -215,11 +215,13 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
     - service: media_player.clear_playlist
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
     - service: homeassistant.turn_off
       entity_id:
         - input_boolean.90_station
@@ -243,6 +245,7 @@
           - media_player.chalkboard_room
           - media_player.kitchen
           - media_player.loft
+          - media_player.office
 
         ##########################################################
         ## Group All Sonos
@@ -266,6 +269,7 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
 
         ##########################################################
         ## Play All '90s Station
@@ -289,12 +293,14 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
       data:
         volume_level: '.4'
     - delay: '00:00:01'
@@ -339,12 +345,14 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
       data:
         volume_level: '.4'
     - delay: '00:00:01'
@@ -389,12 +397,14 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
       data:
         volume_level: '.4'
     - delay: '00:00:01'
@@ -439,12 +449,14 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
       data:
         volume_level: '.4'
     - delay: '00:00:01'
@@ -489,12 +501,14 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
       data:
         volume_level: '.4'
     - delay: '00:00:01'
@@ -539,12 +553,14 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
       data:
         volume_level: '.4'
     - delay: '00:00:01'
@@ -589,12 +605,14 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
       data:
         volume_level: '.4'
     - delay: '00:00:01'
@@ -639,12 +657,14 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
       data:
         volume_level: '.4'
     - delay: '00:00:01'
@@ -690,12 +710,14 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
     - delay: '00:00:02'
     - service: media_player.volume_set
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
       data:
         volume_level: '.4'
     - delay: '00:00:01'
@@ -850,6 +872,7 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office
         ##########################################################
         ## Sonos stop activity from input boolean Off
         ##########################################################
@@ -865,3 +888,4 @@
         - media_player.chalkboard_room
         - media_player.kitchen
         - media_player.loft
+        - media_player.office

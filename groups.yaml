@@ -224,6 +224,7 @@
       - light.office_led
       - binary_sensor.office_occupancy_on
       - light.gateway_light_34ce009244d5
+      - media_player.office
 
   exterior_lights:
     name: Exterior Lights
@@ -313,6 +314,7 @@
       - media_player.kitchen
       - media_player.loft
       - media_player.chalkboard_room
+      - media_player.office
 
   Automation Override:
     control: hidden
@@ -385,6 +387,7 @@
       - binary_sensor.sonos_chalkboard
       - binary_sensor.sonos_den
       - binary_sensor.sonos_kitchen
+      - binary_sensor.sonos_office
       - binary_sensor.ring_pro
       - binary_sensor.opensprinkler_pi
       - binary_sensor.upstairs_thermostat_online
