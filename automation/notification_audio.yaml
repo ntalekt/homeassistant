@@ -54,56 +54,56 @@
         ## Sonos - Good morning - Weekday
         ##########################################################
 
-- alias: Notification Audio - Good morning weekday
-  trigger:
-    - platform: time
-      at: '06:45:00'
-  condition:
-      condition: and
-      conditions:
-        - condition: time
-          weekday:
-            - mon
-            - tue
-            - wed
-            - thu
-            - fri
-        - condition: state
-          entity_id: group.household
-          state: 'home'
-        - condition: state
-          entity_id: input_boolean.disable_morning_announcement
-          state: 'off'
-  action:
-    - delay: '00:00:30'
-    - service: script.turn_on
-      entity_id: script.good_morning
+#- alias: Notification Audio - Good morning weekday
+#  trigger:
+#    - platform: time
+#      at: '06:45:00'
+#  condition:
+#      condition: and
+#      conditions:
+#        - condition: time
+#          weekday:
+#            - mon
+#            - tue
+#            - wed
+#            - thu
+#            - fri
+#        - condition: state
+#          entity_id: group.household
+#          state: 'home'
+#        - condition: state
+#          entity_id: input_boolean.disable_morning_announcement
+#          state: 'off'
+#  action:
+#    - delay: '00:00:30'
+#    - service: script.turn_on
+#      entity_id: script.good_morning
 
         ##########################################################
         ## Sonos - Good morning - Weekend
         ##########################################################
 
-- alias: Notification Audio - Good morning weekend
-  trigger:
-    - platform: time
-      at: '08:20:00'
-  condition:
-      condition: and
-      conditions:
-        - condition: time
-          weekday:
-            - sat
-            - sun
-        - condition: state
-          entity_id: group.household
-          state: 'home'
-        - condition: state
-          entity_id: input_boolean.disable_morning_announcement
-          state: 'off'
-  action:
-    - delay: '00:00:30'
-    - service: script.turn_on
-      entity_id: script.good_morning
+#- alias: Notification Audio - Good morning weekend
+#  trigger:
+#    - platform: time
+#      at: '08:20:00'
+#  condition:
+#      condition: and
+#      conditions:
+#        - condition: time
+#          weekday:
+#            - sat
+#            - sun
+#        - condition: state
+#          entity_id: group.household
+#          state: 'home'
+#        - condition: state
+#          entity_id: input_boolean.disable_morning_announcement
+#          state: 'off'
+#  action:
+#    - delay: '00:00:30'
+#    - service: script.turn_on
+#      entity_id: script.good_morning
 
         ##########################################################
         ## Sonos - Welcome Home userone

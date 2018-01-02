@@ -52,7 +52,7 @@ Home Assistant Version: 0.60
 
 ## Automations
 ### Notification Audio
-* [TTS](https://home-assistant.io/components/tts.google/) "Good Morning" notification over all [Sonos speakers](https://www.amazon.com/gp/product/B00EWCUK98/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK98&linkCode=as2&tag=ntalekt-20&linkId=35105866ec0a7f4c67dd1abea7958f5a). Includes templated date, birthday countdown, weather, to-do's etc.
+* ~~[TTS](https://home-assistant.io/components/tts.google/) "Good Morning" notification over all [Sonos speakers](https://www.amazon.com/gp/product/B00EWCUK98/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK98&linkCode=as2&tag=ntalekt-20&linkId=35105866ec0a7f4c67dd1abea7958f5a). Includes templated date, birthday countdown, weather, to-do's etc.~~
 * [TTS](https://home-assistant.io/components/tts.google/) "Welcome home _User_" notification over all Sonos speakers.
 * [TTS](https://home-assistant.io/components/tts.google/) notification when _User_ arrives at specific [Zones](https://home-assistant.io/components/zone/).
 * [TTS](https://home-assistant.io/components/tts.google/) notification when _User_ leaves specific zones which includes travel time home.
