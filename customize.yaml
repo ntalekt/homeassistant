@@ -91,6 +91,12 @@
     sensor.temperature_158d0001f51e9e:
       icon: mdi:thermometer-lines
       friendly_name: Loft Temperature
+    sensor.temperature_158d0001f50dcb:
+      icon: mdi:thermometer-lines
+      friendly_name: Office Temperature Xiaomi
+    sensor.humidity_158d0001f50dcb:
+      icon: mdi:water-percent
+      friendly_name: Office Humidity Xiaomi
     sensor.cox_time_left:
       icon: mdi:calendar-clock
       friendly_name: Time Left

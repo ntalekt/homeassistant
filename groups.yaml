@@ -150,6 +150,7 @@
       - sensor.userfour_temp_battery
       - sensor.master_temp_battery
       - sensor.loft_temp_battery
+      - sensor.office_temp_battery
       - sensor.master_switch_battery
       - sensor.patio_door_battery
 
@@ -218,7 +219,9 @@
     control: hidden
     entities:
       - sensor.office_temperature
+      - sensor.temperature_158d0001f50dcb
       - sensor.office_humidity
+      - sensor.humidity_158d0001f50dcb
 #      - sensor.office_ldr
 #      - sensor.office_pir
       - light.office_led
