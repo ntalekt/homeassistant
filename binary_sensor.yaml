@@ -124,6 +124,10 @@
     name: Shop Camera
 
   - platform: ping
+    host: !secret amcrest_back_host
+    name: Back Yard Camera
+
+  - platform: ping
     host: !secret pihole_host
     name: Pihole
 

@@ -311,6 +311,8 @@
       icon: mdi:cctv
     binary_sensor.shop_camera:
       icon: mdi:cctv
+    binary_sensor.back_yard_camera:
+      icon: mdi:cctv
     binary_sensor.synology_nas:
       icon: mdi:harddisk
     binary_sensor.qnap_nas:

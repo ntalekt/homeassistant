@@ -29,6 +29,7 @@ Home Assistant Version: 0.60
 * [Xiaomi Aqara Smart Wireless Switch](https://www.gearbest.com/access-control/pp_626695.html) x2
 
 #### Camera
+* [Amcrest IP3M-943W Camera](https://www.amazon.com/Amcrest-Outdoor-3-Megapixel-Wireless-Security/dp/B01I01Z1M2/ref=sr_1_1_sspa?s=electronics&ie=UTF8&qid=1514915741&sr=1-1-spons&keywords=ip3m-943w&psc=1&smid=AM1AKWRN957PC)
 * [Amcrest IPM-HX1W Camera](https://www.amazon.com/gp/product/B01LZHOILC/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LZHOILC&linkCode=as2&tag=ntalekt-20&linkId=fd29fa84ba58e8747400ea53e05b8459) x4
 * [Hikvision DS-2CD2032-I Camera](https://www.amazon.com/gp/product/B00G7GMEOG/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00G7GMEOG&linkCode=as2&tag=ntalekt-20&linkId=199e0a6b51f0f83c21855d62219693c0)
 * [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt-20&linkId=100ed966ea93c748bf857696167a167c)

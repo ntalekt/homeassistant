@@ -400,6 +400,7 @@
       - binary_sensor.chalkboard_camera
       - binary_sensor.garage_camera
       - binary_sensor.shop_camera
+      - binary_sensor.back_yard_camera
       - binary_sensor.media_center_l_yeestrip
       - binary_sensor.media_center_r_yeestrip
 
