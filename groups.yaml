@@ -27,6 +27,7 @@
       - group.loft_lights
       - group.living_room_lights
       - group.exterior_lights
+      - group.master_vanity_lights
 
   first_floor:
     name: First Floor
@@ -245,6 +246,11 @@
     entities:
       - light.media_center_l_strip
       - light.media_center_r_strip
+
+  master_vanity_lights:
+    name: Master Bathroom Vanity
+    entities:
+      - light.master_vanity_3
 
   loft_lights:
     name: Loft Lights
