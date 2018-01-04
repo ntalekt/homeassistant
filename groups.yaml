@@ -26,6 +26,7 @@
     entities:
       - group.loft_lights
       - group.living_room_lights
+      - group.chalkboard_room_lights
       - group.exterior_lights
       - group.master_vanity_lights
 
@@ -153,6 +154,7 @@
       - sensor.loft_temp_battery
       - sensor.office_temp_battery
       - sensor.master_switch_battery
+      - sensor.chalkboard_switch_battery
       - sensor.patio_door_battery
 
   door_bell:
@@ -240,6 +242,11 @@
     name: Living Room Lights
     entities:
       - group.media_center_lights
+
+  chalkboard_room_lights:
+    name: Chalkboard Room Lights
+    entities:
+      - switch.wemominicactus
 
   media_center_lights:
     name: Media Center Accents
@@ -409,6 +416,7 @@
       - binary_sensor.back_yard_camera
       - binary_sensor.media_center_l_yeestrip
       - binary_sensor.media_center_r_yeestrip
+      - binary_sensor.wemo_mini_cactus
 
   Cox Internet Usage:
     entities:

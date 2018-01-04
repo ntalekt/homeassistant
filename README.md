@@ -28,6 +28,7 @@ Home Assistant Version: 0.60
 * [Xiaomi Aqara Temperature Humidity Sensor](https://www.gearbest.com/access-control/pp_626702.html) x5
 * [Xiaomi Aqara Window Door Sensor](https://www.gearbest.com/access-control/pp_626703.html)
 * [Xiaomi Aqara Smart Wireless Switch](https://www.gearbest.com/access-control/pp_626695.html) x2
+* [Wemo Mini Smart Plug](https://www.amazon.com/Smart-Enabled-Amazon-Google-Assistant/dp/B01NBI0A6R/ref=sr_1_2?s=lamps-light&ie=UTF8&qid=1515079368&sr=1-2&keywords=wemo+mini)
 
 #### Camera
 * [Amcrest IP3M-943W Camera](https://www.amazon.com/Amcrest-Outdoor-3-Megapixel-Wireless-Security/dp/B01I01Z1M2/ref=sr_1_1_sspa?s=electronics&ie=UTF8&qid=1514915741&sr=1-1-spons&keywords=ip3m-943w&psc=1&smid=AM1AKWRN957PC)

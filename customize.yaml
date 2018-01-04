@@ -60,6 +60,12 @@
       emulated_hue_hidden: false
       emulated_hue_name: "Holiday Lights"
 
+    switch.wemominicactus:
+      emulated_hue_hidden: false
+      emulated_hue_name: "Cactus Light"
+      friendly_name: Cactus Light
+      icon: mdi:lightbulb
+
         ##########################################################
         ## Sensors
         ##########################################################
@@ -288,7 +294,6 @@
       friendly_name: Xiaomi Gateway
       icon: mdi:lamp
 
-
         ##########################################################
         ## Devices
         ##########################################################
@@ -343,6 +348,8 @@
       icon: mdi:led-strip
     binary_sensor.media_center_r_yeestrip:
       icon: mdi:led-strip
+    binary_sensor.wemo_mini_cactus:
+      icon: mdi:power-socket-us
 
         ##########################################################
         ## DNS

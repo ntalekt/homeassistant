@@ -119,6 +119,8 @@ tts:
     cache: true
     time_memory: 300
 
+wemo:
+
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
