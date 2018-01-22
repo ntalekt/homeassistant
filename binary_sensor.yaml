@@ -20,7 +20,6 @@
       office_occupancy_on:
         friendly_name: Office Occupancy
         value_template: "{{ states.input_boolean.office_occupancy.state == 'on' }}"
-        entity_id: input_boolean.office_occupancy
         device_class: occupancy
 
   - platform: template
@@ -28,7 +27,6 @@
       living_occupancy_on:
         friendly_name: Living Occupancy
         value_template: "{{ states.input_boolean.living_occupancy.state == 'on' }}"
-        entity_id: input_boolean.living_occupancy
         device_class: occupancy
 
   - platform: template
@@ -36,7 +34,6 @@
       garage_occupancy_on:
         friendly_name: Garage Occupancy
         value_template: "{{ states.input_boolean.garage_occupancy.state == 'on' }}"
-        entity_id: input_boolean.garage_occupancy
         device_class: occupancy
 
   - platform: template
@@ -44,7 +41,6 @@
       chalkboard_occupancy_on:
         friendly_name: Chalkboard Occupancy
         value_template: "{{ states.input_boolean.chalkboard_occupancy.state == 'on' }}"
-        entity_id: input_boolean.chalkboard_occupancy
         device_class: occupancy
 
   - platform: template
@@ -52,7 +48,6 @@
       shop_occupancy_on:
         friendly_name: Shop Occupancy
         value_template: "{{ states.input_boolean.shop_occupancy.state == 'on' }}"
-        entity_id: input_boolean.shop_occupancy
         device_class: occupancy
 
         ##########################################################
