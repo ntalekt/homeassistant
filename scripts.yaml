@@ -106,6 +106,7 @@ good_morning:
           - media_player.chalkboard_room
           - media_player.kitchen
           - media_player.loft
+          - media_player.office
     - delay: '00:00:01'
     - service: media_player.sonos_join
       data_template:
@@ -114,6 +115,7 @@ good_morning:
           - media_player.chalkboard_room
           - media_player.kitchen
           - media_player.loft
+          - media_player.office
     - delay: '00:00:01'
     - service: media_player.volume_set
       data_template:
@@ -121,6 +123,7 @@ good_morning:
           - media_player.chalkboard_room
           - media_player.kitchen
           - media_player.loft
+          - media_player.office
         volume_level: '.6'
     - delay: '00:00:02'
     - service: media_player.play_media

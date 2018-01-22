@@ -18,7 +18,7 @@
       data_template:
         variables:
           master: 'media_player.chalkboard_room'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft'
+          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: >
             {% set hour = now().strftime("%H") %}
