@@ -120,6 +120,9 @@ tts:
     time_memory: 300
 
 wemo:
+  static:
+    - !secret wemo_mini_cactus_host
+    - !secret wemo_insight_host
 
 xiaomi_aqara:
   discovery_retry: 5
