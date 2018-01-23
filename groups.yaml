@@ -91,7 +91,6 @@
 #      - group.door_bell
       - group.deluge
       - group.cox_internet_usage
-      - group.gearbest
       - group.dns
       - group.devices
       - group.downstairs_hvac
@@ -459,10 +458,3 @@
       - sensor.upstairs_ac_on_week
       - sensor.upstairs_heat_on_today
       - sensor.upstairs_heat_on_week
-
-  Gearbest:
-    entities:
-      - sensor.xiaomi_aqara_temp_sensor
-      - sensor.xiaomi_aqara_door_sensor
-      - sensor.xiaomi_aqara_motion_sensor
-      - sensor.xiaomi_aqara_switch
