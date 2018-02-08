@@ -116,25 +116,25 @@
     name: Birthday Countdown userthree
     unit_of_measurement: days
     scan_interval: 3600
-    command: "BDAY=`date -d REDACTED +%j`; TODAY=`date +%j`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+    command: "BDAY=`date -d REDACTED +%j | sed 's/\<0//g'`; TODAY=`date +%j | sed 's/\<0//g'`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
 
   - platform: command_line
     name: Birthday Countdown userfour
     unit_of_measurement: days
     scan_interval: 3600
-    command: "BDAY=`date -d REDACTED +%j`; TODAY=`date +%j`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+    command: "BDAY=`date -d REDACTED +%j | sed 's/\<0//g'`; TODAY=`date +%j | sed 's/\<0//g'`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
 
   - platform: command_line
     name: Birthday Countdown usertwo
     unit_of_measurement: days
     scan_interval: 3600
-    command: "BDAY=`date -d REDACTED +%j`; TODAY=`date +%j`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+    command: "BDAY=`date -d REDACTED +%j | sed 's/\<0//g'`; TODAY=`date +%j | sed 's/\<0//g'`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
 
   - platform: command_line
     name: Birthday Countdown userone
     unit_of_measurement: days
     scan_interval: 3600
-    command: "BDAY=`date -d REDACTED +%j`; TODAY=`date +%j`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+    command: "BDAY=`date -d REDACTED +%j | sed 's/\<0//g'`; TODAY=`date +%j | sed 's/\<0//g'`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
 
         ##########################################################
         ## Sensor Node 1 - Office
