@@ -347,9 +347,9 @@
 
   System:
     entities:
-      - sensor.cpu_used
+      - sensor.cpu_load_total
       - sensor.cpu_temp
-      - sensor.ram_used
+      - sensor.memory_use_percent
       - sensor.ha_db_size
       - sensor.ha_uptime
       - sensor.ha_last_reboot
