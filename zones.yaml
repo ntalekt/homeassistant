@@ -43,3 +43,9 @@
   longitude: !secret k_longitude
   radius: 150
   icon: mdi:school
+
+- name: !secret bg_name
+  latitude: !secret bg_latitude
+  longitude: !secret bg_longitude
+  radius: 150
+  icon: mdi:human-child

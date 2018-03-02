@@ -233,7 +233,7 @@
           master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
-          what: "usertwo has left work and will arrive at REDACTED REDACTED in about {{states('sensor.usertwo_to_REDACTED')}} minutes."
+          what: "usertwo has left work and will arrive at the REDACTED in about {{states('sensor.usertwo_to_REDACTED')}} minutes."
 
         ##########################################################
         ## Sonos - usertwo Arrived REDACTED
@@ -263,7 +263,7 @@
           master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
-          what: 'usertwo has arrived at REDACTED REDACTED.'
+          what: 'usertwo has arrived at the REDACTED.'
 
         ##########################################################
         ## Sonos - usertwo Left REDACTED to REDACTED
@@ -294,7 +294,7 @@
           master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
-          what: "usertwo has left REDACTED REDACTED and will arrive at REDACTED REDACTED in about {{states('sensor.usertwo_to_REDACTED')}} minutes."
+          what: "usertwo has left the REDACTED and will arrive at REDACTED REDACTED in about {{states('sensor.usertwo_to_REDACTED')}} minutes."
 
         ##########################################################
         ## Sonos - usertwo Arrived REDACTED
