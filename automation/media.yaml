@@ -240,7 +240,7 @@
         option: "None"
     - service: media_player.sonos_join
       data_template:
-        master: media_player.chalkboard_room
+        master: media_player.office
         entity_id:
           - media_player.chalkboard_room
           - media_player.kitchen
@@ -264,7 +264,7 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.chalkboard_room
+        master: media_player.office
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
@@ -288,7 +288,7 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.chalkboard_room
+        master: media_player.office
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
@@ -306,7 +306,7 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.chalkboard_room
+        entity_id: media_player.office
         source: "All '90s"
     - service: homeassistant.turn_off
       entity_id:
@@ -340,7 +340,7 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.chalkboard_room
+        master: media_player.office
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
@@ -358,7 +358,7 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.chalkboard_room
+        entity_id: media_player.office
         source: 'All Classical'
     - service: homeassistant.turn_off
       entity_id:
@@ -392,7 +392,7 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.chalkboard_room
+        master: media_player.office
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
@@ -410,7 +410,7 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.chalkboard_room
+        entity_id: media_player.office
         source: "Little Kids' Music"
     - service: homeassistant.turn_off
       entity_id:
@@ -444,7 +444,7 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.chalkboard_room
+        master: media_player.office
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
@@ -462,7 +462,7 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.chalkboard_room
+        entity_id: media_player.office
         source: 'Smooth Jazz'
     - service: homeassistant.turn_off
       entity_id:
@@ -496,7 +496,7 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.chalkboard_room
+        master: media_player.office
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
@@ -514,7 +514,7 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.chalkboard_room
+        entity_id: media_player.office
         source: 'Top Hip-Hop'
     - service: homeassistant.turn_off
       entity_id:
@@ -548,7 +548,7 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.chalkboard_room
+        master: media_player.office
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
@@ -566,7 +566,7 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.chalkboard_room
+        entity_id: media_player.office
         source: 'Top Pop'
     - service: homeassistant.turn_off
       entity_id:
@@ -600,7 +600,7 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.chalkboard_room
+        master: media_player.office
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
@@ -618,7 +618,7 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.chalkboard_room
+        entity_id: media_player.office
         source: 'Caffeine for Your Ears'
     - service: homeassistant.turn_off
       entity_id:
@@ -652,7 +652,7 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.chalkboard_room
+        master: media_player.office
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
@@ -670,7 +670,7 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.chalkboard_room
+        entity_id: media_player.office
         source: 'Coffee Shop Pop'
     - service: homeassistant.turn_off
       entity_id:
@@ -705,7 +705,7 @@
   action:
     - service: media_player.sonos_join
       data:
-        master: media_player.chalkboard_room
+        master: media_player.office
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
@@ -723,7 +723,7 @@
     - delay: '00:00:01'
     - service: media_player.select_source
       data:
-        entity_id: media_player.chalkboard_room
+        entity_id: media_player.office
         source: 'Devastating Dubstep Drops'
     - service: homeassistant.turn_off
       entity_id:

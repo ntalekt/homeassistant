@@ -17,7 +17,7 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: >
@@ -131,7 +131,7 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: 'Welcome home userone.'
@@ -199,7 +199,7 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: 'usertwo has arrived at work.'
@@ -230,7 +230,7 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: "usertwo has left work and will arrive at REDACTED REDACTED in about {{states('sensor.usertwo_to_REDACTED')}} minutes."
@@ -260,7 +260,7 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: 'usertwo has arrived at REDACTED REDACTED.'
@@ -291,7 +291,7 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: "usertwo has left REDACTED REDACTED and will arrive at REDACTED REDACTED in about {{states('sensor.usertwo_to_REDACTED')}} minutes."
@@ -321,7 +321,7 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: 'usertwo has arrived at REDACTED school.'
@@ -352,7 +352,7 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: "usertwo has left REDACTED REDACTED and will arrive home in about {{states('sensor.usertwo_to_home')}} minutes."
@@ -390,7 +390,7 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: 'The garage has been open for 30 minutes.'
