@@ -1,0 +1,39 @@
+#################################################################
+## Climate
+#################################################################
+
+      #################################################################
+      ## Turn off Nest if patio door is open for more then 30min
+      #################################################################
+
+- alias: Climate - Nest Off If Patio Door Open for 30min
+  trigger:
+    - platform: time
+      minutes: '/30'
+  condition:
+    - condition: state
+      entity_id: sensor.patio_door
+      state: 'Open'
+    - condition: state
+      entity_id: input_boolean.wfh_mode
+      state: 'on'
+  action:
+    - service: climate.set_away_mode
+      data:
+        away_mode: 'True'
+        entity_id: climate.downstairs
+
+      #################################################################
+      ## Turn on Nest if patio door is closed
+      #################################################################
+
+- alias: Climate - Downstairs Nest On If Patio Door Closed
+  trigger:
+    - platform: state
+      entity_id: sensor.patio_door
+      to: 'Closed'
+  action:
+    - service: climate.set_away_mode
+      data:
+        away_mode: 'False'
+        entity_id: climate.downstairs

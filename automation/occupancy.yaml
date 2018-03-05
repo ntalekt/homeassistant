@@ -146,3 +146,38 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.shop_occupancy     
+        ##########################################################
+        ## WFH Mode
+        ##########################################################
+
+- alias: Occupancy - WFH Home On
+  trigger:
+    - platform: time
+      at: '07:00:00'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.wfh_mode
+
+- alias: Occupancy - WFH Home Off
+  trigger:
+    - platform: time
+      at: '16:00:00'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.wfh_mode

@@ -323,6 +323,7 @@
       - input_boolean.vacation_mode
       - input_boolean.guest_mode
       - input_boolean.house_cleaning_mode
+      - input_boolean.wfh_mode
 
   Sonos:
     entities:
