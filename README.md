@@ -130,7 +130,7 @@ Home Assistant Version: 0.64.2
 
 ## Scripts/Customizations
 * Life360 integration via shell mqtt broker found [here](https://community.home-assistant.io/t/life-360-support/1690)
-* Home Assistant mysql database size sensor found [here](https://community.home-assistant.io/t/large-homeassistant-database-files/4201/234?u=ntalekt)
+* ~~Home Assistant mysql database size sensor found [here](https://community.home-assistant.io/t/large-homeassistant-database-files/4201/234?u=ntalekt)~~ Using the [SQL Sensor](https://home-assistant.io/components/sensor.sql/) now.
 * Cox internet usage web parser script found [here](https://community.home-assistant.io/t/cox-communications-internet-usage/28565?u=ntalekt)
 * WAN test script found [here](https://community.home-assistant.io/t/wan-test-script-quick-and-dirty/30699)
 

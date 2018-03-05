@@ -45,11 +45,13 @@
     name: Installed HA Version
     scan_interval: 3600
 
-  - platform: command_line
-    command: /home/homeassistant/.homeassistant/check_db_size.sh
-    name: HA DB Size
-#    scan_interval: 300
-    unit_of_measurement: "GB"
+  - platform: sql
+    db_url: mysql://REDACTED:REDACTED@REDACTED/hass_db
+    queries:
+      - name: HA DB Size
+        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024 / 1024, 2) "value" FROM information_schema.tables WHERE table_schema="hass_db" GROUP BY table_schema;'
+        column: 'value'
+        unit_of_measurement: GB
 
   - platform: command_line
     name: CPU Temp
