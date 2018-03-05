@@ -23,7 +23,7 @@
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.vacation_mode
-      
+
         ##########################################################
         ## Turn off Vacation Mode when Home
         ##########################################################
@@ -41,7 +41,7 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.vacation_mode
-      
+
         ##########################################################
         ## Set Nest to Away if Vacation Mode is On
         ##########################################################
@@ -54,13 +54,13 @@
       to: 'on'
   action:
     - service: climate.set_away_mode
-      entity_id: climate.downstairs
       data:
-        away_mode: 'True'      
+        away_mode: 'True'
+        entity_id: climate.downstairs
     - service: climate.set_away_mode
-      entity_id: climate.upstairs
       data:
-        away_mode: 'True'  
+        away_mode: 'True'
+        entity_id: climate.upstairs
 
         ##########################################################
         ## Set Nest to Home if Vacation Mode is Off
@@ -74,10 +74,10 @@
       to: 'off'
   action:
     - service: climate.set_away_mode
-      entity_id: climate.downstairs
       data:
-        away_mode: 'False'      
+        away_mode: 'False'
+        entity_id: climate.downstairs
     - service: climate.set_away_mode
-      entity_id: climate.upstairs
       data:
-        away_mode: 'False'          
+        away_mode: 'False'
+        entity_id: climate.upstairs        

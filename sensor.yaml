@@ -656,6 +656,10 @@
       {% endif %}
     unit_of_measurement: "GB per day"
 
+        ##########################################################
+        ## Days in current month
+        ##########################################################
+
   - platform: command_line
     command: cal $(date +"%m %Y") | awk 'NF {DAYS = $NF}; END {print DAYS}'
     name: Days In Current Month

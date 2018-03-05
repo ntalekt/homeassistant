@@ -873,6 +873,7 @@
         - media_player.kitchen
         - media_player.loft
         - media_player.office
+
         ##########################################################
         ## Sonos stop activity from input boolean Off
         ##########################################################

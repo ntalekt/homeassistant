@@ -5,7 +5,7 @@
       #################################################################
       ## Office Occupancy
       #################################################################
-      
+
 - alias: Occupancy - Office turn on if motion detected
   trigger:
     - platform: state
@@ -15,11 +15,11 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.office_occupancy
-      
+
       #################################################################
       ## Reset Office Occupancy
       #################################################################
-      
+
 - alias: Occupancy - Office turn off after 30min of no motion
   trigger:
     - platform: state
@@ -30,11 +30,11 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.office_occupancy
-      
+
       #################################################################
       ## Living Room Occupancy
       #################################################################
-      
+
 - alias: Occupancy - Living turn on if motion detected
   trigger:
     - platform: state
@@ -44,11 +44,11 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.living_occupancy
-      
+
       #################################################################
       ## Reset Living Room Occupancy
       #################################################################
-      
+
 - alias: Occupancy - Living turn off after 30min of no motion
   trigger:
     - platform: state
@@ -59,7 +59,7 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.living_occupancy
-      
+
       #################################################################
       ## Garage Occupancy
       #################################################################
@@ -73,11 +73,11 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.garage_occupancy
-      
+
       #################################################################
       ## Reset Garage Occupancy
       #################################################################
-      
+
 - alias: Occupancy - Garage turn off after 10min of no motion
   trigger:
     - platform: state
@@ -91,7 +91,7 @@
 
       #################################################################
       ## Chalkboard Room Occupancy
-      #################################################################      
+      #################################################################
 
 - alias: Occupancy - Chalkboard turn on if motion detected
   trigger:
@@ -102,11 +102,11 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.chalkboard_occupancy
-      
+
       #################################################################
       ## Reset Chalkboard Room Occupancy
       #################################################################
-      
+
 - alias: Occupancy - Chalkboard turn off after 30min of no motion
   trigger:
     - platform: state
@@ -117,7 +117,7 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.chalkboard_occupancy
-      
+
       #################################################################
       ## Shop Occupancy
       #################################################################
@@ -131,11 +131,11 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.shop_occupancy
-      
+
       #################################################################
       ## Reset Shop Occupancy
       #################################################################
-      
+
 - alias: Occupancy - Shop turn off after 10min of no motion
   trigger:
     - platform: state
@@ -145,7 +145,8 @@
         minutes: 10
   action:
     - service: input_boolean.turn_off
-      entity_id: input_boolean.shop_occupancy     
+      entity_id: input_boolean.shop_occupancy
+
         ##########################################################
         ## WFH Mode
         ##########################################################
