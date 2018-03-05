@@ -226,19 +226,6 @@
       - volume_size_used
       - volume_percentage_used
 
-#  - platform: yahoo_finance
-#    symbols:
-#      - WFC
-
-#  - platform: coinmarketcap
-#    currency: ethereum
-
-#  - platform: coinmarketcap
-#    currency: bitcoin
-
-#  - platform: coinmarketcap
-#    currency: dash
-
         ##########################################################
         ## Templates
         ##########################################################
