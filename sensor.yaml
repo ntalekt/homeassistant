@@ -594,6 +594,20 @@
       {% endif %}
 
   - platform: file
+    name: Cox Perc
+    file_path: /home/homeassistant/.homeassistant/cox_usage.json
+    value_template: >
+      {% if value_json is defined %}
+        {% if value_json.dumUtilization | int == 0 %}
+          stats unavailable
+        {% else %}
+          {{ value_json.dumUtilization | int }}
+        {% endif %}
+      {% else %}
+        undefined
+      {% endif %}
+
+  - platform: file
     name: Cox Time Left
     file_path: /home/homeassistant/.homeassistant/cox_usage.json
     value_template: >

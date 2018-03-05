@@ -434,7 +434,9 @@
       - sensor.pihole_dns_queries_today
 
   Deluge:
+    control: hidden
     entities:
+      - switch.deluge_switch
       - sensor.deluge_down_speed
       - sensor.deluge_up_speed
       - binary_sensor.deluge_process

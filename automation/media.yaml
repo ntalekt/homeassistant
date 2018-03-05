@@ -889,3 +889,35 @@
         - media_player.kitchen
         - media_player.loft
         - media_player.office
+
+        ##########################################################
+        ## Pause Deluge if Cox utilization > 90%
+        ##########################################################
+
+- alias: Media - Pause Deluge if Cox Utilization Above 89
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.cox_perc
+      value_template: '{{ states.sensor.cox_perc.state | int }}'
+      above: 89
+  action:
+    - service: switch.turn_off
+      entity_id: switch.deluge_switch
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: "Deluge Turned Off, Cox = {{ states.sensor.cox_perc.state | int }} %"
+
+- alias: Media - Unpause Deluge if Cox Utilization Under 89
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.cox_perc
+      value_template: '{{ states.sensor.cox_perc.state | int }}'
+      below: 89
+  action:
+    - service: switch.turn_on
+      entity_id: switch.deluge_switch
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: "Deluge Turned On, Cox = {{ states.sensor.cox_perc.state | int }} %"

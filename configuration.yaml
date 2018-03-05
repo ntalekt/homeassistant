@@ -152,6 +152,7 @@ history: !include history.yaml
 zone: !include zones.yaml
 group: !include groups.yaml
 sensor: !include sensor.yaml
+switch: !include switch.yaml
 binary_sensor: !include binary_sensor.yaml
 input_select: !include input_select.yaml
 input_boolean: !include input_boolean.yaml

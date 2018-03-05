@@ -106,6 +106,7 @@ Home Assistant Version: 0.64.2
 * Start [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt-20&linkId=a3f1b5dc6cded9429966fb2cbe90ecf0) activity using [Amazon Echo Dot](https://www.amazon.com/gp/product/B015TJD0Y4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015TJD0Y4&linkCode=as2&tag=ntalekt-20&linkId=f75a8b4c616563e31e98c9cefd43d032) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/).
 * Power off [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt-20&linkId=a3f1b5dc6cded9429966fb2cbe90ecf0) activity using [Amazon Echo Dot](https://www.amazon.com/gp/product/B015TJD0Y4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015TJD0Y4&linkCode=as2&tag=ntalekt-20&linkId=f75a8b4c616563e31e98c9cefd43d032) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/).
 * Turn on SleepTime mode if [Xiaomi Aqara Smart Wireless Switch](https://www.gearbest.com/access-control/pp_626695.html) is pressed.
+* Pause [Deluge](https://home-assistant.io/components/switch.deluge/) if internet data usage > 90%.
 
 ### Sonos
 * Reset/Regroup all [Sonos PLAY:1](https://www.amazon.com/gp/product/B00EWCUK98/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK98&linkCode=as2&tag=ntalekt-20&linkId=35105866ec0a7f4c67dd1abea7958f5a) speakers at 6:00am every morning.
