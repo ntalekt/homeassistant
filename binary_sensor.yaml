@@ -173,3 +173,10 @@
     device_class: connectivity
     payload_on: "Up"
     payload_off: "Down"
+
+  - platform: command_line
+    name: Emby Process
+    command: 'ssh admin@REDACTED "/share/homes/admin/custom/check_emby.sh"'
+    device_class: connectivity
+    payload_on: "Up"
+    payload_off: "Down"

@@ -389,6 +389,7 @@
       - sensor.nas2_free_space_datavol1
       - sensor.nas2_used_space_datavol1
       - sensor.nas2_volume_used_datavol1
+      - binary_sensor.emby_process
 
   Devices:
     entities:

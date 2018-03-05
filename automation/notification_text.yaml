@@ -292,6 +292,11 @@
       for:
         minutes: 10
     - platform: state
+      entity_id: binary_sensor.emby_process
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
       entity_id: binary_sensor.media_center_r_yeestrip
       to: 'off'
       for:
