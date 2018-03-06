@@ -17,3 +17,13 @@
       #################################################################
 
   - platform: owntracks
+
+      #################################################################
+      ## Netgear Fix (R7800): https://github.com/home-assistant/home-assistant/issues/11142
+      #################################################################
+
+  - platform: netgear
+    host: REDACTED
+    port: 80
+    username: !secret nas_username
+    password: !secret nas_pass

@@ -27,4 +27,19 @@
       weekday:
         - mon
   action:
-    service: tts.clear_cache
+    service: tts.clear_cache        ##########################################################
+        ## New device connected
+        ##########################################################
+
+- alias: System - New device connected
+  trigger:
+    - platform: event
+      event_type: device_tracker_new_device
+  action:
+    - service: notify.pushbullet
+      data_template:
+        message: >
+          New device:
+          {{trigger.event.data.host_name}}
+          ({{trigger.event.data.entity_id}})
+        title: Home Assistant
