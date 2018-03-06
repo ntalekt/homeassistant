@@ -142,6 +142,9 @@
     - condition: state
       entity_id: sensor.upstairs_thermostat_away_mode
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.wfh_mode
+      state: 'off'
   action:
     - service: notify.pushbullet
       data:
@@ -168,6 +171,9 @@
       state: 'off'
     - condition: state
       entity_id: sensor.upstairs_thermostat_away_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.wfh_mode
       state: 'off'
   action:
     - service: notify.pushbullet
