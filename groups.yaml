@@ -29,6 +29,7 @@
       - group.chalkboard_room_lights
       - group.exterior_lights
       - group.master_vanity_lights
+      - group.test_lights
 
   first_floor:
     name: First Floor
@@ -246,6 +247,11 @@
     name: Chalkboard Room Lights
     entities:
       - switch.wemominicactus
+
+  test_lights:
+    name: Test Lights
+    entities:
+      - switch.wemo_insight
 
   media_center_lights:
     name: Media Center Accents
