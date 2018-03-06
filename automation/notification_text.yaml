@@ -228,6 +228,11 @@
       for:
         minutes: 10
     - platform: state
+      entity_id: binary_sensor.sonos_office
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
       entity_id: binary_sensor.ring_pro
       to: 'off'
       for:
@@ -273,6 +278,11 @@
       for:
         minutes: 10
     - platform: state
+      entity_id: binary_sensor.back_yard_camera
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
       entity_id: binary_sensor.nginx_status
       to: 'off'
       for:
@@ -309,6 +319,11 @@
         minutes: 10
     - platform: state
       entity_id: binary_sensor.media_center_l_yeestrip
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.wemo_mini_cactus
       to: 'off'
       for:
         minutes: 10
