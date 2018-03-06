@@ -901,6 +901,10 @@
       entity_id: sensor.cox_perc
       value_template: '{{ states.sensor.cox_perc.state | int }}'
       above: 89
+  condition:
+    - condition: state
+      entity_id: switch.deluge_switch
+      state: 'on'
   action:
     - service: switch.turn_off
       entity_id: switch.deluge_switch
@@ -915,6 +919,10 @@
       entity_id: sensor.cox_perc
       value_template: '{{ states.sensor.cox_perc.state | int }}'
       below: 89
+  condition:
+    - condition: state
+      entity_id: switch.deluge_switch
+      state: 'off'
   action:
     - service: switch.turn_on
       entity_id: switch.deluge_switch
