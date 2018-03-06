@@ -28,7 +28,6 @@
       - group.living_room_lights
       - group.chalkboard_room_lights
       - group.exterior_lights
-      - group.master_vanity_lights
       - group.test_lights
 
   first_floor:
@@ -221,9 +220,9 @@
     name: Office
     control: hidden
     entities:
-      - sensor.office_temperature
+#      - sensor.office_temperature
       - sensor.temperature_158d0001f50dcb
-      - sensor.office_humidity
+#      - sensor.office_humidity
       - sensor.humidity_158d0001f50dcb
 #      - sensor.office_ldr
 #      - sensor.office_pir
@@ -258,11 +257,6 @@
     entities:
       - light.media_center_l_strip
       - light.media_center_r_strip
-
-  master_vanity_lights:
-    name: Master Bathroom Vanity
-    entities:
-      - light.master_vanity_3
 
   loft_lights:
     name: Loft Lights

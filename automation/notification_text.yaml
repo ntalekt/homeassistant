@@ -405,27 +405,3 @@
       data:
         title: "Home Assistant"
         message: "The garage door has been open for 30 minutes."
-
-        ##########################################################
-        ## Notify if Gearbest price drops
-        ##########################################################
-
-- alias: Notification - Alert when Gearbest price drops
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.gearbest_door_sensor_decreasing
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.gearbest_motion_sensor_decreasing
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.gearbest_switch_decreasing
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.gearbest_temp_sensor_decreasing
-      to: 'on'
-  action:
-    - service: notify.pushbullet
-      data_template:
-        title: "Home Assistant"
-        message: '{{trigger.to_state.attributes.friendly_name}} price has dropped.'
