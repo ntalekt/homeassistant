@@ -236,6 +236,14 @@
       icon: mdi:fire
     sensor.downstairs_heat_on_week:
       icon: mdi:fire
+    sensor.upstairs_eco_on_today:
+      icon: mdi:leaf
+    sensor.upstairs_eco_on_week:
+      icon: mdi:leaf
+    sensor.downstairs_eco_on_today:
+      icon: mdi:leaf
+    sensor.downstairs_eco_on_week:
+      icon: mdi:leaf
 
         ##########################################################
         ## Doorbell

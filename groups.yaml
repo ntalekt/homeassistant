@@ -455,6 +455,8 @@
       - sensor.downstairs_ac_on_week
       - sensor.downstairs_heat_on_today
       - sensor.downstairs_heat_on_week
+      - sensor.downstairs_eco_on_today
+      - sensor.downstairs_eco_on_week
 
   Upstairs HVAC:
     entities:
@@ -462,3 +464,5 @@
       - sensor.upstairs_ac_on_week
       - sensor.upstairs_heat_on_today
       - sensor.upstairs_heat_on_week
+      - sensor.upstairs_eco_on_today
+      - sensor.upstairs_eco_on_week
