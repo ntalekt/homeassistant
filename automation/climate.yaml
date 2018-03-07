@@ -3,13 +3,13 @@
 #################################################################
 
       #################################################################
-      ## Turn off Nest if patio door is open for more then 30min
+      ## Turn off Nest if patio door is open for more then 10min
       #################################################################
 
-- alias: Climate - Nest Off If Patio Door Open for 30min
+- alias: Climate - Nest Off If Patio Door Open for 10min
   trigger:
     - platform: time
-      minutes: '/30'
+      minutes: '/10'
   condition:
     - condition: state
       entity_id: sensor.patio_door

@@ -126,7 +126,7 @@ Home Assistant Version: 0.64.3
 ### Vacation/Climate
 * Turn vacation mode on when household is gone for 24 hours.
 * Put [Nest Thermostats](https://www.amazon.com/gp/product/B0131RG6VK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0131RG6VK&linkCode=as2&tag=ntalekt-20&linkId=e0db21f4ff5fe08d4d88f64ae040fcc3) in away mode when vacation mode active.
-* Put [Nest Thermostats](https://www.amazon.com/gp/product/B0131RG6VK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0131RG6VK&linkCode=as2&tag=ntalekt-20&linkId=e0db21f4ff5fe08d4d88f64ae040fcc3) in away mode when patio door is open for 30min.
+* Put [Nest Thermostats](https://www.amazon.com/gp/product/B0131RG6VK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0131RG6VK&linkCode=as2&tag=ntalekt-20&linkId=e0db21f4ff5fe08d4d88f64ae040fcc3) in away mode when patio door is open for 10min.
 
 ## Scripts/Customizations
 * Life360 integration via shell mqtt broker found [here](https://community.home-assistant.io/t/life-360-support/1690)
