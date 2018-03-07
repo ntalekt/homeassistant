@@ -142,13 +142,13 @@
             {%- macro greeting_sentence(person) -%}
             {{ [
             "Welcome back home " ~ person,
-            "Guess who is home? " ~ person + " is!",
+            "Guess who is home. " ~ person + " is!",
             person + " is now in the house.",
             "Welcome Home " ~ person + ".  We have missed you.",
-            "Our home is now complete, Rest your head and relax your feet! Welcome Back " ~ person,
+            "Our home is now complete, rest your head and relax your feet! Welcome Back " ~ person,
             "Life is like a song, you’re back where you belong. Welcome home " ~ person,
             "Hey there " ~ person + " Welcome Home!",
-            "Knock Knock. Who is There? " ~ person + " is!",
+            "Knock Knock. Who is there. " ~ person + " is!",
             "I know a secret! " ~ person + " is home!"
             ] | random }}
             {%- endmacro -%}
