@@ -28,7 +28,6 @@
       - group.living_room_lights
       - group.chalkboard_room_lights
       - group.exterior_lights
-      - group.test_lights
 
   first_floor:
     name: First Floor
@@ -229,6 +228,7 @@
       - light.office_led
       - binary_sensor.office_occupancy_on
       - light.gateway_light_34ce009244d5
+      - switch.wemo_insight
       - media_player.office
 
   exterior_lights:
@@ -246,11 +246,6 @@
     name: Chalkboard Room Lights
     entities:
       - switch.wemominicactus
-
-  test_lights:
-    name: Test Lights
-    entities:
-      - switch.wemo_insight
 
   media_center_lights:
     name: Media Center Accents

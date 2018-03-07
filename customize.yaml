@@ -99,10 +99,10 @@
       friendly_name: Loft Temperature
     sensor.temperature_158d0001f50dcb:
       icon: mdi:thermometer-lines
-      friendly_name: Office Temperature Xiaomi
+      friendly_name: Office Temperature
     sensor.humidity_158d0001f50dcb:
       icon: mdi:water-percent
-      friendly_name: Office Humidity Xiaomi
+      friendly_name: Office Humidity
     sensor.cox_time_left:
       icon: mdi:calendar-clock
       friendly_name: Time Left
@@ -185,6 +185,9 @@
     light.office_led:
       icon: mdi:led-on
       friendly_name: LED
+    switch.wemo_insight:
+      icon: mdi:fan
+      friendly_name: Office Fan
 
         ##########################################################
         ## Thermostat

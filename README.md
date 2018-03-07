@@ -29,6 +29,7 @@ Home Assistant Version: 0.64.3
 * [Xiaomi Aqara Window Door Sensor](https://www.gearbest.com/access-control/pp_626703.html)
 * [Xiaomi Aqara Smart Wireless Switch](https://www.gearbest.com/access-control/pp_626695.html) x2
 * [Wemo Mini Smart Plug](https://www.amazon.com/Smart-Enabled-Amazon-Google-Assistant/dp/B01NBI0A6R/ref=sr_1_2?s=lamps-light&ie=UTF8&qid=1515079368&sr=1-2&keywords=wemo+mini)
+* [Wemo Insight Smart Plug](https://www.amazon.com/Insight-Monitoring-Enabled-Anywhere-Assistant/dp/B01DBXNYCS/ref=sr_1_1_sspa?ie=UTF8&qid=1520437804&sr=8-1-spons&keywords=wemo+insight&psc=1)
 
 #### Camera
 * [Amcrest IP3M-943W Camera](https://www.amazon.com/Amcrest-Outdoor-3-Megapixel-Wireless-Security/dp/B01I01Z1M2/ref=sr_1_1_sspa?s=electronics&ie=UTF8&qid=1514915741&sr=1-1-spons&keywords=ip3m-943w&psc=1&smid=AM1AKWRN957PC)
@@ -127,6 +128,7 @@ Home Assistant Version: 0.64.3
 * Turn vacation mode on when household is gone for 24 hours.
 * Put [Nest Thermostats](https://www.amazon.com/gp/product/B0131RG6VK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0131RG6VK&linkCode=as2&tag=ntalekt-20&linkId=e0db21f4ff5fe08d4d88f64ae040fcc3) in away mode when vacation mode active.
 * Put [Nest Thermostats](https://www.amazon.com/gp/product/B0131RG6VK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0131RG6VK&linkCode=as2&tag=ntalekt-20&linkId=e0db21f4ff5fe08d4d88f64ae040fcc3) in away mode when patio door is open for 10min.
+* Toggle office fan on/off based on occupancy using * [Wemo Insight Smart Plug](https://www.amazon.com/Insight-Monitoring-Enabled-Anywhere-Assistant/dp/B01DBXNYCS/ref=sr_1_1_sspa?ie=UTF8&qid=1520437804&sr=8-1-spons&keywords=wemo+insight&psc=1).
 
 ## Scripts/Customizations
 * Life360 integration via shell mqtt broker found [here](https://community.home-assistant.io/t/life-360-support/1690)

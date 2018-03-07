@@ -37,3 +37,29 @@
       data:
         away_mode: 'False'
         entity_id: climate.downstairs
+
+      #################################################################
+      ## Turn on office fan if office is occupied
+      #################################################################
+
+- alias: Climate - Office Fan On when Occupied
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_occupancy
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.wemo_insight
+
+      #################################################################
+      ## Turn Off office fan if not occupied
+      #################################################################
+
+- alias: Climate - Office Fan Off when Not Occupied
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_occupancy
+      to: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.wemo_insight
