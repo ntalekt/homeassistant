@@ -163,6 +163,9 @@
         - wed
         - thu
         - fri
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.wfh_mode
@@ -179,6 +182,9 @@
         - wed
         - thu
         - fri
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.wfh_mode
