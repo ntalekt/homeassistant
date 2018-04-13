@@ -131,7 +131,7 @@ xiaomi_aqara:
 
 zwave:
   usb_path: /dev/ttyACM0
-  new_entity_ids: true
+#  new_entity_ids: true
 #  config_path: /srv/homeassistant/lib/python3.4/site-packages/python_openzwave/ozw_config
   polling_interval: 30000
   device_config:
