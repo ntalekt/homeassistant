@@ -10,6 +10,8 @@ homeassistant:
   unit_system: imperial
   time_zone: !secret homeassistant_timezone
   customize: !include customize.yaml
+  whitelist_external_dirs:
+     - /home/homeassistant/.homeassistant/
 
 frontend:
 updater:
