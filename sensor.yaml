@@ -570,7 +570,7 @@
 
   - platform: file
     name: Cox Utilization
-    file_path: /home/homeassistant/.homeassistant/cox_usage.json
+    file_path: !secret cox_file_path
     value_template: >
       {% if value_json is defined %}
         {% if value_json.dumUsage | int == 0 and value_json.dumLimit | int == 0 and value_json.dumUtilization | int == 0 %}
@@ -584,7 +584,7 @@
 
   - platform: file
     name: Cox Perc
-    file_path: /home/homeassistant/.homeassistant/cox_usage.json
+    file_path: !secret cox_file_path
     value_template: >
       {% if value_json is defined %}
         {% if value_json.dumUtilization | int == 0 %}
@@ -598,7 +598,7 @@
 
   - platform: file
     name: Cox Time Left
-    file_path: /home/homeassistant/.homeassistant/cox_usage.json
+    file_path: !secret cox_file_path
     value_template: >
       {% if value_json is defined %}
         {% if value_json.dumDaysLeft is defined %}
@@ -613,7 +613,7 @@
 
   - platform: file
     name: Cox Avg GB Current
-    file_path: /home/homeassistant/.homeassistant/cox_usage.json
+    file_path: !secret cox_file_path
     value_template: >
       {% if value_json is defined %}
         {% if value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
@@ -630,7 +630,7 @@
 
   - platform: file
     name: Cox Avg GB Remaining
-    file_path: /home/homeassistant/.homeassistant/cox_usage.json
+    file_path: !secret cox_file_path
     value_template: >
       {% if value_json is defined %}
         {% if value_json.dumLimit | int == 0 and value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
