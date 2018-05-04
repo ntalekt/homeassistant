@@ -215,10 +215,10 @@
       icon: mdi:fan
     binary_sensor.upstairs_thermostat_online:
       friendly_name: Nest Upstairs
-      icon: mdi:nest-thermostat
+      icon: mdi:thermostat
     binary_sensor.downstairs_thermostat_online:
       friendly_name: Nest Downstairs
-      icon: mdi:nest-thermostat
+      icon: mdi:thermostat
     sensor.upstairs_ac_on_today:
       icon: mdi:air-conditioner
     sensor.upstairs_ac_on_week:
