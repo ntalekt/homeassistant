@@ -140,10 +140,6 @@
       icon: mdi:certificate
     sensor.userones_iphone_battery_level:
       friendly_name: userone iPhone (Work)
-    sensor.ipad_battery_level:
-      friendly_name: Green iPad
-    sensor.REDACTEDs_ipad_battery_level:
-      friendly_name: Pink iPad
 
         ##########################################################
         ## Weather

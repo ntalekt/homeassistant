@@ -140,11 +140,8 @@
     name: Battery Levels
     entities:
       - sensor.userone_phone_battery
-      - sensor.userone_tablet_battery
       - sensor.userones_iphone_battery_level
       - sensor.usertwo_phone_battery
-      - sensor.REDACTEDs_ipad_battery_level
-      - sensor.ipad_battery_level
       - sensor.big_garage_tilt_battery
       - sensor.userthree_temp_battery
       - sensor.userfour_temp_battery
