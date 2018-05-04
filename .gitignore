@@ -21,3 +21,5 @@ tts/
 deps/
 n.jpg
 r.jpg
+*.json
+cox_usage.json
