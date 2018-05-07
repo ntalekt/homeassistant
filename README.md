@@ -11,8 +11,6 @@
 </div>
 This is my <a href="https://home-assistant.io">Home Assistant</a> configuration which is running on a <a href="https://www.amazon.com/gp/product/B01CD5VC92/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01CD5VC92&linkCode=as2&tag=ntalekt0c-20&linkId=a47341c555e64a096e2d9eb9af323626">Raspberry Pi 3</a> running <a href="https://home-assistant.io/docs/installation/hassbian/installation/">Hassbian</a>. When starting with home automation I found many well documented configurations and drew inspiration from them in order to achieve my automation goals. I wanted to share my success with the community and hopefully help others on their journey.
 
-Home Assistant Version: 0.68.1
-
 #### Platform
 * Hardware
   * [Raspberry PI 3 Model B](https://www.amazon.com/gp/product/B01CD5VC92/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01CD5VC92&linkCode=as2&tag=ntalekt0c-20&linkId=a47341c555e64a096e2d9eb9af323626)
@@ -20,6 +18,7 @@ Home Assistant Version: 0.68.1
   * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
 * Software
   * [Home Assistant Hassbian v1.31 (Python 3.5.3)](https://www.home-assistant.io/docs/installation/hassbian/installation/)
+    * Home Assistant Version: 0.68.1
   * [NGNIX proxy](https://home-assistant.io/docs/ecosystem/nginx/)
   * SSL via [SSLs](https://www.ssls.com/)
 
