@@ -1,14 +1,28 @@
-# [![Build Status](https://travis-ci.org/ntalekt/homeassistant.svg?branch=master)](https://travis-ci.org/ntalekt/homeassistant) Home Assistant Config by ntalekt
-This is my [Home Assistant](https://home-assistant.io) configuration which is running on a [Raspberry PI 3 ](https://www.amazon.com/gp/product/B01CD5VC92/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01CD5VC92&linkCode=as2&tag=ntalekt0c-20&linkId=a47341c555e64a096e2d9eb9af323626) running [Hassbian](https://home-assistant.io/docs/installation/hassbian/installation/).
+<h1 align="center">
+  Home Assistant Config by ntalekt
+</h1>
+<h4 align="center">Be sure to :star: my repo so you can keep up to date on the progress!</h4>
+<div align="center">
+  <h4>
+    <a href="https://travis-ci.org/ntalekt/homeassistant"><img src="https://travis-ci.org/ntalekt/homeassistant.svg?branch=master"/></a>
+    <a href="https://github.com/ntalekt/homeassistant/stargazers"><img src="https://img.shields.io/github/stars/ntalekt/homeassistant.svg"/></a>
+    <a href="https://github.com/ntalekt/homeassistant/commits/master"><img src="https://img.shields.io/github/last-commit/ntalekt/homeassistant.svg"/></a>
+  </h4>
+</div>
+<p><font size="3">
+This is my [Home Assistant](https://home-assistant.io) configuration which is running on a [Raspberry Pi 3 ](https://www.amazon.com/gp/product/B01CD5VC92/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01CD5VC92&linkCode=as2&tag=ntalekt0c-20&linkId=a47341c555e64a096e2d9eb9af323626) running [Hassbian](https://home-assistant.io/docs/installation/hassbian/installation/). When starting with home automation I found many well documented configurations and drew inspiration from them in order to achieve my automation goals. I wanted to share my success with the community and hopefully help others on their journey.</p>
 
 Home Assistant Version: 0.68.1
 
-## Platform
-* [Raspberry PI 3 Model B](https://www.amazon.com/gp/product/B01CD5VC92/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01CD5VC92&linkCode=as2&tag=ntalekt0c-20&linkId=a47341c555e64a096e2d9eb9af323626)
-* [SanDisk Ultra 32GB microSDHC](https://www.amazon.com/gp/product/B073JWXGNT/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B073JWXGNT&linkCode=as2&tag=ntalekt0c-20&linkId=efa468860daf18e843eadc5ee34729c7)
-* [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
-* [NGNIX proxy](https://home-assistant.io/docs/ecosystem/nginx/)
-* SSL via [SSLs](https://www.ssls.com/)
+#### Platform
+* Hardware
+  * [Raspberry PI 3 Model B](https://www.amazon.com/gp/product/B01CD5VC92/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01CD5VC92&linkCode=as2&tag=ntalekt0c-20&linkId=a47341c555e64a096e2d9eb9af323626)
+  * [SanDisk Ultra 32GB microSDHC](https://www.amazon.com/gp/product/B073JWXGNT/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B073JWXGNT&linkCode=as2&tag=ntalekt0c-20&linkId=efa468860daf18e843eadc5ee34729c7)
+  * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
+* Software
+  * [Home Assistant Hassbian v1.31 (Python 3.5.3)](https://www.home-assistant.io/docs/installation/hassbian/installation/)
+  * [NGNIX proxy](https://home-assistant.io/docs/ecosystem/nginx/)
+  * SSL via [SSLs](https://www.ssls.com/)
 
 ## Devices
 #### Climate
