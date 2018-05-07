@@ -68,7 +68,6 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 
 ## Automations
 ### Notification Audio
-* ~~[TTS](https://home-assistant.io/components/tts.google/) "Good Morning" notification over all [Sonos speakers](https://www.amazon.com/gp/product/B00EWCUK1Q/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK1Q&linkCode=as2&tag=ntalekt0c-20&linkId=b90ba9470832833ea363027daabf948a). Includes templated date, birthday countdown, weather, to-do's etc.~~
 * [TTS](https://home-assistant.io/components/tts.google/) "Welcome home _User_" notification over all Sonos speakers.
 * [TTS](https://home-assistant.io/components/tts.google/) notification when _User_ arrives at specific [Zones](https://home-assistant.io/components/zone/).
 * [TTS](https://home-assistant.io/components/tts.google/) notification when _User_ leaves specific zones which includes travel time home.
@@ -99,12 +98,6 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * Interior loft lights ([Hue White Bulb](https://www.amazon.com/gp/product/B073SSK6P8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B073SSK6P8&linkCode=as2&tag=ntalekt0c-20&linkId=97fe4a915d8f531a8ce6697ee55f056c)) using [Amazon Echo Dot](https://www.amazon.com/gp/product/B01DFKC2SO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DFKC2SO&linkCode=as2&tag=ntalekt0c-20&linkId=bb902528d5689ae4e1163dd31b7c646d) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/).
 * Holiday interior lighting leveraging [Google Calendar Event](https://home-assistant.io/components/calendar.google/) to define the holiday.
 * Holiday interior lighting using [Amazon Echo Dot](https://www.amazon.com/gp/product/B01DFKC2SO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DFKC2SO&linkCode=as2&tag=ntalekt0c-20&linkId=bb902528d5689ae4e1163dd31b7c646d) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/).
-* ~~Interior loft lights ([Hue White Bulb](https://www.amazon.com/gp/product/B073SSK6P8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B073SSK6P8&linkCode=as2&tag=ntalekt0c-20&linkId=97fe4a915d8f531a8ce6697ee55f056c)) on at 30% 60 minutes before sunset if home.~~
-* ~~Interior loft lights ([Hue White Bulb](https://www.amazon.com/gp/product/B073SSK6P8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B073SSK6P8&linkCode=as2&tag=ntalekt0c-20&linkId=97fe4a915d8f531a8ce6697ee55f056c)) off at 8:10pm.~~
-* ~~Interior Media Center lights ([Yeelight WIFI RGB Strip](https://www.amazon.com/gp/product/B01LRT0B56/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&linkCode=as2&tag=ntalekt0c-20&linkId=34a9570cd0c747f448092913ac2dae60)) on at sunset.~~
-* ~~Interior Media Center lights ([Yeelight WIFI RGB Strip](https://www.amazon.com/gp/product/B01LRT0B56/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&linkCode=as2&tag=ntalekt0c-20&linkId=34a9570cd0c747f448092913ac2dae60)) off at 8:00pm.~~
-* ~~Interior Media Center lights ([Yeelight WIFI RGB Strip](https://www.amazon.com/gp/product/B01LRT0B56/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&linkCode=as2&tag=ntalekt0c-20&linkId=34a9570cd0c747f448092913ac2dae60)) on if motion detected after 8:00pm.~~
-* ~~Interior Media Center lights ([Yeelight WIFI RGB Strip](https://www.amazon.com/gp/product/B01LRT0B56/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&linkCode=as2&tag=ntalekt0c-20&linkId=34a9570cd0c747f448092913ac2dae60)) off if motion not detected for 5min after 8:00pm.~~
 
 
 ### Doorbell
@@ -130,7 +123,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * If no motion is detected after certain period of time turn off `input_boolean`.
 
 ### Sleep time
-* Turn off master TV after 30 minutes via [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt0c-20&linkId=ef1edfe63776ff2e3b5b4e7fdf8e3488.
+* Turn off master TV after 30 minutes via [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt0c-20&linkId=ef1edfe63776ff2e3b5b4e7fdf8e3488).
 
 ### System
 * Run script to collect Cox Internet usage hourly.
