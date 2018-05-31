@@ -410,6 +410,7 @@
       - binary_sensor.media_center_l_yeestrip
       - binary_sensor.media_center_r_yeestrip
       - binary_sensor.wemo_mini_cactus
+      - binary_sensor.wemo_insight
 
   Cox Internet Usage:
     entities:

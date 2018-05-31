@@ -142,6 +142,10 @@
     host: !secret wemo_mini_cactus_host
     name: Wemo Mini Cactus
 
+  - platform: ping
+    host: !secret wemo_insight_host
+    name: Wemo Insight
+
         ##########################################################
         ## WAN test script
         ##########################################################

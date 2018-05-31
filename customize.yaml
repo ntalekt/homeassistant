@@ -357,6 +357,8 @@
       icon: mdi:led-strip
     binary_sensor.wemo_mini_cactus:
       icon: mdi:power-socket-us
+    binary_sensor.wemo_insight:
+      icon: mdi:power-socket-us
 
         ##########################################################
         ## DNS
