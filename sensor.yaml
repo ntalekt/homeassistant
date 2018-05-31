@@ -12,11 +12,11 @@
       - summary
       - temperature
       - hourly_summary
-      - temperature_max
+      - temperature_high
       - wind_speed
       - humidity
       - pressure
-      - temperature_min
+      - temperature_low
       - precip_intensity
       - icon
 
@@ -487,7 +487,7 @@
           {% endif %}
 
       dark_sky_daily_high_low_template:
-        value_template: "{{ states('sensor.dark_sky_daily_high_temperature') }} / {{ states('sensor.dark_sky_daily_low_temperature') }}"
+        value_template: "{{ states('sensor.dark_sky_daytime_high_temperature') }} / {{ states('sensor.dark_sky_overnight_low_temperature') }}"
         friendly_name: 'High / Low Temperature'
         unit_of_measurement: "°F"
 
