@@ -53,7 +53,7 @@
 - alias: Guest - Set House Cleaning Mode on at 11am Mondays
   trigger:
     - platform: time
-      at: '11:00:00'
+      at: '10:00:00'
   condition:
     - condition: time
       weekday:
