@@ -17,7 +17,7 @@ updater:
   reporting: no
   include_used_components: true
 sun:
-ios:
+#ios:
 map:
 config:
 discovery:
