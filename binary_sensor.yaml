@@ -146,6 +146,10 @@
     host: !secret wemo_insight_host
     name: Wemo Insight
 
+  - platform: ping
+    host: !secret octopi_host
+    name: Octopi
+
         ##########################################################
         ## WAN test script
         ##########################################################

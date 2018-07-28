@@ -327,6 +327,11 @@
       to: 'off'
       for:
         minutes: 10
+    - platform: state
+      entity_id: binary_sensor.octopi
+      to: 'off'
+      for:
+        minutes: 10
   condition:
     condition: and
     conditions:
