@@ -22,7 +22,7 @@ map:
 config:
 discovery:
   ignore:
-    - sonos
+#    - sonos
     - netgear_router
     - harmony
     - google_cast

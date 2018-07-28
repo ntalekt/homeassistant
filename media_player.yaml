@@ -15,9 +15,9 @@
         ## Sonos
         ##########################################################
 
-  - platform: sonos
-    hosts:
-      - !secret sonos_chalkboard_host
-      - !secret sonos_den_host
-      - !secret sonos_kitchen_host
-      - !secret sonos_office_host
+#  - platform: sonos
+#    hosts:
+#      - !secret sonos_chalkboard_host
+#      - !secret sonos_den_host
+#      - !secret sonos_kitchen_host
+#      - !secret sonos_office_host
