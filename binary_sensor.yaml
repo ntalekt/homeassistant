@@ -188,3 +188,12 @@
 #    device_class: connectivity
 #    payload_on: "Up"
 #    payload_off: "Down"
+
+        ##########################################################
+        ## Octoprint
+        ##########################################################
+
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error

@@ -108,6 +108,12 @@ nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
 
+octoprint:
+  host: !secret octopi_host
+  api_key: !secret octoprint_api
+  bed: true
+  number_of_tools: 2
+
 ring:
   username: !secret ring_username
   password: !secret ring_password
