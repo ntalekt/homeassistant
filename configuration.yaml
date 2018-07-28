@@ -86,7 +86,7 @@ google:
 #    stream_source: rtsp
 
 emulated_hue:
-  type: alexa
+#  type: alexa
   host_ip: !secret ha_host
   listen_port: 8300
   expose_by_default: false
