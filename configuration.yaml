@@ -36,7 +36,7 @@ logbook: !include logbook.yaml
 http:
   # Using NGINX Reverse Proxy with SSL
   api_password: !secret ha_password
-  trusted_networks:
+  trusted_proxies:
     - 192.168.1.0/24
     - 127.0.0.1
   ip_ban_enabled: True
