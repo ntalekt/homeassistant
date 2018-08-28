@@ -505,49 +505,49 @@
     origin: !secret device_tracker_usertwo
     destination: zone.home
 
-  - platform: google_travel_time
-    name: usertwo To REDACTED
-    api_key: !secret google_travel_api
-    origin: !secret device_tracker_usertwo
-    destination: zone.REDACTED
+#  - platform: google_travel_time
+#    name: usertwo To REDACTED
+#    api_key: !secret google_travel_api
+#    origin: !secret device_tracker_usertwo
+#    destination: zone.REDACTED
 
-  - platform: google_travel_time
-    name: usertwo To REDACTED
-    api_key: !secret google_travel_api
-    origin: !secret device_tracker_usertwo
-    destination: zone.REDACTED
+#  - platform: google_travel_time
+#    name: usertwo To REDACTED
+#    api_key: !secret google_travel_api
+#    origin: !secret device_tracker_usertwo
+#    destination: zone.REDACTED
 
-  - platform: google_travel_time
-    name: usertwo To REDACTED
-    api_key: !secret google_travel_api
-    origin: !secret device_tracker_usertwo
-    destination: zone.REDACTED
+#  - platform: google_travel_time
+#    name: usertwo To REDACTED
+#    api_key: !secret google_travel_api
+#    origin: !secret device_tracker_usertwo
+#    destination: zone.REDACTED
 
-  - platform: google_travel_time
-    name: usertwo To Work
-    api_key: !secret google_travel_api
-    origin: !secret device_tracker_usertwo
-    destination: zone.work
-    options:
-      departure_time: 07:05:00
+#  - platform: google_travel_time
+#    name: usertwo To Work
+#    api_key: !secret google_travel_api
+#    origin: !secret device_tracker_usertwo
+#    destination: zone.work
+#    options:
+#      departure_time: 07:05:00
 
-  - platform: google_travel_time
-    name: userone To Home
-    api_key: !secret google_travel_api
-    origin: !secret device_tracker_userone
-    destination: zone.home
+#  - platform: google_travel_time
+#    name: userone To Home
+#    api_key: !secret google_travel_api
+#    origin: !secret device_tracker_userone
+#    destination: zone.home
 
-  - platform: google_travel_time
-    name: userone To REDACTED
-    api_key: !secret google_travel_api
-    origin: !secret device_tracker_userone
-    destination: zone.REDACTED
+#  - platform: google_travel_time
+#    name: userone To REDACTED
+#    api_key: !secret google_travel_api
+#    origin: !secret device_tracker_userone
+#    destination: zone.REDACTED
 
-  - platform: google_travel_time
-    name: userone To REDACTED
-    api_key: !secret google_travel_api
-    origin: !secret device_tracker_userone
-    destination: zone.REDACTED
+#  - platform: google_travel_time
+#    name: userone To REDACTED
+#    api_key: !secret google_travel_api
+#    origin: !secret device_tracker_userone
+#    destination: zone.REDACTED
 
         ##########################################################
         ## Cox Internet Usage
