@@ -12,6 +12,7 @@ homeassistant:
   customize: !include customize.yaml
   whitelist_external_dirs: !secret homeassistant_whitelist
 
+api:
 frontend:
 updater:
   reporting: no
@@ -35,7 +36,7 @@ logbook: !include logbook.yaml
 
 http:
   # Using NGINX Reverse Proxy with SSL
-#  api_password: !secret ha_password
+  api_password: !secret ha_password
   trusted_proxies:
     - 192.168.1.0/24
     - 127.0.0.1
@@ -123,6 +124,15 @@ ring:
 
 shell_command:
   query_cox_data_usage: 'python /home/homeassistant/.homeassistant/cox_usage.py'
+  influxdb_state_injection: /bin/bash -c "sh /home/pi/update_influx_states.sh"
+
+sonos:
+  media_player:
+    hosts:
+      - !secret sonos_chalkboard_host
+      - !secret sonos_den_host
+      - !secret sonos_kitchen_host
+      - !secret sonos_office_host
 
 tts:
   - platform: google
