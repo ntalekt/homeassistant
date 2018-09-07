@@ -181,6 +181,13 @@
     device_class: connectivity
     payload_on: "Up"
     payload_off: "Down"
+    
+  - platform: command_line
+    name: Mosquitto Status
+    command: "/home/pi/check_mosquitto.sh"
+    device_class: connectivity
+    payload_on: "1"
+    payload_off: "0"
 
 #  - platform: command_line
 #    name: Emby Process
