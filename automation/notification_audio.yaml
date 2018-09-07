@@ -44,7 +44,7 @@
               {% else %}
                 {{ day }}th
               {% endif %}.
-            It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state|round}} degrees in REDACTED. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}, with a high of {{states.sensor.dark_sky_daily_high_temperature.state|round}} degrees.
+            It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state|round}} degrees in REDACTED. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}, with a high of {{states.sensor.dark_sky_daytime_high_temperature.state|round}} degrees.
             End of text to speech test.
     - delay: '00:00:01'
     - service: homeassistant.turn_off
