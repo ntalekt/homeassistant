@@ -43,6 +43,9 @@ http:
   login_attempts_threshold: 3
   use_x_forwarded_for: True
 
+influxdb:
+  host: !secret nas2_host
+
 #################################################################
 ## Components
 #################################################################

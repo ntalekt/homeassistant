@@ -149,3 +149,6 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 ![UI](images/media-screenshot.jpg)
 ![UI](images/automation-screenshot.jpg)
 ![UI](images/sensor-screenshot.jpg)
+
+# Grafana Monitoring Front-end
+![UI](images/homeassistant_grafana.jpg)
