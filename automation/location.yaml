@@ -60,10 +60,10 @@
     conditions:
       - condition: numeric_state
         entity_id: sensor.usertwo_to_home
-        above: 5
+        above: 10
       - condition: numeric_state
         entity_id: sensor.userone_to_home
-        above: 5
+        above: 10
   action:
     - service: homeassistant.turn_on
       entity_id:
@@ -77,11 +77,11 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.usertwo_to_home
-      below: 5
+      below: 9
       above: 0
     - platform: numeric_state
       entity_id: sensor.userone_to_home
-      below: 5
+      below: 9
       above: 0
     - platform: state
       entity_id: device_tracker.useronedevice
