@@ -149,6 +149,30 @@
   - platform: ping
     host: !secret octopi_host
     name: Octopi
+    
+  - platform: ping
+    host: !secret deluge_host
+    name: Deluge
+    
+  - platform: ping
+    host: !secret alexa_master_host
+    name: Alexa Master
+    
+  - platform: ping
+    host: !secret alexa_living_host
+    name: Alexa Living
+    
+  - platform: ping
+    host: !secret ring_chime_host
+    name: Ring Chime
+    
+  - platform: ping
+    host: !secret office_multisensor_host
+    name: Office Multisensor
+    
+  - platform: ping
+    host: !secret xiaomi_gateway_host
+    name: Xiaomi Gateway
 
         ##########################################################
         ## WAN test script
