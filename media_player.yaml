@@ -21,3 +21,11 @@
 #      - !secret sonos_den_host
 #      - !secret sonos_kitchen_host
 #      - !secret sonos_office_host
+
+        ##########################################################
+        ## Emby
+        ##########################################################
+
+  - platform: emby
+    host: !secret emby_host
+    api_key: !secret emby_api
