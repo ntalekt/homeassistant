@@ -60,6 +60,10 @@
     - platform: state
       entity_id: input_boolean.office_occupancy
       to: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.wfh_mode
+      state: 'off'
   action:
     - service: switch.turn_off
       entity_id: switch.wemo_insight
