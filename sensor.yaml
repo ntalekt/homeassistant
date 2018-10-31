@@ -297,7 +297,7 @@
 
       userone_phone_battery:
         value_template: '{{ states.device_tracker.useronedevice.attributes.battery | default(0) | int }}'
-        friendly_name: 'userone Nexus 6P'
+        friendly_name: 'userone Essential PH-1'
         unit_of_measurement: "%"
         icon_template: >
           {% set battery_level = states.device_tracker.useronedevice.attributes.battery | default(0) | int %}
