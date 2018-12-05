@@ -43,6 +43,7 @@ http:
   ip_ban_enabled: True
   login_attempts_threshold: 3
   use_x_forwarded_for: True
+  base_url: https://REDACTED
 
 influxdb:
   host: !secret nas2_host
