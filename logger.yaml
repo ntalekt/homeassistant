@@ -4,6 +4,7 @@
 # Log Severities: notset, debug, info, warn, warning, error, fatal, critical
 
 default: warn
+#default: debug
 logs:
   aiohttp.access: critical
   aiohttp.server: critical
