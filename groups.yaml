@@ -104,10 +104,10 @@
     entities:
       - camera.front_door
       - camera.baby_camera
-#      - camera.living_room
-#      - camera.chalkboard_room
-#      - camera.garage
-#      - camera.shop
+      - camera.living_room
+      - camera.chalkboard_room
+      - camera.garage
+      - camera.shop
 
 #################################################################
 ## Groups
