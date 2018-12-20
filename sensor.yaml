@@ -108,7 +108,7 @@
   - platform: systemmonitor
     resources:
       - type: memory_use_percent
-      - type: processor_use      
+      - type: processor_use
 
   - platform: command_line
     name: SSL Cert Expiration
