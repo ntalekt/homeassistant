@@ -8,6 +8,10 @@
 
   - platform: darksky
     api_key: !secret darksky_api_key
+    latitude: !secret homeassistant_latitude
+    longitude: !secret homeassistant_longitude
+    forecast:
+      - 0
     monitored_conditions:
       - summary
       - temperature
@@ -19,6 +23,8 @@
       - temperature_low
       - precip_intensity
       - icon
+      - apparent_temperature_low
+      - apparent_temperature_high
 
         ##########################################################
         ## PiHole
@@ -487,7 +493,7 @@
           {% endif %}
 
       dark_sky_daily_high_low_template:
-        value_template: "{{ states('sensor.dark_sky_daytime_high_temperature') }} / {{ states('sensor.dark_sky_overnight_low_temperature') }}"
+        value_template: "{{ states('sensor.dark_sky_daytime_high_temperature_0') }} / {{ states('sensor.dark_sky_overnight_low_temperature_0') }}"
         friendly_name: 'High / Low Temperature'
         unit_of_measurement: "°F"
 
