@@ -15,7 +15,8 @@
             ## MQTT Lights
             ##########################################################
 
-  - platform: mqtt_json
+  - platform: mqtt
+    schema: json
     name: "Office LED"
     state_topic: "ntalekt/sensornode1"
     command_topic: "ntalekt/sensornode1/set"
