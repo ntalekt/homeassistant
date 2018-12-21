@@ -198,17 +198,17 @@
 - alias: Lights - Chalkboard Room Cactus Light Button
   trigger:
     - platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.switch_158d0001b76826
         click_type: single
     - platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.switch_158d0001b76826
         click_type: double
     - platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.switch_158d0001b76826
         click_type: long_click_press
