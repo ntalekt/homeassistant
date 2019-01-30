@@ -142,27 +142,6 @@
       friendly_name: userone iPhone (Work)
 
         ##########################################################
-        ## Weather
-        ##########################################################
-
-    sensor.dark_sky_temperature:
-      friendly_name: Current Temperature
-    sensor.dark_sky_daily_high_temperature:
-      friendly_name: High Temperature
-    sensor.dark_sky_daily_low_temperature:
-      friendly_name: Low Temperature
-    sensor.dark_sky_daily_high_low_template:
-      icon: mdi:thermometer
-    sensor.dark_sky_humidity:
-      friendly_name: Humidity
-    sensor.dark_sky_precip_intensity:
-      friendly_name: Precipitation
-    sensor.dark_sky_wind_speed:
-      friendly_name: Wind Speed
-    sensor.dark_sky_pressure:
-      friendly_name: Pressure
-
-        ##########################################################
         ## Office Sensor Node
         ##########################################################
 
@@ -243,28 +222,6 @@
       icon: mdi:leaf
     sensor.downstairs_eco_on_week:
       icon: mdi:leaf
-
-        ##########################################################
-        ## Doorbell
-        ##########################################################
-
-    sensor.ring_front_door_last_ding:
-      friendly_name: Last Ring
-    sensor.ring_front_door_last_motion:
-      friendly_name: Last Motion
-    sensor.ring_last_ding:
-      friendly_name: Last Ring
-      icon: mdi:bell-ring
-    sensor.ring_last_motion:
-      friendly_name: Last Motion
-      icon: mdi:run-fast
-
-        ##########################################################
-        ## Finance
-        ##########################################################
-
-    sensor.exchange_rate_1_btc:
-      friendly_name: BTC
 
         ##########################################################
         ## Remote

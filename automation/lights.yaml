@@ -52,43 +52,6 @@
         transition: 60
 
         ##########################################################
-        ## Interior Loft
-        ##########################################################
-
-#- alias: Lights - Interior Loft Turn on 30% at Sunset if Home
-#  trigger:
-#    - platform: sun
-#      event: sunset
-#      offset: "-00:00:30"
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_loft_on_sunset
-#      state: 'off'
-#    - condition: state
-#      entity_id: group.household
-#      state: 'home'
-#  action:
-#    - service: light.turn_on
-#      entity_id: group.loft_lights
-#      data:
-#        brightness: 75
-#        transition: 5
-
-#- alias: Lights - Interior Loft Turn off at 8:10PM
-#  trigger:
-#    - platform: time
-#      at: '20:10:00'
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_loft_off_8pm
-#      state: 'off'
-#  action:
-#    - service: light.turn_off
-#      entity_id: group.loft_lights
-#      data:
-#       transition: 60
-
-        ##########################################################
         ## Interior Media Center
         ##########################################################
 
@@ -106,94 +69,9 @@
         brightness: 35
         kelvin: 5000
 
-#- alias: Lights - Interior Media Center Turn on at Sunset if Home
-#  trigger:
-#    - platform: sun
-#      event: sunset
-#      offset: "-00:00:30"
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_media_center_on_sunset
-#      state: 'off'
-#    - condition: state
-#      entity_id: group.household
-#      state: 'home'
-#  action:
-#    - service: light.turn_on
-#      entity_id: group.media_center_lights
-#      data:
-#        transition: 5
-#        brightness: 35
-#        kelvin: 5000
-
-#- alias: Lights - Interior Media Center Turn off at 800PM
-#  trigger:
-#    - platform: time
-#      at: '20:00:00'
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_media_center_off_800pm
-#      state: 'off'
-#  action:
-#    - service: light.turn_off
-#      entity_id: group.media_center_lights
-#      data:
-#       transition: 300
-
-#- alias: Lights - Interior Media Center Turn on if Motion detected after 745pm
-#  trigger:
-#    - platform: state
-#      entity_id: sensor.living_room_motion_detected
-#      from: 'False'
-#      to: 'True'
-#  condition:
-#    - condition: state
-#      entity_id: sensor.media_center
-#      state: 'PowerOff'
-#    - condition: state
-#      entity_id: group.household
-#      state: 'home'
-#    - condition: time
-#      after: '19:45:00'
-#      before: '05:00:00'
-#  action:
-#    - service: light.turn_on
-#      entity_id: group.media_center_lights
-#      data:
-#        transition: 5
-#        brightness: 100
-#        kelvin: 5000
-
-#- alias: Lights - Interior Media Center Turn off if Motion not detected after 745pm
-#  trigger:
-#    - platform: state
-#      entity_id: sensor.living_room_motion_detected
-#      from: 'True'
-#      to: 'False'
-#      for: '00:05:00'
-#  condition:
-#    - condition: time
-#      after: '19:45:00'
-#      before: '05:00:00'
-#  action:
-#    - service: light.turn_off
-#      entity_id: group.media_center_lights
-
         ##########################################################
-        ## Interior Master Bathroom
+        ## Interior Chalkboard Room
         ##########################################################
-
-- alias: Lights - Interior Master Bathroom Initial Color Temp
-  trigger:
-    - platform: state
-      entity_id: light.master_vanity_3
-      from: 'off'
-      to: 'on'
-  action:
-    - service: light.turn_on
-      entity_id: light.master_bathroom
-      data:
-        color_temp: 230
 
 - alias: lights chalkboard room cactus light button
   trigger:

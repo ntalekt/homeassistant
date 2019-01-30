@@ -125,9 +125,6 @@
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
-#    - condition: state
-#      entity_id: input_boolean.userone_greeting
-#      state: 'on'
   action:
     - delay: '00:00:10'
     - service: script.turn_on

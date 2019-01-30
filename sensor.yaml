@@ -130,14 +130,6 @@
     unit_of_measurement: "%"
     value_template: '{{ value_json.humidity | round(1) }}'
 
-#  - platform: mqtt
-#    state_topic: "ntalekt/sensornode1"
-#    name: "Office LDR"
-    ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
-#    unit_of_measurement: "LUX"
-#    force_update: true
-#    value_template: '{{ value_json.ldr }}'
-
   - platform: mqtt
     state_topic: "ntalekt/sensornode1"
     name: "Office PIR"
@@ -148,19 +140,6 @@
     name: "Office Temperature"
     unit_of_measurement: "°F"
     value_template: '{{ value_json.temperature | round(1) }}'
-
-        ##########################################################
-        ## Doorbell
-        ##########################################################
-
-  - platform: ring
-    monitored_conditions:
-      - last_activity
-      - last_ding
-      - last_motion
-      - wifi_signal_category
-      - wifi_signal_strength
-      - volume
 
         ##########################################################
         ## Deluge
@@ -179,18 +158,18 @@
         ## NAS
         ##########################################################
 
-  - platform: synologydsm
-    host: !secret nas_host
-    username: !secret nas_username
-    password: !secret nas_pass
-    monitored_conditions:
-      - cpu_total_load
-      - memory_real_usage
-      - network_up
-      - network_down
-      - volume_status
-      - volume_percentage_used
-      - volume_size_used
+#  - platform: synologydsm
+#    host: !secret nas_host
+#    username: !secret nas_username
+#    password: !secret nas_pass
+#    monitored_conditions:
+#      - cpu_total_load
+#      - memory_real_usage
+#      - network_up
+#      - network_down
+#      - volume_status
+#      - volume_percentage_used
+#      - volume_size_used
 
   - platform: qnap
     host: !secret nas2_host
@@ -222,19 +201,11 @@
         value_template: '{{ states.remote.master.attributes.current_activity }}'
         friendly_name: 'Master'
 
-      ring_last_ding:
-       friendly_name: Last Ding Time
-       value_template: "{{ as_timestamp(states.sensor.ring_front_door_last_ding.attributes.created_at) |  timestamp_custom('%D %-I:%M %P') }}"
-
-      ring_last_motion:
-       friendly_name: Last Motion Time
-       value_template: "{{ as_timestamp(states.sensor.ring_front_door_last_motion.attributes.created_at) |  timestamp_custom('%D %-I:%M %P') }}"
-
       downstairs_thermostat_away_mode:
-       value_template: '{{ states.climate.downstairs.attributes.away_mode }}'
+        value_template: '{{ states.climate.downstairs.attributes.away_mode }}'
 
       upstairs_thermostat_away_mode:
-       value_template: '{{ states.climate.upstairs.attributes.away_mode }}'
+        value_template: '{{ states.climate.upstairs.attributes.away_mode }}'
 
       living_room_temperature:
         value_template: '{{ states.climate.downstairs.attributes.current_temperature }}'
@@ -451,49 +422,11 @@
     origin: !secret device_tracker_usertwo
     destination: zone.home
 
-#  - platform: google_travel_time
-#    name: usertwo To REDACTED
-#    api_key: !secret google_travel_api
-#    origin: !secret device_tracker_usertwo
-#    destination: zone.REDACTED
-
-#  - platform: google_travel_time
-#    name: usertwo To REDACTED
-#    api_key: !secret google_travel_api
-#    origin: !secret device_tracker_usertwo
-#    destination: zone.REDACTED
-
-#  - platform: google_travel_time
-#    name: usertwo To REDACTED
-#    api_key: !secret google_travel_api
-#    origin: !secret device_tracker_usertwo
-#    destination: zone.REDACTED
-
-#  - platform: google_travel_time
-#    name: usertwo To Work
-#    api_key: !secret google_travel_api
-#    origin: !secret device_tracker_usertwo
-#    destination: zone.work
-#    options:
-#      departure_time: 07:05:00
-
   - platform: google_travel_time
     name: userone To Home
     api_key: !secret google_travel_api
     origin: !secret device_tracker_userone
     destination: zone.home
-
-#  - platform: google_travel_time
-#    name: userone To REDACTED
-#    api_key: !secret google_travel_api
-#    origin: !secret device_tracker_userone
-#    destination: zone.REDACTED
-
-#  - platform: google_travel_time
-#    name: userone To REDACTED
-#    api_key: !secret google_travel_api
-#    origin: !secret device_tracker_userone
-#    destination: zone.REDACTED
 
         ##########################################################
         ## Cox Internet Usage

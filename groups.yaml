@@ -10,7 +10,6 @@
       - group.household
       - group.door_status
       - group.door_bell
-      - group.current_weather
       - group.nest_downstairs_card
       - group.nest_upstairs_card
       - group.occupancy
@@ -94,7 +93,7 @@
       - group.devices
       - group.downstairs_hvac
       - group.upstairs_hvac
-      - group.synology_nas
+#      - group.synology_nas
       - group.qnap_nas
 
   cameras:
@@ -140,7 +139,6 @@
     name: Battery Levels
     entities:
       - sensor.userone_phone_battery
-      - sensor.userones_iphone_battery_level
       - sensor.usertwo_phone_battery
       - sensor.big_garage_tilt_battery
       - sensor.userthree_temp_battery
@@ -152,17 +150,8 @@
       - sensor.chalkboard_switch_battery
       - sensor.patio_door_battery
 
-  door_bell:
-    name: Door Bell
-    entities:
-      - binary_sensor.ring_front_door_ding
-      - binary_sensor.ring_front_door_motion
-      - sensor.ring_last_ding
-      - sensor.ring_last_motion
-      - camera.front_door
 
   Holiday Modes:
-    control: hidden
     entities:
       - sensor.holidays_calendar
       - input_select.holiday
@@ -187,26 +176,22 @@
       - binary_sensor.upstairs_thermostat_fan
 
   userthree:
-    control: hidden
     entities:
       - sensor.temperature_158d0001b9561c
       - sensor.humidity_158d0001b9561c
 
   userfour:
-    control: hidden
     entities:
       - sensor.temperature_158d0001f50d5f
       - sensor.humidity_158d0001f50d5f
 
   Master:
-    control: hidden
     entities:
       - sensor.temperature_158d0001fa9e02
       - sensor.humidity_158d0001fa9e02
 
   sensor_node_1_card:
     name: Office
-    control: hidden
     entities:
 #      - sensor.office_temperature
       - sensor.temperature_158d0001f50dcb
@@ -263,13 +248,6 @@
       - input_select.sonos
       - input_boolean.group_all_sonos
 
-  finance:
-    name: Finance
-    entities:
-      - sensor.wfc
-      - sensor.bitcoin
-      - sensor.ethereum
-      - sensor.dash
 
   media_center_remote:
     name: Media Center Remote
@@ -332,7 +310,7 @@
 
   System:
     entities:
-      - sensor.cpu_load_total
+      - sensor.processor_use
       - sensor.cpu_temp
       - sensor.memory_use_percent
       - sensor.ha_db_size
@@ -406,8 +384,6 @@
 
   Cox Internet Usage:
     entities:
-      - sensor.cox_usage
-      - sensor.cox_limit
       - sensor.cox_utilization
       - sensor.cox_time_left
       - sensor.cox_avg_gb_current
