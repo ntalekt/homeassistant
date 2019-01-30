@@ -36,7 +36,7 @@ logbook: !include logbook.yaml
 
 http:
   # Using NGINX Reverse Proxy with SSL
-  api_password: !secret ha_password
+#  api_password: !secret ha_password
   trusted_proxies:
     - 192.168.1.0/24
     - 127.0.0.1
@@ -45,8 +45,8 @@ http:
   use_x_forwarded_for: True
 #  base_url: https://REDACTED
 
-influxdb:
-  host: !secret nas2_host
+#influxdb:
+#  host: !secret nas2_host
 
 #################################################################
 ## Components
@@ -125,7 +125,7 @@ ring:
 
 shell_command:
   query_cox_data_usage: 'python /home/homeassistant/.homeassistant/cox_usage.py'
-  influxdb_state_injection: /bin/bash -c "sh /home/pi/update_influx_states.sh"
+#  influxdb_state_injection: /bin/bash -c "sh /home/pi/update_influx_states.sh"
 
 sonos:
   media_player:
