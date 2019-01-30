@@ -6,7 +6,7 @@
         ## Run Cox Usage Script Hourly
         ##########################################################
 
-- alias: System - Query Cox Data Usage
+- alias: system query cox data usage
   trigger:
     platform: time_pattern
     minutes: '/60'
@@ -18,7 +18,7 @@
         ## Clean TTS Cache once a week
         ##########################################################
 
-- alias: System - Clear TTS Cache
+- alias: system clear tts cache
   trigger:
     platform: time_pattern
     hours: '/24'
@@ -33,7 +33,7 @@
         ## New device connected
         ##########################################################
 
-- alias: System - New device connected
+- alias: system new device connected
   trigger:
     - platform: event
       event_type: device_tracker_new_device

@@ -5,8 +5,8 @@
         ##########################################################
         ## Doorbell
         ##########################################################
-        
-- alias: Doorbell - Turn Exterior Lights to 100% when Rung after 9PM
+
+- alias: doorbell turn exterior lights to 100 when rung after 9pm
   trigger:
     - platform: state
       entity_id: binary_sensor.ring_front_door_ding
@@ -23,8 +23,8 @@
       entity_id: group.exterior_lights
       data:
         brightness: 254
-        
-- alias: Doorbell - Reset Exterior Lights to 35% after Ring after 9PM
+
+- alias: doorbell reset exterior lights to 35 after ring after 9pm
   trigger:
     - platform: state
       entity_id: binary_sensor.ring_front_door_ding
@@ -46,8 +46,8 @@
       data:
         brightness: 85
         transition: 60
-        
-- alias: Doorbell - Turn Exterior Lights to 100% when Motion Detected after 9PM
+
+- alias: doorbell turn exterior lights to 100 when motion detected after 9pm
   trigger:
     - platform: state
       entity_id: binary_sensor.ring_front_door_motion
@@ -64,8 +64,8 @@
       entity_id: group.exterior_lights
       data:
         brightness: 254
-        
-- alias: Doorbell - Reset Exterior Lights to 35% after Motion Detected after 9PM
+
+- alias: doorbell reset exterior lights to 35 after motion detected after 9pm
   trigger:
     - platform: state
       entity_id: binary_sensor.ring_front_door_motion

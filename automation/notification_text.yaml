@@ -6,7 +6,7 @@
         ## Pushbullet - Notification Test
         ##########################################################
 
-- alias: Notification Text - Test
+- alias: notification text test
   trigger:
     - platform: state
       entity_id: input_boolean.test_text_notification
@@ -24,7 +24,7 @@
         ## Pushbullet - SSL Expiration < 10
         ##########################################################
 
-- alias: Notification Text - SSL Expiration 10 days
+- alias: notification text ssl expiration 10 days
   trigger:
     - platform: numeric_state
       entity_id: sensor.ssl_cert_expiration
@@ -39,7 +39,7 @@
         ## Pushbullet - Low Battery Alert
         ##########################################################
 
-- alias: Notification Text - Low Battery Alert
+- alias: notification text low battery alert
   initial_state: 'on'
   trigger:
     - platform: time
@@ -97,7 +97,7 @@
         ## Failed Login
         ##########################################################
 
-- alias: Notification - Failed Login
+- alias: notification failed login
   trigger:
     platform: template
     value_template: "{{ states('persistent_notification.httplogin') != 'unknown' }}"
@@ -111,7 +111,7 @@
         ## New version of Home Assistant
         ##########################################################
 
-- alias: Notification - New Version of Home Assistant
+- alias: notification new version of home assistant
   trigger:
     - platform: state
       entity_id: sensor.current_ha_release
@@ -125,7 +125,7 @@
         ## Notify if Nest has gone into Away Mode
         ##########################################################
 
-- alias: Notification - Nest has gone into away mode
+- alias: notification nest has gone into away mode
   trigger:
     - platform: state
       entity_id: sensor.downstairs_thermostat_away_mode
@@ -155,7 +155,7 @@
         ## Notify if Nest has gone into Home Mode
         ##########################################################
 
-- alias: Notification - Nest has gone into home mode
+- alias: notification nest has gone into home mode
   trigger:
     - platform: state
       entity_id: sensor.downstairs_thermostat_away_mode
@@ -185,7 +185,7 @@
         ## Notify if critical device goes offline
         ##########################################################
 
-- alias: Notification - Alert when a critical device goes offline
+- alias: notification alert when a critical device goes offline
   trigger:
     - platform: state
       entity_id: binary_sensor.synology_nas
@@ -353,7 +353,7 @@
         ## Garage Door - Left it open
         ##########################################################
 
-- alias: Notification - Garage door left it open
+- alias: notification garage door left it open
   trigger:
     - platform: state
       entity_id: group.household
@@ -372,7 +372,7 @@
         ## Garage Door - Open and no one home
         ##########################################################
 
-- alias: Notification - Garage door open and no one is home
+- alias: notification garage door open and no one is home
   trigger:
     - platform: state
       entity_id: binary_sensor.ecolink_tilt_big_garage_sensor
@@ -391,7 +391,7 @@
         ## Garage Door - Open for 30 minutes
         ##########################################################
 
-- alias: Notification - Garage open for 30min
+- alias: notification garage open for 30min
   trigger:
     - platform: state
       entity_id: binary_sensor.ecolink_tilt_big_garage_sensor

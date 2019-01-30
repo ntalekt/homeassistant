@@ -1,8 +1,8 @@
         ##########################################################
         ## Sleep Time
         ##########################################################
-        
-- alias: SleepTime
+
+- alias: sleeptime
   trigger:
     - platform: state
       entity_id: input_boolean.sleep_time
@@ -16,9 +16,9 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.master_remote
-        option: PowerOff   
-        
-- alias: SleepTime Reset
+        option: PowerOff
+
+- alias: sleeptime reset
   trigger:
     - platform: state
       entity_id: input_boolean.sleep_time

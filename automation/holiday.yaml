@@ -6,8 +6,7 @@
         ## Enable Christmas Lighting
         ##########################################################
 
-- alias: Holiday - Enable Christmas Lighting
-
+- alias: holiday enable christmas lighting
   trigger:
     - platform: state
       entity_id: calendar.holidays_in_united_states
@@ -37,8 +36,7 @@
         ## Enable Halloween Lighting
         ##########################################################
 
-- alias: Holiday - Enable Halloween Lighting
-
+- alias: holiday enable halloween lighting
   trigger:
     - platform: state
       entity_id: calendar.holidays_in_united_states
@@ -63,8 +61,7 @@
         ## Enable St. Patuserones Day Lighting
         ##########################################################
 
-- alias: Holiday - Enable St. Patuserones Day Lighting
-
+- alias: holiday enable st patuserones day lighting
   trigger:
     - platform: state
       entity_id: calendar.holidays_in_united_states
@@ -89,8 +86,7 @@
         ## Enable Valentine's Day Lighting
         ##########################################################
 
-- alias: Holiday - Enable Valentine's Day Lighting
-
+- alias: holiday enable valentines day lighting
   trigger:
     - platform: state
       entity_id: calendar.holidays_in_united_states
@@ -115,8 +111,7 @@
         ## Enable Easter Lighting
         ##########################################################
 
-- alias: Holiday - Enable Easter Lighting
-
+- alias: holiday enable easter lighting
   trigger:
     - platform: state
       entity_id: calendar.holidays_in_united_states
@@ -141,8 +136,7 @@
         ## Enable Thanksgiving Lighting
         ##########################################################
 
-- alias: Holiday - Enable Thanksgiving Lighting
-
+- alias: holiday enable thanksgiving lighting
   trigger:
     - platform: state
       entity_id: calendar.holidays_in_united_states
@@ -167,8 +161,7 @@
         ## Enable Independence Day Lighting
         ##########################################################
 
-- alias: Holiday - Enable Independence Day Lighting
-
+- alias: holiday enable independence day lighting
   trigger:
     - platform: state
       entity_id: calendar.holidays_in_united_states
@@ -193,8 +186,7 @@
         ## Enable Memorial Day Lighting
         ##########################################################
 
-- alias: Holiday - Enable Memorial Day Lighting
-
+- alias: holiday enable memorial day lighting
   trigger:
     - platform: state
       entity_id: calendar.holidays_in_united_states
@@ -219,8 +211,7 @@
         ## Enable Veterans Day Lighting
         ##########################################################
 
-- alias: Holiday - Enable Veterans Day Lighting
-
+- alias: holiday enable veterans day lighting
   trigger:
     - platform: state
       entity_id: calendar.holidays_in_united_states
@@ -245,8 +236,7 @@
         ## Enable Labor Day Lighting
         ##########################################################
 
-- alias: Holiday - Enable Labor Day Lighting
-
+- alias: holiday enable labor day lighting
   trigger:
     - platform: state
       entity_id: calendar.holidays_in_united_states
@@ -271,8 +261,7 @@
         ## Christmas Lighting Interior
         ##########################################################
 
-- alias: Holiday - Christmas Lighting Interior
-
+- alias: holiday christmas lighting interior
   trigger:
     - platform: state
       entity_id: input_boolean.interior_holiday
@@ -296,8 +285,7 @@
         ## Halloween Lighting Interior
         ##########################################################
 
-- alias: Holiday - Halloween Lighting Interior
-
+- alias: holiday halloween lighting interior
   trigger:
     - platform: state
       entity_id: input_boolean.interior_holiday
@@ -322,8 +310,7 @@
         ## St. Patuserones Day Lighting Interior
         ##########################################################
 
-- alias: Holiday - St. Patuserones Day Lighting Interior
-
+- alias: holiday st patuserones day lighting interior
   trigger:
     - platform: state
       entity_id: input_boolean.interior_holiday
@@ -347,8 +334,7 @@
         ## Valentine's Day Lighting Interior
         ##########################################################
 
-- alias: Holiday - Valentine's Day Lighting Interior
-
+- alias: holiday valentines day lighting interior
   trigger:
     - platform: state
       entity_id: input_boolean.interior_holiday
@@ -375,8 +361,7 @@
         ## Easter Lighting Interior
         ##########################################################
 
-- alias: Holiday - Easter Lighting Interior
-
+- alias: holiday easter lighting interior
   trigger:
     - platform: state
       entity_id: input_boolean.interior_holiday
@@ -400,8 +385,7 @@
         ## Thanksgiving Lighting Interior
         ##########################################################
 
-- alias: Holiday - Thanksgiving Lighting Interior
-
+- alias: holiday thanksgiving lighting interior
   trigger:
     - platform: state
       entity_id: input_boolean.interior_holiday
@@ -426,8 +410,7 @@
         ## Independence / Memorial / Veterans / Labor Day Lighting Interior
         ##########################################################
 
-- alias: Holiday - Independence / Memorial / Veterans / Labor Day Lighting Interior
-
+- alias: holiday independence memorial veterans labor day lighting interior
   trigger:
     - platform: state
       entity_id: input_boolean.interior_holiday
@@ -462,8 +445,7 @@
         ## Reset Holiday Lighting at 4a
         ##########################################################
 
-- alias: Holiday - Reset Lighting at 4a
-
+- alias: holiday reset lighting at 4a
   trigger:
     - platform: time
       at: '04:00'

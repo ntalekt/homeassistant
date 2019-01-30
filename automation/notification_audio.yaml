@@ -6,7 +6,7 @@
         ## Sonos - Notification Test
         ##########################################################
 
-- alias: Notification Audio - Test
+- alias: notification audio test
   trigger:
     - platform: state
       entity_id: input_boolean.test_audio_notification
@@ -109,7 +109,7 @@
         ## Sonos - Welcome Home Person
         ##########################################################
 
-- alias: Notification Audio - Welcome Home Person
+- alias: notification audio welcome home person
   trigger:
     - platform: state
       entity_id:
@@ -161,7 +161,7 @@
         ## Sonos - usertwo has arrived at work
         ##########################################################
 
-- alias: Notification Audio - usertwo arrived at work
+- alias: notification audio usertwo arrived at work
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
@@ -191,7 +191,7 @@
         ## Sonos - usertwo Left Work to REDACTED
         ##########################################################
 
-- alias: Notification Audio - usertwo Left Work
+- alias: notification audio usertwo left work
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
@@ -222,7 +222,7 @@
         ## Sonos - usertwo Arrived REDACTED
         ##########################################################
 
-- alias: Notification Audio - usertwo Arrived REDACTED
+- alias: notification audio usertwo arrived REDACTED
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
@@ -252,7 +252,7 @@
         ## Sonos - usertwo Left REDACTED to REDACTED
         ##########################################################
 
-- alias: Notification Audio - usertwo Left REDACTED to REDACTED
+- alias: notification audio usertwo left REDACTED to REDACTED
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
@@ -284,7 +284,7 @@
         ## Sonos - usertwo Arrived REDACTED
         ##########################################################
 
-- alias: Notification Audio - usertwo Arrived REDACTED
+- alias: notification audio - usertwo arrived REDACTED
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
@@ -314,7 +314,7 @@
         ## Sonos - usertwo Left REDACTED to Home
         ##########################################################
 
-- alias: Notification Audio - REDACTED to Home
+- alias: notification audio REDACTED to home
   trigger:
     - platform: state
       entity_id: device_tracker.usertwodevice
@@ -346,7 +346,7 @@
         ## Sonos - Garage door has been open for 30min
         ##########################################################
 
-- alias: Notification Audio - Garage open for 30min
+- alias: notification audio garage open for 30min
   trigger:
     - platform: state
       entity_id: binary_sensor.ecolink_tilt_big_garage_sensor

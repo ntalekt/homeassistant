@@ -6,7 +6,7 @@
         ## Turn on Vacation Mode when Gone 24 Hours
         ##########################################################
 
-- alias: Vacation - Turn on when Gone 24 Hours
+- alias: vacation turn on when gone 24 hours
   trigger:
     - platform: state
       entity_id: group.household
@@ -28,11 +28,11 @@
         ## Turn off Vacation Mode when Home
         ##########################################################
 
-- alias: Vacation - Turn off when Home
+- alias: vacation turn off when home
   trigger:
     - platform: state
       entity_id: group.household
-      from: 'not_home'
+#      from: 'not_home'
       to: 'home'
   condition:
     - condition: state
@@ -46,7 +46,7 @@
         ## Set Nest to Away if Vacation Mode is On
         ##########################################################
 
-- alias: Vacation - Set Nest to Away in Vacation Mode
+- alias: vacation set nest to away in vacation mode
   trigger:
     - platform: state
       entity_id: input_boolean.vacation_mode
@@ -66,7 +66,7 @@
         ## Set Nest to Home if Vacation Mode is Off
         ##########################################################
 
-- alias: Vacation - Set Nest to Home if Vacation Mode Turns Off
+- alias: vacation set nest to home if vacation mode turns off
   trigger:
     - platform: state
       entity_id: input_boolean.vacation_mode

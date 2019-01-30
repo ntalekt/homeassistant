@@ -6,7 +6,7 @@
         ## Exterior
         ##########################################################
 
-- alias: Lights - Exterior lights on 5min before sunset
+- alias: lights exterior lights on 5min before sunset
   trigger:
     - platform: sun
       event: sunset
@@ -21,7 +21,7 @@
       data:
         brightness: 254
 
-- alias: Lights - Exterior lights dim at 9:00pm
+- alias: lights exterior lights dim at 9pm
   trigger:
     - platform: time
       at: '21:00:00'
@@ -36,7 +36,7 @@
         transition: 60
         brightness: 85
 
-- alias: Lights - Exterior lights off 30min after sunrise
+- alias: lights exterior lights off 30min after sunrise
   trigger:
     - platform: sun
       event: sunrise
@@ -92,7 +92,7 @@
         ## Interior Media Center
         ##########################################################
 
-- alias: Lights - Interior Media Center Reset After Holiday Lights
+- alias: lights interior media center reset after holiday lights
   trigger:
     - platform: state
       entity_id: input_boolean.interior_holiday
@@ -195,7 +195,7 @@
       data:
         color_temp: 230
 
-- alias: Lights - Chalkboard Room Cactus Light Button
+- alias: lights chalkboard room cactus light button
   trigger:
     - platform: event
       event_type: xiaomi_aqara.click

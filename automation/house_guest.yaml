@@ -6,7 +6,7 @@
         ## Set House Guest Away after 5 Min
         ##########################################################
 
-- alias: Guest - Set House Guest Away after 5 Mins
+- alias: guest set house guest away after 5 mins
 
   trigger:
     - platform: state
@@ -28,7 +28,7 @@
         ## Set House Guest Home after 10 Mins
         ##########################################################
 
-- alias: Guest - Set House Guest Home after 10 Mins
+- alias: guest set house guest home after 10 mins
 
   trigger:
     - platform: state
@@ -50,7 +50,7 @@
         ## Set House Cleaning Mode On Mondays
         ##########################################################
 
-- alias: Guest - Set House Cleaning Mode on at 11am Mondays
+- alias: guest set house cleaning mode on at 11am mondays
   trigger:
     - platform: time
       at: '10:00:00'
@@ -62,7 +62,7 @@
     - service: homeassistant.turn_on
       entity_id: input_boolean.house_cleaning_mode
 
-- alias: Guest - Set House Cleaning Mode off after 3 hours
+- alias: guest set house cleaning mode off after 3 hours
   trigger:
     - platform: time
       at: '14:00:00'

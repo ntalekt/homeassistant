@@ -5,8 +5,8 @@
         ##########################################################
         ## LGTV Ring Notification
         ##########################################################
-          
-- alias: Notification Visual - Front Door Motion
+
+- alias: notification visual front door motion
   trigger:
     - platform: state
       entity_id: binary_sensor.ring_front_door_motion
@@ -18,8 +18,8 @@
     - service: notify.livingroom_tv
       data:
         message: "Motion detected: Front Door"
-        
-- alias: Notification Visual - Front Door Ring
+
+- alias: notification visual front door ring
   trigger:
     - platform: state
       entity_id: binary_sensor.ring_front_door_ding

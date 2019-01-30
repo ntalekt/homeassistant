@@ -6,7 +6,7 @@
       ## Turn off Nest if patio door is open for more then 10min
       #################################################################
 
-- alias: Climate - Nest Off If Patio Door Open for 10min
+- alias: climate nest off if patio door open for 10min
   trigger:
     - platform: time_pattern
       minutes: '/10'
@@ -27,7 +27,7 @@
       ## Turn on Nest if patio door is closed
       #################################################################
 
-- alias: Climate - Downstairs Nest On If Patio Door Closed
+- alias: climate downstairs nest on if patio door closed
   trigger:
     - platform: state
       entity_id: sensor.patio_door
@@ -42,7 +42,7 @@
       ## Turn on office fan if office is occupied
       #################################################################
 
-- alias: Climate - Office Fan On when Occupied
+- alias: climate office fan on when occupied
   trigger:
     - platform: state
       entity_id: input_boolean.office_occupancy
@@ -55,7 +55,7 @@
       ## Turn Off office fan if not occupied
       #################################################################
 
-- alias: Climate - Office Fan Off when Not Occupied
+- alias: climate office fan off when not occupied
   trigger:
     - platform: state
       entity_id: input_boolean.office_occupancy

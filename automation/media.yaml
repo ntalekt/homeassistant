@@ -6,7 +6,7 @@
       ## Remote Main Media Center
       #################################################################
 
-- alias: Media - Media Center remote external update Media Center
+- alias: media media center remote external update media center
   trigger:
     - platform: state
       entity_id: remote.media_center
@@ -17,7 +17,7 @@
         option: >
           {{ states.remote.media_center.attributes.current_activity }}
 
-- alias: Media - Media center remote start activity from input select media center
+- alias: media media center remote start activity from input select media center
   trigger:
     - platform: state
       entity_id: input_select.remote
@@ -25,7 +25,7 @@
     - service: script.turn_on
       entity_id: script.input_select_harmony
 
-- alias: Media - Media center remote input_boolean shield
+- alias: media media center remote input boolean shield
   trigger:
     - platform: state
       entity_id: input_boolean.media_center_shield
@@ -39,7 +39,7 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.media_center_shield
 
-- alias: Media - Media center remote input_boolean TV
+- alias: media media center remote input boolean tv
   trigger:
     - platform: state
       entity_id: input_boolean.media_center_tv
@@ -53,7 +53,7 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.media_center_tv
 
-- alias: Media - Media center remote input_boolean poweroff
+- alias: media media center remote input boolean poweroff
   trigger:
     - platform: state
       entity_id: input_boolean.media_center_poweroff
@@ -73,7 +73,7 @@
     - service: homeassistant.turn_off
       entity_id: group.media_center_lights
 
-- alias: Media - Spam TV PowerOn
+- alias: media spam tv poweron
   trigger:
     - platform: state
       entity_id: remote.media_center
@@ -110,7 +110,7 @@
       ## Remote Master Bedroom
       #################################################################
 
-- alias: Media - Master remote external update Media Center
+- alias: media master remote external update media center
   trigger:
     - platform: state
       entity_id: remote.master
@@ -121,7 +121,7 @@
         option: >
           {{ states.remote.master.attributes.current_activity }}
 
-- alias: Media - Master remote start activity from input select media center
+- alias: media master remote start activity from input select media center
   trigger:
     - platform: state
       entity_id: input_select.master_remote
@@ -129,7 +129,7 @@
     - service: script.turn_on
       entity_id: script.input_select_master_harmony
 
-- alias: Media - master remote input_boolean firetv
+- alias: media master remote input boolean firetv
   trigger:
     - platform: state
       entity_id: input_boolean.master_firetv
@@ -143,7 +143,7 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.master_firetv
 
-- alias: Media - Master remote input_boolean TV
+- alias: media master remote input boolean tv
   trigger:
     - platform: state
       entity_id: input_boolean.master_tv
@@ -157,7 +157,7 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.master_tv
 
-- alias: Media - Master remote input_boolean poweroff
+- alias: media master remote input boolean poweroff
   trigger:
     - platform: state
       entity_id: input_boolean.master_poweroff
@@ -175,7 +175,7 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.master_poweroff
 
-- alias: Media - Master remote sleep time
+- alias: media master remote sleep time
   trigger:
     - platform: event
       event_type: xiaomi_aqara.click
@@ -205,7 +205,7 @@
         ## Reset Sonos Every Morning
         ##########################################################
 
-- alias: Media - Reset Sonos Every Morning
+- alias: media reset sonos every morning
   trigger:
     - platform: time
       at: '06:00'
@@ -251,7 +251,7 @@
         ## Group All Sonos
         ##########################################################
 
-- alias: Media - Group All Sonos
+- alias: media group all sonos
   trigger:
     - platform: state
       entity_id: input_boolean.group_all_sonos
@@ -275,7 +275,7 @@
         ## Play All '90s Station
         ##########################################################
 
-- alias: Media - Play All '90s Station
+- alias: media play all 90s station
   trigger:
     - platform: state
       entity_id: input_boolean.90_station
@@ -327,7 +327,7 @@
         ## Play Classical Station
         ##########################################################
 
-- alias: Media - Play Classical Station
+- alias: media play classical station
   trigger:
     - platform: state
       entity_id: input_boolean.classical_station
@@ -379,7 +379,7 @@
         ## Play Little Kids Station
         ##########################################################
 
-- alias: Media - Play Little Kids Station
+- alias: media play little kids station
   trigger:
     - platform: state
       entity_id: input_boolean.kids_station
@@ -431,7 +431,7 @@
         ## Play Smooth Jazz Station
         ##########################################################
 
-- alias: Media - Play Smooth Jazz Station
+- alias: media play smooth jazz station
   trigger:
     - platform: state
       entity_id: input_boolean.jazz_station
@@ -483,7 +483,7 @@
         ## Play Top Hip-hop Station
         ##########################################################
 
-- alias: Media - Play Top Hip-hop Station
+- alias: media play top hiphop station
   trigger:
     - platform: state
       entity_id: input_boolean.hiphop_station
@@ -535,7 +535,7 @@
         ## Play Top Pop Station
         ##########################################################
 
-- alias: Media - Play Top Pop Station
+- alias: media play top pop station
   trigger:
     - platform: state
       entity_id: input_boolean.pop_station
@@ -587,7 +587,7 @@
         ## Play Caffeine for Your Ears Playlist
         ##########################################################
 
-- alias: Media - Play Caffeine for Your Ears Playlist
+- alias: media play caffeine for your ears playlist
   trigger:
     - platform: state
       entity_id: input_boolean.caffeine_playlist
@@ -639,7 +639,7 @@
         ## Play Coffee Shop Pop Playlist
         ##########################################################
 
-- alias: Media - Play Coffee Shop Pop Playlist
+- alias: media play coffee shop pop playlist
   trigger:
     - platform: state
       entity_id: input_boolean.coffee_shop_playlist
@@ -692,7 +692,7 @@
         ## Play Devastating Dubstep Drops Playlist
         ##########################################################
 
-- alias: Media - Play Devastating Dubstep Drops Playlist
+- alias: media play devastating dubstep drops playlist
   trigger:
     - platform: state
       entity_id: input_boolean.dubstep_playlist
@@ -744,7 +744,7 @@
         ## Sonos start activity from input select All '90s
         ##########################################################
 
-- alias: Media - Sonos start activity from input select All '90s
+- alias: media sonos start activity from input select all 90s
   trigger:
     - platform: state
       entity_id: input_select.sonos
@@ -757,7 +757,7 @@
         ## Sonos start activity from input select Classical
         ##########################################################
 
-- alias: Media - Sonos start activity from input select Classical
+- alias: media sonos start activity from input select classical
   trigger:
     - platform: state
       entity_id: input_select.sonos
@@ -770,7 +770,7 @@
         ## Sonos start activity from input select Kids
         ##########################################################
 
-- alias: Media - Sonos start activity from input select Kids
+- alias: media sonos start activity from input select kids
   trigger:
     - platform: state
       entity_id: input_select.sonos
@@ -783,7 +783,7 @@
         ## Sonos start activity from input select Jazz
         ##########################################################
 
-- alias: Media - Sonos start activity from input select Jazz
+- alias: media sonos start activity from input select jazz
   trigger:
     - platform: state
       entity_id: input_select.sonos
@@ -796,7 +796,7 @@
         ## Sonos start activity from input select Hiphop
         ##########################################################
 
-- alias: Media - Sonos start activity from input select Hiphop
+- alias: media sonos start activity from input select hiphop
   trigger:
     - platform: state
       entity_id: input_select.sonos
@@ -809,7 +809,7 @@
         ## Sonos start activity from input select Pop
         ##########################################################
 
-- alias: Media - Sonos start activity from input select Pop
+- alias: media sonos start activity from input select pop
   trigger:
     - platform: state
       entity_id: input_select.sonos
@@ -822,7 +822,7 @@
         ## Sonos start activity from input select Caffeine
         ##########################################################
 
-- alias: Media - Sonos start activity from input select Caffeine
+- alias: media sonos start activity from input select caffeine
   trigger:
     - platform: state
       entity_id: input_select.sonos
@@ -835,7 +835,7 @@
         ## Sonos start activity from input select Coffee Shop
         ##########################################################
 
-- alias: Media - Sonos start activity from input select Coffee Shop
+- alias: media sonos start activity from input select coffee shop
   trigger:
     - platform: state
       entity_id: input_select.sonos
@@ -848,7 +848,7 @@
         ## Sonos start activity from input select Dubstep
         ##########################################################
 
-- alias: Media - Sonos start activity from input select Dubstep
+- alias: media sonos start activity from input select dubstep
   trigger:
     - platform: state
       entity_id: input_select.sonos
@@ -861,7 +861,7 @@
         ## Sonos stop activity from input select Off
         ##########################################################
 
-- alias: Media - Sonos stop activity from input select Off
+- alias: media sonos stop activity from input select off
   trigger:
     - platform: state
       entity_id: input_select.sonos
@@ -878,7 +878,7 @@
         ## Sonos stop activity from input boolean Off
         ##########################################################
 
-- alias: Media - Sonos stop activity from input select Off
+- alias: media sonos stop activity from input select off
   trigger:
     - platform: state
       entity_id: input_select.sonos
@@ -895,7 +895,7 @@
         ## Pause Deluge if Cox utilization > 90%
         ##########################################################
 
-- alias: Media - Pause Deluge if Cox Utilization Above 89
+- alias: media pause deluge if cox utilization above 89
   trigger:
     - platform: numeric_state
       entity_id: sensor.cox_perc
@@ -913,7 +913,7 @@
         title: "Home Assistant"
         message: "Deluge Turned Off, Cox = {{ states.sensor.cox_perc.state | int }} %"
 
-- alias: Media - Unpause Deluge if Cox Utilization Under 89
+- alias: media unpause deluge if cox utilization under 89
   trigger:
     - platform: numeric_state
       entity_id: sensor.cox_perc

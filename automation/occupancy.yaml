@@ -6,7 +6,7 @@
       ## Office Occupancy
       #################################################################
 
-- alias: Occupancy - Office turn on if motion detected
+- alias: occupancy office turn on if motion detected
   trigger:
     - platform: state
       entity_id: sensor.office_pir
@@ -20,7 +20,7 @@
       ## Reset Office Occupancy
       #################################################################
 
-- alias: Occupancy - Office turn off after 30min of no motion
+- alias: occupancy office turn off after 30min of no motion
   trigger:
     - platform: state
       entity_id: sensor.office_pir
@@ -35,7 +35,7 @@
       ## Living Room Occupancy
       #################################################################
 
-- alias: Occupancy - Living turn on if motion detected
+- alias: occupancy living turn on if motion detected
   trigger:
     - platform: state
       entity_id: sensor.living_room_motion_detected
@@ -49,7 +49,7 @@
       ## Reset Living Room Occupancy
       #################################################################
 
-- alias: Occupancy - Living turn off after 30min of no motion
+- alias: occupancy living turn off after 30min of no motion
   trigger:
     - platform: state
       entity_id: sensor.living_room_motion_detected
@@ -64,7 +64,7 @@
       ## Garage Occupancy
       #################################################################
 
-- alias: Occupancy - Garage turn on if motion detected
+- alias: occupancy garage turn on if motion detected
   trigger:
     - platform: state
       entity_id: sensor.garage_motion_detected
@@ -78,7 +78,7 @@
       ## Reset Garage Occupancy
       #################################################################
 
-- alias: Occupancy - Garage turn off after 10min of no motion
+- alias: occupancy garage turn off after 10min of no motion
   trigger:
     - platform: state
       entity_id: sensor.garage_motion_detected
@@ -93,7 +93,7 @@
       ## Chalkboard Room Occupancy
       #################################################################
 
-- alias: Occupancy - Chalkboard turn on if motion detected
+- alias: occupancy chalkboard turn on if motion detected
   trigger:
     - platform: state
       entity_id: sensor.chalkboard_room_motion_detected
@@ -107,7 +107,7 @@
       ## Reset Chalkboard Room Occupancy
       #################################################################
 
-- alias: Occupancy - Chalkboard turn off after 30min of no motion
+- alias: occupancy chalkboard turn off after 30min of no motion
   trigger:
     - platform: state
       entity_id: sensor.chalkboard_room_motion_detected
@@ -122,7 +122,7 @@
       ## Shop Occupancy
       #################################################################
 
-- alias: Occupancy - Shop turn on if motion detected
+- alias: occupancy shop turn on if motion detected
   trigger:
     - platform: state
       entity_id: sensor.shop_motion_detected
@@ -136,7 +136,7 @@
       ## Reset Shop Occupancy
       #################################################################
 
-- alias: Occupancy - Shop turn off after 10min of no motion
+- alias: occupancy shop turn off after 10min of no motion
   trigger:
     - platform: state
       entity_id: sensor.shop_motion_detected
@@ -151,7 +151,7 @@
         ## WFH Mode
         ##########################################################
 
-- alias: Occupancy - WFH Home On
+- alias: occupancy wfh home on
   trigger:
     - platform: time
       at: '07:00:00'
@@ -170,7 +170,7 @@
     - service: homeassistant.turn_on
       entity_id: input_boolean.wfh_mode
 
-- alias: Occupancy - WFH Home Off
+- alias: occupancy wfh off
   trigger:
     - platform: time
       at: '16:00:00'
