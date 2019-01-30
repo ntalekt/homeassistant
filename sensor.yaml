@@ -218,26 +218,26 @@
         unit_of_measurement: "°F"
 
       userone_phone_battery:
-        value_template: '{{ states.device_tracker.useronedevice.attributes.battery | default(0) | int }}'
+        value_template: '{{ states.device_tracker.life360_userone_REDACTED.attributes.battery | default(0) | int }}'
         friendly_name: 'userone Essential PH-1'
         unit_of_measurement: "%"
         icon_template: >
-          {% set battery_level = states.device_tracker.useronedevice.attributes.battery | default(0) | int %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-alert
-          {% endif %}
+            {% set battery_level = states.device_tracker.life360_userone_REDACTED.attributes.battery | default(0) | int %}
+            {% set battery_round = (battery_level / 10) | int * 10 %}
+            {% if battery_round >= 100 %}
+              mdi:battery
+            {% elif battery_round > 0 %}
+              mdi:battery-{{ battery_round }}
+            {% else %}
+              mdi:battery-alert
+            {% endif %}
 
       usertwo_phone_battery:
-        value_template: '{{ states.device_tracker.usertwodevice.attributes.battery | default(0) | int }}'
+        value_template: '{{ states.device_tracker.life360_REDACTED_REDACTED.attributes.battery | default(0) | int }}'
         friendly_name: 'usertwo iPhone X'
         unit_of_measurement: "%"
         icon_template: >
-          {% set battery_level = states.device_tracker.usertwodevice.attributes.battery | default(0) | int %}
+          {% set battery_level = states.device_tracker.life360_REDACTED_REDACTED.attributes.battery | default(0) | int %}
           {% set battery_round = (battery_level / 10) | int * 10 %}
           {% if battery_round >= 100 %}
             mdi:battery

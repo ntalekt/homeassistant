@@ -9,7 +9,7 @@
 - alias: location set userone away after 2 mins
   trigger:
     - platform: state
-      entity_id: device_tracker.useronedevice
+      entity_id: device_tracker.life360_userone_REDACTED
       from: 'home'
       to: 'not_home'
       for:
@@ -29,7 +29,7 @@
 - alias: location set usertwo away after 2 mins
   trigger:
     - platform: state
-      entity_id: device_tracker.usertwodevice
+      entity_id: device_tracker.life360_REDACTED_REDACTED
       from: 'home'
       to: 'not_home'
       for:
@@ -84,10 +84,10 @@
       below: 9
       above: 0
     - platform: state
-      entity_id: device_tracker.useronedevice
+      entity_id: device_tracker.life360_userone_REDACTED
       to: 'home'
     - platform: state
-      entity_id: device_tracker.usertwodevice
+      entity_id: device_tracker.life360_REDACTED_REDACTED
       to: 'home'
   action:
     - service: homeassistant.turn_off
@@ -101,7 +101,7 @@
 - alias: location set userone home after 5 mins
   trigger:
     - platform: state
-      entity_id: device_tracker.useronedevice
+      entity_id: device_tracker.life360_userone_REDACTED
       to: 'home'
       for:
         hours: 0
@@ -121,7 +121,7 @@
 - alias: location set usertwo home after 5 mins
   trigger:
     - platform: state
-      entity_id: device_tracker.usertwodevice
+      entity_id: device_tracker.life360_REDACTED_REDACTED
       to: 'home'
       for:
         hours: 0
@@ -140,9 +140,9 @@
 - alias: location set userone away driving
   trigger:
     - platform: state
-      entity_id: device_tracker.useronedevice
+      entity_id: device_tracker.life360_userone_REDACTED
       from: 'home'
-      to: 'not_home'
+      to: 'driving'
   condition:
     - condition: state
       entity_id: input_boolean.garage_occupancy
@@ -158,9 +158,9 @@
 - alias: location set usertwo away driving
   trigger:
     - platform: state
-      entity_id: device_tracker.usertwodevice
+      entity_id: device_tracker.life360_REDACTED_REDACTED
       from: 'home'
-      to: 'not_home'
+      to: 'driving'
   condition:
     - condition: state
       entity_id: input_boolean.garage_occupancy
@@ -182,7 +182,7 @@
   action:
     - service: device_tracker.see
       data:
-        dev_id: useronedevice
+        dev_id: device_tracker.life360_userone_REDACTED
         location_name: 'not_home'
 
         ##########################################################
@@ -216,7 +216,7 @@
   action:
     - service: device_tracker.see
       data:
-        dev_id: usertwodevice
+        dev_id: device_tracker.life360_REDACTED_REDACTED
         location_name: 'not_home'
 
         ##########################################################
@@ -250,7 +250,7 @@
   action:
     - service: device_tracker.see
       data:
-        dev_id: useronedevice
+        dev_id: device_tracker.life360_userone_REDACTED
         location_name: 'home'
 
         ##########################################################
@@ -284,7 +284,7 @@
   action:
     - service: device_tracker.see
       data:
-        dev_id: usertwodevice
+        dev_id: device_tracker.life360_REDACTED_REDACTED
         location_name: 'home'
 
         ##########################################################

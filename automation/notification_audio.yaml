@@ -113,9 +113,9 @@
   trigger:
     - platform: state
       entity_id:
-        - device_tracker.useronedevice
-        - device_tracker.REDACTED_phone
-        - device_tracker.REDACTED_phone
+        - device_tracker.life360_userone_REDACTED
+        - device_tracker.nmap_REDACTED_phone
+        - device_tracker.nmap_REDACTED_phone
       to: 'home'
       for: '00:01:00'
   condition:
@@ -135,7 +135,7 @@
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: >
-            {% set person = trigger.entity_id.split('.')[1].split('_')[0] %}
+            {% set person = trigger.entity_id.split('.')[-1].split('_')[1] %}
             {%- macro greeting_sentence(person) -%}
             {{ [
             "Welcome back home " ~ person,
@@ -161,11 +161,11 @@
 - alias: notification audio usertwo arrived at work
   trigger:
     - platform: state
-      entity_id: device_tracker.usertwodevice
+      entity_id: device_tracker.life360_REDACTED_REDACTED
       to: 'Work'
   condition:
     - condition: state
-      entity_id: device_tracker.useronedevice
+      entity_id: device_tracker.life360_userone_REDACTED
       state: 'home'
     - condition: time
       after: '07:00'
@@ -191,12 +191,12 @@
 - alias: notification audio usertwo left work
   trigger:
     - platform: state
-      entity_id: device_tracker.usertwodevice
+      entity_id: device_tracker.life360_REDACTED_REDACTED
       from: 'Work'
-      to: 'not_home'
+      to: 'Driving'
   condition:
     - condition: state
-      entity_id: device_tracker.useronedevice
+      entity_id: device_tracker.life360_userone_REDACTED
       state: 'home'
     - condition: time
       after: '15:00'
@@ -222,11 +222,11 @@
 - alias: notification audio usertwo arrived REDACTED
   trigger:
     - platform: state
-      entity_id: device_tracker.usertwodevice
+      entity_id: device_tracker.life360_REDACTED_REDACTED
       to: 'REDACTED'
   condition:
     - condition: state
-      entity_id: device_tracker.useronedevice
+      entity_id: device_tracker.life360_userone_REDACTED
       state: 'home'
     - condition: time
       after: '13:00'
@@ -252,12 +252,12 @@
 - alias: notification audio usertwo left REDACTED to REDACTED
   trigger:
     - platform: state
-      entity_id: device_tracker.usertwodevice
+      entity_id: device_tracker.life360_REDACTED_REDACTED
       from: 'REDACTED'
-      to: 'not_home'
+      to: 'Driving'
   condition:
     - condition: state
-      entity_id: device_tracker.useronedevice
+      entity_id: device_tracker.life360_userone_REDACTED
       state: 'home'
     - condition: time
       after: '13:00'
@@ -284,11 +284,11 @@
 - alias: notification audio - usertwo arrived REDACTED
   trigger:
     - platform: state
-      entity_id: device_tracker.usertwodevice
+      entity_id: device_tracker.life360_REDACTED_REDACTED
       to: 'REDACTED'
   condition:
     - condition: state
-      entity_id: device_tracker.useronedevice
+      entity_id: device_tracker.life360_userone_REDACTED
       state: 'home'
     - condition: time
       after: '13:00'
@@ -314,12 +314,12 @@
 - alias: notification audio REDACTED to home
   trigger:
     - platform: state
-      entity_id: device_tracker.usertwodevice
+      entity_id: device_tracker.life360_REDACTED_REDACTED
       from: 'REDACTED'
-      to: 'not_home'
+      to: 'Driving'
   condition:
     - condition: state
-      entity_id: device_tracker.useronedevice
+      entity_id: device_tracker.life360_userone_REDACTED
       state: 'home'
     - condition: time
       after: '13:00'

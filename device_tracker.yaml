@@ -36,3 +36,13 @@
     host: REDACTED
     username: !secret nas_username
     password: !secret nas_pass
+  - platform: life360
+    username: !secret life360_username
+    password: !secret life360_password
+    prefix: life360
+    show_as_state: driving, moving, places
+    driving_speed: 18
+    max_gps_accuracy: 200
+    time_as: device_or_local
+    max_update_wait:
+      minutes: 45

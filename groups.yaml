@@ -122,12 +122,12 @@
     - input_select.sonos
 
   Household:
-    - device_tracker.usertwodevice
-    - device_tracker.useronedevice
+    - device_tracker.life360_userone_REDACTED
+    - device_tracker.life360_REDACTED_REDACTED
 
   house_guest:
-    - device_tracker.REDACTED_phone
-    - device_tracker.REDACTED_phone
+    - device_tracker.nmap_REDACTED_phone
+    - device_tracker.nmap_REDACTED_phone
 
   door_status:
     name: Doors
