@@ -140,6 +140,10 @@ tts:
     cache: true
     time_memory: 300
 
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+
 wemo:
   static:
     - !secret wemo_mini_cactus_host
