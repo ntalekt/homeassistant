@@ -8,7 +8,7 @@
 
 - alias: System - Query Cox Data Usage
   trigger:
-    platform: time
+    platform: time_pattern
     minutes: '/60'
     seconds: 00
   action:
@@ -20,7 +20,7 @@
 
 - alias: System - Clear TTS Cache
   trigger:
-    platform: time
+    platform: time_pattern
     hours: '/24'
   condition:
     - condition: time

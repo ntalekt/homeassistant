@@ -8,7 +8,7 @@
 
 - alias: Climate - Nest Off If Patio Door Open for 10min
   trigger:
-    - platform: time
+    - platform: time_pattern
       minutes: '/10'
   condition:
     - condition: state
