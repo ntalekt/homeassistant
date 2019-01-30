@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 60 60"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="garage_closed.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   width="60"
+   height="60">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="4.72"
+     inkscape:cx="-43.855932"
+     inkscape:cy="25"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <path
+     style="line-height:normal;font-family:Sans;-inkscape-font-specification:Sans;text-indent:0;text-align:start;text-transform:none;overflow:visible;fill:#333333;fill-opacity:0.78431373"
+     d="m 29.90625,2.6779661 a 1.0001,1.0001 0 0 0 -0.21875,0.0625 l -22.0000001,7 a 1.0001,1.0001 0 0 0 -0.6875,0.9374999 v 37 a 1.0001,1.0001 0 0 0 1,1 H 52 a 1.0001,1.0001 0 0 0 1,-1 v -37 A 1.0001,1.0001 0 0 0 52.3125,9.7404661 l -22,-7 a 1.0001,1.0001 0 0 0 -0.40625,-0.0625 z M 30,4.7092161 51,11.396716 v 35.28125 h -4 v -29 a 1.0001,1.0001 0 0 0 -1,-1 H 14 a 1.0001,1.0001 0 0 0 -0.09375,0 1.0001,1.0001 0 0 0 -0.90625,1 v 29 H 8.9999999 V 11.396716 Z M 15,18.677966 h 30 v 28 H 15 Z m 11.8125,24 a 1.0043849,1.0043849 0 0 0 0.1875,2 h 6 a 1.0001,1.0001 0 1 0 0,-2 h -6 a 1.0001,1.0001 0 0 0 -0.09375,0 1.001098,1.001098 0 0 0 -0.09375,0 z"
+     overflow="visible"
+     id="path2"
+     inkscape:connector-curvature="0" />
+</svg>
