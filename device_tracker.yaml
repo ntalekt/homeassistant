@@ -31,11 +31,12 @@
       #################################################################
       ## DD-WRT
       #################################################################
-      
-  - platform: ddwrt
-    host: REDACTED
-    username: !secret nas_username
-    password: !secret nas_pass
+
+#  - platform: ddwrt
+#    host: 192.168.1.5
+#    username: !secret nas_username
+#    password: !secret nas_pass
+
   - platform: life360
     username: !secret life360_username
     password: !secret life360_password
