@@ -95,6 +95,31 @@ emulated_hue:
   host_ip: !secret ha_host
   listen_port: 8300
   expose_by_default: false
+  entities:
+    input_boolean.media_center_shield:
+      name: "Shield"
+      hidden: false
+    input_boolean.media_center_tv:
+      name: "TV"
+      hidden: false
+    input_boolean.media_center_poweroff:
+      name: "PowerOff"
+      hidden: false
+    input_boolean.master_firetv:
+      name: "Master Fire TV"
+      hidden: false
+    input_boolean.master_tv:
+      name: "Master TV"
+      hidden: false
+    input_boolean.master_poweroff:
+      name: "Master PowerOff"
+      hidden: false
+    switch.wemominicactus:
+      name: "Cactus Light"
+      hidden: false
+    group.media_center_lights:
+      name: "TV Light"
+      hidden: false
 
 ffmpeg:
 
