@@ -337,8 +337,8 @@
     conditions:
       - condition: template
         value_template: >
-          {% if states.automation.notification__alert_when_a_critical_device_goes_offline.last_triggered is not none %}
-            {% if as_timestamp(now()) | int   -  as_timestamp(states.automation.notification__alert_when_a_critical_device_goes_offline.attributes.last_triggered) | int > 3600 %} true {% else %} false
+          {% if states.automation.notification_alert_when_a_critical_device_goes_offline.last_triggered is not none %}
+            {% if as_timestamp(now()) | int   -  as_timestamp(states.automation.notification_alert_when_a_critical_device_goes_offline.attributes.last_triggered) | int > 3600 %} true {% else %} false
             {% endif %}
           {% else %}
           false
