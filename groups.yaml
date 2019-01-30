@@ -168,15 +168,7 @@
       - input_select.holiday
       - input_boolean.interior_holiday
 
-  current_weather:
-      name: Current Weather
-      entities:
-        - sensor.dark_sky_temperature_template
-        - sensor.dark_sky_daily_high_low_template
-        - sensor.dark_sky_humidity
-        - sensor.dark_sky_precip_intensity
-        - sensor.dark_sky_wind_speed
-        - sensor.dark_sky_pressure
+
 
   nest_downstairs_card:
     name: Downstairs Nest
