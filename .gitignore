@@ -12,7 +12,6 @@ entity_registry.yaml
 *.log
 *.txt
 *.sh
-*.py
 *.json
 *.xml
 *.sqlite
@@ -23,4 +22,5 @@ n.jpg
 r.jpg
 *.json
 cox_usage.json
+cox_usage.py
 *.pyc
