@@ -38,3 +38,13 @@
       !secret media_center_r_strip_host:
         name: Media Center R Strip
         transition: 2000
+
+        ##########################################################
+        ## Light Groups
+        ##########################################################
+
+  - platform: group
+    name: Media Accents
+    entities:
+      - light.media_center_l_strip
+      - light.media_center_r_strip
