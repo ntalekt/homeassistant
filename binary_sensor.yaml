@@ -138,38 +138,46 @@
     host: !secret yeestrip_media_r_host
     name: Media Center R Yeestrip
 
-  - platform: ping
-    host: !secret wemo_mini_cactus_host
-    name: Wemo Mini Cactus
+#  - platform: ping
+#    host: !secret wemo_mini_cactus_host
+#    name: Wemo Mini Cactus
 
   - platform: ping
     host: !secret wemo_insight_host
     name: Wemo Insight
 
   - platform: ping
+    host: !secret cactus_host
+    name: Cactus
+
+  - platform: ping
+    host: !secret media_lamp_host
+    name: Media Lamp
+
+  - platform: ping
     host: !secret octopi_host
     name: Octopi
-    
+
   - platform: ping
     host: !secret deluge_host
     name: Deluge
-    
+
   - platform: ping
     host: !secret alexa_master_host
     name: Alexa Master
-    
+
   - platform: ping
     host: !secret alexa_living_host
     name: Alexa Living
-    
+
   - platform: ping
     host: !secret ring_chime_host
     name: Ring Chime
-    
+
   - platform: ping
     host: !secret office_multisensor_host
     name: Office Multisensor
-    
+
   - platform: ping
     host: !secret xiaomi_gateway_host
     name: Xiaomi Gateway
@@ -205,7 +213,7 @@
     device_class: connectivity
     payload_on: "Up"
     payload_off: "Down"
-    
+
   - platform: command_line
     name: Mosquitto Status
     command: "/home/pi/check_mosquitto.sh"

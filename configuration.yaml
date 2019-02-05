@@ -165,6 +165,12 @@ tts:
     cache: true
     time_memory: 300
 
+tuya:
+  username: !secret tuya_username
+  password: !secret tuya_password
+  country_code: 1
+  platform: smart_life
+
 weather:
   - platform: darksky
     api_key: !secret darksky_api_key
