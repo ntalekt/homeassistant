@@ -628,3 +628,12 @@
       - Current State
       - Temperatures
       - Job Percentage
+
+        ##########################################################
+        ## Airvisual
+        ##########################################################
+
+  - platform: airvisual
+    api_key: !secret airvisual_api
+    monitored_conditions:
+      - us

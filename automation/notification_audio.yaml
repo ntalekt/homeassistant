@@ -44,7 +44,7 @@
               {% else %}
                 {{ day }}th
               {% endif %}.
-            It's currently {{states.sensor.dark_sky_summary.state}} and {{states.sensor.dark_sky_temperature.state|round}} degrees in REDACTED. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}, with a daytime high of {{states.sensor.dark_sky_daytime_high_temperature_0.state|round}} degrees.
+            AirVisual pollution level is {{ states.sensor.u_s_air_pollution_level.state }}! The Air Quality Index (AQI) is {{ states.sensor.u_s_air_quality_index.state }} and the main pollutant is {{ states.sensor.u_s_main_pollutant.state }}.
             End of text to speech test.
     - delay: '00:00:01'
     - service: homeassistant.turn_off
