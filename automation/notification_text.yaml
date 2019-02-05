@@ -63,7 +63,7 @@
     - service: notify.pushbullet
       data:
         title: "Home Assistant"
-        message: "SSL expiring in {{ states.sensor.ssl_cert_expiry.state }} days!"
+        message: "SSL expiring in {{ states.sensor.ssl_cert_expiration.state }} days!"
 
         ##########################################################
         ## Pushbullet - Low Battery Alert
