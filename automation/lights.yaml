@@ -96,3 +96,30 @@
     - service: homeassistant.toggle
       entity_id: switch.01200697dc4f22020616
 
+      #################################################################
+      ## Turn on office nightlight if office is occupied
+      #################################################################
+
+- alias: lights office nightlight on when occupied
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_occupancy
+      to: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.gateway_light_34ce009244d5
+      data:
+        brightness: 255
+
+      #################################################################
+      ## Turn off office nightlight if office is not occupied
+      #################################################################
+
+- alias: lights office nightlight off when not occupied
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_occupancy
+      to: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.gateway_light_34ce009244d5
