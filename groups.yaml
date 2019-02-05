@@ -18,16 +18,6 @@
 #      - group.living_room_lights
 #      - group.loft_lights
 
-  lights:
-    name: Lights
-    view: yes
-    icon: mdi:lightbulb-outline
-    entities:
-      - group.loft_lights
-      - group.living_room_lights
-      - group.chalkboard_room_lights
-      - group.exterior_lights
-
   first_floor:
     name: First Floor
     view: yes
@@ -115,8 +105,6 @@
   Automation On Demand:
     control: hidden
     entities:
-    - input_boolean.sleep_time
-    - input_boolean.guest_mode
     - input_select.remote
     - input_select.master_remote
     - input_select.sonos
@@ -159,36 +147,9 @@
 
 
 
-  nest_downstairs_card:
-    name: Downstairs Nest
-    entities:
-      - climate.downstairs
-      - sensor.downstairs_thermostat_hvac_state
-      - sensor.downstairs_thermostat_humidity
-      - binary_sensor.downstairs_thermostat_fan
 
-  nest_upstairs_card:
-    name: Upstairs Nest
-    entities:
-      - climate.upstairs
-      - sensor.upstairs_thermostat_hvac_state
-      - sensor.upstairs_thermostat_humidity
-      - binary_sensor.upstairs_thermostat_fan
 
-  userthree:
-    entities:
-      - sensor.temperature_158d0001b9561c
-      - sensor.humidity_158d0001b9561c
 
-  userfour:
-    entities:
-      - sensor.temperature_158d0001f50d5f
-      - sensor.humidity_158d0001f50d5f
-
-  Master:
-    entities:
-      - sensor.temperature_158d0001fa9e02
-      - sensor.humidity_158d0001fa9e02
 
   sensor_node_1_card:
     name: Office
@@ -211,26 +172,7 @@
       - light.ge_14294_porch_level
       - light.ge_14294_exterior_side_level
 
-  living_room_lights:
-    name: Living Room Lights
-    entities:
-      - group.media_center_lights
 
-  chalkboard_room_lights:
-    name: Chalkboard Room Lights
-    entities:
-      - switch.wemominicactus
-
-  media_center_lights:
-    name: Media Center Accents
-    entities:
-      - light.media_center_l_strip
-      - light.media_center_r_strip
-
-  loft_lights:
-    name: Loft Lights
-    entities:
-      - light.loft_floor_lamp
 
   loft:
     name: Loft
@@ -255,11 +197,6 @@
       - sensor.media_center
       - input_select.remote
 
-  Living Room:
-    control: hidden
-    entities:
-      - binary_sensor.living_occupancy_on
-      - sensor.living_room_temperature
 
   master_remote:
     name: Master Remote
