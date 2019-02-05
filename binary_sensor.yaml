@@ -20,35 +20,35 @@
       office_occupancy_on:
         friendly_name: Office Occupancy
         value_template: "{{ states.input_boolean.office_occupancy.state == 'on' }}"
-        device_class: occupancy
+        device_class: motion
 
   - platform: template
     sensors:
       living_occupancy_on:
         friendly_name: Living Occupancy
         value_template: "{{ states.input_boolean.living_occupancy.state == 'on' }}"
-        device_class: occupancy
+        device_class: motion
 
   - platform: template
     sensors:
       garage_occupancy_on:
         friendly_name: Garage Occupancy
         value_template: "{{ states.input_boolean.garage_occupancy.state == 'on' }}"
-        device_class: occupancy
+        device_class: motion
 
   - platform: template
     sensors:
       chalkboard_occupancy_on:
         friendly_name: Chalkboard Occupancy
         value_template: "{{ states.input_boolean.chalkboard_occupancy.state == 'on' }}"
-        device_class: occupancy
+        device_class: motion
 
   - platform: template
     sensors:
       shop_occupancy_on:
         friendly_name: Shop Occupancy
         value_template: "{{ states.input_boolean.shop_occupancy.state == 'on' }}"
-        device_class: occupancy
+        device_class: motion
 
         ##########################################################
         ## Network Devices
