@@ -11,7 +11,23 @@
     - platform: state
       entity_id: device_tracker.life360_userone_REDACTED
       from: 'home'
-      to: 'not_home'
+      to: 'Away'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+    - platform: state
+      entity_id: device_tracker.life360_userone_REDACTED
+      from: 'home'
+      to: 'Moving'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+    - platform: state
+      entity_id: device_tracker.life360_userone_REDACTED
+      from: 'home'
+      to: 'Driving'
       for:
         hours: 0
         minutes: 2
@@ -31,7 +47,23 @@
     - platform: state
       entity_id: device_tracker.life360_REDACTED_REDACTED
       from: 'home'
-      to: 'not_home'
+      to: 'Away'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+    - platform: state
+      entity_id: device_tracker.life360_REDACTED_REDACTED
+      from: 'home'
+      to: 'Moving'
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+    - platform: state
+      entity_id: device_tracker.life360_REDACTED_REDACTED
+      from: 'home'
+      to: 'Driving'
       for:
         hours: 0
         minutes: 2
@@ -141,7 +173,6 @@
   trigger:
     - platform: state
       entity_id: device_tracker.life360_userone_REDACTED
-      from: 'home'
       to: 'driving'
   condition:
     - condition: state
@@ -159,8 +190,7 @@
   trigger:
     - platform: state
       entity_id: device_tracker.life360_REDACTED_REDACTED
-      from: 'home'
-      to: 'driving'
+      to: 'Driving'
   condition:
     - condition: state
       entity_id: input_boolean.garage_occupancy
@@ -183,7 +213,7 @@
     - service: device_tracker.see
       data:
         dev_id: device_tracker.life360_userone_REDACTED
-        location_name: 'not_home'
+        location_name: 'Away'
 
         ##########################################################
         ## Reset Manually Set userone Away Switch
@@ -217,7 +247,7 @@
     - service: device_tracker.see
       data:
         dev_id: device_tracker.life360_REDACTED_REDACTED
-        location_name: 'not_home'
+        location_name: 'Away'
 
         ##########################################################
         ## Reset Manually Set usertwo Away Switch

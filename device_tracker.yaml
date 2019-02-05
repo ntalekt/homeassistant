@@ -46,4 +46,4 @@
     max_gps_accuracy: 200
     time_as: device_or_local
     max_update_wait:
-      minutes: 45
+      minutes: 30

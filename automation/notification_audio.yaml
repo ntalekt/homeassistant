@@ -193,13 +193,21 @@
     - platform: state
       entity_id: device_tracker.life360_REDACTED_REDACTED
       from: 'Work'
+      to: 'Away'
+    - platform: state
+      entity_id: device_tracker.life360_REDACTED_REDACTED
+      from: 'Work'
+      to: 'Moving'
+    - platform: state
+      entity_id: device_tracker.life360_REDACTED_REDACTED
+      from: 'Work'
       to: 'Driving'
   condition:
     - condition: state
       entity_id: device_tracker.life360_userone_REDACTED
       state: 'home'
     - condition: time
-      after: '15:00'
+      after: '14:00'
       before: '18:00'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
@@ -251,6 +259,14 @@
 
 - alias: notification audio usertwo left REDACTED to REDACTED
   trigger:
+    - platform: state
+      entity_id: device_tracker.life360_REDACTED_REDACTED
+      from: 'REDACTED'
+      to: 'Away'
+    - platform: state
+      entity_id: device_tracker.life360_REDACTED_REDACTED
+      from: 'REDACTED'
+      to: 'Moving'
     - platform: state
       entity_id: device_tracker.life360_REDACTED_REDACTED
       from: 'REDACTED'
@@ -313,6 +329,14 @@
 
 - alias: notification audio REDACTED to home
   trigger:
+    - platform: state
+      entity_id: device_tracker.life360_REDACTED_REDACTED
+      from: 'REDACTED'
+      to: 'Away'
+    - platform: state
+      entity_id: device_tracker.life360_REDACTED_REDACTED
+      from: 'REDACTED'
+      to: 'Moving'
     - platform: state
       entity_id: device_tracker.life360_REDACTED_REDACTED
       from: 'REDACTED'

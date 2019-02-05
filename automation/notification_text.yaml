@@ -21,6 +21,36 @@
       entity_id: input_boolean.test_text_notification
 
         ##########################################################
+        ## Pushbullet - Life360 Overdue Update
+        ##########################################################
+
+- alias: notification life360 overdue update
+  trigger:
+    - platform: event
+      event_type: device_tracker.life360_update_overdue
+  action:
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: >
+          Update for {{
+            state_attr(trigger.event.data.entity_id, 'friendly_name')
+          }} is overdue.
+
+- alias: notification life360 update restored
+  trigger:
+    platform: event
+    event_type: device_tracker.life360_update_restored
+  action:
+    - service: notify.pushbullet
+      data:
+        title: "Home Assistant"
+        message: >
+          Update for {{
+            state_attr(trigger.event.data.entity_id, 'friendly_name')
+          }} restored after {{ trigger.event.data.wait }}.
+
+        ##########################################################
         ## Pushbullet - SSL Expiration < 10
         ##########################################################
 
