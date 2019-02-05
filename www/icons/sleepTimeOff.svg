@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 16 16"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="sleeptimeoff.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="14.75"
+     inkscape:cx="8"
+     inkscape:cy="8"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <path
+     style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;block-progression:tb;isolation:auto;mix-blend-mode:normal;fill:#666666"
+     d="M 3.5 2 C 2.6774686 2 2 2.6774686 2 3.5 L 2 7.09375 C 1.4209662 7.3022261 1 7.8531387 1 8.5 L 1 10 L 1 10.5 L 1 12 L 1 13.5 L 1 14 L 2 14 L 2 13.5 L 2 12 L 14 12 L 14 13.5 L 14 14 L 15 14 L 15 13.5 L 15 10.5 L 15 10 L 15 8.5 C 15 7.8531387 14.579034 7.3022261 14 7.09375 L 14 3.5 C 14 2.6774686 13.322531 2 12.5 2 L 3.5 2 z M 3.5 3 L 12.5 3 C 12.781469 3 13 3.2185314 13 3.5 L 13 7 L 12 7 L 12 5.5 A 0.50005 0.50005 0 0 0 11.5 5 L 4.5 5 A 0.50005 0.50005 0 0 0 4 5.5 L 4 7 L 3 7 L 3 3.5 C 3 3.2185314 3.2185314 3 3.5 3 z M 5 6 L 11 6 L 11 7 L 5 7 L 5 6 z M 2.5 8 L 4.5 8 L 11.5 8 L 13.5 8 C 13.781469 8 14 8.2185314 14 8.5 L 14 10 L 14 10.5 L 14 11 L 2 11 L 2 10.5 L 2 10 L 2 8.5 C 2 8.2185314 2.2185314 8 2.5 8 z"
+     font-weight="400"
+     font-family="sans-serif"
+     white-space="normal"
+     overflow="visible"
+     id="path2" />
+</svg>
