@@ -2,15 +2,6 @@
 ## Light  ##
 ##############################################################
 
-        ##########################################################
-        ## Hue Lights
-        ##########################################################
-# Refactor hue to split bridge support from light platform (@andreacampi - #10691)
-#  - platform: hue
-#    host: !secret hue_hub_host
-#    allow_hue_groups: false
-#    allow_unreachable: true
-
             ##########################################################
             ## MQTT Lights
             ##########################################################
