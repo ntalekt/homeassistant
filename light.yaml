@@ -21,7 +21,6 @@
     state_topic: "ntalekt/sensornode1"
     command_topic: "ntalekt/sensornode1/set"
     brightness: true
-    flash: true
     rgb: true
     optimistic: false
     qos: 0
