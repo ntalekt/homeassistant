@@ -20,13 +20,13 @@
       ## Reset Office Occupancy
       #################################################################
 
-- alias: occupancy office turn off after 30min of no motion
+- alias: occupancy office turn off after 10min of no motion
   trigger:
     - platform: state
       entity_id: sensor.office_pir
       to: 'standby'
       for:
-        minutes: 30
+        minutes: 10
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.office_occupancy
@@ -49,13 +49,13 @@
       ## Reset Living Room Occupancy
       #################################################################
 
-- alias: occupancy living turn off after 30min of no motion
+- alias: occupancy living turn off after 10min of no motion
   trigger:
     - platform: state
       entity_id: sensor.living_room_motion_detected
       to: 'False'
       for:
-        minutes: 30
+        minutes: 10
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.living_occupancy
@@ -107,13 +107,13 @@
       ## Reset Chalkboard Room Occupancy
       #################################################################
 
-- alias: occupancy chalkboard turn off after 30min of no motion
+- alias: occupancy chalkboard turn off after 10min of no motion
   trigger:
     - platform: state
       entity_id: sensor.chalkboard_room_motion_detected
       to: 'False'
       for:
-        minutes: 30
+        minutes: 10
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.chalkboard_occupancy
