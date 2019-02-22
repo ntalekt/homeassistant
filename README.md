@@ -18,7 +18,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
   * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
 * Software
   * [Home Assistant Hassbian v1.31 (Python 3.5.3)](https://www.home-assistant.io/docs/installation/hassbian/installation/)
-    * Home Assistant Version: 0.88.0
+    * Home Assistant Version: 0.88.1
   * [NGNIX proxy](https://home-assistant.io/docs/ecosystem/nginx/)
   * SSL via [SSLs](https://www.ssls.com/)
 
