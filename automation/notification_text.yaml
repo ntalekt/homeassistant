@@ -362,6 +362,16 @@
       to: 'off'
       for:
         minutes: 10
+    - platform: state
+      entity_id: binary_sensor.cactus
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.media_lamp
+      to: 'off'
+      for:
+        minutes: 10
   condition:
     condition: and
     conditions:

@@ -155,9 +155,9 @@
     host: !secret yeestrip_media_r_host
     name: Media Center R Yeestrip
 
-#  - platform: ping
-#    host: !secret wemo_mini_cactus_host
-#    name: Wemo Mini Cactus
+  - platform: ping
+    host: !secret wemo_mini_cactus_host
+    name: Wemo Mini Cactus
 
   - platform: ping
     host: !secret wemo_insight_host
