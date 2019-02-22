@@ -34,15 +34,15 @@
       - input_boolean.living_occupancy
       - input_boolean.office_occupancy
       - input_boolean.shop_occupancy
-      - automation.occupancy__chalkboard_turn_off_after_30min_of_no_motion
-      - automation.occupancy__chalkboard_turn_on_if_motion_detected
-      - automation.occupancy__garage_turn_off_after_10min_of_no_motion
-      - automation.occupancy__garage_turn_on_if_motion_detected
-      - automation.occupancy__living_turn_off_after_30min_of_no_motion
-      - automation.occupancy__living_turn_on_if_motion_detected
-      - automation.occupancy__office_turn_off_after_30min_of_no_motion
-      - automation.occupancy__office_turn_on_if_motion_detected
-      - automation.occupancy__shop_turn_off_after_10min_of_no_motion
-      - automation.occupancy__shop_turn_on_if_motion_detected
+      - automation.occupancy_chalkboard_turn_off_after_30min_of_no_motion
+      - automation.occupancy_chalkboard_turn_on_if_motion_detected
+      - automation.occupancy_garage_turn_off_after_10min_of_no_motion
+      - automation.occupancy_garage_turn_on_if_motion_detected
+      - automation.occupancy_living_turn_off_after_30min_of_no_motion
+      - automation.occupancy_living_turn_on_if_motion_detected
+      - automation.occupancy_office_turn_off_after_30min_of_no_motion
+      - automation.occupancy_office_turn_on_if_motion_detected
+      - automation.occupancy_shop_turn_off_after_10min_of_no_motion
+      - automation.occupancy_shop_turn_on_if_motion_detected
     domains:
       - group
