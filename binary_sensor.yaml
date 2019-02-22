@@ -12,6 +12,16 @@
       - motion
 
         ##########################################################
+        ## HikVision DS-2CD2032-I
+        ##########################################################
+
+  - platform: hikvision
+    host: !secret baby_cam_host
+    username: !secret baby_camera_user
+    password: !secret baby_camera_pass
+    port: 8082
+
+        ##########################################################
         ## Occupancy Templates
         ##########################################################
 
@@ -27,6 +37,13 @@
       living_occupancy_on:
         friendly_name: Living Occupancy
         value_template: "{{ states.input_boolean.living_occupancy.state == 'on' }}"
+        device_class: motion
+
+  - platform: template
+    sensors:
+      baby_occupancy_on:
+        friendly_name: Baby Occupancy
+        value_template: "{{ states.input_boolean.baby_occupancy.state == 'on' }}"
         device_class: motion
 
   - platform: template

@@ -27,6 +27,11 @@
     initial: off
     icon: mdi:account
 
+  baby_occupancy:
+    name: Baby Occupancy
+    initial: off
+    icon: mdi:account
+
   chalkboard_occupancy:
     name: Chalkboard Occupancy
     initial: off

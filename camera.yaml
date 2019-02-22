@@ -7,22 +7,4 @@
     username: !secret baby_camera_user
     password: !secret baby_camera_pass
 
-#  - platform: ffmpeg
-#    name: Living Room
-#    input: !secret living_room_cam_rtsp
-#    extra_arguments: -an -q:v 25
-
-#  - platform: ffmpeg
-#    name: Chalkboard Room
-#    input: !secret chalkboard_room_cam_rtsp
-#    extra_arguments: -an -q:v 25
-
-#  - platform: ffmpeg
-#    name: Garage
-#    input: !secret garage_cam_rtsp
-#    extra_arguments: -an -q:v 25
-
-#  - platform: ffmpeg
-#    name: Shop
-#    input: !secret shop_cam_rtsp
-#    extra_arguments: -an -q:v 25
+  - platform: amcrest
