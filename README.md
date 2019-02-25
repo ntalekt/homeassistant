@@ -58,7 +58,9 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [LG 65UH8500 65" TV](https://www.amazon.com/gp/product/B01N4TQ7O4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01N4TQ7O4&linkCode=as2&tag=ntalekt0c-20&linkId=8f7ccb7cacee84993798af9970cd6bb8)
 
 #### Network
-* [Netgear Nighthawk X4S Router](https://www.amazon.com/gp/product/B0192911RA/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0192911RA&linkCode=as2&tag=ntalekt0c-20&linkId=bf3232d8d723b45e0c75a0f6455f9ad0)
+* [Ubiquiti Unifi Security Gateway (USG)](https://smile.amazon.com/Ubiquiti-Unifi-Security-Gateway-USG/dp/B00LV8YZLK/ref=sr_1_1?s=electronics&ie=UTF8&qid=1551113819&sr=1-1)
+* [Ubiquiti UniFi Switch 8 60W (US-8-60W)](https://smile.amazon.com/Ubiquiti-UniFi-Switch-60W-US-8-60W/dp/B01MU3WUX1/ref=sr_1_1?s=electronics&ie=UTF8&qid=1551113861&sr=1-1)
+* [Ubiquiti UniFi Access Point (UAP-AC-PRO-US)](https://smile.amazon.com/Ubiquiti-Networks-802-11ac-Dual-Radio-UAP-AC-PRO-US/dp/B015PRO512/ref=pd_bxgy_147_3/147-7827003-3388156?_encoding=UTF8&pd_rd_i=B015PRO512&pd_rd_r=78e61fca-391e-11e9-8361-31a05a5f3960&pd_rd_w=EtNic&pd_rd_wg=9CHgg&pf_rd_p=6725dbd6-9917-451d-beba-16af7874e407&pf_rd_r=PWC60BR9T4G7454SPZJM&psc=1&refRID=PWC60BR9T4G7454SPZJM) x2
 * [QNAP TS-251+ NAS](https://www.amazon.com/gp/product/B015VNLEOQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015VNLEOQ&linkCode=as2&tag=ntalekt0c-20&linkId=1419a45442b188e9223b9afd7da40d5c)
 * [Synology DS212j NAS](https://www.amazon.com/gp/product/B01BNPT1EG/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01BNPT1EG&linkCode=as2&tag=ntalekt0c-20&linkId=b2724ecc904516670df984ce5f1aba07)
 * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
