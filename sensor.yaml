@@ -13,6 +13,11 @@
       - ads_percentage_today
       - dns_queries_today
 
+  - platform: command_line
+    name: Pihole Status
+    command: curl -X GET 'http://REDACTED/admin/api.php?status'
+    value_template: "{{ value_json.status == 'enabled' }}"
+
         ##########################################################
         ## HA Instance
         ##########################################################

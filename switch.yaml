@@ -10,3 +10,15 @@
     host: !secret deluge_pi_host
     username: !secret deluge_user
     password: !secret deluge_pass
+
+        ##########################################################
+        ## Pihole Disable Switch
+        ##########################################################
+
+  - platform: command_line
+    switches:
+      pihole_switch:
+        command_on: "curl -X GET 'http://REDACTED/admin/api.php?enable&auth=REDACTED'"
+        command_off: "curl -X GET 'http://REDACTED/admin/api.php?disable=1800&auth=REDACTED'"
+        command_state: "curl -X GET 'http://REDACTED/admin/api.php?status'"
+        value_template: "{{ value_json.status == 'enabled' }}"
