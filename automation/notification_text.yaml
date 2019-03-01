@@ -217,11 +217,11 @@
 
 - alias: notification alert when a critical device goes offline
   trigger:
-    - platform: state
-      entity_id: binary_sensor.synology_nas
-      to: 'off'
-      for:
-        minutes: 10
+#    - platform: state
+#      entity_id: binary_sensor.synology_nas
+#      to: 'off'
+#      for:
+#        minutes: 10
     - platform: state
       entity_id: binary_sensor.qnap_nas
       to: 'off'
@@ -322,11 +322,11 @@
       to: 'off'
       for:
         minutes: 10
-    - platform: state
-      entity_id: binary_sensor.powerline_wifi
-      to: 'off'
-      for:
-        minutes: 10
+#    - platform: state
+#      entity_id: binary_sensor.powerline_wifi
+#      to: 'off'
+#      for:
+#        minutes: 10
     - platform: state
       entity_id: binary_sensor.deluge_process
       to: 'off'
@@ -352,11 +352,11 @@
       to: 'off'
       for:
         minutes: 10
-    - platform: state
-      entity_id: binary_sensor.wemo_mini_cactus
-      to: 'off'
-      for:
-        minutes: 10
+#    - platform: state
+#      entity_id: binary_sensor.wemo_mini_cactus
+#      to: 'off'
+#      for:
+#        minutes: 10
     - platform: state
       entity_id: binary_sensor.octopi
       to: 'off'
@@ -369,6 +369,26 @@
         minutes: 10
     - platform: state
       entity_id: binary_sensor.media_lamp
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.unifi_usg
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.unifi_sw8_60w
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.unifi_ap_loft
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.unifi_ap_chalkboard
       to: 'off'
       for:
         minutes: 10

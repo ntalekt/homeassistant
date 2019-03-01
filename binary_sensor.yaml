@@ -71,9 +71,9 @@
         ## Network Devices
         ##########################################################
 
-  - platform: ping
-    host: !secret nas_host
-    name: Synology NAS
+#  - platform: ping
+#    host: !secret nas_host
+#    name: Synology NAS
 
   - platform: ping
     host: !secret nas2_host
@@ -143,9 +143,9 @@
     host: !secret pihole_host
     name: Pihole
 
-  - platform: ping
-    host: !secret tplink_host
-    name: Powerline Wifi
+#  - platform: ping
+#    host: !secret tplink_host
+#    name: Powerline Wifi
 
   - platform: ping
     host: !secret yeestrip_media_l_host
@@ -155,9 +155,9 @@
     host: !secret yeestrip_media_r_host
     name: Media Center R Yeestrip
 
-  - platform: ping
-    host: !secret wemo_mini_cactus_host
-    name: Wemo Mini Cactus
+#  - platform: ping
+#    host: !secret wemo_mini_cactus_host
+#    name: Wemo Mini Cactus
 
   - platform: ping
     host: !secret wemo_insight_host
@@ -198,6 +198,22 @@
   - platform: ping
     host: !secret xiaomi_gateway_host
     name: Xiaomi Gateway
+
+  - platform: ping
+    host: !secret unifi_usg_host
+    name: UniFi USG
+
+  - platform: ping
+    host: !secret unifi_sw8_host
+    name: UniFi SW8 60w
+
+  - platform: ping
+    host: !secret unifi_apacpro_loft_host
+    name: UniFi AP Loft
+
+  - platform: ping
+    host: !secret unifi_apacpro_chalk_host
+    name: UniFi AP Chalkboard
 
         ##########################################################
         ## WAN test script

@@ -177,7 +177,7 @@ weather:
 
 wemo:
   static:
-    - !secret wemo_mini_cactus_host
+#    - !secret wemo_mini_cactus_host
     - !secret wemo_insight_host
 
 xiaomi_aqara:
