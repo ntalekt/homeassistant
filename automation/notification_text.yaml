@@ -80,7 +80,7 @@
     condition: template
     value_template: >
           {% macro battery_level() %}
-          {%- set threshold = 20 -%}
+          {%- set threshold = 10 -%}
           {% set domains = ['sensor'] %}
           {% for domain in domains -%}
           {% for item in states[domain] if (("battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown"))) -%}
@@ -96,7 +96,7 @@
         title: "Home Assistant"
         message: >
           {% macro battery_level() %}
-          {%- set threshold = 20 -%}
+          {%- set threshold = 10 -%}
           {% set domains = ['sensor'] %}
           {% for domain in domains -%}
           {% for item in states[domain] if (("battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown"))) -%}
@@ -111,7 +111,7 @@
         title: Low Battery
         message: >
           {% macro battery_level() %}
-          {%- set threshold = 20 -%}
+          {%- set threshold = 10 -%}
           {% set domains = ['sensor'] %}
           {% for domain in domains -%}
           {% for item in states[domain] if (("battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown"))) -%}
