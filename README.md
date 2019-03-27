@@ -144,7 +144,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * WAN test script found [here](https://community.home-assistant.io/t/wan-test-script-quick-and-dirty/30699)
 
 # Interface
-![UI](images/home-screenshot.jpg)
+![UI](images/home-lovelace.jpg)
 ![UI](images/lights-screenshot.jpg)
 ![UI](images/first-floor-screenshot.jpg)
 ![UI](images/second-floor-screenshot.jpg)
