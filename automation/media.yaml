@@ -39,19 +39,33 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.media_center_shield
 
-- alias: media media center remote input boolean tv
+- alias: media media center remote input boolean switch
   trigger:
     - platform: state
-      entity_id: input_boolean.media_center_tv
+      entity_id: input_boolean.media_center_switch
       from: 'off'
       to: 'on'
   action:
     - service: input_select.select_option
       data:
         entity_id: input_select.remote
-        option: 'TV'
+        option: 'Switch'
     - service: homeassistant.turn_off
-      entity_id: input_boolean.media_center_tv
+      entity_id: input_boolean.media_center_switch
+      
+- alias: media media center remote input boolean blueray
+  trigger:
+    - platform: state
+      entity_id: input_boolean.media_center_blueray
+      from: 'off'
+      to: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: 'Blueray'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.media_center_blueray
 
 - alias: media media center remote input boolean poweroff
   trigger:
@@ -143,19 +157,19 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.master_firetv
 
-- alias: media master remote input boolean tv
+- alias: media master remote input boolean retropie
   trigger:
     - platform: state
-      entity_id: input_boolean.master_tv
+      entity_id: input_boolean.master_retropie
       from: 'off'
       to: 'on'
   action:
     - service: input_select.select_option
       data:
         entity_id: input_select.master_remote
-        option: 'TV'
+        option: 'RetroPie'
     - service: homeassistant.turn_off
-      entity_id: input_boolean.master_tv
+      entity_id: input_boolean.master_retropie
 
 - alias: media master remote input boolean poweroff
   trigger:

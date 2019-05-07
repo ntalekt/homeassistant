@@ -18,14 +18,10 @@ input_select_harmony:
               -1
           {% elif is_state("input_select.remote", "Shield") and current_activity != 'Shield' %}
               26199213
-          {% elif is_state("input_select.remote", "TV") and current_activity != 'TV' %}
-              16835075
-          {% elif is_state("input_select.remote", "Prime") and current_activity != 'Prime' %}
-              20123015
-          {% elif is_state("input_select.remote", "Netflix") and current_activity != 'Netflix' %}
-              20122215
           {% elif is_state("input_select.remote", "Blueray") and current_activity != 'Blueray' %}
               16835304
+          {% elif is_state("input_select.remote", "Switch") and current_activity != 'Switch' %}
+              33434665
           {% else %}
               0
           {% endif %}
@@ -42,8 +38,8 @@ input_select_master_harmony:
               -1
           {% elif is_state("input_select.master_remote", "Fire TV") and current_activity != 'Fire TV' %}
               27717507
-          {% elif is_state("input_select.master_remote", "TV") and current_activity != 'TV' %}
-              27717176
+          {% elif is_state("input_select.master_remote", "Retropie") and current_activity != 'Retropie' %}
+              39606456
           {% else %}
               0
           {% endif %}

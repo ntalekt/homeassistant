@@ -11,9 +11,7 @@
     options:
       - PowerOff
       - Shield
-      - TV
-      - Prime
-      - Netflix
+      - Switch
       - Blueray
     icon: mdi:remote
 
@@ -26,7 +24,7 @@
     options:
       - PowerOff
       - Fire TV
-      - TV
+      - RetroPie
     icon: mdi:remote
 
         ##########################################################

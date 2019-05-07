@@ -226,8 +226,13 @@
     initial: off
     icon: mdi:youtube-tv
 
-  media_center_tv:
-    name: Media Center TV
+  media_center_switch:
+    name: Media Center Switch
+    initial: off
+    icon: mdi:television-box
+    
+  media_center_blueray:
+    name: Media Center Blueray
     initial: off
     icon: mdi:television-box
 
@@ -241,8 +246,8 @@
     initial: off
     icon: mdi:youtube-tv
 
-  master_tv:
-    name: Master TV
+  master_retropie:
+    name: Master retropie
     initial: off
     icon: mdi:television-box
 
