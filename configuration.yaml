@@ -62,32 +62,32 @@ amcrest:
     name: Living Room
     username: !secret amcrest_user
     password: !secret amcrest_pass
-    sensors:
-      - motion_detector
+    binary_sensors:
+      - motion_detected
     stream_source: rtsp
 
   - host: !secret amcrest_garage_host
     name: Garage
     username: !secret amcrest_user
     password: !secret amcrest_pass
-    sensors:
-      - motion_detector
+    binary_sensors:
+      - motion_detected
     stream_source: rtsp
 
   - host: !secret amcrest_chalkboard_host
     name: Chalkboard Room
     username: !secret amcrest_user
     password: !secret amcrest_pass
-    sensors:
-      - motion_detector
+    binary_sensors:
+      - motion_detected
     stream_source: rtsp
 
   - host: !secret amcrest_shop_host
     name: Shop
     username: !secret amcrest_user
     password: !secret amcrest_pass
-    sensors:
-      - motion_detector
+    binary_sensors:
+      - motion_detected
     stream_source: rtsp
 
 emulated_hue:

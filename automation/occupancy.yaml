@@ -38,7 +38,7 @@
 - alias: occupancy living turn on if motion detected
   trigger:
     - platform: state
-      entity_id: sensor.living_room_motion_detected
+      entity_id: binary_sensor.living_room_motion_detected
       from: 'False'
       to: 'True'
   action:
@@ -52,7 +52,7 @@
 - alias: occupancy living turn off after 10min of no motion
   trigger:
     - platform: state
-      entity_id: sensor.living_room_motion_detected
+      entity_id: binary_sensor.living_room_motion_detected
       to: 'False'
       for:
         minutes: 10
@@ -67,7 +67,7 @@
 - alias: occupancy garage turn on if motion detected
   trigger:
     - platform: state
-      entity_id: sensor.garage_motion_detected
+      entity_id: binary_sensor.garage_motion_detected
       from: 'False'
       to: 'True'
   action:
@@ -81,7 +81,7 @@
 - alias: occupancy garage turn off after 10min of no motion
   trigger:
     - platform: state
-      entity_id: sensor.garage_motion_detected
+      entity_id: binary_sensor.garage_motion_detected
       to: 'False'
       for:
         minutes: 10
@@ -96,7 +96,7 @@
 - alias: occupancy chalkboard turn on if motion detected
   trigger:
     - platform: state
-      entity_id: sensor.chalkboard_room_motion_detected
+      entity_id: binary_sensor.chalkboard_room_motion_detected
       from: 'False'
       to: 'True'
   action:
@@ -110,7 +110,7 @@
 - alias: occupancy chalkboard turn off after 10min of no motion
   trigger:
     - platform: state
-      entity_id: sensor.chalkboard_room_motion_detected
+      entity_id: binary_sensor.chalkboard_room_motion_detected
       to: 'False'
       for:
         minutes: 10
@@ -125,7 +125,7 @@
 - alias: occupancy shop turn on if motion detected
   trigger:
     - platform: state
-      entity_id: sensor.shop_motion_detected
+      entity_id: binary_sensor.shop_motion_detected
       from: 'False'
       to: 'True'
   action:
@@ -139,7 +139,7 @@
 - alias: occupancy shop turn off after 10min of no motion
   trigger:
     - platform: state
-      entity_id: sensor.shop_motion_detected
+      entity_id: binary_sensor.shop_motion_detected
       to: 'False'
       for:
         minutes: 10
