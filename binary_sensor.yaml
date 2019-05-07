@@ -233,19 +233,19 @@
     payload_on: "Up"
     payload_off: "Down"
 
-  - platform: command_line
-    name: Deluge Process
-    command: 'ssh pi@REDACTED20 "./check_deluged.sh"'
-    device_class: connectivity
-    payload_on: "Up"
-    payload_off: "Down"
+#  - platform: command_line
+#    name: Deluge Process
+#    command: 'ssh pi@REDACTED20 "./check_deluged.sh"'
+#    device_class: connectivity
+#    payload_on: "Up"
+#    payload_off: "Down"
 
-  - platform: command_line
-    name: Killswitch Process
-    command: 'ssh pi@REDACTED20 "./check_killswitch.sh"'
-    device_class: connectivity
-    payload_on: "Up"
-    payload_off: "Down"
+#  - platform: command_line
+#    name: Killswitch Process
+#    command: 'ssh pi@REDACTED20 "./check_killswitch.sh"'
+#    device_class: connectivity
+#    payload_on: "Up"
+#    payload_off: "Down"
 
   - platform: command_line
     name: Mosquitto Status
