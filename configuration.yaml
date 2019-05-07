@@ -161,7 +161,7 @@ sonos:
       - !secret sonos_office_host
 
 tts:
-  - platform: google
+  - platform: google_translate
     cache: true
     time_memory: 300
 

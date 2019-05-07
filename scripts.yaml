@@ -80,7 +80,7 @@ say:
         media_content_id: http://REDACTED33:8123/local/sounds/two-tone-chime.mp3
         media_content_type: music
     - delay: '00:00:02'
-    - service: tts.google_say
+    - service: tts.google_translate_say
       data_template:
         entity_id: "{{ master }}"
         message: "{{ what }}"
@@ -133,7 +133,7 @@ good_morning:
         media_content_id: http://REDACTED33:8123/local/sounds/two-tone-chime.mp3
         media_content_type: music
     - delay: '00:00:02'
-    - service: tts.google_say
+    - service: tts.google_translate_say
       data_template:
         entity_id:
         - media_player.chalkboard_room
