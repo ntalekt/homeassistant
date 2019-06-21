@@ -51,15 +51,15 @@ input_select_master_harmony:
 say:
   alias: Sonos TTS
   sequence:
-    - service: media_player.sonos_snapshot
+    - service: sonos.snapshot
       data_template:
         with_group: yes
     - delay: '00:00:03'
-    - service: media_player.sonos_unjoin
+    - service: sonos.unjoin
       data_template:
         entity_id: "{{ where }}"
     - delay: '00:00:01'
-    - service: media_player.sonos_join
+    - service: sonos.join
       data_template:
         master: "{{ master }}"
         entity_id: "{{ where }}"
@@ -81,7 +81,7 @@ say:
         entity_id: "{{ master }}"
         message: "{{ what }}"
     - delay: '00:00:25'
-    - service: media_player.sonos_restore
+    - service: sonos.restore
       data_template:
         with_group: yes
 
@@ -92,11 +92,11 @@ say:
 good_morning:
   alias: Sonos TTS
   sequence:
-    - service: media_player.sonos_snapshot
+    - service: sonos.snapshot
       data_template:
         with_group: yes
     - delay: '00:00:03'
-    - service: media_player.sonos_unjoin
+    - service: sonos.unjoin
       data_template:
         entity_id:
           - media_player.chalkboard_room
@@ -104,7 +104,7 @@ good_morning:
           - media_player.loft
           - media_player.office
     - delay: '00:00:01'
-    - service: media_player.sonos_join
+    - service: sonos.join
       data_template:
         master: media_player.chalkboard_room
         entity_id:
@@ -202,6 +202,6 @@ good_morning:
           {% endif %}
           Have a great day REDACTED family!
     - delay: '00:00:30'
-    - service: media_player.sonos_restore
+    - service: sonos.restore
       data_template:
         with_group: yes
