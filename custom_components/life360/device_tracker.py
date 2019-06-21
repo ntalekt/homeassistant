@@ -9,12 +9,21 @@ from requests import HTTPError, ConnectionError as ReqConnectionError, Timeout
 import voluptuous as vol
 
 from homeassistant.components.device_tracker import (
-    CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL, DOMAIN,
-    ENTITY_ID_FORMAT as DT_ENTITY_ID_FORMAT, PLATFORM_SCHEMA)
+    CONF_SCAN_INTERVAL, DOMAIN, PLATFORM_SCHEMA)
+try:
+    from homeassistant.components.device_tracker.const import (
+        ENTITY_ID_FORMAT as DT_ENTITY_ID_FORMAT,
+        SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL)
+except ImportError:
+    from homeassistant.components.device_tracker import (
+        DEFAULT_SCAN_INTERVAL, ENTITY_ID_FORMAT as DT_ENTITY_ID_FORMAT)
 from homeassistant.components.zone import (
     DEFAULT_PASSIVE, ENTITY_ID_FORMAT as ZN_ENTITY_ID_FORMAT, ENTITY_ID_HOME,
     Zone)
-from homeassistant.components.zone.zone import active_zone
+try:
+    from homeassistant.components.zone import async_active_zone
+except ImportError:
+    from homeassistant.components.zone.zone import async_active_zone
 from homeassistant.const import (
     ATTR_BATTERY_CHARGING, ATTR_FRIENDLY_NAME, ATTR_LATITUDE, ATTR_LONGITUDE,
     ATTR_NAME, CONF_FILENAME, CONF_PASSWORD, CONF_PREFIX, CONF_USERNAME,
@@ -24,7 +33,8 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity import generate_entity_id
 from homeassistant.helpers.event import track_time_interval
 from homeassistant.util import slugify
-from homeassistant.util.async_ import run_coroutine_threadsafe
+from homeassistant.util.async_ import (
+    run_callback_threadsafe, run_coroutine_threadsafe)
 from homeassistant.util.distance import convert
 import homeassistant.util.dt as dt_util
 
@@ -517,12 +527,15 @@ class Life360Scanner:
             # If we don't have a location name yet and user wants driving or
             # moving to be shown as state, and current location is not in a HA
             # zone, then update location name accordingly.
-            if not loc_name and not active_zone(
-                    self._hass, lat, lon, gps_accuracy):
-                if SHOW_DRIVING in self._show_as_state and driving is True:
-                    loc_name = SHOW_DRIVING.capitalize()
-                elif SHOW_MOVING in self._show_as_state and moving is True:
-                    loc_name = SHOW_MOVING.capitalize()
+            if not loc_name:
+                active_zone = run_callback_threadsafe(
+                    self._hass.loop, async_active_zone, self._hass, lat, lon,
+                    gps_accuracy).result()
+                if not active_zone:
+                    if SHOW_DRIVING in self._show_as_state and driving is True:
+                        loc_name = SHOW_DRIVING.capitalize()
+                    elif SHOW_MOVING in self._show_as_state and moving is True:
+                        loc_name = SHOW_MOVING.capitalize()
 
             try:
                 battery = int(float(loc.get('battery')))
