@@ -39,8 +39,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.living_room_motion_detected
-      from: 'False'
-      to: 'True'
+      from: 'off'
+      to: 'on'
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.living_occupancy
@@ -53,7 +53,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.living_room_motion_detected
-      to: 'False'
+      to: 'off'
       for:
         minutes: 10
   action:
@@ -68,8 +68,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.garage_motion_detected
-      from: 'False'
-      to: 'True'
+      from: 'off'
+      to: 'on'
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.garage_occupancy
@@ -82,7 +82,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.garage_motion_detected
-      to: 'False'
+      to: 'off'
       for:
         minutes: 10
   action:
@@ -97,8 +97,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.chalkboard_room_motion_detected
-      from: 'False'
-      to: 'True'
+      from: 'off'
+      to: 'on'
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.chalkboard_occupancy
@@ -111,7 +111,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.chalkboard_room_motion_detected
-      to: 'False'
+      to: 'off'
       for:
         minutes: 10
   action:
@@ -126,8 +126,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.shop_motion_detected
-      from: 'False'
-      to: 'True'
+      from: 'off'
+      to: 'on'
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.shop_occupancy
@@ -140,7 +140,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.shop_motion_detected
-      to: 'False'
+      to: 'off'
       for:
         minutes: 10
   action:
