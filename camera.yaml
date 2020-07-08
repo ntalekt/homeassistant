@@ -1,10 +1,10 @@
-  - platform: ring
-    ffmpeg_arguments: -pred 1 -q:v 2
+##############################################################
+## Camera  ##
+##############################################################
 
   - platform: mjpeg
     name: Baby Camera
     mjpeg_url: !secret baby_cam_mjpeg
     username: !secret baby_camera_user
     password: !secret baby_camera_pass
-
-  - platform: amcrest
+  
