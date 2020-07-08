@@ -3,205 +3,84 @@
 #################################################################
 
         ##########################################################
-        ## Harmony Remote
+        ## Harmony Remote - Media Center
         ##########################################################
 
-input_select_harmony:
-  alias: "Start Remote activity from input select"
-  sequence:
-      service: remote.turn_on
-      data_template:
-        entity_id: remote.media_center
-        activity: >
-          {% set current_activity = states.remote.media_center.attributes.current_activity %}
-          {% if is_state("input_select.remote", "PowerOff") and current_activity != 'PowerOff' %}
-              -1
-          {% elif is_state("input_select.remote", "Shield") and current_activity != 'Shield' %}
-              26199213
-          {% elif is_state("input_select.remote", "Blueray") and current_activity != 'Blueray' %}
-              16835304
-          {% elif is_state("input_select.remote", "Switch") and current_activity != 'Switch' %}
-              33434665
-          {% else %}
-              0
-          {% endif %}
+    shield_activity_on:
+      sequence:
+        - service: remote.turn_on
+          data:
+            entity_id: remote.media_center
+            activity: 'Shield'
 
-input_select_master_harmony:
-  alias: "Start Remote activity from input select"
-  sequence:
-      service: remote.turn_on
-      data_template:
-        entity_id: remote.master
-        activity: >
-          {% set current_activity = states.remote.master.attributes.current_activity %}
-          {% if is_state("input_select.master_remote", "PowerOff") and current_activity != 'PowerOff' %}
-              -1
-          {% elif is_state("input_select.master_remote", "Fire TV") and current_activity != 'Fire TV' %}
-              27717507
-          {% elif is_state("input_select.master_remote", "Retropie") and current_activity != 'Retropie' %}
-              39606456
-          {% else %}
-              0
-          {% endif %}
+    switch_activity_on:
+      sequence:
+        - service: remote.turn_on
+          data:
+            entity_id: remote.media_center
+            activity: 'Switch'
 
+    media_center_harmony_off:
+      sequence:
+        - service: remote.turn_off
+          data:
+            entity_id: remote.media_center
+            activity: 'PowerOff'
+            
+    media_center_volume_up:
+      sequence:
+        - service: remote.send_command
+          data:
+            entity_id: remote.media_center
+            device: 44892008
+            command: 'VolumeUp'
+            
+    media_center_volume_down:
+      sequence:
+        - service: remote.send_command
+          data:
+            entity_id: remote.media_center
+            device: 44892008
+            command: 'VolumeDown'
+            
         ##########################################################
-        ## Sonos Text to Speech
-        ##########################################################
-
-say:
-  alias: Sonos TTS
-  sequence:
-    - service: sonos.snapshot
-      data_template:
-        with_group: yes
-    - delay: '00:00:03'
-    - service: sonos.unjoin
-      data_template:
-        entity_id: "{{ where }}"
-    - delay: '00:00:01'
-    - service: sonos.join
-      data_template:
-        master: "{{ master }}"
-        entity_id: "{{ where }}"
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      data_template:
-        entity_id: "{{ where }}"
-        volume_level: "{{ volume }}"
-    - delay: '00:00:02'
-    - service: media_player.play_media
-      data:
-        entity_id:
-          - media_player.office
-        media_content_id: http://REDACTED33:8123/local/sounds/two-tone-chime.mp3
-        media_content_type: music
-    - delay: '00:00:02'
-    - service: tts.google_translate_say
-      data_template:
-        entity_id: "{{ master }}"
-        message: "{{ what }}"
-    - delay: '00:00:25'
-    - service: sonos.restore
-      data_template:
-        with_group: yes
-
-        ##########################################################
-        ## Sonos - Good morning announcement
+        ## Harmony Remote - Master
         ##########################################################
 
-good_morning:
-  alias: Sonos TTS
-  sequence:
-    - service: sonos.snapshot
-      data_template:
-        with_group: yes
-    - delay: '00:00:03'
-    - service: sonos.unjoin
-      data_template:
-        entity_id:
-          - media_player.chalkboard_room
-          - media_player.kitchen
-          - media_player.loft
-          - media_player.office
-    - delay: '00:00:01'
-    - service: sonos.join
-      data_template:
-        master: media_player.chalkboard_room
-        entity_id:
-          - media_player.chalkboard_room
-          - media_player.kitchen
-          - media_player.loft
-          - media_player.office
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      data_template:
-        entity_id:
-          - media_player.chalkboard_room
-          - media_player.kitchen
-          - media_player.loft
-          - media_player.office
-        volume_level: '.6'
-    - delay: '00:00:02'
-    - service: media_player.play_media
-      data:
-        entity_id:
-          - media_player.chalkboard_room
-        media_content_id: http://REDACTED33:8123/local/sounds/two-tone-chime.mp3
-        media_content_type: music
-    - delay: '00:00:02'
-    - service: tts.google_translate_say
-      data_template:
-        entity_id:
-        - media_player.chalkboard_room
-        message: >
-          {% set hour = now().strftime("%H") %}
-          {% set weekday_full_name = now().strftime("%A") %}
-          {% set month_full_name = now().strftime("%B") %}
-          {% set day = now().strftime("%-d") %}
-          {% set weekday = now().strftime("%w") %}
-          {% if hour | int < 12 %}
-          Good morning. Today is {{ weekday_full_name }} {{ month_full_name }} the
-            {% if day | int == 1 or day | int == 21 or day | int == 31 %}
-              {{ day }}st
-            {% elif day | int == 2 or day | int == 22 %}
-              {{ day }}nd
-            {% elif day | int == 3 or day | int == 23 %}
-              {{ day }}rd
-            {% else %}
-              {{ day }}th
-            {% endif %}.
-          {% elif hour | int < 18 %}
-          Good afternoon.
-          {% else %}
-          Good evening.
-          {% endif %}
-          {# Birthday notifications #}
-          {% macro birthday_countdown( name, days2go ) %}
-            {%- if days2go == 0 -%}
-              Today is {{name}}'s Birthday!. Happy Birthday to you, my dear {{name}}!!!.
-            {%- elif days2go == 1 -%}
-              Tomorrow is {{name}}'s Birthday! HURRAY!!!
-            {%- elif days2go > 1 and days2go <= 10 -%}
-            {{name}}s Birthday is in {{days2go}} days! HURRAY!!!
-            {%- endif -%}
-          {% endmacro %}
-          {{ birthday_countdown("userthree", states.sensor.birthday_countdown_userthree.state | int ) }}
-          {{ birthday_countdown("userfour", states.sensor.birthday_countdown_userfour.state | int ) }}
-          {{ birthday_countdown("REDACTED", states.sensor.birthday_countdown_usertwo.state | int ) }}
-          {{ birthday_countdown("REDACTED", states.sensor.birthday_countdown_userone.state | int ) }}
-          {% if weekday | int > 0 and weekday | int < 5 %}
-            Today is a school day.
-          {% endif %}
-          {% if weekday | int == 5 %}
-            Today is a school day and donut day!
-          {% endif %}
-          {% if month_full_name == 'November' %}
-            {% if day | int == 1 or day | int == 8 or day | int == 16 or day | int == 28 %}
-              userthree, today is art day.
-            {% elif day | int == 2 or day | int == 7 or day | int == 9 or day | int == 15 or day | int == 17 or day | int == 27 or day | int == 29 %}
-              userthree, today is P.E. day.
-            {% elif day | int == 3 or day | int == 13 or day | int == 20 or day | int == 30 %}
-              userthree, today is music day.
-            {% elif day | int == 6 or day | int == 14 or day | int == 21 %}
-              userthree, today is technology day.
-            {% elif day | int == 10 or day | int == 22 or day | int == 23 or day | int == 24 %}
-              userthree, you don't have school today even though it's a school day.
-            {% endif %}
-          {% endif %}
-          {% if weekday | int == 2 %}
-            userfour, today is Play Date sports day.
-          {% endif %}
-          {% if weekday | int == 4 %}
-            userfour, today is music day.
-          {% endif %}
-          {% if weekday | int == 6 %}
-            userthree, I hope you have a wonderful time at swim class. userfour, I hope you have fun at sports class.
-          {% endif %}
-          {% if weekday | int == 2 %}
-            userone, today is trash day.
-          {% endif %}
-          Have a great day REDACTED family!
-    - delay: '00:00:30'
-    - service: sonos.restore
-      data_template:
-        with_group: yes
+    firetv_activity_on:
+      sequence:
+        - service: remote.turn_on
+          data:
+            entity_id: remote.master
+            activity: 'Fire TV'
+
+    retropie_activity_on:
+      sequence:
+        - service: remote.turn_on
+          data:
+            entity_id: remote.master
+            activity: 'Retropie'
+
+    master_harmony_off:
+      sequence:
+        - service: remote.turn_off
+          data:
+            entity_id: remote.master
+            activity: 'PowerOff'
+            
+    master_volume_up:
+      sequence:
+        - service: remote.send_command
+          data:
+            entity_id: remote.master
+            device: 46622425
+            command: 'VolumeUp'
+            
+    master_volume_down:
+      sequence:
+        - service: remote.send_command
+          data:
+            entity_id: remote.master
+            device: 46622425
+            command: 'VolumeDown'
+
