@@ -1,0 +1,99 @@
+type: vertical-stack
+cards:
+  - type: "custom:button-card"
+    name: QNAP TS-251+
+    styles:
+      card:
+        - font-size: 24px
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        entity: sensor.nas2_status
+        name: Status
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+      - type: "custom:button-card"
+        entity: sensor.nas2_smart_status_drive_0_1
+        name: Drive 0:1
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+      - type: "custom:button-card"
+        entity: sensor.nas2_smart_status_drive_0_2
+        name: Drive 0:2
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+  - cards:
+      - entity: sensor.nas2_cpu_usage
+        max: 100
+        min: 0
+        name: CPU
+        severity:
+          green: 0
+          red: 80
+          yellow: 50
+        theme: default
+        type: gauge
+      - entity: sensor.nas2_memory_usage
+        max: 100
+        min: 0
+        name: Memory
+        severity:
+          green: 0
+          red: 90
+          yellow: 70
+        theme: default
+        type: gauge
+      - entity: sensor.nas2_volume_used_datavol1
+        max: 100
+        min: 0
+        name: Storage
+        severity:
+          green: 0
+          red: 90
+          yellow: 80
+        theme: default
+        type: gauge
+    type: horizontal-stack
+  - cards:
+      - type: custom:mini-graph-card
+        name: Down
+        icon: mdi:download-network
+        entities:
+          - entity: sensor.nas2_network_down_eth0
+        hours_to_show: 48
+        line_color: '#0074D9'
+      - type: custom:mini-graph-card
+        name: Up
+        icon: mdi:upload-network
+        entities:
+          - entity: sensor.nas2_network_up_eth0
+        hours_to_show: 48
+        line_color: '#FF4136'
+    type: horizontal-stack
+  - cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.nas2_free_space_datavol1
+        name: Free space
+        show:
+          graph: bar
+        hours_to_show: 48
+        line_color: '#FF851B'
+      - type: custom:mini-graph-card
+        name: System
+        icon: mdi:thermometer
+        entities:
+          - entity: sensor.nas2_system_temperature
+        hours_to_show: 48
+        line_color: '#B10DC9'
+      - type: custom:mini-graph-card
+        name: CPU
+        icon: mdi:thermometer
+        entities:
+          - entity: sensor.nas2_cpu_temperature
+        hours_to_show: 48
+        line_color: '#39CCCC'
+    type: horizontal-stack

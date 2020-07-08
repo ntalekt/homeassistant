@@ -1,0 +1,16 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: picture-entity
+        entity: device_tracker.life360_userone_REDACTED
+        tap_action:
+          action: more-info
+        show_name: false
+        image: /local/r.jpg
+      - type: picture-entity
+        entity: device_tracker.life360_REDACTED_REDACTED
+        tap_action:
+          action: more-info
+        show_name: false
+        image: /local/n.jpg

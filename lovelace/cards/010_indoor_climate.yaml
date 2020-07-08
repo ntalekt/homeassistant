@@ -1,0 +1,114 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.temperature_158d0001fa9e02
+        name: Master
+        line_color: '#0074D9'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.temperature_158d0001f51e9e
+        name: Loft
+        line_color: '#FF4136'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.temperature_158d0001f50dcb
+        name: Office
+        line_color: '#FF851B'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.temperature_158d0001b9561c
+        name: userthree
+        line_color: '#B10DC9'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.temperature_158d0001f50d5f
+        name: userfour
+        line_color: '#39CCCC'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.humidity_158d0001fa9e02
+        name: Master
+        line_color: '#0074D9'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.humidity_158d0001f51e9e
+        name: Loft
+        line_color: '#FF4136'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.humidity_158d0001f50dcb
+        name: Office
+        line_color: '#FF851B'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.humidity_158d0001b9561c
+        name: userthree
+        line_color: '#B10DC9'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.humidity_158d0001f50d5f
+        name: userfour
+        line_color: '#39CCCC'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+#  - type: horizontal-stack
+#    cards:
+#      - type: custom:mini-graph-card
+#        show:
+#          state: false
+#        name: Humidity
+#        icon: mdi:water-percent
+#        entities:
+#          - entity: sensor.humidity_158d0001fa9e02
+#            line_color: '#0074D9'
+#            name: Master
+#          - entity: sensor.humidity_158d0001f51e9e
+#            line_color: '#FF4136'
+#            name: Loft
+#          - entity: sensor.humidity_158d0001f50dcb
+#            line_color: '#FF851B'
+#            name: Office
+#          - entity: sensor.humidity_158d0001b9561c
+#            line_color: '#B10DC9'
+#            name: userthree
+#          - entity: sensor.humidity_158d0001f50d5f
+#            line_color: '#39CCCC'
+#            name: userfour
+#        hours_to_show: 72

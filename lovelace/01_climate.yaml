@@ -1,0 +1,9 @@
+title: Climate
+id: climate
+icon: mdi:thermometer-lines
+cards:
+
+ - !include /config/lovelace/cards/010_indoor_climate.yaml
+ - !include /config/lovelace/cards/011_downstairs_thermo.yaml
+ - !include /config/lovelace/cards/012_upstairs_thermo.yaml
+ - !include /config/lovelace/cards/013_air_quality.yaml

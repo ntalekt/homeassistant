@@ -1,0 +1,3 @@
+name: Downstairs
+entity: climate.downstairs_nativezone
+type: thermostat

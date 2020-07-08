@@ -1,0 +1,55 @@
+type: vertical-stack
+cards:
+  - type: "custom:button-card"
+    name: Docker Host
+    styles:
+      card:
+        - font-size: 24px
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        entity: sensor.docker_ub1_containers_running
+        name: Running
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+      - type: "custom:button-card"
+        entity: sensor.docker_ub1_containers_stopped
+        name: Stopped
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+      - type: "custom:button-card"
+        entity: sensor.docker_ub1_containers_paused
+        name: Paused
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+      - type: "custom:button-card"
+        entity: sensor.docker_ub1_version
+        name: Version
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+  - type: horizontal-stack  
+    cards:
+      - entity: sensor.docker_ub1_cpu
+        max: 100
+        min: 0
+        name: CPU
+        severity:
+          green: 0
+          red: 80
+          yellow: 50
+        theme: default
+        type: gauge
+      - entity: sensor.docker_ub1_memory_percent
+        max: 100
+        min: 0
+        name: Memory
+        severity:
+          green: 0
+          red: 90
+          yellow: 70
+        theme: default
+        type: gauge

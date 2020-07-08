@@ -1,0 +1,72 @@
+type: vertical-stack
+cards:
+  - type: "custom:button-card"
+    name: HASS Container
+    styles:
+      card:
+        - font-size: 24px
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        icon: mdi:home-assistant
+        entity: sensor.current_version
+        name: Installed Version
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+      - type: "custom:button-card"
+        icon: mdi:git
+        entity: sensor.current_ha_release
+        name: Release Version
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+      - type: "custom:button-card"
+        entity: sensor.hacs
+        name: HACS
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.ha_db_size
+        name: DB Size
+        hours_to_show: 72
+        icon: mdi:database
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.home_assistant_log
+        name: Log Size
+        hours_to_show: 72
+        icon: mdi:file-alert-outline
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.uptime
+        name: Uptime
+        hours_to_show: 72
+        icon: mdi:clock
+  - type: horizontal-stack
+    cards:
+      - entity: sensor.docker_ub1_homeassistant_cpu
+        max: 100
+        min: 0
+        name: CPU
+        severity:
+          green: 0
+          red: 80
+          yellow: 50
+        theme: default
+        type: gauge
+      - entity: sensor.docker_ub1_homeassistant_memory_percent
+        max: 100
+        min: 0
+        name: Memory
+        severity:
+          green: 0
+          red: 90
+          yellow: 70
+        theme: default
+        type: gauge
+

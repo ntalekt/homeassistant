@@ -1,0 +1,16 @@
+type: custom:vertical-stack-in-card
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.u_s_air_quality_index
+        name: Air Quality Index
+        line_color: '#FF851B'
+        line_width: 4
+        font_size: 75
+        hours_to_show: 72
+  - type: glance
+    entities:
+      - entity: sensor.u_s_air_pollution_level
+      - entity: sensor.u_s_main_pollutant

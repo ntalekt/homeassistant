@@ -1,0 +1,120 @@
+# Colors: https://clrs.cc/
+type: vertical-stack
+style:
+  font_size: 18px
+  border: true
+cards:
+- type: vertical-stack
+  cards:
+#  - type: horizontal-stack
+#    cards:
+#    - type: picture
+#      image: /local/divider.png
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        icon: mdi:motion-sensor
+        color_type: card
+        color: var(--icon-color-green)
+        color_off: var(--element-accent-color)
+        entity: binary_sensor.living_occupancy_on
+        name: Living
+        tap_action:
+          action: more-info
+          entity: camera.living_room       
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+        - value: 'off'
+          color: var(--element-accent-color)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        icon: mdi:motion-sensor
+        color_type: card
+        color: var(--icon-color-green)
+        color_off: var(--element-accent-color)
+        entity: binary_sensor.chalkboard_occupancy_on
+        name: Chalkboard
+        tap_action:
+          action: more-info
+          entity: camera.chalkboard_room   
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+        - value: 'off'
+          color: var(--element-accent-color)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        icon: mdi:motion-sensor
+        color_type: card
+        color: var(--icon-color-green)
+        color_off: var(--element-accent-color)
+        entity: binary_sensor.garage_occupancy_on
+        name: Garage
+        tap_action:
+          action: more-info
+          entity: camera.garage
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+        - value: 'off'
+          color: var(--element-accent-color)
+        style:
+         - color: var(--icon-off-color)
+         
+
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        icon: mdi:motion-sensor
+        color_type: card
+        color: var(--icon-color-green)
+        color_off: var(--element-accent-color)
+        entity: binary_sensor.shop_occupancy_on
+        name: Shop
+        tap_action:
+          action: more-info
+          entity: camera.shop
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+        - value: 'off'
+          color: var(--element-accent-color)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        icon: mdi:motion-sensor
+        color_type: card
+        color: var(--icon-color-green)
+        color_off: var(--element-accent-color)
+        entity: binary_sensor.baby_occupancy_on
+        name: Baby
+        tap_action:
+          action: more-info
+          entity: camera.baby_camera
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+        - value: 'off'
+          color: var(--element-accent-color)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        icon: mdi:motion-sensor
+        color_type: card
+        color: var(--icon-color-green)
+        color_off: var(--element-accent-color)
+        entity: binary_sensor.shop_occupancy_on
+        name: Office
+        tap_action:
+          action: more-info
+          entity: camera.shop
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+        - value: 'off'
+          color: var(--element-accent-color)
+        style:
+         - color: var(--icon-off-color)

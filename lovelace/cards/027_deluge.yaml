@@ -1,0 +1,11 @@
+title: Deluge
+type: entities
+entities:
+  - entity: switch.deluge_switch
+  - entity: sensor.deluge_down_speed
+    icon: mdi:download
+  - entity: sensor.deluge_up_speed
+    icon: mdi:upload
+  - entity: sensor.deluge_status
+    icon: mdi:script
+show_header_toggle: false
