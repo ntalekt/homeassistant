@@ -14,40 +14,7 @@ exclude:
     - zwave
     - input_boolean
 include:
-  entities:
-    - group.household
-    - sensor.nas2_free_space_datavol1
-    - sensor.nas2_network_down_eth0
-    - sensor.nas2_network_up_eth0
-    - sensor.usertwo_to_home
-    - sensor.userone_to_home
-    - sensor.ha_db_size
-    - sensor.pihole_ads_blocked_today
-    - sensor.pihole_dns_queries_today
-    - sensor.dark_sky_temperature
-    - sensor.office_temperature
-    - sensor.loft_temperature
-    - sensor.living_room_temperature
-    - sensor.master_remote
-    - sensor.media_center
-    - sensor.usertwo_phone_battery
-    - sensor.userone_phone_battery
-    - sensor.userone_tablet_battery
-    - sensor.userones_iphone_battery_level
-    - sensor.REDACTEDs_ipad_battery_level
-    - sensor.ipad_battery_level
-    - sensor.upstairs_thermostat_hvac_state
-    - sensor.downstairs_thermostat_hvac_state
-    - binary_sensor.chalkboard_occupancy_on
-    - binary_sensor.garage_occupancy_on
-    - binary_sensor.living_occupancy_on
-    - binary_sensor.office_occupancy_on
-    - binary_sensor.shop_occupancy_on
-    - sensor.cox_avg_gb_current
-    - sensor.cox_avg_gb_remaining
-    - device_tracker.usertwodevice
-    - device_tracker.useronedevice
-    - sensor.deluge_down_speed
-    - sensor.deluge_up_speed
-    - sensor.ring_front_door_wifi_signal_strength
-    - sensor.ring_upstairs_wifi_signal_strength
+  domains:
+    - sensor
+    - binary_sensor
+    - device_tracker
