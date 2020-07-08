@@ -3,35 +3,6 @@
 #################################################################
 
       #################################################################
-      ## Office Occupancy
-      #################################################################
-
-- alias: occupancy office turn on if motion detected
-  trigger:
-    - platform: state
-      entity_id: sensor.office_pir
-      from: 'standby'
-      to: 'motion detected'
-  action:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.office_occupancy
-
-      #################################################################
-      ## Reset Office Occupancy
-      #################################################################
-
-- alias: occupancy office turn off after 10min of no motion
-  trigger:
-    - platform: state
-      entity_id: sensor.office_pir
-      to: 'standby'
-      for:
-        minutes: 10
-  action:
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.office_occupancy
-
-      #################################################################
       ## Living Room Occupancy
       #################################################################
 
@@ -146,7 +117,7 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.shop_occupancy
-
+      
       #################################################################
       ## Baby Occupancy
       #################################################################
@@ -175,45 +146,3 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.baby_occupancy
-
-        ##########################################################
-        ## WFH Mode
-        ##########################################################
-
-- alias: occupancy wfh home on
-  trigger:
-    - platform: time
-      at: '07:00:00'
-  condition:
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-    - condition: state
-      entity_id: input_boolean.vacation_mode
-      state: 'off'
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.wfh_mode
-
-- alias: occupancy wfh off
-  trigger:
-    - platform: time
-      at: '17:00:00'
-  condition:
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-    - condition: state
-      entity_id: input_boolean.vacation_mode
-      state: 'off'
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.wfh_mode
