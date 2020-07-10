@@ -1,120 +1,109 @@
 # Colors: https://clrs.cc/
 type: vertical-stack
-style:
-  font_size: 18px
-  border: true
 cards:
-- type: vertical-stack
-  cards:
-#  - type: horizontal-stack
-#    cards:
-#    - type: picture
-#      image: /local/divider.png
+    ##########################################################
+    ## First show occupancy
+    ##########################################################
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
-        icon: mdi:motion-sensor
-        color_type: card
-        color: var(--icon-color-green)
-        color_off: var(--element-accent-color)
         entity: binary_sensor.living_occupancy_on
+        color_type: card
         name: Living
-        tap_action:
-          action: more-info
-          entity: camera.living_room       
         state:
         - value: 'on'
           color: rgb(255, 220, 0)
+          icon: mdi:motion-sensor
         - value: 'off'
-          color: var(--element-accent-color)
+          icon: mdi:walk
         style:
          - color: var(--icon-off-color)
+        tap_action:
+          action: more-info
+          entity: camera.living_room
+        layout: icon_name
       - type: "custom:button-card"
-        icon: mdi:motion-sensor
-        color_type: card
-        color: var(--icon-color-green)
-        color_off: var(--element-accent-color)
         entity: binary_sensor.chalkboard_occupancy_on
-        name: Chalkboard
-        tap_action:
-          action: more-info
-          entity: camera.chalkboard_room   
+        color_type: card
+        name: Playroom
         state:
         - value: 'on'
           color: rgb(255, 220, 0)
+          icon: mdi:motion-sensor
         - value: 'off'
-          color: var(--element-accent-color)
+          icon: mdi:walk
         style:
          - color: var(--icon-off-color)
+        layout: icon_name
+        tap_action:
+          action: more-info
+          entity: camera.chalkboard_room
       - type: "custom:button-card"
-        icon: mdi:motion-sensor
-        color_type: card
-        color: var(--icon-color-green)
-        color_off: var(--element-accent-color)
         entity: binary_sensor.garage_occupancy_on
+        color_type: card
         name: Garage
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+          icon: mdi:motion-sensor
+        - value: 'off'
+          icon: mdi:walk
+        style:
+         - color: var(--icon-off-color)
+        layout: icon_name
         tap_action:
           action: more-info
           entity: camera.garage
-        state:
-        - value: 'on'
-          color: rgb(255, 220, 0)
-        - value: 'off'
-          color: var(--element-accent-color)
-        style:
-         - color: var(--icon-off-color)
-         
-
+    ##########################################################
+    ## Second show occupancy
+    ##########################################################
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
-        icon: mdi:motion-sensor
-        color_type: card
-        color: var(--icon-color-green)
-        color_off: var(--element-accent-color)
         entity: binary_sensor.shop_occupancy_on
+        color_type: card
         name: Shop
-        tap_action:
-          action: more-info
-          entity: camera.shop
         state:
         - value: 'on'
           color: rgb(255, 220, 0)
+          icon: mdi:motion-sensor
         - value: 'off'
-          color: var(--element-accent-color)
+          icon: mdi:walk
         style:
          - color: var(--icon-off-color)
+        layout: icon_name
+        tap_action:
+          action: more-info
+          entity: camera.shop
       - type: "custom:button-card"
-        icon: mdi:motion-sensor
-        color_type: card
-        color: var(--icon-color-green)
-        color_off: var(--element-accent-color)
         entity: binary_sensor.baby_occupancy_on
+        color_type: card
         name: Baby
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+          icon: mdi:motion-sensor
+        - value: 'off'
+          icon: mdi:walk
+        style:
+         - color: var(--icon-off-color)
+        layout: icon_name
         tap_action:
           action: more-info
           entity: camera.baby_camera
+      - type: "custom:button-card"
+        entity: binary_sensor.shop_occupancy_on
+        color_type: card
+        name: Shop
         state:
         - value: 'on'
           color: rgb(255, 220, 0)
+          icon: mdi:motion-sensor
         - value: 'off'
-          color: var(--element-accent-color)
+          icon: mdi:walk
         style:
          - color: var(--icon-off-color)
-      - type: "custom:button-card"
-        icon: mdi:motion-sensor
-        color_type: card
-        color: var(--icon-color-green)
-        color_off: var(--element-accent-color)
-        entity: binary_sensor.shop_occupancy_on
-        name: Office
+        layout: icon_name
         tap_action:
           action: more-info
           entity: camera.shop
-        state:
-        - value: 'on'
-          color: rgb(255, 220, 0)
-        - value: 'off'
-          color: var(--element-accent-color)
-        style:
-         - color: var(--icon-off-color)

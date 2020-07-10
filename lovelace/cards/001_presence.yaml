@@ -1,5 +1,11 @@
 type: vertical-stack
 cards:
+#  - type: custom:text-divider-row
+#    style: |
+#      ha-card {
+#        color: red;
+#      }
+#    text: Presence
   - type: horizontal-stack
     cards:
       - type: picture-entity

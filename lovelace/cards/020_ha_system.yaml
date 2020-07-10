@@ -2,6 +2,8 @@ type: vertical-stack
 cards:
   - type: "custom:button-card"
     name: HASS Container
+#    color_type: label-card
+#    color: rgb(240,240,240)
     styles:
       card:
         - font-size: 24px
@@ -10,10 +12,18 @@ cards:
       - type: "custom:button-card"
         icon: mdi:home-assistant
         entity: sensor.current_version
-        name: Installed Version
         show_state: true
         color: rgb(68,115,158)
         size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.current_version'].state != states['sensor.current_ha_release'].state;
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
       - type: "custom:button-card"
         icon: mdi:git
         entity: sensor.current_ha_release
@@ -21,12 +31,28 @@ cards:
         show_state: true
         color: rgb(68,115,158)
         size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states["sensor.current_ha_release"].state
+              ]]]
+            color: rgb(46, 204, 64)
       - type: "custom:button-card"
         entity: sensor.hacs
         name: HACS
         show_state: true
         color: rgb(68,115,158)
         size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.hacs'].state > 0;
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
   - type: horizontal-stack
     cards:
       - entity: sensor.docker_ub1_homeassistant_cpu
@@ -69,4 +95,13 @@ cards:
         name: Uptime
         hours_to_show: 72
         icon: mdi:clock
-
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        name: HASS Service Restart
+        icon: mdi:restart
+        layout: icon_name
+        size: 30%
+        tap_action:
+          action: call-service
+          service: homeassistant.restart

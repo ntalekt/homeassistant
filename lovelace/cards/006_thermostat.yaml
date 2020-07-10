@@ -1,0 +1,18 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:simple-thermostat
+        entity: climate.downstairs_nativezone
+        step_layout: row
+        name: true
+        icon: false
+        control: false
+  - type: horizontal-stack
+    cards:
+      - type: custom:simple-thermostat
+        entity: climate.upstairs_nativezone
+        step_layout: row
+        name: true
+        icon: false
+        control: false

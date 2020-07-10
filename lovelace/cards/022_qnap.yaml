@@ -1,7 +1,10 @@
+# Colors: https://clrs.cc/
 type: vertical-stack
 cards:
   - type: "custom:button-card"
     name: QNAP TS-251+
+#    color_type: label-card
+#    color: rgb(240,240,240)
     styles:
       card:
         - font-size: 24px
@@ -14,6 +17,15 @@ cards:
         show_state: true
         color: rgb(68,115,158)
         size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.nas2_status'].state != 'good';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
       - type: "custom:button-card"
         entity: sensor.nas2_smart_status_drive_0_1
         name: Drive 0:1
@@ -21,6 +33,15 @@ cards:
         show_state: true
         color: rgb(68,115,158)
         size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.nas2_smart_status_drive_0_1'].state != 'OK';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
       - type: "custom:button-card"
         entity: sensor.nas2_smart_status_drive_0_2
         name: Drive 0:2
@@ -28,6 +49,15 @@ cards:
         show_state: true
         color: rgb(68,115,158)
         size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.nas2_smart_status_drive_0_2'].state != 'OK';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
   - cards:
       - entity: sensor.nas2_cpu_usage
         max: 100
