@@ -12,7 +12,7 @@ homeassistant:
   whitelist_external_dirs:
     - /shared
     - /config
-  
+
 api:
 frontend:
 updater:
@@ -47,9 +47,9 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-battery-entity/battery-entity.js
       type: module
-  
+
 system_health:
-  
+
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 # http:
 #   base_url: example.duckdns.org:8123
@@ -63,7 +63,7 @@ airvisual:
   geographies:
       latitude: !secret homeassistant_latitude
       longitude: !secret homeassistant_longitude
-      
+
 amcrest:
   - host: !secret amcrest_living_host
     name: Living Room
@@ -113,16 +113,16 @@ life360:
 
 monitor_docker:
   - name: docker-ub1
-  
+
 nexia:
   username: !secret nexia_username
   password: !secret nexia_password
-  
-pi_hole:
-  - host: !secret pihole_host
-    ssl: true
-    verify_ssl: false
-    api_key: !secret pi_hole_api_key
+
+#pi_hole:
+#  - host: !secret pihole_host
+#    ssl: true
+#    verify_ssl: false
+#    api_key: !secret pi_hole_api_key
 
 ring:
   username: !secret ring_username
@@ -132,18 +132,22 @@ tts:
   - platform: google_translate
     cache: true
     time_memory: 300
-    
+
+#tuya:
+#  username: !secret tuya_username
+#  password: !secret tuya_password
+#  country_code: 1
+#  platform: smart_life
+
 weather:
   - platform: darksky
     api_key: !secret darksky_api_key
     mode: daily
-    
-#xiaomi_aqara:
-#  discovery_retry: 5
-#  gateways:
-#    - key: !secret xiaomi_key
-#      host: REDACTED34
-    
+
+wemo:
+  static:
+    - !secret wemo_insight_host
+
 yeelight:
   devices:
     !secret media_center_l_strip_host:
@@ -152,11 +156,11 @@ yeelight:
     !secret media_center_r_strip_host:
       name: Media Center R Strip
       model: strip1
-  
+
 #################################################################
 ## Includes
 #################################################################
-  
+
 automation: !include_dir_merge_list automation
 binary_sensor: !include binary_sensor.yaml
 camera: !include camera.yaml
@@ -171,5 +175,3 @@ script: !include scripts.yaml
 sensor: !include sensor.yaml
 switch: !include switch.yaml
 zone: !include zones.yaml
-
-
