@@ -48,6 +48,17 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-battery-entity/battery-entity.js
       type: module
+    - url: /hacsfiles/simple-thermostat/simple-thermostat.js
+      type: module
+    - url: /hacsfiles/weather-card/weather-card.js
+      type: module
+    - url: /hacsfiles/text-divider-row/text-divider-row.js
+      type: module
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
+      type: module
+
+shell_command:
+  docker_image_prune: "ssh -i /shared/id_rsa ubuntu@REDACTED54 'docker image prune -af'"
 
 system_health:
 
