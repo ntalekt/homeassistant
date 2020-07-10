@@ -1,0 +1,414 @@
+# Colors: https://clrs.cc/
+type: vertical-stack
+cards:
+- type: vertical-stack
+  cards:
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        icon: mdi:floor-lamp
+        size: 30%
+        entity: switch.012004775ccf7f62efc3
+        name: TV Lamp
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.012004775ccf7f62efc3
+        state:
+        - value: 'off'
+          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+      - type: "custom:button-card"
+        icon: mdi:led-strip
+        size: 30%
+        entity: light.media_accents
+        name: TV Accents
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.media_accents
+        state:
+        - value: 'off'
+          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+      - type: "custom:button-card"
+        icon: mdi:cactus
+        size: 30%
+        entity: switch.01200697dc4f22020616
+        name: Cactus
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.01200697dc4f22020616
+        state:
+        - value: 'off'
+          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+      - type: "custom:button-card"
+        icon: mdi:fridge-outline
+        size: 30%
+        entity: light.kitchen_cabinet_lights
+        name: Cabinets
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.kitchen_cabinet_lights
+        state:
+        - value: 'off'
+          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        icon: mdi:fan
+        size: 30%
+        entity: switch.wemo_insight
+        name: Office Fan
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.wemo_insight
+        state:
+        - value: 'off'
+          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+      - type: "custom:button-card"
+        icon: mdi:weather-night
+        size: 30%
+        entity: light.gateway_light_34ce009244d5
+        name: Office NL
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.gateway_light_34ce009244d5
+        state:
+        - value: 'off'
+          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+      - type: "custom:button-card"
+        icon: mdi:dns-outline
+        size: 30%
+        entity: switch.pihole_switch
+        name: Pi-hole
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.pihole_switch
+        state:
+        - value: 'off'
+          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+      - type: "custom:button-card"
+        icon: mdi:progress-download
+        size: 30%
+        entity: switch.deluge_switch
+        name: Deluge
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.deluge_switch
+        state:
+        - value: 'off'
+          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        icon: mdi:tablet-ipad
+        entity: switch.pickle_ipad2_red
+        name: userthree
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.pickle_ipad2_red
+        state:
+        - value: 'off'
+          color: rgb(255,65,54)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        style:
+         - color: var(--icon-off-color)
+        show_state: true
+        layout: icon_name_state2nd
+        styles:
+          name:
+            - font-size: 20px
+            - font-weight: bold
+      - type: "custom:button-card"
+        icon: mdi:tablet-ipad
+        entity: switch.pickle_ipad2_blue
+        name: userfour
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.pickle_ipad2_blue
+        state:
+        - value: 'off'
+          color: rgb(255,65,54)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        style:
+         - color: var(--icon-off-color)
+        show_state: true
+        layout: icon_name_state2nd
+        styles:
+          name:
+            - font-size: 20px
+            - font-weight: bold
+
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        icon: mdi:television
+        color_type: card
+        color: var(--icon-color-green)
+        color_off: var(--element-accent-color)
+        entity: sensor.media_center_remote
+        name: Shield
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.shield_activity_on
+        state:
+        - value: 'PowerOff'
+          color: var(--element-accent-color)
+        - value: 'Shield'
+          color: rgb(46, 204, 64)
+        - value: 'Switch'
+          color: var(--element-accent-color)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        icon: mdi:gamepad-variant
+        color_type: card
+        color: var(--icon-color-green)
+        color_off: var(--element-accent-color)
+        entity: sensor.media_center_remote
+        name: Switch
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.switch_activity_on
+        state:
+        - value: 'PowerOff'
+          color: var(--element-accent-color)
+        - value: 'Shield'
+          color: var(--element-accent-color)
+        - value: 'Switch'
+          color: rgb(46, 204, 64)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        icon: mdi:power
+        color_type: card
+        color: var(--icon-color-green)
+        color_off: var(--element-accent-color)
+        entity: sensor.media_center_remote
+        name: Power
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.media_center_harmony_off
+        state:
+        - value: 'PowerOff'
+          color: rgb(255, 220, 0)
+        - value: 'Shield'
+          color: rgb(255, 65, 54)
+        - value: 'Switch'
+          color: rgb(255, 65, 54)
+        style:
+         - color: var(--icon-off-color)
+
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        color_type: blank-card
+      - type: "custom:button-card"
+        color_type: blank-card
+      - type: "custom:button-card"
+        show_name: false
+        icon: mdi:volume-plus
+        color_type: card
+        color: var(--icon-color-green)
+        entity: sensor.media_center_remote
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.media_center_volume_up
+        state:
+        - value: 'PowerOff'
+          color: var(--element-accent-color)
+        - value: 'Shield'
+          color: rgb(255, 220, 0)
+        - value: 'Switch'
+          color: rgb(255, 220, 0)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        show_name: false
+        icon: mdi:volume-minus
+        color_type: card
+        color: var(--icon-color-green)
+        entity: sensor.media_center_remote
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.media_center_volume_down
+        state:
+        - value: 'PowerOff'
+          color: var(--element-accent-color)
+        - value: 'Shield'
+          color: rgb(255, 220, 0)
+        - value: 'Switch'
+          color: rgb(255, 220, 0)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        color_type: blank-card
+      - type: "custom:button-card"
+        color_type: blank-card
+
+
+
+  - type: picture
+    image: /local/divider.png
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        icon: mdi:amazon
+        color_type: card
+        color: var(--icon-color-green)
+        color_off: var(--element-accent-color)
+        entity: sensor.master_remote
+        name: Fire TV
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.firetv_activity_on
+        state:
+        - value: 'PowerOff'
+          color: var(--element-accent-color)
+        - value: 'Fire TV'
+          color: rgb(46, 204, 64)
+        - value: 'Retropie'
+          color: var(--element-accent-color)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        icon: mdi:gamepad
+        color_type: card
+        color: var(--icon-color-green)
+        color_off: var(--element-accent-color)
+        entity: sensor.master_remote
+        name: RetroPie
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.retropie_activity_on
+        state:
+        - value: 'PowerOff'
+          color: var(--element-accent-color)
+        - value: 'Fire TV'
+          color: var(--element-accent-color)
+        - value: 'Retropie'
+          color: rgb(46, 204, 64)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        icon: mdi:power
+        color_type: card
+        color: var(--icon-color-green)
+        color_off: var(--element-accent-color)
+        entity: sensor.master_remote
+        name: Power
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.master_harmony_off
+        state:
+        - value: 'PowerOff'
+          color: rgb(255, 220, 0)
+        - value: 'Fire TV'
+          color: rgb(255, 65, 54)
+        - value: 'Retropie'
+          color: rgb(255, 65, 54)
+        style:
+         - color: var(--icon-off-color)
+
+
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        color_type: blank-card
+      - type: "custom:button-card"
+        color_type: blank-card
+      - type: "custom:button-card"
+        show_name: false
+        icon: mdi:volume-plus
+        color_type: card
+        color: var(--icon-color-green)
+        entity: sensor.master_remote
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.master_volume_up
+        state:
+        - value: 'PowerOff'
+          color: var(--element-accent-color)
+        - value: 'Fire TV'
+          color: rgb(255, 220, 0)
+        - value: 'Retropie'
+          color: rgb(255, 220, 0)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        show_name: false
+        icon: mdi:volume-minus
+        color_type: card
+        color: var(--icon-color-green)
+        entity: sensor.master_remote
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.master_volume_down
+        state:
+        - value: 'PowerOff'
+          color: var(--element-accent-color)
+        - value: 'Fire TV'
+          color: rgb(255, 220, 0)
+        - value: 'Retropie'
+          color: rgb(255, 220, 0)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        color_type: blank-card
+      - type: "custom:button-card"
+        color_type: blank-card

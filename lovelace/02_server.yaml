@@ -1,0 +1,9 @@
+title: Server/Network
+id: Server
+icon: mdi:server-network
+cards:
+
+ - !include /config/lovelace/cards/022_qnap.yaml
+ - !include /config/lovelace/cards/020_system.yaml
+ - !include /config/lovelace/cards/023_docker.yaml
+ - !include /config/lovelace/cards/024_unifi.yaml
