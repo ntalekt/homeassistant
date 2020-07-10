@@ -38,6 +38,8 @@
         brightness: '{{((0.0625*(states.sun.sun.attributes.elevation**2))-(31.125*states.sun.sun.attributes.elevation)+246.5)|int}}'
     - service: light.turn_on
       entity_id: light.media_accents
+    - service: switch.turn_on
+      entity_id: switch.01200697dc4f22020616
         
 - alias: 'turn off kitchen cabinets if no motion after 9pm'
   trigger:
@@ -61,6 +63,8 @@
       entity_id: light.kitchen_cabinet_lights
     - service: light.turn_off
       entity_id: light.media_accents
+    - service: switch.turn_off
+      entity_id: switch.01200697dc4f22020616
     # light turning off sometimes triggers motion sensor
     - delay: 0:15
     - service: input_boolean.turn_off
