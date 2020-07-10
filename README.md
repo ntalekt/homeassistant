@@ -19,6 +19,12 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
     * Home Assistant Version: 0.112.3
   * [Traefik v1.7.16 proxy](https://containo.us/traefik/)
   * SSL via [Let's Encrypt](https://letsencrypt.org/)
+  
+# Interface
+![UI](images/home-lovelace.jpg)
+![UI](images/climate.jpg)
+![UI](images/system-network.jpg)
+![UI](images/sensors.jpg)
 
 ## Devices
 #### Climate
@@ -140,8 +146,3 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * ~~Home Assistant mysql database size sensor found [here](https://community.home-assistant.io/t/large-homeassistant-database-files/4201/234?u=ntalekt)~~ Using the [SQL Sensor](https://home-assistant.io/components/sensor.sql/) now.
 * Cox internet usage web parser script found [here](https://community.home-assistant.io/t/cox-communications-internet-usage/28565?u=ntalekt)
 * WAN test script found [here](https://community.home-assistant.io/t/wan-test-script-quick-and-dirty/30699)
-
-# Interface
-![UI](images/home-lovelace.jpg)
-![UI](images/climate.jpg)
-![UI](images/system.jpg)
