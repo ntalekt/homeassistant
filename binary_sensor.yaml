@@ -50,3 +50,19 @@
         friendly_name: Baby Occupancy
         value_template: "{{ states.input_boolean.baby_occupancy.state == 'on' }}"
         device_class: motion
+        
+  - platform: ping
+    host: !secret unifi_usg_host
+    name: UniFi USG
+
+  - platform: ping
+    host: !secret unifi_sw8_host
+    name: UniFi SW8 60w
+
+  - platform: ping
+    host: !secret unifi_apacpro_loft_host
+    name: UniFi AP Loft
+
+  - platform: ping
+    host: !secret unifi_apacpro_living_host
+    name: UniFi AP Living
