@@ -1,7 +1,14 @@
 ##############################################################
 ## Binary Sensor  ##
 ##############################################################
+        ##########################################################
+        ## octoprint
+        ##########################################################
 
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error
         ##########################################################
         ## HikVision DS-2CD2032-I
         ##########################################################
@@ -43,14 +50,14 @@
         friendly_name: Shop Occupancy
         value_template: "{{ states.input_boolean.shop_occupancy.state == 'on' }}"
         device_class: motion
-        
+
   - platform: template
     sensors:
       baby_occupancy_on:
         friendly_name: Baby Occupancy
         value_template: "{{ states.input_boolean.baby_occupancy.state == 'on' }}"
         device_class: motion
-        
+
   - platform: ping
     host: !secret unifi_usg_host
     name: UniFi USG
