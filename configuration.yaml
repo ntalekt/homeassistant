@@ -56,6 +56,8 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-card-mod/card-mod.js
       type: module
+    - url: /hacsfiles/air-visual-card/air-visual-card.js
+      type: module
 
 shell_command:
   docker_image_prune: "ssh -i /shared/id_rsa ubuntu@REDACTED54 'docker image prune -af'"
@@ -109,6 +111,8 @@ amcrest:
       - motion_detected
     stream_source: rtsp
 
+breaking_changes:
+
 ffmpeg:
 
 life360:
@@ -125,10 +129,18 @@ life360:
 
 monitor_docker:
   - name: docker-ub1
+    containers:
+      - homeassistant
 
 nexia:
   username: !secret nexia_username
   password: !secret nexia_password
+
+octoprint:
+  host: !secret octopi_host
+  api_key: !secret octoprint_api
+  bed: true
+  number_of_tools: 1
 
 #pi_hole:
 #  - host: !secret pihole_host
