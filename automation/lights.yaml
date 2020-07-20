@@ -20,10 +20,10 @@
     conditions:
       - condition: time
         after: '18:00:00'
-        before: '20:30:00'
+        before: '20:00:00'
       - condition: numeric_state
         entity_id: sensor.sun_elevation
-        above: 3
+        above: 4
         below: 8
       - condition: or
         conditions:
@@ -34,14 +34,14 @@
   action:
     - service: light.turn_on
       entity_id: light.kitchen_cabinet_lights
-      data_template: 
+      data_template:
         brightness: '{{((0.0625*(states.sun.sun.attributes.elevation**2))-(31.125*states.sun.sun.attributes.elevation)+246.5)|int}}'
     - service: light.turn_on
       entity_id: light.media_accents
     - service: switch.turn_on
       entity_id: switch.01200697dc4f22020616
-        
-- alias: 'turn off kitchen cabinets if no motion after 9pm'
+
+- alias: 'turn off kitchen cabinets if no motion after 830pm'
   trigger:
   - platform: time_pattern
     minutes: '/2'
@@ -50,7 +50,7 @@
     condition: and
     conditions:
       - condition: time
-        after: '21:00:00'
+        after: '20:30:00'
         before: '01:00:00'
       - condition: state
         entity_id: binary_sensor.living_occupancy_on
@@ -71,8 +71,8 @@
       entity_id: input_boolean.chalkboard_occupancy
     - service: input_boolean.turn_off
       entity_id: input_boolean.living_occupancy
-      
-- alias: 'turn on kitchen cabinets if motion after 9pm'
+
+- alias: 'turn on kitchen cabinets if motion after 8pm'
   trigger:
   - platform: state
     entity_id: binary_sensor.living_occupancy_on, binary_sensor.chalkboard_occupancy_on
@@ -82,7 +82,7 @@
     condition: and
     conditions:
       - condition: time
-        after: '21:00:00'
+        after: '20:00:00'
         before: '23:59:59'
       - condition: template
         value_template: '{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} '
@@ -90,5 +90,5 @@
   action:
     - service: light.turn_on
       entity_id: light.kitchen_cabinet_lights
-      data_template: 
+      data_template:
         brightness: '127'
