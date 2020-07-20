@@ -1,5 +1,0 @@
-type: picture-glance
-camera_image: camera.front_door
-entities:
-  - binary_sensor.front_door_ding
-  - binary_sensor.front_door_motion

@@ -3,7 +3,6 @@ id: Server
 icon: mdi:server-network
 cards:
 
- - !include /config/lovelace/cards/022_qnap.yaml
- - !include /config/lovelace/cards/020_ha_system.yaml
- - !include /config/lovelace/cards/023_docker_host.yaml
- - !include /config/lovelace/cards/024_unifi.yaml
+ - !include /config/lovelace/cards/02_server_col1.yaml
+ - !include /config/lovelace/cards/02_server_col2.yaml
+ - !include /config/lovelace/cards/02_server_col3.yaml
