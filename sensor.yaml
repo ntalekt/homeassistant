@@ -10,9 +10,9 @@
     command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
     name: Current HA Release
     scan_interval: 3600
-      
+
   - platform: version
-    
+
   - platform: sql
     db_url: mysql://REDACTED:REDACTED@REDACTED/hass_docker_db
     queries:
@@ -20,9 +20,9 @@
         query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024 / 1024, 3) "value" FROM information_schema.tables WHERE table_schema="hass_docker_db" GROUP BY table_schema;'
         column: 'value'
         unit_of_measurement: GB
-      
+
   - platform: uptime
-      
+
   - platform: filesize
     file_paths:
       - /config/home-assistant.log
@@ -35,6 +35,38 @@
 
   - platform: template
     sensors:
+      octoprint_time_remaining_friendly:
+        value_template: >
+              {% set etime = states.sensor.octoprint_time_remaining.state | int %}
+              {% set seconds = etime % 60 %}
+              {% set minutes = ((etime % 3600) / 60) | int %}
+              {% set hours = ((etime % 86400) / 3600) | int %}
+              {% set days = (etime / 86400) | int %}
+              {%- if days -%}
+                {{days}} day{{'s, ' if days > 1 else ', '}}
+              {%- endif -%}
+              {%- if hours -%}
+                {{hours}} hour{{'s, ' if hours > 1 else ', '}}
+              {%- endif -%}
+              {{minutes}} minute{{'s' if minutes > 1 else ''}}
+        friendly_name: 'Print Time Left'
+
+      octoprint_time_elapsed_friendly:
+        value_template: >
+              {% set etime = states.sensor.octoprint_time_elapsed.state | int %}
+              {% set seconds = etime % 60 %}
+              {% set minutes = ((etime % 3600) / 60) | int %}
+              {% set hours = ((etime % 86400) / 3600) | int %}
+              {% set days = (etime / 86400) | int %}
+              {%- if days -%}
+                {{days}} day{{'s, ' if days > 1 else ', '}}
+              {%- endif -%}
+              {%- if hours -%}
+                {{hours}} hour{{'s, ' if hours > 1 else ', '}}
+              {%- endif -%}
+              {{minutes}} minute{{'s' if minutes > 1 else ''}}
+        friendly_name: 'Print Time'
+
       media_center_remote:
         value_template: '{{ states.remote.media_center.attributes.current_activity }}'
         friendly_name: 'Media Center'
@@ -42,10 +74,10 @@
       master_remote:
         value_template: '{{ states.remote.master.attributes.current_activity }}'
         friendly_name: 'Master'
-        
+
       sun_elevation:
         value_template: '{{ states.sun.sun.attributes.elevation }}'
-        
+
       userone_phone_battery:
         value_template: '{{ states.device_tracker.life360_userone_REDACTED.attributes.battery | default(0) | int }}'
         friendly_name: 'userone Essential PH-1'
@@ -208,7 +240,7 @@
           {% else %}
             mdi:alert-outline
           {% endif %}
-        
+
         ##########################################################
         ## Deluge
         ##########################################################
@@ -221,7 +253,7 @@
       - 'current_status'
       - 'download_speed'
       - 'upload_speed'
-      
+
         ##########################################################
         ## NAS
         ##########################################################
@@ -243,11 +275,11 @@
       - volume_size_used
       - volume_percentage_used
       - drive_smart_status
-        
+
         ##########################################################
         ## Cox Usage
         ##########################################################
-        
+
   - platform: command_line
     command: cal $(date +"%m %Y") | awk 'NF {DAYS = $NF}; END {print DAYS}'
     name: Days In Current Month
