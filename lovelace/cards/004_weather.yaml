@@ -1,6 +1,0 @@
-#entity: weather.dark_sky
-#type: weather-forecast
-type: custom:weather-card
-entity: weather.dark_sky
-details: false
-#name: Optional name

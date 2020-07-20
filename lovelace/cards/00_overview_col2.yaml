@@ -1,8 +1,6 @@
 # Colors: https://clrs.cc/
 type: vertical-stack
 cards:
-- type: vertical-stack
-  cards:
     ##########################################################
     ## Top row buttons
     ##########################################################
@@ -107,7 +105,7 @@ cards:
         icon: mdi:dns-outline
         size: 30%
         entity: switch.pihole_switch
-        name: Pi-hole
+        name: Ad Blocker
         tap_action:
           action: call-service
           service: switch.toggle
@@ -115,9 +113,11 @@ cards:
             entity_id: switch.pihole_switch
         state:
         - value: 'off'
-#          color: rgb(68,115,158)
+          color: rgb(255,65,54)
+          icon: mdi:shield-off-outline
         - value: 'on'
           color: rgb(46, 204, 64)
+          icon: mdi:shield-check-outline
       - type: "custom:button-card"
         icon: mdi:progress-download
         size: 30%

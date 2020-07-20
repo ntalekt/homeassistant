@@ -1,8 +1,38 @@
-# Colors: https://clrs.cc/
 type: vertical-stack
 cards:
+#  - type: custom:text-divider-row
+#    style: |
+#      ha-card {
+#        color: red;
+#      }
+#    text: Presence
+  - type: horizontal-stack
+    cards:
+      - type: picture-entity
+        entity: device_tracker.life360_userone_REDACTED
+        tap_action:
+          action: more-info
+        show_name: false
+        image: /local/r.jpg
+      - type: picture-entity
+        entity: device_tracker.life360_REDACTED_REDACTED
+        tap_action:
+          action: more-info
+        show_name: false
+        image: /local/n.jpg
     ##########################################################
-    ## First show occupancy
+    ## Ring front door camera
+    ##########################################################
+  - type: horizontal-stack
+    cards:
+      - type: picture-glance
+        camera_image: camera.front_door
+        entities:
+          - binary_sensor.front_door_ding
+          - binary_sensor.front_door_motion
+# Colors: https://clrs.cc/
+    ##########################################################
+    ## First row occupancy
     ##########################################################
   - type: horizontal-stack
     cards:
@@ -55,7 +85,7 @@ cards:
           action: more-info
           entity: camera.garage
     ##########################################################
-    ## Second show occupancy
+    ## Second row occupancy
     ##########################################################
   - type: horizontal-stack
     cards:
@@ -94,7 +124,7 @@ cards:
       - type: "custom:button-card"
         entity: binary_sensor.shop_occupancy_on
         color_type: card
-        name: Shop
+        name: Office
         state:
         - value: 'on'
           color: rgb(255, 220, 0)
@@ -107,3 +137,62 @@ cards:
         tap_action:
           action: more-info
           entity: camera.shop
+    ##########################################################
+    ## Door sensor row
+    ##########################################################
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        entity: binary_sensor.door_window_sensor_158d0001d85176
+        name: Patio
+        state:
+        - value: 'on'
+          color: rgb(255,65,54)
+          icon: mdi:door-open
+        - value: 'off'
+          color: rgb(46, 204, 64)
+          icon: mdi:door-closed
+        style:
+         - color: var(--icon-off-color)
+        show_state: true
+        layout: icon_name_state2nd
+        styles:
+          name:
+            - font-size: 20px
+            - font-weight: bold
+      - type: "custom:button-card"
+        entity: binary_sensor.door_window_sensor_158d0001d85176
+        name: Garage
+        state:
+        - value: 'on'
+          color: rgb(255,65,54)
+          icon: mdi:garage-open-variant
+        - value: 'off'
+          color: rgb(46, 204, 64)
+          icon: mdi:garage-variant
+        style:
+         - color: var(--icon-off-color)
+        show_state: true
+        layout: icon_name_state2nd
+        styles:
+          name:
+            - font-size: 20px
+            - font-weight: bold
+      - type: "custom:button-card"
+        entity: binary_sensor.door_window_sensor_158d0001d85176
+        name: Shop
+        state:
+        - value: 'on'
+          color: rgb(255,65,54)
+          icon: mdi:garage-open
+        - value: 'off'
+          color: rgb(46, 204, 64)
+          icon: mdi:garage
+        style:
+         - color: var(--icon-off-color)
+        show_state: true
+        layout: icon_name_state2nd
+        styles:
+          name:
+            - font-size: 20px
+            - font-weight: bold

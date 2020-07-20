@@ -3,8 +3,9 @@ id: Sensors
 icon: mdi:gauge
 cards:
 
- - !include /config/lovelace/cards/030_battery.yaml
  - !include /config/lovelace/cards/031_cox_internet_usage.yaml
- - !include /config/lovelace/cards/032_dns.yaml
+ - !include /config/lovelace/cards/030_battery.yaml
+ - !include /config/lovelace/cards/035_octoprint.yaml
  - !include /config/lovelace/cards/033_deluge.yaml
+ - !include /config/lovelace/cards/032_dns.yaml
  - !include /config/lovelace/cards/034_ring.yaml

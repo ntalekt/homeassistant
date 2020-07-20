@@ -1,0 +1,54 @@
+# Colors: https://clrs.cc/
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: glance
+        entities:
+          - entity: sensor.octoprint_job_percentage
+            name: Job Percent
+          - entity: sensor.octoprint_time_elapsed_friendly
+            icon: mdi:clock-start
+          - entity: sensor.octoprint_time_remaining_friendly
+            icon: mdi:clock-end
+  - type: horizontal-stack
+    cards:
+      - type: picture-entity
+        title: OctoPrint
+        entity: sensor.octoprint_current_state
+        camera_image: camera.octoprint
+        state_filter:
+          "Printing": brightness(110%) saturate(1.2)
+          "Operational": brightness(50%) hue-rotate(45deg)
+          "unknown": brightness(50%) hue-rotate(45deg)
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        name: Temperature
+        icon: mdi:thermometer
+        entities:
+          - entity: sensor.octoprint_actual_tool0_temp
+            line_color: '#FF4136'
+            show_state: true
+            name: Hotend
+          - entity: sensor.octoprint_target_tool0_temp
+            line_color: '#FF851B'
+            name: Hotend Target
+            show_legend: false
+            show_line: false
+            show_points: false
+            smoothing: false
+          - entity: sensor.octoprint_actual_bed_temp
+            line_color: '#0074D9'
+            show_state: true
+            name: Bed
+          - entity: sensor.octoprint_target_tool0_temp
+            line_color: '#B10DC9'
+            name: Bed Target
+            show_legend: false
+            show_line: false
+            show_points: false
+            smoothing: false
+        hours_to_show: 1
+        points_per_hour: 120

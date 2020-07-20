@@ -2,9 +2,7 @@ title: Overview
 id: overview
 icon: mdi:home-assistant
 cards:
- - !include /config/lovelace/cards/001_presence.yaml
- - !include /config/lovelace/cards/002_occupancy.yaml
- - !include /config/lovelace/cards/007_buttons.yaml
- - !include /config/lovelace/cards/004_weather.yaml
- - !include /config/lovelace/cards/006_thermostat.yaml
- - !include /config/lovelace/cards/008_door_sensors.yaml
+
+ - !include /config/lovelace/cards/00_overview_col1.yaml
+ - !include /config/lovelace/cards/00_overview_col2.yaml
+ - !include /config/lovelace/cards/00_overview_col3.yaml

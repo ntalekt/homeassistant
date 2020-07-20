@@ -55,6 +55,30 @@ cards:
             color: rgb(46, 204, 64)
   - type: horizontal-stack
     cards:
+      - type: "custom:button-card"
+        entity: sensor.potential_breaking_changes
+        show_state: true
+        styles:
+          card:
+            - height: 100px
+        state:
+          - operator: '!='
+            value: 0
+            color: rgb(255,65,54)
+          - operator: default
+            value: 0
+            color: rgb(46, 204, 64)
+      - type: "custom:button-card"
+        name: HASS Service Restart
+        icon: mdi:restart
+        tap_action:
+          action: call-service
+          service: homeassistant.restart
+        styles:
+          card:
+            - height: 100px
+  - type: horizontal-stack
+    cards:
       - entity: sensor.docker_ub1_homeassistant_cpu
         max: 100
         min: 0
@@ -95,13 +119,3 @@ cards:
         name: Uptime
         hours_to_show: 72
         icon: mdi:clock
-  - type: horizontal-stack
-    cards:
-      - type: "custom:button-card"
-        name: HASS Service Restart
-        icon: mdi:restart
-        layout: icon_name
-        size: 30%
-        tap_action:
-          action: call-service
-          service: homeassistant.restart

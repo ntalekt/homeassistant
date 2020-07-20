@@ -96,14 +96,14 @@ cards:
         icon: mdi:download-network
         entities:
           - entity: sensor.nas2_network_down_eth0
-        hours_to_show: 48
+        hours_to_show: 72
         line_color: '#0074D9'
       - type: custom:mini-graph-card
         name: Up
         icon: mdi:upload-network
         entities:
           - entity: sensor.nas2_network_up_eth0
-        hours_to_show: 48
+        hours_to_show: 72
         line_color: '#FF4136'
     type: horizontal-stack
   - cards:
@@ -113,20 +113,20 @@ cards:
         name: Free space
         show:
           graph: bar
-        hours_to_show: 48
+        hours_to_show: 72
         line_color: '#FF851B'
       - type: custom:mini-graph-card
         name: System
         icon: mdi:thermometer
         entities:
           - entity: sensor.nas2_system_temperature
-        hours_to_show: 48
+        hours_to_show: 72
         line_color: '#B10DC9'
       - type: custom:mini-graph-card
         name: CPU
         icon: mdi:thermometer
         entities:
           - entity: sensor.nas2_cpu_temperature
-        hours_to_show: 48
+        hours_to_show: 72
         line_color: '#39CCCC'
     type: horizontal-stack
