@@ -2,11 +2,16 @@
 ## Input Boolean  ##
 ##############################################################
 
-  test_text_notification:
-    name: Test Text Notification
+  test_text_notification_pushbullet:
+    name: Test Text Notification Pushbullet
     initial: off
     icon: mdi:test-tube
-    
+
+  test_text_notification_slack:
+    name: Test Text Notification Slack
+    initial: off
+    icon: mdi:test-tube
+
         ##########################################################
         ## Occupancy
         ##########################################################
@@ -30,16 +35,16 @@
     name: Shop Occupancy
     initial: off
     icon: mdi:account
-    
+
   baby_occupancy:
     name: Baby Occupancy
     initial: off
     icon: mdi:account
-    
+
         ##########################################################
         ## Sleeptime
         ##########################################################
-    
+
   sleep_time:
     name: Sleep Time
     initial: off

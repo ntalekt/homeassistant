@@ -1,0 +1,9 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+    - type: entities
+      title: Tests
+      entities:
+        - entity: input_boolean.test_text_notification_slack
+        - entity: input_boolean.test_text_notification_pushbullet

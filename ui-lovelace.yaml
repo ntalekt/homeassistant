@@ -3,3 +3,4 @@ views:
   - !include /config/lovelace/01_climate.yaml
   - !include /config/lovelace/02_server.yaml
   - !include /config/lovelace/03_sensors.yaml
+  - !include /config/lovelace/04_automation.yaml
