@@ -49,3 +49,12 @@
     name: Sleep Time
     initial: off
     icon: mdi:hotel
+
+        ##########################################################
+        ## Sprinkler Test
+        ##########################################################
+
+  sprinkler_test:
+    name: Sprinkler Test
+    initial: off
+    icon: mdi:sprinkler

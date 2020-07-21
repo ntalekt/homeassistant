@@ -191,6 +191,7 @@ camera: !include camera.yaml
 device_tracker: !include device_tracker.yaml
 history: !include history.yaml
 input_boolean: !include input_boolean.yaml
+input_select: !include input_select.yaml
 light: !include light.yaml
 notify: !include notify.yaml
 recorder: !include recorder.yaml
