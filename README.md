@@ -17,7 +17,10 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * Software
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
     * Home Assistant Version: 0.112.4
+  * [Docker v19.03.12] (https://github.com/docker/docker-ce/releases)
   * [Traefik v1.7.16 proxy](https://containo.us/traefik/)
+    * This is a great tutorial but a little dated: https://www.smarthomebeginner.com/traefik-reverse-proxy-tutorial-for-docker/
+	* Updated to Traefik 2 and some other goodies: https://www.smarthomebeginner.com/traefik-2-docker-tutorial/
   * SSL via [Let's Encrypt](https://letsencrypt.org/)
   
 # Interface
@@ -27,14 +30,12 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 ![UI](images/sensors.jpg)
 
 ## Devices
+
 #### Climate
-* [Nest Thermostat](https://www.amazon.com/gp/product/B0131RG6VK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0131RG6VK&linkCode=as2&tag=ntalekt0c-20&linkId=07e1a8fdb9abf017c692614b74df561d) x2
+* [Trane XL824](https://smile.amazon.com/Trane-Programmable-Comfort-Control-Thermostat/dp/B085W87WY3/ref=sr_1_1?dchild=1&keywords=xl824&qid=1595374599&s=hi&sr=1-1) x2
 
 #### Lighting
-* [Hue Hub](https://www.amazon.com/gp/product/B016H0QZ7I/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B016H0QZ7I&linkCode=as2&tag=ntalekt0c-20&linkId=dfb13129d738cafa48b503294db1c058)
-* [Hue White Ambiance Bulb](https://www.amazon.com/gp/product/B0753H5GKN/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0753H5GKN&linkCode=as2&tag=ntalekt0c-20&linkId=9a392ecd3068075cfa88185a6fccc3df)
-* [Hue White Bulb](https://www.amazon.com/gp/product/B073SSK6P8/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B073SSK6P8&linkCode=as2&tag=ntalekt0c-20&linkId=97fe4a915d8f531a8ce6697ee55f056c) x4
-* [Yeelight WIFI RGB Strip](https://www.amazon.com/gp/product/B01LRT0B56/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&linkCode=as2&tag=ntalekt0c-20&linkId=34a9570cd0c747f448092913ac2dae60) x2
+* [Yeelight WIFI RGB Strip](https://smile.amazon.com/gp/product/B01LRT0B56/ref=smi_www_rco2_go_smi_4368549507?_encoding=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&ie=UTF8&linkCode=as2&linkId=34a9570cd0c747f448092913ac2dae60&tag=ntalekt0c-20) x2
 * [GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt0c-20&linkId=0dfbcad4a9df3b81570623f0e23b562a) x3
 
 #### Sensor / Switch
@@ -46,6 +47,8 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Xiaomi Aqara Smart Wireless Switch](https://www.gearbest.com/access-control/pp_626695.html) x2
 * [Wemo Mini Smart Plug](https://www.amazon.com/gp/product/B01NBI0A6R/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01NBI0A6R&linkCode=as2&tag=ntalekt0c-20&linkId=b8975bef5cfef090873209417be305fa)
 * [Wemo Insight Smart Plug](https://www.amazon.com/gp/product/B01DBXNYCS/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DBXNYCS&linkCode=as2&tag=ntalekt0c-20&linkId=934f0720129cf096876ab8b14a26bbbb)
+* [Tuya Compatible Smart Plug](https://smile.amazon.com/dp/B07FVST9YN/?coliid=I2R80H7TIDHPO5&colid=3LNUCWJAWZGG4&psc=1&ref_=lv_ov_lig_dp_it)
+* [Goldwin Wifi Controller](https://smile.amazon.com/gp/product/B07JB5N3Y7/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
 
 #### Camera
 * [Amcrest IP3M-943W Camera](https://www.amazon.com/gp/product/B01I01Z1M2/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01I01Z1M2&linkCode=as2&tag=ntalekt0c-20&linkId=2ef3afe981c97da79ba37bf3815f7347)
