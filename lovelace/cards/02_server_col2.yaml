@@ -107,6 +107,11 @@ cards:
         name: DB Size
         hours_to_show: 72
         icon: mdi:database
+        action:
+          - service: recorder.purge
+            data_template:
+              keep_days: 2
+              repack: true
       - type: custom:mini-graph-card
         entities:
           - entity: sensor.home_assistant_log
