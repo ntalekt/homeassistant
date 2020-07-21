@@ -17,10 +17,8 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * Software
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
     * Home Assistant Version: 0.112.4
-  * [Docker v19.03.12] (https://github.com/docker/docker-ce/releases)
-  * [Traefik v1.7.16 proxy](https://containo.us/traefik/)
-    * This is a great tutorial but a little dated: https://www.smarthomebeginner.com/traefik-reverse-proxy-tutorial-for-docker/
-	* Updated to Traefik 2 and some other goodies: https://www.smarthomebeginner.com/traefik-2-docker-tutorial/
+  * [Docker v19.03.12](https://github.com/docker/docker-ce/releases)
+  * [Traefik v1.7.16 proxy](https://www.smarthomebeginner.com/traefik-reverse-proxy-tutorial-for-docker/)
   * SSL via [Let's Encrypt](https://letsencrypt.org/)
   
 # Interface
