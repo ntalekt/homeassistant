@@ -72,3 +72,63 @@
         state: 'Summer'
   action:
     - service: script.sprinkler_water_summer
+
+        ##########################################################
+        ## Sprinkler - Change to Spring
+        ##########################################################
+
+- alias: 'change watering to spring'
+  trigger:
+  - platform: state
+    entity_id: sensor.season
+    to: "spring"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sprinkler
+        option: Spring
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Automatically changed watering schedule to Spring"
+
+        ##########################################################
+        ## Sprinkler - Change to Winter
+        ##########################################################
+
+- alias: 'change watering to winter'
+  trigger:
+  - platform: state
+    entity_id: sensor.season
+    to: "winter"
+  - platform: state
+    entity_id: sensor.season
+    to: "autumn"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sprinkler
+        option: Winter
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Automatically changed watering schedule to Autumn/Winter"
+
+        ##########################################################
+        ## Sprinkler - Change to Summer
+        ##########################################################
+
+- alias: 'change watering to summer'
+  trigger:
+  - platform: state
+    entity_id: sensor.season
+    to: "summer"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sprinkler
+        option: Summer
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Automatically changed watering schedule to Summer"
