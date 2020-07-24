@@ -9,8 +9,8 @@
   sprinkler:
     name: Sprinkler Program
     options:
-      - Off
-      - Spring
-      - Winter
-      - Summer
+      - "Off"
+      - "Spring"
+      - "Winter"
+      - "Summer"
     icon: mdi:sprinkler-variant
