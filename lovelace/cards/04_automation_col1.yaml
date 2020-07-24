@@ -13,6 +13,7 @@ cards:
   - type: horizontal-stack
     cards:
     - type: entities
+      show_header_toggle: false
       title: Tests
       entities:
         - entity: input_boolean.test_text_notification_slack
