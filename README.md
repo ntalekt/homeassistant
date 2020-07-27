@@ -16,7 +16,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
   * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
 * Software
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
-    * Home Assistant Version: 0.112.4
+    * Home Assistant Version: 0.113.1
   * [Docker v19.03.12](https://github.com/docker/docker-ce/releases)
   * [Traefik v1.7.16 proxy](https://www.smarthomebeginner.com/traefik-reverse-proxy-tutorial-for-docker/)
   * SSL via [Let's Encrypt](https://letsencrypt.org/)
