@@ -66,6 +66,52 @@ cards:
 #          color: rgb(68,115,158)
         - value: 'on'
           color: rgb(46, 204, 64)
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        size: 30%
+        entity: light.master_bedroom_lamp
+        name: Master
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.master_bedroom_lamp
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+      - type: "custom:button-card"
+        icon: mdi:track-light
+        size: 30%
+        entity: light.ge_14294_porch_level
+        name: Porch
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.ge_14294_porch_level
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+      - type: "custom:button-card"
+        icon: mdi:track-light
+        size: 30%
+        entity: light.ge_14294_exterior_side_level
+        name: Side
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.ge_14294_exterior_side_level
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
     ##########################################################
     ## Second row buttons
     ##########################################################
