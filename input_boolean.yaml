@@ -58,3 +58,22 @@
     name: Sprinkler Test
     initial: off
     icon: mdi:sprinkler
+
+        ##########################################################
+        ## Disable interior light automations
+        ##########################################################
+
+  disable_interior_on_sunset:
+    name: Disable Interior Lights On at Sunset
+    initial: off
+    icon: mdi:lightbulb-off-outline
+
+  disable_interior_off_830pm:
+    name: Disable Interior Lights Off at 8:30pm
+    initial: off
+    icon: mdi:lightbulb-off-outline
+
+  disable_interior_on_motion:
+    name: Disable Interior Lights On with Motion
+    initial: off
+    icon: mdi:lightbulb-off-outline

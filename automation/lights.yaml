@@ -25,6 +25,9 @@
         entity_id: sensor.sun_elevation
         above: 4
         below: 8
+      - condition: state
+        entity_id: input_boolean.disable_interior_on_sunset
+        state: 'off'
       - condition: or
         conditions:
           - condition: template
@@ -120,6 +123,9 @@
       - condition: state
         entity_id: binary_sensor.chalkboard_occupancy_on
         state: 'off'
+      - condition: state
+        entity_id: input_boolean.disable_interior_off_830pm
+        state: 'off'
   action:
     - service: light.turn_off
       entity_id: light.kitchen_cabinet_lights
@@ -153,6 +159,9 @@
       - condition: template
         value_template: '{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} '
         #value_template: '{% if states.light.kitchen_cabinet_lights.attributes.brightness is defined %} True {% else %} False {% endif %}'
+      - condition: state
+        entity_id: input_boolean.disable_interior_on_motion
+        state: 'off'
   action:
     - service: light.turn_on
       entity_id: light.kitchen_cabinet_lights

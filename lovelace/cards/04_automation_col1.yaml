@@ -18,3 +18,12 @@ cards:
       entities:
         - entity: input_boolean.test_text_notification_slack
         - entity: input_boolean.test_text_notification_pushbullet
+  - type: horizontal-stack
+    cards:
+    - type: entities
+      show_header_toggle: false
+      title: Automation Override
+      entities:
+        - entity: input_boolean.disable_interior_on_sunset
+        - entity: input_boolean.disable_interior_off_830pm
+        - entity: input_boolean.disable_interior_on_motion
