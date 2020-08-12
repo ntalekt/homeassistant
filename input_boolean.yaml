@@ -11,6 +11,10 @@
     name: Test Text Notification Slack
     initial: off
     icon: mdi:test-tube
+    
+  wfh_mode:
+    name: Work From Home Mode
+    icon: mdi:briefcase
 
         ##########################################################
         ## Occupancy
