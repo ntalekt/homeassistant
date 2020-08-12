@@ -16,7 +16,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
   * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
 * Software
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
-    * Home Assistant Version: 0.113.1
+    * Home Assistant Version: 0.113.3
   * [Docker v19.03.12](https://github.com/docker/docker-ce/releases)
   * [Traefik v1.7.16 proxy](https://www.smarthomebeginner.com/traefik-reverse-proxy-tutorial-for-docker/)
   * SSL via [Let's Encrypt](https://letsencrypt.org/)
@@ -38,11 +38,11 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 
 #### Sensor / Switch
 * [Ecolink Z-wave Plus Garage Door Tilt Sensor](https://www.amazon.com/gp/product/B01MRZB0NT/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MRZB0NT&linkCode=as2&tag=ntalekt0c-20&linkId=ba6f517d4382e6a23be0479e15d3ce2f)
-* [BRUH Automation Multisensor](https://github.com/bruhautomation/ESP-MQTT-JSON-Multisensor)
-* [Xiaomi Mi Smart Gateway](https://www.gearbest.com/living-appliances/pp_344667.html)
-* [Xiaomi Aqara Temperature Humidity Sensor](https://www.gearbest.com/access-control/pp_626702.html) x5
-* [Xiaomi Aqara Window Door Sensor](https://www.gearbest.com/access-control/pp_626703.html)
-* [Xiaomi Aqara Smart Wireless Switch](https://www.gearbest.com/access-control/pp_626695.html) x2
+* [Xiaomi Mi Smart Gateway](https://www.aqara.com/us/smart_home_hub.html)
+* [Xiaomi Aqara Motion Sensor](https://www.aqara.com/us/motion_sensor.html) x2
+* [Xiaomi Aqara Temperature Humidity Sensor](https://www.aqara.com/us/temperature_humidity_sensor.html) x5
+* [Xiaomi Aqara Window Door Sensor](https://www.aqara.com/us/door_and_window_sensor.html)
+* [Xiaomi Aqara Smart Wireless Switch](https://www.aqara.com/us/wireless_mini_switch.html) x4
 * [Wemo Mini Smart Plug](https://www.amazon.com/gp/product/B01NBI0A6R/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01NBI0A6R&linkCode=as2&tag=ntalekt0c-20&linkId=b8975bef5cfef090873209417be305fa)
 * [Wemo Insight Smart Plug](https://www.amazon.com/gp/product/B01DBXNYCS/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DBXNYCS&linkCode=as2&tag=ntalekt0c-20&linkId=934f0720129cf096876ab8b14a26bbbb)
 * [Tuya Compatible Smart Plug](https://smile.amazon.com/dp/B07FVST9YN/?coliid=I2R80H7TIDHPO5&colid=3LNUCWJAWZGG4&psc=1&ref_=lv_ov_lig_dp_it)
