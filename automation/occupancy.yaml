@@ -146,3 +146,32 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.baby_occupancy
+      
+      #################################################################
+      ## Office Occupancy
+      #################################################################
+
+- alias: occupancy office turn on if motion detected
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d00047eaffc
+      from: 'off'
+      to: 'on'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.office_occupancy
+
+      #################################################################
+      ## Reset Office Occupancy
+      #################################################################
+
+- alias: occupancy office turn off after 10min of no motion
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d00047eaffc
+      to: 'off'
+      for:
+        minutes: 10
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.office_occupancy

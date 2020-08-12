@@ -122,7 +122,7 @@ cards:
           action: more-info
           entity: camera.baby_camera
       - type: "custom:button-card"
-        entity: binary_sensor.shop_occupancy_on
+        entity: binary_sensor.office_occupancy_on
         color_type: card
         name: Office
         state:

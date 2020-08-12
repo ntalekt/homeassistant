@@ -1,0 +1,29 @@
+      #################################################################
+      ## Turn on office fan if office is occupied
+      #################################################################
+
+- alias: climate office fan on when occupied
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_occupancy
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.wemo_insight
+
+      #################################################################
+      ## Turn Off office fan if not occupied
+      #################################################################
+
+- alias: climate office fan off when not occupied
+  trigger:
+    - platform: state
+      entity_id: input_boolean.office_occupancy
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.wfh_mode
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.wemo_insight

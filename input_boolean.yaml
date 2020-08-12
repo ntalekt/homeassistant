@@ -40,6 +40,11 @@
     name: Baby Occupancy
     initial: off
     icon: mdi:account
+    
+  office_occupancy:
+    name: Office Occupancy
+    initial: off
+    icon: mdi:account
 
         ##########################################################
         ## Sleeptime

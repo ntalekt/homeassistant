@@ -9,6 +9,7 @@ entities:
   - sensor.master_temp_battery
   - sensor.loft_temp_battery
   - sensor.office_temp_battery
+  - sensor.office_motion_battery
   - sensor.master_switch_battery
   - sensor.chalkboard_switch_battery
   - sensor.patio_door_battery
