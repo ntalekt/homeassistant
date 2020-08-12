@@ -46,6 +46,7 @@ cards:
           icon: mdi:motion-sensor
         - value: 'off'
           icon: mdi:walk
+          color: rgb(67, 73, 82)
         style:
          - color: var(--icon-off-color)
         tap_action:
@@ -62,6 +63,7 @@ cards:
           icon: mdi:motion-sensor
         - value: 'off'
           icon: mdi:walk
+          color: rgb(67, 73, 82)
         style:
          - color: var(--icon-off-color)
         layout: icon_name
@@ -78,6 +80,7 @@ cards:
           icon: mdi:motion-sensor
         - value: 'off'
           icon: mdi:walk
+          color: rgb(67, 73, 82)
         style:
          - color: var(--icon-off-color)
         layout: icon_name
@@ -99,6 +102,7 @@ cards:
           icon: mdi:motion-sensor
         - value: 'off'
           icon: mdi:walk
+          color: rgb(67, 73, 82)
         style:
          - color: var(--icon-off-color)
         layout: icon_name
@@ -115,6 +119,7 @@ cards:
           icon: mdi:motion-sensor
         - value: 'off'
           icon: mdi:walk
+          color: rgb(67, 73, 82)
         style:
          - color: var(--icon-off-color)
         layout: icon_name
@@ -131,6 +136,7 @@ cards:
           icon: mdi:motion-sensor
         - value: 'off'
           icon: mdi:walk
+          color: rgb(67, 73, 82)
         style:
          - color: var(--icon-off-color)
         layout: icon_name
