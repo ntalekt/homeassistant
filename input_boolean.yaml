@@ -15,6 +15,10 @@
   wfh_mode:
     name: Work From Home Mode
     icon: mdi:briefcase
+    
+  vacation_mode:
+    name: Vacation Mode
+    icon: mdi:airplane
 
         ##########################################################
         ## Occupancy
