@@ -19,10 +19,10 @@ dark_teal:
   text-medium-light-color: '#A0A2A8'
   text-medium-color: '#80828A' 
   disabled-text-color: '#626569'
-  primary-color: 'var(--secondary-text-color)'
+  primary-color: 'var(--accent-color)'
 
   # Main Colors
-  app-header-background-color: 'var(--paper-card-background-color)'
+  app-header-background-color: '#3b4049' 
   accent-color: '#00b59d'
   accent-medium-color: 'var(--accent-color)'
 
@@ -34,8 +34,8 @@ dark_teal:
   markdown-code-background-color: 'var(--background-color)'
 
   # Card
-  card-background-color: 'var(--paper-card-background-color)'
-  paper-card-background-color: 'rgba(67, 73, 82, 1)'
+  card-background-color: 'var(--ha-card-background)'
+  ha-card-background: 'rgba(67, 73, 82, 1)'
   ha-card-box-shadow: "0px 0px 0px 0px"
   ha-card-border-radius: "3px"
   border-color: '#333333' 
@@ -57,7 +57,7 @@ dark_teal:
   paper-slider-knob-color: 'var(--accent-color)'
   paper-slider-pin-color: 'var(--border-color)'
   paper-slider-active-color: 'var(--border-color)'
-  paper-slider-container-color: 'var(--paper-card-background-color)'
+  paper-slider-container-color: 'var(--ha-card-background)'
 
   # Toggle:
   paper-toggle-button-checked-bar-color: 'var(--accent-color)'
@@ -78,7 +78,7 @@ dark_teal:
 
   # Tables
   table-row-background-color: 'var(--background-color)'
-  table-row-alternative-background-color: 'var(--paper-card-background-color)'
+  table-row-alternative-background-color: 'var(--ha-card-background)'
 
   # Badges
   label-badge-background-color: 'var(--background-color)'
