@@ -11,6 +11,7 @@ entities:
   - sensor.office_temp_battery
   - sensor.office_motion_battery
   - sensor.master_switch_battery
+  - sensor.master_switch_usertwo_battery
   - sensor.chalkboard_switch_battery
   - sensor.patio_door_battery
 show_header_toggle: false
