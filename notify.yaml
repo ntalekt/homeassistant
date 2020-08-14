@@ -2,19 +2,20 @@
 ## Notify  ##
 ##############################################################
 
-        ##########################################################
-        ## Pushbullet
-        ##########################################################
+##########################################################
+## Pushbullet
+##########################################################
 
-  - name: pushbullet
-    platform: pushbullet
-    api_key: !secret pushbullet_api_key
+- name: pushbullet
+  platform: pushbullet
+  api_key:
+    !secret pushbullet_api_key
+    
+    ##########################################################
+    ## Slack
+    ##########################################################
 
-        ##########################################################
-        ## Slack
-        ##########################################################
-
-  - name: slack
-    platform: slack
-    api_key: !secret slack_api_key
-    default_channel: '#alerts'
+- name: slack
+  platform: slack
+  api_key: !secret slack_api_key
+  default_channel: "#alerts"

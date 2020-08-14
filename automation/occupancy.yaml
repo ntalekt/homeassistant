@@ -2,16 +2,16 @@
 ## Occupancy Automations
 #################################################################
 
-      #################################################################
-      ## Living Room Occupancy
-      #################################################################
+#################################################################
+## Living Room Occupancy
+#################################################################
 
 - alias: occupancy living turn on if motion detected
   trigger:
     - platform: state
       entity_id: binary_sensor.living_room_motion_detected
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.living_occupancy
@@ -24,7 +24,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.living_room_motion_detected
-      to: 'off'
+      to: "off"
       for:
         minutes: 10
   action:
@@ -39,8 +39,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.garage_motion_detected
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.garage_occupancy
@@ -53,7 +53,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.garage_motion_detected
-      to: 'off'
+      to: "off"
       for:
         minutes: 10
   action:
@@ -68,8 +68,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.chalkboard_room_motion_detected
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.chalkboard_occupancy
@@ -82,7 +82,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.chalkboard_room_motion_detected
-      to: 'off'
+      to: "off"
       for:
         minutes: 10
   action:
@@ -97,8 +97,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.shop_motion_detected
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.shop_occupancy
@@ -111,13 +111,13 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.shop_motion_detected
-      to: 'off'
+      to: "off"
       for:
         minutes: 10
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.shop_occupancy
-      
+
       #################################################################
       ## Baby Occupancy
       #################################################################
@@ -126,8 +126,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.synosurveillance_motion
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.baby_occupancy
@@ -140,13 +140,13 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.synosurveillance_motion
-      to: 'off'
+      to: "off"
       for:
         minutes: 10
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.baby_occupancy
-      
+
       #################################################################
       ## Office Occupancy
       #################################################################
@@ -155,8 +155,8 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.motion_sensor_158d00047eaffc
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.office_occupancy
@@ -169,13 +169,13 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.motion_sensor_158d00047eaffc
-      to: 'off'
+      to: "off"
       for:
         minutes: 10
   action:
     - service: input_boolean.turn_off
-      entity_id: input_boolean.office_occupancy
-      
+      entity_id:
+        input_boolean.office_occupancy
         ##########################################################
         ## WFH Mode
         ##########################################################
@@ -183,7 +183,7 @@
 - alias: occupancy wfh home on
   trigger:
     - platform: time
-      at: '06:30:00'
+      at: "06:30:00"
   condition:
     - condition: time
       weekday:
@@ -194,7 +194,7 @@
         - fri
     - condition: state
       entity_id: input_boolean.vacation_mode
-      state: 'off'
+      state: "off"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.wfh_mode
@@ -202,7 +202,7 @@
 - alias: occupancy wfh off
   trigger:
     - platform: time
-      at: '16:00:00'
+      at: "16:00:00"
   condition:
     - condition: time
       weekday:
@@ -213,7 +213,7 @@
         - fri
     - condition: state
       entity_id: input_boolean.vacation_mode
-      state: 'off'
+      state: "off"
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.wfh_mode

@@ -2,15 +2,15 @@
 ## Input Select                                             ##
 ##############################################################
 
-        ##########################################################
-        ## Sprinkler
-        ##########################################################
+##########################################################
+## Sprinkler
+##########################################################
 
-  sprinkler:
-    name: Sprinkler Program
-    options:
-      - "Off"
-      - "Spring"
-      - "Winter"
-      - "Summer"
-    icon: mdi:sprinkler-variant
+sprinkler:
+  name: Sprinkler Program
+  options:
+    - "Off"
+    - "Spring"
+    - "Winter"
+    - "Summer"
+  icon: mdi:sprinkler-variant

@@ -20,7 +20,7 @@
     - service: homeassistant.turn_off
       entity_id:
         input_boolean.test_text_notification_pushbullet
-        
+
         ##########################################################
         ## Slack - Notification Test
         ##########################################################
@@ -39,7 +39,7 @@
     - service: homeassistant.turn_off
       entity_id:
         input_boolean.test_text_notification_slack
-
+        
         ##########################################################
         ## Pushbullet - Life360 Overdue Update
         ##########################################################

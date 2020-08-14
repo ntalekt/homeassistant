@@ -2,59 +2,59 @@
 ## Customize
 #################################################################
 
-        ##########################################################
-        ## Lights
-        ##########################################################
+##########################################################
+## Lights
+##########################################################
 
-    light.master_bedroom_lamp:
-      icon: mdi:lamp
-      supported_features: 63
-    light.kitchen_cabinet_lights:
-      supported_features: 33
+light.master_bedroom_lamp:
+  icon: mdi:lamp
+  supported_features: 63
+light.kitchen_cabinet_lights:
+  supported_features:
+    33
+    ##########################################################
+    ## Sensors
+    ##########################################################
 
-        ##########################################################
-        ## Sensors
-        ##########################################################
-
-    sensor.humidity_158d0001b9561c:
-      icon: mdi:water-percent
-      friendly_name: userthree Humidity
-    sensor.temperature_158d0001b9561c:
-      icon: mdi:thermometer-lines
-      friendly_name: userthree Temperature
-    sensor.humidity_158d0001f50d5f:
-      icon: mdi:water-percent
-      friendly_name: userfour Humidity
-    sensor.temperature_158d0001f50d5f:
-      icon: mdi:thermometer-lines
-      friendly_name: userfour Temperature
-    sensor.humidity_158d0001fa9e02:
-      icon: mdi:water-percent
-      friendly_name: Master Humidity
-    sensor.temperature_158d0001fa9e02:
-      icon: mdi:thermometer-lines
-      friendly_name: Master Temperature
-    sensor.humidity_158d0001f51e9e:
-      icon: mdi:water-percent
-      friendly_name: Loft Humidity
-    sensor.temperature_158d0001f51e9e:
-      icon: mdi:thermometer-lines
-      friendly_name: Loft Temperature
-    sensor.temperature_158d0001f50dcb:
-      icon: mdi:thermometer-lines
-      friendly_name: Office Temperature
-    sensor.humidity_158d0001f50dcb:
-      icon: mdi:water-percent
-      friendly_name: Office Humidity
-    sensor.octoprint_actual_bed_temp:
-      unit_of_measurement: C
-    sensor.octoprint_actual_tool0_temp:
-      unit_of_measurement: C
-    sensor.octoprint_target_bed_temp:
-      unit_of_measurement: C
-    sensor.octoprint_target_tool0_temp:
-      unit_of_measurement: C
-    sensor.nas2_system_temperature:
-      unit_of_measurement: C
-    sensor.nas2_cpu_temperature:
-      unit_of_measurement: C
+sensor.humidity_158d0001b9561c:
+  icon: mdi:water-percent
+  friendly_name: userthree Humidity
+sensor.temperature_158d0001b9561c:
+  icon: mdi:thermometer-lines
+  friendly_name: userthree Temperature
+sensor.humidity_158d0001f50d5f:
+  icon: mdi:water-percent
+  friendly_name: userfour Humidity
+sensor.temperature_158d0001f50d5f:
+  icon: mdi:thermometer-lines
+  friendly_name: userfour Temperature
+sensor.humidity_158d0001fa9e02:
+  icon: mdi:water-percent
+  friendly_name: Master Humidity
+sensor.temperature_158d0001fa9e02:
+  icon: mdi:thermometer-lines
+  friendly_name: Master Temperature
+sensor.humidity_158d0001f51e9e:
+  icon: mdi:water-percent
+  friendly_name: Loft Humidity
+sensor.temperature_158d0001f51e9e:
+  icon: mdi:thermometer-lines
+  friendly_name: Loft Temperature
+sensor.temperature_158d0001f50dcb:
+  icon: mdi:thermometer-lines
+  friendly_name: Office Temperature
+sensor.humidity_158d0001f50dcb:
+  icon: mdi:water-percent
+  friendly_name: Office Humidity
+sensor.octoprint_actual_bed_temp:
+  unit_of_measurement: C
+sensor.octoprint_actual_tool0_temp:
+  unit_of_measurement: C
+sensor.octoprint_target_bed_temp:
+  unit_of_measurement: C
+sensor.octoprint_target_tool0_temp:
+  unit_of_measurement: C
+sensor.nas2_system_temperature:
+  unit_of_measurement: C
+sensor.nas2_cpu_temperature:
+  unit_of_measurement: C

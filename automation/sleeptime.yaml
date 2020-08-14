@@ -1,18 +1,18 @@
-        ##########################################################
-        ## Sleep Time
-        ##########################################################
+##########################################################
+## Sleep Time
+##########################################################
 
 - alias: sleeptime
   trigger:
     - platform: state
       entity_id: input_boolean.sleep_time
-      to: 'on'
+      to: "on"
       for:
         hours: 0
         minutes: 1
         seconds: 0
   action:
-    - delay: '00:30:00'
+    - delay: "00:30:00"
 
     - service: script.turn_on
       data:
@@ -22,7 +22,7 @@
   trigger:
     - platform: state
       entity_id: input_boolean.sleep_time
-      to: 'on'
+      to: "on"
       for:
         hours: 0
         minutes: 31
@@ -70,7 +70,7 @@
     - service: remote.send_command
       data_template:
         entity_id: remote.master
-        command: 'VolumeUp'
+        command: "VolumeUp"
         device: 46622425
     - service: light.turn_off
       entity_id: light.master_bedroom_lamp

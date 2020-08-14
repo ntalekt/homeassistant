@@ -2,22 +2,21 @@
 ## Light  ##
 ##############################################################
 
-        ##########################################################
-        ## Light Groups
-        ##########################################################
+##########################################################
+## Light Groups
+##########################################################
 
-  - platform: group
-    name: Media Accents
-    entities:
-      - light.media_center_l_strip
-      - light.media_center_r_strip
+- platform: group
+  name: Media Accents
+  entities:
+    - light.media_center_l_strip
+    - light.media_center_r_strip
+    
+      ##########################################################
+      ## Kitchen cabinet underlights
+      ##########################################################
 
-        ##########################################################
-        ## Kitchen cabinet underlights
-        ##########################################################     
-
-  - platform: flux_led
-    devices:
-      REDACTED83:
-        name: kitchen_cabinet_lights
-
+- platform: flux_led
+  devices:
+    REDACTED83:
+      name: kitchen_cabinet_lights

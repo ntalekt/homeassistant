@@ -2,14 +2,14 @@
 ## Sprinkler
 #################################################################
 
-        ##########################################################
-        ## Sprinkler - Spring (Mon, Wed, Fri, & Sat - AM) 1.5 hrs total
-        ##########################################################
+##########################################################
+## Sprinkler - Spring (Mon, Wed, Fri, & Sat - AM) 1.5 hrs total
+##########################################################
 
-- alias: 'water spring'
+- alias: "water spring"
   trigger:
-  - platform: time
-    at: "05:00:00"
+    - platform: time
+      at: "05:00:00"
   condition:
     condition: and
     conditions:
@@ -21,18 +21,19 @@
           - sat
       - condition: state
         entity_id: input_select.sprinkler
-        state: 'Spring'
+        state: "Spring"
   action:
-    - service: script.sprinkler_water_spring
+    - service:
+        script.sprinkler_water_spring
 
         ##########################################################
         ## Sprinkler - Winter (Mon, Wed, Fri, - AM) 1 hrs total
         ##########################################################
 
-- alias: 'water winter'
+- alias: "water winter"
   trigger:
-  - platform: time
-    at: "05:00:00"
+    - platform: time
+      at: "05:00:00"
   condition:
     condition: and
     conditions:
@@ -43,20 +44,21 @@
           - fri
       - condition: state
         entity_id: input_select.sprinkler
-        state: 'Winter'
+        state: "Winter"
   action:
-    - service: script.sprinkler_water_winter
+    - service:
+        script.sprinkler_water_winter
 
         ##########################################################
         ## Sprinkler - Summer (Mon, Wed, Thur, Sat, & Sun - AM/PM) 3 hrs total
         ##########################################################
 
-- alias: 'water summer'
+- alias: "water summer"
   trigger:
-  - platform: time
-    at: "05:00:00"
-  - platform: time
-    at: "17:00:00"
+    - platform: time
+      at: "05:00:00"
+    - platform: time
+      at: "17:00:00"
   condition:
     condition: and
     conditions:
@@ -69,19 +71,20 @@
           - sun
       - condition: state
         entity_id: input_select.sprinkler
-        state: 'Summer'
+        state: "Summer"
   action:
-    - service: script.sprinkler_water_summer
-
+    - service:
+        script.sprinkler_water_summer
+        
         ##########################################################
         ## Sprinkler - Change to Spring
         ##########################################################
 
-- alias: 'change watering to spring'
+- alias: "change watering to spring"
   trigger:
-  - platform: state
-    entity_id: sensor.season
-    to: "spring"
+    - platform: state
+      entity_id: sensor.season
+      to: "spring"
   action:
     - service: input_select.select_option
       data:
@@ -96,14 +99,14 @@
         ## Sprinkler - Change to Winter
         ##########################################################
 
-- alias: 'change watering to winter'
+- alias: "change watering to winter"
   trigger:
-  - platform: state
-    entity_id: sensor.season
-    to: "winter"
-  - platform: state
-    entity_id: sensor.season
-    to: "autumn"
+    - platform: state
+      entity_id: sensor.season
+      to: "winter"
+    - platform: state
+      entity_id: sensor.season
+      to: "autumn"
   action:
     - service: input_select.select_option
       data:
@@ -118,11 +121,11 @@
         ## Sprinkler - Change to Summer
         ##########################################################
 
-- alias: 'change watering to summer'
+- alias: "change watering to summer"
   trigger:
-  - platform: state
-    entity_id: sensor.season
-    to: "summer"
+    - platform: state
+      entity_id: sensor.season
+      to: "summer"
   action:
     - service: input_select.select_option
       data:

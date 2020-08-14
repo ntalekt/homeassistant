@@ -2,12 +2,12 @@
 ## Device Tracker
 #################################################################
 
-      #################################################################
-      ## NMAP
-      #################################################################
+#################################################################
+## NMAP
+#################################################################
 
-  - platform: nmap_tracker
-    hosts: REDACTED
-    #consider_home: 300 Moved to known_devices.yaml for per device basis
-    interval_seconds: 20
-    track_new_devices: no
+- platform: nmap_tracker
+  hosts: REDACTED
+  #consider_home: 300 Moved to known_devices.yaml for per device basis
+  interval_seconds: 20
+  track_new_devices: no

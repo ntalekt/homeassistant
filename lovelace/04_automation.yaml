@@ -2,5 +2,4 @@ title: Automation
 id: Automation
 icon: mdi:robot
 cards:
-
- - !include /config/lovelace/cards/04_automation_col1.yaml
+  - !include /config/lovelace/cards/04_automation_col1.yaml

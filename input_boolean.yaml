@@ -2,91 +2,91 @@
 ## Input Boolean  ##
 ##############################################################
 
-  test_text_notification_pushbullet:
-    name: Test Text Notification Pushbullet
-    initial: off
-    icon: mdi:test-tube
+test_text_notification_pushbullet:
+  name: Test Text Notification Pushbullet
+  initial: off
+  icon: mdi:test-tube
 
-  test_text_notification_slack:
-    name: Test Text Notification Slack
-    initial: off
-    icon: mdi:test-tube
-    
-  wfh_mode:
-    name: Work From Home Mode
-    icon: mdi:briefcase
-    
-  vacation_mode:
-    name: Vacation Mode
-    icon: mdi:airplane
+test_text_notification_slack:
+  name: Test Text Notification Slack
+  initial: off
+  icon: mdi:test-tube
 
-        ##########################################################
-        ## Occupancy
-        ##########################################################
+wfh_mode:
+  name: Work From Home Mode
+  icon: mdi:briefcase
 
-  living_occupancy:
-    name: Living Occupancy
-    initial: off
-    icon: mdi:account
+vacation_mode:
+  name: Vacation Mode
+  icon:
+    mdi:airplane
+    ##########################################################
+    ## Occupancy
+    ##########################################################
 
-  garage_occupancy:
-    name: Garage Occupancy
-    initial: off
-    icon: mdi:account
+living_occupancy:
+  name: Living Occupancy
+  initial: off
+  icon: mdi:account
 
-  chalkboard_occupancy:
-    name: Chalkboard Occupancy
-    initial: off
-    icon: mdi:account
+garage_occupancy:
+  name: Garage Occupancy
+  initial: off
+  icon: mdi:account
 
-  shop_occupancy:
-    name: Shop Occupancy
-    initial: off
-    icon: mdi:account
+chalkboard_occupancy:
+  name: Chalkboard Occupancy
+  initial: off
+  icon: mdi:account
 
-  baby_occupancy:
-    name: Baby Occupancy
-    initial: off
-    icon: mdi:account
-    
-  office_occupancy:
-    name: Office Occupancy
-    initial: off
-    icon: mdi:account
+shop_occupancy:
+  name: Shop Occupancy
+  initial: off
+  icon: mdi:account
 
-        ##########################################################
-        ## Sleeptime
-        ##########################################################
+baby_occupancy:
+  name: Baby Occupancy
+  initial: off
+  icon: mdi:account
 
-  sleep_time:
-    name: Sleep Time
-    initial: off
-    icon: mdi:hotel
+office_occupancy:
+  name: Office Occupancy
+  initial: off
+  icon:
+    mdi:account
+    ##########################################################
+    ## Sleeptime
+    ##########################################################
 
-        ##########################################################
-        ## Sprinkler Test
-        ##########################################################
+sleep_time:
+  name: Sleep Time
+  initial: off
+  icon:
+    mdi:hotel
+    ##########################################################
+    ## Sprinkler Test
+    ##########################################################
 
-  sprinkler_test:
-    name: Sprinkler Test
-    initial: off
-    icon: mdi:sprinkler
+sprinkler_test:
+  name: Sprinkler Test
+  initial: off
+  icon:
+    mdi:sprinkler
+    ##########################################################
+    ## Disable interior light automations
+    ##########################################################
 
-        ##########################################################
-        ## Disable interior light automations
-        ##########################################################
+disable_interior_on_sunset:
+  name: Disable Interior Lights On at Sunset
+  initial: off
+  icon: mdi:lightbulb-off-outline
 
-  disable_interior_on_sunset:
-    name: Disable Interior Lights On at Sunset
-    initial: off
-    icon: mdi:lightbulb-off-outline
+disable_interior_off_830pm:
+  name: Disable Interior Lights Off at 8:30pm
+  initial: off
+  icon: mdi:lightbulb-off-outline
 
-  disable_interior_off_830pm:
-    name: Disable Interior Lights Off at 8:30pm
-    initial: off
-    icon: mdi:lightbulb-off-outline
-
-  disable_interior_on_motion:
-    name: Disable Interior Lights On with Motion
-    initial: off
-    icon: mdi:lightbulb-off-outline
+disable_interior_on_motion:
+  name: Disable Interior Lights On with Motion
+  initial: off
+  icon: mdi:lightbulb-off-outline

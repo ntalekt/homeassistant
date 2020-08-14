@@ -2,7 +2,6 @@ title: Climate
 id: climate
 icon: mdi:thermometer-lines
 cards:
-
- - !include /config/lovelace/cards/01_climate_col1.yaml
- - !include /config/lovelace/cards/01_climate_col2.yaml
- - !include /config/lovelace/cards/01_climate_col3.yaml
+  - !include /config/lovelace/cards/01_climate_col1.yaml
+  - !include /config/lovelace/cards/01_climate_col2.yaml
+  - !include /config/lovelace/cards/01_climate_col3.yaml

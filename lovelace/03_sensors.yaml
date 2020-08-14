@@ -2,7 +2,6 @@ title: Sensors
 id: Sensors
 icon: mdi:gauge
 cards:
-
- - !include /config/lovelace/cards/03_sensors_col1.yaml
- - !include /config/lovelace/cards/03_sensors_col2.yaml
- - !include /config/lovelace/cards/03_sensors_col3.yaml
+  - !include /config/lovelace/cards/03_sensors_col1.yaml
+  - !include /config/lovelace/cards/03_sensors_col2.yaml
+  - !include /config/lovelace/cards/03_sensors_col3.yaml
