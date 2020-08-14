@@ -2,24 +2,25 @@
 ## Text Notification Automations
 #################################################################
 
-        ##########################################################
-        ## Pushbullet - Notification Test
-        ##########################################################
+##########################################################
+## Pushbullet - Notification Test
+##########################################################
 
 - alias: notification text test pushbullet
   trigger:
     - platform: state
       entity_id: input_boolean.test_text_notification_pushbullet
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: notify.pushbullet
       data:
         title: "Home Assistant"
         message: "This is a test."
     - service: homeassistant.turn_off
-      entity_id: input_boolean.test_text_notification_pushbullet
-
+      entity_id:
+        input_boolean.test_text_notification_pushbullet
+        
         ##########################################################
         ## Slack - Notification Test
         ##########################################################
@@ -28,15 +29,16 @@
   trigger:
     - platform: state
       entity_id: input_boolean.test_text_notification_slack
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: notify.slack
       data:
         title: "Home Assistant"
         message: "This is a test."
     - service: homeassistant.turn_off
-      entity_id: input_boolean.test_text_notification_slack
+      entity_id:
+        input_boolean.test_text_notification_slack
 
         ##########################################################
         ## Pushbullet - Life360 Overdue Update
@@ -78,22 +80,22 @@
   trigger:
     - platform: state
       entity_id: sensor.u_s_air_pollution_level
-      to: 'Good'
+      to: "Good"
     - platform: state
       entity_id: sensor.u_s_air_pollution_level
-      to: 'Moderate'
+      to: "Moderate"
     - platform: state
       entity_id: sensor.u_s_air_pollution_level
-      to: 'Unhealthy for Sensitive Groups'
+      to: "Unhealthy for Sensitive Groups"
     - platform: state
       entity_id: sensor.u_s_air_pollution_level
-      to: 'Unhealthy'
+      to: "Unhealthy"
     - platform: state
       entity_id: sensor.u_s_air_pollution_level
-      to: 'Very unhealthy'
+      to: "Very unhealthy"
     - platform: state
       entity_id: sensor.u_s_air_pollution_level
-      to: 'Hazardous'
+      to: "Hazardous"
   action:
     - service: notify.pushbullet
       data:

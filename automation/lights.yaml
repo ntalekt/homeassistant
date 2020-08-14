@@ -2,60 +2,60 @@
 ## Lighting Automations
 #################################################################
 
-        ##########################################################
-        ## Exterior
-        ##########################################################
+##########################################################
+## Exterior
+##########################################################
 
-        ##########################################################
-        ## Interior - Kitchen Cabinets
-        ##########################################################
+##########################################################
+## Interior - Kitchen Cabinets
+##########################################################
 
-- alias: 'light sunset transition kitchen cabinets'
+- alias: "light sunset transition kitchen cabinets"
   trigger:
-  - platform: time_pattern
-    minutes: '/2'
-    seconds: 00
+    - platform: time_pattern
+      minutes: "/2"
+      seconds: 00
   condition:
     condition: and
     conditions:
       - condition: time
-        after: '18:00:00'
-        before: '20:00:00'
+        after: "18:00:00"
+        before: "20:00:00"
       - condition: numeric_state
         entity_id: sensor.sun_elevation
         above: 4
         below: 8
       - condition: state
         entity_id: input_boolean.disable_interior_on_sunset
-        state: 'off'
+        state: "off"
       - condition: or
         conditions:
           - condition: template
-            value_template: '{% if states.light.kitchen_cabinet_lights.attributes.brightness is defined %} {{ states.light.kitchen_cabinet_lights.attributes.brightness < (((0.0625*(states.sun.sun.attributes.elevation**2))-(31.125*states.sun.sun.attributes.elevation)+246.5)|int)}} {% else %} False {% endif %} '
+            value_template: "{% if states.light.kitchen_cabinet_lights.attributes.brightness is defined %} {{ states.light.kitchen_cabinet_lights.attributes.brightness < (((0.0625*(states.sun.sun.attributes.elevation**2))-(31.125*states.sun.sun.attributes.elevation)+246.5)|int)}} {% else %} False {% endif %} "
           - condition: template
-            value_template: '{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} '
+            value_template: "{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} "
   action:
     - service: light.turn_on
       entity_id: light.kitchen_cabinet_lights
       data_template:
-        brightness: '{{((0.0625*(states.sun.sun.attributes.elevation**2))-(31.125*states.sun.sun.attributes.elevation)+246.5)|int}}'
+        brightness: "{{((0.0625*(states.sun.sun.attributes.elevation**2))-(31.125*states.sun.sun.attributes.elevation)+246.5)|int}}"
 
         ##########################################################
         ## Interior - Media accent, cactus light, and master
         ##########################################################
 
-- alias: 'light sunset other lights'
+- alias: "light sunset other lights"
   trigger:
-  - platform: state
-    entity_id: light.kitchen_cabinet_lights
-    from: "off"
-    to: "on"
+    - platform: state
+      entity_id: light.kitchen_cabinet_lights
+      from: "off"
+      to: "on"
   condition:
     condition: and
     conditions:
       - condition: time
-        after: '18:00:00'
-        before: '20:00:00'
+        after: "18:00:00"
+        before: "20:00:00"
       - condition: numeric_state
         entity_id: sensor.sun_elevation
         above: 4
@@ -79,15 +79,15 @@
         ## Interior - Master lamp switch color when TV on
         ##########################################################
 
-- alias: 'light master tv color switch'
+- alias: "light master tv color switch"
   trigger:
-  - platform: state
-    entity_id: sensor.master_remote
-    from: "PowerOff"
+    - platform: state
+      entity_id: sensor.master_remote
+      from: "PowerOff"
   condition:
     - condition: time
-      after: '18:00:00'
-      before: '23:00:00'
+      after: "18:00:00"
+      before: "23:00:00"
   action:
     - service: light.turn_on
       entity_id: light.master_bedroom_lamp
@@ -100,32 +100,30 @@
         hs_color:
           - 360
           - 50
-
-
         ##########################################################
         ## Interior - Turn off downstairs lights if no motion
         ##########################################################
 
-- alias: 'light turn off kitchen cabinets if no motion after 830pm'
+- alias: "light turn off kitchen cabinets if no motion after 830pm"
   trigger:
-  - platform: time_pattern
-    minutes: '/2'
-    seconds: 00
+    - platform: time_pattern
+      minutes: "/2"
+      seconds: 00
   condition:
     condition: and
     conditions:
       - condition: time
-        after: '20:30:00'
-        before: '01:00:00'
+        after: "20:30:00"
+        before: "01:00:00"
       - condition: state
         entity_id: binary_sensor.living_occupancy_on
-        state: 'off'
+        state: "off"
       - condition: state
         entity_id: binary_sensor.chalkboard_occupancy_on
-        state: 'off'
+        state: "off"
       - condition: state
         entity_id: input_boolean.disable_interior_off_830pm
-        state: 'off'
+        state: "off"
   action:
     - service: light.turn_off
       entity_id: light.kitchen_cabinet_lights
@@ -138,36 +136,35 @@
     - service: input_boolean.turn_off
       entity_id: input_boolean.chalkboard_occupancy
     - service: input_boolean.turn_off
-      entity_id: input_boolean.living_occupancy
-
+      entity_id:
+        input_boolean.living_occupancy
         ##########################################################
         ## Interior - Turn on cabinet lights if motion detected
         ##########################################################
 
-- alias: 'turn on kitchen cabinets if motion after 8pm'
+- alias: "turn on kitchen cabinets if motion after 8pm"
   trigger:
-  - platform: state
-    entity_id: binary_sensor.living_occupancy_on, binary_sensor.chalkboard_occupancy_on
-    from: "off"
-    to: "on"
+    - platform: state
+      entity_id: binary_sensor.living_occupancy_on, binary_sensor.chalkboard_occupancy_on
+      from: "off"
+      to: "on"
   condition:
     condition: and
     conditions:
       - condition: time
-        after: '20:00:00'
-        before: '23:59:59'
+        after: "20:00:00"
+        before: "23:59:59"
       - condition: template
-        value_template: '{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} '
+        value_template: "{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} "
         #value_template: '{% if states.light.kitchen_cabinet_lights.attributes.brightness is defined %} True {% else %} False {% endif %}'
       - condition: state
         entity_id: input_boolean.disable_interior_on_motion
-        state: 'off'
+        state: "off"
   action:
     - service: light.turn_on
       entity_id: light.kitchen_cabinet_lights
       data_template:
-        brightness: '127'
-        
+        brightness: "127"
         ##########################################################
         ## Interior Chalkboard Room
         ##########################################################
@@ -191,8 +188,4 @@
         click_type: long_click_press
   action:
     - service: switch.toggle
-      entity_id: switch.01200697dc4f22020616        
-        
-        
-        
-    
+      entity_id: switch.01200697dc4f22020616
