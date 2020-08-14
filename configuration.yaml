@@ -9,7 +9,7 @@ homeassistant:
   unit_system: imperial
   customize: !include customize.yaml
   time_zone: !secret homeassistant_timezone
-  whitelist_external_dirs:
+  allowlist_external_dirs:
     - /shared
     - /config
 
