@@ -28,7 +28,7 @@
         state: "off"
       - condition: state
         entity_id: input_boolean.office_occupancy
-        to: "off"
+        state: "off"
   action:
     - service: switch.turn_off
       entity_id: switch.wemo_insight
