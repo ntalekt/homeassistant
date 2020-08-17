@@ -16,6 +16,12 @@ light.kitchen_cabinet_lights:
     ## Sensors
     ##########################################################
 
+sensor.esxi_datastore_datastore1:
+  icon: mdi:chart-pie
+  unit_of_measurement: GiB
+sensor.esxi_datastore_datastore2:
+  icon: mdi:chart-pie
+  unit_of_measurement: GiB
 sensor.humidity_158d0001b9561c:
   icon: mdi:water-percent
   friendly_name: userthree Humidity

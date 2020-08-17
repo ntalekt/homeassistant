@@ -79,6 +79,57 @@
       value_template: "{{ states.remote.master.attributes.current_activity }}"
       friendly_name: "Master"
 
+    esxi_vmhost_esxi1_cpu_pct:
+      value_template: >
+        {% set usage = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.cpuusage_ghz | default(0)  %}
+        {% set total = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.cputotal_ghz | default(0) %}
+        {{ (( usage / total ) * 100 ) | round(2) }}
+      friendly_name: "ESXi1 CPU %"
+      unit_of_measurement: "%"
+
+    esxi_vmhost_esxi1_mem_pct:
+      value_template: >
+        {% set usage = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.memusage_gb | default(0) | int %}
+        {% set total = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.memtotal_gb | default(0) | int %}
+        {{ (( usage / total ) * 100 ) | round(2) }}
+      friendly_name: "ESXi1 MEM %"
+      unit_of_measurement: "%"
+
+    esxi_vm_vcenter_cpu_pct:
+      value_template: >
+        {% set usage = states.sensor.esxi_vm_vcenter.attributes.cpu_use_pct | default(0) %}
+        {{ usage | round(2) }}
+      friendly_name: "vCenter CPU %"
+      unit_of_measurement: "%"
+
+    esxi_vm_vcenter_mem_pct:
+      value_template: >
+        {% set usage = states.sensor.esxi_vm_vcenter.attributes.memory_used_mb | default(0) | int %}
+        {% set total = states.sensor.esxi_vm_vcenter.attributes.memory_allocated_mb | default(0) | int %}
+        {{ (( usage / total ) * 100 ) | round(2) }}
+      friendly_name: "vCenter MEM %"
+      unit_of_measurement: "%"
+
+    esxi_vm_vcenter_uptime_hours:
+      value_template: >
+        {% set uptime = states.sensor.esxi_vm_vcenter.attributes.uptime_hours | default(0) %}
+        {{ uptime }}
+      friendly_name: "vCenter Uptime"
+      unit_of_measurement: "Hours"
+
+    esxi_vm_vcenter_used_space_gb:
+      value_template: >
+        {% set storage = states.sensor.esxi_vm_vcenter.attributes.used_space_gb | default(0) %}
+        {{ storage }}
+      friendly_name: "vCenter Storage"
+      unit_of_measurement: "GiB"
+
+    esxi_vm_vcenter_snapshots:
+      value_template: >
+        {% set snapshots = states.sensor.esxi_vm_vcenter.attributes.snapshots | default(0) %}
+        {{ snapshots }}
+      friendly_name: "vCenter Snapshots"
+
     sun_elevation:
       value_template: "{{ states.sun.sun.attributes.elevation }}"
 
