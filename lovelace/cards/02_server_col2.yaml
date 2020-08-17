@@ -24,6 +24,8 @@ cards:
             color: rgb(255,65,54)
           - operator: default
             color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:git
         entity: sensor.current_ha_release
@@ -38,6 +40,8 @@ cards:
                 return states["sensor.current_ha_release"].state
               ]]]
             color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         entity: sensor.hacs
         name: HACS
@@ -53,6 +57,8 @@ cards:
             color: rgb(255,65,54)
           - operator: default
             color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
@@ -68,6 +74,8 @@ cards:
           - operator: default
             value: 0
             color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         name: HASS Service Restart
         icon: mdi:restart
@@ -77,6 +85,8 @@ cards:
         styles:
           card:
             - height: 100px
+        hold_action:
+          action: more-info
   - type: horizontal-stack
     cards:
       - entity: sensor.docker_ub1_homeassistant_cpu

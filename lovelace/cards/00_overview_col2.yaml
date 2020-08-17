@@ -21,6 +21,8 @@ cards:
 #          color: rgb(68,115,158)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:led-strip
         size: 30%
@@ -36,6 +38,8 @@ cards:
 #          color: rgb(68,115,158)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:cactus
         size: 30%
@@ -51,6 +55,8 @@ cards:
 #          color: rgb(68,115,158)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:fridge-outline
         size: 30%
@@ -66,6 +72,11 @@ cards:
 #          color: rgb(68,115,158)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+    ##########################################################
+    ## Second row buttons
+    ##########################################################
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
@@ -82,6 +93,8 @@ cards:
 #          color: rgb(68,115,158)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:track-light
         size: 30%
@@ -97,6 +110,8 @@ cards:
 #          color: rgb(68,115,158)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:track-light
         size: 30%
@@ -112,8 +127,10 @@ cards:
 #          color: rgb(68,115,158)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
     ##########################################################
-    ## Second row buttons
+    ## Third row buttons
     ##########################################################
   - type: horizontal-stack
     cards:
@@ -132,6 +149,8 @@ cards:
         - value: 'on'
           color: rgb(46, 204, 64)
           spin: true
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:weather-night
         size: 30%
@@ -147,6 +166,8 @@ cards:
 #          color: rgb(68,115,158)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:dns-outline
         size: 30%
@@ -164,6 +185,8 @@ cards:
         - value: 'on'
           color: rgb(46, 204, 64)
           icon: mdi:shield-check-outline
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:progress-download
         size: 30%
@@ -179,6 +202,8 @@ cards:
 #          color: rgb(68,115,158)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
     ##########################################################
     ## Kids iPad network disable
     ##########################################################
@@ -206,6 +231,8 @@ cards:
           name:
             - font-size: 20px
             - font-weight: bold
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:tablet-ipad
         entity: switch.pickle_ipad2_blue
@@ -228,6 +255,8 @@ cards:
           name:
             - font-size: 20px
             - font-weight: bold
+        hold_action:
+          action: more-info
     ##########################################################
     ## Downstairs media center remote
     ##########################################################

@@ -24,6 +24,8 @@ cards:
             color: rgb(255,65,54)
           - operator: default
             color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         entity: sensor.docker_ub1_containers_stopped
         name: Stopped
@@ -39,6 +41,8 @@ cards:
             color: rgb(255,65,54)
           - operator: default
             color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         entity: sensor.docker_ub1_containers_paused
         name: Paused
@@ -54,6 +58,8 @@ cards:
             color: rgb(255,65,54)
           - operator: default
             color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         entity: sensor.docker_ub1_images
         name: Images
@@ -72,6 +78,8 @@ cards:
             color: rgb(255,65,54)
           - operator: default
             color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
   - type: horizontal-stack
     cards:
       - entity: sensor.docker_ub1_cpu
@@ -116,6 +124,8 @@ cards:
           color: rgb(255,65,54)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:switch
         size: 30%
@@ -126,6 +136,8 @@ cards:
           color: rgb(255,65,54)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:access-point-network
         size: 30%
@@ -136,6 +148,8 @@ cards:
           color: rgb(255,65,54)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:access-point-network
         size: 30%
@@ -146,6 +160,8 @@ cards:
           color: rgb(255,65,54)
         - value: 'on'
           color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
     ##########################################################
     ## VMware
     ##########################################################

@@ -26,6 +26,8 @@ cards:
             color: rgb(255,65,54)
           - operator: default
             color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         entity: sensor.nas2_smart_status_drive_0_1
         name: Drive 0:1
@@ -42,6 +44,8 @@ cards:
             color: rgb(255,65,54)
           - operator: default
             color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         entity: sensor.nas2_smart_status_drive_0_2
         name: Drive 0:2
@@ -58,6 +62,8 @@ cards:
             color: rgb(255,65,54)
           - operator: default
             color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
   - cards:
       - entity: sensor.nas2_cpu_usage
         max: 100

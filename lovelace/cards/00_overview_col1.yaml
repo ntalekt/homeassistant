@@ -52,6 +52,8 @@ cards:
         tap_action:
           action: more-info
           entity: camera.living_room
+        hold_action:
+          action: more-info
         layout: icon_name
       - type: "custom:button-card"
         entity: binary_sensor.chalkboard_occupancy_on
@@ -70,6 +72,8 @@ cards:
         tap_action:
           action: more-info
           entity: camera.chalkboard_room
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         entity: binary_sensor.garage_occupancy_on
         color_type: card
@@ -87,6 +91,8 @@ cards:
         tap_action:
           action: more-info
           entity: camera.garage
+        hold_action:
+          action: more-info
     ##########################################################
     ## Second row occupancy
     ##########################################################
@@ -109,6 +115,8 @@ cards:
         tap_action:
           action: more-info
           entity: camera.shop
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         entity: binary_sensor.baby_occupancy_on
         color_type: card
@@ -126,6 +134,8 @@ cards:
         tap_action:
           action: more-info
           entity: camera.baby_camera
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         entity: binary_sensor.office_occupancy_on
         color_type: card
@@ -143,6 +153,8 @@ cards:
         tap_action:
           action: more-info
           entity: camera.shop
+        hold_action:
+          action: more-info
     ##########################################################
     ## Door sensor row
     ##########################################################
@@ -166,6 +178,8 @@ cards:
           name:
             - font-size: 20px
             - font-weight: bold
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         entity: binary_sensor.door_window_sensor_158d0001d85176
         name: Garage
@@ -184,6 +198,8 @@ cards:
           name:
             - font-size: 20px
             - font-weight: bold
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         entity: binary_sensor.door_window_sensor_158d0001d85176
         name: Shop
@@ -202,3 +218,5 @@ cards:
           name:
             - font-size: 20px
             - font-weight: bold
+        hold_action:
+          action: more-info
