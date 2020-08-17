@@ -79,6 +79,46 @@
       value_template: "{{ states.remote.master.attributes.current_activity }}"
       friendly_name: "Master"
 
+    allergy_index_today_rating:
+      value_template: "{{ states.sensor.allergy_index_today.attributes.rating }}"
+      friendly_name: "Rating:"
+      icon_template: mdi:playlist-star
+
+    allergy_index_today_allergen_name_1:
+      value_template: "{{ states.sensor.allergy_index_today.attributes.allergen_name_1 }}"
+      friendly_name: "Allergen 1:"
+      icon_template: mdi:flower
+
+    allergy_index_today_allergen_name_2:
+      value_template: "{{ states.sensor.allergy_index_today.attributes.allergen_name_2 }}"
+      friendly_name: "Allergen 2:"
+      icon_template: mdi:flower
+
+    allergy_index_today_allergen_name_3:
+      value_template: "{{ states.sensor.allergy_index_today.attributes.allergen_name_3 }}"
+      friendly_name: "Allergen 3:"
+      icon_template: mdi:flower
+
+    allergy_index_tomorrow_rating:
+      value_template: "{{ states.sensor.allergy_index_tomorrow.attributes.rating }}"
+      friendly_name: "Rating:"
+      icon_template: mdi:playlist-star
+
+    allergy_index_tomorrow_allergen_name_1:
+      value_template: "{{ states.sensor.allergy_index_tomorrow.attributes.allergen_name_1 }}"
+      friendly_name: "Allergen 1:"
+      icon_template: mdi:flower
+
+    allergy_index_tomorrow_allergen_name_2:
+      value_template: "{{ states.sensor.allergy_index_tomorrow.attributes.allergen_name_2 }}"
+      friendly_name: "Allergen 2:"
+      icon_template: mdi:flower
+
+    allergy_index_tomorrow_allergen_name_3:
+      value_template: "{{ states.sensor.allergy_index_tomorrow.attributes.allergen_name_3 }}"
+      friendly_name: "Allergen 3:"
+      icon_template: mdi:flower
+
     esxi_vmhost_esxi1_cpu_pct:
       value_template: >
         {% set usage = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.cpuusage_ghz | default(0)  %}

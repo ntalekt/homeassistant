@@ -22,6 +22,11 @@ sensor.esxi_datastore_datastore1:
 sensor.esxi_datastore_datastore2:
   icon: mdi:chart-pie
   unit_of_measurement: GiB
+sensor.allergy_index_today:
+  unit_of_measurement: " "
+sensor.allergy_index_tomorrow:
+  unit_of_measurement: " "
+  
 sensor.humidity_158d0001b9561c:
   icon: mdi:water-percent
   friendly_name: userthree Humidity

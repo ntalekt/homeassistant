@@ -5,3 +5,50 @@ cards:
       - type: thermostat
         entity: climate.upstairs_nativezone
         name: Upstairs
+
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        name: Allergen - Today
+        styles:
+          card:
+            - font-size: 24px
+      - type: "custom:button-card"
+        name: Allergen - Tomorrow
+        styles:
+          card:
+            - font-size: 24px
+  - type: horizontal-stack
+    cards:
+      - type: gauge
+        entity: sensor.allergy_index_today
+        title: Today
+        min: 0
+        max: 12
+        severity:
+        green: 0.0
+        yellow: 4.8
+        red: 9.7
+      - type: gauge
+        entity: sensor.allergy_index_tomorrow
+        title: Tomorrow
+        min: 0
+        max: 12
+        severity:
+        green: 0.0
+        yellow: 4.8
+        red: 9.7
+  - type: horizontal-stack
+    cards:
+      - type: entities
+        entities:
+          - sensor.allergy_index_today_rating
+          - sensor.allergy_index_today_allergen_name_1
+          - sensor.allergy_index_today_allergen_name_2
+          - sensor.allergy_index_today_allergen_name_3
+      - type: entities
+        entities:
+          - sensor.allergy_index_tomorrow_rating
+          - sensor.allergy_index_tomorrow_allergen_name_1
+          - sensor.allergy_index_tomorrow_allergen_name_2
+          - sensor.allergy_index_tomorrow_allergen_name_3
