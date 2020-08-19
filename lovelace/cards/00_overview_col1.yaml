@@ -117,25 +117,25 @@ cards:
           entity: camera.shop
         hold_action:
           action: more-info
-      - type: "custom:button-card"
-        entity: binary_sensor.baby_occupancy_on
-        color_type: card
-        name: Baby
-        state:
-        - value: 'on'
-          color: rgb(255, 220, 0)
-          icon: mdi:motion-sensor
-        - value: 'off'
-          icon: mdi:walk
-          color: rgb(67, 73, 82)
-        style:
-         - color: var(--icon-off-color)
-        layout: icon_name
-        tap_action:
-          action: more-info
-          entity: camera.baby_camera
-        hold_action:
-          action: more-info
+#      - type: "custom:button-card"
+#        entity: binary_sensor.baby_occupancy_on
+#        color_type: card
+#        name: Baby
+#        state:
+#        - value: 'on'
+#          color: rgb(255, 220, 0)
+#          icon: mdi:motion-sensor
+#        - value: 'off'
+#          icon: mdi:walk
+#          color: rgb(67, 73, 82)
+#        style:
+#         - color: var(--icon-off-color)
+#        layout: icon_name
+#        tap_action:
+#          action: more-info
+#          entity: camera.baby_camera
+#        hold_action:
+#          action: more-info
       - type: "custom:button-card"
         entity: binary_sensor.office_occupancy_on
         color_type: card
@@ -152,7 +152,6 @@ cards:
         layout: icon_name
         tap_action:
           action: more-info
-          entity: camera.shop
         hold_action:
           action: more-info
     ##########################################################

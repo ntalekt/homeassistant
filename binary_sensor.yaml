@@ -15,12 +15,12 @@
       ## HikVision DS-2CD2032-I
       ##########################################################
 
-#- platform: hikvision
-#  host: !secret baby_cam_host
-#  username: !secret baby_camera_user
-#  password: !secret baby_camera_pass
-#  port:
-#    8082
+- platform: hikvision
+  host: !secret baby_cam_host
+  username: !secret baby_camera_user
+  password: !secret baby_camera_pass
+  port:
+    8082
     
     ##########################################################
     ## Occupancy Templates
