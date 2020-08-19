@@ -26,6 +26,8 @@ sensor.allergy_index_today:
   unit_of_measurement: " "
 sensor.allergy_index_tomorrow:
   unit_of_measurement: " "
+sensor.allergy_index_forecasted_average:
+  unit_of_measurement: " "
   
 sensor.humidity_158d0001b9561c:
   icon: mdi:water-percent

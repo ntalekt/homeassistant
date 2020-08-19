@@ -58,6 +58,8 @@ lovelace:
       type: module
     - url: /hacsfiles/air-visual-card/air-visual-card.js
       type: module
+    - url: /hacsfiles/entity-attributes-card/entity-attributes-card.js?=v2
+      type: module
 
 shell_command:
   docker_image_prune: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED54 'docker image prune -af'"

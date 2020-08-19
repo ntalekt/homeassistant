@@ -1,10 +1,9 @@
 type: vertical-stack
 cards:
-  - type: horizontal-stack
-    cards:
-      - type: thermostat
-        entity: climate.upstairs_nativezone
-        name: Upstairs
+
+    ##########################################################
+    ## Allergen - Today and tomorrow
+    ##########################################################
 
   - type: horizontal-stack
     cards:
@@ -18,6 +17,7 @@ cards:
         styles:
           card:
             - font-size: 24px
+
   - type: horizontal-stack
     cards:
       - type: gauge
@@ -29,6 +29,7 @@ cards:
         green: 0.0
         yellow: 4.8
         red: 9.7
+
       - type: gauge
         entity: sensor.allergy_index_tomorrow
         title: Tomorrow
@@ -38,17 +39,73 @@ cards:
         green: 0.0
         yellow: 4.8
         red: 9.7
+
   - type: horizontal-stack
     cards:
-      - type: entities
-        entities:
-          - sensor.allergy_index_today_rating
-          - sensor.allergy_index_today_allergen_name_1
-          - sensor.allergy_index_today_allergen_name_2
-          - sensor.allergy_index_today_allergen_name_3
-      - type: entities
-        entities:
-          - sensor.allergy_index_tomorrow_rating
-          - sensor.allergy_index_tomorrow_allergen_name_1
-          - sensor.allergy_index_tomorrow_allergen_name_2
-          - sensor.allergy_index_tomorrow_allergen_name_3
+      - type: custom:entity-attributes-card
+        heading_name: Name
+        heading_state: State
+        filter:
+          include:
+            - key: sensor.allergy_index_today.rating
+              name: Rating
+            - key: sensor.allergy_index_today.allergen_name_1
+              name: Allergen One
+            - key: sensor.allergy_index_today.allergen_name_2
+              name: Allergen Two
+            - key: sensor.allergy_index_today.allergen_name_3
+              name: Allergen Three
+
+      - type: custom:entity-attributes-card
+        heading_name: Name
+        heading_state: State
+        filter:
+          include:
+            - key: sensor.allergy_index_tomorrow.rating
+              name: Rating
+            - key: sensor.allergy_index_tomorrow.allergen_name_1
+              name: Allergen One
+            - key: sensor.allergy_index_tomorrow.allergen_name_2
+              name: Allergen Two
+            - key: sensor.allergy_index_tomorrow.allergen_name_3
+              name: Allergen Three
+    ##########################################################
+    ## Allergen - Forecast
+    ##########################################################
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        name: Allergen - Forecast
+        styles:
+          card:
+            - font-size: 24px
+
+  - type: horizontal-stack
+    cards:
+      - type: gauge
+        entity: sensor.allergy_index_forecasted_average
+        title: Forecast
+        min: 0
+        max: 12
+        severity:
+        green: 0.0
+        yellow: 4.8
+        red: 9.7
+
+  - type: horizontal-stack
+    cards:
+      - type: custom:entity-attributes-card
+        heading_name: Name
+        heading_state: State
+        filter:
+          include:
+            - key: sensor.allergy_index_forecasted_average.rating
+              name: Rating
+            - key: sensor.allergy_index_forecasted_average.trend
+              name: Trent
+            - key: sensor.allergy_index_forecasted_average.season
+              name: Season
+#            - key: sensor.allergy_index_forecasted_average.outlook
+#              name: Outlook
+
+

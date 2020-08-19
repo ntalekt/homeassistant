@@ -5,16 +5,8 @@ cards:
       - type: thermostat
         entity: climate.downstairs_nativezone
         name: Downstairs
-    ##########################################################
-    ## Air quality
-    ##########################################################
-  - type: custom:vertical-stack-in-card
+  - type: horizontal-stack
     cards:
-      - type: horizontal-stack
-        cards:
-          - type: custom:air-visual-card
-            air_pollution_level: sensor.u_s_air_pollution_level
-            air_quality_index: sensor.u_s_air_quality_index
-            main_pollutant: sensor.u_s_main_pollutant
-            temp: weather.dark_sky
-            city: 'REDACTED'
+      - type: thermostat
+        entity: climate.upstairs_nativezone
+        name: Upstairs
