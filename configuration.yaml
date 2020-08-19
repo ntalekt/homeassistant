@@ -172,6 +172,11 @@ wemo:
   static:
     - !secret wemo_insight_host
 
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_key
+
 yeelight:
   devices:
     !secret media_center_l_strip_host:
