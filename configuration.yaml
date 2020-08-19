@@ -60,7 +60,7 @@ lovelace:
       type: module
 
 shell_command:
-  docker_image_prune: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no ubuntu@REDACTED54 'docker image prune -af'"
+  docker_image_prune: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED54 'docker image prune -af'"
 
 system_health:
 
