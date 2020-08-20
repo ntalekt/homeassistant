@@ -49,3 +49,67 @@
     - delay: '00:00:01'
     - service: homeassistant.turn_off
       entity_id: input_boolean.test_audio_notification
+
+        ##########################################################
+        ## Sonos - Notification REDACTED First Bell
+        ##########################################################
+
+- alias: notification school first bell
+  trigger:
+    - platform: time
+      at: "8:20:00"
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+      - condition: state
+        entity_id: input_boolean.disable_notification_school
+        state: "off"
+  action:
+    - service: script.turn_on
+      entity_id: script.school_say
+      data_template:
+        variables:
+          master: 'media_player.chalkboard_room'
+          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
+          volume: '.6'
+          what: >
+            First bell, school starts in 10 minutes. 
+
+        ##########################################################
+        ## Sonos - Notification REDACTED Second Bell
+        ##########################################################
+
+- alias: notification school second bell
+  trigger:
+    - platform: time
+      at: "8:30:00"
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+      - condition: state
+        entity_id: input_boolean.disable_notification_school
+        state: "off"
+  action:
+    - service: script.turn_on
+      entity_id: script.school_say
+      data_template:
+        variables:
+          master: 'media_player.chalkboard_room'
+          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
+          volume: '.6'
+          what: >
+            Have a great day at school. 

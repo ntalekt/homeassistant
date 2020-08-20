@@ -28,3 +28,4 @@ cards:
         - entity: input_boolean.disable_interior_on_sunset
         - entity: input_boolean.disable_interior_off_830pm
         - entity: input_boolean.disable_interior_on_motion
+        - entity: input_boolean.disable_notification_school

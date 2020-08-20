@@ -96,3 +96,12 @@ disable_interior_on_motion:
   name: Disable Interior Lights On with Motion
   initial: off
   icon: mdi:lightbulb-off-outline
+
+    ##########################################################
+    ## Disable school audio notifications
+    ##########################################################
+
+disable_notification_school:
+  name: Disable REDACTED Audio Notification
+  initial: off
+  icon: mdi:bus-school
