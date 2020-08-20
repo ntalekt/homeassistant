@@ -1,0 +1,51 @@
+#################################################################
+## Audio Notification Automations
+#################################################################
+
+        ##########################################################
+        ## Sonos - Notification Test
+        ##########################################################
+
+- alias: notification audio test
+  trigger:
+    - platform: state
+      entity_id: input_boolean.test_audio_notification
+      from: 'off'
+      to: 'on'
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data_template:
+        variables:
+          master: 'media_player.chalkboard_room'
+          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
+          volume: '.6'
+          what: >
+            {% set hour = now().strftime("%H") %}
+            {% set weekday_full_name = now().strftime("%A") %}
+            {% set month_full_name = now().strftime("%B") %}
+            {% set day = now().strftime("%-d") %}
+            {% set weekday = now().strftime("%w") %}
+            {% if hour | int < 12 %}
+            Good morning.
+            {% elif hour | int < 18 %}
+            Good afternoon.
+            {% else %}
+            Good evening.
+            {% endif %}
+            This is a test of the text to speech engine.
+            Today is {{ weekday_full_name }} {{ month_full_name }} the
+              {% if day | int == 1 or day | int == 21 or day | int == 31 %}
+                {{ day }}st
+              {% elif day | int == 2 or day | int == 22 %}
+                {{ day }}nd
+              {% elif day | int == 3 or day | int == 23 %}
+                {{ day }}rd
+              {% else %}
+                {{ day }}th
+              {% endif %}.
+            AirVisual pollution level is {{ states.sensor.u_s_air_pollution_level.state }}! The Air Quality Index (AQI) is {{ states.sensor.u_s_air_quality_index.state }} and the main pollutant is {{ states.sensor.u_s_main_pollutant.state }}.
+            End of text to speech test.
+    - delay: '00:00:01'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.test_audio_notification

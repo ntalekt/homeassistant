@@ -146,6 +146,7 @@ octoprint:
 
 #pi_hole:
 #  - host: !secret pihole_host
+
 #    ssl: true
 #    verify_ssl: false
 #    api_key: !secret pi_hole_api_key
@@ -158,6 +159,7 @@ tts:
   - platform: google_translate
     cache: true
     time_memory: 300
+    base_url: http://REDACTED54:8123
 
 #tuya:
 #  username: !secret tuya_username

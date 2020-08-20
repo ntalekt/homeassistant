@@ -18,6 +18,7 @@ cards:
       entities:
         - entity: input_boolean.test_text_notification_slack
         - entity: input_boolean.test_text_notification_pushbullet
+        - entity: input_boolean.test_audio_notification
   - type: horizontal-stack
     cards:
     - type: entities

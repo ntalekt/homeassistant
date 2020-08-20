@@ -20,6 +20,12 @@ vacation_mode:
   name: Vacation Mode
   icon:
     mdi:airplane
+
+test_audio_notification:
+  name: Test Audio Notification
+  initial: off
+  icon: mdi:test-tube
+    
     ##########################################################
     ## Occupancy
     ##########################################################
