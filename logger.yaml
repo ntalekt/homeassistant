@@ -8,6 +8,7 @@ default: warn
 logs:
   aiohttp.access: critical
   aiohttp.server: critical
+  homeassistant.util.async_: error
   homeassistant.core: error
   homeassistant.components.automation: warn
   homeassistant.components.binary_sensor: error
