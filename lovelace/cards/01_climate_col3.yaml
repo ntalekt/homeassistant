@@ -50,11 +50,11 @@ cards:
             - key: sensor.allergy_index_today.rating
               name: Rating
             - key: sensor.allergy_index_today.allergen_name_1
-              name: Allergen One
+              name: Allergen 1
             - key: sensor.allergy_index_today.allergen_name_2
-              name: Allergen Two
+              name: Allergen 2
             - key: sensor.allergy_index_today.allergen_name_3
-              name: Allergen Three
+              name: Allergen 3
 
       - type: custom:entity-attributes-card
         heading_name: Name
@@ -64,11 +64,11 @@ cards:
             - key: sensor.allergy_index_tomorrow.rating
               name: Rating
             - key: sensor.allergy_index_tomorrow.allergen_name_1
-              name: Allergen One
+              name: Allergen 1
             - key: sensor.allergy_index_tomorrow.allergen_name_2
-              name: Allergen Two
+              name: Allergen 2
             - key: sensor.allergy_index_tomorrow.allergen_name_3
-              name: Allergen Three
+              name: Allergen 3
     ##########################################################
     ## Allergen - Forecast
     ##########################################################
@@ -102,7 +102,7 @@ cards:
             - key: sensor.allergy_index_forecasted_average.rating
               name: Rating
             - key: sensor.allergy_index_forecasted_average.trend
-              name: Trent
+              name: Trend
             - key: sensor.allergy_index_forecasted_average.season
               name: Season
 #            - key: sensor.allergy_index_forecasted_average.outlook
