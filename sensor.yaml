@@ -310,7 +310,7 @@
 
     master_switch_usertwo_battery:
       value_template: "{{ states.binary_sensor.switch_158d000450d582.attributes.battery_level | default(0) | int }}"
-      friendly_name: "Master Switch"
+      friendly_name: "Master Switch2"
       unit_of_measurement: "%"
       icon_template: >
         {% set battery_level = states.binary_sensor.switch_158d000450d582.attributes.battery_level | default(0) | int %}
