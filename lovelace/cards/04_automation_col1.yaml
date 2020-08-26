@@ -3,16 +3,6 @@ cards:
   - type: horizontal-stack
     cards:
     - type: entities
-      title: Sprinkler
-      entities:
-        - entity: input_select.sprinkler
-        - entity: input_boolean.sprinkler_test
-        - entity: script.sprinkler_water_winter
-        - entity: script.sprinkler_water_spring
-        - entity: script.sprinkler_water_summer
-  - type: horizontal-stack
-    cards:
-    - type: entities
       show_header_toggle: false
       title: Tests
       entities:
