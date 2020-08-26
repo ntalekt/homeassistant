@@ -151,6 +151,11 @@ octoprint:
 #    verify_ssl: false
 #    api_key: !secret pi_hole_api_key
 
+rainbird:
+  host: !secret rainbird_host
+  password: !secret rainbird_password
+  trigger_time: 60
+
 ring:
   username: !secret ring_username
   password: !secret ring_password
@@ -200,6 +205,7 @@ camera: !include camera.yaml
 device_tracker: !include device_tracker.yaml
 history: !include history.yaml
 input_boolean: !include input_boolean.yaml
+input_datetime: !include input_datetime.yaml
 #input_select: !include input_select.yaml
 light: !include light.yaml
 notify: !include notify.yaml

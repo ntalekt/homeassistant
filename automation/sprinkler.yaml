@@ -2,6 +2,11 @@
 ## Sprinkler
 #################################################################
 
+- alias: update sprinkler last run
   trigger:
     - platform: state
+      entity_id: switch.sprinkler_1
+      to: "on"
   action:
+    - service: script.turn_on
+      entity_id: script.update_sprinkler_last_run_timer

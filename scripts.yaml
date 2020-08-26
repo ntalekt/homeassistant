@@ -161,3 +161,18 @@ school_say:
     - service: sonos.restore
       data_template:
         entity_id: "{{ master }}"
+
+        ##########################################################
+        ## Sprinkler
+        ##########################################################
+
+update_sprinkler_last_run_timer:
+  alias: "Update Sprinkler Last Run Timer"
+  sequence:
+  - service: input_datetime.set_datetime
+    entity_id: input_datetime.last_run_sprinkler
+    data_template:
+      date: >
+        {{(as_timestamp(now())) | timestamp_custom("%Y-%m-%d", true)}}
+      time: >
+        {{(as_timestamp(now())) | timestamp_custom("%H:%M:%S", true)}}

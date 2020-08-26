@@ -366,6 +366,10 @@
           mdi:alert-outline
         {% endif %}
 
+    last_run_sprinkler:
+      friendly_name: "Last Run"
+      value_template: '{{as_timestamp(states.input_datetime.last_run_sprinkler.state) | timestamp_custom("%A, %d %h %I:%M %p")}}'
+
       ##########################################################
       ## Deluge
       ##########################################################

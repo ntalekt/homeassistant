@@ -48,6 +48,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Wemo Insight Smart Plug](https://www.amazon.com/gp/product/B01DBXNYCS/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DBXNYCS&linkCode=as2&tag=ntalekt0c-20&linkId=934f0720129cf096876ab8b14a26bbbb)
 * [Tuya Compatible Smart Plug](https://smile.amazon.com/dp/B07FVST9YN/?coliid=I2R80H7TIDHPO5&colid=3LNUCWJAWZGG4&psc=1&ref_=lv_ov_lig_dp_it)
 * [Goldwin Wifi Controller](https://smile.amazon.com/gp/product/B07JB5N3Y7/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
+* [Rain Bird ST8O-2.0](https://www.rainbird.com/products/st8-20-wifi-smart-irrigation-timers)
 
 #### Camera
 * [Amcrest IP3M-943W Camera](https://www.amazon.com/gp/product/B01I01Z1M2/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01I01Z1M2&linkCode=as2&tag=ntalekt0c-20&linkId=2ef3afe981c97da79ba37bf3815f7347)
