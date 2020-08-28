@@ -176,3 +176,68 @@ update_sprinkler_last_run_timer:
         {{(as_timestamp(now())) | timestamp_custom("%Y-%m-%d", true)}}
       time: >
         {{(as_timestamp(now())) | timestamp_custom("%H:%M:%S", true)}}
+
+
+##########################################################
+## Sprinkler - Spring (Mon, Wed, Fri, & Sat - AM)
+##########################################################
+
+sprinkler_water_spring:
+  alias: "Sprinkler Water Spring"
+  sequence:
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Started watering according to spring schedule"
+    - service: rainbird.start_irrigation
+      entity_id: switch.sprinkler_1
+      data:
+        duration: 45
+
+##########################################################
+## Sprinkler - Winter (Mon, Wed, Fri, - AM)
+##########################################################
+
+sprinkler_water_winter:
+  alias: "Sprinkler Water Winter"
+  sequence:
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Started watering according to winter schedule"
+    - service: rainbird.start_irrigation
+      entity_id: switch.sprinkler_1
+      data:
+        duration: 30
+
+##########################################################
+## Sprinkler - Summer (Mon, Wed, Thur, Sat, & Sun - AM/PM)
+##########################################################
+
+sprinkler_water_summer:
+  alias: "Sprinkler Water Summer"
+  sequence:
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Started watering according to summer schedule"
+    - service: rainbird.start_irrigation
+      entity_id: switch.sprinkler_1
+      data:
+        duration: 45
+
+##########################################################
+## Sprinkler - Test
+##########################################################
+
+sprinkler_water_test:
+  alias: "Sprinkler Water Test"
+  sequence:
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Started watering according to test schedule"
+    - service: rainbird.start_irrigation
+      entity_id: switch.sprinkler_1
+      data:
+        duration: 2

@@ -67,6 +67,17 @@ sleep_time:
     mdi:hotel
 
 ##########################################################
+## Sprinkler Test
+##########################################################
+
+
+sprinkler_test:
+  name: Sprinkler Test (2min)
+  initial: off
+  icon:
+    mdi:sprinkler
+
+##########################################################
 ## Disable interior light automations
 ##########################################################
 
