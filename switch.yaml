@@ -12,9 +12,9 @@
   password:
     !secret deluge_pass
     
-    ##########################################################
-    ## Pihole Disable Switch
-    ##########################################################
+##########################################################
+## Pihole Disable Switch
+##########################################################
 
 - platform: command_line
   switches:
@@ -22,4 +22,12 @@
       command_on: "curl -X GET 'http://REDACTED/admin/api.php?enable&auth=REDACTED'"
       command_off: "curl -X GET 'http://REDACTED/admin/api.php?disable=1800&auth=REDACTED'"
       command_state: "curl -X GET 'http://REDACTED/admin/api.php?status'"
+      value_template: "{{ value_json.status == 'enabled' }}"
+
+- platform: command_line
+  switches:
+    pihole2_switch:
+      command_on: "curl -X GET 'http://REDACTED52/admin/api.php?enable&auth=REDACTED'"
+      command_off: "curl -X GET 'http://REDACTED52/admin/api.php?disable=1800&auth=REDACTED'"
+      command_state: "curl -X GET 'http://REDACTED52/admin/api.php?status'"
       value_template: "{{ value_json.status == 'enabled' }}"
