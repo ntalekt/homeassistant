@@ -71,33 +71,3 @@
             state_attr(trigger.event.data.entity_id, 'friendly_name') or
             trigger.event.data.entity_id
           }} restored after {{ trigger.event.data.wait }}.
-
-        ##########################################################
-        ## AirVisual - Pollution Level Change
-        ##########################################################
-
-- alias: notification airvisual pollution level change
-  trigger:
-    - platform: state
-      entity_id: sensor.u_s_air_pollution_level
-      to: "Good"
-    - platform: state
-      entity_id: sensor.u_s_air_pollution_level
-      to: "Moderate"
-    - platform: state
-      entity_id: sensor.u_s_air_pollution_level
-      to: "Unhealthy for Sensitive Groups"
-    - platform: state
-      entity_id: sensor.u_s_air_pollution_level
-      to: "Unhealthy"
-    - platform: state
-      entity_id: sensor.u_s_air_pollution_level
-      to: "Very unhealthy"
-    - platform: state
-      entity_id: sensor.u_s_air_pollution_level
-      to: "Hazardous"
-  action:
-    - service: notify.pushbullet
-      data:
-        title: "Home Assistant"
-        message: "AirVisual pollution level has change to {{ states.sensor.u_s_air_pollution_level.state }}! The new Air Quality Index (AQI) is {{ states.sensor.u_s_air_quality_index.state }}. The main pollutant is {{ states.sensor.u_s_main_pollutant.state }}."
