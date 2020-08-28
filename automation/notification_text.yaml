@@ -49,7 +49,7 @@
     - platform: event
       event_type: life360_update_overdue
   action:
-    - service: notify.pushbullet
+    - service: notify.slack
       data:
         title: "Home Assistant"
         message: >
@@ -63,7 +63,7 @@
     platform: event
     event_type: life360_update_restored
   action:
-    - service: notify.pushbullet
+    - service: notify.slack
       data:
         title: "Home Assistant"
         message: >
