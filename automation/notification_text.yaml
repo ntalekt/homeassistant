@@ -21,9 +21,9 @@
       entity_id:
         input_boolean.test_text_notification_pushbullet
 
-        ##########################################################
-        ## Slack - Notification Test
-        ##########################################################
+##########################################################
+## Slack - Notification Test
+##########################################################
 
 - alias: notification text test slack
   trigger:
@@ -40,9 +40,9 @@
       entity_id:
         input_boolean.test_text_notification_slack
         
-        ##########################################################
-        ## Pushbullet - Life360 Overdue Update
-        ##########################################################
+##########################################################
+## Pushbullet - Life360 Overdue Update
+##########################################################
 
 - alias: notification life360 overdue update
   trigger:

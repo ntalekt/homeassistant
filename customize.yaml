@@ -12,9 +12,10 @@ light.master_bedroom_lamp:
 light.kitchen_cabinet_lights:
   supported_features:
     33
-    ##########################################################
-    ## Sensors
-    ##########################################################
+
+##########################################################
+## Sensors
+##########################################################
 
 sensor.esxi_datastore_datastore1:
   icon: mdi:chart-pie

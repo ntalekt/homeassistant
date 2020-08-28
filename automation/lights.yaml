@@ -3,10 +3,6 @@
 #################################################################
 
 ##########################################################
-## Exterior
-##########################################################
-
-##########################################################
 ## Interior - Kitchen Cabinets
 ##########################################################
 
@@ -40,9 +36,9 @@
       data_template:
         brightness: "{{((0.0625*(states.sun.sun.attributes.elevation**2))-(31.125*states.sun.sun.attributes.elevation)+246.5)|int}}"
 
-        ##########################################################
-        ## Interior - Media accent, cactus light, and master
-        ##########################################################
+##########################################################
+## Interior - Media accent, cactus light, and master
+##########################################################
 
 - alias: "light sunset other lights"
   trigger:
@@ -72,12 +68,11 @@
     - service: light.turn_on
       entity_id: light.master_bedroom_lamp
       data:
-        transition: 10
         brightness: 150
 
-        ##########################################################
-        ## Interior - Master lamp switch color when TV on
-        ##########################################################
+##########################################################
+## Interior - Master lamp switch color when TV on
+##########################################################
 
 - alias: "light master tv color switch"
   trigger:
@@ -92,7 +87,6 @@
     - service: light.turn_on
       entity_id: light.master_bedroom_lamp
       data:
-        transition: 10
         brightness: 50
     - service: light.turn_on
       entity_id: light.master_bedroom_lamp
@@ -100,9 +94,10 @@
         hs_color:
           - 360
           - 50
-        ##########################################################
-        ## Interior - Turn off downstairs lights if no motion
-        ##########################################################
+
+##########################################################
+## Interior - Turn off downstairs lights if no motion
+##########################################################
 
 - alias: "light turn off kitchen cabinets if no motion after 830pm"
   trigger:
@@ -136,11 +131,11 @@
     - service: input_boolean.turn_off
       entity_id: input_boolean.chalkboard_occupancy
     - service: input_boolean.turn_off
-      entity_id:
-        input_boolean.living_occupancy
-        ##########################################################
-        ## Interior - Turn on cabinet lights if motion detected
-        ##########################################################
+      entity_id: input_boolean.living_occupancy
+
+##########################################################
+## Interior - Turn on cabinet lights if motion detected
+##########################################################
 
 - alias: "turn on kitchen cabinets if motion after 8pm"
   trigger:
@@ -165,9 +160,10 @@
       entity_id: light.kitchen_cabinet_lights
       data_template:
         brightness: "127"
-        ##########################################################
-        ## Interior Chalkboard Room
-        ##########################################################
+
+##########################################################
+## Interior Chalkboard Room
+##########################################################
 
 - alias: lights chalkboard room cactus light button
   trigger:

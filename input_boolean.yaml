@@ -26,9 +26,9 @@ test_audio_notification:
   initial: off
   icon: mdi:test-tube
     
-    ##########################################################
-    ## Occupancy
-    ##########################################################
+##########################################################
+## Occupancy
+##########################################################
 
 living_occupancy:
   name: Living Occupancy
@@ -60,9 +60,10 @@ office_occupancy:
   initial: off
   icon:
     mdi:account
-    ##########################################################
-    ## Sleeptime
-    ##########################################################
+
+##########################################################
+## Sleeptime
+##########################################################
 
 sleep_time:
   name: Sleep Time
@@ -70,9 +71,9 @@ sleep_time:
   icon:
     mdi:hotel
 
-    ##########################################################
-    ## Disable interior light automations
-    ##########################################################
+##########################################################
+## Disable interior light automations
+##########################################################
 
 disable_interior_on_sunset:
   name: Disable Interior Lights On at Sunset
@@ -89,9 +90,9 @@ disable_interior_on_motion:
   initial: off
   icon: mdi:lightbulb-off-outline
 
-    ##########################################################
-    ## Disable school audio notifications
-    ##########################################################
+##########################################################
+## Disable school audio notifications
+##########################################################
 
 disable_notification_school:
   name: Disable REDACTED Audio Notification

@@ -2,9 +2,9 @@
 ## Audio Notification Automations
 #################################################################
 
-        ##########################################################
-        ## Sonos - Notification Test
-        ##########################################################
+##########################################################
+## Sonos - Notification Test
+##########################################################
 
 - alias: notification audio test
   trigger:
@@ -50,9 +50,9 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.test_audio_notification
 
-        ##########################################################
-        ## Sonos - Notification REDACTED First Bell
-        ##########################################################
+##########################################################
+## Sonos - Notification REDACTED First Bell
+##########################################################
 
 - alias: notification school first bell
   trigger:
@@ -82,9 +82,9 @@
           what: >
             First bell, school starts in 10 minutes. 
 
-        ##########################################################
-        ## Sonos - Notification REDACTED Second Bell
-        ##########################################################
+##########################################################
+## Sonos - Notification REDACTED Second Bell
+##########################################################
 
 - alias: notification school second bell
   trigger:
@@ -113,3 +113,4 @@
           volume: '.6'
           what: >
             Have a great day at school. 
+            

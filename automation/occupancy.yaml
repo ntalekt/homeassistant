@@ -16,9 +16,9 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.living_occupancy
 
-      #################################################################
-      ## Reset Living Room Occupancy
-      #################################################################
+#################################################################
+## Reset Living Room Occupancy
+#################################################################
 
 - alias: occupancy living turn off after 10min of no motion
   trigger:
@@ -31,9 +31,9 @@
     - service: input_boolean.turn_off
       entity_id: input_boolean.living_occupancy
 
-      #################################################################
-      ## Garage Occupancy
-      #################################################################
+#################################################################
+## Garage Occupancy
+#################################################################
 
 - alias: occupancy garage turn on if motion detected
   trigger:
@@ -45,9 +45,9 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.garage_occupancy
 
-      #################################################################
-      ## Reset Garage Occupancy
-      #################################################################
+#################################################################
+## Reset Garage Occupancy
+#################################################################
 
 - alias: occupancy garage turn off after 10min of no motion
   trigger:
@@ -60,9 +60,9 @@
     - service: input_boolean.turn_off
       entity_id: input_boolean.garage_occupancy
 
-      #################################################################
-      ## Chalkboard Room Occupancy
-      #################################################################
+#################################################################
+## Chalkboard Room Occupancy
+#################################################################
 
 - alias: occupancy chalkboard turn on if motion detected
   trigger:
@@ -74,9 +74,9 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.chalkboard_occupancy
 
-      #################################################################
-      ## Reset Chalkboard Room Occupancy
-      #################################################################
+#################################################################
+## Reset Chalkboard Room Occupancy
+#################################################################
 
 - alias: occupancy chalkboard turn off after 10min of no motion
   trigger:
@@ -89,9 +89,9 @@
     - service: input_boolean.turn_off
       entity_id: input_boolean.chalkboard_occupancy
 
-      #################################################################
-      ## Shop Occupancy
-      #################################################################
+#################################################################
+## Shop Occupancy
+#################################################################
 
 - alias: occupancy shop turn on if motion detected
   trigger:
@@ -103,9 +103,9 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.shop_occupancy
 
-      #################################################################
-      ## Reset Shop Occupancy
-      #################################################################
+#################################################################
+## Reset Shop Occupancy
+#################################################################
 
 - alias: occupancy shop turn off after 10min of no motion
   trigger:
@@ -147,9 +147,9 @@
     - service: input_boolean.turn_off
       entity_id: input_boolean.baby_occupancy
 
-      #################################################################
-      ## Office Occupancy
-      #################################################################
+#################################################################
+## Office Occupancy
+#################################################################
 
 - alias: occupancy office turn on if motion detected
   trigger:
@@ -161,9 +161,9 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.office_occupancy
 
-      #################################################################
-      ## Reset Office Occupancy
-      #################################################################
+#################################################################
+## Reset Office Occupancy
+#################################################################
 
 - alias: occupancy office turn off after 10min of no motion
   trigger:
@@ -176,9 +176,10 @@
     - service: input_boolean.turn_off
       entity_id:
         input_boolean.office_occupancy
-        ##########################################################
-        ## WFH Mode
-        ##########################################################
+
+##########################################################
+## WFH Mode
+##########################################################
 
 - alias: occupancy wfh home on
   trigger:

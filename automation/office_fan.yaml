@@ -11,9 +11,9 @@
     - service: switch.turn_on
       entity_id: switch.wemo_insight
 
-      #################################################################
-      ## Turn Off office fan if not occupied
-      #################################################################
+#################################################################
+## Turn Off office fan if not occupied
+#################################################################
 
 - alias: climate office fan off when not occupied
   trigger:

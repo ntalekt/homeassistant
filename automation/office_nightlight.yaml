@@ -22,9 +22,9 @@
       data:
         brightness: 255
 
-      #################################################################
-      ## Turn off office nightlight if office is not occupied
-      #################################################################
+#################################################################
+## Turn off office nightlight if office is not occupied
+#################################################################
 
 - alias: lights office nightlight off when not occupied
   trigger:
