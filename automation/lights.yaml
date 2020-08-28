@@ -151,7 +151,7 @@
         before: "23:59:59"
       - condition: template
         value_template: "{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} "
-        #value_template: '{% if states.light.kitchen_cabinet_lights.attributes.brightness is defined %} True {% else %} False {% endif %}'
+        #value_template: '{% if states.light.kitchen_cabinet_lights.attributes.brightness is defined %} False {% else %} True {% endif %}'
       - condition: state
         entity_id: input_boolean.disable_interior_on_motion
         state: "off"
