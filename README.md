@@ -12,13 +12,14 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 
 #### Platform
 * Hardware
+  * [HP Z620 - E5-2650 8C, 64GB ECC]
   * [QNAP TS-251+](https://www.qnap.com/en-us/product/ts-251+)
   * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
 * Software
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
     * Home Assistant Version: 0.114.3
   * [Docker v19.03.12](https://github.com/docker/docker-ce/releases)
-  * [Traefik v1.7.16 proxy](https://www.smarthomebeginner.com/traefik-reverse-proxy-tutorial-for-docker/)
+  * [Traefik v2.2.1 proxy](https://www.smarthomebeginner.com/traefik-2-docker-tutorial/)
   * SSL via [Let's Encrypt](https://letsencrypt.org/)
   
 # Interface
@@ -37,6 +38,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Yeelight WIFI RGB Strip](https://smile.amazon.com/gp/product/B01LRT0B56/ref=smi_www_rco2_go_smi_4368549507?_encoding=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&ie=UTF8&linkCode=as2&linkId=34a9570cd0c747f448092913ac2dae60&tag=ntalekt0c-20) x2
 * [GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt0c-20&linkId=0dfbcad4a9df3b81570623f0e23b562a) x3
 
+
 #### Sensor / Switch
 * [Ecolink Z-wave Plus Garage Door Tilt Sensor](https://www.amazon.com/gp/product/B01MRZB0NT/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MRZB0NT&linkCode=as2&tag=ntalekt0c-20&linkId=ba6f517d4382e6a23be0479e15d3ce2f)
 * [Xiaomi Mi Smart Gateway](https://www.aqara.com/us/smart_home_hub.html)
@@ -48,7 +50,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Wemo Insight Smart Plug](https://www.amazon.com/gp/product/B01DBXNYCS/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DBXNYCS&linkCode=as2&tag=ntalekt0c-20&linkId=934f0720129cf096876ab8b14a26bbbb)
 * [Tuya Compatible Smart Plug](https://smile.amazon.com/dp/B07FVST9YN/?coliid=I2R80H7TIDHPO5&colid=3LNUCWJAWZGG4&psc=1&ref_=lv_ov_lig_dp_it)
 * [Goldwin Wifi Controller](https://smile.amazon.com/gp/product/B07JB5N3Y7/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
-* [Rain Bird ST8O-2.0](https://www.rainbird.com/products/st8-20-wifi-smart-irrigation-timers)
+* [LE LampUX RGB Lamp](https://smile.amazon.com/gp/product/B07Q8SMG8R/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1)
 
 #### Camera
 * [Amcrest IP3M-943W Camera](https://www.amazon.com/gp/product/B01I01Z1M2/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01I01Z1M2&linkCode=as2&tag=ntalekt0c-20&linkId=2ef3afe981c97da79ba37bf3815f7347)
@@ -64,12 +66,14 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [NVIDIA SHIELD TV](https://www.amazon.com/gp/product/B01N1NT9Y6/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01N1NT9Y6&linkCode=as2&tag=ntalekt0c-20&linkId=d90fc7313c3e4e91d21098784afceef1)
 * [LG 65UH8500 65" TV](https://www.amazon.com/gp/product/B01N4TQ7O4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01N4TQ7O4&linkCode=as2&tag=ntalekt0c-20&linkId=8f7ccb7cacee84993798af9970cd6bb8)
 
+#### Irrigation
+* [Rain Bird ST8O-2.0](https://www.rainbird.com/products/st8-20-wifi-smart-irrigation-timers)
+
 #### Network
 * [Ubiquiti Unifi Security Gateway (USG)](https://smile.amazon.com/Ubiquiti-Unifi-Security-Gateway-USG/dp/B00LV8YZLK/ref=sr_1_1?s=electronics&ie=UTF8&qid=1551113819&sr=1-1)
 * [Ubiquiti UniFi Switch 8 60W (US-8-60W)](https://smile.amazon.com/Ubiquiti-UniFi-Switch-60W-US-8-60W/dp/B01MU3WUX1/ref=sr_1_1?s=electronics&ie=UTF8&qid=1551113861&sr=1-1)
 * [Ubiquiti UniFi Access Point (UAP-AC-PRO-US)](https://smile.amazon.com/Ubiquiti-Networks-802-11ac-Dual-Radio-UAP-AC-PRO-US/dp/B015PRO512/ref=pd_bxgy_147_3/147-7827003-3388156?_encoding=UTF8&pd_rd_i=B015PRO512&pd_rd_r=78e61fca-391e-11e9-8361-31a05a5f3960&pd_rd_w=EtNic&pd_rd_wg=9CHgg&pf_rd_p=6725dbd6-9917-451d-beba-16af7874e407&pf_rd_r=PWC60BR9T4G7454SPZJM&psc=1&refRID=PWC60BR9T4G7454SPZJM) x2
 * [QNAP TS-251+ NAS](https://www.amazon.com/gp/product/B015VNLEOQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015VNLEOQ&linkCode=as2&tag=ntalekt0c-20&linkId=1419a45442b188e9223b9afd7da40d5c)
-* [Synology DS212j NAS](https://www.amazon.com/gp/product/B01BNPT1EG/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01BNPT1EG&linkCode=as2&tag=ntalekt0c-20&linkId=b2724ecc904516670df984ce5f1aba07)
 * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
 
 #### Location
