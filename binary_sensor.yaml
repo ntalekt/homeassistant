@@ -2,270 +2,73 @@
 ## Binary Sensor  ##
 ##############################################################
 
-        ##########################################################
-        ## Doorbell
-        ##########################################################
+##########################################################
+## octoprint
+##########################################################
 
-  - platform: ring
-    monitored_conditions:
-      - ding
-      - motion
+- platform: octoprint
+  monitored_conditions:
+    - Printing
+    - Printing Error
+    
+##########################################################
+## Occupancy Templates
+##########################################################
 
-        ##########################################################
-        ## HikVision DS-2CD2032-I
-        ##########################################################
+- platform: template
+  sensors:
+    living_occupancy_on:
+      friendly_name: Living Occupancy
+      value_template: "{{ states.input_boolean.living_occupancy.state == 'on' }}"
+      device_class: motion
 
-  - platform: hikvision
-    host: !secret baby_cam_host
-    username: !secret baby_camera_user
-    password: !secret baby_camera_pass
-    port: 8082
+- platform: template
+  sensors:
+    garage_occupancy_on:
+      friendly_name: Garage Occupancy
+      value_template: "{{ states.input_boolean.garage_occupancy.state == 'on' }}"
+      device_class: motion
 
-        ##########################################################
-        ## Occupancy Templates
-        ##########################################################
+- platform: template
+  sensors:
+    chalkboard_occupancy_on:
+      friendly_name: Chalkboard Occupancy
+      value_template: "{{ states.input_boolean.chalkboard_occupancy.state == 'on' }}"
+      device_class: motion
 
-  - platform: template
-    sensors:
-      office_occupancy_on:
-        friendly_name: Office Occupancy
-        value_template: "{{ states.input_boolean.office_occupancy.state == 'on' }}"
-        device_class: motion
+- platform: template
+  sensors:
+    shop_occupancy_on:
+      friendly_name: Shop Occupancy
+      value_template: "{{ states.input_boolean.shop_occupancy.state == 'on' }}"
+      device_class: motion
 
-  - platform: template
-    sensors:
-      living_occupancy_on:
-        friendly_name: Living Occupancy
-        value_template: "{{ states.input_boolean.living_occupancy.state == 'on' }}"
-        device_class: motion
+- platform: template
+  sensors:
+    office_occupancy_on:
+      friendly_name: Office Occupancy
+      value_template: "{{ states.input_boolean.office_occupancy.state == 'on' }}"
+      device_class: motion
 
-  - platform: template
-    sensors:
-      baby_occupancy_on:
-        friendly_name: Baby Occupancy
-        value_template: "{{ states.input_boolean.baby_occupancy.state == 'on' }}"
-        device_class: motion
+- platform: template
+  sensors:
+    baby_occupancy_on:
+      friendly_name: Baby Occupancy
+      value_template: "{{ states.input_boolean.baby_occupancy.state == 'on' }}"
+      device_class: motion
 
-  - platform: template
-    sensors:
-      garage_occupancy_on:
-        friendly_name: Garage Occupancy
-        value_template: "{{ states.input_boolean.garage_occupancy.state == 'on' }}"
-        device_class: motion
+- platform: ping
+  host: !secret unifi_usg_host
+  name: UniFi USG
 
-  - platform: template
-    sensors:
-      chalkboard_occupancy_on:
-        friendly_name: Chalkboard Occupancy
-        value_template: "{{ states.input_boolean.chalkboard_occupancy.state == 'on' }}"
-        device_class: motion
+- platform: ping
+  host: !secret unifi_sw8_host
+  name: UniFi SW8 60w
 
-  - platform: template
-    sensors:
-      shop_occupancy_on:
-        friendly_name: Shop Occupancy
-        value_template: "{{ states.input_boolean.shop_occupancy.state == 'on' }}"
-        device_class: motion
+- platform: ping
+  host: !secret unifi_apacpro_loft_host
+  name: UniFi AP Loft
 
-        ##########################################################
-        ## Network Devices
-        ##########################################################
-
-#  - platform: ping
-#    host: !secret nas_host
-#    name: Synology NAS
-
-  - platform: ping
-    host: !secret nas2_host
-    name: QNAP NAS
-
-  - platform: ping
-    host: !secret hue_hub_host
-    name: Hue Hub
-
-  - platform: ping
-    host: !secret harmony_hub_host
-    name: Harmony Hub
-
-  - platform: ping
-    host: !secret master_harmony_hub_host
-    name: Master Harmony Hub
-
-  - platform: ping
-    host: !secret sonos_chalkboard_host
-    name: Sonos Chalkboard
-
-  - platform: ping
-    host: !secret sonos_den_host
-    name: Sonos Den
-
-  - platform: ping
-    host: !secret sonos_kitchen_host
-    name: Sonos Kitchen
-
-  - platform: ping
-    host: !secret sonos_office_host
-    name: Sonos Office
-
-  - platform: ping
-    host: !secret ring_pro_host
-    name: Ring Pro
-
-  - platform: ping
-    host: !secret opensprinkler_pi_host
-    name: OpenSprinkler Pi
-
-  - platform: ping
-    host: !secret baby_cam_host
-    name: Baby Camera
-
-  - platform: ping
-    host: !secret amcrest_living_host
-    name: Living Camera
-
-  - platform: ping
-    host: !secret amcrest_garage_host
-    name: Garage Camera
-
-  - platform: ping
-    host: !secret amcrest_chalkboard_host
-    name: Chalkboard Camera
-
-  - platform: ping
-    host: !secret amcrest_shop_host
-    name: Shop Camera
-
-  - platform: ping
-    host: !secret amcrest_back_host
-    name: Back Yard Camera
-
-  - platform: ping
-    host: !secret pihole_host
-    name: Pihole
-
-#  - platform: ping
-#    host: !secret tplink_host
-#    name: Powerline Wifi
-
-  - platform: ping
-    host: !secret yeestrip_media_l_host
-    name: Media Center L Yeestrip
-
-  - platform: ping
-    host: !secret yeestrip_media_r_host
-    name: Media Center R Yeestrip
-
-#  - platform: ping
-#    host: !secret wemo_mini_cactus_host
-#    name: Wemo Mini Cactus
-
-  - platform: ping
-    host: !secret wemo_insight_host
-    name: Wemo Insight
-
-  - platform: ping
-    host: !secret cactus_host
-    name: Cactus
-
-  - platform: ping
-    host: !secret media_lamp_host
-    name: Media Lamp
-
-  - platform: ping
-    host: !secret octopi_host
-    name: Octopi
-
-  - platform: ping
-    host: !secret deluge_host
-    name: Deluge
-
-  - platform: ping
-    host: !secret alexa_master_host
-    name: Alexa Master
-
-  - platform: ping
-    host: !secret alexa_living_host
-    name: Alexa Living
-
-  - platform: ping
-    host: !secret ring_chime_host
-    name: Ring Chime
-
-  - platform: ping
-    host: !secret office_multisensor_host
-    name: Office Multisensor
-
-  - platform: ping
-    host: !secret xiaomi_gateway_host
-    name: Xiaomi Gateway
-
-  - platform: ping
-    host: !secret unifi_usg_host
-    name: UniFi USG
-
-  - platform: ping
-    host: !secret unifi_sw8_host
-    name: UniFi SW8 60w
-
-  - platform: ping
-    host: !secret unifi_apacpro_loft_host
-    name: UniFi AP Loft
-
-  - platform: ping
-    host: !secret unifi_apacpro_chalk_host
-    name: UniFi AP Chalkboard
-
-        ##########################################################
-        ## WAN test script
-        ##########################################################
-
-  - platform: command_line
-    name: WAN
-    command: "/home/pi/wan_test.sh"
-    device_class: connectivity
-    payload_on: "Up"
-    payload_off: "Down"
-
-  - platform: command_line
-    name: NGINX Status
-    command: "/home/pi/web_check.sh"
-    device_class: connectivity
-    payload_on: "Up"
-    payload_off: "Down"
-
-#  - platform: command_line
-#    name: Deluge Process
-#    command: 'ssh pi@REDACTED20 "./check_deluged.sh"'
-#    device_class: connectivity
-#    payload_on: "Up"
-#    payload_off: "Down"
-
-#  - platform: command_line
-#    name: Killswitch Process
-#    command: 'ssh pi@REDACTED20 "./check_killswitch.sh"'
-#    device_class: connectivity
-#    payload_on: "Up"
-#    payload_off: "Down"
-
-  - platform: command_line
-    name: Mosquitto Status
-    command: "/home/pi/check_mosquitto.sh"
-    device_class: connectivity
-    payload_on: "1"
-    payload_off: "0"
-
-#  - platform: command_line
-#    name: Emby Process
-#    command: 'ssh admin@REDACTED "/share/homes/admin/custom/check_emby.sh"'
-#    device_class: connectivity
-#    payload_on: "Up"
-#    payload_off: "Down"
-
-        ##########################################################
-        ## Octoprint
-        ##########################################################
-
-  - platform: octoprint
-    monitored_conditions:
-      - Printing
-      - Printing Error
+- platform: ping
+  host: !secret unifi_apacpro_living_host
+  name: UniFi AP Living

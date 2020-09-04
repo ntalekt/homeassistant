@@ -1,36 +1,12 @@
 ##############################################################
 ## Notify  ##
 ##############################################################
-
-        ##########################################################
-        ## Pushbullet
-        ##########################################################
-
-  - name: pushbullet
-    platform: pushbullet
-    api_key: !secret pushbullet_api_key
-
-        ##########################################################
-        ## LG TV
-        ##########################################################
-
-  - platform: webostv
-    host: !secret lgtv_host
-    name: livingroom_tv
-    filename: webostv.conf
     
-        ##########################################################
-        ## ha-alexa-tts: https://github.com/walthowd/ha-alexa-tts
-        ##########################################################
-        
-  - platform: command_line
-    name: 'All Alexas'
-    command: "/home/homeassistant/.homeassistant/alexa_wrapper.sh -d 'ALL'"
-    
-  - platform: command_line
-    name: 'Living Room'
-    command: "/home/homeassistant/.homeassistant/alexa_wrapper.sh -d 'Living Room'"
-    
-  - platform: command_line
-    name: 'Master Bedroom'
-    command: "/home/homeassistant/.homeassistant/alexa_wrapper.sh -d 'Master Bedroom'"
+##########################################################
+## Slack
+##########################################################
+
+- name: slack
+  platform: slack
+  api_key: !secret slack_api_key
+  default_channel: "#alerts"

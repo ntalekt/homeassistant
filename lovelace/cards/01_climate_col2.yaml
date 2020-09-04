@@ -1,0 +1,12 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: thermostat
+        entity: climate.downstairs_nativezone
+        name: Downstairs
+  - type: horizontal-stack
+    cards:
+      - type: thermostat
+        entity: climate.upstairs_nativezone
+        name: Upstairs

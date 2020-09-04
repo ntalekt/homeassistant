@@ -2,644 +2,472 @@
 ## Sensor  ##
 ##############################################################
 
-        ##########################################################
-        ## PiHole
-        ##########################################################
+##########################################################
+## Season
+##########################################################
 
-  - platform: pi_hole
-    host: !secret pihole_host
-    monitored_conditions:
-      - ads_blocked_today
-      - ads_percentage_today
-      - dns_queries_today
+- platform: season
 
-  - platform: command_line
-    name: Pihole Status
-    command: curl -X GET 'http://REDACTED/admin/api.php?status'
-    value_template: "{{ value_json.status == 'enabled' }}"
+##########################################################
+## HA Instance
+##########################################################
 
-        ##########################################################
-        ## HA Instance
-        ##########################################################
+- platform: command_line
+  command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
+  name: Current HA Release
+  scan_interval: 3600
 
-  - platform: command_line
-    command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
-    name: Current HA Release
-    scan_interval: 3600
+- platform: version
 
-  - platform: command_line
-    command: /srv/homeassistant/bin/hass --version
-    name: Installed HA Version
-    scan_interval: 3600
+- platform: sql
+  db_url: mysql://REDACTED:REDACTED@REDACTED/hass_docker_db
+  queries:
+    - name: HA DB Size
+      query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024 / 1024, 3) "value" FROM information_schema.tables WHERE table_schema="hass_docker_db" GROUP BY table_schema;'
+      column: "value"
+      unit_of_measurement: GB
 
-  - platform: sql
-    db_url: mysql://REDACTED:REDACTED@REDACTED/hass_db
-    queries:
-      - name: HA DB Size
-        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024 / 1024, 3) "value" FROM information_schema.tables WHERE table_schema="hass_db" GROUP BY table_schema;'
-        column: 'value'
-        unit_of_measurement: GB
+- platform: uptime
 
-  - platform: command_line
-    name: CPU Temp
-    command: "cat /sys/class/thermal/thermal_zone0/temp"
-    unit_of_measurement: "C"
-    value_template: '{{ value | multiply(0.001) | round(1) }}'
+- platform: filesize
+  file_paths:
+    - /config/home-assistant.log
 
-  - platform: command_line
-    name: "HA Last Reboot"
-    command: cat /proc/uptime | awk '{printf "%0.f", $1}'
-    scan_interval: 60
-    value_template: >-
-      {% set uptime = value | int %}
-      {% set seconds = uptime % 60 %}
-      {% set minutes = ((uptime % 3600) / 60) | int %}
-      {% set hours = ((uptime % 86400) / 3600) | int %}
-      {% set days = (uptime / 86400) | int %}
-      {%- if days > 0 -%}
-        {%- if days == 1 -%}
-          1 day
-        {%- else -%}
-          {{ days }} days
+##########################################################
+## Templates
+##########################################################
+
+- platform: template
+  sensors:
+    octoprint_time_remaining_friendly:
+      value_template: >
+        {% set etime = states.sensor.octoprint_time_remaining.state | int %}
+        {% set seconds = etime % 60 %}
+        {% set minutes = ((etime % 3600) / 60) | int %}
+        {% set hours = ((etime % 86400) / 3600) | int %}
+        {% set days = (etime / 86400) | int %}
+        {%- if days -%}
+          {{days}} day{{'s, ' if days > 1 else ', '}}
         {%- endif -%}
-        {{ ', ' }}
-      {%- endif -%}
-      {{ '%02d' % hours }}:{{ '%02d' % minutes }}
-
-  - platform: command_line
-    name: "HA Uptime"
-    command: echo "$(($(date +%s) - $(date -d "$(head -n1 /home/homeassistant/.homeassistant/home-assistant.log | cut -d' ' -f-2)" +%s)))"
-    scan_interval: 60
-    value_template: >-
-      {% set uptime = value | int %}
-      {% set seconds = uptime % 60 %}
-      {% set minutes = ((uptime % 3600) / 60) | int %}
-      {% set hours = ((uptime % 86400) / 3600) | int %}
-      {% set days = (uptime / 86400) | int %}
-      {%- if days > 0 -%}
-        {%- if days == 1 -%}
-          1 day
-        {%- else -%}
-          {{ days }} days
+        {%- if hours -%}
+          {{hours}} hour{{'s, ' if hours > 1 else ', '}}
         {%- endif -%}
-        {{ ', ' }}
-      {%- endif -%}
-      {{ '%02d' % hours }}:{{ '%02d' % minutes }}
+        {{minutes}} minute{{'s' if minutes > 1 else ''}}
+      friendly_name: "Print Time Left"
 
-  - platform: systemmonitor
-    resources:
-      - type: memory_use_percent
-      - type: processor_use
+    octoprint_time_elapsed_friendly:
+      value_template: >
+        {% set etime = states.sensor.octoprint_time_elapsed.state | int %}
+        {% set seconds = etime % 60 %}
+        {% set minutes = ((etime % 3600) / 60) | int %}
+        {% set hours = ((etime % 86400) / 3600) | int %}
+        {% set days = (etime / 86400) | int %}
+        {%- if days -%}
+          {{days}} day{{'s, ' if days > 1 else ', '}}
+        {%- endif -%}
+        {%- if hours -%}
+          {{hours}} hour{{'s, ' if hours > 1 else ', '}}
+        {%- endif -%}
+        {{minutes}} minute{{'s' if minutes > 1 else ''}}
+      friendly_name: "Print Time"
 
-  - platform: command_line
-    name: SSL Cert Expiration
-    unit_of_measurement: days
-    scan_interval: 3600
-    command: "ssl-cert-check -b -c /home/homeassistant/.homeassistant/REDACTED.pem | awk '{ print $NF }'"
+    media_center_remote:
+      value_template: "{{ states.remote.media_center.attributes.current_activity }}"
+      friendly_name: "Media Center"
 
-        ##########################################################
-        ## Birthdays
-        ##########################################################
+    master_remote:
+      value_template: "{{ states.remote.master.attributes.current_activity }}"
+      friendly_name: "Master"
 
-  - platform: command_line
-    name: Birthday Countdown userthree
-    unit_of_measurement: days
-    scan_interval: 3600
-    command: "BDAY=`date -d REDACTED +%j | awk '{print $1 + 0}'`; TODAY=`date +%j | awk '{print $1 + 0}'`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+    allergy_index_today_rating:
+      value_template: "{{ states.sensor.allergy_index_today.attributes.rating }}"
+      friendly_name: "Rating:"
+      icon_template: mdi:playlist-star
 
-  - platform: command_line
-    name: Birthday Countdown userfour
-    unit_of_measurement: days
-    scan_interval: 3600
-    command: "BDAY=`date -d REDACTED +%j | awk '{print $1 + 0}'`; TODAY=`date +%j | awk '{print $1 + 0}'`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+    allergy_index_today_allergen_name_1:
+      value_template: "{{ states.sensor.allergy_index_today.attributes.allergen_name_1 }}"
+      friendly_name: "Allergen 1:"
+      icon_template: mdi:flower
 
-  - platform: command_line
-    name: Birthday Countdown usertwo
-    unit_of_measurement: days
-    scan_interval: 3600
-    command: "BDAY=`date -d REDACTED +%j | awk '{print $1 + 0}'`; TODAY=`date +%j | awk '{print $1 + 0}'`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+    allergy_index_today_allergen_name_2:
+      value_template: "{{ states.sensor.allergy_index_today.attributes.allergen_name_2 }}"
+      friendly_name: "Allergen 2:"
+      icon_template: mdi:flower
 
-  - platform: command_line
-    name: Birthday Countdown userone
-    unit_of_measurement: days
-    scan_interval: 3600
-    command: "BDAY=`date -d REDACTED +%j | awk '{print $1 + 0}'`; TODAY=`date +%j | awk '{print $1 + 0}'`; DAYS=$(($BDAY - $TODAY)); echo $DAYS"
+    allergy_index_today_allergen_name_3:
+      value_template: "{{ states.sensor.allergy_index_today.attributes.allergen_name_3 }}"
+      friendly_name: "Allergen 3:"
+      icon_template: mdi:flower
 
-        ##########################################################
-        ## Sensor Node 1 - Office
-        ##########################################################
+    allergy_index_tomorrow_rating:
+      value_template: "{{ states.sensor.allergy_index_tomorrow.attributes.rating }}"
+      friendly_name: "Rating:"
+      icon_template: mdi:playlist-star
 
-  - platform: mqtt
-    state_topic: "ntalekt/sensornode1"
-    name: "Office Humidity"
-    unit_of_measurement: "%"
-    value_template: '{{ value_json.humidity | round(1) }}'
+    allergy_index_tomorrow_allergen_name_1:
+      value_template: "{{ states.sensor.allergy_index_tomorrow.attributes.allergen_name_1 }}"
+      friendly_name: "Allergen 1:"
+      icon_template: mdi:flower
 
-  - platform: mqtt
-    state_topic: "ntalekt/sensornode1"
-    name: "Office PIR"
-    value_template: '{{ value_json.motion }}'
+    allergy_index_tomorrow_allergen_name_2:
+      value_template: "{{ states.sensor.allergy_index_tomorrow.attributes.allergen_name_2 }}"
+      friendly_name: "Allergen 2:"
+      icon_template: mdi:flower
 
-  - platform: mqtt
-    state_topic: "ntalekt/sensornode1"
-    name: "Office Temperature"
-    unit_of_measurement: "°F"
-    value_template: '{{ value_json.temperature | round(1) }}'
+    allergy_index_tomorrow_allergen_name_3:
+      value_template: "{{ states.sensor.allergy_index_tomorrow.attributes.allergen_name_3 }}"
+      friendly_name: "Allergen 3:"
+      icon_template: mdi:flower
 
-        ##########################################################
-        ## Deluge
-        ##########################################################
+    esxi_vmhost_esxi1_cpu_pct:
+      value_template: >
+        {% set usage = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.cpuusage_ghz | default(0)  %}
+        {% set total = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.cputotal_ghz | default(0) %}
+        {{ (( usage / total ) * 100 ) | round(2) }}
+      friendly_name: "ESXi1 CPU %"
+      unit_of_measurement: "%"
 
-  - platform: deluge
-    host: !secret deluge_pi_host
-    username: !secret deluge_user
-    password: !secret deluge_pass
-    monitored_variables:
-#      - 'current_status'
-      - 'download_speed'
-      - 'upload_speed'
+    esxi_vmhost_esxi1_mem_pct:
+      value_template: >
+        {% set usage = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.memusage_gb | default(0) | int %}
+        {% set total = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.memtotal_gb | default(0) | int %}
+        {{ (( usage / total ) * 100 ) | round(2) }}
+      friendly_name: "ESXi1 MEM %"
+      unit_of_measurement: "%"
 
-        ##########################################################
-        ## NAS
-        ##########################################################
+    esxi_vm_vcenter_cpu_pct:
+      value_template: >
+        {% set usage = states.sensor.esxi_vm_vcenter.attributes.cpu_use_pct | default(0) %}
+        {{ usage | round(2) }}
+      friendly_name: "vCenter CPU %"
+      unit_of_measurement: "%"
 
-#  - platform: synologydsm
-#    host: !secret nas_host
-#    username: !secret nas_username
-#    password: !secret nas_pass
-#    monitored_conditions:
-#      - cpu_total_load
-#      - memory_real_usage
-#      - network_up
-#      - network_down
-#      - volume_status
-#      - volume_percentage_used
-#      - volume_size_used
+    esxi_vm_vcenter_mem_pct:
+      value_template: >
+        {% set usage = states.sensor.esxi_vm_vcenter.attributes.memory_used_mb | default(0) | int %}
+        {% set total = states.sensor.esxi_vm_vcenter.attributes.memory_allocated_mb | default(0) | int %}
+        {{ (( usage / total ) * 100 ) | round(2) }}
+      friendly_name: "vCenter MEM %"
+      unit_of_measurement: "%"
 
-  - platform: qnap
-    host: !secret nas2_host
-    username: !secret nas_username
-    password: !secret nas_pass
-    nics: eth0
-    monitored_conditions:
-      - status
-      - memory_percent_used
-      - cpu_usage
-      - cpu_temp
-      - network_tx
-      - network_rx
-      - volume_size_free
-      - volume_size_used
-      - volume_percentage_used
+    esxi_vm_vcenter_uptime_hours:
+      value_template: >
+        {% set uptime = states.sensor.esxi_vm_vcenter.attributes.uptime_hours | default(0) %}
+        {{ uptime }}
+      friendly_name: "vCenter Uptime"
+      unit_of_measurement: "Hours"
 
-        ##########################################################
-        ## Templates
-        ##########################################################
+    esxi_vm_vcenter_used_space_gb:
+      value_template: >
+        {% set storage = states.sensor.esxi_vm_vcenter.attributes.used_space_gb | default(0) %}
+        {{ storage }}
+      friendly_name: "vCenter Storage"
+      unit_of_measurement: "GiB"
 
-  - platform: template
-    sensors:
-      media_center:
-        value_template: '{{ states.remote.media_center.attributes.current_activity }}'
-        friendly_name: 'Media Center'
+    esxi_vm_vcenter_snapshots:
+      value_template: >
+        {% set snapshots = states.sensor.esxi_vm_vcenter.attributes.snapshots | default(0) %}
+        {{ snapshots }}
+      friendly_name: "vCenter Snapshots"
 
-      master_remote:
-        value_template: '{{ states.remote.master.attributes.current_activity }}'
-        friendly_name: 'Master'
+    sun_elevation:
+      value_template: "{{ states.sun.sun.attributes.elevation }}"
 
-      downstairs_thermostat_away_mode:
-        value_template: '{{ states.climate.downstairs.attributes.away_mode }}'
-
-      upstairs_thermostat_away_mode:
-        value_template: '{{ states.climate.upstairs.attributes.away_mode }}'
-
-      living_room_temperature:
-        value_template: '{{ states.climate.downstairs.attributes.current_temperature }}'
-        friendly_name: 'Living Temperature'
-        unit_of_measurement: "°F"
-
-      loft_temperature:
-        value_template: '{{ states.climate.upstairs.attributes.current_temperature }}'
-        friendly_name: 'Loft Temperature'
-        unit_of_measurement: "°F"
-
-      userone_phone_battery:
-        value_template: '{{ states.device_tracker.life360_userone_REDACTED.attributes.battery | default(0) | int }}'
-        friendly_name: 'userone Essential PH-1'
-        unit_of_measurement: "%"
-        icon_template: >
-            {% set battery_level = states.device_tracker.life360_userone_REDACTED.attributes.battery | default(0) | int %}
-            {% set battery_round = (battery_level / 10) | int * 10 %}
-            {% if battery_round >= 100 %}
-              mdi:battery
-            {% elif battery_round > 0 %}
-              mdi:battery-{{ battery_round }}
-            {% else %}
-              mdi:battery-alert
-            {% endif %}
-
-      usertwo_phone_battery:
-        value_template: '{{ states.device_tracker.life360_REDACTED_REDACTED.attributes.battery | default(0) | int }}'
-        friendly_name: 'usertwo iPhone X'
-        unit_of_measurement: "%"
-        icon_template: >
-          {% set battery_level = states.device_tracker.life360_REDACTED_REDACTED.attributes.battery | default(0) | int %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-alert
-          {% endif %}
-
-      userthree_temp_battery:
-        value_template: '{{ states.sensor.temperature_158d0001b9561c.attributes.battery_level | default(0) | int }}'
-        friendly_name: 'userthree Temp.'
-        unit_of_measurement: "%"
-        icon_template: >
-          {% set battery_level = states.sensor.temperature_158d0001b9561c.attributes.battery_level | default(0) | int %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-alert
-          {% endif %}
-
-      userfour_temp_battery:
-        value_template: '{{ states.sensor.temperature_158d0001f50d5f.attributes.battery_level | default(0) | int }}'
-        friendly_name: 'userfour Temp.'
-        unit_of_measurement: "%"
-        icon_template: >
-          {% set battery_level = states.sensor.temperature_158d0001f50d5f.attributes.battery_level | default(0) | int %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-alert
-          {% endif %}
-
-      master_temp_battery:
-        value_template: '{{ states.sensor.temperature_158d0001fa9e02.attributes.battery_level | default(0) | int }}'
-        friendly_name: 'Master Temp.'
-        unit_of_measurement: "%"
-        icon_template: >
-          {% set battery_level = states.sensor.temperature_158d0001fa9e02.attributes.battery_level | default(0) | int %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-alert
-          {% endif %}
-
-      loft_temp_battery:
-        value_template: '{{ states.sensor.temperature_158d0001f51e9e.attributes.battery_level | default(0) | int }}'
-        friendly_name: 'Loft Temp.'
-        unit_of_measurement: "%"
-        icon_template: >
-          {% set battery_level = states.sensor.temperature_158d0001f51e9e.attributes.battery_level | default(0) | int %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-alert
-          {% endif %}
-
-      office_temp_battery:
-        value_template: '{{ states.sensor.temperature_158d0001f50dcb.attributes.battery_level | default(0) | int }}'
-        friendly_name: 'Office Temp.'
-        unit_of_measurement: "%"
-        icon_template: >
-          {% set battery_level = states.sensor.temperature_158d0001f50dcb.attributes.battery_level | default(0) | int %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-alert
-          {% endif %}
-
-      master_switch_battery:
-        value_template: '{{ states.binary_sensor.switch_158d0001b86a74.attributes.battery_level | default(0) | int }}'
-        friendly_name: 'Master Switch'
-        unit_of_measurement: "%"
-        icon_template: >
-          {% set battery_level = states.binary_sensor.switch_158d0001b86a74.attributes.battery_level | default(0) | int %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-alert
-          {% endif %}
-
-      chalkboard_switch_battery:
-        value_template: '{{ states.binary_sensor.switch_158d0001b76826.attributes.battery_level | default(0) | int }}'
-        friendly_name: 'Chalkboard Switch'
-        unit_of_measurement: "%"
-        icon_template: >
-          {% set battery_level = states.binary_sensor.switch_158d0001b76826.attributes.battery_level | default(0) | int %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-alert
-          {% endif %}
-
-      patio_door_battery:
-        value_template: '{{ states.binary_sensor.door_window_sensor_158d0001d85176.attributes.battery_level | default(0) | int }}'
-        friendly_name: 'Patio Door'
-        unit_of_measurement: "%"
-        icon_template: >
-          {% set battery_level = states.binary_sensor.door_window_sensor_158d0001d85176.attributes.battery_level | default(0) | int %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-alert
-          {% endif %}
-
-      big_garage_tilt_battery:
-        value_template: '{{ states.zwave.ecolink_tilt_big_garage.attributes.battery_level | default(0) | int }}'
-        friendly_name: 'Big Garage Tilt Sensor'
-        unit_of_measurement: "%"
-        icon_template: >
-          {% set battery_level = states.zwave.ecolink_tilt_big_garage.attributes.battery_level | default(0) | int %}
-          {% set battery_round = (battery_level / 10) |int * 10 %}
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-alert
-          {% endif %}
-
-      big_garage_tilt:
-        value_template: '{% if is_state("binary_sensor.ecolink_tilt_big_garage_sensor", "on") %}Open{% elif is_state("binary_sensor.ecolink_tilt_big_garage_sensor", "off") %}Closed{% else %}unknown{% endif %}'
-        friendly_name: 'Big Garage Status'
-        icon_template: >
-          {% set big_garage_state = states.binary_sensor.ecolink_tilt_big_garage_sensor.state %}
-          {% if big_garage_state == 'on' %}
-            mdi:garage-open
-          {% elif big_garage_state == 'off' %}
-            mdi:garage
-          {% else %}
-            mdi:alert-outline
-          {% endif %}
-
-      patio_door:
-        value_template: '{% if is_state("binary_sensor.door_window_sensor_158d0001d85176", "on") %}Open{% elif is_state("binary_sensor.door_window_sensor_158d0001d85176", "off") %}Closed{% else %}unknown{% endif %}'
-        friendly_name: 'Patio Door Status'
-        icon_template: >
-          {% set patio_door_state = states.binary_sensor.door_window_sensor_158d0001d85176.state %}
-          {% if patio_door_state == 'on' %}
-            mdi:door-open
-          {% elif patio_door_state == 'off' %}
-            mdi:door-closed
-          {% else %}
-            mdi:alert-outline
-          {% endif %}
-
-      holidays_calendar:
-        friendly_name: 'Upcoming Holiday'
-        value_template: '{{ states.calendar.holidays_in_united_states.attributes.message }}'
-
-        ##########################################################
-        ## Location
-        ##########################################################
-
-  - platform: google_travel_time
-    name: usertwo To Home
-    api_key: !secret google_travel_api
-    origin: !secret device_tracker_usertwo
-    destination: zone.home
-
-  - platform: google_travel_time
-    name: userone To Home
-    api_key: !secret google_travel_api
-    origin: !secret device_tracker_userone
-    destination: zone.home
-
-        ##########################################################
-        ## Cox Internet Usage
-        ##########################################################
-
-  - platform: file
-    name: Cox Utilization
-    file_path: !secret cox_file_path
-    value_template: >
-      {% if value_json is defined %}
-        {% if value_json.dumUsage | int == 0 and value_json.dumLimit | int == 0 and value_json.dumUtilization | int == 0 %}
-          stats unavailable
+    userone_phone_battery:
+      value_template: "{{ states.device_tracker.life360_userone_REDACTED.attributes.battery | default(0) | int }}"
+      friendly_name: "userone Essential PH-1"
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.device_tracker.life360_userone_REDACTED.attributes.battery | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
         {% else %}
-          {{ value_json.dumUsage | int }} / {{ value_json.dumLimit | int }} GB ({{ value_json.dumUtilization | int }} %)
+          mdi:battery-alert
         {% endif %}
-      {% else %}
-        undefined
-      {% endif %}
 
-  - platform: file
-    name: Cox Perc
-    file_path: !secret cox_file_path
-    value_template: >
-      {% if value_json is defined %}
-        {% if value_json.dumUtilization | int == 0 %}
-          stats unavailable
+    usertwo_phone_battery:
+      value_template: "{{ states.device_tracker.life360_REDACTED_REDACTED.attributes.battery | default(0) | int }}"
+      friendly_name: "usertwo iPhone X"
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.device_tracker.life360_REDACTED_REDACTED.attributes.battery | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
         {% else %}
-          {{ value_json.dumUtilization | int }}
+          mdi:battery-alert
         {% endif %}
-      {% else %}
-        undefined
-      {% endif %}
 
-  - platform: file
-    name: Cox Time Left
-    file_path: !secret cox_file_path
-    value_template: >
-      {% if value_json is defined %}
-        {% if value_json.dumDaysLeft is defined %}
-          {{ value_json.dumDaysLeft | int }}
+    userthree_temp_battery:
+      value_template: "{{ states.sensor.temperature_158d0001b9561c.attributes.battery_level | default(0) | int }}"
+      friendly_name: "userthree Temp."
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.sensor.temperature_158d0001b9561c.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
         {% else %}
-          unknown
+          mdi:battery-alert
         {% endif %}
-      {% else %}
-        undefined
-      {% endif %}
-    unit_of_measurement: "Days"
 
-  - platform: file
-    name: Cox Avg GB Current
-    file_path: !secret cox_file_path
-    value_template: >
-      {% if value_json is defined %}
-        {% if value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
-          stats unavailable
-        {% elif states.sensor.days_in_current_month.state is defined %}
-          {{ (float(value_json.dumUsage) / (float(states.sensor.days_in_current_month.state) - float(value_json.dumDaysLeft))) | round(1) }}
+    userfour_temp_battery:
+      value_template: "{{ states.sensor.temperature_158d0001f50d5f.attributes.battery_level | default(0) | int }}"
+      friendly_name: "userfour Temp."
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.sensor.temperature_158d0001f50d5f.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
         {% else %}
-          month_undefined
+          mdi:battery-alert
         {% endif %}
-      {% else %}
-        undefined
-      {% endif %}
-    unit_of_measurement: "GB per day"
 
-  - platform: file
-    name: Cox Avg GB Remaining
-    file_path: !secret cox_file_path
-    value_template: >
-      {% if value_json is defined %}
-        {% if value_json.dumLimit | int == 0 and value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
-          stats unavailable
-        {% elif value_json.dumDaysLeft | int == 0 %}
-          {{ (float(value_json.dumLimit) - float(value_json.dumUsage)) | round(1) }}
+    master_temp_battery:
+      value_template: "{{ states.sensor.temperature_158d0001fa9e02.attributes.battery_level | default(0) | int }}"
+      friendly_name: "Master Temp."
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.sensor.temperature_158d0001fa9e02.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
         {% else %}
-          {{ ((float(value_json.dumLimit) - float(value_json.dumUsage)) / float(value_json.dumDaysLeft)) | round(1) }}
+          mdi:battery-alert
         {% endif %}
+
+    loft_temp_battery:
+      value_template: "{{ states.sensor.temperature_158d0001f51e9e.attributes.battery_level | default(0) | int }}"
+      friendly_name: "Loft Temp."
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.sensor.temperature_158d0001f51e9e.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    office_temp_battery:
+      value_template: "{{ states.sensor.temperature_158d0001f50dcb.attributes.battery_level | default(0) | int }}"
+      friendly_name: "Office Temp."
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.sensor.temperature_158d0001f50dcb.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    office_motion_battery:
+      value_template: "{{ states.binary_sensor.motion_sensor_158d00047eaffc.attributes.battery_level | default(0) | int }}"
+      friendly_name: "Office Motion."
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.binary_sensor.motion_sensor_158d00047eaffc.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    master_switch_battery:
+      value_template: "{{ states.binary_sensor.switch_158d0001b86a74.attributes.battery_level | default(0) | int }}"
+      friendly_name: "Master Switch"
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.binary_sensor.switch_158d0001b86a74.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    master_switch_usertwo_battery:
+      value_template: "{{ states.binary_sensor.switch_158d000450d582.attributes.battery_level | default(0) | int }}"
+      friendly_name: "Master Switch2"
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.binary_sensor.switch_158d000450d582.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    chalkboard_switch_battery:
+      value_template: "{{ states.binary_sensor.switch_158d0001b76826.attributes.battery_level | default(0) | int }}"
+      friendly_name: "Chalkboard Switch"
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.binary_sensor.switch_158d0001b76826.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    patio_door_battery:
+      value_template: "{{ states.binary_sensor.door_window_sensor_158d0001d85176.attributes.battery_level | default(0) | int }}"
+      friendly_name: "Patio Door"
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.binary_sensor.door_window_sensor_158d0001d85176.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    patio_door:
+      value_template: '{% if is_state("binary_sensor.door_window_sensor_158d0001d85176", "on") %}Open{% elif is_state("binary_sensor.door_window_sensor_158d0001d85176", "off") %}Closed{% else %}unknown{% endif %}'
+      friendly_name: "Patio Door Status"
+      icon_template: >
+        {% set patio_door_state = states.binary_sensor.door_window_sensor_158d0001d85176.state %}
+        {% if patio_door_state == 'on' %}
+          mdi:door-open
+        {% elif patio_door_state == 'off' %}
+          mdi:door-closed
+        {% else %}
+          mdi:alert-outline
+        {% endif %}
+
+    last_run_sprinkler:
+      friendly_name: "Last Run"
+      value_template: '{{as_timestamp(states.input_datetime.last_run_sprinkler.state) | timestamp_custom("%A, %d %h %I:%M %p")}}'
+
+##########################################################
+## Deluge
+##########################################################
+
+- platform: deluge
+  host: !secret deluge_host
+  username: !secret deluge_user
+  password: !secret deluge_pass
+  monitored_variables:
+    - "current_status"
+    - "download_speed"
+    - "upload_speed"
+
+##########################################################
+## NAS
+##########################################################
+
+- platform: qnap
+  host: !secret nas2_host
+  username: !secret nas_username
+  password: !secret nas_pass
+  nics: eth0
+  monitored_conditions:
+    - status
+    - system_temp
+    - cpu_usage
+    - cpu_temp
+    - memory_percent_used
+    - network_tx
+    - network_rx
+    - volume_size_free
+    - volume_size_used
+    - volume_percentage_used
+    - drive_smart_status
+    
+##########################################################
+## Cox Usage - https://github.com/ntalekt/coxusage-docker
+##########################################################
+
+- platform: command_line
+  command: cal $(date +"%m %Y") | awk 'NF {DAYS = $NF}; END {print DAYS}'
+  name: Days In Current Month
+  scan_interval: 3600
+
+- platform: file
+  name: Cox Utilization
+  file_path: /shared/coxusage.json
+  value_template: >
+    {% if value_json is defined %}
+      {% if value_json.dumUsage | int == 0 and value_json.dumLimit | int == 0 and value_json.dumUtilization | int == 0 %}
+        stats unavailable
       {% else %}
-        undefined
+        {{ value_json.dumUsage | int }} / {{ value_json.dumLimit | int }} GB ({{ value_json.dumUtilization | int }} %)
       {% endif %}
-    unit_of_measurement: "GB per day"
+    {% else %}
+      undefined
+    {% endif %}
 
-        ##########################################################
-        ## Days in current month
-        ##########################################################
+- platform: file
+  name: Cox Time Left
+  file_path: /shared/coxusage.json
+  value_template: >
+    {% if value_json is defined %}
+      {% if value_json.dumDaysLeft is defined %}
+        {{ value_json.dumDaysLeft | int }} Days
+      {% else %}
+        unknown
+      {% endif %}
+    {% else %}
+      undefined
+    {% endif %}
 
-  - platform: command_line
-    command: cal $(date +"%m %Y") | awk 'NF {DAYS = $NF}; END {print DAYS}'
-    name: Days In Current Month
-    scan_interval: 3600
+- platform: file
+  name: Cox Avg GB Current
+  file_path: /shared/coxusage.json
+  value_template: >
+    {% if value_json is defined %}
+      {% if value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
+        stats unavailable
+      {% elif states.sensor.days_in_current_month.state is defined %}
+        {{ (float(value_json.dumUsage) / (float(states.sensor.days_in_current_month.state) - float(value_json.dumDaysLeft))) | round(1) }} GB per day
+      {% else %}
+        month_undefined
+      {% endif %}
+    {% else %}
+      undefined
+    {% endif %}
 
-        ##########################################################
-        ## History Stats
-        ##########################################################
-
-  - platform: history_stats
-    name: Downstairs AC On Today
-    entity_id: sensor.downstairs_thermostat_hvac_state
-    state: 'cooling'
-    type: time
-    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
-    end: '{{ now() }}'
-
-  - platform: history_stats
-    name: Upstairs AC On Today
-    entity_id: sensor.upstairs_thermostat_hvac_state
-    state: 'cooling'
-    type: time
-    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
-    end: '{{ now() }}'
-
-  - platform: history_stats
-    name: Downstairs AC On Week
-    entity_id: sensor.downstairs_thermostat_hvac_state
-    state: 'cooling'
-    type: time
-    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
-    end: '{{ now() }}'
-
-  - platform: history_stats
-    name: Upstairs AC On Week
-    entity_id: sensor.upstairs_thermostat_hvac_state
-    state: 'cooling'
-    type: time
-    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
-    end: '{{ now() }}'
-
-  - platform: history_stats
-    name: Downstairs Heat On Today
-    entity_id: sensor.downstairs_thermostat_hvac_state
-    state: 'heating'
-    type: time
-    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
-    end: '{{ now() }}'
-
-  - platform: history_stats
-    name: Upstairs Heat On Today
-    entity_id: sensor.upstairs_thermostat_hvac_state
-    state: 'heating'
-    type: time
-    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
-    end: '{{ now() }}'
-
-  - platform: history_stats
-    name: Downstairs Heat On Week
-    entity_id: sensor.downstairs_thermostat_hvac_state
-    state: 'heating'
-    type: time
-    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
-    end: '{{ now() }}'
-
-  - platform: history_stats
-    name: Upstairs Heat On Week
-    entity_id: sensor.upstairs_thermostat_hvac_state
-    state: 'heating'
-    type: time
-    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
-    end: '{{ now() }}'
-
-  - platform: history_stats
-    name: Downstairs Eco On Today
-    entity_id: climate.downstairs
-    state: 'eco'
-    type: time
-    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
-    end: '{{ now() }}'
-
-  - platform: history_stats
-    name: Upstairs Eco On Today
-    entity_id: climate.upstairs
-    state: 'eco'
-    type: time
-    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
-    end: '{{ now() }}'
-
-  - platform: history_stats
-    name: Downstairs Eco On Week
-    entity_id: climate.downstairs
-    state: 'eco'
-    type: time
-    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
-    end: '{{ now() }}'
-
-  - platform: history_stats
-    name: Upstairs Eco On Week
-    entity_id: climate.upstairs
-    state: 'eco'
-    type: time
-    start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
-    end: '{{ now() }}'
-
-        ##########################################################
-        ## Octoprint
-        ##########################################################
-
-  - platform: octoprint
-    name: OctoPrint
-    monitored_conditions:
-      - Current State
-      - Temperatures
-      - Job Percentage
-
-        ##########################################################
-        ## Airvisual
-        ##########################################################
-
-  - platform: airvisual
-    api_key: !secret airvisual_api
-    monitored_conditions:
-      - us
-    show_on_map: false
+- platform: file
+  name: Cox Avg GB Remaining
+  file_path: /shared/coxusage.json
+  value_template: >
+    {% if value_json is defined %}
+      {% if value_json.dumLimit | int == 0 and value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
+        stats unavailable
+      {% else %}
+        {{ ((float(value_json.dumLimit) - float(value_json.dumUsage)) / float(value_json.dumDaysLeft)) | round(1) }} GB per day
+      {% endif %}
+    {% else %}
+      undefined
+    {% endif %}

@@ -1,0 +1,136 @@
+type: vertical-stack
+cards:
+  - type: "custom:button-card"
+    name: HASS Container
+#    color_type: label-card
+#    color: rgb(240,240,240)
+    styles:
+      card:
+        - font-size: 24px
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        icon: mdi:home-assistant
+        entity: sensor.current_version
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.current_version'].state != states['sensor.current_ha_release'].state;
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        icon: mdi:git
+        entity: sensor.current_ha_release
+        name: Release Version
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states["sensor.current_ha_release"].state
+              ]]]
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.hacs
+        name: HACS
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.hacs'].state > 0;
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        entity: sensor.potential_breaking_changes
+        show_state: true
+        styles:
+          card:
+            - height: 100px
+        state:
+          - operator: '!='
+            value: 0
+            color: rgb(255,65,54)
+          - operator: default
+            value: 0
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        name: HASS Service Restart
+        icon: mdi:restart
+        tap_action:
+          action: call-service
+          service: homeassistant.restart
+        styles:
+          card:
+            - height: 100px
+        hold_action:
+          action: more-info
+  - type: horizontal-stack
+    cards:
+      - entity: sensor.docker_ub1_homeassistant_cpu
+        max: 100
+        min: 0
+        name: CPU
+        severity:
+          green: 0
+          red: 80
+          yellow: 50
+        theme: default
+        type: gauge
+      - entity: sensor.docker_ub1_homeassistant_memory_percent
+        max: 100
+        min: 0
+        name: Memory
+        severity:
+          green: 0
+          red: 90
+          yellow: 70
+        theme: default
+        type: gauge
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.ha_db_size
+        name: DB Size
+        hours_to_show: 72
+        icon: mdi:database
+        action:
+          - service: recorder.purge
+            data_template:
+              keep_days: 2
+              repack: true
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.home_assistant_log
+        name: Log Size
+        hours_to_show: 72
+        icon: mdi:file-alert-outline
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.uptime
+        name: Uptime
+        hours_to_show: 72
+        icon: mdi:clock

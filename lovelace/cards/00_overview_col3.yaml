@@ -1,0 +1,32 @@
+type: vertical-stack
+cards:
+    ##########################################################
+    ## Weather
+    ##########################################################
+  - type: horizontal-stack
+    cards:
+      - type: custom:weather-card
+        entity: weather.dark_sky
+        details: false
+    ##########################################################
+    ## Thermostat - Downstairs
+    ##########################################################
+  - type: horizontal-stack
+    cards:
+      - type: custom:simple-thermostat
+        entity: climate.downstairs_nativezone
+        step_layout: row
+        name: true
+        icon: false
+        control: false
+    ##########################################################
+    ## Thermostat - Upstairs
+    ##########################################################
+  - type: horizontal-stack
+    cards:
+      - type: custom:simple-thermostat
+        entity: climate.upstairs_nativezone
+        step_layout: row
+        name: true
+        icon: false
+        control: false

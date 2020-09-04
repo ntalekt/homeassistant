@@ -1,0 +1,137 @@
+type: vertical-stack
+cards:
+
+  - type: horizontal-stack
+    cards:
+
+    ##########################################################
+    ## Row1 Temp
+    ##########################################################
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.temperature_158d0001fa9e02
+        name: Master
+        line_color: '#0074D9'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.temperature_158d0001f51e9e
+        name: Loft
+        line_color: '#FF4136'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.temperature_158d0001f50dcb
+        name: Office
+        line_color: '#FF851B'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+
+    ##########################################################
+    ## Row2 Temp
+    ##########################################################
+
+  - type: horizontal-stack
+    cards:
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.temperature_158d0001b9561c
+        name: userthree
+        line_color: '#B10DC9'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.temperature_158d0001f50d5f
+        name: userfour
+        line_color: '#39CCCC'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+
+    ##########################################################
+    ## Row3 - Humidity
+    ##########################################################
+
+  - type: horizontal-stack
+    cards:
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.humidity_158d0001fa9e02
+        name: Master
+        line_color: '#0074D9'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.humidity_158d0001f51e9e
+        name: Loft
+        line_color: '#FF4136'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.humidity_158d0001f50dcb
+        name: Office
+        line_color: '#FF851B'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+
+    ##########################################################
+    ## Row4 - Humidity
+    ##########################################################
+
+  - type: horizontal-stack
+    cards:
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.humidity_158d0001b9561c
+        name: userthree
+        line_color: '#B10DC9'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.humidity_158d0001f50d5f
+        name: userfour
+        line_color: '#39CCCC'
+        line_width: 8
+        font_size: 75
+        hours_to_show: 72
+
+    ##########################################################
+    ## Air quality
+    ##########################################################
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+      - type: horizontal-stack
+        cards:
+          
+          - type: custom:air-visual-card
+            air_pollution_level: sensor.u_s_air_pollution_level
+            air_quality_index: sensor.u_s_air_quality_index
+            main_pollutant: sensor.u_s_main_pollutant
+            temp: weather.dark_sky
+            city: 'REDACTED'

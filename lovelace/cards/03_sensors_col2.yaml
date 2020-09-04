@@ -1,0 +1,34 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+    - type: entities
+      title: Sprinkler
+      entities:
+#        - entity: input_select.sprinkler
+        - entity: switch.sprinkler_1
+          icon: mdi:sprinkler-variant
+#          name: Drippers
+        - entity: sensor.last_run_sprinkler
+          icon: mdi:calendar-check
+        - entity: input_boolean.sprinkler_test
+      show_header_toggle: false
+  - type: horizontal-stack
+    cards:
+    - type: entities
+      title: Battery Levels
+      entities:
+        - sensor.userone_phone_battery
+        - sensor.usertwo_phone_battery
+      #  - sensor.big_garage_tilt_battery
+        - sensor.userthree_temp_battery
+        - sensor.userfour_temp_battery
+        - sensor.master_temp_battery
+        - sensor.master_switch_battery
+        - sensor.master_switch_usertwo_battery
+        - sensor.loft_temp_battery
+        - sensor.office_temp_battery
+        - sensor.office_motion_battery
+        - sensor.chalkboard_switch_battery
+        - sensor.patio_door_battery
+      show_header_toggle: false

@@ -1,0 +1,176 @@
+#################################################################
+## Sprinkler
+#################################################################
+
+- alias: update sprinkler last run
+  trigger:
+    - platform: state
+      entity_id: switch.sprinkler_1
+      to: "on"
+  action:
+    - service: script.turn_on
+      entity_id: script.update_sprinkler_last_run_timer
+
+#################################################################
+## Sprinkler test
+#################################################################
+
+- alias: test sprinkler for 2min
+  trigger:
+    - platform: state
+      entity_id: input_boolean.sprinkler_test
+      to: "on"
+  action:
+    - service: script.turn_on
+      entity_id: script.sprinkler_water_test
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.sprinkler_test
+
+#################################################################
+## Sprinkler off text notification
+#################################################################
+
+- alias: sprinkler off text notification
+  trigger:
+    - platform: state
+      entity_id: switch.sprinkler_1
+      to: "off"
+  action:
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Stopped watering"
+
+##########################################################
+## Sprinkler - Spring (Mon, Wed, Fri, & Sat - AM)
+##########################################################
+
+#- alias: water spring
+#  trigger:
+#    - platform: time
+#      at: "06:00:00"
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: time
+#        weekday:
+#          - mon
+#          - wed
+#          - fri
+#          - sat
+#      - condition: state
+#        entity_id: input_select.sprinkler
+#        state: "Spring"
+#  action:
+#    - service:
+#        script.sprinkler_water_spring
+
+##########################################################
+## Sprinkler - Winter (Mon, Wed, Fri, - AM)
+##########################################################
+
+#- alias: "water winter"
+#  trigger:
+#    - platform: time
+#      at: "06:00:00"
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: time
+#        weekday:
+#          - mon
+#          - wed
+#          - fri
+#      - condition: state
+#        entity_id: input_select.sprinkler
+#        state: "Winter"
+#  action:
+#    - service:
+#        script.sprinkler_water_winter
+
+##########################################################
+## Sprinkler - Summer (Mon, Wed, Thur, Sat, & Sun - AM/PM)
+##########################################################
+
+#- alias: "water summer"
+#  trigger:
+#    - platform: time
+#      at: "05:00:00"
+#    - platform: time
+#      at: "18:00:00"
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: time
+#        weekday:
+#          - mon
+#          - wed
+#          - thu
+#          - sat
+#          - sun
+#      - condition: state
+#        entity_id: input_select.sprinkler
+#        state: "Summer"
+#  action:
+#    - service:
+#        script.sprinkler_water_summer
+
+##########################################################
+## Sprinkler - Change to Spring
+##########################################################
+
+- alias: "change watering to spring"
+  trigger:
+    - platform: state
+      entity_id: sensor.season
+      to: "spring"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sprinkler
+        option: Spring
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Automatically changed watering schedule to Spring"
+
+##########################################################
+## Sprinkler - Change to Winter
+##########################################################
+
+- alias: "change watering to winter"
+  trigger:
+    - platform: state
+      entity_id: sensor.season
+      to: "winter"
+    - platform: state
+      entity_id: sensor.season
+      to: "autumn"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sprinkler
+        option: Winter
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Automatically changed watering schedule to Autumn/Winter"
+
+##########################################################
+## Sprinkler - Change to Summer
+##########################################################
+
+- alias: "change watering to summer"
+  trigger:
+    - platform: state
+      entity_id: sensor.season
+      to: "summer"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sprinkler
+        option: Summer
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Automatically changed watering schedule to Summer"

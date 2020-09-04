@@ -2,9 +2,9 @@
 ## Audio Notification Automations
 #################################################################
 
-        ##########################################################
-        ## Sonos - Notification Test
-        ##########################################################
+##########################################################
+## Sonos - Notification Test
+##########################################################
 
 - alias: notification audio test
   trigger:
@@ -17,7 +17,7 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.office'
+          master: 'media_player.chalkboard_room'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: >
@@ -50,353 +50,67 @@
     - service: homeassistant.turn_off
       entity_id: input_boolean.test_audio_notification
 
-        ##########################################################
-        ## Sonos - Good morning - Weekday
-        ##########################################################
+##########################################################
+## Sonos - Notification REDACTED First Bell
+##########################################################
 
-#- alias: Notification Audio - Good morning weekday
-#  trigger:
-#    - platform: time
-#      at: '06:45:00'
-#  condition:
-#      condition: and
-#      conditions:
-#        - condition: time
-#          weekday:
-#            - mon
-#            - tue
-#            - wed
-#            - thu
-#            - fri
-#        - condition: state
-#          entity_id: group.household
-#          state: 'home'
-#        - condition: state
-#          entity_id: input_boolean.disable_morning_announcement
-#          state: 'off'
-#  action:
-#    - delay: '00:00:30'
-#    - service: script.turn_on
-#      entity_id: script.good_morning
-
-        ##########################################################
-        ## Sonos - Good morning - Weekend
-        ##########################################################
-
-#- alias: Notification Audio - Good morning weekend
-#  trigger:
-#    - platform: time
-#      at: '08:20:00'
-#  condition:
-#      condition: and
-#      conditions:
-#        - condition: time
-#          weekday:
-#            - sat
-#            - sun
-#        - condition: state
-#          entity_id: group.household
-#          state: 'home'
-#        - condition: state
-#          entity_id: input_boolean.disable_morning_announcement
-#          state: 'off'
-#  action:
-#    - delay: '00:00:30'
-#    - service: script.turn_on
-#      entity_id: script.good_morning
-
-        ##########################################################
-        ## Sonos - Welcome Home Person
-        ##########################################################
-
-- alias: notification audio welcome home person
+- alias: notification school first bell
   trigger:
-    - platform: state
-      entity_id:
-        - device_tracker.life360_userone_REDACTED
-        - device_tracker.nmap_REDACTED_phone
-        - device_tracker.nmap_REDACTED_phone
-      to: 'home'
-      for: '00:01:00'
+    - platform: time
+      at: "8:20:00"
   condition:
-    - condition: time
-      after: '07:30'
-      before: '19:00'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+      - condition: state
+        entity_id: input_boolean.disable_notification_school
+        state: "off"
   action:
-    - delay: '00:00:10'
     - service: script.turn_on
-      entity_id: script.say
+      entity_id: script.school_say
       data_template:
         variables:
-          master: 'media_player.office'
+          master: 'media_player.chalkboard_room'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: >
-            {% set person = trigger.entity_id.split('.')[-1].split('_')[1] %}
-            {%- macro greeting_sentence(person) -%}
-            {{ [
-            "Welcome back home " ~ person,
-            "Guess who is home. " ~ person + " is!",
-            person + " is now in the house.",
-            "Welcome Home " ~ person + ".  We have missed you.",
-            "Our home is now complete, rest your head and relax your feet! Welcome Back " ~ person,
-            "Life is like a song, you’re back where you belong. Welcome home " ~ person,
-            "Hey there " ~ person + " Welcome Home!",
-            "Knock Knock. Who is there. " ~ person + " is!",
-            "I know a secret! " ~ person + " is home!"
-            ] | random }}
-            {%- endmacro -%}
-            {{greeting_sentence(person)}}
-#    - delay: '00:00:10'
-#    - service: homeassistant.turn_off
-#      entity_id: input_boolean.userone_greeting
+            First bell, school starts in 10 minutes. 
 
-        ##########################################################
-        ## Sonos - usertwo has arrived at work
-        ##########################################################
+##########################################################
+## Sonos - Notification REDACTED Second Bell
+##########################################################
 
-- alias: notification audio usertwo arrived at work
+- alias: notification school second bell
   trigger:
-    - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
-      to: 'Work'
+    - platform: time
+      at: "8:30:00"
   condition:
-    - condition: state
-      entity_id: device_tracker.life360_userone_REDACTED
-      state: 'home'
-    - condition: time
-      after: '07:00'
-      before: '09:00'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+      - condition: state
+        entity_id: input_boolean.disable_notification_school
+        state: "off"
   action:
-    - delay: '00:00:05'
     - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          master: 'media_player.office'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
-          what: 'usertwo has arrived at work.'
-
-        ##########################################################
-        ## Sonos - usertwo Left Work to REDACTED
-        ##########################################################
-
-- alias: notification audio usertwo left work
-  trigger:
-    - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
-      from: 'Work'
-      to: 'Away'
-    - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
-      from: 'Work'
-      to: 'Moving'
-    - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
-      from: 'Work'
-      to: 'Driving'
-  condition:
-    - condition: state
-      entity_id: device_tracker.life360_userone_REDACTED
-      state: 'home'
-    - condition: time
-      after: '14:00'
-      before: '18:00'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
-  action:
-    - delay: '00:00:10'
-    - service: script.turn_on
-      entity_id: script.say
+      entity_id: script.school_say
       data_template:
         variables:
-          master: 'media_player.office'
+          master: 'media_player.chalkboard_room'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
-          what: "usertwo has left work and will arrive home in about {{states('sensor.usertwo_to_home')}} minutes."
-
-        ##########################################################
-        ## Sonos - usertwo Arrived REDACTED
-        ##########################################################
-
-- alias: notification audio usertwo arrived REDACTED
-  trigger:
-    - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
-      to: 'REDACTED'
-  condition:
-    - condition: state
-      entity_id: device_tracker.life360_userone_REDACTED
-      state: 'home'
-    - condition: time
-      after: '13:00'
-      before: '18:00'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
-  action:
-    - delay: '00:00:05'
-    - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          master: 'media_player.office'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
-          what: 'usertwo has arrived at the REDACTED.'
-
-        ##########################################################
-        ## Sonos - usertwo Left REDACTED to REDACTED
-        ##########################################################
-
-- alias: notification audio usertwo left REDACTED to REDACTED
-  trigger:
-    - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
-      from: 'REDACTED'
-      to: 'Away'
-    - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
-      from: 'REDACTED'
-      to: 'Moving'
-    - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
-      from: 'REDACTED'
-      to: 'Driving'
-  condition:
-    - condition: state
-      entity_id: device_tracker.life360_userone_REDACTED
-      state: 'home'
-    - condition: time
-      after: '13:00'
-      before: '18:00'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
-  action:
-    - delay: '00:00:10'
-    - service: script.turn_on
-      entity_id: script.say
-      data_template:
-        variables:
-          master: 'media_player.office'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
-          what: "usertwo has left the REDACTED."
-#         what: "usertwo has left the REDACTED and will arrive at REDACTED REDACTED in about {{states('sensor.usertwo_to_REDACTED')}} minutes."
-
-        ##########################################################
-        ## Sonos - usertwo Arrived REDACTED
-        ##########################################################
-
-- alias: notification audio - usertwo arrived REDACTED
-  trigger:
-    - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
-      to: 'REDACTED'
-  condition:
-    - condition: state
-      entity_id: device_tracker.life360_userone_REDACTED
-      state: 'home'
-    - condition: time
-      after: '13:00'
-      before: '18:00'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
-  action:
-    - delay: '00:00:05'
-    - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          master: 'media_player.office'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
-          what: 'usertwo has arrived at REDACTED school.'
-
-        ##########################################################
-        ## Sonos - usertwo Left REDACTED to Home
-        ##########################################################
-
-- alias: notification audio REDACTED to home
-  trigger:
-    - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
-      from: 'REDACTED'
-      to: 'Away'
-    - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
-      from: 'REDACTED'
-      to: 'Moving'
-    - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
-      from: 'REDACTED'
-      to: 'Driving'
-  condition:
-    - condition: state
-      entity_id: device_tracker.life360_userone_REDACTED
-      state: 'home'
-    - condition: time
-      after: '13:00'
-      before: '18:00'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
-  action:
-    - delay: '00:00:10'
-    - service: script.turn_on
-      entity_id: script.say
-      data_template:
-        variables:
-          master: 'media_player.office'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
-          what: "usertwo has left REDACTED REDACTED."
-#          what: "usertwo has left REDACTED REDACTED and will arrive home in about {{states('sensor.usertwo_to_home')}} minutes."
-
-        ##########################################################
-        ## Sonos - Garage door has been open for 30min
-        ##########################################################
-
-- alias: notification audio garage open for 30min
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.ecolink_tilt_big_garage_sensor
-      to: 'on'
-      for:
-        minutes: 30
-  condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: time
-      after: '07:00'
-      before: '21:00'
-    - condition: state
-      entity_id: binary_sensor.garage_occupancy_on
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.house_cleaning_mode
-      state: 'off'
-  action:
-    - delay: '00:00:05'
-    - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          master: 'media_player.office'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
-          what: 'The garage has been open for 30 minutes.'
+          what: >
+            Have a great day at school. 
+            

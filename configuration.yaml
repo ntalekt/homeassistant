@@ -1,19 +1,21 @@
 #################################################################
 ## Home Assistant
 #################################################################
-
 homeassistant:
   name: Home
   latitude: !secret homeassistant_latitude
   longitude: !secret homeassistant_longitude
   elevation: !secret homeassistant_elevation
   unit_system: imperial
-  time_zone: !secret homeassistant_timezone
   customize: !include customize.yaml
-  whitelist_external_dirs: !secret homeassistant_whitelist
+  time_zone: !secret homeassistant_timezone
+  allowlist_external_dirs:
+    - /shared
+    - /config
 
 api:
 frontend:
+  themes: !include_dir_merge_named themes
 updater:
   reporting: no
   include_used_components: true
@@ -29,33 +31,54 @@ discovery:
     - google_cast
     - philips_hue
     - yeelight
+    - denonavr
 #conversation:
 logger: !include logger.yaml
 
 logbook: !include logbook.yaml
 
-http:
-  # Using NGINX Reverse Proxy with SSL
-#  api_password: !secret ha_password
-  trusted_proxies:
-    - 192.168.1.0/24
-    - 127.0.0.1
-  ip_ban_enabled: True
-  login_attempts_threshold: 3
-  use_x_forwarded_for: True
-#  base_url: https://REDACTED
+lovelace:
+  mode: yaml
+  resources:
+    - url: /hacsfiles/button-card/button-card.js
+      type: module
+    - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+      type: module
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+      type: module
+    - url: /hacsfiles/lovelace-battery-entity/battery-entity.js
+      type: module
+    - url: /hacsfiles/simple-thermostat/simple-thermostat.js
+      type: module
+    - url: /hacsfiles/weather-card/weather-card.js
+      type: module
+    - url: /hacsfiles/text-divider-row/text-divider-row.js
+      type: module
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
+      type: module
+    - url: /hacsfiles/air-visual-card/air-visual-card.js
+      type: module
+    - url: /hacsfiles/entity-attributes-card/entity-attributes-card.js?=v2
+      type: module
 
-#influxdb:
-#  host: !secret nas2_host
+shell_command:
+  docker_image_prune: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED54 'docker image prune -af'"
+
+system_health:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
 
 #################################################################
 ## Components
 #################################################################
 
-google:
-  client_id: !secret google_oauth_id
-  client_secret: !secret google_oauth_secret
-  track_new_calendar: false
+airvisual:
+  api_key: !secret airvisual_api
+  geographies:
+      latitude: !secret homeassistant_latitude
+      longitude: !secret homeassistant_longitude
 
 amcrest:
   - host: !secret amcrest_living_host
@@ -90,53 +113,30 @@ amcrest:
       - motion_detected
     stream_source: rtsp
 
-emulated_hue:
-#  type: alexa
-  host_ip: !secret ha_host
-  listen_port: 8300
-  expose_by_default: false
-  entities:
-    input_boolean.media_center_shield:
-      name: "Shield"
-      hidden: false
-    input_boolean.media_center_tv:
-      name: "TV"
-      hidden: false
-    input_boolean.media_center_poweroff:
-      name: "PowerOff"
-      hidden: false
-    input_boolean.master_firetv:
-      name: "Master Fire TV"
-      hidden: false
-    input_boolean.master_tv:
-      name: "Master TV"
-      hidden: false
-    input_boolean.master_poweroff:
-      name: "Master PowerOff"
-      hidden: false
-    switch.wemominicactus:
-      name: "Cactus Light"
-      hidden: false
-    group.media_center_lights:
-      name: "TV Light"
-      hidden: false
+breaking_changes:
 
 ffmpeg:
 
-hue:
-  bridges:
-    - host: !secret hue_hub_host
+life360:
+  driving_speed: 10
+  interval_seconds: 10
+  max_gps_accuracy: 200
+  max_update_wait:
+    minutes: 45
+  show_as_state:
+    - driving
+    - moving
+  warning_threshold: 2
+  error_threshold: 3
 
-mqtt:
-  broker: !secret mqtt_host
-  port: 1883
-  client_id: REDACTED
-  username: !secret mqtt_user
-  password: !secret mqtt_pass
+monitor_docker:
+  - name: docker-ub1
+    containers:
+      - homeassistant
 
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
+nexia:
+  username: !secret nexia_username
+  password: !secret nexia_password
 
 octoprint:
   host: !secret octopi_host
@@ -144,85 +144,74 @@ octoprint:
   bed: true
   number_of_tools: 1
 
+#pi_hole:
+#  - host: !secret pihole_host
+
+#    ssl: true
+#    verify_ssl: false
+#    api_key: !secret pi_hole_api_key
+
+rainbird:
+  host: !secret rainbird_host
+  password: !secret rainbird_password
+  trigger_time: 60
+
 ring:
   username: !secret ring_username
   password: !secret ring_password
-
-shell_command:
-  query_cox_data_usage: 'python /home/homeassistant/.homeassistant/cox_usage.py'
-#  influxdb_state_injection: /bin/bash -c "sh /home/pi/update_influx_states.sh"
-
-sonos:
-  media_player:
-    hosts:
-      - !secret sonos_chalkboard_host
-      - !secret sonos_den_host
-      - !secret sonos_kitchen_host
-      - !secret sonos_office_host
 
 tts:
   - platform: google_translate
     cache: true
     time_memory: 300
+    base_url: http://REDACTED54:8123
 
-tuya:
-  username: !secret tuya_username
-  password: !secret tuya_password
-  country_code: 1
-  platform: smart_life
+#tuya:
+#  username: !secret tuya_username
+#  password: !secret tuya_password
+#  country_code: 1
+#  platform: smart_life
 
 weather:
   - platform: darksky
     api_key: !secret darksky_api_key
+    mode: daily
 
 wemo:
   static:
-#    - !secret wemo_mini_cactus_host
     - !secret wemo_insight_host
 
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
     - key: !secret xiaomi_key
-    
+
 yeelight:
   devices:
     !secret media_center_l_strip_host:
       name: Media Center L Strip
+      model: strip1
     !secret media_center_r_strip_host:
       name: Media Center R Strip
-
-zwave:
-  usb_path: /dev/ttyACM0
-#  new_entity_ids: true
-#  config_path: /srv/homeassistant/lib/python3.4/site-packages/python_openzwave/ozw_config
-  polling_interval: 30000
-  device_config:
-    light.ge_14294_porch_level:
-      polling_intensity: 1
-      refresh_value: true
-    light.ge_14294_exterior_side_level:
-      polling_intensity: 1
-      refresh_value: true
+      model: strip1
 
 #################################################################
 ## Includes
 #################################################################
 
 automation: !include_dir_merge_list automation
-recorder: !include recorder.yaml
-history: !include history.yaml
-zone: !include zones.yaml
-group: !include groups.yaml
-sensor: !include sensor.yaml
-switch: !include switch.yaml
 binary_sensor: !include binary_sensor.yaml
-input_select: !include input_select.yaml
-input_boolean: !include input_boolean.yaml
-light: !include light.yaml
 camera: !include camera.yaml
 device_tracker: !include device_tracker.yaml
+history: !include history.yaml
+input_boolean: !include input_boolean.yaml
+input_datetime: !include input_datetime.yaml
+input_select: !include input_select.yaml
+light: !include light.yaml
 notify: !include notify.yaml
-script: !include scripts.yaml
+recorder: !include recorder.yaml
 remote: !include remote.yaml
-media_player: !include media_player.yaml
+script: !include scripts.yaml
+sensor: !include sensor.yaml
+switch: !include switch.yaml
+zone: !include zones.yaml

@@ -2,16 +2,14 @@
 ## Remote  ##
 ##############################################################
 
-        ##########################################################
-        ## Harmony Hub
-        ##########################################################
+##########################################################
+## Harmony Hub
+##########################################################
 
-  - platform: harmony
-    name: Media Center
-    host: !secret harmony_hub_host
-    scan_interval: 25
+- platform: harmony
+  name: Media Center
+  host: !secret harmony_hub_host
 
-  - platform: harmony
-    name: Master
-    host: !secret master_harmony_hub_host
-    scan_interval: 25
+- platform: harmony
+  name: Master
+  host: !secret master_harmony_hub_host

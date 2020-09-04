@@ -1,0 +1,47 @@
+vm_power:
+  description: Sends Virtual Machine power commands to vCenter/ESXi Host
+  fields:
+    host:
+      description: Host/vCenter where a Virtual Machine resides
+      example: REDACTED
+    vm:
+      description: Name of the Virtual Machine
+      example: 'vm_name'
+    command:
+      description: Power command to run against Virtual Machine
+      example: 'on,off,reboot,reset,shutdown,suspend'
+
+create_snapshot:
+  description: Sends a command to vCenter/ESXi Host to take a Virtual Machine snapshot. For detailed information about snapshots see https://kb.vmware.com/s/article/1015180
+  fields:
+    host:
+      description: Host/vCenter where a Virtual Machine resides
+      example: REDACTED
+    vm:
+      description: Name of the Virtual Machine
+      example: 'vm_name'
+    name:
+      description: Name of the snapshot
+      example: 'before hass update'
+    description:
+      description: (OPTIONAL) A description for this snapshot
+      example: 'snapshot before big breaking change'
+    memory:
+      description: (OPTIONAL) Take snapshot with memory dump
+      example: 'true/false (default: false)'
+    quiesce:
+      description: (OPTIONAL) Quiesce VM's file system. Only used if VM is running and VM Tools are installed.
+      example: 'true/false (default: false)'
+
+remove_snapshot:
+  description: Sends a command to vCenter/ESXi Host to remove a Virtual Machine snapshot
+  fields:
+    host:
+      description: Host/vCenter where a Virtual Machine resides
+      example: REDACTED
+    vm:
+      description: Name of the Virtual Machine
+      example: 'vm_name'
+    command:
+      description: Which snapshot to remove
+      example: 'all/first/last'

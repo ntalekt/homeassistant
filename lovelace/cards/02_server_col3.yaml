@@ -1,0 +1,214 @@
+type: vertical-stack
+cards:
+  - type: "custom:button-card"
+    name: Docker Host
+#    color_type: label-card
+#    color: rgb(240,240,240)
+    styles:
+      card:
+        - font-size: 24px
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        entity: sensor.docker_ub1_containers_running
+        name: Running
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker_ub1_containers_running'].state == '0';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.docker_ub1_containers_stopped
+        name: Stopped
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker_ub1_containers_stopped'].state != '0';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.docker_ub1_containers_paused
+        name: Paused
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker_ub1_containers_paused'].state != '0';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.docker_ub1_images
+        name: Images
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        tap_action:
+          action: call-service
+          service: shell_command.docker_image_prune
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker_ub1_containers_running'].state != states['sensor.docker_ub1_images'].state;
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+  - type: horizontal-stack
+    cards:
+      - entity: sensor.docker_ub1_cpu
+        max: 100
+        min: 0
+        name: CPU
+        severity:
+          green: 0
+          red: 80
+          yellow: 50
+        theme: default
+        type: gauge
+      - entity: sensor.docker_ub1_memory_percent
+        max: 100
+        min: 0
+        name: Memory
+        severity:
+          green: 0
+          red: 90
+          yellow: 70
+        theme: default
+        type: gauge
+    ##########################################################
+    ## Unifi
+    ##########################################################
+  - type: "custom:button-card"
+    name: Unifi Network
+#    color_type: label-card
+#    color: rgb(240,240,240)
+    styles:
+      card:
+        - font-size: 24px
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        icon: mdi:network
+        size: 30%
+        entity: binary_sensor.unifi_usg
+        name: USG
+        state:
+        - value: 'off'
+          color: rgb(255,65,54)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        icon: mdi:switch
+        size: 30%
+        entity: binary_sensor.unifi_sw8_60w
+        name: SW8 60w
+        state:
+        - value: 'off'
+          color: rgb(255,65,54)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        icon: mdi:access-point-network
+        size: 30%
+        entity: binary_sensor.unifi_ap_loft
+        name: AP Loft
+        state:
+        - value: 'off'
+          color: rgb(255,65,54)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        icon: mdi:access-point-network
+        size: 30%
+        entity: binary_sensor.unifi_ap_living
+        name: AP Living
+        state:
+        - value: 'off'
+          color: rgb(255,65,54)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+    ##########################################################
+    ## VMware
+    ##########################################################
+  - type: "custom:button-card"
+    name: ESXi Host
+#    color_type: label-card
+#    color: rgb(240,240,240)
+    styles:
+      card:
+        - font-size: 24px
+  - type: horizontal-stack
+    cards:
+      - entity: sensor.esxi_vmhost_esxi1_cpu_pct
+        max: 100
+        min: 0
+        name: CPU
+        severity:
+          green: 0
+          red: 80
+          yellow: 50
+        theme: default
+        type: gauge
+      - entity: sensor.esxi_vmhost_esxi1_mem_pct
+        max: 100
+        min: 0
+        name: Memory
+        severity:
+          green: 0
+          red: 90
+          yellow: 70
+        theme: default
+        type: gauge
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.esxi_datastore_datastore1
+        name: Datastore1 (Free)
+        show:
+          graph: bar
+        hours_to_show: 72
+        line_color: '#FF851B'
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.esxi_datastore_datastore2
+        name: Datastore2 (Free)
+        show:
+          graph: bar
+        hours_to_show: 72
+        line_color: '#FF851B'

@@ -1,28 +1,28 @@
-        ##########################################################
-        ## Sleep Time
-        ##########################################################
+##########################################################
+## Sleep Time
+##########################################################
 
 - alias: sleeptime
   trigger:
     - platform: state
       entity_id: input_boolean.sleep_time
-      to: 'on'
+      to: "on"
       for:
         hours: 0
         minutes: 1
         seconds: 0
   action:
-    - delay: '00:30:00'
-    - service: input_select.select_option
+    - delay: "00:30:00"
+
+    - service: script.turn_on
       data:
-        entity_id: input_select.master_remote
-        option: PowerOff
+        entity_id: script.master_harmony_off
 
 - alias: sleeptime reset
   trigger:
     - platform: state
       entity_id: input_boolean.sleep_time
-      to: 'on'
+      to: "on"
       for:
         hours: 0
         minutes: 31
@@ -31,3 +31,46 @@
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.sleep_time
+
+- alias: media master remote sleep time
+  trigger:
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001b86a74
+        click_type: single
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001b86a74
+        click_type: double
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001b86a74
+        click_type: long_click_press
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.switch_158d000450d582
+        click_type: single
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.switch_158d000450d582
+        click_type: double
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.switch_158d000450d582
+        click_type: long_click_press
+  action:
+    - service: homeassistant.toggle
+      entity_id: input_boolean.sleep_time
+    - service: remote.send_command
+      data_template:
+        entity_id: remote.master
+        command: "VolumeUp"
+        device: 46622425
+    - service: light.turn_off
+      entity_id: light.master_bedroom_lamp

@@ -1,0 +1,41 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+    - type: entities
+      title: Cox Internet Usage
+      entities:
+        - entity: sensor.cox_utilization
+          icon: mdi:percent
+        - entity: sensor.cox_time_left
+          icon: mdi:calendar-clock
+        - entity: sensor.cox_avg_gb_current
+          icon: mdi:chart-line
+        - entity: sensor.cox_avg_gb_remaining
+          icon: mdi:chart-line-stacked
+      show_header_toggle: false
+  - type: horizontal-stack
+    cards:
+    - type: entities
+      title: DNS
+      entities:
+        - icon: mdi:dns-outline
+          entity: switch.pihole_switch
+          name: Pihole Status
+        - entity: sensor.pi_hole_dns_queries_today
+        - entity: sensor.pi_hole_ads_blocked_today
+        - entity: sensor.pi_hole_ads_percentage_blocked_today
+      show_header_toggle: false
+  - type: horizontal-stack
+    cards:
+    - type: entities
+      title: Deluge
+      entities:
+        - entity: switch.deluge_switch
+        - entity: sensor.deluge_down_speed
+          icon: mdi:download
+        - entity: sensor.deluge_up_speed
+          icon: mdi:upload
+        - entity: sensor.deluge_status
+          icon: mdi:script
+      show_header_toggle: false

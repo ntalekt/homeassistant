@@ -2,188 +2,160 @@
 ## Occupancy Automations
 #################################################################
 
-      #################################################################
-      ## Office Occupancy
-      #################################################################
-
-- alias: occupancy office turn on if motion detected
-  trigger:
-    - platform: state
-      entity_id: sensor.office_pir
-      from: 'standby'
-      to: 'motion detected'
-  action:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.office_occupancy
-
-      #################################################################
-      ## Reset Office Occupancy
-      #################################################################
-
-- alias: occupancy office turn off after 10min of no motion
-  trigger:
-    - platform: state
-      entity_id: sensor.office_pir
-      to: 'standby'
-      for:
-        minutes: 10
-  action:
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.office_occupancy
-
-      #################################################################
-      ## Living Room Occupancy
-      #################################################################
+#################################################################
+## Living Room Occupancy
+#################################################################
 
 - alias: occupancy living turn on if motion detected
   trigger:
     - platform: state
       entity_id: binary_sensor.living_room_motion_detected
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.living_occupancy
 
-      #################################################################
-      ## Reset Living Room Occupancy
-      #################################################################
+#################################################################
+## Reset Living Room Occupancy
+#################################################################
 
 - alias: occupancy living turn off after 10min of no motion
   trigger:
     - platform: state
       entity_id: binary_sensor.living_room_motion_detected
-      to: 'off'
+      to: "off"
       for:
         minutes: 10
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.living_occupancy
 
-      #################################################################
-      ## Garage Occupancy
-      #################################################################
+#################################################################
+## Garage Occupancy
+#################################################################
 
 - alias: occupancy garage turn on if motion detected
   trigger:
     - platform: state
       entity_id: binary_sensor.garage_motion_detected
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.garage_occupancy
 
-      #################################################################
-      ## Reset Garage Occupancy
-      #################################################################
+#################################################################
+## Reset Garage Occupancy
+#################################################################
 
 - alias: occupancy garage turn off after 10min of no motion
   trigger:
     - platform: state
       entity_id: binary_sensor.garage_motion_detected
-      to: 'off'
+      to: "off"
       for:
         minutes: 10
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.garage_occupancy
 
-      #################################################################
-      ## Chalkboard Room Occupancy
-      #################################################################
+#################################################################
+## Chalkboard Room Occupancy
+#################################################################
 
 - alias: occupancy chalkboard turn on if motion detected
   trigger:
     - platform: state
       entity_id: binary_sensor.chalkboard_room_motion_detected
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.chalkboard_occupancy
 
-      #################################################################
-      ## Reset Chalkboard Room Occupancy
-      #################################################################
+#################################################################
+## Reset Chalkboard Room Occupancy
+#################################################################
 
 - alias: occupancy chalkboard turn off after 10min of no motion
   trigger:
     - platform: state
       entity_id: binary_sensor.chalkboard_room_motion_detected
-      to: 'off'
+      to: "off"
       for:
         minutes: 10
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.chalkboard_occupancy
 
-      #################################################################
-      ## Shop Occupancy
-      #################################################################
+#################################################################
+## Shop Occupancy
+#################################################################
 
 - alias: occupancy shop turn on if motion detected
   trigger:
     - platform: state
       entity_id: binary_sensor.shop_motion_detected
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.shop_occupancy
 
-      #################################################################
-      ## Reset Shop Occupancy
-      #################################################################
+#################################################################
+## Reset Shop Occupancy
+#################################################################
 
 - alias: occupancy shop turn off after 10min of no motion
   trigger:
     - platform: state
       entity_id: binary_sensor.shop_motion_detected
-      to: 'off'
+      to: "off"
       for:
         minutes: 10
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.shop_occupancy
 
-      #################################################################
-      ## Baby Occupancy
-      #################################################################
+#################################################################
+## Office Occupancy
+#################################################################
 
-- alias: occupancy baby turn on if motion detected
+- alias: occupancy office turn on if motion detected
   trigger:
     - platform: state
-      entity_id: binary_sensor.synosurveillance_motion
-      from: 'off'
-      to: 'on'
+      entity_id: binary_sensor.motion_sensor_158d00047eaffc
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
-      entity_id: input_boolean.baby_occupancy
+      entity_id: input_boolean.office_occupancy
 
-      #################################################################
-      ## Reset Baby Occupancy
-      #################################################################
+#################################################################
+## Reset Office Occupancy
+#################################################################
 
-- alias: occupancy baby turn off after 10min of no motion
+- alias: occupancy office turn off after 10min of no motion
   trigger:
     - platform: state
-      entity_id: binary_sensor.synosurveillance_motion
-      to: 'off'
+      entity_id: binary_sensor.motion_sensor_158d00047eaffc
+      to: "off"
       for:
         minutes: 10
   action:
     - service: input_boolean.turn_off
-      entity_id: input_boolean.baby_occupancy
+      entity_id:
+        input_boolean.office_occupancy
 
-        ##########################################################
-        ## WFH Mode
-        ##########################################################
+##########################################################
+## WFH Mode
+##########################################################
 
 - alias: occupancy wfh home on
   trigger:
     - platform: time
-      at: '07:00:00'
+      at: "06:30:00"
   condition:
     - condition: time
       weekday:
@@ -194,15 +166,15 @@
         - fri
     - condition: state
       entity_id: input_boolean.vacation_mode
-      state: 'off'
+      state: "off"
   action:
-    - service: homeassistant.turn_on
+    - service: input_boolean.turn_on
       entity_id: input_boolean.wfh_mode
 
 - alias: occupancy wfh off
   trigger:
     - platform: time
-      at: '17:00:00'
+      at: "16:00:00"
   condition:
     - condition: time
       weekday:
@@ -213,7 +185,7 @@
         - fri
     - condition: state
       entity_id: input_boolean.vacation_mode
-      state: 'off'
+      state: "off"
   action:
-    - service: homeassistant.turn_off
+    - service: input_boolean.turn_off
       entity_id: input_boolean.wfh_mode
