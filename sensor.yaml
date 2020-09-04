@@ -9,6 +9,22 @@
 - platform: season
 
 ##########################################################
+## NUT UPS
+##########################################################
+
+- platform: nut
+  host: !secret nas2_host
+  username: !secret nut_user
+  password: !secret nut_pass
+  resources:
+    - ups.load
+    - ups.realpower.nominal
+    - battery.runtime
+    - input.voltage
+    - battery.charge
+    - ups.status.display
+
+##########################################################
 ## HA Instance
 ##########################################################
 
@@ -369,6 +385,14 @@
     last_run_sprinkler:
       friendly_name: "Last Run"
       value_template: '{{as_timestamp(states.input_datetime.last_run_sprinkler.state) | timestamp_custom("%A, %d %h %I:%M %p")}}'
+
+    qnapups_battery_runtime_min:
+      friendly_name: "Battery Runtime"
+      unit_of_measurement: "min"
+      value_template: >
+        {% set time = states.sensor.qnapups_battery_runtime.state %}
+        {% set minutes = ((time | int /  60) | string).split('.')[0] %}
+        {{minutes}} min      
 
 ##########################################################
 ## Deluge

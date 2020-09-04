@@ -136,3 +136,53 @@ cards:
         hours_to_show: 72
         line_color: '#39CCCC'
     type: horizontal-stack
+
+
+
+
+  - type: "custom:button-card"
+    name: APC BX1500M
+#    color_type: label-card
+#    color: rgb(240,240,240)
+    styles:
+      card:
+        - font-size: 24px
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        name: Input Voltage
+        entities:
+          - entity: sensor.qnapups_input_voltage
+        hours_to_show: 72
+        line_color: '#0074D9'
+        show:
+          graph: bar
+      - type: custom:mini-graph-card
+        name: Battery Runtime
+        icon: mdi:timer-outline
+        entities:
+          - entity: sensor.qnapups_battery_runtime_min
+        hours_to_show: 72
+        line_color: '#FF4136'
+  - cards:
+      - entity: sensor.qnapups_battery_charge
+        max: 100
+        min: 0
+        name: Charge
+        severity:
+          green: 100
+          red: 50
+          yellow: 80
+        theme: default
+        type: gauge
+      - entity: sensor.qnapups_load
+        max: 100
+        min: 0
+        name: Load
+        severity:
+          green: 0
+          red: 70
+          yellow: 50
+        theme: default
+        type: gauge
+    type: horizontal-stack
