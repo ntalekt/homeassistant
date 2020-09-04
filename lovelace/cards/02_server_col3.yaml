@@ -102,66 +102,7 @@ cards:
           yellow: 70
         theme: default
         type: gauge
-    ##########################################################
-    ## Unifi
-    ##########################################################
-  - type: "custom:button-card"
-    name: Unifi Network
-#    color_type: label-card
-#    color: rgb(240,240,240)
-    styles:
-      card:
-        - font-size: 24px
-  - type: horizontal-stack
-    cards:
-      - type: "custom:button-card"
-        icon: mdi:network
-        size: 30%
-        entity: binary_sensor.unifi_usg
-        name: USG
-        state:
-        - value: 'off'
-          color: rgb(255,65,54)
-        - value: 'on'
-          color: rgb(46, 204, 64)
-        hold_action:
-          action: more-info
-      - type: "custom:button-card"
-        icon: mdi:switch
-        size: 30%
-        entity: binary_sensor.unifi_sw8_60w
-        name: SW8 60w
-        state:
-        - value: 'off'
-          color: rgb(255,65,54)
-        - value: 'on'
-          color: rgb(46, 204, 64)
-        hold_action:
-          action: more-info
-      - type: "custom:button-card"
-        icon: mdi:access-point-network
-        size: 30%
-        entity: binary_sensor.unifi_ap_loft
-        name: AP Loft
-        state:
-        - value: 'off'
-          color: rgb(255,65,54)
-        - value: 'on'
-          color: rgb(46, 204, 64)
-        hold_action:
-          action: more-info
-      - type: "custom:button-card"
-        icon: mdi:access-point-network
-        size: 30%
-        entity: binary_sensor.unifi_ap_living
-        name: AP Living
-        state:
-        - value: 'off'
-          color: rgb(255,65,54)
-        - value: 'on'
-          color: rgb(46, 204, 64)
-        hold_action:
-          action: more-info
+
     ##########################################################
     ## VMware
     ##########################################################
