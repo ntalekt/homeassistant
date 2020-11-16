@@ -211,13 +211,13 @@ cards:
     cards:
       - type: "custom:button-card"
         icon: mdi:tablet-ipad
-        entity: switch.pickle_ipad2_red
+        entity: switch.userthrees_ipad
         name: userthree
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.pickle_ipad2_red
+            entity_id: switch.userthrees_ipad
         state:
         - value: 'off'
           color: rgb(255,65,54)
@@ -235,13 +235,13 @@ cards:
           action: more-info
       - type: "custom:button-card"
         icon: mdi:tablet-ipad
-        entity: switch.pickle_ipad2_blue
+        entity: switch.userfour_ipad
         name: userfour
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.pickle_ipad2_blue
+            entity_id: switch.userfour_ipad
         state:
         - value: 'off'
           color: rgb(255,65,54)
@@ -276,6 +276,9 @@ cards:
         - value: 'Switch'
           icon: mdi:television
           color: rgb(67, 73, 82)
+        - value: 'XBOX'
+          icon: mdi:television
+          color: rgb(67, 73, 82)
         style:
          - color: var(--icon-off-color)
         tap_action:
@@ -284,7 +287,7 @@ cards:
           service_data:
             entity_id: script.shield_activity_on
       - type: "custom:button-card"
-        icon: mdi:gamepad-variant
+        icon: mdi:nintendo-switch
         color_type: card
         entity: sensor.media_center_remote
         name: Switch
@@ -299,6 +302,29 @@ cards:
         - value: 'Shield'
           color: rgb(67, 73, 82)
         - value: 'Switch'
+          color: rgb(46, 204, 64)
+        - value: 'XBOX'
+          color: rgb(67, 73, 82)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        icon: mdi:microsoft-xbox
+        color_type: card
+        entity: sensor.media_center_remote
+        name: XBOX
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.xbox_activity_on
+        state:
+        - value: 'PowerOff'
+          color: rgb(67, 73, 82)
+        - value: 'Shield'
+          color: rgb(67, 73, 82)
+        - value: 'Switch'
+          color: rgb(67, 73, 82)
+        - value: 'XBOX'
           color: rgb(46, 204, 64)
         style:
          - color: var(--icon-off-color)
@@ -318,6 +344,8 @@ cards:
         - value: 'Shield'
           color: rgb(255, 65, 54)
         - value: 'Switch'
+          color: rgb(255, 65, 54)
+        - value: 'XBOX'
           color: rgb(255, 65, 54)
         style:
          - color: var(--icon-off-color)

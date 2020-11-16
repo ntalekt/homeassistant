@@ -20,6 +20,13 @@ switch_activity_on:
         entity_id: remote.media_center
         activity: "Switch"
 
+xbox_activity_on:
+  sequence:
+    - service: remote.turn_on
+      data:
+        entity_id: remote.media_center
+        activity: "XBOX"
+
 media_center_harmony_off:
   sequence:
     - service: remote.turn_off
