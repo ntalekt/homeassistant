@@ -140,7 +140,7 @@ cards:
       - type: custom:mini-graph-card
         entities:
           - entity: sensor.esxi_datastore_datastore1
-        name: Datastore1 (Free)
+        name: DS1 (Free)
         show:
           graph: bar
         hours_to_show: 72
@@ -148,7 +148,15 @@ cards:
       - type: custom:mini-graph-card
         entities:
           - entity: sensor.esxi_datastore_datastore2
-        name: Datastore2 (Free)
+        name: DS2 (Free)
+        show:
+          graph: bar
+        hours_to_show: 72
+        line_color: '#FF851B'
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.esxi_datastore_datastore3
+        name: DS3 (Free)
         show:
           graph: bar
         hours_to_show: 72
