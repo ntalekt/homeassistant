@@ -15,7 +15,7 @@
     condition: and
     conditions:
       - condition: time
-        after: "18:00:00"
+        after: "17:00:00"
         before: "20:00:00"
       - condition: numeric_state
         entity_id: sensor.sun_elevation
@@ -50,7 +50,7 @@
     condition: and
     conditions:
       - condition: time
-        after: "18:00:00"
+        after: "17:00:00"
         before: "20:00:00"
       - condition: numeric_state
         entity_id: sensor.sun_elevation
@@ -81,7 +81,7 @@
       from: "PowerOff"
   condition:
     - condition: time
-      after: "18:00:00"
+      after: "17:00:00"
       before: "23:00:00"
   action:
     - service: light.turn_on
