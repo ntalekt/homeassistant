@@ -44,30 +44,30 @@
 ## Pushbullet - Life360 Overdue Update
 ##########################################################
 
-- alias: notification life360 overdue update
-  trigger:
-    - platform: event
-      event_type: life360_update_overdue
-  action:
-    - service: notify.slack
-      data:
-        title: "Home Assistant"
-        message: >
-          Update for {{
-            state_attr(trigger.event.data.entity_id, 'friendly_name') or
-            trigger.event.data.entity_id
-          }} is overdue.
-
-- alias: notification life360 update restored
-  trigger:
-    platform: event
-    event_type: life360_update_restored
-  action:
-    - service: notify.slack
-      data:
-        title: "Home Assistant"
-        message: >
-          Update for {{
-            state_attr(trigger.event.data.entity_id, 'friendly_name') or
-            trigger.event.data.entity_id
-          }} restored after {{ trigger.event.data.wait }}.
+#- alias: notification life360 overdue update
+#  trigger:
+#    - platform: event
+#      event_type: life360_update_overdue
+#  action:
+#    - service: notify.slack
+#      data:
+#        title: "Home Assistant"
+#        message: >
+#          Update for {{
+#            state_attr(trigger.event.data.entity_id, 'friendly_name') or
+#            trigger.event.data.entity_id
+#          }} is overdue.
+#
+#- alias: notification life360 update restored
+#  trigger:
+#    platform: event
+#    event_type: life360_update_restored
+#  action:
+#    - service: notify.slack
+#      data:
+#        title: "Home Assistant"
+#        message: >
+#          Update for {{
+#            state_attr(trigger.event.data.entity_id, 'friendly_name') or
+#            trigger.event.data.entity_id
+#          }} restored after {{ trigger.event.data.wait }}.
