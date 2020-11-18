@@ -151,4 +151,73 @@
           volume: '.6'
           what: >
             Have a great day at school. 
+
+##########################################################
+## Sonos - usertwo has arrived at work
+##########################################################
+
+- alias: notification audio usertwo arrived at work
+  trigger:
+    - platform: state
+      entity_id: device_tracker.life360_REDACTED_REDACTED
+      to: 'Work'
+  condition:
+    - condition: state
+      entity_id: device_tracker.life360_userone_REDACTED
+      state: 'home'
+    - condition: time
+      after: '07:00'
+      before: '09:00'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+  action:
+    - delay: '00:00:05'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.chalkboard_room'
+          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
+          volume: '.6'
+          what: 'usertwo has arrived at work.'
+
+##########################################################
+## Sonos - usertwo Left Work
+##########################################################
+
+- alias: notification audio usertwo left work
+  trigger:
+    - platform: state
+      entity_id: device_tracker.life360_REDACTED_REDACTED
+      from: 'Work'
+      to: 'Away'
+    - platform: state
+      entity_id: device_tracker.life360_REDACTED_REDACTED
+      from: 'Work'
+      to: 'moving'
+    - platform: state
+      entity_id: device_tracker.life360_REDACTED_REDACTED
+      from: 'Work'
+      to: 'driving'
+  condition:
+    - condition: state
+      entity_id: device_tracker.life360_userone_REDACTED
+      state: 'home'
+    - condition: time
+      after: '14:00'
+      before: '18:00'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+  action:
+    - delay: '00:00:10'
+    - service: script.turn_on
+      entity_id: script.say
+      data_template:
+        variables:
+          master: 'media_player.chalkboard_room'
+          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
+          volume: '.6'
+          what: "usertwo has left work and will arrive home in about {{states('sensor.usertwo_to_home')}} minutes."
             
