@@ -71,6 +71,93 @@
 #            state_attr(trigger.event.data.entity_id, 'friendly_name') or
 #            trigger.event.data.entity_id
 #          }} restored after {{ trigger.event.data.wait }}.
+
+##########################################################
+## slack - Low Battery Alert
+##########################################################
+
+- alias: notification text low battery alert
+  initial_state: 'on'
+  trigger:
+    - platform: time
+      at: '10:00:00'
+    - platform: time
+      at: '18:00:00'
+  condition:
+    condition: template
+    value_template: >
+          {% macro battery_level() %}
+          {%- set threshold = 10 -%}
+          {% set domains = ['sensor'] %}
+          {% for domain in domains -%}
+          {% for item in states[domain] if (("battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown"))) -%}
+          {% if "battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown") -%}
+          {{ item.name }} ({{ item.state }}){% if not loop.last %}, {%- endif %} {% endif -%}
+          {% endfor %}
+          {%- endfor %}
+          {% endmacro %}
+          {{ battery_level() |trim != "" }}
+  action:
+    - service: notify.slack
+      data_template:
+        title: "Home Assistant"
+        message: >
+          {% macro battery_level() %}
+          {%- set threshold = 10 -%}
+          {% set domains = ['sensor'] %}
+          {% for domain in domains -%}
+          {% for item in states[domain] if (("battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown"))) -%}
+          {% if "battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown") -%}
+          {{ item.name }} ({{ item.state }}%){% if not loop.last %}, {%- endif %} {% endif -%}
+          {% endfor %}
+          {%- endfor %}
+          {% endmacro %}
+          {{ battery_level() }}
+    - service: persistent_notification.create
+      data_template:
+        title: Low Battery
+        message: >
+          {% macro battery_level() %}
+          {%- set threshold = 10 -%}
+          {% set domains = ['sensor'] %}
+          {% for domain in domains -%}
+          {% for item in states[domain] if (("battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown"))) -%}
+          {% if "battery" in item.entity_id | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown") -%}
+          {{ item.name }} ({{ item.state }}%){% if not loop.last %}, {%- endif %} {% endif -%}
+          {% endfor %}
+          {%- endfor %}
+          {% endmacro %}
+          {{ battery_level() }}
+        notification_id: low-battery-alert
+
+##########################################################
+## Failed Login
+##########################################################
+
+- alias: notification failed login
+  trigger:
+    platform: template
+    value_template: "{{ states('persistent_notification.httplogin') != 'unknown' }}"
+  action:
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Failed Home Assistant login!"
+
+##########################################################
+## New version of Home Assistant
+##########################################################
+
+- alias: notification new version of home assistant
+  trigger:
+    - platform: state
+      entity_id: sensor.current_ha_release
+  action:
+    - service: notify.slack
+      data:
+        title: "New Home Assistant Release"
+        message: "Home Assistant {{ states.sensor.current_ha_release.state }} is now available."
+
 ##########################################################
 ## Garage Door - Left it open
 ##########################################################
