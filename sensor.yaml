@@ -191,7 +191,7 @@
 
     userone_phone_battery:
       value_template: "{{ states.device_tracker.life360_userone_REDACTED.attributes.battery | default(0) | int }}"
-      friendly_name: "userone Essential PH-1"
+      friendly_name: "userone Pixel"
       unit_of_measurement: "%"
       icon_template: >
         {% set battery_level = states.device_tracker.life360_userone_REDACTED.attributes.battery | default(0) | int %}
@@ -392,7 +392,8 @@
       value_template: >
         {% set time = states.sensor.qnapups_battery_runtime.state %}
         {% set minutes = ((time | int /  60) | string).split('.')[0] %}
-        {{minutes}} min      
+        {{minutes}} min
+
     big_garage_tilt_battery:
       value_template: '{{ states.sensor.ecolink_garage_door_tilt_sensor_battery_level.state | default(0) | int }}'
       friendly_name: 'Big Garage Tilt Sensor'
