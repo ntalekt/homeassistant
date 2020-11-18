@@ -195,6 +195,17 @@ yeelight:
       name: Media Center R Strip
       model: strip1
 
+zwave:
+  usb_path: /dev/ttyACM0
+  polling_interval: 30000
+  device_config:
+    light.jasco_products_14294_in_wall_smart_dimmer_level:
+      polling_intensity: 1
+      refresh_value: true
+    light.jasco_products_14294_in_wall_smart_dimmer_level_2:
+      polling_intensity: 1
+      refresh_value: true
+
 #################################################################
 ## Includes
 #################################################################

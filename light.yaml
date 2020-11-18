@@ -11,6 +11,12 @@
   entities:
     - light.media_center_l_strip
     - light.media_center_r_strip
+
+- platform: group
+  name: Exterior Lights
+  entities:
+    - light.jasco_products_14294_in_wall_smart_dimmer_level
+    - light.jasco_products_14294_in_wall_smart_dimmer_level_2
     
 ##########################################################
 ## Kitchen cabinet underlights
