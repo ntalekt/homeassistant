@@ -24,6 +24,10 @@ house_cleaning_mode:
   name: House Cleaning Mode
   icon: mdi:broom
 
+disable_home_away:
+  name: Disable Home / Away Mode
+  icon: mdi:map-marker-off
+
 test_audio_notification:
   name: Test Audio Notification
   initial: off
@@ -121,5 +125,4 @@ disable_interior_on_motion:
 
 disable_notification_school:
   name: Disable REDACTED Audio Notification
-  initial: off
   icon: mdi:bus-school
