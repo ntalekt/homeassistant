@@ -18,8 +18,8 @@ wfh_mode:
 
 vacation_mode:
   name: Vacation Mode
-  icon:
-    mdi:airplane
+  icon: mdi:airplane
+
 house_cleaning_mode:
   name: House Cleaning Mode
   icon: mdi:broom

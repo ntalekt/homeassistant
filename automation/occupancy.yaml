@@ -189,3 +189,47 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.wfh_mode
+
+#################################################################
+## Vacation Mode Automations
+#################################################################
+
+        ##########################################################
+        ## Turn on Vacation Mode when Gone 24 Hours
+        ##########################################################
+
+- alias: vacation turn on when gone 24 hours
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 24
+        minutes: 0
+        seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.vacation_mode
+
+##########################################################
+## Turn off Vacation Mode when Home
+##########################################################
+
+- alias: vacation turn off when home
+  trigger:
+    - platform: state
+      entity_id: group.household
+#      from: 'not_home'
+      to: 'home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.vacation_mode

@@ -6,4 +6,6 @@ cards:
       show_header_toggle: false
       title: Modes
       entities:
+        - entity: input_boolean.vacation_mode
         - entity: input_boolean.house_cleaning_mode
+
