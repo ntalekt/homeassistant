@@ -1,0 +1,89 @@
+#################################################################
+## Doorbell Automations
+#################################################################
+
+        ##########################################################
+        ## Doorbell
+        ##########################################################
+
+- alias: doorbell turn exterior lights to 100 when rung after 9pm
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_ding
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: time
+      after: '21:00:00'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    - service: light.turn_on
+      entity_id: light.exterior_lights
+      data:
+        brightness: 254
+
+- alias: doorbell reset exterior lights to 35 after ring after 9pm
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_ding
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+  condition:
+    - condition: time
+      after: '21:00:00'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    - service: light.turn_on
+      entity_id: light.exterior_lights
+      data:
+        brightness: 85
+        transition: 60
+
+- alias: doorbell turn exterior lights to 100 when motion detected after 9pm
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.shop_motion_detected
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: time
+      after: '21:00:00'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    - service: light.turn_on
+      entity_id: light.exterior_lights
+      data:
+        brightness: 254
+
+- alias: doorbell reset exterior lights to 35 after motion detected after 9pm
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.shop_motion_detected
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+  condition:
+    - condition: time
+      after: '21:00:00'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    - service: light.turn_on
+      entity_id: light.exterior_lights
+      data:
+        brightness: 85
+        transition: 60
