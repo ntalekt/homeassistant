@@ -180,7 +180,7 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: binary_sensor.door_window_sensor_158d0001d85176
+        entity: binary_sensor.ecolink_garage_door_tilt_sensor_sensor
         name: Garage
         state:
         - value: 'on'
@@ -200,7 +200,7 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: binary_sensor.door_window_sensor_158d0001d85176
+        entity: binary_sensor.ecolink_garage_door_tilt_sensor_sensor
         name: Shop
         state:
         - value: 'on'
