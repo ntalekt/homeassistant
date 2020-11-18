@@ -1,0 +1,9 @@
+##############################################################
+## Groups  ##
+##############################################################
+
+household:
+  name: Household
+  entities:
+    - device_tracker.life360_userone_REDACTED
+    - device_tracker.life360_REDACTED_REDACTED

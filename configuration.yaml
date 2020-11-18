@@ -217,6 +217,7 @@ automation: !include_dir_merge_list automation
 binary_sensor: !include binary_sensor.yaml
 camera: !include camera.yaml
 device_tracker: !include device_tracker.yaml
+group: !include groups.yaml
 history: !include history.yaml
 input_boolean: !include input_boolean.yaml
 input_datetime: !include input_datetime.yaml
