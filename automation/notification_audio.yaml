@@ -51,6 +51,44 @@
       entity_id: input_boolean.test_audio_notification
 
 ##########################################################
+## Sonos - Garage door has been open for 30min
+##########################################################
+
+- alias: notification audio garage open for 30min
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ecolink_garage_door_tilt_sensor_sensor
+      to: 'on'
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      after: '07:00'
+      before: '21:00'
+    - condition: state
+      entity_id: binary_sensor.garage_occupancy_on
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.house_cleaning_mode
+      state: 'off'
+  action:
+    - delay: '00:00:05'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.chalkboard_room'
+          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
+          volume: '.6'
+          what: 'The garage has been open for 30 minutes.'
+
+##########################################################
 ## Sonos - Notification REDACTED First Bell
 ##########################################################
 

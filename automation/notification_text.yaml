@@ -71,3 +71,45 @@
 #            state_attr(trigger.event.data.entity_id, 'friendly_name') or
 #            trigger.event.data.entity_id
 #          }} restored after {{ trigger.event.data.wait }}.
+##########################################################
+## Garage Door - Left it open
+##########################################################
+
+- alias: notification garage door left it open
+  trigger:
+    - platform: state
+      entity_id: group.household
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.ecolink_garage_door_tilt_sensor_sensor
+      state: 'on'
+  action:
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "Come back, the garage door is open!"
+
+##########################################################
+## Garage Door - Open for 30 minutes
+##########################################################
+
+- alias: notification garage open for 30min
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ecolink_garage_door_tilt_sensor_sensor
+      to: 'on'
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.garage_occupancy_on
+      state: 'off'
+  action:
+    - service: notify.slack
+      data:
+        title: "Home Assistant"
+        message: "The garage door has been open for 30 minutes."

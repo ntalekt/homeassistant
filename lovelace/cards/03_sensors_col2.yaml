@@ -31,4 +31,5 @@ cards:
         - sensor.office_motion_battery
         - sensor.chalkboard_switch_battery
         - sensor.patio_door_battery
+        - sensor.big_garage_tilt_battery
       show_header_toggle: false

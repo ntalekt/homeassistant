@@ -393,6 +393,33 @@
         {% set time = states.sensor.qnapups_battery_runtime.state %}
         {% set minutes = ((time | int /  60) | string).split('.')[0] %}
         {{minutes}} min      
+    big_garage_tilt_battery:
+      value_template: '{{ states.sensor.ecolink_garage_door_tilt_sensor_battery_level.state | default(0) | int }}'
+      friendly_name: 'Big Garage Tilt Sensor'
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.sensor.ecolink_garage_door_tilt_sensor_battery_level.state | default(0) | int %}
+        {% set battery_round = (battery_level / 10) |int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    big_garage_tilt:
+      value_template: '{% if is_state("binary_sensor.ecolink_garage_door_tilt_sensor_sensor", "on") %}Open{% elif is_state("binary_sensor.ecolink_garage_door_tilt_sensor_sensor", "off") %}Closed{% else %}unknown{% endif %}'
+      friendly_name: 'Big Garage Status'
+      icon_template: >
+        {% set big_garage_state = states.binary_sensor.ecolink_garage_door_tilt_sensor_sensor.state %}
+        {% if big_garage_state == 'on' %}
+          mdi:garage-open
+        {% elif big_garage_state == 'off' %}
+          mdi:garage
+        {% else %}
+          mdi:alert-outline
+        {% endif %}     
 
 ##########################################################
 ## Deluge

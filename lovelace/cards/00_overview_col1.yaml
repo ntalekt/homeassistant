@@ -180,13 +180,13 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: binary_sensor.ecolink_garage_door_tilt_sensor_sensor
+        entity: sensor.big_garage_tilt
         name: Garage
         state:
-        - value: 'on'
+        - value: 'Open'
           color: rgb(255,65,54)
           icon: mdi:garage-open-variant
-        - value: 'off'
+        - value: 'Closed'
           color: rgb(46, 204, 64)
           icon: mdi:garage-variant
         style:
@@ -200,13 +200,13 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: binary_sensor.ecolink_garage_door_tilt_sensor_sensor
+        entity: sensor.big_garage_tilt
         name: Shop
         state:
-        - value: 'on'
+        - value: 'Open'
           color: rgb(255,65,54)
           icon: mdi:garage-open
-        - value: 'off'
+        - value: 'Closed'
           color: rgb(46, 204, 64)
           icon: mdi:garage
         style:
