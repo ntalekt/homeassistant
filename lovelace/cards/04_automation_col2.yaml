@@ -1,0 +1,9 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+    - type: entities
+      show_header_toggle: false
+      title: Modes
+      entities:
+        - entity: input_boolean.house_cleaning_mode
