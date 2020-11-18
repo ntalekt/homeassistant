@@ -113,3 +113,96 @@
       data:
         title: "Home Assistant"
         message: "The garage door has been open for 30 minutes."
+
+##########################################################
+## Notify if critical device goes offline
+##########################################################
+
+- alias: notification alert when a critical device goes offline
+  trigger:
+#    - platform: state
+#      entity_id: binary_sensor.synology_nas
+#      to: 'off'
+#      for:
+#        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.usg_gw
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.sw8_60w
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.ap_loft
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.ap_living
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.pihole
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.nas2
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.garage_cam
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.living_cam
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.chalkboard_cam
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.shop_cam
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.harmony_living
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.harmony_master
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.ring_pro
+      to: 'off'
+      for:
+        minutes: 10
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: >
+          {% if states.automation.notification_alert_when_a_critical_device_goes_offline.last_triggered is not none %}
+            {% if as_timestamp(now()) | int   -  as_timestamp(states.automation.notification_alert_when_a_critical_device_goes_offline.attributes.last_triggered) | int > 3600 %} true {% else %} false
+            {% endif %}
+          {% else %}
+          false
+          {% endif %}
+  action:
+    - service: notify.slack
+      data_template:
+        title: "Home Assistant"
+        message: '{{trigger.to_state.attributes.friendly_name}} has gone offline.'
