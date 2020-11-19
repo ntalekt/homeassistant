@@ -201,7 +201,7 @@
       state: 'off'
   action:
     - service: light.turn_on
-      entity_id: group.exterior_lights
+      entity_id: light.exterior_lights
       data:
         brightness: 254
 
@@ -215,7 +215,7 @@
       state: 'off'
   action:
     - service: light.turn_on
-      entity_id: group.exterior_lights
+      entity_id: light.exterior_lights
       data:
         transition: 60
         brightness: 85
@@ -231,6 +231,6 @@
       state: 'off'
   action:
     - service: light.turn_off
-      entity_id: group.exterior_lights
+      entity_id: light.exterior_lights
       data:
         transition: 60
