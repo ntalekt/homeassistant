@@ -1,0 +1,58 @@
+#################################################################
+## Media Player Automations
+#################################################################
+
+        ##########################################################
+        ## Reset Sonos Every Morning
+        ##########################################################
+
+- alias: media reset sonos every morning
+  trigger:
+    - platform: time
+      at: '04:00'
+  action:
+    - service: media_player.sonos_unjoin
+      entity_id:
+        - media_player.chalkboard_room
+        - media_player.kitchen
+        - media_player.loft
+        - media_player.office
+    - service: media_player.clear_playlist
+      entity_id:
+        - media_player.chalkboard_room
+        - media_player.kitchen
+        - media_player.loft
+        - media_player.office
+    - service: media_player.sonos_join
+      data_template:
+        master: media_player.office
+        entity_id:
+          - media_player.chalkboard_room
+          - media_player.kitchen
+          - media_player.loft
+          - media_player.office
+
+        ##########################################################
+        ## Group All Sonos
+        ##########################################################
+
+- alias: media group all sonos
+  trigger:
+    - platform: state
+      entity_id: input_boolean.group_all_sonos
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+  action:
+    - service: media_player.sonos_join
+      data:
+        master: media_player.office
+      entity_id:
+        - media_player.chalkboard_room
+        - media_player.kitchen
+        - media_player.loft
+        - media_player.office
+

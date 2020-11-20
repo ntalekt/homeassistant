@@ -9,4 +9,11 @@ cards:
         - entity: input_boolean.wfh_mode
         - entity: input_boolean.vacation_mode
         - entity: input_boolean.house_cleaning_mode
+  - type: horizontal-stack
+    cards:
+    - type: entities
+      show_header_toggle: false
+      title: Media
+      entities:
+        - entity: input_boolean.group_all_sonos
 

@@ -126,3 +126,12 @@ disable_interior_on_motion:
 disable_notification_school:
   name: Disable REDACTED Audio Notification
   icon: mdi:bus-school
+
+##########################################################
+## Group Sonos
+##########################################################
+
+group_all_sonos:
+  name: Play on all Speakers
+  initial: off
+  icon: mdi:speaker-wireless
