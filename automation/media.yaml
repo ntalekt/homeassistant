@@ -2,6 +2,43 @@
 ## Media Player Automations
 #################################################################
 
+      #################################################################
+      ## Remote Main Media Center
+      #################################################################
+
+- alias: media spam tv poweron
+  trigger:
+    - platform: state
+      entity_id: remote.media_center
+      from: 'off'
+      to: 'on'
+  action:
+    - service: remote.send_command
+      data_template:
+        entity_id: remote.media_center
+        command: 'PowerOn'
+        device: 35212312
+    - service: remote.send_command
+      data_template:
+        entity_id: remote.media_center
+        command: 'PowerOn'
+        device: 35212312
+    - service: remote.send_command
+      data_template:
+        entity_id: remote.media_center
+        command: 'PowerOn'
+        device: 35212312
+    - service: remote.send_command
+      data_template:
+        entity_id: remote.media_center
+        command: 'PowerOn'
+        device: 35212312
+    - service: remote.send_command
+      data_template:
+        entity_id: remote.media_center
+        command: 'PowerOn'
+        device: 35212312
+
         ##########################################################
         ## Reset Sonos Every Morning
         ##########################################################
