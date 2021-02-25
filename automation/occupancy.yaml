@@ -12,6 +12,10 @@
       entity_id: binary_sensor.living_room_motion_detected
       from: "off"
       to: "on"
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d00045eb488
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.living_occupancy

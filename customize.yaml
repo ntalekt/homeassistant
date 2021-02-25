@@ -63,6 +63,10 @@ sensor.temperature_158d0001f50dcb:
 sensor.humidity_158d0001f50dcb:
   icon: mdi:water-percent
   friendly_name: Office Humidity
+binary_sensor.motion_sensor_158d00047eaffc:
+  friendly_name: Office Motion
+binary_sensor.motion_sensor_158d00045eb488:
+  friendly_name: Living Motion
 sensor.octoprint_actual_bed_temp:
   unit_of_measurement: C
 sensor.octoprint_actual_tool0_temp:
