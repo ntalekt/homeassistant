@@ -62,6 +62,8 @@
       for:
         minutes: 30
   condition:
+    condition: and
+    conditions:
     - condition: state
       entity_id: group.household
       state: 'home'
