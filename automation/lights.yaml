@@ -228,7 +228,7 @@
       entity_id: light.exterior_lights
       data:
         transition: 60
-        brightness: 85
+        brightness_pct: 15
 
 - alias: lights exterior lights off 30min after sunrise
   trigger:
