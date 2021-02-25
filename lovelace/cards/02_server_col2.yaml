@@ -130,7 +130,7 @@ cards:
         icon: mdi:file-alert-outline
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.uptime
+          - entity: sensor.ha_uptime
         name: Uptime
         hours_to_show: 72
         icon: mdi:clock

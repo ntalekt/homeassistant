@@ -32,6 +32,8 @@ sensor.allergy_index_tomorrow:
   unit_of_measurement: " "
 sensor.allergy_index_forecasted_average:
   unit_of_measurement: " "
+sensor.ha_uptime:
+  unit_of_measurement: "Days"
   
 sensor.humidity_158d0001b9561c:
   icon: mdi:water-percent
