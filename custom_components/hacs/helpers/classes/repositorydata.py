@@ -20,6 +20,7 @@ class RepositoryData:
     domain: str = ""
     domains: List[str] = []
     downloads: int = 0
+    etag_repository: str = None
     file_name: str = ""
     filename: str = ""
     first_install: bool = False
@@ -65,7 +66,7 @@ class RepositoryData:
 
     def to_json(self):
         """Export to json."""
-        return self.__dict__
+        return attr.asdict(self)
 
     @staticmethod
     def create_from_dict(source: dict):
