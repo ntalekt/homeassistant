@@ -6,20 +6,20 @@
 ## Pushbullet - Notification Test
 ##########################################################
 
-- alias: notification text test pushbullet
-  trigger:
-    - platform: state
-      entity_id: input_boolean.test_text_notification_pushbullet
-      from: "off"
-      to: "on"
-  action:
-    - service: notify.pushbullet
-      data:
-        title: "Home Assistant"
-        message: "This is a test."
-    - service: homeassistant.turn_off
-      entity_id:
-        input_boolean.test_text_notification_pushbullet
+# - alias: notification text test pushbullet
+#   trigger:
+#     - platform: state
+#       entity_id: input_boolean.test_text_notification_pushbullet
+#       from: "off"
+#       to: "on"
+#   action:
+#     - service: notify.pushbullet
+#       data:
+#         title: "Home Assistant"
+#         message: "This is a test."
+#     - service: homeassistant.turn_off
+#       entity_id:
+#         input_boolean.test_text_notification_pushbullet
 
 ##########################################################
 ## Slack - Notification Test
