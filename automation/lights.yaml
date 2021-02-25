@@ -151,7 +151,9 @@
     conditions:
       - condition: time
         after: "20:00:00"
-        before: "23:59:59"
+      - condition: state
+        entity_id: sun.sun
+        state: "below_horizon"
       - condition: template
         value_template: "{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} "
       - condition: state
