@@ -12,7 +12,7 @@ REQUIRED_FILES = [
     "services.yaml",
     "translations/en.json",
 ]
-VERSION = "0.5.3"
+VERSION = "0.5.4"
 ISSUE_URL = "https://github.com/wxt9861/esxi_stats/issues"
 
 STARTUP = """
