@@ -2,7 +2,7 @@
 # Base component constants
 DOMAIN = "breaking_changes"
 DOMAIN_DATA = "{}_data".format(DOMAIN)
-VERSION = "0.4.1"
+VERSION = "0.4.2"
 PLATFORMS = ["sensor"]
 ISSUE_URL = "https://github.com/custom-components/breaking_changes/issues"
 
