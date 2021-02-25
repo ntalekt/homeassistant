@@ -372,6 +372,8 @@ cards:
           color: rgb(255, 220, 0)
         - value: 'Switch'
           color: rgb(255, 220, 0)
+        - value: 'XBOX'
+          color: rgb(255, 220, 0)
         style:
          - color: var(--icon-off-color)
       - type: "custom:button-card"
@@ -390,6 +392,8 @@ cards:
         - value: 'Shield'
           color: rgb(255, 220, 0)
         - value: 'Switch'
+          color: rgb(255, 220, 0)
+        - value: 'XBOX'
           color: rgb(255, 220, 0)
         style:
          - color: var(--icon-off-color)
