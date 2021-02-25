@@ -97,7 +97,7 @@
 - alias: notification school first bell
   trigger:
     - platform: time
-      at: "8:20:00"
+      at: "8:05:00"
   condition:
     condition: and
     conditions:
@@ -129,7 +129,7 @@
 - alias: notification school second bell
   trigger:
     - platform: time
-      at: "8:30:00"
+      at: "8:15:00"
   condition:
     condition: and
     conditions:
