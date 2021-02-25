@@ -164,6 +164,12 @@
       entity_id: light.kitchen_cabinet_lights
       data_template:
         brightness: "127"
+    - service: light.turn_on
+      entity_id: light.media_accents
+      data_template:
+        brightness: "127"
+    - service: switch.turn_on
+      entity_id: switch.01200697dc4f22020616
 
 ##########################################################
 ## Interior Chalkboard Room
