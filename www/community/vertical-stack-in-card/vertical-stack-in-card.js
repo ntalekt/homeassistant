@@ -1,4 +1,4 @@
-console.log(`%cvertical-stack-in-card\n%cVersion: ${'0.4.0'}`, 'color: #1976d2; font-weight: bold;', '');
+console.log(`%cvertical-stack-in-card\n%cVersion: ${'0.4.1'}`, 'color: #1976d2; font-weight: bold;', '');
 
 class VerticalStackInCard extends HTMLElement {
   constructor() {
@@ -48,10 +48,12 @@ class VerticalStackInCard extends HTMLElement {
       });
     }
     card.appendChild(cardContent);
-    while (this.hasChildNodes()) {
-      this.removeChild(this.lastChild);
+    
+    const shadowRoot = this.shadowRoot || this.attachShadow({mode: 'open'});
+    while (shadowRoot.hasChildNodes()) {
+      shadowRoot.removeChild(shadowRoot.lastChild);
     }
-    this.appendChild(card);
+    shadowRoot.appendChild(card);
 
     // Calculate card size
     this._cardSize.resolve();
@@ -119,11 +121,15 @@ class VerticalStackInCard extends HTMLElement {
   }
 
   styleCard(element) {
+    const config = this._config;
     if (element.shadowRoot) {
       if (element.shadowRoot.querySelector('ha-card')) {
         let ele = element.shadowRoot.querySelector('ha-card');
         ele.style.boxShadow = 'none';
         ele.style.borderRadius = '0';
+        if ('styles' in config) {
+          Object.entries(config.styles).forEach(([key, value]) => ele.style.setProperty(key, value));
+        }
       } else {
         let searchEles = element.shadowRoot.getElementById('root');
         if (!searchEles) {
@@ -143,6 +149,9 @@ class VerticalStackInCard extends HTMLElement {
         let ele = element.querySelector('ha-card');
         ele.style.boxShadow = 'none';
         ele.style.borderRadius = '0';
+        if ('styles' in config) {
+          Object.entries(config.styles).forEach(([key, value]) => ele.style.setProperty(key, value));
+        }
       }
       let searchEles = element.childNodes;
       for (let i = 0; i < searchEles.length; i++) {
