@@ -3,6 +3,13 @@
 from enum import Enum
 
 
+class HacsGitHubRepo(str, Enum):
+    """HacsGitHubRepo."""
+
+    DEFAULT = "hacs/default"
+    INTEGRATION = "hacs/integration"
+
+
 class HacsCategory(str, Enum):
     APPDAEMON = "appdaemon"
     INTEGRATION = "integration"
@@ -13,12 +20,28 @@ class HacsCategory(str, Enum):
     THEME = "theme"
     REMOVED = "removed"
 
+    def __str__(self):
+        return str(self.value)
+
+
+class RepositoryFile(str, Enum):
+    """Repository file names."""
+
+    HACS_JSON = "hacs.json"
+    MAINIFEST_JSON = "manifest.json"
+
+
+class ConfigurationType(str, Enum):
+    YAML = "yaml"
+    CONFIG_ENTRY = "config_entry"
+
 
 class LovelaceMode(str, Enum):
     """Lovelace Modes."""
 
     STORAGE = "storage"
     AUTO = "auto"
+    AUTO_GEN = "auto-gen"
     YAML = "yaml"
 
 
@@ -28,15 +51,6 @@ class HacsStage(str, Enum):
     WAITING = "waiting"
     RUNNING = "running"
     BACKGROUND = "background"
-
-
-class HacsSetupTask(str, Enum):
-    WEBSOCKET = "WebSocket API"
-    FRONTEND = "Frontend"
-    SENSOR = "Sensor"
-    HACS_REPO = "Hacs Repository"
-    CATEGORIES = "Additional categories"
-    CLEAR_STORAGE = "Clear storage"
 
 
 class HacsDisabledReason(str, Enum):
