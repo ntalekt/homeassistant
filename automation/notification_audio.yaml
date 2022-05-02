@@ -57,7 +57,7 @@
 - alias: notification audio garage open for 30min
   trigger:
     - platform: state
-      entity_id: binary_sensor.ecolink_garage_door_tilt_sensor_sensor
+      entity_id: binary_sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_access_control_window_door_is_open
       to: 'on'
       for:
         minutes: 30
@@ -70,9 +70,6 @@
     - condition: time
       after: '07:00'
       before: '21:00'
-    - condition: state
-      entity_id: binary_sensor.garage_occupancy_on
-      state: 'off'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
@@ -164,15 +161,17 @@
       entity_id: device_tracker.life360_REDACTED_REDACTED
       to: 'Work'
   condition:
-    - condition: state
-      entity_id: device_tracker.life360_userone_REDACTED
-      state: 'home'
-    - condition: time
-      after: '07:00'
-      before: '09:00'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.life360_userone_REDACTED
+        state: 'home'
+      - condition: time
+        after: '06:00'
+        before: '10:00'
+      - condition: state
+        entity_id: input_boolean.disable_voice_greeting
+        state: 'off'
   action:
     - delay: '00:00:05'
     - service: script.turn_on
@@ -203,15 +202,17 @@
       from: 'Work'
       to: 'driving'
   condition:
-    - condition: state
-      entity_id: device_tracker.life360_userone_REDACTED
-      state: 'home'
-    - condition: time
-      after: '14:00'
-      before: '18:00'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.life360_userone_REDACTED
+        state: 'home'
+      - condition: time
+        after: '13:00'
+        before: '18:00'
+      - condition: state
+        entity_id: input_boolean.disable_voice_greeting
+        state: 'off'
   action:
     - delay: '00:00:10'
     - service: script.turn_on

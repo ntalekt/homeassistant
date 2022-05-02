@@ -52,3 +52,18 @@ cards:
             smoothing: false
         hours_to_show: 1
         points_per_hour: 120
+
+  - type: horizontal-stack
+    cards:
+    - type: entities
+      title: Cox Internet Usage
+      entities:
+        - entity: sensor.cox_utilization
+          icon: mdi:percent
+        - entity: sensor.cox_time_left
+          icon: mdi:calendar-clock
+        - entity: sensor.cox_avg_gb_current
+          icon: mdi:chart-line
+        - entity: sensor.cox_avg_gb_remaining
+          icon: mdi:chart-line-stacked
+      show_header_toggle: false

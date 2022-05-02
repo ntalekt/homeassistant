@@ -124,7 +124,7 @@ cards:
               repack: true
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.home_assistant_log
+          - entity: sensor.home_assistant_log_size
         name: Log Size
         hours_to_show: 72
         icon: mdi:file-alert-outline

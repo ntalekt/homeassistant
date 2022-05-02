@@ -10,3 +10,15 @@
     service: frontend.set_theme
     data:
       name: dark_teal
+
+- alias: "Set theme at startup"
+  trigger:
+    - platform: state
+      entity_id: input_select.themes
+  action:
+    service: frontend.set_theme
+    data_template:
+      name: >
+        {{ trigger.to_state.state }}
+
+

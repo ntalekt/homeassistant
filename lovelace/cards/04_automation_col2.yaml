@@ -16,4 +16,11 @@ cards:
       title: Media
       entities:
         - entity: input_boolean.group_all_sonos
+  - type: horizontal-stack
+    cards:
+    - type: entities
+      show_header_toggle: false
+      title: Theme
+      entities:
+        - entity: input_select.themes
 

@@ -2,21 +2,25 @@ type: vertical-stack
 cards:
 
     ##########################################################
-    ## Allergen - Today and tomorrow
+    ## Air quality
     ##########################################################
 
-  - type: horizontal-stack
+  - type: custom:vertical-stack-in-card
     cards:
-      - type: "custom:button-card"
-        name: Allergen - Today
-        styles:
-          card:
-            - font-size: 24px
-      - type: "custom:button-card"
-        name: Allergen - Tomorrow
-        styles:
-          card:
-            - font-size: 24px
+
+      - type: horizontal-stack
+        cards:
+          
+          - type: custom:air-visual-card
+            air_pollution_level: sensor.u_s_air_pollution_level
+            air_quality_index: sensor.u_s_air_quality_index
+            main_pollutant: sensor.u_s_main_pollutant
+            temp: weather.dark_sky
+            city: 'REDACTED'
+
+    ##########################################################
+    ## Allergen - Today and tomorrow
+    ##########################################################
 
   - type: horizontal-stack
     cards:
@@ -72,13 +76,6 @@ cards:
     ##########################################################
     ## Allergen - Forecast
     ##########################################################
-  - type: horizontal-stack
-    cards:
-      - type: "custom:button-card"
-        name: Allergen - Forecast
-        styles:
-          card:
-            - font-size: 24px
 
   - type: horizontal-stack
     cards:

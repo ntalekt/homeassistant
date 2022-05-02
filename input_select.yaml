@@ -14,3 +14,50 @@ sprinkler:
     - "Winter"
     - "Summer"
   icon: mdi:calendar-clock
+
+themes:
+  name: 'Themes'
+  icon: mdi:format-paint
+  options:
+    - dark_teal
+    - Caule Black Rose
+    - Caule Black Purple
+    - Caule Black Blue 
+    - Caule Black Aqua
+    - Caule Black Green
+    - Caule Black Yellow
+    - Caule Black Orange
+    - Caule Black Coral
+    - Caule Black Pink
+    - Caule Black Gray
+    - Caule Dark Rose
+    - Caule Dark Purple
+    - Caule Dark Blue 
+    - Caule Dark Aqua
+    - Caule Dark Green
+    - Caule Dark Yellow
+    - Caule Dark Orange
+    - Caule Dark Coral
+    - Caule Dark Pink
+    - Caule Dark Gray
+    - Caule Light Rose
+    - Caule Light Purple
+    - Caule Light Blue 
+    - Caule Light Aqua
+    - Caule Light Green
+    - Caule Light Yellow
+    - Caule Light Orange
+    - Caule Light Coral
+    - Caule Light Pink
+    - Caule Light Gray
+    - Caule Black Rose Glass
+    - Caule Black Purple Glass
+    - Caule Black Blue Glass 
+    - Caule Black Aqua Glass
+    - Caule Black Green Glass
+    - Caule Black Yellow Glass
+    - Caule Black Orange Glass
+    - Caule Black Coral Glass
+    - Caule Black Pink Glass
+    - Caule Black Gray Glass      
+    - default

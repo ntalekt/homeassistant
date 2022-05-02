@@ -1,12 +1,33 @@
 type: vertical-stack
 cards:
+
+
+  - type: horizontal-stack
+    cards:
+
+      ##########################################################
+      ## Row1 Temp
+      ##########################################################
+
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.pentair_REDACTED_air_temperature
+          name: Outdoor
+          line_color: '#0074D9'
+          line_width: 8
+          font_size: 75
+
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.pentair_REDACTED_pool_temperature
+          name: Water Temp
+          line_color: '#0074D9'
+          line_width: 8
+          font_size: 75
+
+
   - type: horizontal-stack
     cards:
       - type: thermostat
-        entity: climate.downstairs_nativezone
-        name: Downstairs
-  - type: horizontal-stack
-    cards:
-      - type: thermostat
-        entity: climate.upstairs_nativezone
-        name: Upstairs
+        entity: climate.pentair_REDACTED_spa_heat
+        name: Spa

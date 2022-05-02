@@ -3,28 +3,65 @@ cards:
   - type: horizontal-stack
     cards:
     - type: entities
-      title: Cox Internet Usage
+      title: Pool
       entities:
-        - entity: sensor.cox_utilization
-          icon: mdi:percent
-        - entity: sensor.cox_time_left
-          icon: mdi:calendar-clock
-        - entity: sensor.cox_avg_gb_current
-          icon: mdi:chart-line
-        - entity: sensor.cox_avg_gb_remaining
-          icon: mdi:chart-line-stacked
+        - entity: binary_sensor.pentair_REDACTED_chemistry_alarm 
+          icon: mdi:alarm-light
+          name: Chemistry Alarm
+        - entity: binary_sensor.pentair_REDACTED_scg_status
+          icon: mdi:alarm-light
+          name: SCG Status
+        - entity: sensor.pentair_REDACTED_scg_salt
+          icon: mdi:shaker-outline
+          name: SCG Salt
+        - entity: switch.pentair_REDACTED_spa
+          name: Spa
+          icon: mdi:hot-tub
+        - entity: switch.pentair_REDACTED_spillway
+          name: Spillway
+          icon: mdi:waterfall
+        - entity: light.pentair_REDACTED_lights
+          name: IntelliBrite
+          icon: mdi:car-light-high
+        - entity: switch.pentair_REDACTED_low_speed
+          name: IntelliFlo LO
+          icon: mdi:speedometer-slow
+        - entity: switch.pentair_REDACTED_high_speed
+          name: IntelliFlo HI
+          icon: mdi:speedometer
+        - entity: switch.pentair_REDACTED_ozonator
+          name: Ozonator
+          icon: mdi:virus-off
+        - entity: sensor.pentair_REDACTED_low_speed_pump_current_gpm
+          name: Current GPM
+          icon: mdi:waves-arrow-right
+        - entity: sensor.pentair_REDACTED_low_speed_pump_current_rpm
+          name: Current RPM
+          icon: mdi:reload
+        - entity: sensor.pentair_REDACTED_low_speed_pump_current_watts
+          name: Current Watts
+
+
       show_header_toggle: false
+
   - type: horizontal-stack
     cards:
     - type: entities
       title: DNS
       entities:
         - icon: mdi:dns-outline
-          entity: switch.pihole_switch
-          name: Pihole Status
-        - entity: sensor.pi_hole_dns_queries_today
-        - entity: sensor.pi_hole_ads_blocked_today
-        - entity: sensor.pi_hole_ads_percentage_blocked_today
+          entity: switch.pi_hole1
+          name: Pi-Hole1 Status
+        - icon: mdi:dns-outline
+          entity: switch.pi_hole2
+          name: Pi-Hole2 Status
+        - entity: sensor.pi_hole1_dns_queries_today
+        - entity: sensor.pi_hole1_ads_blocked_today
+        - entity: sensor.pi_hole1_ads_percentage_blocked_today
+
+        - entity: sensor.pi_hole2_dns_queries_today
+        - entity: sensor.pi_hole2_ads_blocked_today
+        - entity: sensor.pi_hole2_ads_percentage_blocked_today
       show_header_toggle: false
   - type: horizontal-stack
     cards:
@@ -32,10 +69,10 @@ cards:
       title: Deluge
       entities:
         - entity: switch.deluge_switch
-        - entity: sensor.deluge_down_speed
+        - entity: sensor.deluge_switch_down_speed
           icon: mdi:download
-        - entity: sensor.deluge_up_speed
+        - entity: sensor.deluge_switch_up_speed
           icon: mdi:upload
-        - entity: sensor.deluge_status
+        - entity: sensor.deluge_switch_status
           icon: mdi:script
       show_header_toggle: false

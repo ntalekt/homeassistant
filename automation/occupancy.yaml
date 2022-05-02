@@ -8,12 +8,12 @@
 
 - alias: occupancy living turn on if motion detected
   trigger:
+    # - platform: state
+    #   entity_id: binary_sensor.living_room_motion_detected
+    #   from: "off"
+    #   to: "on"
     - platform: state
-      entity_id: binary_sensor.living_room_motion_detected
-      from: "off"
-      to: "on"
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d00045eb488
+      entity_id: binary_sensor.motion_sensor_REDACTED
       from: "off"
       to: "on"
   action:
@@ -27,7 +27,7 @@
 - alias: occupancy living turn off after 10min of no motion
   trigger:
     - platform: state
-      entity_id: binary_sensor.living_room_motion_detected
+      entity_id: binary_sensor.motion_sensor_REDACTED
       to: "off"
       for:
         minutes: 10

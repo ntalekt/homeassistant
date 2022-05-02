@@ -6,3 +6,9 @@ last_run_sprinkler:
   name: Last Run
   has_date: true
   has_time: true
+
+pool_contract_signed:
+  name: Pool Contract Signed
+  has_date: true
+  has_time: false
+  initial: '2021-04-03'

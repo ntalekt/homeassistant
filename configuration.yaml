@@ -16,16 +16,12 @@ homeassistant:
 api:
 frontend:
   themes: !include_dir_merge_named themes
-updater:
-  reporting: no
-  include_used_components: true
 sun:
 #ios:
 map:
 config:
 discovery:
   ignore:
-#    - sonos
     - netgear_router
     - harmony
     - google_cast
@@ -66,9 +62,10 @@ shell_command:
 
 system_health:
 
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   base_url: example.duckdns.org:8123
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.18.0.0/24
 
 #################################################################
 ## Components
@@ -79,6 +76,40 @@ airvisual:
   geographies:
       latitude: !secret homeassistant_latitude
       longitude: !secret homeassistant_longitude
+
+alexa:
+  smart_home:
+    filter:
+      include_entities:
+        - switch.pentair_REDACTED_spa
+        - light.pentair_REDACTED_lights
+        - switch.pentair_REDACTED_spillway
+        - sensor.pentair_REDACTED_pool_temperatur
+        - switch.media_center_shield
+        - switch.media_center_switch
+        - switch.media_center_xbox
+    entity_config:
+      switch.pentair_REDACTED_spa:
+        name: "Spa"
+        description: "The spa"
+      light.pentair_REDACTED_lights:
+        name: "Pool light"
+        description: "Pool light"
+      switch.pentair_REDACTED_spillway:
+        name: "Spillway"
+        description: "Spillway"
+      sensor.pentair_REDACTED_pool_temperature:
+        name: "Pool"
+        description: "Pool water temperature"
+      switch.media_center_shield:
+        name: "Shield"
+        description: "Downstairs nvidia shield harmony activity"
+      switch.media_center_switch:
+        name: "Switch"
+        description: "Downstairs nin switch harmony activity"
+      switch.media_center_xbox:
+        name: "Xbox"
+        description: "Downstairs xbox harmony activity"
 
 amcrest:
   - host: !secret amcrest_living_host
@@ -165,6 +196,14 @@ tts:
     cache: true
     time_memory: 300
     base_url: http://REDACTED54:8123
+    
+sonos:
+  media_player:
+    hosts:
+      - REDACTED
+      - REDACTED
+      - REDACTED
+      - REDACTED52
 
 #tuya:
 #  username: !secret tuya_username
@@ -197,17 +236,17 @@ yeelight:
 
 # Symlinked usb_path https://www.home-assistant.io/docs/z-wave/installation/#changing-device-paths
 # permissions https://www.home-assistant.io/docs/z-wave/installation/#changing-device-paths
-zwave:
-  usb_path: /dev/ttyACM0
+#zwave:
+#   usb_path: /dev/ttyACM0
 #  usb_path: /dev/serial/by-id/usb-0658_0200-if00
-  polling_interval: 30000
-  device_config:
-    light.jasco_products_14294_in_wall_smart_dimmer_level:
-      polling_intensity: 1
-      refresh_value: true
-    light.jasco_products_14294_in_wall_smart_dimmer_level_2:
-      polling_intensity: 1
-      refresh_value: true
+#  polling_interval: 30000
+#  device_config:
+#    light.jasco_products_14294_in_wall_smart_dimmer_level:
+#      polling_intensity: 1
+#      refresh_value: true
+#    light.jasco_products_14294_in_wall_smart_dimmer_level_2:
+#      polling_intensity: 1
+#      refresh_value: true
 
 #################################################################
 ## Includes
@@ -216,7 +255,7 @@ zwave:
 automation: !include_dir_merge_list automation
 binary_sensor: !include binary_sensor.yaml
 camera: !include camera.yaml
-device_tracker: !include device_tracker.yaml
+#device_tracker: !include device_tracker.yaml
 group: !include groups.yaml
 history: !include history.yaml
 input_boolean: !include input_boolean.yaml

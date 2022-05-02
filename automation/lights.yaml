@@ -15,12 +15,12 @@
     condition: and
     conditions:
       - condition: time
-        after: "12:00:00"
-        before: "20:00:00"
+        after: "15:00:00"
+        before: "21:00:00"
       - condition: numeric_state
         entity_id: sensor.sun_elevation
-        above: 4
-        below: 8
+        above: 0
+        below: 9
       - condition: state
         entity_id: input_boolean.disable_interior_on_sunset
         state: "off"
@@ -50,24 +50,21 @@
     condition: and
     conditions:
       - condition: time
-        after: "12:00:00"
-        before: "20:00:00"
+        after: "15:00:00"
+        before: "21:00:00"
       - condition: numeric_state
         entity_id: sensor.sun_elevation
-        above: 4
-        below: 8
+        above: 0
+        below: 9
   action:
     - service: light.turn_on
       entity_id: light.media_accents
     - service: switch.turn_on
-      entity_id: switch.01200697dc4f22020616
+      entity_id: switch.cactus
     - service: light.turn_on
       entity_id: light.master_bedroom_lamp
       data:
         kelvin: 6000
-    - service: light.turn_on
-      entity_id: light.master_bedroom_lamp
-      data:
         brightness: 150
 
 ##########################################################
@@ -87,13 +84,8 @@
     - service: light.turn_on
       entity_id: light.master_bedroom_lamp
       data:
-        brightness: 50
-    - service: light.turn_on
-      entity_id: light.master_bedroom_lamp
-      data:
-        hs_color:
-          - 360
-          - 50
+        kelvin: 6000
+        brightness: 5
 
 ##########################################################
 ## Interior - Turn off downstairs lights if no motion
@@ -109,7 +101,10 @@
     conditions:
       - condition: time
         after: "20:30:00"
-        before: "01:00:00"
+        before: "05:00:00"
+      - condition: state
+        entity_id: sensor.dark_outside
+        state: "True"
       - condition: state
         entity_id: binary_sensor.living_occupancy_on
         state: "off"
@@ -122,13 +117,20 @@
       - condition: state
         entity_id: remote.media_center
         state: "off"
+      - condition: state
+        entity_id: group.household
+        state: "home"
   action:
-    - service: light.turn_off
+    - service: light.turn_on
       entity_id: light.kitchen_cabinet_lights
+      data_template:
+        brightness: "1"
     - service: light.turn_off
       entity_id: light.media_accents
     - service: switch.turn_off
-      entity_id: switch.01200697dc4f22020616
+      entity_id: switch.cactus
+    - service: light.turn_off
+      entity_id: light.kitchen_cabinet_lights
     # light turning off sometimes triggers motion sensor
     - delay: 0:15
     - service: input_boolean.turn_off
@@ -140,36 +142,46 @@
 ## Interior - Turn on cabinet lights if motion detected
 ##########################################################
 
-- alias: "turn on kitchen cabinets if motion after 8pm"
+- alias: "turn on kitchen cabinets if motion"
   trigger:
     - platform: state
-      entity_id: binary_sensor.living_occupancy_on, binary_sensor.chalkboard_occupancy_on
+      entity_id: binary_sensor.living_occupancy_on
       from: "off"
       to: "on"
   condition:
     condition: and
     conditions:
-      - condition: time
-        after: "20:00:00"
-      - condition: state
-        entity_id: sun.sun
-        state: "below_horizon"
-      - condition: template
+      - condition: state # it's dark outside
+        entity_id: sensor.dark_outside
+        state: "True"
+      - condition: template # the lights aren't already on
         value_template: "{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} "
-      - condition: state
+      - condition: state # someone hasn't disabled the interior motion feature
         entity_id: input_boolean.disable_interior_on_motion
         state: "off"
   action:
     - service: light.turn_on
       entity_id: light.kitchen_cabinet_lights
       data_template:
-        brightness: "127"
-    - service: light.turn_on
-      entity_id: light.media_accents
-      data_template:
-        brightness: "127"
-    - service: switch.turn_on
-      entity_id: switch.01200697dc4f22020616
+        brightness: "63"
+
+##########################################################
+## Interior - Turn off cabinet lights at sunrise if they are still on
+##########################################################
+
+- alias: "turn off kitchen cabinets after sunrise"
+  trigger:
+    - platform: state
+      entity_id: sensor.dark_outside
+      to: "False"
+  condition:
+    - condition: template
+      value_template: "{{ states.light.kitchen_cabinet_lights.attributes.brightness!=null }} " # light is on
+      # - condition: template
+      #   value_template: "{{ states.sensor.illumination_REDACTED.state | int > 12 }} " # lux is greater than 12
+  action:
+    - service: light.turn_off
+      entity_id: light.kitchen_cabinet_lights
 
 ##########################################################
 ## Interior Chalkboard Room
@@ -194,7 +206,7 @@
         click_type: long_click_press
   action:
     - service: switch.toggle
-      entity_id: switch.01200697dc4f22020616
+      entity_id: switch.cactus
 
 ##########################################################
 ## Exterior

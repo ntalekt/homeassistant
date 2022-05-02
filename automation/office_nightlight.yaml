@@ -18,7 +18,7 @@
         state: "off"
   action:
     - service: light.turn_on
-      entity_id: light.gateway_light_34ce009244d5
+      entity_id: light.gateway_light_REDACTED
       data:
         brightness: 255
 
@@ -33,4 +33,4 @@
       to: "off"
   action:
     - service: light.turn_off
-      entity_id: light.gateway_light_34ce009244d5
+      entity_id: light.gateway_light_REDACTED

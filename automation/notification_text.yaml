@@ -169,7 +169,7 @@
       to: 'not_home'
   condition:
     - condition: state
-      entity_id: binary_sensor.ecolink_garage_door_tilt_sensor_sensor
+      entity_id: binary_sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_access_control_window_door_is_open
       state: 'on'
   action:
     - service: notify.slack
@@ -184,7 +184,7 @@
 - alias: notification garage open for 30min
   trigger:
     - platform: state
-      entity_id: binary_sensor.ecolink_garage_door_tilt_sensor_sensor
+      entity_id: binary_sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_access_control_window_door_is_open
       to: 'on'
       for:
         minutes: 30

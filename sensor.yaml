@@ -33,8 +33,6 @@
   name: Current HA Release
   scan_interval: 3600
 
-- platform: version
-
 - platform: sql
   db_url: mysql://REDACTED:REDACTED@REDACTED/hass_docker_db
   queries:
@@ -87,6 +85,19 @@
         {{minutes}} minute{{'s' if minutes > 1 else ''}}
       friendly_name: "Print Time"
 
+    dark_outside:
+      value_template: >-
+        {%- if (states.sun.sun.attributes.elevation | int < 7.5 ) -%}
+              True
+        {%- else -%}
+              False
+        {%- endif -%}
+
+    pool_contract_signed:
+      value_template: '{{ ((as_timestamp(now())-(states.input_datetime.pool_contract_signed.attributes.timestamp)) | int /60/1440) | round(0) }}'
+      unit_of_measurement: 'Days'
+      entity_id: input_datetime.pool_contract_signed,sensor.time
+
     media_center_remote:
       value_template: "{{ states.remote.media_center.attributes.current_activity }}"
       friendly_name: "Media Center"
@@ -135,18 +146,30 @@
       friendly_name: "Allergen 3:"
       icon_template: mdi:flower
 
+    pentair_REDACTED_pool_temperature:
+      value_template: "{{ states.climate.pentair_REDACTED_pool_heat.attributes.current_temperature }}"
+      friendly_name: "Pool Temp"
+      device_class: temperature
+      unit_of_measurement: °F
+
+    pentair_REDACTED_spa_temperature:
+      value_template: "{{ states.climate.pentair_REDACTED_spa_heat.attributes.current_temperature }}"
+      friendly_name: "Spa Temp"
+      device_class: temperature
+      unit_of_measurement: °F
+
     esxi_vmhost_esxi1_cpu_pct:
       value_template: >
-        {% set usage = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.cpuusage_ghz | default(0)  %}
-        {% set total = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.cputotal_ghz | default(0) %}
+        {% set usage = states.sensor.esxi_vmhost_REDACTED.attributes.cpuusage_ghz | default(0)  %}
+        {% set total = states.sensor.esxi_vmhost_REDACTED.attributes.cputotal_ghz | default(0) %}
         {{ (( usage / total ) * 100 ) | round(2) }}
       friendly_name: "ESXi1 CPU %"
       unit_of_measurement: "%"
 
     esxi_vmhost_esxi1_mem_pct:
       value_template: >
-        {% set usage = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.memusage_gb | default(0) | int %}
-        {% set total = states.sensor.esxi_vmhost_esxi1_useroneREDACTED_com.attributes.memtotal_gb | default(0) | int %}
+        {% set usage = states.sensor.esxi_vmhost_REDACTED.attributes.memusage_gb | default(0) | int %}
+        {% set total = states.sensor.esxi_vmhost_REDACTED.attributes.memtotal_gb | default(0) | int %}
         {{ (( usage / total ) * 100 ) | round(2) }}
       friendly_name: "ESXi1 MEM %"
       unit_of_measurement: "%"
@@ -310,11 +333,11 @@
         {% endif %}
 
     living_motion_battery:
-      value_template: "{{ states.binary_sensor.motion_sensor_158d00045eb488.attributes.battery_level | default(0) | int }}"
+      value_template: "{{ states.binary_sensor.motion_sensor_REDACTED.attributes.battery_level | default(0) | int }}"
       friendly_name: "Living Motion"
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.binary_sensor.motion_sensor_158d00045eb488.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.binary_sensor.motion_sensor_REDACTED.attributes.battery_level | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -369,6 +392,21 @@
           mdi:battery-alert
         {% endif %}
 
+    kids_leak_sensor_battery:
+      value_template: "{{ states.binary_sensor.water_leak_sensor_158d00063341ac.attributes.battery_level | default(0) | int }}"
+      friendly_name: "Kids Leak Sensor"
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.binary_sensor.water_leak_sensor_158d00063341ac.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
     patio_door_battery:
       value_template: "{{ states.binary_sensor.door_window_sensor_158d0001d85176.attributes.battery_level | default(0) | int }}"
       friendly_name: "Patio Door"
@@ -410,11 +448,11 @@
         {{minutes}} min
 
     big_garage_tilt_battery:
-      value_template: '{{ states.sensor.ecolink_garage_door_tilt_sensor_battery_level.state | default(0) | int }}'
+      value_template: '{{ states.sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_battery_level.state | default(0) | int }}'
       friendly_name: 'Big Garage Tilt Sensor'
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.sensor.ecolink_garage_door_tilt_sensor_battery_level.state | default(0) | int %}
+        {% set battery_level = states.sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_battery_level.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) |int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -425,10 +463,10 @@
         {% endif %}
 
     big_garage_tilt:
-      value_template: '{% if is_state("binary_sensor.ecolink_garage_door_tilt_sensor_sensor", "on") %}Open{% elif is_state("binary_sensor.ecolink_garage_door_tilt_sensor_sensor", "off") %}Closed{% else %}unknown{% endif %}'
+      value_template: '{% if is_state("binary_sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_access_control_window_door_is_open", "on") %}Open{% elif is_state("binary_sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_access_control_window_door_is_open", "off") %}Closed{% else %}unknown{% endif %}'
       friendly_name: 'Big Garage Status'
       icon_template: >
-        {% set big_garage_state = states.binary_sensor.ecolink_garage_door_tilt_sensor_sensor.state %}
+        {% set big_garage_state = states.binary_sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_access_control_window_door_is_open.state %}
         {% if big_garage_state == 'on' %}
           mdi:garage-open
         {% elif big_garage_state == 'off' %}

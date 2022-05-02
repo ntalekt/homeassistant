@@ -43,13 +43,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:cactus
         size: 30%
-        entity: switch.01200697dc4f22020616
+        entity: switch.cactus
         name: Cactus
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.01200697dc4f22020616
+            entity_id: switch.cactus
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -129,6 +129,99 @@ cards:
           color: rgb(46, 204, 64)
         hold_action:
           action: more-info
+      - type: "custom:button-card"
+        icon: mdi:car-light-high
+        size: 30%
+        entity: light.pentair_REDACTED_lights
+        name: Pool
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.pentair_REDACTED_lights
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+
+    ##########################################################
+    ## Pool
+    ##########################################################
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        icon: mdi:hot-tub
+        size: 30%
+        entity: switch.pentair_REDACTED_spa
+        name: Spa
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.pentair_REDACTED_spa
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        icon: mdi:waterfall
+        size: 30%
+        entity: switch.pentair_REDACTED_spillway
+        name: Spillway
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.pentair_REDACTED_spillway
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+
+      - type: "custom:button-card"
+        icon: mdi:wave
+        size: 30%
+        entity: switch.pentair_REDACTED_low_speed
+        name: LO
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.pentair_REDACTED_low_speed
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        icon: mdi:waves
+        size: 30%
+        entity: switch.pentair_REDACTED_high_speed
+        name: HI
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.pentair_REDACTED_high_speed
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+
     ##########################################################
     ## Third row buttons
     ##########################################################
@@ -151,40 +244,59 @@ cards:
           spin: true
         hold_action:
           action: more-info
+#       - type: "custom:button-card"
+#         icon: mdi:weather-night
+#         size: 30%
+#         entity: light.gateway_light_REDACTED
+#         name: Office NL
+#         tap_action:
+#           action: call-service
+#           service: light.toggle
+#           service_data:
+#             entity_id: light.gateway_light_REDACTED
+#         state:
+#         - value: 'off'
+# #          color: rgb(68,115,158)
+#         - value: 'on'
+#           color: rgb(46, 204, 64)
+#         hold_action:
+#           action: more-info
       - type: "custom:button-card"
-        icon: mdi:weather-night
+        icon: mdi:pi-hole
         size: 30%
-        entity: light.gateway_light_34ce009244d5
-        name: Office NL
-        tap_action:
-          action: call-service
-          service: light.toggle
-          service_data:
-            entity_id: light.gateway_light_34ce009244d5
-        state:
-        - value: 'off'
-#          color: rgb(68,115,158)
-        - value: 'on'
-          color: rgb(46, 204, 64)
-        hold_action:
-          action: more-info
-      - type: "custom:button-card"
-        icon: mdi:dns-outline
-        size: 30%
-        entity: switch.pihole_switch
-        name: Ad Blocker
+        entity: switch.pi_hole1
+        name: Pi-hole1
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.pihole_switch
+            entity_id: switch.pi_hole1
         state:
         - value: 'off'
           color: rgb(255,65,54)
-          icon: mdi:shield-off-outline
+          icon: mdi:pi-hole
         - value: 'on'
           color: rgb(46, 204, 64)
-          icon: mdi:shield-check-outline
+          icon: mdi:pi-hole
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        icon: mdi:pi-hole
+        size: 30%
+        entity: switch.pi_hole2
+        name: Pi-hole2
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.pi_hole2
+        state:
+        - value: 'off'
+          color: rgb(255,65,54)
+          icon: mdi:pi-hole
+        - value: 'on'
+          color: rgb(46, 204, 64)
+          icon: mdi:pi-hole
         hold_action:
           action: more-info
       - type: "custom:button-card"
@@ -210,14 +322,14 @@ cards:
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
-        icon: mdi:tablet-ipad
-        entity: switch.userthrees_ipad
-        name: userthree
+        icon: mdi:tablet-android
+        entity: switch.userthree_ipad
+        name: P-iPad
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.userthrees_ipad
+            entity_id: switch.userthree_ipad
         state:
         - value: 'off'
           color: rgb(255,65,54)
@@ -227,16 +339,40 @@ cards:
          - color: var(--icon-off-color)
         show_state: true
         layout: icon_name_state2nd
-        styles:
-          name:
-            - font-size: 20px
-            - font-weight: bold
+        # styles:
+        #   name:
+        #     - font-size: 20px
+        #     - font-weight: bold
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        icon: mdi:tablet-ipad
+        icon: mdi:cellphone
+        entity: switch.userthree_iphone
+        name: P-iPhone
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.userthree_iphone
+        state:
+        - value: 'off'
+          color: rgb(255,65,54)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        style:
+         - color: var(--icon-off-color)
+        show_state: true
+        layout: icon_name_state2nd
+        # styles:
+        #   name:
+        #     - font-size: 20px
+        #     - font-weight: bold
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        icon: mdi:tablet-android
         entity: switch.userfour_ipad
-        name: userfour
+        name: M-iPad
         tap_action:
           action: call-service
           service: switch.toggle
@@ -251,12 +387,13 @@ cards:
          - color: var(--icon-off-color)
         show_state: true
         layout: icon_name_state2nd
-        styles:
-          name:
-            - font-size: 20px
-            - font-weight: bold
+        # styles:
+        #   name:
+        #     - font-size: 20px
+        #     - font-weight: bold
         hold_action:
           action: more-info
+
     ##########################################################
     ## Downstairs media center remote
     ##########################################################
@@ -409,10 +546,10 @@ cards:
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
-        icon: mdi:amazon
+        icon: mdi:television
         color_type: card
         entity: sensor.master_remote
-        name: Fire TV
+        name: Shield
         tap_action:
           action: call-service
           service: script.turn_on
@@ -421,7 +558,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(67, 73, 82)
-        - value: 'Fire TV'
+        - value: 'SHIELD TV'
           color: rgb(46, 204, 64)
         - value: 'Retropie'
           color: rgb(67, 73, 82)
@@ -440,7 +577,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(67, 73, 82)
-        - value: 'Fire TV'
+        - value: 'SHIELD TV'
           color: rgb(67, 73, 82)
         - value: 'Retropie'
           color: rgb(46, 204, 64)
@@ -459,7 +596,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(255, 220, 0)
-        - value: 'Fire TV'
+        - value: 'SHIELD TV'
           color: rgb(255, 65, 54)
         - value: 'Retropie'
           color: rgb(255, 65, 54)
@@ -484,7 +621,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(67, 73, 82)
-        - value: 'Fire TV'
+        - value: 'SHIELD TV'
           color: rgb(255, 220, 0)
         - value: 'Retropie'
           color: rgb(255, 220, 0)
@@ -503,7 +640,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(67, 73, 82)
-        - value: 'Fire TV'
+        - value: 'SHIELD TV'
           color: rgb(255, 220, 0)
         - value: 'Retropie'
           color: rgb(255, 220, 0)
