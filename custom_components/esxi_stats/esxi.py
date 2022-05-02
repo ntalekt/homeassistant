@@ -9,7 +9,7 @@ from .const import SUPPORTED_PRODUCTS
 _LOGGER = logging.getLogger(__name__)
 
 
-async def esx_connect(host, user, pwd, port, ssl):
+def esx_connect(host, user, pwd, port, ssl):
     """Establish connection with host/vcenter."""
     si = None
 
@@ -57,7 +57,7 @@ def check_license(lic):
                             return True
 
 
-async def get_license_info(lic, host):
+def get_license_info(lic, host):
     """Get license information."""
     expiration = "n/a"
     product = "n/a"
@@ -94,7 +94,7 @@ async def get_license_info(lic, host):
     return license_data
 
 
-async def get_host_info(host):
+def get_host_info(host):
     """Get host information."""
     host_summary = host.summary
     host_state = host_summary.runtime.powerState
@@ -102,8 +102,14 @@ async def get_host_info(host):
 
     _LOGGER.debug("vmhost: %s state is %s", host_name, host_state)
 
+    if hasattr(host_summary.runtime, 'inMaintenanceMode'):
+        host_mm_mode = host_summary.runtime.inMaintenanceMode
+    else:
+        host_mm_mode = "N/A"
+
     if host_state == "poweredOn":
         host_version = host_summary.config.product.version
+        host_build = host_summary.config.product.build
         host_uptime = round(host_summary.quickStats.uptime / 3600, 1)
         host_cpu_total = round(
             host_summary.hardware.cpuMhz * host_summary.hardware.numCpuCores / 1000, 1
@@ -111,14 +117,10 @@ async def get_host_info(host):
         host_mem_total = round(host_summary.hardware.memorySize / 1073741824, 2)
         host_cpu_usage = round(host_summary.quickStats.overallCpuUsage / 1000, 1)
         host_mem_usage = round(host_summary.quickStats.overallMemoryUsage / 1024, 2)
-
-        if hasattr(host_summary.runtime, 'inMaintenanceMode'):
-            host_mm_mode = host_summary.runtime.inMaintenanceMode
-        else:
-            host_mm_mode = "N/A"
         host_vms = len(host.vm)
     else:
         host_version = "n/a"
+        host_build = "n/a"
         host_uptime = "n/a"
         host_cpu_total = "n/a"
         host_cpu_usage = "n/a"
@@ -132,6 +134,7 @@ async def get_host_info(host):
         "name": host_name,
         "state": host_state,
         "version": host_version,
+        "build": host_build,
         "uptime_hours": host_uptime,
         "cputotal_ghz": host_cpu_total,
         "cpuusage_ghz": host_cpu_usage,
@@ -146,7 +149,7 @@ async def get_host_info(host):
     return host_data
 
 
-async def get_datastore_info(ds):
+def get_datastore_info(ds):
     """Get datastore information."""
     ds_summary = ds.summary
     ds_name = ds_summary.name.replace(" ", "_").lower()
@@ -168,7 +171,7 @@ async def get_datastore_info(ds):
     return ds_data
 
 
-async def get_vm_info(vm):
+def get_vm_info(vm):
     """Get VM information."""
     vm_conf = vm.configStatus
     vm_sum = vm.summary
@@ -287,9 +290,9 @@ def listSnapshots(snapshots, tree=False):
     return snapshot_data
 
 
-async def vm_pwr(hass, target_host, target_vm, target_cmnd, conn_details):
+def vm_pwr(hass, target_host, target_vm, target_cmnd, conn_details):
     """VM power commands."""
-    conn = await esx_connect(**conn_details)
+    conn = esx_connect(**conn_details)
     content = conn.RetrieveContent()
     objView = content.viewManager.CreateContainerView(
         content.rootFolder, [vim.VirtualMachine], True
@@ -319,7 +322,7 @@ async def vm_pwr(hass, target_host, target_vm, target_cmnd, conn_details):
             # some tasks are fire and forget, no status will be provided
             if task:
                 message = "power " + target_cmnd + " on " + vm.name
-                await taskStatus(hass, task, message)
+                taskStatus(hass, task, message)
             else:
                 _LOGGER.info("'%s' task does not provide feedback", target_cmnd)
 
@@ -340,11 +343,11 @@ async def vm_pwr(hass, target_host, target_vm, target_cmnd, conn_details):
     return True
 
 
-async def vm_snap_take(
+def vm_snap_take(
     hass, target_host, target_vm, snap_name, desc, memory, quiesce, conn_details
 ):
     """Take Snapshot commands."""
-    conn = await esx_connect(**conn_details)
+    conn = esx_connect(**conn_details)
     content = conn.RetrieveContent()
     objView = content.viewManager.CreateContainerView(
         content.rootFolder, [vim.VirtualMachine], True
@@ -360,7 +363,7 @@ async def vm_snap_take(
             # while task is running, check status
             if task:
                 message = "create snapshot on " + vm.name
-                await taskStatus(hass, task, message)
+                taskStatus(hass, task, message)
             else:
                 _LOGGER.info("Task does not provide feedback")
 
@@ -381,9 +384,9 @@ async def vm_snap_take(
     return True
 
 
-async def vm_snap_remove(hass, target_host, target_vm, target_cmnd, conn_details):
+def vm_snap_remove(hass, target_host, target_vm, target_cmnd, conn_details):
     """Remove Snapshot commands."""
-    conn = await esx_connect(**conn_details)
+    conn = esx_connect(**conn_details)
     content = conn.RetrieveContent()
     objView = content.viewManager.CreateContainerView(
         content.rootFolder, [vim.VirtualMachine], True
@@ -420,7 +423,7 @@ async def vm_snap_remove(hass, target_host, target_vm, target_cmnd, conn_details
             # while task is running, check status
             if task:
                 message = "remove " + target_cmnd + " snapshot(s) on " + vm.name
-                await taskStatus(hass, task, message)
+                taskStatus(hass, task, message)
             else:
                 _LOGGER.info("Task does not provide feedback")
 
@@ -441,9 +444,9 @@ async def vm_snap_remove(hass, target_host, target_vm, target_cmnd, conn_details
     return True
 
 
-async def taskStatus(hass, task, command):
+def taskStatus(hass, task, command):
     """Check status of running task."""
-    from asyncio import sleep
+    from time import sleep
     from homeassistant.components import persistent_notification
 
     # wait while task is in progress
@@ -454,18 +457,18 @@ async def taskStatus(hass, task, command):
                 "Task %s progress %s", task.info.eventChainId, task.info.progress
             )
 
-        await sleep(2)
+        sleep(2)
 
     # output task status once complete
     if task.info.state == "success":
         _LOGGER.info("Sending command to '%s' complete", task.info.entityName)
 
         message = "Complete - " + command
-        persistent_notification.async_create(hass, message, "ESXi Stats")
+        persistent_notification.create(hass, message, "ESXi Stats")
     if task.info.state == "error":
         _LOGGER.info("Sending command to '%s' failed", task.info.entityName)
         _LOGGER.info(task.info.error.msg)
 
         message = "Failed - " + command + "\n\n"
         message += task.info.error.msg
-        persistent_notification.async_create(hass, message, "ESXi Stats")
+        persistent_notification.create(hass, message, "ESXi Stats")

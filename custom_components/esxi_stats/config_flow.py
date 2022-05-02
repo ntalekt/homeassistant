@@ -61,7 +61,8 @@ class ESXIiStatslowHandler(config_entries.ConfigFlow):
                 return self.async_abort(reason="already_configured")
 
             # If it is not, continue with communication test
-            valid = await self._test_communication(
+            valid = await self.hass.async_add_executor_job(
+                self._test_communication,
                 user_input["host"],
                 user_input["port"],
                 user_input["verify_ssl"],
@@ -142,10 +143,10 @@ class ESXIiStatslowHandler(config_entries.ConfigFlow):
             if host == entry.data.get("host"):
                 return True
 
-    async def _test_communication(self, host, port, verify_ssl, username, password):
+    def _test_communication(self, host, port, verify_ssl, username, password):
         """Return true if the communication is ok."""
         try:
-            conn = await esx_connect(host, username, password, port, verify_ssl)
+            conn = esx_connect(host, username, password, port, verify_ssl)
             _LOGGER.debug(conn)
 
             esx_disconnect(conn)

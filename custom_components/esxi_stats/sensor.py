@@ -55,9 +55,9 @@ class esxiSensor(Entity):
         self._cond = cond
         self._obj = obj
 
-    async def async_update(self):
+    def update(self):
         """Update the sensor."""
-        await self.hass.data[DOMAIN_DATA][self._entry_id]["client"].update_data()
+        self.hass.data[DOMAIN_DATA][self._entry_id]["client"].update_data()
         self._data = self.hass.data[DOMAIN_DATA][self._entry_id][self._cond][self._obj]
 
         # Set state and measurement
@@ -103,7 +103,7 @@ class esxiSensor(Entity):
         return self._measurement
 
     @property
-    def device_state_attributes(self):
+    def extra_state_attributes(self):
         """Return the state attributes."""
         return self._attr
 
