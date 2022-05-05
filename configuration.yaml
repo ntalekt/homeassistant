@@ -146,6 +146,14 @@ amcrest:
       - motion_detected
     stream_source: rtsp
 
+  - host: !secret amcrest_back_host
+    name: Back
+    username: !secret amcrest_user
+    password: !secret amcrest_pass
+    binary_sensors:
+      - motion_detected
+    stream_source: rtsp
+
 breaking_changes:
 
 ffmpeg:
