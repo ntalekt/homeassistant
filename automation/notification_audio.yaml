@@ -285,4 +285,40 @@
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: "usertwo has left REDACTED and will arrive home in about {{states('sensor.usertwo_to_home')}} minutes."
-            
+
+##########################################################
+## Sonos - Leave for gym
+##########################################################
+
+- alias: notification audio leave for gym
+  trigger:
+    - platform: state
+      entity_id: sensor.usertwo_to_lifetime
+    - platform: state
+      entity_id: sensor.userone_to_lifetime
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.life360_userone_REDACTED
+        state: 'home'
+      - condition: time
+        after: '13:00'
+        before: '18:00'
+      - condition: state
+        entity_id: input_boolean.disable_voice_greeting
+        state: 'off'
+      - condition: template
+        value_template: >
+          {{ states('sensor.usertwo_to_lifetime') | float ==
+             states('sensor.userone_to_lifetime') | float }}
+  action:
+    - delay: '00:00:10'
+    - service: script.turn_on
+      entity_id: script.say
+      data_template:
+        variables:
+          master: 'media_player.chalkboard_room'
+          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
+          volume: '.6'
+          what: "If you are going to Lifetime you should leave now to meet usertwo in {{states('sensor.userone_to_lifetime')}} minutes."

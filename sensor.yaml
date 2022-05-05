@@ -636,3 +636,15 @@
   api_key: !secret google_travel_api
   origin: !secret device_tracker_userone
   destination: zone.home
+
+- platform: google_travel_time
+  name: userone To Lifetime
+  api_key: !secret google_travel_api
+  origin: !secret device_tracker_userone
+  destination: zone.lifetime
+
+- platform: google_travel_time
+  name: usertwo To Lifetime
+  api_key: !secret google_travel_api
+  origin: !secret device_tracker_usertwo
+  destination: zone.lifetime
