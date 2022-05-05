@@ -212,7 +212,7 @@ tts:
   - platform: google_translate
     cache: true
     time_memory: 300
-    base_url: http://REDACTED54:8123
+    base_url: http://REDACTED:8123
     
 sonos:
   media_player:
@@ -220,7 +220,7 @@ sonos:
       - REDACTED
       - REDACTED
       - REDACTED
-      - REDACTED52
+      - REDACTED
 
 #tuya:
 #  username: !secret tuya_username
