@@ -24,3 +24,5 @@ r.jpg
 cox_usage.json
 cox_usage.py
 *.pyc
+*.log.*
+blueprints/
