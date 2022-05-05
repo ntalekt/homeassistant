@@ -18,7 +18,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * Software
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
     * Home Assistant Version: 2022.4.7
-  * [Docker v20.10.12](https://github.com/docker/docker-ce/releases)
+  * [Docker v20.10.14](https://github.com/docker/docker-ce/releases)
   * [Traefik v2.2.1 proxy](https://www.smarthomebeginner.com/traefik-2-docker-tutorial/)
   * SSL via [Let's Encrypt](https://letsencrypt.org/)
   
