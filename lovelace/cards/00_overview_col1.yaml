@@ -154,6 +154,25 @@ cards:
           action: more-info
         hold_action:
           action: more-info
+      - type: "custom:button-card"
+        entity: binary_sensor.back_occupancy_on
+        color_type: card
+        name: Back
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+          icon: mdi:motion-sensor
+        - value: 'off'
+          icon: mdi:walk
+          color: rgb(67, 73, 82)
+        style:
+         - color: var(--icon-off-color)
+        layout: icon_name
+        tap_action:
+          action: more-info
+          entity: camera.back
+        hold_action:
+          action: more-info
     ##########################################################
     ## Door sensor row
     ##########################################################

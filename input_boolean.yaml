@@ -79,6 +79,12 @@ office_occupancy:
   icon:
     mdi:account
 
+back_occupancy:
+  name: Back Occupancy
+  initial: off
+  icon:
+    mdi:account
+
 ##########################################################
 ## Sleeptime
 ##########################################################
