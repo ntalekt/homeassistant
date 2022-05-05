@@ -89,7 +89,7 @@ cards:
           action: more-info
   - type: horizontal-stack
     cards:
-      - entity: sensor.docker_ub1_homeassistant_cpu
+      - entity: sensor.docker3_homeassistant_cpu
         max: 100
         min: 0
         name: CPU
@@ -99,7 +99,7 @@ cards:
           yellow: 50
         theme: default
         type: gauge
-      - entity: sensor.docker_ub1_homeassistant_memory_percent
+      - entity: sensor.docker3_homeassistant_memory_percent
         max: 100
         min: 0
         name: Memory
@@ -134,6 +134,64 @@ cards:
         name: Uptime
         hours_to_show: 72
         icon: mdi:clock
+    ##########################################################
+    ## VMware
+    ##########################################################
+  - type: "custom:button-card"
+    name: ESXi Host
+#    color_type: label-card
+#    color: rgb(240,240,240)
+    styles:
+      card:
+        - font-size: 24px
+  - type: horizontal-stack
+    cards:
+      - entity: sensor.esxi_vmhost_esxi1_cpu_pct
+        max: 100
+        min: 0
+        name: CPU
+        severity:
+          green: 0
+          red: 80
+          yellow: 50
+        theme: default
+        type: gauge
+      - entity: sensor.esxi_vmhost_esxi1_mem_pct
+        max: 100
+        min: 0
+        name: Memory
+        severity:
+          green: 0
+          red: 90
+          yellow: 70
+        theme: default
+        type: gauge
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.esxi_datastore_datastore1
+        name: DS1 (Free)
+        show:
+          graph: bar
+        hours_to_show: 72
+        line_color: '#FF851B'
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.esxi_datastore_datastore2
+        name: DS2 (Free)
+        show:
+          graph: bar
+        hours_to_show: 72
+        line_color: '#FF851B'
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.esxi_datastore_datastore3
+        name: DS3 (Free)
+        show:
+          graph: bar
+        hours_to_show: 72
+        line_color: '#FF851B'
     ##########################################################
     ## Unifi
     ##########################################################

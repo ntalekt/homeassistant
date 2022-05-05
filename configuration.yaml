@@ -58,7 +58,9 @@ lovelace:
       type: module
 
 shell_command:
-  docker_image_prune: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED54 'docker image prune -af'"
+  docker_image_prune_docker1: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED54 'docker image prune -af'"
+  docker_image_prune_docker2: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED53 'docker image prune -af'"
+  docker_image_prune_docker3: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED 'docker image prune -af'"
 
 system_health:
 
@@ -161,7 +163,14 @@ life360:
   error_threshold: 3
 
 monitor_docker:
-  - name: docker-ub1
+  - name: docker1
+    url: tcp://REDACTED54:2375
+  - name: docker2
+    url: tcp://REDACTED53:2375
+    containers:
+      - unifi-controller
+  - name: docker3
+    url: tcp://REDACTED:2375
     containers:
       - homeassistant
 

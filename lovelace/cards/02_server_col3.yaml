@@ -1,7 +1,7 @@
 type: vertical-stack
 cards:
   - type: "custom:button-card"
-    name: Docker Host
+    name: Docker1
 #    color_type: label-card
 #    color: rgb(240,240,240)
     styles:
@@ -10,7 +10,7 @@ cards:
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
-        entity: sensor.docker_ub1_containers_running
+        entity: sensor.docker1_containers_running
         name: Running
         show_state: true
         color: rgb(68,115,158)
@@ -19,7 +19,7 @@ cards:
           - operator: template
             value: >
               [[[
-                return states['sensor.docker_ub1_containers_running'].state == '0';
+                return states['sensor.docker1_containers_running'].state == '0';
               ]]]
             color: rgb(255,65,54)
           - operator: default
@@ -27,7 +27,7 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: sensor.docker_ub1_containers_stopped
+        entity: sensor.docker1_containers_stopped
         name: Stopped
         show_state: true
         color: rgb(68,115,158)
@@ -36,7 +36,7 @@ cards:
           - operator: template
             value: >
               [[[
-                return states['sensor.docker_ub1_containers_stopped'].state != '0';
+                return states['sensor.docker1_containers_stopped'].state != '0';
               ]]]
             color: rgb(255,65,54)
           - operator: default
@@ -44,7 +44,7 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: sensor.docker_ub1_containers_paused
+        entity: sensor.docker1_containers_paused
         name: Paused
         show_state: true
         color: rgb(68,115,158)
@@ -53,7 +53,7 @@ cards:
           - operator: template
             value: >
               [[[
-                return states['sensor.docker_ub1_containers_paused'].state != '0';
+                return states['sensor.docker1_containers_paused'].state != '0';
               ]]]
             color: rgb(255,65,54)
           - operator: default
@@ -61,19 +61,19 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: sensor.docker_ub1_images
+        entity: sensor.docker1_images
         name: Images
         show_state: true
         color: rgb(68,115,158)
         size: 30%
         tap_action:
           action: call-service
-          service: shell_command.docker_image_prune
+          service: shell_command.docker_image_prune_docker1
         state:
           - operator: template
             value: >
               [[[
-                return states['sensor.docker_ub1_containers_running'].state != states['sensor.docker_ub1_images'].state;
+                return states['sensor.docker1_containers_running'].state != states['sensor.docker1_images'].state;
               ]]]
             color: rgb(255,65,54)
           - operator: default
@@ -82,7 +82,7 @@ cards:
           action: more-info
   - type: horizontal-stack
     cards:
-      - entity: sensor.docker_ub1_cpu
+      - entity: sensor.docker1_cpu
         max: 100
         min: 0
         name: CPU
@@ -92,7 +92,7 @@ cards:
           yellow: 50
         theme: default
         type: gauge
-      - entity: sensor.docker_ub1_memory_percent
+      - entity: sensor.docker1_memory_percent
         max: 100
         min: 0
         name: Memory
@@ -103,11 +103,10 @@ cards:
         theme: default
         type: gauge
 
-    ##########################################################
-    ## VMware
-    ##########################################################
+
+
   - type: "custom:button-card"
-    name: ESXi Host
+    name: Docker2
 #    color_type: label-card
 #    color: rgb(240,240,240)
     styles:
@@ -115,7 +114,80 @@ cards:
         - font-size: 24px
   - type: horizontal-stack
     cards:
-      - entity: sensor.esxi_vmhost_esxi1_cpu_pct
+      - type: "custom:button-card"
+        entity: sensor.docker2_containers_running
+        name: Running
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker2_containers_running'].state == '0';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.docker2_containers_stopped
+        name: Stopped
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker2_containers_stopped'].state != '0';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.docker2_containers_paused
+        name: Paused
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker2_containers_paused'].state != '0';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.docker2_images
+        name: Images
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        tap_action:
+          action: call-service
+          service: shell_command.docker_image_prune_docker2
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker2_containers_running'].state != states['sensor.docker2_images'].state;
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+  - type: horizontal-stack
+    cards:
+      - entity: sensor.docker2_cpu
         max: 100
         min: 0
         name: CPU
@@ -125,7 +197,7 @@ cards:
           yellow: 50
         theme: default
         type: gauge
-      - entity: sensor.esxi_vmhost_esxi1_mem_pct
+      - entity: sensor.docker2_memory_percent
         max: 100
         min: 0
         name: Memory
@@ -135,29 +207,107 @@ cards:
           yellow: 70
         theme: default
         type: gauge
+
+  - type: "custom:button-card"
+    name: Docker3
+#    color_type: label-card
+#    color: rgb(240,240,240)
+    styles:
+      card:
+        - font-size: 24px
   - type: horizontal-stack
     cards:
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.esxi_datastore_datastore1
-        name: DS1 (Free)
-        show:
-          graph: bar
-        hours_to_show: 72
-        line_color: '#FF851B'
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.esxi_datastore_datastore2
-        name: DS2 (Free)
-        show:
-          graph: bar
-        hours_to_show: 72
-        line_color: '#FF851B'
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.esxi_datastore_datastore3
-        name: DS3 (Free)
-        show:
-          graph: bar
-        hours_to_show: 72
-        line_color: '#FF851B'
+      - type: "custom:button-card"
+        entity: sensor.docker3_containers_running
+        name: Running
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker3_containers_running'].state == '0';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.docker3_containers_stopped
+        name: Stopped
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker3_containers_stopped'].state != '0';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.docker3_containers_paused
+        name: Paused
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker3_containers_paused'].state != '0';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.docker3_images
+        name: Images
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        tap_action:
+          action: call-service
+          service: shell_command.docker_image_prune_docker3
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker3_containers_running'].state != states['sensor.docker3_images'].state;
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+  - type: horizontal-stack
+    cards:
+      - entity: sensor.docker3_cpu
+        max: 100
+        min: 0
+        name: CPU
+        severity:
+          green: 0
+          red: 80
+          yellow: 50
+        theme: default
+        type: gauge
+      - entity: sensor.docker3_memory_percent
+        max: 100
+        min: 0
+        name: Memory
+        severity:
+          green: 0
+          red: 90
+          yellow: 70
+        theme: default
+        type: gauge
+
