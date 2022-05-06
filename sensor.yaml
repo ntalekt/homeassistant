@@ -544,82 +544,82 @@
 ## Cox Usage - https://github.com/ntalekt/coxusage-docker
 ##########################################################
 
-- platform: command_line
-  command: cal $(date +"%m %Y") | awk 'NF {DAYS = $NF}; END {print DAYS}'
-  name: Days In Current Month
-  scan_interval: 3600
+# - platform: command_line
+#   command: cal $(date +"%m %Y") | awk 'NF {DAYS = $NF}; END {print DAYS}'
+#   name: Days In Current Month
+#   scan_interval: 3600
 
-- platform: file
-  name: Cox Utilization
-  file_path: /shared/coxusage.json
-  value_template: >
-    {% if value_json is defined %}
-      {% if value_json.dumUsage | int == 0 and value_json.dumLimit | int == 0 and value_json.dumUtilization | int == 0 %}
-        stats unavailable
-      {% else %}
-        {{ value_json.dumUsage | int }} / {{ value_json.dumLimit | int }} GB ({{ value_json.dumUtilization | int }} %)
-      {% endif %}
-    {% else %}
-      undefined
-    {% endif %}
+# - platform: file
+#   name: Cox Utilization
+#   file_path: /shared/coxusage.json
+#   value_template: >
+#     {% if value_json is defined %}
+#       {% if value_json.dumUsage | int == 0 and value_json.dumLimit | int == 0 and value_json.dumUtilization | int == 0 %}
+#         stats unavailable
+#       {% else %}
+#         {{ value_json.dumUsage | int }} / {{ value_json.dumLimit | int }} GB ({{ value_json.dumUtilization | int }} %)
+#       {% endif %}
+#     {% else %}
+#       undefined
+#     {% endif %}
 
-- platform: file
-  name: Cox Perc
-  file_path: /shared/coxusage.json
-  value_template: >
-    {% if value_json is defined %}
-      {% if value_json.dumUtilization | int == 0 %}
-        stats unavailable
-      {% else %}
-        {{ value_json.dumUtilization | int }}
-      {% endif %}
-    {% else %}
-      undefined
-    {% endif %}
+# - platform: file
+#   name: Cox Perc
+#   file_path: /shared/coxusage.json
+#   value_template: >
+#     {% if value_json is defined %}
+#       {% if value_json.dumUtilization | int == 0 %}
+#         stats unavailable
+#       {% else %}
+#         {{ value_json.dumUtilization | int }}
+#       {% endif %}
+#     {% else %}
+#       undefined
+#     {% endif %}
 
-- platform: file
-  name: Cox Time Left
-  file_path: /shared/coxusage.json
-  value_template: >
-    {% if value_json is defined %}
-      {% if value_json.dumDaysLeft is defined %}
-        {{ value_json.dumDaysLeft | int }} Days
-      {% else %}
-        unknown
-      {% endif %}
-    {% else %}
-      undefined
-    {% endif %}
+# - platform: file
+#   name: Cox Time Left
+#   file_path: /shared/coxusage.json
+#   value_template: >
+#     {% if value_json is defined %}
+#       {% if value_json.dumDaysLeft is defined %}
+#         {{ value_json.dumDaysLeft | int }} Days
+#       {% else %}
+#         unknown
+#       {% endif %}
+#     {% else %}
+#       undefined
+#     {% endif %}
 
-- platform: file
-  name: Cox Avg GB Current
-  file_path: /shared/coxusage.json
-  value_template: >
-    {% if value_json is defined %}
-      {% if value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
-        stats unavailable
-      {% elif states.sensor.days_in_current_month.state is defined %}
-        {{ (float(value_json.dumUsage) / (float(states.sensor.days_in_current_month.state) - float(value_json.dumDaysLeft))) | round(1) }} GB per day
-      {% else %}
-        month_undefined
-      {% endif %}
-    {% else %}
-      undefined
-    {% endif %}
+# - platform: file
+#   name: Cox Avg GB Current
+#   file_path: /shared/coxusage.json
+#   value_template: >
+#     {% if value_json is defined %}
+#       {% if value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
+#         stats unavailable
+#       {% elif states.sensor.days_in_current_month.state is defined %}
+#         {{ (float(value_json.dumUsage) / (float(states.sensor.days_in_current_month.state) - float(value_json.dumDaysLeft))) | round(1) }} GB per day
+#       {% else %}
+#         month_undefined
+#       {% endif %}
+#     {% else %}
+#       undefined
+#     {% endif %}
 
-- platform: file
-  name: Cox Avg GB Remaining
-  file_path: /shared/coxusage.json
-  value_template: >
-    {% if value_json is defined %}
-      {% if value_json.dumLimit | int == 0 and value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
-        stats unavailable
-      {% else %}
-        {{ ((float(value_json.dumLimit) - float(value_json.dumUsage)) / float(value_json.dumDaysLeft)) | round(1) }} GB per day
-      {% endif %}
-    {% else %}
-      undefined
-    {% endif %}
+# - platform: file
+#   name: Cox Avg GB Remaining
+#   file_path: /shared/coxusage.json
+#   value_template: >
+#     {% if value_json is defined %}
+#       {% if value_json.dumLimit | int == 0 and value_json.dumUsage | int == 0 and value_json.dumDaysLeft | int == 0 %}
+#         stats unavailable
+#       {% else %}
+#         {{ ((float(value_json.dumLimit) - float(value_json.dumUsage)) / float(value_json.dumDaysLeft)) | round(1) }} GB per day
+#       {% endif %}
+#     {% else %}
+#       undefined
+#     {% endif %}
 
 ##########################################################
 ## Google travel time
