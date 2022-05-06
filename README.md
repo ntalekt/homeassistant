@@ -36,11 +36,11 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt0c-20&linkId=0dfbcad4a9df3b81570623f0e23b562a) x3
 * [LE LampUX RGB Lamp](https://smile.amazon.com/gp/product/B07Q8SMG8R/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1)
 * [Goldwin Wifi Controller](https://smile.amazon.com/gp/product/B07JB5N3Y7/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
-* [Pentair IntelliBrite] (https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-lighting/intellibrite_5g_underwatercolor-changingledpoolandspalights.html)
+* [Pentair IntelliBrite](https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-lighting/intellibrite_5g_underwatercolor-changingledpoolandspalights.html)
 
 #### Climate
 * [Trane XL824](https://smile.amazon.com/Trane-Programmable-Comfort-Control-Thermostat/dp/B085W87WY3/ref=sr_1_1?dchild=1&keywords=xl824&qid=1595374599&s=hi&sr=1-1) x2
-* [Pentair EasyTouch Pool/Spa Controller] (https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-automation/easytouch_controlsystems.html)
+* [Pentair EasyTouch Pool/Spa Controller](https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-automation/easytouch_controlsystems.html)
 
 #### Outlets / Switches
 * [Xiaomi Aqara Smart Wireless Switch](https://www.aqara.com/us/wireless_mini_switch.html) x4
@@ -81,11 +81,11 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 #### Other Hardware
 * [QNAP TS-251+ NAS](https://www.amazon.com/gp/product/B015VNLEOQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015VNLEOQ&linkCode=as2&tag=ntalekt0c-20&linkId=1419a45442b188e9223b9afd7da40d5c)
 * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
-* [APC APC BX1500M] (https://www.amazon.com/APC-Battery-Protector-BackUPS-BX1500M/dp/B06VY6FXMM)
+* [APC APC BX1500M](https://www.amazon.com/APC-Battery-Protector-BackUPS-BX1500M/dp/B06VY6FXMM)
 
 #### Software
 * [Life360 Location Tracking App](https://www.life360.com/)
-* [Pi-hole] (https://pi-hole.net/)
+* [Pi-hole](https://pi-hole.net/)
 
 ## Example Automations
 ### Notification Audio
@@ -110,7 +110,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * Exterior lights (porch, side entrance, pool, landscape) ([GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt0c-20&linkId=0dfbcad4a9df3b81570623f0e23b562a), [Pentair IntelliBrite] (https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-lighting/intellibrite_5g_underwatercolor-changingledpoolandspalights.html), [Wyze Plug Outdoor](https://smile.amazon.com/WYZE-Outdoor-Plug-Monitoring-Compatible/dp/B08NXY7WWX/ref=sr_1_2?crid=1G9EML5CAT98A&keywords=wyze+outdoor+switch&qid=1651869807&sprefix=wyze+outdoor+switch%2Caps%2C129&sr=8-2)) on 5 minutes before sunset.
 * Exterior lights ([GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt0c-20&linkId=0dfbcad4a9df3b81570623f0e23b562a)) off 30 minutes after sunrise.
 * Exterior lights ([GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt0c-20&linkId=0dfbcad4a9df3b81570623f0e23b562a)) dim to 35% at 9:00pm
-* Exterior pool lights ([Pentair IntelliBrite] (https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-lighting/intellibrite_5g_underwatercolor-changingledpoolandspalights.html)) off if no motion after 10pm
+* Exterior pool lights ([Pentair IntelliBrite](https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-lighting/intellibrite_5g_underwatercolor-changingledpoolandspalights.html)) off if no motion after 10pm
 * Interior under cabinet transition during sunset ([Goldwin Wifi Controller](https://smile.amazon.com/gp/product/B07JB5N3Y7/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1))
 * Interior lights off if no motion
 * Interior lights on if motion
