@@ -3,6 +3,19 @@ type: vertical-stack
 cards:
   - type: horizontal-stack
     cards:
+    - type: entities
+      title: Deluge
+      entities:
+        - entity: switch.deluge_switch
+        - entity: sensor.deluge_switch_down_speed
+          icon: mdi:download
+        - entity: sensor.deluge_switch_up_speed
+          icon: mdi:upload
+        - entity: sensor.deluge_switch_status
+          icon: mdi:script
+      show_header_toggle: false
+  - type: horizontal-stack
+    cards:
       - type: glance
         entities:
           - entity: sensor.octoprint_job_percentage

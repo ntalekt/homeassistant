@@ -6,10 +6,10 @@
 ## Harmony Hub
 ##########################################################
 
-- platform: harmony
-  name: Media Center
-  host: !secret harmony_hub_host
+# - platform: harmony
+#   name: Media Center
+#   host: !secret harmony_hub_host
 
-- platform: harmony
-  name: Master
-  host: !secret master_harmony_hub_host
+# - platform: harmony
+#   name: Master
+#   host: !secret master_harmony_hub_host

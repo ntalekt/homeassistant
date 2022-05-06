@@ -96,7 +96,7 @@
     pool_contract_signed:
       value_template: '{{ ((as_timestamp(now())-(states.input_datetime.pool_contract_signed.attributes.timestamp)) | int /60/1440) | round(0) }}'
       unit_of_measurement: 'Days'
-      entity_id: input_datetime.pool_contract_signed,sensor.time
+      # entity_id: input_datetime.pool_contract_signed,sensor.time
 
     media_center_remote:
       value_template: "{{ states.remote.media_center.attributes.current_activity }}"

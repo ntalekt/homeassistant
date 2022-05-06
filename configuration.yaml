@@ -73,11 +73,11 @@ http:
 ## Components
 #################################################################
 
-airvisual:
-  api_key: !secret airvisual_api
-  geographies:
-      latitude: !secret homeassistant_latitude
-      longitude: !secret homeassistant_longitude
+# airvisual:
+#   api_key: !secret airvisual_api
+#   geographies:
+#       latitude: !secret homeassistant_latitude
+#       longitude: !secret homeassistant_longitude
 
 alexa:
   smart_home:
@@ -182,15 +182,15 @@ monitor_docker:
     containers:
       - homeassistant
 
-nexia:
-  username: !secret nexia_username
-  password: !secret nexia_password
+# nexia:
+#   username: !secret nexia_username
+#   password: !secret nexia_password
 
-octoprint:
-  host: !secret octopi_host
-  api_key: !secret octoprint_api
-  bed: true
-  number_of_tools: 1
+# octoprint:
+#   host: !secret octopi_host
+#   api_key: !secret octoprint_api
+#   bed: true
+#   number_of_tools: 1
 
 #pi_hole:
 #  - host: !secret pihole_host

@@ -63,16 +63,4 @@ cards:
         - entity: sensor.pi_hole2_ads_blocked_today
         - entity: sensor.pi_hole2_ads_percentage_blocked_today
       show_header_toggle: false
-  - type: horizontal-stack
-    cards:
-    - type: entities
-      title: Deluge
-      entities:
-        - entity: switch.deluge_switch
-        - entity: sensor.deluge_switch_down_speed
-          icon: mdi:download
-        - entity: sensor.deluge_switch_up_speed
-          icon: mdi:upload
-        - entity: sensor.deluge_switch_status
-          icon: mdi:script
-      show_header_toggle: false
+
