@@ -130,6 +130,23 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
+        icon: mdi:image-filter-hdr
+        size: 30%
+        entity: switch.outdoor_plug_1
+        name: Landscape
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.outdoor_plug_1
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
         icon: mdi:car-light-high
         size: 30%
         entity: light.pentair_REDACTED_lights
@@ -146,6 +163,7 @@ cards:
           color: rgb(46, 204, 64)
         hold_action:
           action: more-info
+
 
     ##########################################################
     ## Pool

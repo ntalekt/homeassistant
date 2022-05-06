@@ -112,6 +112,9 @@
         entity_id: binary_sensor.chalkboard_occupancy_on
         state: "off"
       - condition: state
+        entity_id: binary_sensor.back_occupancy_on
+        state: "off"
+      - condition: state
         entity_id: input_boolean.disable_interior_off_830pm
         state: "off"
       - condition: state
@@ -222,11 +225,18 @@
       entity_id: input_boolean.disable_exterior_on_sunset
       state: 'off'
   action:
+    # Porch and side entrance lights
     - service: light.turn_on
       entity_id: light.exterior_lights
       data:
         brightness: 254
-
+    # Front/back 12v landscape lights
+    - service: switch.turn_on
+      entity_id: switch.outdoor_plug_1
+    # Spa and Pool light
+    - service: light.turn_on
+      entity_id: light.pentair_REDACTED_lights
+      
 - alias: lights exterior lights dim at 9pm
   trigger:
     - platform: time
@@ -242,6 +252,31 @@
         transition: 60
         brightness_pct: 15
 
+- alias: pool light off if no motion after 10pm
+  trigger:
+    - platform: time_pattern
+      minutes: "/30"
+      seconds: 00
+  condition:
+    - condition: time
+      after: "22:00:00"
+      before: "05:00:00"
+    - condition: state
+      entity_id: binary_sensor.living_occupancy_on
+      state: "off"
+    - condition: state
+      entity_id: binary_sensor.chalkboard_occupancy_on
+      state: "off"
+    - condition: state
+      entity_id: binary_sensor.back_occupancy_on
+      state: "off"
+    - condition: state
+      entity_id: remote.media_center
+      state: "off"
+  action:
+    - service: light.turn_off
+      entity_id: light.pentair_REDACTED_lights
+
 - alias: lights exterior lights off 30min after sunrise
   trigger:
     - platform: sun
@@ -256,3 +291,5 @@
       entity_id: light.exterior_lights
       data:
         transition: 60
+    - service: switch.turn_off
+      entity_id: switch.outdoor_plug_1

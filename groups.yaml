@@ -7,3 +7,9 @@ household:
   entities:
     - device_tracker.life360_userone_REDACTED
     - device_tracker.life360_REDACTED_REDACTED
+
+exterior lights:
+  name: Exterior Lights
+  entities:
+    - light.exterior_lights
+    - switch.outdoor_plug_1
