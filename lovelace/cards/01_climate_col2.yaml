@@ -11,7 +11,7 @@ cards:
 
         - type: custom:mini-graph-card
           entities:
-            - sensor.pentair_REDACTED_air_temperature
+            - sensor.air_sensor
           name: Outdoor
           line_color: '#0074D9'
           line_width: 8
@@ -19,15 +19,36 @@ cards:
 
         - type: custom:mini-graph-card
           entities:
-            - sensor.pentair_REDACTED_pool_temperature
+            - sensor.pool_last_temp
           name: Water Temp
           line_color: '#0074D9'
           line_width: 8
           font_size: 75
 
+  # - type: horizontal-stack
+  #   cards:      
+  #     - type: iframe
+  #       url: https://embed.windy.com/embed2.html?lat=33.409&lon=-112.003&detailLat=33.619&detailLon=-111.956&width=650&height=450&zoom=9&level=surface&overlay=radar&product=radar&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=mph&metricTemp=%C2%B0F&radarRange=-1
+  #       aspect_ratio: 75%
 
   - type: horizontal-stack
     cards:
-      - type: thermostat
-        entity: climate.pentair_REDACTED_spa_heat
-        name: Spa
+      - type: custom:simple-thermostat
+        entity: water_heater.spa
+        service:
+          domain: water_heater
+          service: set_temperature      
+  - type: horizontal-stack
+    cards:
+      - type: custom:simple-thermostat
+        entity: climate.downstairs_nativezone
+        layout:
+          step: row
+        control: false
+  - type: horizontal-stack
+    cards:
+      - type: custom:simple-thermostat
+        entity: climate.upstairs_nativezone
+        layout:
+          step: row
+        control: false

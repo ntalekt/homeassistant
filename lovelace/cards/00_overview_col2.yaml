@@ -149,13 +149,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:car-light-high
         size: 30%
-        entity: light.pentair_REDACTED_lights
+        entity: light.lights
         name: Pool
         tap_action:
           action: call-service
           service: light.toggle
           service_data:
-            entity_id: light.pentair_REDACTED_lights
+            entity_id: light.lights
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -173,13 +173,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:hot-tub
         size: 30%
-        entity: switch.pentair_REDACTED_spa
+        entity: switch.spa
         name: Spa
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.pentair_REDACTED_spa
+            entity_id: switch.spa
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -190,13 +190,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:waterfall
         size: 30%
-        entity: switch.pentair_REDACTED_spillway
+        entity: switch.spillway
         name: Spillway
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.pentair_REDACTED_spillway
+            entity_id: switch.spillway
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -204,17 +204,33 @@ cards:
           color: rgb(46, 204, 64)
         hold_action:
           action: more-info
-
+      - type: "custom:button-card"
+        icon: mdi:spray-bottle
+        size: 30%
+        entity: switch.intellichlor_1_superchlorinate
+        name: IntelliChlor
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.intellichlor_1_superchlorinate
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
       - type: "custom:button-card"
         icon: mdi:wave
         size: 30%
-        entity: switch.pentair_REDACTED_low_speed
+        entity: switch.pool
         name: LO
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.pentair_REDACTED_low_speed
+            entity_id: switch.pool
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -225,13 +241,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:waves
         size: 30%
-        entity: switch.pentair_REDACTED_high_speed
+        entity: switch.high_speed
         name: HI
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.pentair_REDACTED_high_speed
+            entity_id: switch.high_speed
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -239,6 +255,7 @@ cards:
           color: rgb(46, 204, 64)
         hold_action:
           action: more-info
+
 
     ##########################################################
     ## Third row buttons

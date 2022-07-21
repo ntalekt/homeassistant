@@ -146,18 +146,6 @@
       friendly_name: "Allergen 3:"
       icon_template: mdi:flower
 
-    pentair_REDACTED_pool_temperature:
-      value_template: "{{ states.climate.pentair_REDACTED_pool_heat.attributes.current_temperature }}"
-      friendly_name: "Pool Temp"
-      device_class: temperature
-      unit_of_measurement: °F
-
-    pentair_REDACTED_spa_temperature:
-      value_template: "{{ states.climate.pentair_REDACTED_spa_heat.attributes.current_temperature }}"
-      friendly_name: "Spa Temp"
-      device_class: temperature
-      unit_of_measurement: °F
-
     esxi_vmhost_esxi1_cpu_pct:
       value_template: >
         {% set usage = states.sensor.esxi_vmhost_REDACTED.attributes.cpuusage_ghz | default(0)  %}

@@ -5,43 +5,41 @@ cards:
     - type: entities
       title: Pool
       entities:
-        - entity: binary_sensor.pentair_REDACTED_chemistry_alarm 
-          icon: mdi:alarm-light
-          name: Chemistry Alarm
-        - entity: binary_sensor.pentair_REDACTED_scg_status
-          icon: mdi:alarm-light
-          name: SCG Status
-        - entity: sensor.pentair_REDACTED_scg_salt
-          icon: mdi:shaker-outline
-          name: SCG Salt
-        - entity: switch.pentair_REDACTED_spa
-          name: Spa
-          icon: mdi:hot-tub
-        - entity: switch.pentair_REDACTED_spillway
-          name: Spillway
-          icon: mdi:waterfall
-        - entity: light.pentair_REDACTED_lights
-          name: IntelliBrite
-          icon: mdi:car-light-high
-        - entity: switch.pentair_REDACTED_low_speed
-          name: IntelliFlo LO
-          icon: mdi:speedometer-slow
-        - entity: switch.pentair_REDACTED_high_speed
+        - entity: switch.high_speed
           name: IntelliFlo HI
           icon: mdi:speedometer
-        - entity: switch.pentair_REDACTED_ozonator
+        - entity: switch.intellichlor_1_superchlorinate
+          icon: mdi:shaker-outline
+          name: IntelliChlor SuperChlorinate
+        - entity: sensor.intellichlor_1_salt
+          icon: mdi:shaker-outline
+          name: IntelliChlor Salt
+        - entity: light.lights
+          name: IntelliBrite
+          icon: mdi:car-light-high
+        - entity: switch.ozonator
           name: Ozonator
           icon: mdi:virus-off
-        - entity: sensor.pentair_REDACTED_low_speed_pump_current_gpm
+        - entity: switch.pool
+          name: Pool
+          icon: mdi:pool
+        - entity: water_heater.pool         
+        - entity: switch.spa
+          name: Spa
+          icon: mdi:hot-tub
+        - entity: water_heater.spa
+        - entity: switch.spillway
+          name: Spillway
+          icon: mdi:waterfall
+        - entity: sensor.vsf_gpm
           name: Current GPM
           icon: mdi:waves-arrow-right
-        - entity: sensor.pentair_REDACTED_low_speed_pump_current_rpm
+        - entity: sensor.vsf_rpm
           name: Current RPM
           icon: mdi:reload
-        - entity: sensor.pentair_REDACTED_low_speed_pump_current_watts
+        - entity: sensor.vsf_power
           name: Current Watts
-
-
+        - entity: binary_sensor.vsf
       show_header_toggle: false
 
   - type: horizontal-stack
