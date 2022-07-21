@@ -2,11 +2,6 @@
 ## Input Boolean  ##
 ##############################################################
 
-test_text_notification_pushbullet:
-  name: Test Text Notification Pushbullet
-  initial: off
-  icon: mdi:test-tube
-
 test_text_notification_slack:
   name: Test Text Notification Slack
   initial: off
@@ -141,3 +136,32 @@ group_all_sonos:
   name: Play on all Speakers
   initial: off
   icon: mdi:speaker-wireless
+
+##########################################################
+## Interior camera detection mode
+##########################################################
+
+interior_camera_detection_mode:
+  name: Interior Camera Detection Mode
+  initial: off
+  icon: mdi:motion-sensor
+
+disable_interior_camera_detection:
+  name: Disable Interior Camera Detection
+  initial: on
+  icon: mdi:motion-sensor
+
+##########################################################
+## Interior camera recording mode
+##########################################################
+
+interior_camera_recording_mode:
+  name: Interior Camera Recording Mode
+  initial: off
+  icon: mdi:motion-sensor
+
+disable_interior_camera_recording:
+  name: Disable Interior Camera Recording
+  initial: on
+  icon: mdi:motion-sensor
+

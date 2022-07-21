@@ -54,7 +54,7 @@
       entity_id: input_boolean.back_occupancy
 
 #################################################################
-## Reset Bacl Occupancy
+## Reset Back Occupancy
 #################################################################
 
 - alias: occupancy back turn off after 10min of no motion
@@ -64,6 +64,15 @@
       to: "off"
       for:
         minutes: 10
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.back_occupancy
+
+- alias: occupancy back turn off if unavailable
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.back_motion_detected
+      to: "unavailable"
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.back_occupancy
@@ -97,6 +106,15 @@
     - service: input_boolean.turn_off
       entity_id: input_boolean.garage_occupancy
 
+- alias: occupancy garage turn off if unavailable
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_motion_detected
+      to: "unavailable"
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garage_occupancy
+
 #################################################################
 ## Chalkboard Room Occupancy
 #################################################################
@@ -126,6 +144,15 @@
     - service: input_boolean.turn_off
       entity_id: input_boolean.chalkboard_occupancy
 
+- alias: occupancy chalkboard turn off if unavailable
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.chalkboard_motion_detected
+      to: "unavailable"
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.chalkboard_occupancy
+
 #################################################################
 ## Shop Occupancy
 #################################################################
@@ -151,6 +178,15 @@
       to: "off"
       for:
         minutes: 10
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.shop_occupancy
+
+- alias: occupancy shop turn off if unavailable
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.shop_motion_detected
+      to: "unavailable"
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.shop_occupancy
@@ -270,3 +306,135 @@
   action:
     - service: homeassistant.turn_off
       entity_id: input_boolean.vacation_mode
+
+#################################################################
+## Testing Frigate: https://github.com/blakeblackshear/frigate
+#################################################################
+
+- alias: Frigate interior detection mode on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.interior_camera_detection_mode
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.chalkboard_detect
+    - service: switch.turn_on
+      entity_id: switch.living_detect
+    - service: switch.turn_on
+      entity_id: switch.shop_detect
+    - service: switch.turn_on
+      entity_id: switch.garage_detect
+
+- alias: Frigate interior detection mode off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.interior_camera_detection_mode
+      to: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.chalkboard_detect
+    - service: switch.turn_off
+      entity_id: switch.living_detect
+    - service: switch.turn_off
+      entity_id: switch.shop_detect
+    - service: switch.turn_off
+      entity_id: switch.garage_detect
+
+- alias: Frigate interior recording mode on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.interior_camera_recording_mode
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.chalkboard_recordings
+    - service: switch.turn_on
+      entity_id: switch.living_recordings
+    - service: switch.turn_on
+      entity_id: switch.shop_recordings
+    - service: switch.turn_on
+      entity_id: switch.garage_recordings
+
+- alias: Frigate interior recording mode off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.interior_camera_recording_mode
+      to: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.chalkboard_recordings
+    - service: switch.turn_off
+      entity_id: switch.living_recordings
+    - service: switch.turn_off
+      entity_id: switch.shop_recordings
+    - service: switch.turn_off
+      entity_id: switch.garage_recordings
+
+        ##########################################################
+        ## If home turn off detections on interior cameras
+        ##########################################################
+
+- alias: Frigate interior detection off when home
+  trigger:
+    - platform: state
+      entity_id: group.household
+      to: 'home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_interior_camera_detection
+      state: "off"
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.interior_camera_detection_mode
+
+        ##########################################################
+        ## If not home turn on detections on interior cameras
+        ##########################################################
+
+- alias: Frigate interior detection on when not_home
+  trigger:
+    - platform: state
+      entity_id: group.household
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_interior_camera_detection
+      state: "off"
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.interior_camera_detection_mode
+
+        ##########################################################
+        ## If home turn off recording on interior cameras
+        ##########################################################
+
+- alias: Frigate interior recording off when home
+  trigger:
+    - platform: state
+      entity_id: group.household
+      to: 'home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_interior_camera_recording
+      state: "off"
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.interior_camera_recording_mode
+
+        ##########################################################
+        ## If not home turn on recording on interior cameras
+        ##########################################################
+
+- alias: Frigate interior recording on when not_home
+  trigger:
+    - platform: state
+      entity_id: group.household
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_interior_camera_recording
+      state: "off"
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.interior_camera_recording_mode

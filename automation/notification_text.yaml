@@ -202,6 +202,93 @@
         message: "The garage door has been open for 30 minutes."
 
 ##########################################################
+## Frigate alerts
+##########################################################
+
+    ##########################################################
+    ## Frigate car entered the driveway
+    ##########################################################
+
+- alias: notification alert frigate car entered the driveway
+  trigger:
+    - platform: mqtt
+      topic: frigate/events
+      payload: new
+      value_template: "{{ value_json.type }}"
+  condition:
+    - "{{ trigger.payload_json['after']['label'] == 'car' }}"
+    - "{{ 'driveway' in trigger.payload_json['after']['entered_zones'] }}"
+  action:
+    - service: notify.slack
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} entered the {{trigger.payload_json["after"]["entered_zones"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        title: Frigate
+  mode: single
+
+    ##########################################################
+    ## Frigate car left the driveway
+    ##########################################################
+
+- alias: notification alert frigate car left the driveway
+  trigger:
+    - platform: mqtt
+      topic: frigate/events
+      payload: new
+      value_template: "{{ value_json.type }}"
+  condition:
+    - "{{ trigger.payload_json['after']['label'] == 'car' }}"
+    - "{{ 'driveway' in trigger.payload_json['before']['current_zones'] }}"
+    - "{{ 'street' in trigger.payload_json['after']['entered_zones'] }}"
+  action:
+    - service: notify.slack
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} has left the {{trigger.payload_json["after"]["entered_zones"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        title: Frigate
+  mode: single
+
+    ##########################################################
+    ## Frigate person in the front yard
+    ##########################################################
+
+- alias: notification alert frigate person in front yard
+  description: ""
+  trigger:
+    - platform: mqtt
+      topic: frigate/events
+      payload: new
+      value_template: "{{ value_json.type }}"
+  condition:
+    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+    - "{{ 'front_yard' in trigger.payload_json['after']['entered_zones'] }}"
+  action:
+    - service: notify.slack
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        title: Frigate
+  mode: single
+
+    ##########################################################
+    ## Frigate person detected
+    ##########################################################
+
+- alias: notification alert frigate person
+  description: ""
+  trigger:
+    - platform: mqtt
+      topic: frigate/events
+      payload: new
+      value_template: "{{ value_json.type }}"
+  condition:
+    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+    - "{{ not 'front' in trigger.payload_json['after']['camera'] }}"
+  action:
+    - service: notify.slack
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        title: Frigate
+  mode: single
+
+##########################################################
 ## Notify if critical device goes offline
 ##########################################################
 

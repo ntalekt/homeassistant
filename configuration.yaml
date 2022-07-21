@@ -12,6 +12,8 @@ homeassistant:
   allowlist_external_dirs:
     - /shared
     - /config
+  allowlist_external_urls:
+    - "https://ha.useroneREDACTED.com/api/frigate/notifications/"
 
 api:
 frontend:
