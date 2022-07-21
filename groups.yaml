@@ -5,11 +5,13 @@
 household:
   name: Household
   entities:
-    - device_tracker.life360_userone_REDACTED
-    - device_tracker.life360_REDACTED_REDACTED
+    - device_tracker.userone_REDACTED
+    - device_tracker.REDACTED_REDACTED
+    - device_tracker.userthree_REDACTED
 
-exterior lights:
-  name: Exterior Lights
+landscape lights:
+  name: landscape Lights
   entities:
-    - light.exterior_lights
     - switch.outdoor_plug_1
+    - light.outdoor_string
+    - light.smart_flood_lights

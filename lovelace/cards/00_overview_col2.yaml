@@ -132,13 +132,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:image-filter-hdr
         size: 30%
-        entity: switch.outdoor_plug_1
+        entity: group.landscape_lights
         name: Landscape
         tap_action:
           action: call-service
-          service: switch.toggle
+          service: homeassistant.turn_on
           service_data:
-            entity_id: switch.outdoor_plug_1
+            entity_id: group.landscape_lights
         state:
         - value: 'off'
 #          color: rgb(68,115,158)

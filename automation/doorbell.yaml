@@ -20,7 +20,11 @@
       state: 'below_horizon'
   action:
     - service: light.turn_on
-      entity_id: light.exterior_lights
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+      data:
+        brightness: 254
+    - service: light.turn_on
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
       data:
         brightness: 254
 
@@ -42,7 +46,12 @@
       state: 'below_horizon'
   action:
     - service: light.turn_on
-      entity_id: light.exterior_lights
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+      data:
+        brightness: 85
+        transition: 60
+    - service: light.turn_on
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
       data:
         brightness: 85
         transition: 60
@@ -61,7 +70,11 @@
       state: 'below_horizon'
   action:
     - service: light.turn_on
-      entity_id: light.exterior_lights
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+      data:
+        brightness: 254
+    - service: light.turn_on
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
       data:
         brightness: 254
 
@@ -83,7 +96,12 @@
       state: 'below_horizon'
   action:
     - service: light.turn_on
-      entity_id: light.exterior_lights
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+      data:
+        brightness: 85
+        transition: 60
+    - service: light.turn_on
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
       data:
         brightness: 85
         transition: 60

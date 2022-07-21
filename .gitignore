@@ -26,3 +26,4 @@ cox_usage.py
 *.pyc
 *.log.*
 blueprints/
+govee_learning.yaml

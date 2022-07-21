@@ -9,7 +9,7 @@
 - alias: "light sunset transition kitchen cabinets"
   trigger:
     - platform: time_pattern
-      minutes: "/2"
+      minutes: "/1"
       seconds: 00
   condition:
     condition: and
@@ -111,9 +111,9 @@
       - condition: state
         entity_id: binary_sensor.chalkboard_occupancy_on
         state: "off"
-      - condition: state
-        entity_id: binary_sensor.back_occupancy_on
-        state: "off"
+      # - condition: state
+      #   entity_id: binary_sensor.back_occupancy_on
+      #   state: "off"
       - condition: state
         entity_id: input_boolean.disable_interior_off_830pm
         state: "off"
@@ -227,16 +227,25 @@
   action:
     # Porch and side entrance lights
     - service: light.turn_on
-      entity_id: light.exterior_lights
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+      data:
+        brightness: 254
+    - service: light.turn_on
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
       data:
         brightness: 254
     # Front/back 12v landscape lights
     - service: switch.turn_on
       entity_id: switch.outdoor_plug_1
+    # Other Landscape lights
+    - service: light.turn_on
+      entity_id: light.outdoor_string
+    - service: light.turn_on
+      entity_id: light.smart_flood_lights
     # Spa and Pool light
     - service: light.turn_on
-      entity_id: light.pentair_REDACTED_lights
-      
+      entity_id: light.lights
+ 
 - alias: lights exterior lights dim at 9pm
   trigger:
     - platform: time
@@ -247,7 +256,12 @@
       state: 'off'
   action:
     - service: light.turn_on
-      entity_id: light.exterior_lights
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+      data:
+        transition: 60
+        brightness_pct: 15
+    - service: light.turn_on
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
       data:
         transition: 60
         brightness_pct: 15
@@ -267,15 +281,15 @@
     - condition: state
       entity_id: binary_sensor.chalkboard_occupancy_on
       state: "off"
-    - condition: state
-      entity_id: binary_sensor.back_occupancy_on
-      state: "off"
+    # - condition: state
+    #   entity_id: binary_sensor.back_occupancy_on
+    #   state: "off"
     - condition: state
       entity_id: remote.media_center
       state: "off"
   action:
     - service: light.turn_off
-      entity_id: light.pentair_REDACTED_lights
+      entity_id: light.lights
 
 - alias: lights exterior lights off 30min after sunrise
   trigger:
@@ -288,8 +302,18 @@
       state: 'off'
   action:
     - service: light.turn_off
-      entity_id: light.exterior_lights
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+      data:
+        transition: 60
+    - service: light.turn_off
+      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
       data:
         transition: 60
     - service: switch.turn_off
       entity_id: switch.outdoor_plug_1
+    - service: light.turn_off
+      entity_id: light.lights
+    - service: light.turn_off
+      entity_id: light.outdoor_string
+    - service: light.turn_off
+      entity_id: light.smart_flood_lights
