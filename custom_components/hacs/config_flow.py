@@ -14,7 +14,7 @@ from .base import HacsBase
 from .const import CLIENT_ID, DOMAIN, MINIMUM_HA_VERSION
 from .enums import ConfigurationType
 from .utils.configuration_schema import RELEASE_LIMIT, hacs_config_option_schema
-from .utils.logger import get_hacs_logger
+from .utils.logger import LOGGER
 
 
 class HacsFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
@@ -28,9 +28,10 @@ class HacsFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         self._errors = {}
         self.device = None
         self.activation = None
-        self.log = get_hacs_logger()
+        self.log = LOGGER
         self._progress_task = None
         self._login_device = None
+        self._reauth = False
 
     async def async_step_user(self, user_input):
         """Handle a flow initialized by the user."""
@@ -118,7 +119,29 @@ class HacsFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_device_done(self, _user_input):
         """Handle device steps"""
+        if self._reauth:
+            existing_entry = self.hass.config_entries.async_get_entry(self.context["entry_id"])
+            self.hass.config_entries.async_update_entry(
+                existing_entry, data={"token": self.activation.access_token}
+            )
+            await self.hass.config_entries.async_reload(existing_entry.entry_id)
+            return self.async_abort(reason="reauth_successful")
+
         return self.async_create_entry(title="", data={"token": self.activation.access_token})
+
+    async def async_step_reauth(self, user_input=None):
+        """Perform reauth upon an API authentication error."""
+        return await self.async_step_reauth_confirm()
+
+    async def async_step_reauth_confirm(self, user_input=None):
+        """Dialog that informs the user that reauth is required."""
+        if user_input is None:
+            return self.async_show_form(
+                step_id="reauth_confirm",
+                data_schema=vol.Schema({}),
+            )
+        self._reauth = True
+        return await self.async_step_device(None)
 
     @staticmethod
     @callback
