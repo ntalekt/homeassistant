@@ -113,7 +113,7 @@ cards:
     cards:
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.ha_db_size
+          - entity: sensor.hass_docker_db_size
         name: DB Size
         hours_to_show: 72
         icon: mdi:database

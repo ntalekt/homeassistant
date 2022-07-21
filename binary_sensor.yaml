@@ -52,13 +52,6 @@
 
 - platform: template
   sensors:
-    baby_occupancy_on:
-      friendly_name: Baby Occupancy
-      value_template: "{{ states.input_boolean.baby_occupancy.state == 'on' }}"
-      device_class: motion
-
-- platform: template
-  sensors:
     back_occupancy_on:
       friendly_name: Back Occupancy
       value_template: "{{ states.input_boolean.back_occupancy.state == 'on' }}"

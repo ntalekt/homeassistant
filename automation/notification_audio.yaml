@@ -17,7 +17,7 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.chalkboard_room'
+          master: 'media_player.office'
           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
           volume: '.6'
           what: >
@@ -158,13 +158,13 @@
 - alias: notification audio usertwo arrived at REDACTED
   trigger:
     - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
+      entity_id: device_tracker.REDACTED_REDACTED
       to: 'Work'
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: device_tracker.life360_userone_REDACTED
+        entity_id: device_tracker.userone_REDACTED
         state: 'home'
       - condition: time
         after: '06:00'
@@ -186,13 +186,13 @@
 - alias: notification audio usertwo arrived at REDACTED
   trigger:
     - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
+      entity_id: device_tracker.REDACTED_REDACTED
       to: 'REDACTED'
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: device_tracker.life360_userone_REDACTED
+        entity_id: device_tracker.userone_REDACTED
         state: 'home'
       - condition: state
         entity_id: input_boolean.disable_voice_greeting
@@ -215,22 +215,22 @@
 - alias: notification audio usertwo left Work
   trigger:
     - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
+      entity_id: device_tracker.REDACTED_REDACTED
       from: 'Work'
       to: 'Away'
     - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
+      entity_id: device_tracker.REDACTED_REDACTED
       from: 'Work'
       to: 'moving'
     - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
+      entity_id: device_tracker.REDACTED_REDACTED
       from: 'Work'
       to: 'driving'
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: device_tracker.life360_userone_REDACTED
+        entity_id: device_tracker.userone_REDACTED
         state: 'home'
       - condition: time
         after: '13:00'
@@ -252,22 +252,22 @@
 - alias: notification audio usertwo left REDACTED
   trigger:
     - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
+      entity_id: device_tracker.REDACTED_REDACTED
       from: 'REDACTED'
       to: 'Away'
     - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
+      entity_id: device_tracker.REDACTED_REDACTED
       from: 'REDACTED'
       to: 'moving'
     - platform: state
-      entity_id: device_tracker.life360_REDACTED_REDACTED
+      entity_id: device_tracker.REDACTED_REDACTED
       from: 'REDACTED'
       to: 'driving'
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: device_tracker.life360_userone_REDACTED
+        entity_id: device_tracker.userone_REDACTED
         state: 'home'
       - condition: time
         after: '13:00'
@@ -290,35 +290,35 @@
 ## Sonos - Leave for gym
 ##########################################################
 
-- alias: notification audio leave for gym
-  trigger:
-    - platform: state
-      entity_id: sensor.usertwo_to_lifetime
-    - platform: state
-      entity_id: sensor.userone_to_lifetime
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: device_tracker.life360_userone_REDACTED
-        state: 'home'
-      - condition: time
-        after: '13:00'
-        before: '18:00'
-      - condition: state
-        entity_id: input_boolean.disable_voice_greeting
-        state: 'off'
-      - condition: template
-        value_template: >
-          {{ states('sensor.usertwo_to_lifetime') | float ==
-             states('sensor.userone_to_lifetime') | float }}
-  action:
-    - delay: '00:00:10'
-    - service: script.turn_on
-      entity_id: script.say
-      data_template:
-        variables:
-          master: 'media_player.chalkboard_room'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
-          what: "If you are going to Lifetime you should leave now to meet usertwo in {{states('sensor.userone_to_lifetime')}} minutes."
+# - alias: notification audio leave for gym
+#   trigger:
+#     - platform: state
+#       entity_id: sensor.usertwo_to_lifetime
+#     - platform: state
+#       entity_id: sensor.userone_to_lifetime
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: state
+#         entity_id: device_tracker.life360_userone_REDACTED
+#         state: 'home'
+#       - condition: time
+#         after: '13:00'
+#         before: '18:00'
+#       - condition: state
+#         entity_id: input_boolean.disable_voice_greeting
+#         state: 'off'
+#       - condition: template
+#         value_template: >
+#           {{ states('sensor.usertwo_to_lifetime') | float ==
+#              states('sensor.userone_to_lifetime') | float }}
+#   action:
+#     - delay: '00:00:10'
+#     - service: script.turn_on
+#       entity_id: script.say
+#       data_template:
+#         variables:
+#           master: 'media_player.chalkboard_room'
+#           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
+#           volume: '.6'
+#           what: "If you are going to Lifetime you should leave now to meet usertwo in {{states('sensor.userone_to_lifetime')}} minutes."

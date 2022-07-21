@@ -119,7 +119,7 @@ say:
     - service: media_player.play_media
       data:
         entity_id:
-          - media_player.chalkboard_room
+          - media_player.office
         media_content_id: http://REDACTED:8123/local/sounds/two-tone-chime.mp3
         media_content_type: music
     - delay: '00:00:02'
@@ -145,7 +145,7 @@ school_say:
     - delay: '00:00:01'
     - service: sonos.join
       data_template:
-        master: "{{ master }}"
+        #master: "{{ master }}"
         entity_id: "{{ where }}"
     - delay: '00:00:01'
     - service: media_player.volume_set

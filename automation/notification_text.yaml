@@ -41,38 +41,6 @@
         input_boolean.test_text_notification_slack
         
 ##########################################################
-## Pushbullet - Life360 Overdue Update
-##########################################################
-
-#- alias: notification life360 overdue update
-#  trigger:
-#    - platform: event
-#      event_type: life360_update_overdue
-#  action:
-#    - service: notify.slack
-#      data:
-#        title: "Home Assistant"
-#        message: >
-#          Update for {{
-#            state_attr(trigger.event.data.entity_id, 'friendly_name') or
-#            trigger.event.data.entity_id
-#          }} is overdue.
-#
-#- alias: notification life360 update restored
-#  trigger:
-#    platform: event
-#    event_type: life360_update_restored
-#  action:
-#    - service: notify.slack
-#      data:
-#        title: "Home Assistant"
-#        message: >
-#          Update for {{
-#            state_attr(trigger.event.data.entity_id, 'friendly_name') or
-#            trigger.event.data.entity_id
-#          }} restored after {{ trigger.event.data.wait }}.
-
-##########################################################
 ## slack - Low Battery Alert
 ##########################################################
 
@@ -200,6 +168,21 @@
       data:
         title: "Home Assistant"
         message: "The garage door has been open for 30 minutes."
+
+##########################################################
+## Weather Alerts
+##########################################################
+
+- alias: notification alert when New Weather Alert
+  trigger:
+    - platform: state
+      entity_id: sensor.weather_alert_title
+  action:
+    - service: notify.slack
+      data:
+        title: "{{states.sensor.weather_alert_title.state}}"
+        message: "{{ state_attr('sensor.nws_alerts', 'spoken_desc') }}"
+  mode: single
 
 ##########################################################
 ## Frigate alerts

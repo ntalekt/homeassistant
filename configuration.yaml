@@ -59,6 +59,7 @@ lovelace:
     - url: /hacsfiles/entity-attributes-card/entity-attributes-card.js?=v2
       type: module
 
+
 shell_command:
   docker_image_prune_docker1: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED54 'docker image prune -af'"
   docker_image_prune_docker2: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED53 'docker image prune -af'"
@@ -159,18 +160,6 @@ amcrest:
 breaking_changes:
 
 ffmpeg:
-
-life360:
-  driving_speed: 10
-  interval_seconds: 10
-  max_gps_accuracy: 200
-  max_update_wait:
-    minutes: 45
-  show_as_state:
-    - driving
-    - moving
-  warning_threshold: 2
-  error_threshold: 3
 
 monitor_docker:
   - name: docker1
