@@ -17,7 +17,8 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
   * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
 * Software
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
-    * Home Assistant Version: 2022.4.7
+    * Home Assistant Version: 2022.7.5
+  * [vSphere 7.x](https://docs.vmware.com/en/VMware-vSphere/7.0/rn/vsphere-esxi-vcenter-server-70-release-notes.html)
   * [Docker v20.10.14](https://github.com/docker/docker-ce/releases)
   * [Traefik v2.2.1 proxy](https://www.smarthomebeginner.com/traefik-2-docker-tutorial/)
   * SSL via [Let's Encrypt](https://letsencrypt.org/)
@@ -37,6 +38,8 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [LE LampUX RGB Lamp](https://smile.amazon.com/gp/product/B07Q8SMG8R/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1)
 * [Goldwin Wifi Controller](https://smile.amazon.com/gp/product/B07JB5N3Y7/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
 * [Pentair IntelliBrite](https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-lighting/intellibrite_5g_underwatercolor-changingledpoolandspalights.html)
+* [Govee Outdoor Patio LED](https://www.amazon.com/gp/product/B094JGKBTR/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
+* [Govee RGBIC Flood Lights](https://www.amazon.com/gp/product/B09MDJV5X5/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
 
 #### Climate
 * [Trane XL824](https://smile.amazon.com/Trane-Programmable-Comfort-Control-Thermostat/dp/B085W87WY3/ref=sr_1_1?dchild=1&keywords=xl824&qid=1595374599&s=hi&sr=1-1) x2
@@ -59,7 +62,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 #### Camera
 * [Amcrest IP3M-943W Camera](https://www.amazon.com/gp/product/B01I01Z1M2/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01I01Z1M2&linkCode=as2&tag=ntalekt0c-20&linkId=2ef3afe981c97da79ba37bf3815f7347)
 * [Amcrest IPM-HX1W Camera](https://www.amazon.com/gp/product/B077DPWQCV/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B077DPWQCV&linkCode=as2&tag=ntalekt0c-20&linkId=ac62ed590e7bb7ab3e4aca12348c1db1) x4
-* [Hikvision DS-2CD2032-I Camera](https://www.amazon.com/gp/product/B00G7GMEOG/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00G7GMEOG&linkCode=as2&tag=ntalekt0c-20&linkId=6033949532ab30894bc0ef3dfb3e4757)
+* [Tapo C320WS](https://www.amazon.com/gp/product/B09ZZJB6VX/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
 * [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt0c-20&linkId=5faec88af320aeb157fbb45fa954efc3)
 
 #### Media
