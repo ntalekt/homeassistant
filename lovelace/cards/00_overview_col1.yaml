@@ -37,6 +37,89 @@ cards:
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
+        entity: binary_sensor.front_occupancy_on
+        color_type: card
+        name: Front
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+          icon: mdi:motion-sensor
+        - value: 'off'
+          icon: mdi:walk
+          color: rgb(67, 73, 82)
+        style:
+         - color: var(--icon-off-color)
+        tap_action:
+          action: more-info
+          entity: camera.front
+        hold_action:
+          action: more-info
+        layout: icon_name
+      - type: "custom:button-card"
+        entity: binary_sensor.back_occupancy_on
+        color_type: card
+        name: Back
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+          icon: mdi:motion-sensor
+        - value: 'off'
+          icon: mdi:walk
+          color: rgb(67, 73, 82)
+        style:
+         - color: var(--icon-off-color)
+        layout: icon_name
+        tap_action:
+          action: more-info
+          entity: camera.back_2
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: binary_sensor.garage_occupancy_on
+        color_type: card
+        name: Garage
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+          icon: mdi:motion-sensor
+        - value: 'off'
+          icon: mdi:walk
+          color: rgb(67, 73, 82)
+        style:
+         - color: var(--icon-off-color)
+        layout: icon_name
+        tap_action:
+          action: more-info
+          entity: camera.garage_2
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: binary_sensor.shop_occupancy_on
+        color_type: card
+        name: Shop
+        state:
+        - value: 'on'
+          color: rgb(255, 220, 0)
+          icon: mdi:motion-sensor
+        - value: 'off'
+          icon: mdi:walk
+          color: rgb(67, 73, 82)
+        style:
+         - color: var(--icon-off-color)
+        layout: icon_name
+        tap_action:
+          action: more-info
+          entity: camera.shop
+        hold_action:
+          action: more-info
+
+
+    ##########################################################
+    ## Second row occupancy
+    ##########################################################
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
         entity: binary_sensor.living_occupancy_on
         color_type: card
         name: Living
@@ -51,7 +134,7 @@ cards:
          - color: var(--icon-off-color)
         tap_action:
           action: more-info
-          entity: camera.living_room
+          entity: camera.living
         hold_action:
           action: more-info
         layout: icon_name
@@ -75,49 +158,6 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: binary_sensor.garage_occupancy_on
-        color_type: card
-        name: Garage
-        state:
-        - value: 'on'
-          color: rgb(255, 220, 0)
-          icon: mdi:motion-sensor
-        - value: 'off'
-          icon: mdi:walk
-          color: rgb(67, 73, 82)
-        style:
-         - color: var(--icon-off-color)
-        layout: icon_name
-        tap_action:
-          action: more-info
-          entity: camera.garage
-        hold_action:
-          action: more-info
-    ##########################################################
-    ## Second row occupancy
-    ##########################################################
-  - type: horizontal-stack
-    cards:
-      - type: "custom:button-card"
-        entity: binary_sensor.shop_occupancy_on
-        color_type: card
-        name: Shop
-        state:
-        - value: 'on'
-          color: rgb(255, 220, 0)
-          icon: mdi:motion-sensor
-        - value: 'off'
-          icon: mdi:walk
-          color: rgb(67, 73, 82)
-        style:
-         - color: var(--icon-off-color)
-        layout: icon_name
-        tap_action:
-          action: more-info
-          entity: camera.shop
-        hold_action:
-          action: more-info
-      - type: "custom:button-card"
         entity: binary_sensor.office_occupancy_on
         color_type: card
         name: Office
@@ -135,25 +175,7 @@ cards:
           action: more-info
         hold_action:
           action: more-info
-      - type: "custom:button-card"
-        entity: binary_sensor.back_occupancy_on
-        color_type: card
-        name: Back
-        state:
-        - value: 'on'
-          color: rgb(255, 220, 0)
-          icon: mdi:motion-sensor
-        - value: 'off'
-          icon: mdi:walk
-          color: rgb(67, 73, 82)
-        style:
-         - color: var(--icon-off-color)
-        layout: icon_name
-        tap_action:
-          action: more-info
-          entity: camera.back
-        hold_action:
-          action: more-info
+
     ##########################################################
     ## Door sensor row
     ##########################################################

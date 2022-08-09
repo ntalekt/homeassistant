@@ -8,10 +8,10 @@
 
 - alias: occupancy living turn on if motion detected
   trigger:
-    # - platform: state
-    #   entity_id: binary_sensor.living_room_motion_detected
-    #   from: "off"
-    #   to: "on"
+    - platform: state
+      entity_id: binary_sensor.living_motion
+      from: "off"
+      to: "on"
     - platform: state
       entity_id: binary_sensor.motion_sensor_REDACTED
       from: "off"
@@ -27,6 +27,11 @@
 - alias: occupancy living turn off after 10min of no motion
   trigger:
     - platform: state
+      entity_id: binary_sensor.living_motion
+      to: "off"
+      for:
+        minutes: 10
+    - platform: state
       entity_id: binary_sensor.motion_sensor_REDACTED
       to: "off"
       for:
@@ -41,12 +46,8 @@
 
 - alias: occupancy back turn on if motion detected
   trigger:
-    # - platform: state
-    #   entity_id: binary_sensor.back_motion_detected
-    #   from: "off"
-    #   to: "on"
     - platform: state
-      entity_id: binary_sensor.back_motion_detected
+      entity_id: binary_sensor.back_person_motion
       from: "off"
       to: "on"
   action:
@@ -60,7 +61,7 @@
 - alias: occupancy back turn off after 10min of no motion
   trigger:
     - platform: state
-      entity_id: binary_sensor.back_motion_detected
+      entity_id: binary_sensor.back_person_motion
       to: "off"
       for:
         minutes: 10
@@ -71,11 +72,49 @@
 - alias: occupancy back turn off if unavailable
   trigger:
     - platform: state
-      entity_id: binary_sensor.back_motion_detected
+      entity_id: binary_sensor.back_person_motion
       to: "unavailable"
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.back_occupancy
+
+#################################################################
+## Front Occupancy
+#################################################################
+
+- alias: occupancy front turn on if motion detected
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_person_motion
+      from: "off"
+      to: "on"
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.front_occupancy
+
+#################################################################
+## Reset Front Occupancy
+#################################################################
+
+- alias: occupancy front turn off after 10min of no motion
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_person_motion
+      to: "off"
+      for:
+        minutes: 10
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.front_occupancy
+
+- alias: occupancy front turn off if unavailable
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_person_motion
+      to: "unavailable"
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.front_occupancy
 
 #################################################################
 ## Garage Occupancy
@@ -84,7 +123,7 @@
 - alias: occupancy garage turn on if motion detected
   trigger:
     - platform: state
-      entity_id: binary_sensor.garage_motion_detected
+      entity_id: binary_sensor.garage_motion
       from: "off"
       to: "on"
   action:
@@ -98,7 +137,7 @@
 - alias: occupancy garage turn off after 10min of no motion
   trigger:
     - platform: state
-      entity_id: binary_sensor.garage_motion_detected
+      entity_id: binary_sensor.garage_motion
       to: "off"
       for:
         minutes: 10
@@ -109,7 +148,7 @@
 - alias: occupancy garage turn off if unavailable
   trigger:
     - platform: state
-      entity_id: binary_sensor.garage_motion_detected
+      entity_id: binary_sensor.garage_motion
       to: "unavailable"
   action:
     - service: input_boolean.turn_off

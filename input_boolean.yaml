@@ -80,6 +80,12 @@ back_occupancy:
   icon:
     mdi:account
 
+front_occupancy:
+  name: Front Occupancy
+  initial: off
+  icon:
+    mdi:account
+
 ##########################################################
 ## Sleeptime
 ##########################################################
@@ -148,7 +154,7 @@ interior_camera_detection_mode:
 
 disable_interior_camera_detection:
   name: Disable Interior Camera Detection
-  initial: on
+  #initial: on
   icon: mdi:motion-sensor
 
 ##########################################################
@@ -162,6 +168,6 @@ interior_camera_recording_mode:
 
 disable_interior_camera_recording:
   name: Disable Interior Camera Recording
-  initial: on
+  #initial: on
   icon: mdi:motion-sensor
 

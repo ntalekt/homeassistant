@@ -61,8 +61,9 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 
 #### Camera
 * [Amcrest IP3M-943W Camera](https://www.amazon.com/gp/product/B01I01Z1M2/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01I01Z1M2&linkCode=as2&tag=ntalekt0c-20&linkId=2ef3afe981c97da79ba37bf3815f7347)
-* [Amcrest IPM-HX1W Camera](https://www.amazon.com/gp/product/B077DPWQCV/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B077DPWQCV&linkCode=as2&tag=ntalekt0c-20&linkId=ac62ed590e7bb7ab3e4aca12348c1db1) x4
-* [Tapo C320WS](https://www.amazon.com/gp/product/B09ZZJB6VX/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
+* [Amcrest IPM-HX1W Camera](https://www.amazon.com/gp/product/B077DPWQCV/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B077DPWQCV&linkCode=as2&tag=ntalekt0c-20&linkId=ac62ed590e7bb7ab3e4aca12348c1db1) x2
+* [Tapo C320WS](https://www.amazon.com/gp/product/B09ZZJB6VX/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) x2
+* [Tapo C110](https://smile.amazon.com/dp/B09YL5G1Y8?psc=1&ref=ppx_yo2ov_dt_b_product_details)} x2
 * [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt0c-20&linkId=5faec88af320aeb157fbb45fa954efc3)
 
 #### Media

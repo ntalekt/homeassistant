@@ -57,6 +57,13 @@
       value_template: "{{ states.input_boolean.back_occupancy.state == 'on' }}"
       device_class: motion
 
+- platform: template
+  sensors:
+    front_occupancy_on:
+      friendly_name: Front Occupancy
+      value_template: "{{ states.input_boolean.front_occupancy.state == 'on' }}"
+      device_class: motion
+
 - platform: ping
   host: !secret unifi_usg_host
   name: UniFi USG
@@ -106,7 +113,7 @@
   name: Garage cam
 
 - platform: ping
-  host: !secret amcrest_living_host
+  host: !secret tapo_living_host
   name: Living cam
 
 - platform: ping
@@ -116,6 +123,14 @@
 - platform: ping
   host: !secret amcrest_shop_host
   name: Shop cam
+
+- platform: ping
+  host: !secret tapo_front_host
+  name: Front cam
+
+- platform: ping
+  host: !secret tapo_back_host
+  name: Back cam
 
 - platform: ping
   host: !secret harmony_hub_host
