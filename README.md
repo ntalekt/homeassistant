@@ -17,9 +17,9 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
   * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
 * Software
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
-    * Home Assistant Version: 2022.7.5
+    * Home Assistant Version: 2022.8.2
   * [vSphere 7.x](https://docs.vmware.com/en/VMware-vSphere/7.0/rn/vsphere-esxi-vcenter-server-70-release-notes.html)
-  * [Docker v20.10.14](https://github.com/docker/docker-ce/releases)
+  * [Docker v20.10.17](https://github.com/docker/docker-ce/releases)
   * [Traefik v2.2.1 proxy](https://www.smarthomebeginner.com/traefik-2-docker-tutorial/)
   * SSL via [Let's Encrypt](https://letsencrypt.org/)
   
@@ -101,6 +101,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [TTS](https://home-assistant.io/components/tts.google/) notification if the garage door has been open for 30 minutes with no motion in garage.
 * [TTS](https://home-assistant.io/components/tts.google/) school bell notification (if remote schooling mode enabled)
 * [TTS](https://home-assistant.io/components/tts.google/) test notification
+* [TTS](https://home-assistant.io/components/tts.google/) ring ding & motion events
 
 ### Notification Text
 * [Slack](https://www.home-assistant.io/integrations/slack) notification when new Home Assistant version is available on PyPI.
