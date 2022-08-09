@@ -48,7 +48,7 @@
     - platform: time
       at: '04:00'
   action:
-    - service: sonos.unjoin
+    - service: media_player.unjoin
       entity_id:
         - media_player.chalkboard_room
         - media_player.kitchen
@@ -60,14 +60,15 @@
         - media_player.kitchen
         - media_player.loft
         - media_player.office
-    - service: sonos.join
-      data_template:
-        master: media_player.office
-        entity_id:
+    - service: media_player.join
+      data:
+        group_members:
           - media_player.chalkboard_room
           - media_player.kitchen
           - media_player.loft
           - media_player.office
+      target:
+        entity_id: media_player.office
 
         ##########################################################
         ## Group All Sonos
@@ -84,14 +85,15 @@
       entity_id: group.household
       state: 'home'
   action:
-    - service: sonos.join
+    - service: media_player.join
       data:
-        master: media_player.office
-      entity_id:
-        - media_player.chalkboard_room
-        - media_player.kitchen
-        - media_player.loft
-        - media_player.office
+        group_members:
+          - media_player.chalkboard_room
+          - media_player.kitchen
+          - media_player.loft
+          - media_player.office
+      target:
+        entity_id: media_player.office
 
         ##########################################################
         ## Pause Deluge if Cox utilization > 95%

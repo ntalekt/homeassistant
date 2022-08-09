@@ -101,73 +101,32 @@ say:
     - service: sonos.snapshot
       data_template:
         entity_id: "{{ where }}"
-    - delay: '00:00:03'
-    - service: sonos.unjoin
+    - service: media_player.unjoin
       data_template:
         entity_id: "{{ where }}"
-    - delay: '00:00:02'
-    - service: sonos.join
+    - service: media_player.join
       data_template:
-        master: "{{ master }}"
-        entity_id: "{{ where }}"
-    - delay: '00:00:02'
+        group_members: "{{ where }}"
+        entity_id: "{{ master }}"
     - service: media_player.volume_set
       data_template:
         entity_id: "{{ where }}"
         volume_level: "{{ volume }}"
-    - delay: '00:00:02'
+    - delay: '00:00:01'
     - service: media_player.play_media
-      data:
-        entity_id:
-          - media_player.office
-        media_content_id: http://REDACTED:8123/local/sounds/two-tone-chime.mp3
+      data_template:
+        entity_id: "{{ master }}"
+        media_content_id: "{{ mp3 }}"
         media_content_type: music
-    - delay: '00:00:02'
+    - delay: '00:00:04'
     - service: tts.google_translate_say
       data_template:
-        entity_id: "{{ master }}"
+        entity_id: "{{ where }}"
         message: "{{ what }}"
-    - delay: '00:00:25'
+    - delay: '00:00:10'
     - service: sonos.restore
       data_template:
-        entity_id: "{{ master }}"
-
-school_say:
-  alias: Sonos TTS
-  sequence:
-    - service: sonos.snapshot
-      data_template:
         entity_id: "{{ where }}"
-    - delay: '00:00:03'
-    - service: sonos.unjoin
-      data_template:
-        entity_id: "{{ where }}"
-    - delay: '00:00:01'
-    - service: sonos.join
-      data_template:
-        #master: "{{ master }}"
-        entity_id: "{{ where }}"
-    - delay: '00:00:01'
-    - service: media_player.volume_set
-      data_template:
-        entity_id: "{{ where }}"
-        volume_level: "{{ volume }}"
-    - delay: '00:00:02'
-    - service: media_player.play_media
-      data:
-        entity_id:
-          - media_player.chalkboard_room
-        media_content_id: http://REDACTED:8123/local/sounds/two-tone-chime.mp3
-        media_content_type: music
-    - delay: '00:00:02'
-    - service: tts.google_translate_say
-      data_template:
-        entity_id: "{{ master }}"
-        message: "{{ what }}"
-    - delay: '00:00:25'
-    - service: sonos.restore
-      data_template:
-        entity_id: "{{ master }}"
 
 ##########################################################
 ## Sprinkler

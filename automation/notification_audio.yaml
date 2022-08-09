@@ -18,8 +18,9 @@
       data_template:
         variables:
           master: 'media_player.office'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: >
             {% set hour = now().strftime("%H") %}
             {% set weekday_full_name = now().strftime("%A") %}
@@ -44,7 +45,6 @@
               {% else %}
                 {{ day }}th
               {% endif %}.
-            AirVisual pollution level is {{ states.sensor.u_s_air_pollution_level.state }}! The Air Quality Index (AQI) is {{ states.sensor.u_s_air_quality_index.state }} and the main pollutant is {{ states.sensor.u_s_main_pollutant.state }}.
             End of text to speech test.
     - delay: '00:00:01'
     - service: homeassistant.turn_off
@@ -57,8 +57,8 @@
 - alias: notification audio garage open for 30min
   trigger:
     - platform: state
-      entity_id: binary_sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_access_control_window_door_is_open
-      to: 'on'
+      entity_id: cover.garage_door
+      to: 'open'
       for:
         minutes: 30
   condition:
@@ -82,10 +82,82 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.chalkboard_room'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: 'The garage has been open for 30 minutes.'
+
+##########################################################
+## Sonos - Ring motion
+##########################################################
+
+- alias: notification audio ring motion alert
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_motion
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      after: '07:00'
+      before: '21:00'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.house_cleaning_mode
+      state: 'off'
+  action:
+    - delay: '00:00:05'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/ring-motion-alert-chimes.mp3'
+          what: 'Motion detected at the front door.'
+
+##########################################################
+## Sonos - Ring ding
+##########################################################
+
+- alias: notification audio ring ding alert
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_ding
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      after: '07:00'
+      before: '21:00'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+  action:
+    - delay: '00:00:05'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/ring-ding-alert-doorbell.mp3'
+          what: 'Ding detected at the front door.'
 
 ##########################################################
 ## Sonos - Notification REDACTED First Bell
@@ -110,12 +182,13 @@
         state: "off"
   action:
     - service: script.turn_on
-      entity_id: script.school_say
+      entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.chalkboard_room'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/school-bell-sound-effect.mp3'
           what: >
             First bell, school starts in 10 minutes. 
 
@@ -142,12 +215,13 @@
         state: "off"
   action:
     - service: script.turn_on
-      entity_id: script.school_say
+      entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.chalkboard_room'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/school-bell-sound-effect.mp3'
           what: >
             Have a great day at school. 
 
@@ -164,7 +238,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: device_tracker.userone_REDACTED
+        entity_id: group.household
         state: 'home'
       - condition: time
         after: '06:00'
@@ -178,9 +252,10 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.chalkboard_room'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: 'usertwo has arrived at work.'
 
 - alias: notification audio usertwo arrived at REDACTED
@@ -192,7 +267,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: device_tracker.userone_REDACTED
+        entity_id: group.household
         state: 'home'
       - condition: state
         entity_id: input_boolean.disable_voice_greeting
@@ -203,9 +278,10 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.chalkboard_room'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: 'usertwo has arrived at REDACTED.'
 
 ##########################################################
@@ -217,20 +293,12 @@
     - platform: state
       entity_id: device_tracker.REDACTED_REDACTED
       from: 'Work'
-      to: 'Away'
-    - platform: state
-      entity_id: device_tracker.REDACTED_REDACTED
-      from: 'Work'
-      to: 'moving'
-    - platform: state
-      entity_id: device_tracker.REDACTED_REDACTED
-      from: 'Work'
-      to: 'driving'
+      to: 'not_home'
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: device_tracker.userone_REDACTED
+        entity_id: group.household
         state: 'home'
       - condition: time
         after: '13:00'
@@ -244,9 +312,10 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.chalkboard_room'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: "usertwo has left work and will arrive home in about {{states('sensor.usertwo_to_home')}} minutes."
 
 - alias: notification audio usertwo left REDACTED
@@ -254,20 +323,12 @@
     - platform: state
       entity_id: device_tracker.REDACTED_REDACTED
       from: 'REDACTED'
-      to: 'Away'
-    - platform: state
-      entity_id: device_tracker.REDACTED_REDACTED
-      from: 'REDACTED'
-      to: 'moving'
-    - platform: state
-      entity_id: device_tracker.REDACTED_REDACTED
-      from: 'REDACTED'
-      to: 'driving'
+      to: 'not_home'
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: device_tracker.userone_REDACTED
+        entity_id: group.household
         state: 'home'
       - condition: time
         after: '13:00'
@@ -281,9 +342,10 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.chalkboard_room'
-          where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
-          volume: '.6'
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: "usertwo has left REDACTED and will arrive home in about {{states('sensor.usertwo_to_home')}} minutes."
 
 ##########################################################
@@ -300,7 +362,7 @@
 #     condition: and
 #     conditions:
 #       - condition: state
-#         entity_id: device_tracker.life360_userone_REDACTED
+#         entity_id: group.household
 #         state: 'home'
 #       - condition: time
 #         after: '13:00'
@@ -321,4 +383,5 @@
 #           master: 'media_player.chalkboard_room'
 #           where: 'media_player.chalkboard_room, media_player.kitchen, media_player.loft, media_player.office'
 #           volume: '.6'
+#           mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
 #           what: "If you are going to Lifetime you should leave now to meet usertwo in {{states('sensor.userone_to_lifetime')}} minutes."
