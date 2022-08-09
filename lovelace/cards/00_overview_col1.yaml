@@ -20,6 +20,12 @@ cards:
           action: more-info
         show_name: false
         image: /local/n.jpg
+      - type: picture-entity
+        entity: device_tracker.userthree_REDACTED
+        tap_action:
+          action: more-info
+        show_name: false
+        image: /local/p.jpg
     ##########################################################
     ## Ring front door camera
     ##########################################################
