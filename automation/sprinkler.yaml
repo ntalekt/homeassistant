@@ -36,7 +36,7 @@
       entity_id: switch.sprinkler_1
       to: "off"
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "Home Assistant"
         message: "Stopped watering"
@@ -129,7 +129,7 @@
       data:
         entity_id: input_select.sprinkler
         option: Spring
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "Home Assistant"
         message: "Automatically changed watering schedule to Spring"
@@ -151,7 +151,7 @@
       data:
         entity_id: input_select.sprinkler
         option: Winter
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "Home Assistant"
         message: "Automatically changed watering schedule to Autumn/Winter"
@@ -170,7 +170,7 @@
       data:
         entity_id: input_select.sprinkler
         option: Summer
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "Home Assistant"
         message: "Automatically changed watering schedule to Summer"

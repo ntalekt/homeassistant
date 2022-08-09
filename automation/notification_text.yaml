@@ -32,7 +32,7 @@
       from: "off"
       to: "on"
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "Home Assistant"
         message: "This is a test."
@@ -66,7 +66,7 @@
           {% endmacro %}
           {{ battery_level() |trim != "" }}
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data_template:
         title: "Home Assistant"
         message: >
@@ -107,7 +107,7 @@
     platform: template
     value_template: "{{ states('persistent_notification.httplogin') != 'unknown' }}"
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "Home Assistant"
         message: "Failed Home Assistant login!"
@@ -121,7 +121,7 @@
     - platform: state
       entity_id: sensor.current_ha_release
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "New Home Assistant Release"
         message: "Home Assistant {{ states.sensor.current_ha_release.state }} is now available."
@@ -140,7 +140,7 @@
       entity_id: binary_sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_access_control_window_door_is_open
       state: 'on'
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "Home Assistant"
         message: "Come back, the garage door is open!"
@@ -164,7 +164,7 @@
       entity_id: binary_sensor.garage_occupancy_on
       state: 'off'
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "Home Assistant"
         message: "The garage door has been open for 30 minutes."
@@ -173,16 +173,16 @@
 ## Weather Alerts
 ##########################################################
 
-- alias: notification alert when New Weather Alert
-  trigger:
-    - platform: state
-      entity_id: sensor.weather_alert_title
-  action:
-    - service: notify.slack
-      data:
-        title: "{{states.sensor.weather_alert_title.state}}"
-        message: "{{ state_attr('sensor.nws_alerts', 'spoken_desc') }}"
-  mode: single
+# - alias: notification alert when New Weather Alert
+#   trigger:
+#     - platform: state
+#       entity_id: sensor.weather_alert_title
+#   action:
+#     - service: notify.ntalekt
+#       data:
+#         title: "{{states.sensor.weather_alert_title.state}}"
+#         message: "{{ state_attr('sensor.nws_alerts', 'spoken_desc') }}"
+#   mode: single
 
 ##########################################################
 ## Frigate alerts
@@ -202,7 +202,7 @@
     - "{{ trigger.payload_json['after']['label'] == 'car' }}"
     - "{{ 'driveway' in trigger.payload_json['after']['entered_zones'] }}"
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} entered the {{trigger.payload_json["after"]["entered_zones"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
@@ -223,7 +223,7 @@
     - "{{ 'driveway' in trigger.payload_json['before']['current_zones'] }}"
     - "{{ 'street' in trigger.payload_json['after']['entered_zones'] }}"
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} has left the {{trigger.payload_json["after"]["entered_zones"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
@@ -244,7 +244,7 @@
     - "{{ trigger.payload_json['after']['label'] == 'person' }}"
     - "{{ 'front_yard' in trigger.payload_json['after']['entered_zones'] }}"
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
@@ -265,7 +265,7 @@
     - "{{ trigger.payload_json['after']['label'] == 'person' }}"
     - "{{ not 'front' in trigger.payload_json['after']['camera'] }}"
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
@@ -359,7 +359,7 @@
           false
           {% endif %}
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data_template:
         title: "Home Assistant"
         message: '{{trigger.to_state.attributes.friendly_name}} has gone offline.'

@@ -110,7 +110,7 @@
 #   action:
 #     - service: switch.turn_off
 #       entity_id: switch.deluge_switch
-#     - service: notify.slack
+#     - service: notify.ntalekt
 #       data:
 #         title: "Home Assistant"
 #         message: "Deluge Turned Off, Cox = {{ states.sensor.cox_perc.state | int }} %"
@@ -128,7 +128,7 @@
 #   action:
 #     - service: switch.turn_on
 #       entity_id: switch.deluge_switch
-#     - service: notify.slack
+#     - service: notify.ntalekt
 #       data:
 #         title: "Home Assistant"
 #         message: "Deluge Turned On, Cox = {{ states.sensor.cox_perc.state | int }} %"

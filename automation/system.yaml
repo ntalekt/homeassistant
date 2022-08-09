@@ -27,7 +27,7 @@
     - platform: event
       event_type: device_tracker_new_device
   action:
-    - service: notify.slack
+    - service: notify.ntalekt
       data_template:
         message: >
           New device:

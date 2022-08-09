@@ -192,7 +192,7 @@ update_sprinkler_last_run_timer:
 sprinkler_water_spring:
   alias: "Sprinkler Water Spring"
   sequence:
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "Home Assistant"
         message: "Started watering according to spring schedule"
@@ -208,7 +208,7 @@ sprinkler_water_spring:
 sprinkler_water_winter:
   alias: "Sprinkler Water Winter"
   sequence:
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "Home Assistant"
         message: "Started watering according to winter schedule"
@@ -224,7 +224,7 @@ sprinkler_water_winter:
 sprinkler_water_summer:
   alias: "Sprinkler Water Summer"
   sequence:
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "Home Assistant"
         message: "Started watering according to summer schedule"
@@ -240,7 +240,7 @@ sprinkler_water_summer:
 sprinkler_water_test:
   alias: "Sprinkler Water Test"
   sequence:
-    - service: notify.slack
+    - service: notify.ntalekt
       data:
         title: "Home Assistant"
         message: "Started watering according to test schedule"
