@@ -333,6 +333,16 @@
       for:
         minutes: 10
     - platform: state
+      entity_id: binary_sensor.front_cam
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.back_cam
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
       entity_id: binary_sensor.harmony_living
       to: 'off'
       for:

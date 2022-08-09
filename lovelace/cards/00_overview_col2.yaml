@@ -357,7 +357,7 @@ cards:
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
-        icon: mdi:tablet-android
+        icon: mdi:tablet
         entity: switch.userthree_ipad
         name: P-iPad
         tap_action:
@@ -405,7 +405,7 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        icon: mdi:tablet-android
+        icon: mdi:tablet
         entity: switch.userfour_ipad
         name: M-iPad
         tap_action:

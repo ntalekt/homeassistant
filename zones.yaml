@@ -44,7 +44,7 @@
   radius: 150
   icon: mdi:target
 
-- name: !secret k_name
+- name: REDACTED
   latitude: !secret k_latitude
   longitude: !secret k_longitude
   radius: 150
@@ -61,3 +61,9 @@
   longitude: !secret lifetime_longitude
   radius: 150
   icon: mdi:weight-lifter
+
+- name: Dance
+  latitude: !secret dance_latitude
+  longitude: !secret dance_longitude
+  radius: 150
+  icon: mdi:human-female-dance
