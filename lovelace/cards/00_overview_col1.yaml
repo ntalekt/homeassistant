@@ -208,13 +208,24 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: sensor.big_garage_tilt
+        entity: cover.garage_door
         name: Garage
+        tap_action:
+          action: call-service
+          service: cover.toggle
+          service_data:
+            entity_id: cover.garage_door
         state:
-        - value: 'Open'
+        - value: 'open'
           color: rgb(255,65,54)
           icon: mdi:garage-open-variant
-        - value: 'Closed'
+        - value: 'opening'
+          color: rgb(204, 99, 46)
+          icon: mdi:garage-alert-variant
+        - value: 'closing'
+          color: rgb(204, 99, 46)
+          icon: mdi:garage-alert-variant
+        - value: 'closed'
           color: rgb(46, 204, 64)
           icon: mdi:garage-variant
         style:

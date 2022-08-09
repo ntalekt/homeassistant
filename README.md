@@ -77,6 +77,9 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 #### Irrigation
 * [Rain Bird ST8O-2.0](https://www.rainbird.com/products/st8-20-wifi-smart-irrigation-timers)
 
+#### Cover
+* [Chamberlain B2405 Smart Garage Door Opener](https://smile.amazon.com/Chamberlain-B2405-Smartphone-Controlled-Ultra-Wireless/dp/B09B2SDWNX/ref=sr_1_1_sspa?crid=2F0C017IF3PGK&keywords=chamberlain+garage+door+opener&qid=1660066544&sprefix=cham%2Caps%2C360&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyRFJLUVFYTFFZNk5PJmVuY3J5cHRlZElkPUEwNDE0MDc1MVFPRTg3WTNHVjM1MSZlbmNyeXB0ZWRBZElkPUEwMzcyMzU0M0dFWllNSE84Uk1QMiZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=)
+
 #### Network
 * [Ubiquiti Unifi Security Gateway (USG)](https://smile.amazon.com/Ubiquiti-Unifi-Security-Gateway-USG/dp/B00LV8YZLK/ref=sr_1_1?s=electronics&ie=UTF8&qid=1551113819&sr=1-1)
 * [Ubiquiti UniFi Switch 8 60W (US-8-60W)](https://smile.amazon.com/Ubiquiti-UniFi-Switch-60W-US-8-60W/dp/B01MU3WUX1/ref=sr_1_1?s=electronics&ie=UTF8&qid=1551113861&sr=1-1)

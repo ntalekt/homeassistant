@@ -137,8 +137,8 @@
       to: 'not_home'
   condition:
     - condition: state
-      entity_id: binary_sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_access_control_window_door_is_open
-      state: 'on'
+      entity_id: cover.garage_door
+      state: 'open'
   action:
     - service: notify.ntalekt
       data:
@@ -152,8 +152,8 @@
 - alias: notification garage open for 30min
   trigger:
     - platform: state
-      entity_id: binary_sensor.z_wave_plus_gold_plated_reliability_garage_door_tilt_sensor_access_control_window_door_is_open
-      to: 'on'
+      entity_id: cover.garage_door
+      to: 'open'
       for:
         minutes: 30
   condition:
