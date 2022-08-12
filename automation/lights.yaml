@@ -266,14 +266,14 @@
         transition: 60
         brightness_pct: 15
 
-- alias: pool light off if no motion after 10pm
+- alias: exterior lights off if no motion after 11pm
   trigger:
     - platform: time_pattern
       minutes: "/30"
       seconds: 00
   condition:
     - condition: time
-      after: "22:00:00"
+      after: "23:00:00"
       before: "05:00:00"
     - condition: state
       entity_id: binary_sensor.living_occupancy_on
@@ -281,15 +281,29 @@
     - condition: state
       entity_id: binary_sensor.chalkboard_occupancy_on
       state: "off"
-    # - condition: state
-    #   entity_id: binary_sensor.back_occupancy_on
-    #   state: "off"
+    - condition: state
+      entity_id: binary_sensor.back_occupancy_on
+      state: "off"
     - condition: state
       entity_id: remote.media_center
       state: "off"
   action:
+    # - service: light.turn_off
+    #   entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+    #   data:
+    #     transition: 60
+    # - service: light.turn_off
+    #   entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
+    #   data:
+    #     transition: 60
+    # - service: switch.turn_off
+    #   entity_id: switch.outdoor_plug_1
     - service: light.turn_off
       entity_id: light.lights
+    - service: light.turn_off
+      entity_id: light.outdoor_string
+    - service: light.turn_off
+      entity_id: light.smart_flood_lights
 
 - alias: lights exterior lights off 30min after sunrise
   trigger:
