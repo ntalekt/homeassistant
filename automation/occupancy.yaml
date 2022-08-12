@@ -16,6 +16,10 @@
       entity_id: binary_sensor.motion_sensor_REDACTED
       from: "off"
       to: "on"
+    - platform: state
+      entity_id: binary_sensor.living_person_motion
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.living_occupancy
@@ -33,6 +37,11 @@
         minutes: 10
     - platform: state
       entity_id: binary_sensor.motion_sensor_REDACTED
+      to: "off"
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.living_person_motion
       to: "off"
       for:
         minutes: 10
@@ -126,6 +135,10 @@
       entity_id: binary_sensor.garage_motion
       from: "off"
       to: "on"
+    - platform: state
+      entity_id: binary_sensor.garage_person_motion
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.garage_occupancy
@@ -138,6 +151,11 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.garage_motion
+      to: "off"
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.garage_person_motion
       to: "off"
       for:
         minutes: 10
@@ -199,7 +217,11 @@
 - alias: occupancy shop turn on if motion detected
   trigger:
     - platform: state
-      entity_id: binary_sensor.shop_motion_detected
+      entity_id: binary_sensor.shop_motion
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.shop_person_motion
       from: "off"
       to: "on"
   action:
@@ -213,7 +235,12 @@
 - alias: occupancy shop turn off after 10min of no motion
   trigger:
     - platform: state
-      entity_id: binary_sensor.shop_motion_detected
+      entity_id: binary_sensor.shop_motion
+      to: "off"
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.shop_person_motion
       to: "off"
       for:
         minutes: 10
@@ -224,7 +251,7 @@
 - alias: occupancy shop turn off if unavailable
   trigger:
     - platform: state
-      entity_id: binary_sensor.shop_motion_detected
+      entity_id: binary_sensor.shop_motion
       to: "unavailable"
   action:
     - service: input_boolean.turn_off

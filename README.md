@@ -60,11 +60,11 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Xiaomi Aqara Window Door Sensor](https://www.aqara.com/us/door_and_window_sensor.html)
 
 #### Camera
-* [Amcrest IP3M-943W Camera](https://www.amazon.com/gp/product/B01I01Z1M2/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01I01Z1M2&linkCode=as2&tag=ntalekt0c-20&linkId=2ef3afe981c97da79ba37bf3815f7347)
-* [Amcrest IPM-HX1W Camera](https://www.amazon.com/gp/product/B077DPWQCV/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B077DPWQCV&linkCode=as2&tag=ntalekt0c-20&linkId=ac62ed590e7bb7ab3e4aca12348c1db1) x2
-* [Tapo C320WS](https://www.amazon.com/gp/product/B09ZZJB6VX/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) x2
+* [Amcrest IPM-HX1W Camera](https://www.amazon.com/gp/product/B077DPWQCV/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B077DPWQCV&linkCode=as2&tag=ntalekt0c-20&linkId=ac62ed590e7bb7ab3e4aca12348c1db1) x1
+* [Tapo C320WS](https://www.amazon.com/gp/product/B09ZZJB6VX/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) x3
 * [Tapo C110](https://smile.amazon.com/dp/B09YL5G1Y8?psc=1&ref=ppx_yo2ov_dt_b_product_details)} x2
 * [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt0c-20&linkId=5faec88af320aeb157fbb45fa954efc3)
+* [Blink Video Doorbell](https://smile.amazon.com/Blink-Video-Doorbell/dp/B08SG2MS3V/ref=sr_1_1?crid=GR1VH5AFVWQI&keywords=blink+doorbell&qid=1660343748&sprefix=blink+doorbel%2Caps%2C313&sr=8-1)
 
 #### Media
 * [Amazon Echo Dot](https://www.amazon.com/gp/product/B01DFKC2SO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DFKC2SO&linkCode=as2&tag=ntalekt0c-20&linkId=bb902528d5689ae4e1163dd31b7c646d) x2 (via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/))

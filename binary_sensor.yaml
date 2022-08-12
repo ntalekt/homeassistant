@@ -109,7 +109,7 @@
   name: NAS2
 
 - platform: ping
-  host: !secret amcrest_garage_host
+  host: !secret tapo_garage_host
   name: Garage cam
 
 - platform: ping
@@ -121,7 +121,7 @@
   name: Chalkboard cam
 
 - platform: ping
-  host: !secret amcrest_shop_host
+  host: !secret tapo_shop_host
   name: Shop cam
 
 - platform: ping

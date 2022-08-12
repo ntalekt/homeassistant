@@ -115,7 +115,7 @@ cards:
         layout: icon_name
         tap_action:
           action: more-info
-          entity: camera.shop
+          entity: camera.shop_2
         hold_action:
           action: more-info
 
