@@ -142,7 +142,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * Group all Sonos' button.
 
 ### Occupancy
-* If motion is detected via Aquara Motion or [Amcrest  cameras](https://www.amazon.com/gp/product/B077DPWQCV/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B077DPWQCV&linkCode=as2&tag=ntalekt0c-20&linkId=ac62ed590e7bb7ab3e4aca12348c1db1) turn on `input_boolean` (used in `binary_sensor` for occupancy tracking).
+* If motion is detected via Aquara Motion or [Tapo cameras, Frigate object detection](https://www.amazon.com/gp/product/B077DPWQCV/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B077DPWQCV&linkCode=as2&tag=ntalekt0c-20&linkId=ac62ed590e7bb7ab3e4aca12348c1db1) turn on `input_boolean` (used in `binary_sensor` for occupancy tracking).
 * If no motion is detected after certain period of time turn off `input_boolean`.
 
 ### Sleep time
