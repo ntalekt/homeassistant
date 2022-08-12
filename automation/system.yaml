@@ -25,13 +25,23 @@
 - alias: system new device connected
   trigger:
     - platform: event
-      event_type: device_tracker_new_device
+      event_type: entity_registry_updated
+      event_data:
+        action: create
+  condition:
+    - condition: template
+      value_template: "{{trigger.event.data.entity_id.split('.')[0] == 'device_tracker' }}"
   action:
+    - variables:
+        entity: >
+          {{trigger.event.data.entity_id}}
     - service: notify.ntalekt
       data_template:
         message: >
-          New device:
-          {{trigger.event.data.host_name}}
-          ({{trigger.event.data.entity_id}})
-          Mac: {{trigger.event.data.mac}}
+          New device registered: {{state_attr(entity,'friendly_name')}}
+          Entity: {{entity}}
+          Host: {{state_attr(entity,'host_name')}}
+          Ip: {{state_attr(entity,'ip')}}
+          Mac-address: {{state_attr(entity,'mac')}}
+          Full data: {{trigger.event.data}}
         title: Home Assistant
