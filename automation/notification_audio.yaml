@@ -105,7 +105,7 @@
       state: 'home'
     - condition: time
       after: '07:00'
-      before: '21:00'
+      before: '22:00'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
@@ -113,7 +113,6 @@
       entity_id: input_boolean.house_cleaning_mode
       state: 'off'
   action:
-    - delay: '00:00:05'
     - service: script.turn_on
       entity_id: script.say
       data:
@@ -125,7 +124,7 @@
           what: 'The garage has been open for 30 minutes.'
 
 ##########################################################
-## Sonos - Ring motion
+## Sonos - Ring/Blink motion
 ##########################################################
 
 - alias: notification audio ring motion alert
@@ -142,7 +141,7 @@
       state: 'home'
     - condition: time
       after: '07:00'
-      before: '21:00'
+      before: '22:00'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
@@ -150,16 +149,47 @@
       entity_id: input_boolean.house_cleaning_mode
       state: 'off'
   action:
-    - delay: '00:00:05'
     - service: script.turn_on
-      entity_id: script.say
+      entity_id: script.ring_alert
       data:
         variables:
           master: 'media_player.office'
           where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
           volume: '.5'
-          mp3: 'http://REDACTED:8123/local/sounds/ring-motion-alert-chimes.mp3'
+          #mp3: 'http://REDACTED:8123/local/sounds/ring-motion-alert-chimes.mp3'
           what: 'Motion detected at the front door.'
+
+- alias: notification audio blink motion alert
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.blink_side_entrance_motion_detected
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      after: '07:00'
+      before: '22:00'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.house_cleaning_mode
+      state: 'off'
+  action:
+    - service: script.turn_on
+      entity_id: script.ring_alert
+      data:
+        variables:
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          #mp3: 'http://REDACTED:8123/local/sounds/ring-motion-alert-chimes.mp3'
+          what: 'Motion detected at the side entrance.'
 
 ##########################################################
 ## Sonos - Ring ding
@@ -179,20 +209,19 @@
       state: 'home'
     - condition: time
       after: '07:00'
-      before: '21:00'
+      before: '22:00'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
   action:
-    - delay: '00:00:05'
     - service: script.turn_on
-      entity_id: script.say
+      entity_id: script.ring_alert
       data:
         variables:
           master: 'media_player.office'
           where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
           volume: '.5'
-          mp3: 'http://REDACTED:8123/local/sounds/ring-ding-alert-doorbell.mp3'
+          #mp3: 'http://REDACTED:8123/local/sounds/ring-ding-alert-doorbell.mp3'
           what: 'Ding detected at the front door.'
 
 ##########################################################
@@ -352,7 +381,7 @@
           where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
-          what: "usertwo has left work and will arrive home in about {{states('sensor.usertwo_to_home')}} minutes."
+          what: "usertwo has left work and will arrive home in about {{states('sensor.waze_usertwo_to_home')}} minutes."
 
 - alias: notification audio usertwo left REDACTED
   trigger:
@@ -382,7 +411,7 @@
           where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
-          what: "usertwo has left REDACTED and will arrive home in about {{states('sensor.usertwo_to_home')}} minutes."
+          what: "usertwo has left REDACTED and will arrive home in about {{states('sensor.waze_usertwo_to_home')}} minutes."
 
 ##########################################################
 ## Sonos - Leave for gym
