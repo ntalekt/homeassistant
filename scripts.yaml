@@ -128,6 +128,38 @@ say:
       data_template:
         entity_id: "{{ where }}"
 
+ring_alert:
+  alias: Sonos TTS - Ring Alert
+  sequence:
+    - service: sonos.snapshot
+      data_template:
+        entity_id: "{{ where }}"
+    - service: media_player.unjoin
+      data_template:
+        entity_id: "{{ where }}"
+    - service: media_player.join
+      data_template:
+        group_members: "{{ where }}"
+        entity_id: "{{ master }}"
+    - service: media_player.volume_set
+      data_template:
+        entity_id: "{{ where }}"
+        volume_level: "{{ volume }}"
+    # - service: media_player.play_media
+    #   data_template:
+    #     entity_id: "{{ master }}"
+    #     media_content_id: "{{ mp3 }}"
+    #     media_content_type: music
+    # - delay: '00:00:04'
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "{{ where }}"
+        message: "{{ what }}"
+    - delay: '00:00:04'
+    - service: sonos.restore
+      data_template:
+        entity_id: "{{ where }}"
+
 ##########################################################
 ## Sprinkler
 ##########################################################
