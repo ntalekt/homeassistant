@@ -141,23 +141,6 @@ monitor_docker:
     containers:
       - homeassistant
 
-# nexia:
-#   username: !secret nexia_username
-#   password: !secret nexia_password
-
-# octoprint:
-#   host: !secret octopi_host
-#   api_key: !secret octoprint_api
-#   bed: true
-#   number_of_tools: 1
-
-#pi_hole:
-#  - host: !secret pihole_host
-
-#    ssl: true
-#    verify_ssl: false
-#    api_key: !secret pi_hole_api_key
-
 rainbird:
   host: !secret rainbird_host
   password: !secret rainbird_password
