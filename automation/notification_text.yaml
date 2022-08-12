@@ -186,6 +186,32 @@
         message: "The garage door has been open for 30 minutes."
 
 ##########################################################
+## Garage Door - Opened/Closed
+##########################################################
+
+- alias: notification garage opened
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'open'
+  action:
+    - service: notify.ntalekt
+      data:
+        title: "Home Assistant"
+        message: "The garage door has been opened."
+
+- alias: notification garage closed
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'closed'
+  action:
+    - service: notify.ntalekt
+      data:
+        title: "Home Assistant"
+        message: "The garage door has been closed."
+
+##########################################################
 ## Weather Alerts
 ##########################################################
 
@@ -205,7 +231,7 @@
 ##########################################################
 
     ##########################################################
-    ## Frigate car entered the driveway
+    ## Frigate car detected in the driveway
     ##########################################################
 
 - alias: notification alert frigate car entered the driveway
@@ -220,7 +246,28 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} entered the {{trigger.payload_json["after"]["entered_zones"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} has been detected in the driveway. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        title: Frigate
+  mode: single
+
+    ##########################################################
+    ## Car entered driveway from street
+    ##########################################################
+
+- alias: notification alert frigate car arrived in driveway
+  trigger:
+    - platform: mqtt
+      topic: frigate/events
+      #payload: new
+      value_template: "{{ value_json.type }}"
+  condition:
+    - "{{ trigger.payload_json['after']['label'] == 'car' }}"
+    - "{{ 'street' in trigger.payload_json['before']['current_zones'] }}"
+    - "{{ 'driveway' in trigger.payload_json['after']['current_zones'] }}"
+  action:
+    - service: notify.ntalekt
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} has arrived in the driveway. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
   mode: single
 
@@ -232,16 +279,16 @@
   trigger:
     - platform: mqtt
       topic: frigate/events
-      payload: new
+      #payload: new
       value_template: "{{ value_json.type }}"
   condition:
     - "{{ trigger.payload_json['after']['label'] == 'car' }}"
     - "{{ 'driveway' in trigger.payload_json['before']['current_zones'] }}"
-    - "{{ 'street' in trigger.payload_json['after']['entered_zones'] }}"
+    - "{{ 'street' in trigger.payload_json['after']['current_zones'] }}"
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} has left the {{trigger.payload_json["after"]["entered_zones"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} has left the driveway. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
   mode: single
 
