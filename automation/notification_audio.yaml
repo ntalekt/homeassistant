@@ -51,6 +51,42 @@
       entity_id: input_boolean.test_audio_notification
 
 ##########################################################
+## Water leak - kids
+##########################################################
+
+- alias: notification text water leak kids
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.water_leak_sensor_158d00063341ac
+      from: "off"
+      to: "on"
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      after: '07:00'
+      before: '22:00'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.house_cleaning_mode
+      state: 'off'
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
+          what: 'Leak detected in the kids bathroom.'
+
+##########################################################
 ## Sonos - Garage door has been open for 30min
 ##########################################################
 

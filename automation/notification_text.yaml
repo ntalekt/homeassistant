@@ -39,6 +39,22 @@
     - service: homeassistant.turn_off
       entity_id:
         input_boolean.test_text_notification_slack
+
+##########################################################
+## Water leak - kids
+##########################################################
+
+- alias: notification text water leak kids
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.water_leak_sensor_158d00063341ac
+      from: "off"
+      to: "on"
+  action:
+    - service: notify.ntalekt
+      data:
+        title: "Home Assistant"
+        message: "Leak detected in the kids bathroom."
         
 ##########################################################
 ## slack - Low Battery Alert
