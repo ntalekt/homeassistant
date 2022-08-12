@@ -550,3 +550,115 @@
 
 - platform: nws_alerts
   zone_id: 'AZC013'
+
+- platform: history_stats
+  name: userone time home
+  entity_id: device_tracker.userone_REDACTED
+  state: 'home'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: userone time lifetime
+  entity_id: device_tracker.userone_REDACTED
+  state: 'Lifetime'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: userone time school
+  entity_id: device_tracker.userone_REDACTED
+  state: 'REDACTED'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: userone time not_home
+  entity_id: device_tracker.userone_REDACTED
+  state: 'not_home'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: usertwo time home
+  entity_id: device_tracker.REDACTED_REDACTED
+  state: 'home'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: usertwo time lifetime
+  entity_id: device_tracker.REDACTED_REDACTED
+  state: 'Lifetime'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: usertwo time school
+  entity_id: device_tracker.REDACTED_REDACTED
+  state: 'REDACTED'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: usertwo time not_home
+  entity_id: device_tracker.REDACTED_REDACTED
+  state: 'not_home'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: usertwo time work
+  entity_id: device_tracker.REDACTED_REDACTED
+  state: 'Work'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: usertwo time REDACTED
+  entity_id: device_tracker.REDACTED_REDACTED
+  state: 'REDACTED'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: userthree time home
+  entity_id: device_tracker.userthree_REDACTED
+  state: 'home'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: userthree time lifetime
+  entity_id: device_tracker.userthree_REDACTED
+  state: 'Lifetime'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: userthree time school
+  entity_id: device_tracker.userthree_REDACTED
+  state: 'REDACTED'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'
+
+- platform: history_stats
+  name: userthree time not_home
+  entity_id: device_tracker.userthree_REDACTED
+  state: 'not_home'
+  type: time
+  start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
+  end: '{{ now() }}'

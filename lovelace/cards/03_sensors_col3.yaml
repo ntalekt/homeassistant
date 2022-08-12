@@ -16,6 +16,31 @@ cards:
       show_header_toggle: false
   - type: horizontal-stack
     cards:
+    - type: entities
+      title: Location history (Week)
+      entities:
+        - type: section
+          label: Time home
+        - entity: sensor.userone_time_home
+        - entity: sensor.usertwo_time_home
+        - entity: sensor.userthree_time_home
+        - type: section
+          label: Time school
+        - entity: sensor.userone_time_school
+        - entity: sensor.usertwo_time_school
+        - entity: sensor.userthree_time_school
+        - type: section
+          label: Time work
+        - entity: sensor.usertwo_time_work
+        - entity: sensor.usertwo_time_dal
+        - type: section
+          label: Time lifetime
+        - entity: sensor.userone_time_lifetime
+        - entity: sensor.usertwo_time_lifetime
+        - entity: sensor.userthree_time_lifetime
+      show_header_toggle: false
+  - type: horizontal-stack
+    cards:
       - type: glance
         entities:
           - entity: sensor.octoprint_job_percentage
