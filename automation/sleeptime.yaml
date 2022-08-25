@@ -35,35 +35,19 @@
 - alias: media master remote sleep time
   trigger:
     - platform: event
-      event_type: xiaomi_aqara.click
+      event_type: zha_event
       event_data:
-        entity_id: binary_sensor.switch_158d0001b86a74
-        click_type: single
+        device_ieee: 00:15:8d:00:01:b8:6a:74
+        unique_id: 00:15:8d:00:01:b8:6a:74:1:0x0006
+        device_id: c20325cb807c12a207909d6b2110460f
     - platform: event
-      event_type: xiaomi_aqara.click
+      event_type: zha_event
       event_data:
-        entity_id: binary_sensor.switch_158d0001b86a74
-        click_type: double
-    - platform: event
-      event_type: xiaomi_aqara.click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001b86a74
-        click_type: long_click_press
-    - platform: event
-      event_type: xiaomi_aqara.click
-      event_data:
-        entity_id: binary_sensor.switch_158d000450d582
-        click_type: single
-    - platform: event
-      event_type: xiaomi_aqara.click
-      event_data:
-        entity_id: binary_sensor.switch_158d000450d582
-        click_type: double
-    - platform: event
-      event_type: xiaomi_aqara.click
-      event_data:
-        entity_id: binary_sensor.switch_158d000450d582
-        click_type: long_click_press
+        device_ieee: 00:15:8d:00:04:50:d5:82
+        unique_id: 00:15:8d:00:04:50:d5:82:1:0x0012
+        device_id: 27bd5c7991ffa64d0dfbe9619884d158
+    - platform: state
+      entity_id: input_button.sleeptime
   action:
     - service: homeassistant.toggle
       entity_id: input_boolean.sleep_time

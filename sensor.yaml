@@ -247,11 +247,11 @@
         {% endif %}
 
     userthree_temp_battery:
-      value_template: "{% if states.sensor.temperature_158d0001b9561c.state %}{{ states.sensor.temperature_158d0001b9561c.attributes.battery_level | default(0) | int }}{% endif %}"
+      value_template: "{% if states.sensor.lumi_lumi_weather_battery_3.state %}{{ states.sensor.lumi_lumi_weather_battery_3.state | default(0) | int }}{% endif %}"
       friendly_name: "userthree Temp."
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.sensor.temperature_158d0001b9561c.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.sensor.lumi_lumi_weather_battery_3.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -262,11 +262,11 @@
         {% endif %}
 
     userfour_temp_battery:
-      value_template: "{% if states.sensor.temperature_158d0001f50d5f.state %}{{ states.sensor.temperature_158d0001f50d5f.attributes.battery_level | default(0) | int }}{% endif %}"
+      value_template: "{% if states.sensor.lumi_lumi_weather_battery.state %}{{ states.sensor.lumi_lumi_weather_battery.state | default(0) | int }}{% endif %}"
       friendly_name: "userfour Temp."
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.sensor.temperature_158d0001f50d5f.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.sensor.lumi_lumi_weather_battery.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -277,11 +277,11 @@
         {% endif %}
 
     master_temp_battery:
-      value_template: "{% if states.sensor.temperature_158d0001fa9e02.state %}{{ states.sensor.temperature_158d0001fa9e02.attributes.battery_level | default(0) | int }}{% endif %}"
+      value_template: "{% if states.sensor.lumi_lumi_weather_battery_4.state %}{{ states.sensor.lumi_lumi_weather_battery_4.state | default(0) | int }}{% endif %}"
       friendly_name: "Master Temp."
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.sensor.temperature_158d0001fa9e02.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.sensor.lumi_lumi_weather_battery_4.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -292,11 +292,11 @@
         {% endif %}
 
     loft_temp_battery:
-      value_template: "{% if states.sensor.temperature_158d0001f51e9e.state %}{{ states.sensor.temperature_158d0001f51e9e.attributes.battery_level | default(0) | int }}{% endif %}"
+      value_template: "{% if states.sensor.lumi_lumi_weather_battery_2.state %}{{ states.sensor.lumi_lumi_weather_battery_2.state | default(0) | int }}{% endif %}"
       friendly_name: "Loft Temp."
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.sensor.temperature_158d0001f51e9e.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.sensor.lumi_lumi_weather_battery_2.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -307,11 +307,11 @@
         {% endif %}
 
     office_temp_battery:
-      value_template: "{% if states.sensor.temperature_158d0001f50dcb.state %}{{ states.sensor.temperature_158d0001f50dcb.attributes.battery_level | default(0) | int }}{% endif %}"
+      value_template: "{% if states.sensor.lumi_lumi_weather_battery_5.state %}{{ states.sensor.lumi_lumi_weather_battery_5.state | default(0) | int }}{% endif %}"
       friendly_name: "Office Temp."
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.sensor.temperature_158d0001f50dcb.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.sensor.lumi_lumi_weather_battery_5.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -322,11 +322,11 @@
         {% endif %}
 
     office_motion_battery:
-      value_template: "{% if states.binary_sensor.motion_sensor_158d00047eaffc.state %}{{ states.binary_sensor.motion_sensor_158d00047eaffc.attributes.battery_level | default(0) | int }}{% endif %}"
+      value_template: "{% if states.sensor.lumi_lumi_sensor_motion_aq2_battery.state %}{{ states.sensor.lumi_lumi_sensor_motion_aq2_battery.state | default(0) | int }}{% endif %}"
       friendly_name: "Office Motion"
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.binary_sensor.motion_sensor_158d00047eaffc.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.sensor.lumi_lumi_sensor_motion_aq2_battery.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -337,11 +337,11 @@
         {% endif %}
 
     living_motion_battery:
-      value_template: "{% if states.binary_sensor.motion_sensor_REDACTED.state %}{{ states.binary_sensor.motion_sensor_REDACTED.attributes.battery_level | default(0) | int }}{% endif %}"
+      value_template: "{% if states.sensor.lumi_lumi_sensor_motion_aq2_battery_2.state %}{{ states.sensor.lumi_lumi_sensor_motion_aq2_battery_2.state | default(0) | int }}{% endif %}"
       friendly_name: "Living Motion"
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.binary_sensor.motion_sensor_REDACTED.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.sensor.lumi_lumi_sensor_motion_aq2_battery_2.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -352,11 +352,11 @@
         {% endif %}
 
     master_switch_battery:
-      value_template: "{% if states.binary_sensor.switch_158d0001b86a74.state %}{{ states.binary_sensor.switch_158d0001b86a74.attributes.battery_level | default(0) | int }}{% endif %}"
+      value_template: "{% if states.sensor.lumi_lumi_sensor_switch_aq2_battery.state %}{{ states.sensor.lumi_lumi_sensor_switch_aq2_battery.state | default(0) | int }}{% endif %}"
       friendly_name: "Master Switch"
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.binary_sensor.switch_158d0001b86a74.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.sensor.lumi_lumi_sensor_switch_aq2_battery.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -367,11 +367,11 @@
         {% endif %}
 
     master_switch_usertwo_battery:
-      value_template: "{% if states.binary_sensor.switch_158d000450d582.state %}{{ states.binary_sensor.switch_158d000450d582.attributes.battery_level | default(0) | int }}{% endif %}"
+      value_template: "{% if states.sensor.lumi_lumi_remote_b1acn01_battery.state %}{{ states.sensor.lumi_lumi_remote_b1acn01_battery.state | default(0) | int }}{% endif %}"
       friendly_name: "Master Switch2"
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.binary_sensor.switch_158d000450d582.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.sensor.lumi_lumi_remote_b1acn01_battery.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -382,11 +382,11 @@
         {% endif %}
 
     chalkboard_switch_battery:
-      value_template: "{% if states.binary_sensor.switch_158d0001b76826.state %}{{ states.binary_sensor.switch_158d0001b76826.attributes.battery_level | default(0) | int }}{% endif %}"
+      value_template: "{% if states.sensor.lumi_lumi_sensor_switch_aq2_battery_2.state %}{{ states.sensor.lumi_lumi_sensor_switch_aq2_battery_2.state | default(0) | int }}{% endif %}"
       friendly_name: "Chalkboard Switch"
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.binary_sensor.switch_158d0001b76826.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.sensor.lumi_lumi_sensor_switch_aq2_battery_2.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -397,11 +397,56 @@
         {% endif %}
 
     kids_leak_sensor_battery:
-      value_template: "{% if states.binary_sensor.water_leak_sensor_158d00063341ac.state %}{{ states.binary_sensor.water_leak_sensor_158d00063341ac.attributes.battery_level | default(0) | int }}{% endif %}"
+      value_template: "{% if states.sensor.lumi_lumi_sensor_wleak_aq1_battery.state %}{{ states.sensor.lumi_lumi_sensor_wleak_aq1_battery.state | default(0) | int }}{% endif %}"
       friendly_name: "Kids Leak Sensor"
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.binary_sensor.water_leak_sensor_158d00063341ac.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.sensor.lumi_lumi_sensor_wleak_aq1_battery.state | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    master_leak_sensor_battery:
+      value_template: "{% if states.sensor.lumi_lumi_sensor_wleak_aq1_battery_2.state %}{{ states.sensor.lumi_lumi_sensor_wleak_aq1_battery_2.state | default(0) | int }}{% endif %}"
+      friendly_name: "Master Leak Sensor"
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.sensor.lumi_lumi_sensor_wleak_aq1_battery_2.state | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    laundry_leak_sensor_battery:
+      value_template: "{% if states.sensor.lumi_lumi_sensor_wleak_aq1_battery_3.state %}{{ states.sensor.lumi_lumi_sensor_wleak_aq1_battery_3.state | default(0) | int }}{% endif %}"
+      friendly_name: "Laundry Leak Sensor"
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.sensor.lumi_lumi_sensor_wleak_aq1_battery_3.state | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    guest_leak_sensor_battery:
+      value_template: "{% if states.sensor.lumi_lumi_sensor_wleak_aq1_battery_4.state %}{{ states.sensor.lumi_lumi_sensor_wleak_aq1_battery_4.state | default(0) | int }}{% endif %}"
+      friendly_name: "Guest Leak Sensor"
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.sensor.lumi_lumi_sensor_wleak_aq1_battery_4.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -412,11 +457,11 @@
         {% endif %}
 
     patio_door_battery:
-      value_template: "{% if states.binary_sensor.door_window_sensor_158d0001d85176.state %}{{ states.binary_sensor.door_window_sensor_158d0001d85176.attributes.battery_level | default(0) | int }}{% endif %}"
+      value_template: "{% if states.sensor.lumi_lumi_sensor_magnet_aq2_battery.state %}{{ states.sensor.lumi_lumi_sensor_magnet_aq2_battery.state | default(0) | int }}{% endif %}"
       friendly_name: "Patio Door"
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.binary_sensor.door_window_sensor_158d0001d85176.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.sensor.lumi_lumi_sensor_magnet_aq2_battery.state | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -427,10 +472,10 @@
         {% endif %}
 
     patio_door:
-      value_template: '{% if is_state("binary_sensor.door_window_sensor_158d0001d85176", "on") %}Open{% elif is_state("binary_sensor.door_window_sensor_158d0001d85176", "off") %}Closed{% else %}unknown{% endif %}'
+      value_template: '{% if is_state("binary_sensor.lumi_lumi_sensor_magnet_aq2_opening", "on") %}Open{% elif is_state("binary_sensor.lumi_lumi_sensor_magnet_aq2_opening", "off") %}Closed{% else %}unknown{% endif %}'
       friendly_name: "Patio Door Status"
       icon_template: >
-        {% set patio_door_state = states.binary_sensor.door_window_sensor_158d0001d85176.state %}
+        {% set patio_door_state = states.binary_sensor.lumi_lumi_sensor_magnet_aq2_opening.state %}
         {% if patio_door_state == 'on' %}
           mdi:door-open
         {% elif patio_door_state == 'off' %}

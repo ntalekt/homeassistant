@@ -13,7 +13,7 @@
       from: "off"
       to: "on"
     - platform: state
-      entity_id: binary_sensor.motion_sensor_REDACTED
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone_2
       from: "off"
       to: "on"
     - platform: state
@@ -36,7 +36,7 @@
       for:
         minutes: 10
     - platform: state
-      entity_id: binary_sensor.motion_sensor_REDACTED
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone_2
       to: "off"
       for:
         minutes: 10
@@ -179,7 +179,7 @@
 - alias: occupancy chalkboard turn on if motion detected
   trigger:
     - platform: state
-      entity_id: binary_sensor.chalkboard_room_motion_detected
+      entity_id: binary_sensor.chalkboard_motion
       from: "off"
       to: "on"
   action:
@@ -193,7 +193,7 @@
 - alias: occupancy chalkboard turn off after 10min of no motion
   trigger:
     - platform: state
-      entity_id: binary_sensor.chalkboard_room_motion_detected
+      entity_id: binary_sensor.chalkboard_motion
       to: "off"
       for:
         minutes: 10
@@ -204,7 +204,7 @@
 - alias: occupancy chalkboard turn off if unavailable
   trigger:
     - platform: state
-      entity_id: binary_sensor.chalkboard_motion_detected
+      entity_id: binary_sensor.chalkboard_motion
       to: "unavailable"
   action:
     - service: input_boolean.turn_off
@@ -264,7 +264,7 @@
 - alias: occupancy office turn on if motion detected
   trigger:
     - platform: state
-      entity_id: binary_sensor.motion_sensor_158d00047eaffc
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone
       from: "off"
       to: "on"
   action:
@@ -278,7 +278,7 @@
 - alias: occupancy office turn off after 10min of no motion
   trigger:
     - platform: state
-      entity_id: binary_sensor.motion_sensor_158d00047eaffc
+      entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone
       to: "off"
       for:
         minutes: 10
@@ -294,7 +294,7 @@
 - alias: occupancy wfh home on
   trigger:
     - platform: time
-      at: "06:30:00"
+      at: "06:00:00"
   condition:
     - condition: time
       weekday:

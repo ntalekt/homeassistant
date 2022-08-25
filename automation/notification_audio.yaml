@@ -57,7 +57,7 @@
 - alias: notification text water leak kids
   trigger:
     - platform: state
-      entity_id: binary_sensor.water_leak_sensor_158d00063341ac
+      entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone
       from: "off"
       to: "on"
   condition:
@@ -85,6 +85,114 @@
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: 'Leak detected in the kids bathroom.'
+
+##########################################################
+## Water leak - master
+##########################################################
+
+- alias: notification text water leak master
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_2
+      from: "off"
+      to: "on"
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      after: '07:00'
+      before: '22:00'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.house_cleaning_mode
+      state: 'off'
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
+          what: 'Leak detected in the master bathroom.'
+
+##########################################################
+## Water leak - laundry
+##########################################################
+
+- alias: notification text water leak laundry
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_3
+      from: "off"
+      to: "on"
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      after: '07:00'
+      before: '22:00'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.house_cleaning_mode
+      state: 'off'
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
+          what: 'Leak detected in the laundry room.'
+
+##########################################################
+## Water leak - guest bathroom
+##########################################################
+
+- alias: notification text water leak guest bathroom
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_4
+      from: "off"
+      to: "on"
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      after: '07:00'
+      before: '22:00'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.house_cleaning_mode
+      state: 'off'
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
+          what: 'Leak detected in the guest bathroom.'
 
 ##########################################################
 ## Sonos - Garage door has been open for 30min

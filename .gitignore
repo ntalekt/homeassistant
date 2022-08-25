@@ -28,3 +28,4 @@ cox_usage.py
 *.log.*
 blueprints/
 govee_learning.yaml
+zigbee.db*

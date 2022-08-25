@@ -15,6 +15,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
   * [HP Z620 - E5-2650 8C, 64GB ECC]
   * [QNAP TS-251+](https://www.qnap.com/en-us/product/ts-251+)
   * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
+  * [Sonoff Zigbee 3.0 USB CC2652P](https://smile.amazon.com/dp/B09KXTCMSC?psc=1&ref=ppx_yo2ov_dt_b_product_details)
 * Software
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
     * Home Assistant Version: 2022.8.2
@@ -54,9 +55,9 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 
 #### Sensors
 * [Ecolink Z-wave Plus Garage Door Tilt Sensor](https://www.amazon.com/gp/product/B01MRZB0NT/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MRZB0NT&linkCode=as2&tag=ntalekt0c-20&linkId=ba6f517d4382e6a23be0479e15d3ce2f)
-* [Xiaomi Mi Smart Gateway](https://www.aqara.com/us/smart_home_hub.html)
-* [Xiaomi Aqara Motion Sensor](https://www.aqara.com/us/motion_sensor.html) x2
+* [Xiaomi Aqara Motion Sensor](https://www.aqara.com/us/motion_sensor.html) x2 (Office/Living)
 * [Xiaomi Aqara Temperature Humidity Sensor](https://www.aqara.com/us/temperature_humidity_sensor.html) x5
+* [Xiaomi Aqara Leak Sensor](https://www.aqara.com/us/water_leak_sensor.html) x4
 * [Xiaomi Aqara Window Door Sensor](https://www.aqara.com/us/door_and_window_sensor.html)
 
 #### Camera

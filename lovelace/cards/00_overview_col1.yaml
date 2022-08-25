@@ -188,7 +188,7 @@ cards:
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
-        entity: binary_sensor.door_window_sensor_158d0001d85176
+        entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening
         name: Patio
         state:
         - value: 'on'

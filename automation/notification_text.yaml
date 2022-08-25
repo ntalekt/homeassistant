@@ -47,7 +47,7 @@
 - alias: notification text water leak kids
   trigger:
     - platform: state
-      entity_id: binary_sensor.water_leak_sensor_158d00063341ac
+      entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone
       from: "off"
       to: "on"
   action:
@@ -55,6 +55,22 @@
       data:
         title: "Home Assistant"
         message: "Leak detected in the kids bathroom."
+
+##########################################################
+## Water leak - master
+##########################################################
+
+- alias: notification text water leak master
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_2
+      from: "off"
+      to: "on"
+  action:
+    - service: notify.ntalekt
+      data:
+        title: "Home Assistant"
+        message: "Leak detected in the master bathroom."
         
 ##########################################################
 ## slack - Low Battery Alert
@@ -193,6 +209,11 @@
   trigger:
     - platform: state
       entity_id: cover.garage_door
+      from: 'opening'
+      to: 'open'
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'closed'
       to: 'open'
   action:
     - service: notify.ntalekt
@@ -204,6 +225,11 @@
   trigger:
     - platform: state
       entity_id: cover.garage_door
+      from: 'closing'
+      to: 'closed'
+    - platform: state
+      entity_id: cover.garage_door
+      from: 'open'
       to: 'closed'
   action:
     - service: notify.ntalekt

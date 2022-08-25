@@ -193,23 +193,14 @@
 - alias: lights chalkboard room cactus light button
   trigger:
     - platform: event
-      event_type: xiaomi_aqara.click
+      event_type: zha_event
       event_data:
-        entity_id: binary_sensor.switch_158d0001b76826
-        click_type: single
-    - platform: event
-      event_type: xiaomi_aqara.click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001b76826
-        click_type: double
-    - platform: event
-      event_type: xiaomi_aqara.click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001b76826
-        click_type: long_click_press
+        device_ieee: 00:15:8d:00:01:b7:68:26
+        unique_id: 00:15:8d:00:01:b7:68:26:1:0x0006
+        device_id: b8bd41b37c6bf40b762ce1d424f3552f
   action:
     - service: switch.toggle
-      entity_id: switch.cactus
+      entity_id: switch.cactus_socket
 
 ##########################################################
 ## Exterior

@@ -10,7 +10,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - sensor.temperature_158d0001fa9e02
+          - sensor.lumi_lumi_weather_temperature_4
         name: Master
         line_color: '#0074D9'
         line_width: 8
@@ -19,7 +19,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - sensor.temperature_158d0001f51e9e
+          - sensor.lumi_lumi_weather_temperature_2
         name: Loft
         line_color: '#FF4136'
         line_width: 8
@@ -28,7 +28,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - sensor.temperature_158d0001f50dcb
+          - sensor.lumi_lumi_weather_temperature_5
         name: Office
         line_color: '#FF851B'
         line_width: 8
@@ -44,7 +44,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - sensor.temperature_158d0001b9561c
+          - sensor.lumi_lumi_weather_temperature_3
         name: userthree
         line_color: '#B10DC9'
         line_width: 8
@@ -53,7 +53,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - sensor.temperature_158d0001f50d5f
+          - sensor.lumi_lumi_weather_temperature
         name: userfour
         line_color: '#39CCCC'
         line_width: 8
@@ -69,7 +69,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - sensor.humidity_158d0001fa9e02
+          - sensor.lumi_lumi_weather_humidity_4
         name: Master
         line_color: '#0074D9'
         line_width: 8
@@ -78,7 +78,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - sensor.humidity_158d0001f51e9e
+          - sensor.lumi_lumi_weather_humidity_2
         name: Loft
         line_color: '#FF4136'
         line_width: 8
@@ -87,7 +87,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - sensor.humidity_158d0001f50dcb
+          - sensor.lumi_lumi_weather_humidity_5
         name: Office
         line_color: '#FF851B'
         line_width: 8
@@ -103,7 +103,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - sensor.humidity_158d0001b9561c
+          - sensor.lumi_lumi_weather_humidity_3
         name: userthree
         line_color: '#B10DC9'
         line_width: 8
@@ -112,7 +112,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - sensor.humidity_158d0001f50d5f
+          - sensor.lumi_lumi_weather_humidity
         name: userfour
         line_color: '#39CCCC'
         line_width: 8
