@@ -97,6 +97,12 @@
       value_template: '{% if states("sensor.nws_alerts") | float > 1 %}{{states.sensor.nws_alerts.attributes.title.split(" - ")[0]}}{% elif states("sensor.nws_alerts") | float >0%}{{states.sensor.nws_alerts.attributes.title}}{% else %}No Alert{%endif %}'
       friendly_name: "NWS Alert Title"
 
+    dryer_time_remaining:
+      value_template: '{{ relative_time(now() - timedelta( seconds = as_timestamp(states("sensor.dryer_dryer_completion_time")) - as_timestamp(now())))  }}'
+
+    washer_time_remaining:
+      value_template: '{{ relative_time(now() - timedelta( seconds = as_timestamp(states("sensor.washer_washer_completion_time")) - as_timestamp(now())))  }}'
+
     weather_alert_desc:
       value_template: '{% if states("sensor.nws_alerts") | float > 1 %}{{states.sensor.nws_alerts.attributes.display_desc.split("Description: ")[1].split(">")[0]|truncate(254,True)}}{% elif states("sensor.nws_alerts") | float >0%}{{states.sensor.nws_alerts.attributes.display_desc.split("Description: ")[1].split(">")[0]|truncate(254,True)}}{% else %}No Alert{%endif %}'
       friendly_name: "NWS Alert Description"
