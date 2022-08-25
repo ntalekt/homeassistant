@@ -18,7 +18,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
   * [Sonoff Zigbee 3.0 USB CC2652P](https://smile.amazon.com/dp/B09KXTCMSC?psc=1&ref=ppx_yo2ov_dt_b_product_details)
 * Software
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
-    * Home Assistant Version: 2022.8.2
+    * Home Assistant Version: 2022.8.6
   * [vSphere 7.x](https://docs.vmware.com/en/VMware-vSphere/7.0/rn/vsphere-esxi-vcenter-server-70-release-notes.html)
   * [Docker v20.10.17](https://github.com/docker/docker-ce/releases)
   * [Traefik v2.2.1 proxy](https://www.smarthomebeginner.com/traefik-2-docker-tutorial/)
@@ -61,8 +61,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Xiaomi Aqara Window Door Sensor](https://www.aqara.com/us/door_and_window_sensor.html)
 
 #### Camera
-* [Amcrest IPM-HX1W Camera](https://www.amazon.com/gp/product/B077DPWQCV/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B077DPWQCV&linkCode=as2&tag=ntalekt0c-20&linkId=ac62ed590e7bb7ab3e4aca12348c1db1) x1
-* [Tapo C320WS](https://www.amazon.com/gp/product/B09ZZJB6VX/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) x3
+* [Tapo C320WS](https://www.amazon.com/gp/product/B09ZZJB6VX/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) x4
 * [Tapo C110](https://smile.amazon.com/dp/B09YL5G1Y8?psc=1&ref=ppx_yo2ov_dt_b_product_details)} x2
 * [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt0c-20&linkId=5faec88af320aeb157fbb45fa954efc3)
 * [Blink Video Doorbell](https://smile.amazon.com/Blink-Video-Doorbell/dp/B08SG2MS3V/ref=sr_1_1?crid=GR1VH5AFVWQI&keywords=blink+doorbell&qid=1660343748&sprefix=blink+doorbel%2Caps%2C313&sr=8-1)
@@ -94,6 +93,9 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 #### Software
 * [Life360 Location Tracking App](https://www.life360.com/)
 * [Pi-hole](https://pi-hole.net/)
+* [zwavejs/zwavejs2mqtt](https://hub.docker.com/r/zwavejs/zwavejs2mqtt)
+* [Frigate NVR](https://docs.frigate.video/
+* [double-take](https://github.com/jakowenko/double-take)
 
 ## Example Automations
 ### Notification Audio

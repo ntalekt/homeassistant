@@ -39,7 +39,7 @@ media_center_volume_up:
     - service: remote.send_command
       data:
         entity_id: remote.media_center
-        device: 44892008
+        device: 78268703
         command: "VolumeUp"
 
 media_center_volume_down:
@@ -47,19 +47,19 @@ media_center_volume_down:
     - service: remote.send_command
       data:
         entity_id: remote.media_center
-        device: 44892008
+        device: 78268703
         command: "VolumeDown"
 
 ##########################################################
 ## Harmony Remote - Master
 ##########################################################
 
-firetv_activity_on:
+master_shield_activity_on:
   sequence:
     - service: remote.turn_on
       data:
         entity_id: remote.master
-        activity: "Fire TV"
+        activity: "Shield"
 
 retropie_activity_on:
   sequence:

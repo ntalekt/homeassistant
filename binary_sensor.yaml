@@ -117,7 +117,7 @@
   name: Living cam
 
 - platform: ping
-  host: !secret amcrest_chalkboard_host
+  host: !secret tapo_chalkboard_host
   name: Chalkboard cam
 
 - platform: ping

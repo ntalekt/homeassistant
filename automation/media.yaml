@@ -17,27 +17,27 @@
       data_template:
         entity_id: remote.media_center
         command: 'PowerOn'
-        device: 35212312
+        device: 78268702
     - service: remote.send_command
       data_template:
         entity_id: remote.media_center
         command: 'PowerOn'
-        device: 35212312
+        device: 78268702
     - service: remote.send_command
       data_template:
         entity_id: remote.media_center
         command: 'PowerOn'
-        device: 35212312
+        device: 78268702
     - service: remote.send_command
       data_template:
         entity_id: remote.media_center
         command: 'PowerOn'
-        device: 35212312
+        device: 78268702
     - service: remote.send_command
       data_template:
         entity_id: remote.media_center
         command: 'PowerOn'
-        device: 35212312
+        device: 78268702
 
         ##########################################################
         ## Reset Sonos Every Morning

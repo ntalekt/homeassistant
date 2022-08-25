@@ -160,7 +160,7 @@ cards:
         layout: icon_name
         tap_action:
           action: more-info
-          entity: camera.chalkboard_room
+          entity: camera.chalkboard
         hold_action:
           action: more-info
       - type: "custom:button-card"

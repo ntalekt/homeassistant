@@ -343,6 +343,9 @@
   condition:
     condition: and
     conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
       - condition: time
         weekday:
             - mon
@@ -376,6 +379,9 @@
   condition:
     condition: and
     conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
       - condition: time
         weekday:
             - mon

@@ -46,5 +46,4 @@ sensor.nas2_system_temperature:
   unit_of_measurement: C
 sensor.nas2_cpu_temperature:
   unit_of_measurement: C
-sensor_wleak.aq1_158d00063341ac:
-  friendly_name: Kids Leak
+

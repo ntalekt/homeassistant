@@ -9,13 +9,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:floor-lamp
         size: 30%
-        entity: switch.012004775ccf7f62efc3
+        entity: switch.media_center_lamp_socket
         name: TV Lamp
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.012004775ccf7f62efc3
+            entity_id: switch.media_center_lamp_socket
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -43,13 +43,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:cactus
         size: 30%
-        entity: switch.cactus
+        entity: switch.cactus_socket
         name: Cactus
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.cactus
+            entity_id: switch.cactus_socket
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -589,11 +589,11 @@ cards:
           action: call-service
           service: script.turn_on
           service_data:
-            entity_id: script.firetv_activity_on
+            entity_id: script.master_shield_activity_on
         state:
         - value: 'PowerOff'
           color: rgb(67, 73, 82)
-        - value: 'SHIELD TV'
+        - value: 'Shield'
           color: rgb(46, 204, 64)
         - value: 'Retropie'
           color: rgb(67, 73, 82)
@@ -612,7 +612,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(67, 73, 82)
-        - value: 'SHIELD TV'
+        - value: 'Shield'
           color: rgb(67, 73, 82)
         - value: 'Retropie'
           color: rgb(46, 204, 64)
@@ -631,7 +631,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(255, 220, 0)
-        - value: 'SHIELD TV'
+        - value: 'Shield'
           color: rgb(255, 65, 54)
         - value: 'Retropie'
           color: rgb(255, 65, 54)
@@ -656,7 +656,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(67, 73, 82)
-        - value: 'SHIELD TV'
+        - value: 'Shield'
           color: rgb(255, 220, 0)
         - value: 'Retropie'
           color: rgb(255, 220, 0)
@@ -675,7 +675,26 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(67, 73, 82)
-        - value: 'SHIELD TV'
+        - value: 'Shield'
+          color: rgb(255, 220, 0)
+        - value: 'Retropie'
+          color: rgb(255, 220, 0)
+        style:
+         - color: var(--icon-off-color)
+      - type: "custom:button-card"
+        show_name: false
+        icon: mdi:bed-clock
+        color_type: card
+        entity: sensor.master_remote
+        tap_action:
+          action: call-service
+          service: input_button.press
+          service_data:
+            entity_id: input_button.sleeptime
+        state:
+        - value: 'PowerOff'
+          color: rgb(67, 73, 82)
+        - value: 'Shield'
           color: rgb(255, 220, 0)
         - value: 'Retropie'
           color: rgb(255, 220, 0)

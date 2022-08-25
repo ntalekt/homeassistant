@@ -60,7 +60,7 @@
     - service: light.turn_on
       entity_id: light.media_accents
     - service: switch.turn_on
-      entity_id: switch.cactus
+      entity_id: switch.cactus_socket
     - service: light.turn_on
       entity_id: light.master_bedroom_lamp
       data:
@@ -131,7 +131,7 @@
     - service: light.turn_off
       entity_id: light.media_accents
     - service: switch.turn_off
-      entity_id: switch.cactus
+      entity_id: switch.cactus_socket
     - service: light.turn_off
       entity_id: light.kitchen_cabinet_lights
     # light turning off sometimes triggers motion sensor

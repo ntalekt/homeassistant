@@ -9,6 +9,8 @@ homeassistant:
   unit_system: imperial
   customize: !include customize.yaml
   time_zone: !secret homeassistant_timezone
+  external_url: "https://ha.REDACTED.com"
+  internal_url: "http://REDACTED54:8123"
   allowlist_external_dirs:
     - /shared
     - /config
@@ -59,7 +61,6 @@ lovelace:
     - url: /hacsfiles/entity-attributes-card/entity-attributes-card.js?=v2
       type: module
 
-
 shell_command:
   docker_image_prune_docker1: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED54 'docker image prune -af'"
   docker_image_prune_docker2: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED53 'docker image prune -af'"
@@ -75,12 +76,6 @@ http:
 #################################################################
 ## Components
 #################################################################
-
-# airvisual:
-#   api_key: !secret airvisual_api
-#   geographies:
-#       latitude: !secret homeassistant_latitude
-#       longitude: !secret homeassistant_longitude
 
 alexa:
   smart_home:
@@ -115,15 +110,6 @@ alexa:
       switch.media_center_xbox:
         name: "Xbox"
         description: "Downstairs xbox harmony activity"
-
-amcrest:
-  - host: !secret amcrest_chalkboard_host
-    name: Chalkboard Room
-    username: !secret amcrest_user
-    password: !secret amcrest_pass
-    binary_sensors:
-      - motion_detected
-    stream_source: rtsp
 
 breaking_changes:
 
@@ -164,12 +150,6 @@ sonos:
       - REDACTED
       - REDACTED
 
-#tuya:
-#  username: !secret tuya_username
-#  password: !secret tuya_password
-#  country_code: 1
-#  platform: smart_life
-
 weather:
   - platform: darksky
     api_key: !secret darksky_api_key
@@ -193,20 +173,6 @@ yeelight:
       name: Media Center R Strip
       model: strip1
 
-# Symlinked usb_path https://www.home-assistant.io/docs/z-wave/installation/#changing-device-paths
-# permissions https://www.home-assistant.io/docs/z-wave/installation/#changing-device-paths
-#zwave:
-#   usb_path: /dev/ttyACM0
-#  usb_path: /dev/serial/by-id/usb-0658_0200-if00
-#  polling_interval: 30000
-#  device_config:
-#    light.jasco_products_14294_in_wall_smart_dimmer_level:
-#      polling_intensity: 1
-#      refresh_value: true
-#    light.jasco_products_14294_in_wall_smart_dimmer_level_2:
-#      polling_intensity: 1
-#      refresh_value: true
-
 #################################################################
 ## Includes
 #################################################################
@@ -218,6 +184,7 @@ camera: !include camera.yaml
 group: !include groups.yaml
 history: !include history.yaml
 input_boolean: !include input_boolean.yaml
+input_button: !include input_button.yaml
 input_datetime: !include input_datetime.yaml
 input_select: !include input_select.yaml
 light: !include light.yaml
