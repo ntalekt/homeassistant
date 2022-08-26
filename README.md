@@ -5,14 +5,14 @@
 <div align="center">
   <h4>
     <a href="https://github.com/ntalekt/homeassistant/stargazers"><img src="https://img.shields.io/github/stars/ntalekt/homeassistant.svg"/></a>
-    <a href="https://github.com/ntalekt/homeassistant/commits/dev"><img src="https://img.shields.io/github/last-commit/ntalekt/homeassistant.svg"/></a>
+    <a href="https://github.com/ntalekt/homeassistant/commits/master"><img src="https://img.shields.io/github/last-commit/ntalekt/homeassistant.svg"/></a>
   </h4>
 </div>
 This is my <a href="https://home-assistant.io">Home Assistant</a> configuration which is running on Docker. When starting with home automation I found many well documented configurations and drew inspiration from them in order to achieve my automation goals. I wanted to share my success with the community and hopefully help others on their journey.
 
 #### Platform
 * Hardware
-  * [HP Z620 - E5-2650 8C, 64GB ECC]
+  * [HP Z620 - E5-2650 8C, 64GB ECC](https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2334524.m570.l1313&_nkw=z620+e5-2650+64gb&_sacat=0&LH_TitleDesc=0&_odkw=z620+e5-2650&_osacat=0&LH_PrefLoc=2)
   * [QNAP TS-251+](https://www.qnap.com/en-us/product/ts-251+)
   * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
   * [Sonoff Zigbee 3.0 USB CC2652P](https://smile.amazon.com/dp/B09KXTCMSC?psc=1&ref=ppx_yo2ov_dt_b_product_details)
