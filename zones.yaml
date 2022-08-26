@@ -26,6 +26,12 @@
   radius: 150
   icon: mdi:air-conditioner
 
+- name: !secret work3_name
+  latitude: !secret work3_latitude
+  longitude: !secret work3_longitude
+  radius: 150
+  icon: mdi:domain
+
 - name: !secret gran_name
   latitude: !secret gran_latitude
   longitude: !secret gran_longitude

@@ -97,6 +97,7 @@ cards:
         - entity: sensor.userthree_time_school
         - type: section
           label: Work
+        - entity: sensor.userone_time_work
         - entity: sensor.usertwo_time_work
         - entity: sensor.usertwo_time_dal
         - type: section
