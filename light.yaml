@@ -17,12 +17,3 @@
   entities:
     - light.jasco_products_14294_in_wall_smart_dimmer_level
     - light.jasco_products_14294_in_wall_smart_dimmer_level_2
-    
-##########################################################
-## Kitchen cabinet underlights
-##########################################################
-
-- platform: flux_led
-  devices:
-    REDACTED83:
-      name: kitchen_cabinet_lights

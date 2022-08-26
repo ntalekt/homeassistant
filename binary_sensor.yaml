@@ -1,15 +1,6 @@
 ##############################################################
 ## Binary Sensor  ##
 ##############################################################
-
-##########################################################
-## octoprint
-##########################################################
-
-- platform: octoprint
-  monitored_conditions:
-    - Printing
-    - Printing Error
     
 ##########################################################
 ## Occupancy Templates
@@ -64,6 +55,10 @@
       value_template: "{{ states.input_boolean.front_occupancy.state == 'on' }}"
       device_class: motion
 
+##########################################################
+## Network Devices
+##########################################################
+
 - platform: ping
   host: !secret unifi_usg_host
   name: UniFi USG
@@ -79,26 +74,6 @@
 - platform: ping
   host: !secret unifi_apacpro_living_host
   name: UniFi AP Living
-
-##########################################################
-## Network Devices
-##########################################################
-
-- platform: ping
-  host: !secret unifi_usg_host
-  name: USG GW
-
-- platform: ping
-  host: !secret unifi_sw8_host
-  name: SW8 60w
-
-- platform: ping
-  host: !secret unifi_apacpro_loft_host
-  name: AP Loft
-
-- platform: ping
-  host: !secret unifi_apacpro_living_host
-  name: AP Living
 
 - platform: ping
   host: !secret pihole_host

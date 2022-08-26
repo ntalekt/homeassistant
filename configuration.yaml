@@ -9,7 +9,7 @@ homeassistant:
   unit_system: imperial
   customize: !include customize.yaml
   time_zone: !secret homeassistant_timezone
-  external_url: "https://ha.REDACTED.com"
+  external_url: "https://ha.useroneREDACTED.com"
   internal_url: "http://REDACTED54:8123"
   allowlist_external_dirs:
     - /shared
@@ -179,8 +179,6 @@ yeelight:
 
 automation: !include_dir_merge_list automation
 binary_sensor: !include binary_sensor.yaml
-camera: !include camera.yaml
-#device_tracker: !include device_tracker.yaml
 group: !include groups.yaml
 history: !include history.yaml
 input_boolean: !include input_boolean.yaml
@@ -188,9 +186,7 @@ input_button: !include input_button.yaml
 input_datetime: !include input_datetime.yaml
 input_select: !include input_select.yaml
 light: !include light.yaml
-#notify: !include notify.yaml
 recorder: !include recorder.yaml
-remote: !include remote.yaml
 script: !include scripts.yaml
 sensor: !include sensor.yaml
 switch: !include switch.yaml

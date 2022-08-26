@@ -1,8 +1,0 @@
-##############################################################
-## Camera  ##
-##############################################################
-
-- platform: mjpeg
-  name: OctoPrint
-  still_image_url: http://REDACTED35/webcam/?action=snapshot
-  mjpeg_url: http://REDACTED35/webcam/?action=stream

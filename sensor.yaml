@@ -61,38 +61,6 @@
 
 - platform: template
   sensors:
-    octoprint_time_remaining_friendly:
-      value_template: >
-        {% set etime = states.sensor.octoprint_time_remaining.state | int %}
-        {% set seconds = etime % 60 %}
-        {% set minutes = ((etime % 3600) / 60) | int %}
-        {% set hours = ((etime % 86400) / 3600) | int %}
-        {% set days = (etime / 86400) | int %}
-        {%- if days -%}
-          {{days}} day{{'s, ' if days > 1 else ', '}}
-        {%- endif -%}
-        {%- if hours -%}
-          {{hours}} hour{{'s, ' if hours > 1 else ', '}}
-        {%- endif -%}
-        {{minutes}} minute{{'s' if minutes > 1 else ''}}
-      friendly_name: "Print Time Left"
-
-    octoprint_time_elapsed_friendly:
-      value_template: >
-        {% set etime = states.sensor.octoprint_time_elapsed.state | int %}
-        {% set seconds = etime % 60 %}
-        {% set minutes = ((etime % 3600) / 60) | int %}
-        {% set hours = ((etime % 86400) / 3600) | int %}
-        {% set days = (etime / 86400) | int %}
-        {%- if days -%}
-          {{days}} day{{'s, ' if days > 1 else ', '}}
-        {%- endif -%}
-        {%- if hours -%}
-          {{hours}} hour{{'s, ' if hours > 1 else ', '}}
-        {%- endif -%}
-        {{minutes}} minute{{'s' if minutes > 1 else ''}}
-      friendly_name: "Print Time"
-
     weather_alert_title:
       value_template: '{% if states("sensor.nws_alerts") | float > 1 %}{{states.sensor.nws_alerts.attributes.title.split(" - ")[0]}}{% elif states("sensor.nws_alerts") | float >0%}{{states.sensor.nws_alerts.attributes.title}}{% else %}No Alert{%endif %}'
       friendly_name: "NWS Alert Title"
