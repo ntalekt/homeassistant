@@ -52,6 +52,38 @@
       data:
         title: "Home Assistant"
         message: "Leak detected in the master bathroom."
+
+##########################################################
+## Water leak - laundry
+##########################################################
+
+- alias: notification text water leak laundry
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_3
+      from: "off"
+      to: "on"
+  action:
+    - service: notify.ntalekt
+      data:
+        title: "Home Assistant"
+        message: "Leak detected in the laundry room."
+
+##########################################################
+## Water leak - guest
+##########################################################
+
+- alias: notification text water leak guest
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_4
+      from: "off"
+      to: "on"
+  action:
+    - service: notify.ntalekt
+      data:
+        title: "Home Assistant"
+        message: "Leak detected in the guest bathroom."
         
 ##########################################################
 ## slack - Low Battery Alert

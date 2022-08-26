@@ -66,9 +66,6 @@
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: time
-      after: '07:00'
-      before: '22:00'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
@@ -82,9 +79,9 @@
         variables:
           master: 'media_player.office'
           where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
-          volume: '.5'
-          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
-          what: 'Leak detected in the kids bathroom.'
+          volume: '.7'
+          mp3: 'http://REDACTED:8123/local/sounds/street_public_alarm.mp3'
+          what: 'Alert: Leak detected in the kids bathroom. Alert: Leak detected in the kids bathroom.'
 
 ##########################################################
 ## Water leak - master
@@ -102,9 +99,6 @@
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: time
-      after: '07:00'
-      before: '22:00'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
@@ -118,9 +112,9 @@
         variables:
           master: 'media_player.office'
           where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
-          volume: '.5'
-          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
-          what: 'Leak detected in the master bathroom.'
+          volume: '.7'
+          mp3: 'http://REDACTED:8123/local/sounds/street_public_alarm.mp3'
+          what: 'Alert: Leak detected in the master bathroom. Alert: Leak detected in the master bathroom.'
 
 ##########################################################
 ## Water leak - laundry
@@ -138,9 +132,6 @@
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: time
-      after: '07:00'
-      before: '22:00'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
@@ -154,9 +145,9 @@
         variables:
           master: 'media_player.office'
           where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
-          volume: '.5'
-          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
-          what: 'Leak detected in the laundry room.'
+          volume: '.7'
+          mp3: 'http://REDACTED:8123/local/sounds/street_public_alarm.mp3'
+          what: 'Alert: Leak detected in the laundry room. Alert: Leak detected in the laundry room.'
 
 ##########################################################
 ## Water leak - guest bathroom
@@ -174,9 +165,6 @@
     - condition: state
       entity_id: group.household
       state: 'home'
-    - condition: time
-      after: '07:00'
-      before: '22:00'
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
       state: 'off'
@@ -190,9 +178,9 @@
         variables:
           master: 'media_player.office'
           where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
-          volume: '.5'
-          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
-          what: 'Leak detected in the guest bathroom.'
+          volume: '.7'
+          mp3: 'http://REDACTED:8123/local/sounds/street_public_alarm.mp3'
+          what: 'Alert: Leak detected in the guest bathroom. Alert: Leak detected in the guest bathroom.'
 
 ##########################################################
 ## Sonos - Garage door has been open for 30min
