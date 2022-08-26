@@ -83,6 +83,10 @@
               False
         {%- endif -%}
 
+    guest_ssid_device_count:
+      value_template: >-
+        {{ states.device_tracker | selectattr('attributes.essid','defined') | selectattr('attributes.essid','eq','guest.ssid') | list | count }}
+
     pool_contract_signed:
       value_template: '{{ ((as_timestamp(now())-(states.input_datetime.pool_contract_signed.attributes.timestamp)) | int /60/1440) | round(0) }}'
       unit_of_measurement: 'Days'
