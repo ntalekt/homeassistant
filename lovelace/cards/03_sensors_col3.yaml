@@ -8,7 +8,7 @@ cards:
       - entity: sensor.washer_washer_machine_state
         state: "run"
       card:
-      - type: picture-elements
+        type: picture-elements
         image: /local/washer_dryer.jpg
         elements:
         - type: state-label
@@ -23,7 +23,7 @@ cards:
             background-color: rgba(0, 0, 0, 0.3)
             width: 100%
             transform: initial
-            padding: 0 8px
+            padding: 0 10px
         - type: state-label
           entity: sensor.washer_time_remaining
           style:
@@ -34,13 +34,13 @@ cards:
             transform: initial
             color: white
             line-height: 32px
-            padding: 0px 44px
+            padding: 0px 20px
     - type: conditional
       conditions:
       - entity: sensor.dryer_dryer_machine_state
         state: "run"
       card:
-      - type: picture-elements
+        type: picture-elements
         image: /local/washer_dryer.jpg
         elements:
         - type: state-label
@@ -55,7 +55,7 @@ cards:
             background-color: rgba(0, 0, 0, 0.3)
             width: 100%
             transform: initial
-            padding: 0 8px
+            padding: 0 10px
         - type: state-label
           entity: sensor.dryer_time_remaining
           style:
@@ -66,7 +66,7 @@ cards:
             transform: initial
             color: white
             line-height: 32px
-            padding: 0px 44px
+            padding: 0px 20px
   - type: horizontal-stack
     cards:
     - type: entities
