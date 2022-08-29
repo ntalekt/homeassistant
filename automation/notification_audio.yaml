@@ -416,6 +416,9 @@
       - condition: state
         entity_id: input_boolean.disable_notification_school
         state: "off"
+      - condition: state
+        entity_id: device_tracker.userthree_REDACTED
+        state: "REDACTED"
   action:
     - service: script.turn_on
       entity_id: script.say
@@ -427,39 +430,6 @@
           mp3: 'http://REDACTED:8123/local/sounds/school-bell-sound-effect.mp3'
           what: >
             It's time to pickup userthree from choir. 
-
-##########################################################
-## Sonos - Dryer has completed drying
-##########################################################
-
-- alias: notification audio dryer has completed drying
-  trigger:
-    - platform: state
-      entity_id: sensor.dryer_dryer_job_state
-      to: 'finished'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: group.household
-        state: 'home'
-      - condition: time
-        after: '07:00'
-        before: '22:00'
-      - condition: state
-        entity_id: input_boolean.disable_voice_greeting
-        state: 'off'
-  action:
-    - delay: '00:00:05'
-    - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
-          volume: '.5'
-          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
-          what: 'The dryer has completed.'
 
 ##########################################################
 ## Sonos - usertwo has arrived at work
