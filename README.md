@@ -14,7 +14,6 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * Hardware
   * [HP Z620 - E5-2650 8C, 64GB ECC](https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2334524.m570.l1313&_nkw=z620+e5-2650+64gb&_sacat=0&LH_TitleDesc=0&_odkw=z620+e5-2650&_osacat=0&LH_PrefLoc=2)
   * [QNAP TS-251+](https://www.qnap.com/en-us/product/ts-251+)
-  * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
   * [Sonoff Zigbee 3.0 USB CC2652P](https://smile.amazon.com/dp/B09KXTCMSC?psc=1&ref=ppx_yo2ov_dt_b_product_details)
 * Software
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
@@ -34,10 +33,10 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 ## Devices
 
 #### Lighting
-* [Yeelight WIFI RGB Strip](https://smile.amazon.com/gp/product/B01LRT0B56/ref=smi_www_rco2_go_smi_4368549507?_encoding=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&ie=UTF8&linkCode=as2&linkId=34a9570cd0c747f448092913ac2dae60&tag=ntalekt0c-20) x2
-* [GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt0c-20&linkId=0dfbcad4a9df3b81570623f0e23b562a) x3
+* [Kasa HS220 Wi-Fi Switch](https://www.amazon.com/dp/B079775ZZQ)
+* [Yeelight Wi-Fi RGB Strip](https://smile.amazon.com/gp/product/B01LRT0B56/ref=smi_www_rco2_go_smi_4368549507?_encoding=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&ie=UTF8&linkCode=as2&linkId=34a9570cd0c747f448092913ac2dae60&tag=ntalekt0c-20) x2
 * [LE LampUX RGB Lamp](https://smile.amazon.com/gp/product/B07Q8SMG8R/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1)
-* [Goldwin Wifi Controller](https://smile.amazon.com/gp/product/B07JB5N3Y7/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
+* [Goldwin Wi-Fi Controller](https://smile.amazon.com/gp/product/B07JB5N3Y7/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
 * [Pentair IntelliBrite](https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-lighting/intellibrite_5g_underwatercolor-changingledpoolandspalights.html)
 * [Govee Outdoor Patio LED](https://www.amazon.com/gp/product/B094JGKBTR/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
 * [Govee RGBIC Flood Lights](https://www.amazon.com/gp/product/B09MDJV5X5/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
@@ -62,7 +61,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 
 #### Camera
 * [Tapo C320WS](https://www.amazon.com/gp/product/B09ZZJB6VX/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) x4
-* [Tapo C110](https://smile.amazon.com/dp/B09YL5G1Y8?psc=1&ref=ppx_yo2ov_dt_b_product_details)} x2
+* [Tapo C110](https://smile.amazon.com/dp/B09YL5G1Y8?psc=1&ref=ppx_yo2ov_dt_b_product_details) x2
 * [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt0c-20&linkId=5faec88af320aeb157fbb45fa954efc3)
 * [Blink Video Doorbell](https://smile.amazon.com/Blink-Video-Doorbell/dp/B08SG2MS3V/ref=sr_1_1?crid=GR1VH5AFVWQI&keywords=blink+doorbell&qid=1660343748&sprefix=blink+doorbel%2Caps%2C313&sr=8-1)
 
@@ -89,11 +88,11 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [QNAP TS-251+ NAS](https://www.amazon.com/gp/product/B015VNLEOQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B015VNLEOQ&linkCode=as2&tag=ntalekt0c-20&linkId=1419a45442b188e9223b9afd7da40d5c)
 * [Aeotec Z-Stick Gen5](https://www.amazon.com/gp/product/B00X0AWA6E/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00X0AWA6E&linkCode=as2&tag=ntalekt0c-20&linkId=04f4c7bf8438a9dee6e4e2ad273405d0)
 * [APC APC BX1500M](https://www.amazon.com/APC-Battery-Protector-BackUPS-BX1500M/dp/B06VY6FXMM)
+* [Sonoff Zigbee 3.0 USB CC2652P](https://smile.amazon.com/dp/B09KXTCMSC?psc=1&ref=ppx_yo2ov_dt_b_product_details)
 
 #### Software
 * [Life360 Location Tracking App](https://www.life360.com/)
 * [Pi-hole](https://pi-hole.net/)
-* [zwavejs/zwavejs2mqtt](https://hub.docker.com/r/zwavejs/zwavejs2mqtt)
 * [Frigate NVR](https://docs.frigate.video/
 * [double-take](https://github.com/jakowenko/double-take)
 
@@ -118,17 +117,16 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Slack](https://www.home-assistant.io/integrations/slack) if new network device is detected.
 
 ### Lights
-* Exterior lights (porch, side entrance, pool, landscape) ([GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt0c-20&linkId=0dfbcad4a9df3b81570623f0e23b562a), [Pentair IntelliBrite] (https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-lighting/intellibrite_5g_underwatercolor-changingledpoolandspalights.html), [Wyze Plug Outdoor](https://smile.amazon.com/WYZE-Outdoor-Plug-Monitoring-Compatible/dp/B08NXY7WWX/ref=sr_1_2?crid=1G9EML5CAT98A&keywords=wyze+outdoor+switch&qid=1651869807&sprefix=wyze+outdoor+switch%2Caps%2C129&sr=8-2)) on 5 minutes before sunset.
-* Exterior lights ([GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt0c-20&linkId=0dfbcad4a9df3b81570623f0e23b562a)) off 30 minutes after sunrise.
-* Exterior lights ([GE Z-Wave Plus Dimmer 14294](https://www.amazon.com/gp/product/B01MUCZA1C/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01MUCZA1C&linkCode=as2&tag=ntalekt0c-20&linkId=0dfbcad4a9df3b81570623f0e23b562a)) dim to 35% at 9:00pm
-* Exterior pool lights ([Pentair IntelliBrite](https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-lighting/intellibrite_5g_underwatercolor-changingledpoolandspalights.html)) off if no motion after 10pm
-* Interior under cabinet transition during sunset ([Goldwin Wifi Controller](https://smile.amazon.com/gp/product/B07JB5N3Y7/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1))
+* Exterior lights (porch, side entrance, pool, landscape) on 5 minutes before sunset.
+* Exterior lights dim to 15% at 9:00pm
+* Exterior pool lights off if no motion after 10pm
+* Interior under cabinet transition during sunset
 * Interior lights off if no motion
 * Interior lights on if motion
 
 ### Doorbell
 * Exterior lights to 100% if [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt0c-20&linkId=5faec88af320aeb157fbb45fa954efc3) detects motion or is pressed after 9:00pm.
-* Exterior lights back to 35% after 30 minutes after doorbell motion or press.
+* Exterior lights back to 15% after 30 minutes after doorbell motion or press.
 
 ### Media
 * Start [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt0c-20&linkId=ef1edfe63776ff2e3b5b4e7fdf8e3488) activity if user selects from HA UI `input_select`.
