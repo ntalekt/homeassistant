@@ -6,11 +6,11 @@
 ## Deluge
 ##########################################################
 
-- platform: deluge
-  host: !secret deluge_host
-  username: !secret deluge_user
-  password:
-    !secret deluge_pass
+# - platform: deluge
+#   host: !secret deluge_host
+#   username: !secret deluge_user
+#   password:
+#     !secret deluge_pass
     
 ##########################################################
 ## Pihole Disable Switch

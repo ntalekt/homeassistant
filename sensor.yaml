@@ -20,17 +20,17 @@
 ## NUT UPS
 ##########################################################
 
-- platform: nut
-  host: !secret nas2_host
-  username: !secret nut_user
-  password: !secret nut_pass
-  resources:
-    - ups.load
-    - ups.realpower.nominal
-    - battery.runtime
-    - input.voltage
-    - battery.charge
-    - ups.status.display
+# - platform: nut
+#   host: !secret nas2_host
+#   username: !secret nut_user
+#   password: !secret nut_pass
+#   resources:
+#     - ups.load
+#     - ups.realpower.nominal
+#     - battery.runtime
+#     - input.voltage
+#     - battery.charge
+#     - ups.status.display
 
 ##########################################################
 ## HA Instance
@@ -41,19 +41,19 @@
   name: Current HA Release
   scan_interval: 3600
 
-- platform: sql
-  db_url: mysql://root:REDACTED@mariadb.useroneREDACTED.com/hass_docker_db?charset=utf8
-  queries:
-    - name: hass_docker_db Size
-      query: "SELECT table_schema AS 'db_name', ROUND(SUM( data_length + index_length ) / 1024 / 1024, 2) AS 'size_mb' FROM information_schema.TABLES WHERE table_schema='hass_docker_db'"
-      column: 'size_mb'
-      unit_of_measurement: MB
+# - platform: sql
+#   db_url: mysql://root:REDACTED@mariadb.useroneREDACTED.com/hass_docker_db?charset=utf8
+#   queries:
+#     - name: hass_docker_db Size
+#       query: "SELECT table_schema AS 'db_name', ROUND(SUM( data_length + index_length ) / 1024 / 1024, 2) AS 'size_mb' FROM information_schema.TABLES WHERE table_schema='hass_docker_db'"
+#       column: 'size_mb'
+#       unit_of_measurement: MB
 
 - platform: uptime
 
-- platform: filesize
-  file_paths:
-    - /config/home-assistant.log
+# - platform: filesize
+#   file_paths:
+#     - /config/home-assistant.log
 
 ##########################################################
 ## Templates
@@ -508,14 +508,14 @@
 ## Deluge
 ##########################################################
 
-- platform: deluge
-  host: !secret deluge_host
-  username: !secret deluge_user
-  password: !secret deluge_pass
-  monitored_variables:
-    - "current_status"
-    - "download_speed"
-    - "upload_speed"
+# - platform: deluge
+#   host: !secret deluge_host
+#   username: !secret deluge_user
+#   password: !secret deluge_pass
+#   monitored_variables:
+#     - "current_status"
+#     - "download_speed"
+#     - "upload_speed"
 
 ##########################################################
 ## NAS
