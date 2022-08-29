@@ -20,7 +20,6 @@ cards:
       entities:
         - sensor.userone_phone_battery
         - sensor.usertwo_phone_battery
-      #  - sensor.big_garage_tilt_battery
         - sensor.userthree_temp_battery
         - sensor.userfour_temp_battery
         - sensor.master_temp_battery
@@ -32,7 +31,6 @@ cards:
         - sensor.living_motion_battery
         - sensor.chalkboard_switch_battery
         - sensor.patio_door_battery
-        - sensor.big_garage_tilt_battery
         - sensor.kids_leak_sensor_battery
         - sensor.master_leak_sensor_battery
         - sensor.laundry_leak_sensor_battery

@@ -74,11 +74,6 @@ cards:
           color: rgb(46, 204, 64)
         hold_action:
           action: more-info
-    ##########################################################
-    ## Second row buttons
-    ##########################################################
-  - type: horizontal-stack
-    cards:
       - type: "custom:button-card"
         size: 30%
         entity: light.master_bedroom_lamp
@@ -95,16 +90,21 @@ cards:
           color: rgb(46, 204, 64)
         hold_action:
           action: more-info
+    ##########################################################
+    ## Second row buttons
+    ##########################################################
+  - type: horizontal-stack
+    cards:
       - type: "custom:button-card"
-        icon: mdi:track-light
+        icon: mdi:ceiling-light
         size: 30%
-        entity: light.jasco_products_14294_in_wall_smart_dimmer_level
-        name: Porch
+        entity: light.front_porch
+        name: Front Porch
         tap_action:
           action: call-service
           service: light.toggle
           service_data:
-            entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+            entity_id: light.front_porch
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -113,15 +113,32 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        icon: mdi:track-light
+        icon: mdi:outdoor-lamp
         size: 30%
-        entity: light.jasco_products_14294_in_wall_smart_dimmer_level_2
+        entity: light.back_porch
+        name: Back Porch
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.back_porch
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        icon: mdi:outdoor-lamp
+        size: 30%
+        entity: light.side
         name: Side
         tap_action:
           action: call-service
           service: light.toggle
           service_data:
-            entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
+            entity_id: light.side
         state:
         - value: 'off'
 #          color: rgb(68,115,158)

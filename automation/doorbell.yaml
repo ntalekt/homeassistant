@@ -20,15 +20,11 @@
       state: 'below_horizon'
   action:
     - service: light.turn_on
-      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+      entity_id: light.exterior_lights
       data:
-        brightness: 254
-    - service: light.turn_on
-      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
-      data:
-        brightness: 254
+        brightness: 255
 
-- alias: doorbell reset exterior lights to 35 after ring after 9pm
+- alias: doorbell reset exterior lights to 15 after ring after 9pm
   trigger:
     - platform: state
       entity_id: binary_sensor.front_door_ding
@@ -46,14 +42,9 @@
       state: 'below_horizon'
   action:
     - service: light.turn_on
-      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+      entity_id: light.exterior_lights
       data:
-        brightness: 85
-        transition: 60
-    - service: light.turn_on
-      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
-      data:
-        brightness: 85
+        brightness_pct: 15
         transition: 60
 
 - alias: doorbell turn exterior lights to 100 when motion detected after 9pm
@@ -70,15 +61,11 @@
       state: 'below_horizon'
   action:
     - service: light.turn_on
-      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+      entity_id: light.exterior_lights
       data:
-        brightness: 254
-    - service: light.turn_on
-      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
-      data:
-        brightness: 254
+        brightness: 255
 
-- alias: doorbell reset exterior lights to 35 after motion detected after 9pm
+- alias: doorbell reset exterior lights to 15 after motion detected after 9pm
   trigger:
     - platform: state
       entity_id: binary_sensor.front_door_motion
@@ -96,12 +83,7 @@
       state: 'below_horizon'
   action:
     - service: light.turn_on
-      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+      entity_id: light.exterior_lights
       data:
-        brightness: 85
-        transition: 60
-    - service: light.turn_on
-      entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
-      data:
-        brightness: 85
+        brightness_pct: 15
         transition: 60

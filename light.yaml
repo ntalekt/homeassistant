@@ -15,5 +15,6 @@
 - platform: group
   name: Exterior Lights
   entities:
-    - light.jasco_products_14294_in_wall_smart_dimmer_level
-    - light.jasco_products_14294_in_wall_smart_dimmer_level_2
+    - light.front_porch
+    - light.back_porch
+    - light.side
