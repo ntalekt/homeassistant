@@ -22,6 +22,25 @@
         input_boolean.test_text_notification_slack
 
 ##########################################################
+## HA Persistant Notification - Notification Test
+##########################################################
+
+- alias: notification text persistant ha 
+  trigger:
+    - platform: state
+      entity_id: input_boolean.test_text_notification_ha
+      from: "off"
+      to: "on"
+  action:
+    - service: persistent_notification.create
+      data:
+        title: "Home Assistant"
+        message: "This is a test."
+    - service: homeassistant.turn_off
+      entity_id:
+        input_boolean.test_text_notification_ha
+
+##########################################################
 ## Water leak - kids
 ##########################################################
 
@@ -315,43 +334,43 @@
     ## Car entered driveway from street
     ##########################################################
 
-- alias: notification alert frigate car arrived in driveway
-  trigger:
-    - platform: mqtt
-      topic: frigate/events
-      #payload: new
-      value_template: "{{ value_json.type }}"
-  condition:
-    - "{{ trigger.payload_json['after']['label'] == 'car' }}"
-    - "{{ 'street' in trigger.payload_json['before']['current_zones'] }}"
-    - "{{ 'driveway' in trigger.payload_json['after']['current_zones'] }}"
-  action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} has arrived in the driveway. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: Frigate
-  mode: single
+# - alias: notification alert frigate car arrived in driveway
+#   trigger:
+#     - platform: mqtt
+#       topic: frigate/events
+#       #payload: new
+#       value_template: "{{ value_json.type }}"
+#   condition:
+#     - "{{ trigger.payload_json['after']['label'] == 'car' }}"
+#     - "{{ 'street' in trigger.payload_json['before']['current_zones'] }}"
+#     - "{{ 'driveway' in trigger.payload_json['after']['current_zones'] }}"
+#   action:
+#     - service: notify.ntalekt
+#       data_template:
+#         message: 'A {{trigger.payload_json["after"]["label"]}} has arrived in the driveway. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+#         title: Frigate
+#   mode: single
 
     ##########################################################
     ## Frigate car left the driveway
     ##########################################################
 
-- alias: notification alert frigate car left the driveway
-  trigger:
-    - platform: mqtt
-      topic: frigate/events
-      #payload: new
-      value_template: "{{ value_json.type }}"
-  condition:
-    - "{{ trigger.payload_json['after']['label'] == 'car' }}"
-    - "{{ 'driveway' in trigger.payload_json['before']['current_zones'] }}"
-    - "{{ 'street' in trigger.payload_json['after']['current_zones'] }}"
-  action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} has left the driveway. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: Frigate
-  mode: single
+# - alias: notification alert frigate car left the driveway
+#   trigger:
+#     - platform: mqtt
+#       topic: frigate/events
+#       #payload: new
+#       value_template: "{{ value_json.type }}"
+#   condition:
+#     - "{{ trigger.payload_json['after']['label'] == 'car' }}"
+#     - "{{ 'driveway' in trigger.payload_json['before']['current_zones'] }}"
+#     - "{{ 'street' in trigger.payload_json['after']['current_zones'] }}"
+#   action:
+#     - service: notify.ntalekt
+#       data_template:
+#         message: 'A {{trigger.payload_json["after"]["label"]}} has left the driveway. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+#         title: Frigate
+#   mode: single
 
     ##########################################################
     ## Frigate person in the front yard
