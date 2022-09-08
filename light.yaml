@@ -16,5 +16,12 @@
   name: Exterior Lights
   entities:
     - light.front_porch
-    - light.back_porch
+    # - light.back_porch
     - light.side
+
+- platform: group
+  name: Media Center Lamp Bulbs
+  entities:
+    - light.media_lamp_bulb1
+    - light.media_lamp_bulb2
+    - light.media_lamp_bulb3

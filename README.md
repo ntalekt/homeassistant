@@ -17,7 +17,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
   * [Sonoff Zigbee 3.0 USB CC2652P](https://smile.amazon.com/dp/B09KXTCMSC?psc=1&ref=ppx_yo2ov_dt_b_product_details)
 * Software
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
-    * Home Assistant Version: 2022.8.7
+    * Home Assistant Version: 2022.9.0
   * [vSphere 7.x](https://docs.vmware.com/en/VMware-vSphere/7.0/rn/vsphere-esxi-vcenter-server-70-release-notes.html)
   * [Docker v20.10.17](https://github.com/docker/docker-ce/releases)
   * [Traefik v2.2.1 proxy](https://www.smarthomebeginner.com/traefik-2-docker-tutorial/)
@@ -33,7 +33,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 ## Devices
 
 #### Lighting
-* [Kasa HS220 Wi-Fi Switch](https://www.amazon.com/dp/B079775ZZQ)
+* [Kasa HS220 Wi-Fi Switch](https://www.amazon.com/dp/B079775ZZQ) x3
 * [Yeelight Wi-Fi RGB Strip](https://smile.amazon.com/gp/product/B01LRT0B56/ref=smi_www_rco2_go_smi_4368549507?_encoding=UTF8&camp=1789&creative=9325&creativeASIN=B01LRT0B56&ie=UTF8&linkCode=as2&linkId=34a9570cd0c747f448092913ac2dae60&tag=ntalekt0c-20) x2
 * [LE LampUX RGB Lamp](https://smile.amazon.com/gp/product/B07Q8SMG8R/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1)
 * [Goldwin Wi-Fi Controller](https://smile.amazon.com/gp/product/B07JB5N3Y7/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
