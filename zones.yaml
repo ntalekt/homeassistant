@@ -53,7 +53,7 @@
 - name: REDACTED
   latitude: !secret k_latitude
   longitude: !secret k_longitude
-  radius: 150
+  radius: 200
   icon: mdi:school
 
 - name: !secret bg_name
