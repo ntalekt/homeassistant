@@ -220,6 +220,43 @@
           what: 'The garage has been open for 30 minutes.'
 
 ##########################################################
+## Sonos - Shop door has been open for 30min
+##########################################################
+
+- alias: notification audio shop open for 30min
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2
+      to: 'on'
+      for:
+        minutes: 30
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: time
+      after: '07:00'
+      before: '22:00'
+    - condition: state
+      entity_id: input_boolean.disable_voice_greeting
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.house_cleaning_mode
+      state: 'off'
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.office'
+          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          volume: '.5'
+          mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
+          what: 'The shop garage has been open for 30 minutes.'
+
+##########################################################
 ## Sonos - Ring
 ##########################################################
 
@@ -384,6 +421,9 @@
       - condition: state
         entity_id: input_boolean.disable_notification_school
         state: "off"
+      - condition: state
+        entity_id: device_tracker.userthree_REDACTED
+        state: "REDACTED"
   action:
     - service: script.turn_on
       entity_id: script.say
@@ -544,6 +584,14 @@
       entity_id: device_tracker.REDACTED_REDACTED
       from: 'Work'
       to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.REDACTED_REDACTED
+      from: 'Work'
+      to: 'Driving'
+    - platform: state
+      entity_id: device_tracker.REDACTED_REDACTED
+      from: 'Work'
+      to: 'Away'
   condition:
     condition: and
     conditions:
@@ -557,6 +605,10 @@
         entity_id: input_boolean.disable_voice_greeting
         state: 'off'
   action:
+    - service: homeassistant.update_entity
+      entity_id:
+      - sensor.waze_usertwo_to_home
+      - sensor.waze_usertwo_to_lifetime
     - delay: '00:00:10'
     - service: script.turn_on
       entity_id: script.say
@@ -574,6 +626,14 @@
       entity_id: device_tracker.REDACTED_REDACTED
       from: 'REDACTED'
       to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.REDACTED_REDACTED
+      from: 'REDACTED'
+      to: 'Driving'
+    - platform: state
+      entity_id: device_tracker.REDACTED_REDACTED
+      from: 'REDACTED'
+      to: 'Away'
   condition:
     condition: and
     conditions:
@@ -587,6 +647,10 @@
         entity_id: input_boolean.disable_voice_greeting
         state: 'off'
   action:
+    - service: homeassistant.update_entity
+      entity_id:
+      - sensor.waze_usertwo_to_home
+      - sensor.waze_usertwo_to_lifetime
     - delay: '00:00:10'
     - service: script.turn_on
       entity_id: script.say

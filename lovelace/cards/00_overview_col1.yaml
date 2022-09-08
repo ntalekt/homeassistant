@@ -119,7 +119,6 @@ cards:
         hold_action:
           action: more-info
 
-
     ##########################################################
     ## Second row occupancy
     ##########################################################
@@ -239,13 +238,13 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: sensor.big_garage_tilt
+        entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2
         name: Shop
         state:
-        - value: 'Open'
+        - value: 'on'
           color: rgb(255,65,54)
           icon: mdi:garage-open
-        - value: 'Closed'
+        - value: 'off'
           color: rgb(46, 204, 64)
           icon: mdi:garage
         style:
