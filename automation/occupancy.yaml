@@ -182,6 +182,10 @@
       entity_id: binary_sensor.chalkboard_motion
       from: "off"
       to: "on"
+    - platform: state
+      entity_id: binary_sensor.chalkboard_person_motion
+      from: "off"
+      to: "on"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.chalkboard_occupancy
