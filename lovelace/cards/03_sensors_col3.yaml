@@ -67,6 +67,19 @@ cards:
             color: white
             line-height: 32px
             padding: 0px 20px
+    - type: custom:threedy-card
+      base_entity: sensor.octoprint
+      name: Anycubic I3 Mega
+      printer_type: I3
+      monitored:
+        - Status
+        - ETA
+        - Elapsed
+        - Remaining
+      theme: 'Default'
+      font: 'Roboto'
+      scale: 1.0
+      round: false 
   - type: horizontal-stack
     cards:
     - type: entities
