@@ -257,3 +257,134 @@ cards:
             - font-weight: bold
         hold_action:
           action: more-info
+  - type: horizontal-stack
+    cards:
+    - type: conditional
+      conditions:
+      - entity: sensor.washer_washer_machine_state
+        state: "run"
+      card:
+        type: picture-elements
+        image: /local/washer_dryer.jpg
+        #title: Washer
+        elements:
+        - type: state-label
+          entity: sensor.washer_job_state
+          style:
+            left: 0
+            top: 0
+            pointer-events: none
+            font-size: 15px
+            line-height: 32px
+            color: white
+            transform: initial
+            padding: 0 10px
+        - type: state-label
+          entity: sensor.washer_washer_machine_state
+          style:
+            top: 0
+            right: 0
+            pointer-events: none
+            transform: initial
+            font-size: 15px
+            color: rgba(255,255,255,0.8)
+            line-height: 32px
+            padding: 0px 35px
+        - type: icon
+          icon: mdi:lightning-bolt-circle
+          style:
+            top: 0
+            right: 0
+            pointer-events: none
+            transform: scale(0.8)
+            color: rgba(255,255,255,0.8)
+            line-height: 32px
+            padding: 8px 13px
+        - type: state-label
+          entity: sensor.washer_time_remaining
+          style:
+            bottom: 0
+            left: 0
+            pointer-events: none
+            font-size: 15px
+            transform: initial
+            background-color: rgba(0, 0, 0, 0.3)
+            width: 100%
+            color: white
+            line-height: 32px
+            padding: 0px 10px
+        - type: icon
+          icon: mdi:progress-clock
+          entity: sensor.washer_time_remaining
+          style:
+            bottom: 0
+            right: 0
+            transform: initial
+            color: white
+            line-height: 32px
+            padding: 10px 16px
+
+    - type: conditional
+      conditions:
+      - entity: sensor.dryer_dryer_machine_state
+        state: "run"
+      card:
+        type: picture-elements
+        image: /local/washer_dryer.jpg
+        #title: Dryer
+        elements:
+        - type: state-label
+          entity: sensor.dryer_job_state
+          style:
+            left: 0
+            top: 0
+            pointer-events: none
+            font-size: 15px
+            line-height: 32px
+            color: white
+            transform: initial
+            padding: 0 10px
+        - type: state-label
+          entity: sensor.dryer_dryer_machine_state
+          style:
+            top: 0
+            right: 0
+            pointer-events: none
+            transform: initial
+            font-size: 15px
+            color: rgba(255,255,255,0.8)
+            line-height: 32px
+            padding: 0px 35px
+        - type: icon
+          icon: mdi:lightning-bolt-circle
+          style:
+            top: 0
+            right: 0
+            pointer-events: none
+            transform: scale(0.8)
+            color: rgba(255,255,255,0.8)
+            line-height: 32px
+            padding: 8px 13px
+        - type: state-label
+          entity: sensor.dryer_time_remaining
+          style:
+            bottom: 0
+            left: 0
+            pointer-events: none
+            font-size: 15px
+            transform: initial
+            background-color: rgba(0, 0, 0, 0.3)
+            width: 100%
+            color: white
+            line-height: 32px
+            padding: 0px 10px
+        - type: icon
+          icon: mdi:progress-clock
+          entity: sensor.dryer_time_remaining
+          style:
+            bottom: 0
+            right: 0
+            transform: initial
+            color: white
+            line-height: 32px
+            padding: 10px 16px
