@@ -3,38 +3,42 @@
 ##############################################################
 
 ##########################################################
+## Date/Time
+##########################################################
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'date_time_utc'
+    - 'date_time_iso'
+    - 'time_date'
+    - 'time_utc'
+    - 'beat'
+
+##########################################################
 ## Youtube sensor
 ##########################################################
 
 - platform: command_line
   command: curl -s "https://www.youtube.com/watch?v=u_BThJ7MJbM" | tr '<' '\n' | awk -F'"' '/itemprop="interactionCount"/ { print $4 }'
   name: Time Lapse Video Count
+  scan_interval: 600
 
 ##########################################################
-## Season
+## Tasmota version sensor
 ##########################################################
 
-- platform: season
 - platform: command_line
   command: curl -LsI -o /dev/null -w %{url_effective} https://github.com/arendst/Tasmota/releases/latest | rev | cut -d'/' -f1 | cut -d'v' -f1 | rev
   name: Tasmota Latest Version
   scan_interval: 600
 
 ##########################################################
-## NUT UPS
+## Season
 ##########################################################
 
-# - platform: nut
-#   host: !secret nas2_host
-#   username: !secret nut_user
-#   password: !secret nut_pass
-#   resources:
-#     - ups.load
-#     - ups.realpower.nominal
-#     - battery.runtime
-#     - input.voltage
-#     - battery.charge
-#     - ups.status.display
+- platform: season
 
 ##########################################################
 ## HA Instance
@@ -45,19 +49,7 @@
   name: Current HA Release
   scan_interval: 3600
 
-# - platform: sql
-#   db_url: mysql://root:REDACTED@mariadb.useroneREDACTED.com/hass_docker_db?charset=utf8
-#   queries:
-#     - name: hass_docker_db Size
-#       query: "SELECT table_schema AS 'db_name', ROUND(SUM( data_length + index_length ) / 1024 / 1024, 2) AS 'size_mb' FROM information_schema.TABLES WHERE table_schema='hass_docker_db'"
-#       column: 'size_mb'
-#       unit_of_measurement: MB
-
 - platform: uptime
-
-# - platform: filesize
-#   file_paths:
-#     - /config/home-assistant.log
 
 ##########################################################
 ## Templates
@@ -100,8 +92,14 @@
     dryer_time_remaining:
       value_template: '{{ relative_time(now() - timedelta( seconds = as_timestamp(states("sensor.dryer_dryer_completion_time")) - as_timestamp(now())))  }}'
 
+    dryer_job_state:
+      value_template: 'Dryer: {{ states.sensor.dryer_dryer_job_state.state }}'
+      
     washer_time_remaining:
       value_template: '{{ relative_time(now() - timedelta( seconds = as_timestamp(states("sensor.washer_washer_completion_time")) - as_timestamp(now())))  }}'
+
+    washer_job_state:
+      value_template: 'Washer: {{ states.sensor.washer_washer_job_state.state }}'
 
     weather_alert_desc:
       value_template: '{% if states("sensor.nws_alerts") | float > 1 %}{{states.sensor.nws_alerts.attributes.display_desc.split("Description: ")[1].split(">")[0]|truncate(254,True)}}{% elif states("sensor.nws_alerts") | float >0%}{{states.sensor.nws_alerts.attributes.display_desc.split("Description: ")[1].split(">")[0]|truncate(254,True)}}{% else %}No Alert{%endif %}'
@@ -481,6 +479,21 @@
           mdi:battery-alert
         {% endif %}
 
+    shop_garage_door:
+      value_template: "{% if states.sensor.lumi_lumi_sensor_magnet_aq2_battery_2.state %}{{ states.sensor.lumi_lumi_sensor_magnet_aq2_battery_2.state | default(0) | int }}{% endif %}"
+      friendly_name: "Shop Garage Door"
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.sensor.lumi_lumi_sensor_magnet_aq2_battery_2.state | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
     patio_door:
       value_template: '{% if is_state("binary_sensor.lumi_lumi_sensor_magnet_aq2_opening", "on") %}Open{% elif is_state("binary_sensor.lumi_lumi_sensor_magnet_aq2_opening", "off") %}Closed{% else %}unknown{% endif %}'
       friendly_name: "Patio Door Status"
@@ -512,42 +525,6 @@
         {% set up_time =  as_timestamp(now()) - as_timestamp(states('sensor.uptime')) %}
         {% set days = (up_time / 86400) | round(2) %}
         {{ days }}
-#        {% set up_time =  as_timestamp(now()) - as_timestamp(states('sensor.uptime')) %}
-#        {% if up_time == 0 %}
-#          Just restarted...
-#        {% else %}
-#          {% set minutes = (up_time // 60) | int %}
-#          {% set hours = (minutes // 60) %}
-#          {% set days = (hours // 24) %}
-#          {% set weeks = (days // 7) %}
-#          {% set minutes = (minutes % 60) %}
-#          {% set hours =  (hours % 24) %}
-#          {% set days = (days % 7) %}
-#          {% macro phrase(value, name) %}
-#                    {%- set value = value %}
-#                    {%- set end = 's' if value > 1 else '' %}
-#                    {{- '{} {}{}'.format(value, name, end) if value | int > 0 else '' }}
-#          {%- endmacro %}
-#          {% set text = [ phrase(weeks, 'week'), phrase(days, 'day'), phrase(hours, 'hr'), phrase(minutes, 'min') ] | select('!=','') | list | join(', ') %}
-#          {% set last_comma = text.rfind(',') %}
-#          {% if last_comma != -1 %}
-#            {% set text = text[:last_comma] + ' and' + text[last_comma + 1:] %}
-#          {% endif %}
-#        {{ text }}
-#        {% endif %}
-
-##########################################################
-## Deluge
-##########################################################
-
-# - platform: deluge
-#   host: !secret deluge_host
-#   username: !secret deluge_user
-#   password: !secret deluge_pass
-#   monitored_variables:
-#     - "current_status"
-#     - "download_speed"
-#     - "upload_speed"
 
 ##########################################################
 ## NAS
@@ -577,6 +554,10 @@
 
 - platform: nws_alerts
   zone_id: 'AZC013'
+
+##########################################################
+## History stats
+##########################################################
 
 - platform: history_stats
   name: userone time home

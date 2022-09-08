@@ -60,6 +60,8 @@ lovelace:
       type: module
     - url: /hacsfiles/entity-attributes-card/entity-attributes-card.js?=v2
       type: module
+    - url: /hacsfiles/threedy/threedy-card.js
+      type: module
 
 shell_command:
   docker_image_prune_docker1: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED54 'docker image prune -af'"
@@ -111,8 +113,6 @@ alexa:
         name: "Xbox"
         description: "Downstairs xbox harmony activity"
 
-breaking_changes:
-
 ffmpeg:
 
 monitor_docker:
@@ -154,10 +154,6 @@ weather:
   - platform: darksky
     api_key: !secret darksky_api_key
     mode: daily
-
-wemo:
-  static:
-    - !secret wemo_insight_host
 
 xiaomi_aqara:
   discovery_retry: 5

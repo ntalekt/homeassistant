@@ -62,10 +62,26 @@
     - service: switch.turn_on
       entity_id: switch.cactus_socket
     - service: light.turn_on
+      entity_id: light.media_center_lamp_bulbs
+      data:
+        brightness_pct: 5
+        transition: 60
+        rgb_color:
+          - 8
+          - 213
+          - 255
+    - service: light.turn_on
       entity_id: light.master_bedroom_lamp
       data:
-        kelvin: 6000
-        brightness: 150
+        kelvin: 4000
+        brightness_pct: 60
+        transition: 60
+    - service: light.turn_on
+      entity_id: light.loft_lamp_bulb
+      data:
+        kelvin: 4000
+        brightness_pct: 10
+        transition: 60
 
 ##########################################################
 ## Interior - Master lamp switch color when TV on
@@ -84,8 +100,8 @@
     - service: light.turn_on
       entity_id: light.master_bedroom_lamp
       data:
-        kelvin: 6000
-        brightness: 5
+        kelvin: 4000
+        brightness_pct: 5
 
 ##########################################################
 ## Interior - Turn off downstairs lights if no motion
@@ -134,6 +150,8 @@
       entity_id: switch.cactus_socket
     - service: light.turn_off
       entity_id: light.kitchen_cabinet_lights
+    - service: light.turn_off
+      entity_id: light.media_center_lamp_bulbs
     # light turning off sometimes triggers motion sensor
     - delay: 0:15
     - service: input_boolean.turn_off
@@ -166,7 +184,7 @@
     - service: light.turn_on
       entity_id: light.kitchen_cabinet_lights
       data_template:
-        brightness: "63"
+        brightness_pct: "25"
 
 ##########################################################
 ## Interior - Turn off cabinet lights at sunrise if they are still on
@@ -228,8 +246,12 @@
     # Other Landscape lights
     - service: light.turn_on
       entity_id: light.outdoor_string
+      data:
+        brightness_pct: 100
     - service: light.turn_on
       entity_id: light.smart_flood_lights
+      data:
+        brightness_pct: 100
     # Spa and Pool light
     - service: light.turn_on
       entity_id: light.lights

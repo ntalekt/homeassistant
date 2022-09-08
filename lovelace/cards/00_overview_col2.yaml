@@ -1,21 +1,41 @@
 # Colors: https://clrs.cc/
 type: vertical-stack
 cards:
+  - type: horizontal-stack
+    cards:
+      - type: picture-elements
+        image: 'https://fakeimg.pl/100x22/000000,0/ffffff?text=+'
+        elements:
+        - type: state-label
+          entity: sensor.normal_time
+          style:
+            left: 50%
+            top: 40%
+            font-size: 525%
+            opacity: 1
+        - type: state-label
+          entity: sensor.normal_date
+          style:
+            left: 50%
+            top: 82%
+            font-size: 150%
+            color: rgb(0,181,157) #00b59d
+            opacity: 1
     ##########################################################
     ## Top row buttons
     ##########################################################
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
-        icon: mdi:floor-lamp
+        icon: mdi:floor-lamp-dual
         size: 30%
-        entity: switch.media_center_lamp_socket
-        name: TV Lamp
+        entity: light.media_center_lamp_bulbs
+        name: TV
         tap_action:
           action: call-service
-          service: switch.toggle
+          service: light.toggle
           service_data:
-            entity_id: switch.media_center_lamp_socket
+            entity_id: light.media_center_lamp_bulbs
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -24,10 +44,10 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        icon: mdi:led-strip
+        icon: mdi:led-strip-variant
         size: 30%
         entity: light.media_accents
-        name: TV Accents
+        name: Accents
         tap_action:
           action: call-service
           service: light.toggle
@@ -61,7 +81,7 @@ cards:
         icon: mdi:fridge-outline
         size: 30%
         entity: light.kitchen_cabinet_lights
-        name: Cabinets
+        name: Kitchen
         tap_action:
           action: call-service
           service: light.toggle
@@ -83,6 +103,23 @@ cards:
           service: light.toggle
           service_data:
             entity_id: light.master_bedroom_lamp
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        icon: mdi:floor-lamp
+        size: 30%
+        entity: light.loft_lamp_bulb
+        name: Loft
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.loft_lamp_bulb
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -282,13 +319,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:fan
         size: 30%
-        entity: switch.wemo_insight
+        entity: switch.office_fan_socket
         name: Office Fan
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.wemo_insight
+            entity_id: switch.office_fan_socket
         state:
         - value: 'off'
         - value: 'on'

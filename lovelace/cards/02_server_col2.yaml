@@ -61,21 +61,21 @@ cards:
           action: more-info
   - type: horizontal-stack
     cards:
-      - type: "custom:button-card"
-        entity: sensor.potential_breaking_changes
-        show_state: true
-        styles:
-          card:
-            - height: 100px
-        state:
-          - operator: '!='
-            value: 0
-            color: rgb(255,65,54)
-          - operator: default
-            value: 0
-            color: rgb(46, 204, 64)
-        hold_action:
-          action: more-info
+      # - type: "custom:button-card"
+      #   entity: sensor.potential_breaking_changes
+      #   show_state: true
+      #   styles:
+      #     card:
+      #       - height: 100px
+      #   state:
+      #     - operator: '!='
+      #       value: 0
+      #       color: rgb(255,65,54)
+      #     - operator: default
+      #       value: 0
+      #       color: rgb(46, 204, 64)
+      #   hold_action:
+      #     action: more-info
       - type: "custom:button-card"
         name: HASS Service Restart
         icon: mdi:restart
