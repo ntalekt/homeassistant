@@ -45,3 +45,30 @@
           Mac-address: {{state_attr(entity,'mac')}}
           Full data: {{trigger.event.data}}
         title: Home Assistant
+
+        ##########################################################
+        ## Pi-hole update status
+        ##########################################################
+
+- alias: update pi-hole switch because it is slow
+  trigger:
+    - platform: event
+      event_type: call_service
+      event_data:
+        domain: switch
+        service: toggle
+        service_data:
+          entity_id: switch.pi_hole1
+    - platform: event
+      event_type: call_service
+      event_data:
+        domain: switch
+        service: toggle
+        service_data:
+          entity_id: switch.pi_hole2
+  action:
+    - service: homeassistant.update_entity
+      target:
+        entity_id:
+          - switch.pi_hole1
+          - switch.pi_hole2
