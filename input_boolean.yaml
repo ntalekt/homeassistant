@@ -7,6 +7,11 @@ test_text_notification_slack:
   initial: off
   icon: mdi:test-tube
 
+test_text_notification_ha:
+  name: Test Persistent Notification HA
+  initial: off
+  icon: mdi:test-tube
+
 wfh_mode:
   name: Work From Home Mode
   icon: mdi:briefcase
