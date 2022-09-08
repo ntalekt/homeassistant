@@ -7,6 +7,7 @@ cards:
       title: Modes
       entities:
         - entity: input_boolean.wfh_mode
+        - entity: input_boolean.guest_mode
         - entity: input_boolean.vacation_mode
         - entity: input_boolean.house_cleaning_mode
         - entity: input_boolean.interior_camera_detection_mode

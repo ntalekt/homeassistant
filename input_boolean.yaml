@@ -11,6 +11,10 @@ wfh_mode:
   name: Work From Home Mode
   icon: mdi:briefcase
 
+guest_mode:
+  name: Guest Mode
+  icon: mdi:bed
+
 vacation_mode:
   name: Vacation Mode
   icon: mdi:airplane
