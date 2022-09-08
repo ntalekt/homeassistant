@@ -95,6 +95,24 @@
       target:
         entity_id: media_player.office
 
+##########################################################
+## Turn off sonos if everyone is gone
+##########################################################
+
+- alias: turn off sonos if everyone is gone
+  trigger:
+    - platform: state
+      entity_id: group.household
+      to: 'not_home'
+  action:
+    - service: media_player.media_pause
+      target:
+        entity_id:
+          - media_player.chalkboard_room
+          - media_player.kitchen
+          - media_player.loft
+          - media_player.office
+
         ##########################################################
         ## Pause Deluge if Cox utilization > 95%
         ##########################################################
