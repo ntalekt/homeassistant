@@ -170,6 +170,28 @@
       data:
         title: "New Home Assistant Release"
         message: "Home Assistant {{ states.sensor.current_ha_release.state }} is now available."
+    - service: persistent_notification.create
+      data:
+        title: "New Home Assistant Release"
+        message: "Home Assistant {{ states.sensor.current_ha_release.state }} is now available."
+
+##########################################################
+## New version of Tasmota
+##########################################################
+
+- alias: notification new version of tasmota
+  trigger:
+    - platform: state
+      entity_id: sensor.tasmota_latest_version
+  action:
+    - service: notify.ntalekt
+      data:
+        title: "New Tasmota Release"
+        message: "Tasmota {{ states.sensor.tasmota_latest_version.state }} is now available."
+    - service: persistent_notification.create
+      data:
+        title: "New Tasmota Release"
+        message: "Tasmota {{ states.sensor.tasmota_latest_version.state }} is now available."
 
 ##########################################################
 ## Garage Door - Left it open
