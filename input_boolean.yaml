@@ -139,6 +139,15 @@ disable_notification_school:
   icon: mdi:bus-school
 
 ##########################################################
+## REDACTED - Early dismissal
+##########################################################
+
+school_early_dismissal_mode:
+  name: REDACTED Early Dismissal Mode
+  initial: off
+  icon: mdi:bus-school
+
+##########################################################
 ## Group Sonos
 ##########################################################
 

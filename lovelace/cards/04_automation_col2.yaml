@@ -10,6 +10,7 @@ cards:
         - entity: input_boolean.guest_mode
         - entity: input_boolean.vacation_mode
         - entity: input_boolean.house_cleaning_mode
+        - entity: input_boolean.school_early_dismissal_mode
         - entity: input_boolean.interior_camera_detection_mode
         - entity: input_boolean.interior_camera_recording_mode
   - type: horizontal-stack
