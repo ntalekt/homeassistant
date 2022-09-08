@@ -68,6 +68,34 @@
     weather_alert_title:
       value_template: '{% if states("sensor.nws_alerts") | float > 1 %}{{states.sensor.nws_alerts.attributes.title.split(" - ")[0]}}{% elif states("sensor.nws_alerts") | float >0%}{{states.sensor.nws_alerts.attributes.title}}{% else %}No Alert{%endif %}'
       friendly_name: "NWS Alert Title"
+    
+    #https://github.com/dangreco/threedy/issues/43
+    octoprint_time_elapsed:
+      unit_of_measurement: 's'
+      value_template: >-
+        {% set start = as_timestamp(states('sensor.octoprint_start_time')) %}
+        {% if is_number(start) %}
+          {{ (as_timestamp(now()) - start) | int }}
+        {% else %}
+          unknown
+        {% endif %}
+    
+    #https://github.com/dangreco/threedy/issues/43
+    octoprint_time_remaining:
+      unit_of_measurement: 's'
+      value_template: >-
+        {% set finish = as_timestamp(states('sensor.octoprint_estimated_finish_time')) %}
+        {% if is_number(finish) %}
+          {{ (finish - as_timestamp(now())) | int }}
+        {% else %}
+          unknown
+        {% endif %}
+
+    normal_time:
+      value_template: '{{ as_timestamp(states("sensor.date_time_iso")) | timestamp_custom("%I:%M %p") }}'
+
+    normal_date:
+      value_template: '{{ as_timestamp(states("sensor.date_time_iso")) | timestamp_custom("%A, %B %-d") }}'
 
     dryer_time_remaining:
       value_template: '{{ relative_time(now() - timedelta( seconds = as_timestamp(states("sensor.dryer_dryer_completion_time")) - as_timestamp(now())))  }}'
