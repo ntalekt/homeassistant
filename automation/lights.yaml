@@ -64,12 +64,9 @@
     - service: light.turn_on
       entity_id: light.media_center_lamp_bulbs
       data:
-        brightness_pct: 5
+        kelvin: 4500
+        brightness_pct: 1
         transition: 60
-        rgb_color:
-          - 8
-          - 213
-          - 255
     - service: light.turn_on
       entity_id: light.master_bedroom_lamp
       data:
@@ -79,8 +76,8 @@
     - service: light.turn_on
       entity_id: light.loft_lamp_bulb
       data:
-        kelvin: 4000
-        brightness_pct: 10
+        kelvin: 4500
+        brightness_pct: 5
         transition: 60
 
 ##########################################################
