@@ -19,15 +19,8 @@ from . import (
     get_frigate_device_identifier,
     get_frigate_entity_unique_id,
 )
-from .const import (
-    ATTR_CONFIG,
-    DOMAIN,
-    ICON_CONTRAST,
-    ICON_FILM_MULTIPLE,
-    ICON_IMAGE_MULTIPLE,
-    ICON_MOTION_SENSOR,
-    NAME,
-)
+from .const import ATTR_CONFIG, DOMAIN, NAME
+from .icons import get_icon_from_switch
 
 _LOGGER: logging.Logger = logging.getLogger(__name__)
 
@@ -43,7 +36,7 @@ async def async_setup_entry(
         entities.extend(
             [
                 FrigateSwitch(entry, frigate_config, camera, "detect", True),
-                FrigateSwitch(entry, frigate_config, camera, "motion", False),
+                FrigateSwitch(entry, frigate_config, camera, "motion", True),
                 FrigateSwitch(entry, frigate_config, camera, "recordings", True),
                 FrigateSwitch(entry, frigate_config, camera, "snapshots", True),
                 FrigateSwitch(entry, frigate_config, camera, "improve_contrast", False),
@@ -66,7 +59,7 @@ class FrigateSwitch(FrigateMQTTEntity, SwitchEntity):  # type: ignore[misc]
         default_enabled: bool,
     ) -> None:
         """Construct a FrigateSwitch."""
-
+        self._frigate_config = frigate_config
         self._cam_name = cam_name
         self._switch_name = switch_name
         self._is_on = False
@@ -76,24 +69,19 @@ class FrigateSwitch(FrigateMQTTEntity, SwitchEntity):  # type: ignore[misc]
         )
 
         self._attr_entity_registry_enabled_default = default_enabled
-
-        if self._switch_name == "snapshots":
-            self._icon = ICON_IMAGE_MULTIPLE
-        elif self._switch_name == "recordings":
-            self._icon = ICON_FILM_MULTIPLE
-        elif self._switch_name == "improve_contrast":
-            self._icon = ICON_CONTRAST
-        else:
-            self._icon = ICON_MOTION_SENSOR
-
+        self._icon = get_icon_from_switch(self._switch_name)
         super().__init__(
             config_entry,
             frigate_config,
             {
-                "topic": (
-                    f"{frigate_config['mqtt']['topic_prefix']}"
-                    f"/{self._cam_name}/{self._switch_name}/state"
-                )
+                "state_topic": {
+                    "msg_callback": self._state_message_received,
+                    "qos": 0,
+                    "topic": (
+                        f"{self._frigate_config['mqtt']['topic_prefix']}"
+                        f"/{self._cam_name}/{self._switch_name}/state"
+                    ),
+                },
             },
         )
 
@@ -101,7 +89,7 @@ class FrigateSwitch(FrigateMQTTEntity, SwitchEntity):  # type: ignore[misc]
     def _state_message_received(self, msg: ReceiveMessage) -> None:
         """Handle a new received MQTT state message."""
         self._is_on = msg.payload == "ON"
-        super()._state_message_received(msg)
+        self.async_write_ha_state()
 
     @property
     def unique_id(self) -> str:
@@ -129,12 +117,17 @@ class FrigateSwitch(FrigateMQTTEntity, SwitchEntity):  # type: ignore[misc]
     @property
     def name(self) -> str:
         """Return the name of the sensor."""
-        return f"{get_friendly_name(self._cam_name)} {get_friendly_name(self._switch_name)}".title()
+        return f"{get_friendly_name(self._switch_name)}".title()
 
     @property
     def is_on(self) -> bool:
         """Return true if the binary sensor is on."""
         return self._is_on
+
+    @property
+    def icon(self) -> str:
+        """Return the icon of the sensor."""
+        return self._icon
 
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn the device on."""
@@ -155,8 +148,3 @@ class FrigateSwitch(FrigateMQTTEntity, SwitchEntity):  # type: ignore[misc]
             0,
             False,
         )
-
-    @property
-    def icon(self) -> str:
-        """Return the icon of the sensor."""
-        return self._icon

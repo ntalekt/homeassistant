@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import asyncio
+from collections.abc import Mapping
+import datetime
 from http import HTTPStatus
 from ipaddress import ip_address
 import logging
@@ -14,14 +16,17 @@ import jwt
 from multidict import CIMultiDict
 from yarl import URL
 
+from custom_components.frigate.api import FrigateApiClient
 from custom_components.frigate.const import (
+    ATTR_CLIENT,
     ATTR_CLIENT_ID,
     ATTR_CONFIG,
     ATTR_MQTT,
     CONF_NOTIFICATION_PROXY_ENABLE,
+    CONF_NOTIFICATION_PROXY_EXPIRE_AFTER_SECONDS,
     DOMAIN,
 )
-from homeassistant.components.http import HomeAssistantView
+from homeassistant.components.http import KEY_AUTHENTICATED, HomeAssistantView
 from homeassistant.components.http.auth import DATA_SIGN_SECRET, SIGN_QUERY_PARAM
 from homeassistant.components.http.const import KEY_HASS
 from homeassistant.config_entries import ConfigEntry
@@ -67,6 +72,20 @@ def get_config_entry_for_frigate_instance_id(
     return None
 
 
+def get_client_for_frigate_instance_id(
+    hass: HomeAssistant, frigate_instance_id: str
+) -> FrigateApiClient | None:
+    """Get a client for a given frigate_instance_id."""
+
+    config_entry = get_config_entry_for_frigate_instance_id(hass, frigate_instance_id)
+    if config_entry:
+        return cast(
+            FrigateApiClient,
+            hass.data[DOMAIN].get(config_entry.entry_id, {}).get(ATTR_CLIENT),
+        )
+    return None
+
+
 def get_frigate_instance_id_for_config_entry(
     hass: HomeAssistant,
     config_entry: ConfigEntry,
@@ -104,7 +123,9 @@ class ProxyView(HomeAssistantView):  # type: ignore[misc]
         """Create path."""
         raise NotImplementedError  # pragma: no cover
 
-    def _permit_request(self, request: web.Request, config_entry: ConfigEntry) -> bool:
+    def _permit_request(
+        self, request: web.Request, config_entry: ConfigEntry, **kwargs: Any
+    ) -> bool:
         """Determine whether to permit a request."""
         return True
 
@@ -122,6 +143,11 @@ class ProxyView(HomeAssistantView):  # type: ignore[misc]
 
         raise HTTPBadGateway() from None
 
+    @staticmethod
+    def _get_query_params(request: web.Request) -> Mapping[str, str]:
+        """Get the query params to send upstream."""
+        return {k: v for k, v in request.query.items() if k != "authSig"}
+
     async def _handle_request(
         self,
         request: web.Request,
@@ -133,7 +159,7 @@ class ProxyView(HomeAssistantView):  # type: ignore[misc]
         if not config_entry:
             return web.Response(status=HTTPStatus.BAD_REQUEST)
 
-        if not self._permit_request(request, config_entry):
+        if not self._permit_request(request, config_entry, **kwargs):
             return web.Response(status=HTTPStatus.FORBIDDEN)
 
         full_path = self._create_path(**kwargs)
@@ -148,7 +174,7 @@ class ProxyView(HomeAssistantView):  # type: ignore[misc]
             request.method,
             url,
             headers=source_header,
-            params=request.query,
+            params=self._get_query_params(request),
             allow_redirects=False,
             data=data,
         ) as result:
@@ -160,7 +186,7 @@ class ProxyView(HomeAssistantView):  # type: ignore[misc]
 
             try:
                 await response.prepare(request)
-                async for data in result.content.iter_chunked(4096):
+                async for data in result.content.iter_any():
                     await response.write(data)
 
             except (aiohttp.ClientError, aiohttp.ClientPayloadError) as err:
@@ -185,6 +211,18 @@ class SnapshotsProxyView(ProxyView):
         return f"api/events/{kwargs['eventid']}/snapshot.jpg"
 
 
+class ThumbnailsProxyView(ProxyView):
+    """A proxy for snapshots."""
+
+    url = "/api/frigate/{frigate_instance_id:.+}/thumbnail/{eventid:.*}"
+
+    name = "api:frigate:thumbnails"
+
+    def _create_path(self, **kwargs: Any) -> str | None:
+        """Create path."""
+        return f"api/events/{kwargs['eventid']}/thumbnail.jpg"
+
+
 class NotificationsProxyView(ProxyView):
     """A proxy for notifications."""
 
@@ -207,9 +245,49 @@ class NotificationsProxyView(ProxyView):
             return f"api/events/{event_id}/clip.mp4"
         return None
 
-    def _permit_request(self, request: web.Request, config_entry: ConfigEntry) -> bool:
+    def _permit_request(
+        self, request: web.Request, config_entry: ConfigEntry, **kwargs: Any
+    ) -> bool:
         """Determine whether to permit a request."""
-        return bool(config_entry.options.get(CONF_NOTIFICATION_PROXY_ENABLE, True))
+
+        is_notification_proxy_enabled = bool(
+            config_entry.options.get(CONF_NOTIFICATION_PROXY_ENABLE, True)
+        )
+
+        # If proxy is disabled, immediately reject
+        if not is_notification_proxy_enabled:
+            return False
+
+        # Authenticated requests are always allowed.
+        if request[KEY_AUTHENTICATED]:
+            return True
+
+        # If request is not authenticated, check whether it is expired.
+        notification_expiration_seconds = int(
+            config_entry.options.get(CONF_NOTIFICATION_PROXY_EXPIRE_AFTER_SECONDS, 0)
+        )
+
+        # If notification events never expire, immediately permit.
+        if notification_expiration_seconds == 0:
+            return True
+
+        try:
+            event_id_timestamp = int(kwargs["event_id"].partition(".")[0])
+            event_datetime = datetime.datetime.fromtimestamp(
+                event_id_timestamp, tz=datetime.timezone.utc
+            )
+            now_datetime = datetime.datetime.now(tz=datetime.timezone.utc)
+            expiration_datetime = event_datetime + datetime.timedelta(
+                seconds=notification_expiration_seconds
+            )
+
+            # Otherwise, permit only if notification event is not expired
+            return now_datetime.timestamp() <= expiration_datetime.timestamp()
+        except ValueError:
+            _LOGGER.warning(
+                "The event id %s does not have a valid format.", kwargs["event_id"]
+            )
+            return False
 
 
 class VodProxyView(ProxyView):
@@ -218,7 +296,12 @@ class VodProxyView(ProxyView):
     url = "/api/frigate/{frigate_instance_id:.+}/vod/{path:.+}/{manifest:.+}.m3u8"
     extra_urls = ["/api/frigate/vod/{path:.+}/{manifest:.+}.m3u8"]
 
-    name = "api:frigate:vod:mainfest"
+    name = "api:frigate:vod:manifest"
+
+    @staticmethod
+    def _get_query_params(request: web.Request) -> Mapping[str, str]:
+        """Get the query params to send upstream."""
+        return request.query
 
     def _create_path(self, **kwargs: Any) -> str | None:
         """Create path."""
@@ -228,15 +311,15 @@ class VodProxyView(ProxyView):
 class VodSegmentProxyView(ProxyView):
     """A proxy for vod segments."""
 
-    url = "/api/frigate/{frigate_instance_id:.+}/vod/{path:.+}/{segment:.+}.ts"
-    extra_urls = ["/api/frigate/vod/{path:.+}/{segment:.+}.ts"]
+    url = "/api/frigate/{frigate_instance_id:.+}/vod/{path:.+}/{segment:.+}.{extension:(ts|m4s|mp4)}"
+    extra_urls = ["/api/frigate/vod/{path:.+}/{segment:.+}.{extension:(ts|m4s|mp4)}"]
 
     name = "api:frigate:vod:segment"
     requires_auth = False
 
     def _create_path(self, **kwargs: Any) -> str | None:
         """Create path."""
-        return f"vod/{kwargs['path']}/{kwargs['segment']}.ts"
+        return f"vod/{kwargs['path']}/{kwargs['segment']}.{kwargs['extension']}"
 
     async def _async_validate_signed_manifest(self, request: web.Request) -> bool:
         """Validate the signature for the manifest of this segment."""
@@ -311,7 +394,7 @@ class WebsocketProxyView(ProxyView):
         if not config_entry:
             return web.Response(status=HTTPStatus.BAD_REQUEST)
 
-        if not self._permit_request(request, config_entry):
+        if not self._permit_request(request, config_entry, **kwargs):
             return web.Response(status=HTTPStatus.FORBIDDEN)
 
         full_path = self._create_path(**kwargs)
@@ -423,6 +506,12 @@ def _response_header(response: aiohttp.ClientResponse) -> dict[str, str]:
             # hdrs.CONTENT_LENGTH,
             hdrs.CONTENT_TYPE,
             hdrs.CONTENT_ENCODING,
+            # Strips inbound CORS response headers since the aiohttp_cors
+            # library will assert that they are not already present for CORS
+            # requests.
+            hdrs.ACCESS_CONTROL_ALLOW_ORIGIN,
+            hdrs.ACCESS_CONTROL_ALLOW_CREDENTIALS,
+            hdrs.ACCESS_CONTROL_EXPOSE_HEADERS,
         ):
             continue
         headers[name] = value
