@@ -35,12 +35,6 @@
   scan_interval: 600
 
 ##########################################################
-## Season
-##########################################################
-
-- platform: season
-
-##########################################################
 ## HA Instance
 ##########################################################
 
@@ -48,8 +42,6 @@
   command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
   name: Current HA Release
   scan_interval: 3600
-
-- platform: uptime
 
 ##########################################################
 ## Templates
@@ -245,6 +237,21 @@
       unit_of_measurement: "%"
       icon_template: >
         {% set battery_level = states.device_tracker.REDACTED_REDACTED.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+    userthree_phone_battery:
+      value_template: "{% if states.device_tracker.userthree_REDACTED.state %}{{ states.device_tracker.userthree_REDACTED.attributes.battery_level | default(0) | int }}{% endif %}"
+      friendly_name: "userthree iPhone"
+      unit_of_measurement: "%"
+      icon_template: >
+        {% set battery_level = states.device_tracker.userthree_REDACTED.attributes.battery_level | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery

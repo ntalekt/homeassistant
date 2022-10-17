@@ -421,9 +421,9 @@
       - condition: state
         entity_id: input_boolean.disable_notification_school
         state: "off"
-      - condition: state
-        entity_id: device_tracker.userthree_REDACTED
-        state: "REDACTED"
+      # - condition: state
+      #   entity_id: device_tracker.userthree_REDACTED
+      #   state: "REDACTED"
   action:
     - service: script.turn_on
       entity_id: script.say
@@ -498,9 +498,9 @@
       - condition: state
         entity_id: input_boolean.school_early_dismissal_mode
         state: "on"
-      - condition: state
-        entity_id: device_tracker.userthree_REDACTED
-        state: "REDACTED"
+      # - condition: state
+      #   entity_id: device_tracker.userthree_REDACTED
+      #   state: "REDACTED"
   action:
     - service: script.turn_on
       entity_id: script.say

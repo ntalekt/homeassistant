@@ -419,7 +419,7 @@
 - alias: occupancy wfh off
   trigger:
     - platform: time
-      at: "16:00:00"
+      at: "15:00:00"
   condition:
     - condition: time
       weekday:
