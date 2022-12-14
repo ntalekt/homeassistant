@@ -115,7 +115,7 @@
   trigger:
     - platform: state
       #frigate person detection
-      entity_id: binary_sensor.front_person_occupancyn
+      entity_id: binary_sensor.front_person_occupancy
       from: "off"
       to: "on"
   action:
