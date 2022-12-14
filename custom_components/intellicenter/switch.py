@@ -25,8 +25,6 @@ from .pyintellicenter import (
 
 _LOGGER = logging.getLogger(__name__)
 
-# FIXME: for freeze swtch use icon mdi:snowflake
-
 # -------------------------------------------------------------------------------------
 
 
@@ -62,7 +60,8 @@ async def async_setup_entry(
             and not (object.isALight or object.isALightShow)
             and object.isFeatured
         ):
-            switches.append(PoolCircuit(entry, controller, object))
+            switches.append(
+                PoolCircuit(entry, controller, object, icon="mdi:alpha-f-box-outline"))
         elif object.objtype == SYSTEM_TYPE:
             switches.append(
                 PoolCircuit(
@@ -71,6 +70,7 @@ async def async_setup_entry(
                     object,
                     VACFLO_ATTR,
                     name="Vacation mode",
+                    icon="mdi:palm-tree",
                     enabled_by_default=False,
                 )
             )
@@ -108,8 +108,4 @@ class PoolBody(PoolCircuit):
         """Initialize a Pool body from the underlying circuit."""
         super().__init__(entry, controller, poolObject)
         self._extra_state_attributes = [VOL_ATTR, HEATER_ATTR, HTMODE_ATTR]
-
-    @property
-    def icon(self):
-        """Return the icon for the entity."""
-        return "mdi:pool"
+        self._attr_icon = "mdi:pool"

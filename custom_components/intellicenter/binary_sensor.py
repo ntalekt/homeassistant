@@ -33,7 +33,14 @@ async def async_setup_entry(
     object: PoolObject
     for object in controller.model.objectList:
         if object.objtype == CIRCUIT_TYPE and object.subtype == "FRZ":
-            sensors.append(PoolBinarySensor(entry, controller, object))
+            sensors.append(
+                PoolBinarySensor(
+                    entry,
+                    controller,
+                    object,
+                    icon = "mdi:snowflake"
+                )
+            )
         elif object.objtype == HEATER_TYPE:
             sensors.append(
                 HeaterBinarySensor(
@@ -99,6 +106,7 @@ class HeaterBinarySensor(PoolEntity, BinarySensorEntity):
         """Initialize."""
         super().__init__(entry, controller, poolObject, **kwargs)
         self._bodies = set(poolObject[BODY_ATTR].split(" "))
+        self._attr_icon = "mdi:fire-circle"
 
     @property
     def is_on(self) -> bool:

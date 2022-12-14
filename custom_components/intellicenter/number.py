@@ -1,7 +1,6 @@
 """Pentair Intellicenter numbers."""
 
 import logging
-from typing import Optional
 
 from homeassistant.components.number import (
     NumberEntity,
@@ -51,7 +50,6 @@ async def async_setup_entry(
                     unit_of_measurement=PERCENTAGE,
                     attribute_key=PRIM_ATTR,
                     name="+ Output %",
-                    icon="mdi:gauge",
                 )
             )
     async_add_entities(numbers)
@@ -61,7 +59,7 @@ async def async_setup_entry(
 
 
 class PoolNumber(PoolEntity, NumberEntity):
-    """Representation of a number."""
+    """Representation of a pool number entity."""
 
     def __init__(
         self,
@@ -75,31 +73,17 @@ class PoolNumber(PoolEntity, NumberEntity):
     ):
         """Initialize."""
         super().__init__(entry, controller, poolObject, **kwargs)
-        self._min_value = min_value
-        self._max_value = max_value
-        self._step = step
+        self._attr_native_min_value = min_value
+        self._attr_native_max_value = max_value
+        self._attr_native_step = step
+        self._attr_icon = "mdi:gauge"
 
     @property
-    def min_value(self) -> float:
-        """Return the minimum value."""
-        return self._min_value
-
-    @property
-    def max_value(self) -> float:
-        """Return the maximum value."""
-        return self._max_value
-
-    @property
-    def step(self) -> float:
-        """Return the increment/decrement step."""
-        return self._step
-
-    @property
-    def value(self) -> float:
+    def native_value(self) -> float:
         """Return the current value."""
         return self._poolObject[self._attribute_key]
 
-    def set_value(self, value: float) -> None:
+    def set_native_value(self, value: float) -> None:
         """Update the current value."""
         changes = {self._attribute_key: str(int(value))}
         self.requestChanges(changes)

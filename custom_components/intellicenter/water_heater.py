@@ -92,6 +92,7 @@ class PoolWaterHeater(PoolEntity, WaterHeaterEntity, RestoreEntity):
         )
         self._heater_list = heater_list
         self._lastHeater = self._poolObject[HEATER_ATTR]
+        self._attr_icon = "mdi:thermometer"
 
     @property
     def extra_state_attributes(self) -> Optional[Dict[str, Any]]:
@@ -123,11 +124,6 @@ class PoolWaterHeater(PoolEntity, WaterHeaterEntity, RestoreEntity):
     def supported_features(self):
         """Return the list of supported features."""
         return SUPPORT_TARGET_TEMPERATURE | SUPPORT_OPERATION_MODE
-
-    @property
-    def icon(self):
-        """Return the entity icon."""
-        return "mdi:thermometer"
 
     @property
     def temperature_unit(self):

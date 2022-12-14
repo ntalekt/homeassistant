@@ -223,13 +223,14 @@ class PoolEntity(Entity):
         self._entry_id = entry.entry_id
         self._controller = controller
         self._poolObject = poolObject
-        self._available = True
+        self._attr_available = True
         self._extra_state_attributes = extraStateAttributes
-        self._name = name
+        self._attr_name = name
         self._attribute_key = attribute_key
-        self._enabled_by_default = enabled_by_default
-        self._unit_of_measurement = unit_of_measurement
-        self._icon = icon
+        self._attr_entity_registry_enabled_default = enabled_by_default
+        self._attr_native_unit_of_measurement = unit_of_measurement
+        self._attr_icon = icon
+        self._attr_should_poll = False
 
         _LOGGER.debug(f"mapping {poolObject}")
 
@@ -254,37 +255,17 @@ class PoolEntity(Entity):
         _LOGGER.debug(f"removing entity: {self.unique_id}")
 
     @property
-    def entity_registry_enabled_default(self):
-        """Return True if the entity is enabled by default."""
-        return self._enabled_by_default
-
-    @property
-    def available(self):
-        """Return True is the entity is available."""
-        return self._available
-
-    @property
     def name(self):
         """Return the name of the entity."""
 
-        if self._name is None:
+        if self._attr_name is None:
             # default is to return the name of the underlying pool object
             return self._poolObject.sname
-        elif self._name.startswith("+"):
+        elif self._attr_name.startswith("+"):
             # name is a suffix
-            return self._poolObject.sname + self._name[1:]
+            return self._poolObject.sname + self._attr_name[1:]
         else:
-            return self._name
-
-    @property
-    def icon(self) -> Optional[str]:
-        """Return the icon for the entity, if any."""
-        return self._icon
-
-    @property
-    def unit_of_measurement(self) -> Optional[str]:
-        """Return the unit of measurement of this entity, if any."""
-        return self._unit_of_measurement
+            return self._attr_name
 
     @property
     def unique_id(self):
@@ -293,11 +274,6 @@ class PoolEntity(Entity):
         if self._attribute_key != STATUS_ATTR:
             my_id += self._attribute_key
         return my_id
-
-    @property
-    def should_poll(self):
-        """No polling needed."""
-        return False
 
     @property
     def device_info(self):
@@ -353,7 +329,7 @@ class PoolEntity(Entity):
         """Update the entity if its underlying pool object has changed."""
 
         if self.isUpdated(updates):
-            self._available = True
+            self._attr_available = True
             _LOGGER.debug(f"updating {self} from {updates}")
             self.async_write_ha_state()
 
@@ -366,7 +342,7 @@ class PoolEntity(Entity):
                 # this is for the rare case where the object the entity is mapped to
                 # had been removed from the Pentair system while we were disconnected
                 return
-        self._available = is_connected
+        self._attr_available = is_connected
         self.async_write_ha_state()
 
     def pentairTemperatureSettings(self):

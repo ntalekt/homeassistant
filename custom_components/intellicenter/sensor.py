@@ -6,9 +6,12 @@ from typing import Optional
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
     CONCENTRATION_PARTS_PER_MILLION,
-    DEVICE_CLASS_ENERGY,
-    DEVICE_CLASS_TEMPERATURE,
     POWER_WATT,
+)
+from homeassistant.components.sensor import (
+    SensorDeviceClass,
+    SensorEntity,
+    SensorStateClass,
 )
 from homeassistant.helpers.typing import HomeAssistantType
 
@@ -57,7 +60,7 @@ async def async_setup_entry(
                     entry,
                     controller,
                     object,
-                    device_class=DEVICE_CLASS_TEMPERATURE,
+                    device_class=SensorDeviceClass.TEMPERATURE,
                     attribute_key=SOURCE_ATTR,
                 )
             )
@@ -68,7 +71,7 @@ async def async_setup_entry(
                         entry,
                         controller,
                         object,
-                        device_class=DEVICE_CLASS_ENERGY,
+                        device_class=SensorDeviceClass.POWER,
                         unit_of_measurement=POWER_WATT,
                         attribute_key=PWR_ATTR,
                         name="+ power",
@@ -105,7 +108,7 @@ async def async_setup_entry(
                     entry,
                     controller,
                     object,
-                    device_class=DEVICE_CLASS_TEMPERATURE,
+                    device_class=SensorDeviceClass.TEMPERATURE,
                     attribute_key=LSTTMP_ATTR,
                     name="+ last temp",
                 )
@@ -115,7 +118,7 @@ async def async_setup_entry(
                     entry,
                     controller,
                     object,
-                    device_class=DEVICE_CLASS_TEMPERATURE,
+                    device_class=SensorDeviceClass.TEMPERATURE,
                     attribute_key=LOTMP_ATTR,
                     name="+ desired temp",
                 )
@@ -196,7 +199,7 @@ async def async_setup_entry(
 # -------------------------------------------------------------------------------------
 
 
-class PoolSensor(PoolEntity):
+class PoolSensor(PoolEntity, SensorEntity):
     """Representation of an Pentair sensor."""
 
     def __init__(
@@ -204,19 +207,15 @@ class PoolSensor(PoolEntity):
         entry: ConfigEntry,
         controller: ModelController,
         poolObject: PoolObject,
-        device_class: str,
+        device_class: Optional[SensorDeviceClass],
         rounding_factor: int = 0,
         **kwargs,
     ):
         """Initialize."""
         super().__init__(entry, controller, poolObject, **kwargs)
-        self._device_class = device_class
+        self._attr_device_class = device_class
         self._rounding_factor = rounding_factor
-
-    @property
-    def device_class(self) -> Optional[str]:
-        """Return the class of this device, from component DEVICE_CLASSES."""
-        self._device_class
+        self._attr_state_class = SensorStateClass.MEASUREMENT
 
     @property
     def state(self) -> str:
@@ -234,8 +233,8 @@ class PoolSensor(PoolEntity):
         return value
 
     @property
-    def unit_of_measurement(self) -> Optional[str]:
+    def native_unit_of_measurement(self) -> Optional[str]:
         """Return the unit of measurement of this entity, if any."""
-        if self._device_class == DEVICE_CLASS_TEMPERATURE:
+        if self._attr_device_class == SensorDeviceClass.TEMPERATURE:
             return self.pentairTemperatureSettings()
-        return self._unit_of_measurement
+        return self._attr_native_unit_of_measurement
