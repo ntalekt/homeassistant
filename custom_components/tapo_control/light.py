@@ -1,11 +1,11 @@
-from .utils import build_device_info
-from homeassistant.components.light import LightEntity
-from homeassistant.helpers.entity import DeviceInfo
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from .const import BRAND, DOMAIN, LOGGER
 from homeassistant.core import HomeAssistant
+
 from homeassistant.config_entries import ConfigEntry
-from pytapo import Tapo
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+
+from .const import DOMAIN, LOGGER
+from .tapo.entities import TapoLightEntity
+from .utils import check_and_create
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
@@ -18,73 +18,54 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     LOGGER.debug("Setting up light for floodlight")
-    name = hass.data[DOMAIN][config_entry.entry_id]["name"]
-    controller: dict = hass.data[DOMAIN][config_entry.entry_id]["controller"]
-    attributes = hass.data[DOMAIN][config_entry.entry_id]["camData"]["basic_info"]
+    entry = hass.data[DOMAIN][config_entry.entry_id]
 
-    try:
-        await hass.async_add_executor_job(controller.getForceWhitelampState)
-    except Exception:
-        LOGGER.info("Camera does not support floodlight")
-        return
-
-    LOGGER.debug("Creating light entity")
-    light = TapoFloodlight(name, controller, hass, attributes)
-    async_add_entities([light])
+    light = await check_and_create(
+        entry, hass, TapoFloodlight, "getForceWhitelampState", config_entry
+    )
+    if light is not None:
+        async_add_entities([light])
 
 
-class TapoFloodlight(LightEntity):
-    def __init__(self, name, controller: Tapo, hass: HomeAssistant, attributes: dict):
+class TapoFloodlight(TapoLightEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
         LOGGER.debug("TapoFloodlight - init - start")
-        self._name = name
-        self._controller = controller
-        self._attributes = attributes
-        self._is_on = False
+        self._attr_is_on = False
         self._hass = hass
-        LightEntity.__init__(self)
+
+        TapoLightEntity.__init__(
+            self, "Floodlight", entry, hass, config_entry, "mdi:light-flood-down",
+        )
         LOGGER.debug("TapoFloodlight - init - end")
 
-    @property
-    def is_on(self) -> bool:
-        return self._is_on
-
-    @property
-    def name(self) -> str:
-        return "{} - Floodlight".format(self._name)
-
     async def async_turn_on(self) -> None:
-        await self._hass.async_add_executor_job(
-            self._controller.setForceWhitelampState,
-            True,
+        LOGGER.debug("Turning on light")
+        result = await self._hass.async_add_executor_job(
+            self._controller.setForceWhitelampState, True,
         )
+        LOGGER.debug(result)
+        if result["error_code"] == 0:
+            LOGGER.debug("Setting light state to: on")
+            self._attr_state = "on"
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
 
     async def async_turn_off(self) -> None:
-        await self._hass.async_add_executor_job(
-            self._controller.setForceWhitelampState,
-            False,
+        LOGGER.debug("Turning off light")
+        result = await self._hass.async_add_executor_job(
+            self._controller.setForceWhitelampState, False,
         )
+        LOGGER.debug(result)
+        if result["error_code"] == 0:
+            LOGGER.debug("Setting light state to: off")
+            self._attr_state = "off"
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
 
-    async def async_update(self) -> None:
-        self._is_on = await self._hass.async_add_executor_job(
-            self._controller.getForceWhitelampState
-        )
-
-    @property
-    def device_info(self) -> DeviceInfo:
-        return build_device_info(self._attributes)
-
-    @property
-    def unique_id(self) -> str:
-        return "{}-floodlight".format(self._name).lower()
-
-    @property
-    def model(self):
-        return self._attributes["device_model"]
-
-    @property
-    def brand(self):
-        return BRAND
-
-    @property
-    def icon(self) -> str:
-        return "mdi:light-flood-down"
+    def updateTapo(self, camData):
+        LOGGER.debug("Updating light state.")
+        if not camData:
+            self._attr_state = "unavailable"
+        else:
+            self._attr_is_on = camData["force_white_lamp_state"] == "on"
+            self._attr_state = "on" if self._attr_is_on else "off"
