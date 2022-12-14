@@ -234,7 +234,7 @@ async def async_get_alerts(zone_id: str) -> dict:
             )
 
             if event_id != "":
-                event_id += "-"
+                event_id += ' - '
 
             event_id += id
             
