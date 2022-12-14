@@ -15,9 +15,9 @@ cards:
     cards:
       - type: custom:simple-thermostat
         entity: climate.downstairs_nativezone
-        step_layout: row
-        name: true
-        icon: false
+        step_size: 1
+        header:
+          name: Downstairs
         control: false
     ##########################################################
     ## Thermostat - Upstairs
@@ -26,7 +26,7 @@ cards:
     cards:
       - type: custom:simple-thermostat
         entity: climate.upstairs_nativezone
-        step_layout: row
-        name: true
-        icon: false
+        step_size: 1
+        header:
+          name: Upstairs
         control: false

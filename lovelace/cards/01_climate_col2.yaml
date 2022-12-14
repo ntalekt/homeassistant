@@ -35,6 +35,10 @@ cards:
     cards:
       - type: custom:simple-thermostat
         entity: water_heater.spa
+        step_size: 1
+        header:
+          name: Spa
+          icon: mdi:hot-tub
         service:
           domain: water_heater
           service: set_temperature      
@@ -42,13 +46,15 @@ cards:
     cards:
       - type: custom:simple-thermostat
         entity: climate.downstairs_nativezone
-        layout:
-          step: row
+        step_size: 1
+        header:
+          name: Downstairs
         control: false
   - type: horizontal-stack
     cards:
       - type: custom:simple-thermostat
         entity: climate.upstairs_nativezone
-        layout:
-          step: row
+        step_size: 1
+        header:
+          name: Upstairs
         control: false
