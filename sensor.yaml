@@ -30,7 +30,7 @@
 ##########################################################
 
 - platform: command_line
-  command: curl -LsI -o /dev/null -w %{url_effective} https://github.com/arendst/Tasmota/releases/latest | rev | cut -d'/' -f1 | cut -d'v' -f1 | rev
+  command: curl -sL https://api.github.com/repos/arendst/Tasmota/releases/latest | jq -r ".tag_name"
   name: Tasmota Latest Version
   scan_interval: 600
 
