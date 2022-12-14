@@ -114,7 +114,7 @@
     conditions:
       - condition: time
         after: "20:30:00"
-        before: "05:00:00"
+        before: "06:00:00"
       - condition: state
         entity_id: sensor.dark_outside
         state: "True"
