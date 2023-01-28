@@ -15,7 +15,7 @@ DEFAULT_TIMEOUT = 120
 
 # Misc
 ZONE_ID = ""
-VERSION = "2.0"
+VERSION = "2.7"
 ISSUE_URL = "https://github.com/finity69x2/nws_alert"
 DOMAIN = "nws_alerts"
 PLATFORM = "sensor"
