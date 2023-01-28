@@ -299,7 +299,10 @@ class FlowHandler(ConfigFlow):
                                     "[ADD DEVICE][%s] Some of the required ports are closed.",
                                     host,
                                 )
-                                raise Exception("ports_closed")
+                                self.tapoHost = host
+                                self.tapoUsername = ""
+                                self.tapoPassword = ""
+                                return await self.async_step_auth_cloud_password()
                             else:
                                 LOGGER.debug(
                                     "[ADD DEVICE][%s] All camera ports are opened, proceeding to requesting Camera Account.",
@@ -309,8 +312,9 @@ class FlowHandler(ConfigFlow):
                                 return await self.async_step_auth()
                         else:
                             LOGGER.debug(
-                                "[ADD DEVICE][%s] Camera control is not available, IP is not a Tapo device.",
+                                "[ADD DEVICE][%s] Camera control is not available, IP is not a Tapo device. Error: %s",
                                 host,
+                                str(e),
                             )
                             raise Exception("not_tapo_device")
                 else:
