@@ -29,3 +29,4 @@ cox_usage.py
 blueprints/
 govee_learning.yaml
 zigbee.db*
+www/winlab/*
