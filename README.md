@@ -62,7 +62,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Ikea Vindriktning PM2.5 ESP8266](https://www.briandorey.com/post/monitoring-air-quality-home-assistant) x2
 
 #### Camera
-* [Tapo C320WS](https://www.amazon.com/gp/product/B09ZZJB6VX/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) x4
+* [Tapo C320WS](https://amzn.to/3MdR6Oi) x6
 * [Tapo C110](https://smile.amazon.com/dp/B09YL5G1Y8?psc=1&ref=ppx_yo2ov_dt_b_product_details) x2
 * [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt0c-20&linkId=5faec88af320aeb157fbb45fa954efc3)
 * [Blink Video Doorbell](https://smile.amazon.com/Blink-Video-Doorbell/dp/B08SG2MS3V/ref=sr_1_1?crid=GR1VH5AFVWQI&keywords=blink+doorbell&qid=1660343748&sprefix=blink+doorbel%2Caps%2C313&sr=8-1)
