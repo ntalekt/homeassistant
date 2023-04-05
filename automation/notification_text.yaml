@@ -108,6 +108,7 @@
 ## slack - Low Battery Alert
 ##########################################################
 
+#this doesn't work any more
 - alias: notification text low battery alert
   initial_state: 'on'
   trigger:
