@@ -40,11 +40,6 @@
   name: REDACTED channel views
   scan_interval: 600
 
-- platform: command_line
-  command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.contents.twoColumnBrowseResultsRenderer.tabs[4].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].channelAboutFullMetadataRenderer.viewCountText.simpleText' | sed 's/[^0-9]*//g'
-  name: tech explorer hd channel views
-  scan_interval: 600
-
 ##########################################################
 ## Tasmota version sensor
 ##########################################################

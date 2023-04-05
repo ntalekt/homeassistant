@@ -14,7 +14,7 @@ cards:
         line_color: '#0074D9'
         line_width: 8
         font_size: 75
-        #hours_to_show: 72
+        hours_to_show: 168
 
       - type: custom:mini-graph-card
         entities:
@@ -23,9 +23,7 @@ cards:
         line_color: '#FF4136'
         line_width: 8
         font_size: 75
-        #hours_to_show: 72
-  - type: horizontal-stack
-    cards:
+        hours_to_show: 168
 
       - type: custom:mini-graph-card
         entities:
@@ -34,16 +32,16 @@ cards:
         line_color: '#FF851B'
         line_width: 8
         font_size: 75
-        #hours_to_show: 72
+        hours_to_show: 168
 
-      - type: custom:mini-graph-card
-        entities:
-          - sensor.tech_explorer_hd_channel_views
-        name: REDACTED
-        line_color: '#B10DC9'
-        line_width: 8
-        font_size: 75
-        #hours_to_show: 72
+      # - type: custom:mini-graph-card
+      #   entities:
+      #     - sensor.tech_explorer_hd_channel_views
+      #   name: REDACTED
+      #   line_color: '#B10DC9'
+      #   line_width: 8
+      #   font_size: 75
+      #   #hours_to_show: 72
 
   - type: horizontal-stack
     cards:
