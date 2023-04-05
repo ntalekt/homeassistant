@@ -6,7 +6,7 @@ cards:
   - type: horizontal-stack
     cards:
       - type: custom:weather-card
-        entity: weather.dark_sky
+        entity: weather.openweathermap
         details: false
     ##########################################################
     ## Thermostat - Downstairs

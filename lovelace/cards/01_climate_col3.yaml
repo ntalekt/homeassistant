@@ -15,7 +15,7 @@ cards:
             air_pollution_level: sensor.u_s_air_pollution_level
             air_quality_index: sensor.u_s_air_quality_index
             main_pollutant: sensor.u_s_main_pollutant
-            temp: weather.dark_sky
+            temp: weather.openweathermap
             city: 'REDACTED'
 
     ##########################################################
