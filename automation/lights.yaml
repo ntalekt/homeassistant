@@ -255,9 +255,22 @@
       entity_id: light.smart_flood_lights
       data:
         brightness_pct: 100
+        kelvin: 3425
+    - service: light.turn_on
+      entity_id: light.front_flood_lights
+      data:
+        brightness_pct: 100
+        kelvin: 3425
     # Spa and Pool light
     - service: light.turn_on
       entity_id: light.lights
+    # govee H7012 sometimes doesn't turn on
+    - delay: 0:30
+    - service: light.turn_on
+      entity_id: light.outdoor_string
+    - delay: 0:30
+    - service: light.turn_on
+      entity_id: light.outdoor_string
  
 - alias: lights exterior lights dim at 9pm
   trigger:
@@ -337,3 +350,6 @@
     # Govee floodlight backyard
     - service: light.turn_off
       entity_id: light.smart_flood_lights
+    # Govee floodlight frontyard
+    - service: light.turn_off
+      entity_id: light.front_flood_lights

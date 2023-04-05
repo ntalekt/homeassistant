@@ -38,8 +38,8 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [LE LampUX RGB Lamp](https://smile.amazon.com/gp/product/B07Q8SMG8R/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1)
 * [Goldwin Wi-Fi Controller](https://smile.amazon.com/gp/product/B07JB5N3Y7/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1)
 * [Pentair IntelliBrite](https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-lighting/intellibrite_5g_underwatercolor-changingledpoolandspalights.html)
-* [Govee Outdoor Patio LED](https://www.amazon.com/gp/product/B094JGKBTR/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
-* [Govee RGBIC Flood Lights](https://www.amazon.com/gp/product/B09MDJV5X5/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
+* [Govee Outdoor Patio String Lights](https://amzn.to/3GlNHcx)
+* [Govee RGBIC Flood Lights](https://amzn.to/3mgnG7l) x2
 
 #### Climate
 * [Trane XL824](https://smile.amazon.com/Trane-Programmable-Comfort-Control-Thermostat/dp/B085W87WY3/ref=sr_1_1?dchild=1&keywords=xl824&qid=1595374599&s=hi&sr=1-1) x2

@@ -15,3 +15,4 @@ landscape lights:
     - switch.outdoor_plug_1
     - light.outdoor_string
     - light.smart_flood_lights
+    - light.front_flood_lights
