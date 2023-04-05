@@ -13,6 +13,7 @@ from homeassistant.data_entry_flow import FlowResult
 
 from .const import (
     API_ENDPOINT,
+    CONF_GPS_LOC,
     CONF_INTERVAL,
     CONF_TIMEOUT,
     CONF_ZONE_ID,
@@ -28,9 +29,10 @@ JSON_PROPERTIES = "properties"
 JSON_ID = "id"
 
 _LOGGER = logging.getLogger(__name__)
+MENU_OPTIONS = ["zone", "gps_loc"]
 
 
-def _get_schema(hass: Any, user_input: list, default_dict: list) -> Any:
+def _get_schema_zone(hass: Any, user_input: list, default_dict: list) -> Any:
     """Gets a schema using the default_dict as a backup."""
     if user_input is None:
         user_input = {}
@@ -42,6 +44,25 @@ def _get_schema(hass: Any, user_input: list, default_dict: list) -> Any:
     return vol.Schema(
         {
             vol.Required(CONF_ZONE_ID, default=_get_default(CONF_ZONE_ID)): str,
+            vol.Optional(CONF_NAME, default=_get_default(CONF_NAME)): str,
+            vol.Optional(CONF_INTERVAL, default=_get_default(CONF_INTERVAL)): int,
+            vol.Optional(CONF_TIMEOUT, default=_get_default(CONF_TIMEOUT)): int,
+        }
+    )
+
+
+def _get_schema_gps(hass: Any, user_input: list, default_dict: list) -> Any:
+    """Gets a schema using the default_dict as a backup."""
+    if user_input is None:
+        user_input = {}
+
+    def _get_default(key):
+        """Gets default value for key."""
+        return user_input.get(key, default_dict.get(key))
+
+    return vol.Schema(
+        {
+            vol.Required(CONF_GPS_LOC, default=_get_default(CONF_GPS_LOC)): str,
             vol.Optional(CONF_NAME, default=_get_default(CONF_NAME)): str,
             vol.Optional(CONF_INTERVAL, default=_get_default(CONF_INTERVAL)): int,
             vol.Optional(CONF_TIMEOUT, default=_get_default(CONF_TIMEOUT)): int,
@@ -74,7 +95,7 @@ async def _get_zone_list(self) -> list | None:
                 zone_list.append(data[JSON_FEATURES][x][JSON_PROPERTIES][JSON_ID])
                 x += 1
             _LOGGER.debug("Zones list: %s", zone_list)
-            zone_list = ",".join(str(x) for x in zone_list) # convert list to str
+            zone_list = ",".join(str(x) for x in zone_list)  # convert list to str
             return zone_list
     return None
 
@@ -100,7 +121,42 @@ class NWSAlertsFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     #         return self.async_abort(reason=next(iter(errors.values())))
     #     return result
 
-    async def async_step_user(self, user_input={}):
+    async def async_step_user(
+        self, user_input: dict[str, Any] | None = None
+    ) -> FlowResult:
+        """Handle the flow initialized by the user."""
+        return self.async_show_menu(step_id="user", menu_options=MENU_OPTIONS)
+
+    async def async_step_gps_loc(self, user_input={}):
+        """Handle a flow initialized by the user."""
+        lat = self.hass.config.latitude
+        lon = self.hass.config.longitude
+        self._errors = {}
+        self._gps_loc = f"{lat},{lon}"
+
+        if user_input is not None:
+            self._data.update(user_input)
+            return self.async_create_entry(title=self._data[CONF_NAME], data=self._data)
+        return await self._show_config_gps_loc(user_input)
+
+    async def _show_config_gps_loc(self, user_input):
+        """Show the configuration form to edit location data."""
+
+        # Defaults
+        defaults = {
+            CONF_NAME: DEFAULT_NAME,
+            CONF_INTERVAL: DEFAULT_INTERVAL,
+            CONF_TIMEOUT: DEFAULT_TIMEOUT,
+            CONF_GPS_LOC: self._gps_loc,
+        }
+
+        return self.async_show_form(
+            step_id="gps_loc",
+            data_schema=_get_schema_gps(self.hass, user_input, defaults),
+            errors=self._errors,
+        )
+
+    async def async_step_zone(self, user_input={}):
         """Handle a flow initialized by the user."""
         self._errors = {}
         self._zone_list = await _get_zone_list(self)
@@ -108,9 +164,9 @@ class NWSAlertsFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             self._data.update(user_input)
             return self.async_create_entry(title=self._data[CONF_NAME], data=self._data)
-        return await self._show_config_form(user_input)
+        return await self._show_config_zone(user_input)
 
-    async def _show_config_form(self, user_input):
+    async def _show_config_zone(self, user_input):
         """Show the configuration form to edit location data."""
 
         # Defaults
@@ -122,8 +178,8 @@ class NWSAlertsFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         }
 
         return self.async_show_form(
-            step_id="user",
-            data_schema=_get_schema(self.hass, user_input, defaults),
+            step_id="zone",
+            data_schema=_get_schema_zone(self.hass, user_input, defaults),
             errors=self._errors,
         )
 
@@ -139,7 +195,7 @@ class NWSAlertsOptionsFlow(config_entries.OptionsFlow):
     def __init__(self, config_entry):
         """Initialize."""
         self.config = config_entry
-        self._data = dict(config_entry.options)
+        self._data = dict(config_entry.data)
         self._errors = {}
 
     async def async_step_init(self, user_input=None):
@@ -149,11 +205,36 @@ class NWSAlertsOptionsFlow(config_entries.OptionsFlow):
             return self.async_create_entry(title="", data=self._data)
         return await self._show_options_form(user_input)
 
+    async def async_step_gps_loc(self, user_input={}):
+        """Handle a flow initialized by the user."""
+        self._errors = {}
+
+        if user_input is not None:
+            self._data.update(user_input)
+            return self.async_create_entry(title="", data=self._data)
+        return await self._show_options_form(user_input)
+
+    async def async_step_zone(self, user_input={}):
+        """Handle a flow initialized by the user."""
+        self._errors = {}
+
+        if user_input is not None:
+            self._data.update(user_input)
+            return self.async_create_entry(title="", data=self._data)
+        return await self._show_options_form(user_input)
+
     async def _show_options_form(self, user_input):
         """Show the configuration form to edit location data."""
 
-        return self.async_show_form(
-            step_id="init",
-            data_schema=_get_schema(self.hass, user_input, self._data),
-            errors=self._errors,
-        )
+        if CONF_GPS_LOC in self.config.data:
+            return self.async_show_form(
+                step_id="gps_loc",
+                data_schema=_get_schema_gps(self.hass, user_input, self._data),
+                errors=self._errors,
+            )
+        elif CONF_ZONE_ID in self.config.data:
+            return self.async_show_form(
+                step_id="zone",
+                data_schema=_get_schema_zone(self.hass, user_input, self._data),
+                errors=self._errors,
+            )

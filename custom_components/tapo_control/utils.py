@@ -1,10 +1,17 @@
 import asyncio
 import datetime
+import hashlib
+import pathlib
 import onvif
 import os
+import shutil
 import socket
 import time
 import urllib.parse
+import uuid
+from homeassistant.core import HomeAssistant
+from pytapo.media_stream.downloader import Downloader
+from homeassistant.components.media_source.error import Unresolvable
 
 from haffmpeg.tools import IMAGE_JPEG, ImageFrame
 from onvif import ONVIFCamera
@@ -18,13 +25,17 @@ from homeassistant.util import slugify
 
 from .const import (
     BRAND,
+    COLD_DIR_DELETE_TIME,
     ENABLE_MOTION_SENSOR,
     DOMAIN,
+    HOT_DIR_DELETE_TIME,
     LOGGER,
     CLOUD_PASSWORD,
     ENABLE_TIME_SYNC,
     CONF_CUSTOM_STREAM,
 )
+
+UUID = uuid.uuid4().hex
 
 
 def getStreamSource(entry, hdStream):
@@ -60,6 +71,113 @@ def isOpen(ip, port):
         return True
     except Exception:
         return False
+
+
+def getColdDirPathForEntry(entry_id):
+    return f"./.storage/{DOMAIN}/{entry_id}/"
+
+
+def getHotDirPathForEntry(entry_id):
+    return f"./www/{DOMAIN}/{entry_id}/"
+
+
+def mediaCleanup(hass, entry_id):
+    LOGGER.debug("Initiating media cleanup for entity " + entry_id + "...")
+    hass.data[DOMAIN][entry_id][
+        "lastMediaCleanup"
+    ] = datetime.datetime.utcnow().timestamp()
+    coldDirPath = getColdDirPathForEntry(entry_id)
+    hotDirPath = getHotDirPathForEntry(entry_id)
+
+    # Delete everything other than COLD_DIR_DELETE_TIME seconds from cold storage
+    LOGGER.debug(
+        "Deleting cold storage files older than "
+        + str(COLD_DIR_DELETE_TIME)
+        + " seconds for entity "
+        + entry_id
+        + "..."
+    )
+    deleteFilesOlderThan(coldDirPath, COLD_DIR_DELETE_TIME)
+
+    # Delete everything other than HOT_DIR_DELETE_TIME seconds from hot storage
+    LOGGER.debug(
+        "Deleting hot storage files older than "
+        + str(HOT_DIR_DELETE_TIME)
+        + " seconds for entity "
+        + entry_id
+        + "..."
+    )
+    deleteFilesOlderThan(hotDirPath, HOT_DIR_DELETE_TIME)
+
+
+def deleteDir(dirPath):
+    if (
+        os.path.exists(dirPath)
+        and os.path.isdir(dirPath)
+        and dirPath != "/"
+        and "tapo_control/" in dirPath
+    ):
+        LOGGER.debug("Deleting folder " + dirPath + "...")
+        shutil.rmtree(dirPath)
+
+
+def deleteFilesOlderThan(dirPath, deleteOlderThan):
+    now = datetime.datetime.utcnow().timestamp()
+    if os.path.exists(dirPath):
+        for f in os.listdir(dirPath):
+            filePath = os.path.join(dirPath, f)
+            last_modified = os.stat(filePath).st_mtime
+            if now - last_modified > deleteOlderThan:
+                os.remove(filePath)
+
+
+async def getRecording(
+    hass: HomeAssistant,
+    tapo: Tapo,
+    entry_id: str,
+    date: str,
+    startDate: int,
+    endDate: int,
+) -> str:
+    # this NEEDS to happen otherwise camera does not send data!
+    await hass.async_add_executor_job(tapo.getRecordings, date)
+
+    mediaCleanup(hass, entry_id)
+
+    coldDirPath = getColdDirPathForEntry(entry_id)
+    hotDirPath = getHotDirPathForEntry(entry_id)
+
+    pathlib.Path(coldDirPath).mkdir(parents=True, exist_ok=True)
+    pathlib.Path(hotDirPath).mkdir(parents=True, exist_ok=True)
+    downloader = Downloader(
+        tapo,
+        startDate,
+        endDate,
+        coldDirPath,
+        0,
+        None,
+        None,
+        hashlib.md5((str(startDate) + str(endDate)).encode()).hexdigest() + ".mp4",
+    )
+    # todo: automatic deletion of recordings longer than X in hot storage
+
+    hass.data[DOMAIN][entry_id]["isDownloadingStream"] = True
+    downloadedFile = await downloader.downloadFile(LOGGER)
+    hass.data[DOMAIN][entry_id]["isDownloadingStream"] = False
+    if downloadedFile["currentAction"] == "Recording in progress":
+        raise Unresolvable("Recording is currently in progress.")
+
+    coldFilePath = downloadedFile["fileName"]
+    hotFilePath = (
+        coldFilePath.replace("./.storage/", "./www/").replace(".mp4", "")
+        + UUID
+        + ".mp4"
+    )
+    shutil.copyfile(coldFilePath, hotFilePath)
+
+    fileWebPath = hotFilePath[6:]  # remove ./www/
+
+    return f"/local/{fileWebPath}"
 
 
 def areCameraPortsOpened(host):
@@ -350,6 +468,7 @@ async def update_listener(hass, entry):
             tapoController = await hass.async_add_executor_job(
                 registerController, host, username, password
             )
+        hass.data[DOMAIN][entry.entry_id]["usingCloudPassword"] = cloud_password != ""
         hass.data[DOMAIN][entry.entry_id]["controller"] = tapoController
     except Exception:
         LOGGER.error(

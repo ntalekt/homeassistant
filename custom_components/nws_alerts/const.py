@@ -6,6 +6,7 @@ USER_AGENT = "Home Assistant"
 CONF_TIMEOUT = "timeout"
 CONF_INTERVAL = "interval"
 CONF_ZONE_ID = "zone_id"
+CONF_GPS_LOC = "gps_loc"
 
 # Defaults
 DEFAULT_ICON = "mdi:alert"

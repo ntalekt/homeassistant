@@ -1,10 +1,8 @@
 // To study:
 // Plant Picture Card: https://github.com/badguy99/PlantPictureCard/blob/master/dist/PlantPictureCard.js
-
-
 // UPDATE FOR EACH RELEASE!!! From aftership-card. Version # is hard-coded for now.
 console.info(
-  `%c  AIR-VISUAL-CARD  \n%c  Version 2.0.0   `,
+  `%c  AIR-VISUAL-CARD  \n%c  Version 2.0.2   `,
   'color: orange; font-weight: bold; background: black',
   'color: white; font-weight: bold; background: dimgray',
 );
@@ -43,6 +41,7 @@ class AirVisualCard extends HTMLElement {
              weather: "weather.home",
              hide_weather: 1,
              hide_title: 1,
+             unit_of_measurement: "AQI",
              hide_face: 0              
     }
   }
@@ -260,7 +259,7 @@ class AirVisualCard extends HTMLElement {
       const mainPollutantSensor = { name: 'mainPollutantSensor', config: config.main_pollutant || null, value: 0 };
       const sensorList = [aqiSensor, aplSensor, mainPollutantSensor];
       
-      const unitOfMeasurement = hass.states[aqiSensor.config] ? hass.states[aqiSensor.config].attributes['unit_of_measurement'] : 'AQI';
+      const unitOfMeasurement = config.unit_of_measurement || 'AQI';
 
       const AQIbgColor = {
 

@@ -1,5 +1,6 @@
-// Used weather-card-editor.js from Weather Card as template
+// I Used weather-card-editor.js from Weather Card as template
 // https://github.com/bramkragten/weather-card
+// 2023-02-25 card editor is likely broken as it doesn't show entities,
 
 const fireEvent = (node, type, detail, options) => {
   options = options || {};
@@ -66,6 +67,9 @@ export class AirVisualCardEditor extends LitElement {
 
   get _speed_unit() {
     return this._config.speed_unit || "mp/h";
+  }
+  get _unit_of_measurement() {
+    return this._config.unit_of_measurement || "AQI";
   }
   get _hide_title() {
     return this._config.hide_title !== false;
@@ -163,6 +167,14 @@ export class AirVisualCardEditor extends LitElement {
             .configValue="${"speed_unit"}"
             @value-changed="${this._valueChanged}"
           ></paper-input>
+
+          <paper-input
+          label="Unit of Measurement (Optional)"
+          .value="${this._unit_of_measurement}"
+          .configValue="${"unit_of_measurement"}"
+          @value-changed="${this._valueChanged}"
+        ></paper-input>
+
           <paper-input
             label="Icons location (Optional)"
             .value="${this._icons}"
