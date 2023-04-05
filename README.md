@@ -59,6 +59,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Xiaomi Aqara Temperature Humidity Sensor](https://www.aqara.com/us/temperature_humidity_sensor.html) x5
 * [Xiaomi Aqara Leak Sensor](https://www.aqara.com/us/water_leak_sensor.html) x4
 * [Xiaomi Aqara Window Door Sensor](https://www.aqara.com/us/door_and_window_sensor.html)
+* [Ikea Vindriktning PM2.5 ESP8266](https://www.briandorey.com/post/monitoring-air-quality-home-assistant) x2
 
 #### Camera
 * [Tapo C320WS](https://www.amazon.com/gp/product/B09ZZJB6VX/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) x4
