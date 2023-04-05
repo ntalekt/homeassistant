@@ -25,6 +25,14 @@ cards:
           line_width: 8
           font_size: 75
 
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.spa_last_temp
+          name: Spa Temp
+          line_color: '#FF4136'
+          line_width: 8
+          font_size: 75
+
   # - type: horizontal-stack
   #   cards:      
   #     - type: iframe
