@@ -5,7 +5,7 @@
 - alias: update sprinkler last run
   trigger:
     - platform: state
-      entity_id: switch.sprinkler_1
+      entity_id: switch.rain_bird_sprinkler_1
       to: "on"
   action:
     - service: script.turn_on
@@ -33,7 +33,7 @@
 - alias: sprinkler off text notification
   trigger:
     - platform: state
-      entity_id: switch.sprinkler_1
+      entity_id: switch.rain_bird_sprinkler_1
       from: "on"
       to: "off"
   action:

@@ -188,7 +188,7 @@ sprinkler_water_spring:
         title: "Home Assistant"
         message: "Started watering according to spring schedule"
     - service: rainbird.start_irrigation
-      entity_id: switch.sprinkler_1
+      entity_id: switch.rain_bird_sprinkler_1
       data:
         duration: 45
 
@@ -204,7 +204,7 @@ sprinkler_water_winter:
         title: "Home Assistant"
         message: "Started watering according to winter schedule"
     - service: rainbird.start_irrigation
-      entity_id: switch.sprinkler_1
+      entity_id: switch.rain_bird_sprinkler_1
       data:
         duration: 30
 
@@ -220,7 +220,7 @@ sprinkler_water_summer:
         title: "Home Assistant"
         message: "Started watering according to summer schedule"
     - service: rainbird.start_irrigation
-      entity_id: switch.sprinkler_1
+      entity_id: switch.rain_bird_sprinkler_1
       data:
         duration: 45
 
@@ -236,6 +236,6 @@ sprinkler_water_test:
         title: "Home Assistant"
         message: "Started watering according to test schedule"
     - service: rainbird.start_irrigation
-      entity_id: switch.sprinkler_1
+      entity_id: switch.rain_bird_sprinkler_1
       data:
         duration: 2

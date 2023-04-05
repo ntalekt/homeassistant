@@ -49,7 +49,7 @@ cards:
       title: Sprinkler
       entities:
 #        - entity: input_select.sprinkler
-        - entity: switch.sprinkler_1
+        - entity: switch.rain_bird_sprinkler_1
           icon: mdi:sprinkler-variant
 #          name: Drippers
         - entity: sensor.last_run_sprinkler
