@@ -60,23 +60,7 @@ cards:
           color: rgb(46, 204, 64)
         hold_action:
           action: more-info
-      - type: "custom:button-card"
-        icon: mdi:cactus
-        size: 30%
-        entity: switch.cactus_socket
-        name: Cactus
-        tap_action:
-          action: call-service
-          service: switch.toggle
-          service_data:
-            entity_id: switch.cactus_socket
-        state:
-        - value: 'off'
-#          color: rgb(68,115,158)
-        - value: 'on'
-          color: rgb(46, 204, 64)
-        hold_action:
-          action: more-info
+
       - type: "custom:button-card"
         icon: mdi:fridge-outline
         size: 30%
@@ -94,6 +78,43 @@ cards:
           color: rgb(46, 204, 64)
         hold_action:
           action: more-info
+
+      - type: "custom:button-card"
+        icon: mdi:cactus
+        size: 30%
+        entity: switch.cactus_socket
+        name: Cactus
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.cactus_socket
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+
+      - type: "custom:button-card"
+        icon: mdi:lava-lamp
+        size: 30%
+        entity: switch.sonoff_s31_lite_zb_switch
+        name: Neon
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.sonoff_s31_lite_zb_switch
+        state:
+        - value: 'off'
+#          color: rgb(68,115,158)
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+
       - type: "custom:button-card"
         size: 30%
         entity: light.master_bedroom_lamp
@@ -110,6 +131,12 @@ cards:
           color: rgb(46, 204, 64)
         hold_action:
           action: more-info
+
+    ##########################################################
+    ## Second row buttons
+    ##########################################################
+  - type: horizontal-stack
+    cards:
       - type: "custom:button-card"
         icon: mdi:floor-lamp
         size: 30%
@@ -127,16 +154,12 @@ cards:
           color: rgb(46, 204, 64)
         hold_action:
           action: more-info
-    ##########################################################
-    ## Second row buttons
-    ##########################################################
-  - type: horizontal-stack
-    cards:
+
       - type: "custom:button-card"
         icon: mdi:ceiling-light
         size: 30%
         entity: light.front_porch
-        name: Front Porch
+        name: Front
         tap_action:
           action: call-service
           service: light.toggle
@@ -153,7 +176,7 @@ cards:
         icon: mdi:outdoor-lamp
         size: 30%
         entity: light.back_porch
-        name: Back Porch
+        name: Back
         tap_action:
           action: call-service
           service: light.toggle
