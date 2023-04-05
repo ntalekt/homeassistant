@@ -80,7 +80,7 @@ master_volume_up:
     - service: remote.send_command
       data:
         entity_id: remote.master
-        device: 46622425
+        device: 79346609
         command: "VolumeUp"
 
 master_volume_down:
@@ -88,7 +88,7 @@ master_volume_down:
     - service: remote.send_command
       data:
         entity_id: remote.master
-        device: 46622425
+        device: 79346609
         command: "VolumeDown"
 
 ##########################################################

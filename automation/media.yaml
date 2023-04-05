@@ -9,35 +9,35 @@
 - alias: media spam tv poweron
   trigger:
     - platform: state
-      entity_id: remote.media_center
+      entity_id: remote.master
       from: 'off'
       to: 'on'
   action:
     - service: remote.send_command
       data_template:
-        entity_id: remote.media_center
+        entity_id: remote.master
         command: 'PowerOn'
-        device: 78268702
+        device: 79346609
     - service: remote.send_command
       data_template:
-        entity_id: remote.media_center
+        entity_id: remote.master
         command: 'PowerOn'
-        device: 78268702
+        device: 79346609
     - service: remote.send_command
       data_template:
-        entity_id: remote.media_center
+        entity_id: remote.master
         command: 'PowerOn'
-        device: 78268702
+        device: 79346609
     - service: remote.send_command
       data_template:
-        entity_id: remote.media_center
+        entity_id: remote.master
         command: 'PowerOn'
-        device: 78268702
+        device: 79346609
     - service: remote.send_command
       data_template:
-        entity_id: remote.media_center
+        entity_id: remote.master
         command: 'PowerOn'
-        device: 78268702
+        device: 79346609
 
         ##########################################################
         ## Reset Sonos Every Morning
