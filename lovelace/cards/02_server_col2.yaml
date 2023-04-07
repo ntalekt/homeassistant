@@ -59,34 +59,7 @@ cards:
             color: rgb(46, 204, 64)
         hold_action:
           action: more-info
-  - type: horizontal-stack
-    cards:
-      # - type: "custom:button-card"
-      #   entity: sensor.potential_breaking_changes
-      #   show_state: true
-      #   styles:
-      #     card:
-      #       - height: 100px
-      #   state:
-      #     - operator: '!='
-      #       value: 0
-      #       color: rgb(255,65,54)
-      #     - operator: default
-      #       value: 0
-      #       color: rgb(46, 204, 64)
-      #   hold_action:
-      #     action: more-info
-      - type: "custom:button-card"
-        name: HASS Service Restart
-        icon: mdi:restart
-        tap_action:
-          action: call-service
-          service: homeassistant.restart
-        styles:
-          card:
-            - height: 100px
-        hold_action:
-          action: more-info
+
   - type: horizontal-stack
     cards:
       - entity: sensor.docker3_homeassistant_cpu
@@ -192,63 +165,3 @@ cards:
           graph: bar
         hours_to_show: 72
         line_color: '#FF851B'
-    ##########################################################
-    ## Unifi
-    ##########################################################
-  - type: "custom:button-card"
-    name: Unifi Network
-#    color_type: label-card
-#    color: rgb(240,240,240)
-    styles:
-      card:
-        - font-size: 24px
-  - type: horizontal-stack
-    cards:
-      - type: "custom:button-card"
-        icon: mdi:network
-        size: 30%
-        entity: binary_sensor.unifi_usg
-        name: USG
-        state:
-        - value: 'off'
-          color: rgb(255,65,54)
-        - value: 'on'
-          color: rgb(46, 204, 64)
-        hold_action:
-          action: more-info
-      - type: "custom:button-card"
-        icon: mdi:switch
-        size: 30%
-        entity: binary_sensor.unifi_sw8_60w
-        name: SW8 60w
-        state:
-        - value: 'off'
-          color: rgb(255,65,54)
-        - value: 'on'
-          color: rgb(46, 204, 64)
-        hold_action:
-          action: more-info
-      - type: "custom:button-card"
-        icon: mdi:access-point-network
-        size: 30%
-        entity: binary_sensor.unifi_ap_loft
-        name: AP Loft
-        state:
-        - value: 'off'
-          color: rgb(255,65,54)
-        - value: 'on'
-          color: rgb(46, 204, 64)
-        hold_action:
-          action: more-info
-      - type: "custom:button-card"
-        icon: mdi:access-point-network
-        size: 30%
-        entity: binary_sensor.unifi_ap_living
-        name: AP Living
-        state:
-        - value: 'off'
-          color: rgb(255,65,54)
-        - value: 'on'
-          color: rgb(46, 204, 64)
-        hold_action:
-          action: more-info

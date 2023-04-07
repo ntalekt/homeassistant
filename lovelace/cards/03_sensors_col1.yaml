@@ -53,12 +53,12 @@ cards:
         - icon: mdi:dns-outline
           entity: switch.pi_hole2
           name: Pi-Hole2 Status
-        - entity: sensor.pi_hole1_dns_queries_today_2
-        - entity: sensor.pi_hole1_ads_blocked_today_2
-        - entity: sensor.pi_hole1_ads_percentage_blocked_today_2
+        - entity: sensor.pi_hole1_dns_queries_today
+        - entity: sensor.pi_hole1_ads_blocked_today
+        - entity: sensor.pi_hole1_ads_percentage_blocked_today
 
-        - entity: sensor.pi_hole2_dns_queries_today_2
-        - entity: sensor.pi_hole2_ads_blocked_today_2
-        - entity: sensor.pi_hole2_ads_percentage_blocked_today_2
+        - entity: sensor.pi_hole2_dns_queries_today
+        - entity: sensor.pi_hole2_ads_blocked_today
+        - entity: sensor.pi_hole2_ads_percentage_blocked_today
       show_header_toggle: false
 
