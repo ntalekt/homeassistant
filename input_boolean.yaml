@@ -189,3 +189,11 @@ disable_interior_camera_recording:
   #initial: on
   icon: mdi:motion-sensor
 
+##########################################################
+## govee appliances
+##########################################################
+
+office_purifier_state:
+  name: Office Purifier State
+  initial: on
+  icon: mdi:air-filter

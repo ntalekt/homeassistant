@@ -356,6 +356,19 @@ cards:
           spin: true
         hold_action:
           action: more-info
+      - type: "custom:button-card"
+        icon: mdi:air-purifier
+        size: 30%
+        entity: fan.office_air_purifier
+        name: Office Purifier
+        tap_action:
+          action: more-info
+        state:
+        - value: 'off'
+        - value: 'on'
+          color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
 #       - type: "custom:button-card"
 #         icon: mdi:weather-night
 #         size: 30%

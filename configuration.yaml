@@ -65,6 +65,17 @@ lovelace:
     - url: /hacsfiles/threedy/threedy-card.js
       type: module
 
+rest_command: 
+  office_air_purifier:
+    url: https://developer-api.govee.com/v1/appliance/devices/control
+    method: PUT
+    headers:
+        Content-Type: application/json
+        Govee-API-Key: !secret govee_api_key
+    content_type:  'application/json; charset=utf-8'
+    payload: '{"device": "{{ device }}","model": "{{ model }}","cmd": {"name": "{{ cmd_name }}","value": "{{ cmd_value }}"}}'
+    verify_ssl: true
+
 shell_command:
   docker_image_prune_docker1: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED54 'docker image prune -af'"
   docker_image_prune_docker2: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED53 'docker image prune -af'"
@@ -114,6 +125,30 @@ alexa:
       switch.media_center_xbox:
         name: "Xbox"
         description: "Downstairs xbox harmony activity"
+
+fan:
+  platform: template
+  fans:
+    office_air_purifier:
+      friendly_name: "Office Air Purifier"
+      value_template: "{{ states('input_boolean.office_purifier_state') }}"
+      preset_mode_template: "{{ states('input_select.office_air_purifier_mode') }}"
+      turn_on:
+        service: script.office_air_purifier_on
+      turn_off:
+        service: script.office_air_purifier_off
+      set_preset_mode:
+        service: script.office_air_purifier_mode
+        data:
+          office_purifier_mode: >
+            {% set mapper = {'Sleep' : 16, 'Low': 1, 'Medium': 2, 'High': 3} %}
+            {{ mapper[preset_mode] }}
+      speed_count: 4
+      preset_modes:
+        - 'Low'
+        - 'Medium'
+        - 'High'
+        - 'Sleep'
 
 ffmpeg:
 

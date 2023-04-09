@@ -78,9 +78,10 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 #### Irrigation
 * [Rain Bird ST8O-2.0](https://amzn.to/434dP5n)
 
-#### Climate
+#### Climate/Air Quality
 * [Trane XL824](https://amzn.to/3GlbVUf) x2
 * [Pentair EasyTouch Pool/Spa Controller](https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-automation/easytouch_controlsystems.html)
+* [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv)
 
 #### Garage/Cover
 * [Chamberlain B2405 Smart Garage Door Opener](https://amzn.to/40IVXet)

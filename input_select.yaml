@@ -15,6 +15,10 @@ sprinkler:
     - "Summer"
   icon: mdi:calendar-clock
 
+##########################################################
+## themes
+##########################################################
+
 themes:
   name: 'Themes'
   icon: mdi:format-paint
@@ -61,3 +65,16 @@ themes:
     - Caule Black Pink Glass
     - Caule Black Gray Glass      
     - default
+
+##########################################################
+## govee appliances
+##########################################################
+
+office_air_purifier_mode:
+  name: Office Air Purifier Mode
+  options:
+    - "Low"
+    - "Medium"
+    - "High"
+    - "Sleep"
+  icon: mdi:air-filter
