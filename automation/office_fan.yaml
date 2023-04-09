@@ -9,7 +9,7 @@
       to: "on"
   action:
     - service: switch.turn_on
-      entity_id: switch.office_fan_socket
+      entity_id: switch.office_fan_switch
 
 #################################################################
 ## Turn Off office fan if not occupied
@@ -31,4 +31,4 @@
         state: "off"
   action:
     - service: switch.turn_off
-      entity_id: switch.office_fan_socket
+      entity_id: switch.office_fan_switch

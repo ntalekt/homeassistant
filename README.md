@@ -46,7 +46,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 
 #### Outlets / Switches
 * [Sonoff S31 WiFi w/tasmota](https://amzn.to/3KzEDDh) x3
-* [Sonoff S31 Lite Zigbee](https://amzn.to/434kBbn) x2
+* [Sonoff S31 Lite Zigbee](https://amzn.to/434kBbn) x4
 * [Aqara Wireless Mini Switch](https://amzn.to/40LWP23) x4
 * [Wyze Plug Outdoor](https://amzn.to/40Cpd6N)
 

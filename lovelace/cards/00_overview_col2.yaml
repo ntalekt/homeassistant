@@ -342,13 +342,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:fan
         size: 30%
-        entity: switch.office_fan_socket
+        entity: switch.office_fan_switch
         name: Office Fan
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.office_fan_socket
+            entity_id: switch.office_fan_switch
         state:
         - value: 'off'
         - value: 'on'
