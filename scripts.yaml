@@ -259,6 +259,9 @@ office_air_purifier_on:
       minutes: 0
       seconds: 0
       milliseconds: 500
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.office_purifier_state
   mode: single
 
 office_air_purifier_off:
@@ -276,6 +279,13 @@ office_air_purifier_off:
       minutes: 0
       seconds: 0
       milliseconds: 500
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.office_purifier_state
+  - service: input_select.select_option
+    entity_id: input_select.office_air_purifier_mode
+    data:
+          option: 'Off'
   mode: single
 
 office_air_purifier_mode:
@@ -297,5 +307,8 @@ office_air_purifier_mode:
       model: H7121
       cmd_name: mode
       cmd_value: '{{ office_purifier_mode }}'
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.office_purifier_state
   mode: single
   icon: mdi:air-purifier

@@ -77,4 +77,5 @@ office_air_purifier_mode:
     - "Medium"
     - "High"
     - "Sleep"
+    - "Off"
   icon: mdi:air-filter
