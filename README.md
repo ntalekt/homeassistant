@@ -43,6 +43,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Govee H7012 Outdoor Patio String Lights](https://amzn.to/40LW5dh)
 * [Govee H7061 RGBIC Flood Lights](https://amzn.to/3Ki6d6N) x2
 * [Govee H6008 RGB Light Bulbs](https://amzn.to/3KEClCZ) x4
+* [Zigbee Controller](https://www.aliexpress.us/item/3256804444208373.html)
 
 #### Outlets / Switches
 * [Sonoff S31 WiFi w/tasmota](https://amzn.to/3KzEDDh) x3
