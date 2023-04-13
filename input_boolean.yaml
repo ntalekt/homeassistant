@@ -197,3 +197,8 @@ office_purifier_state:
   name: Office Purifier State
   initial: on
   icon: mdi:air-filter
+
+disable_auto_purifier_mode:
+  name: Disable Auto Purifier Automations
+  initial: off
+  icon: mdi:air-filter
