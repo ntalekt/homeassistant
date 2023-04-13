@@ -60,9 +60,9 @@
     - service: light.turn_on
       entity_id: light.media_accents
     - service: switch.turn_on
-      entity_id: switch.cactus_socket
+      entity_id: switch.cactus
     - service: switch.turn_on
-      entity_id: switch.sonoff_s31_lite_zb_switch
+      entity_id: switch.neon
     - service: light.turn_on
       entity_id: light.media_center_lamp_bulbs
       data:
@@ -75,12 +75,12 @@
         kelvin: 4000
         brightness_pct: 60
         transition: 60
-    - service: light.turn_on
-      entity_id: light.loft_lamp_bulb
-      data:
-        kelvin: 4500
-        brightness_pct: 5
-        transition: 60
+    # - service: light.turn_on
+    #   entity_id: light.loft_lamp_bulb
+    #   data:
+    #     kelvin: 4500
+    #     brightness_pct: 5
+    #     transition: 60
 
 ##########################################################
 ## Interior - Master lamp switch color when TV on
@@ -146,9 +146,9 @@
     - service: light.turn_off
       entity_id: light.media_accents
     - service: switch.turn_off
-      entity_id: switch.cactus_socket
+      entity_id: switch.cactus
     - service: switch.turn_off
-      entity_id: switch.sonoff_s31_lite_zb_switch
+      entity_id: switch.neon
     - service: light.turn_off
       entity_id: light.kitchen_cabinet_lights
     - service: light.turn_off
@@ -219,9 +219,9 @@
         device_id: b8bd41b37c6bf40b762ce1d424f3552f
   action:
     - service: switch.toggle
-      entity_id: switch.cactus_socket
+      entity_id: switch.cactus
     - service: switch.toggle
-      entity_id: switch.sonoff_s31_lite_zb_switch
+      entity_id: switch.neon
 
 ##########################################################
 ## Exterior

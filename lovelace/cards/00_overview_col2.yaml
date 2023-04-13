@@ -82,13 +82,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:cactus
         size: 30%
-        entity: switch.cactus_socket
+        entity: switch.cactus
         name: Cactus
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.cactus_socket
+            entity_id: switch.cactus
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -100,13 +100,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:lava-lamp
         size: 30%
-        entity: switch.sonoff_s31_lite_zb_switch
+        entity: switch.neon
         name: Neon
         tap_action:
           action: call-service
           service: switch.toggle
           service_data:
-            entity_id: switch.sonoff_s31_lite_zb_switch
+            entity_id: switch.neon
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
