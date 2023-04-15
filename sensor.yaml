@@ -501,7 +501,7 @@
           mdi:battery-alert
         {% endif %}
 
-    shop_garage_door:
+    shop_garage_door_battery:
       value_template: "{% if states.sensor.lumi_lumi_sensor_magnet_aq2_battery_2.state %}{{ states.sensor.lumi_lumi_sensor_magnet_aq2_battery_2.state | default(0) | int }}{% endif %}"
       friendly_name: "Shop Garage Door"
       unit_of_measurement: "%"
@@ -525,6 +525,45 @@
           mdi:door-open
         {% elif patio_door_state == 'off' %}
           mdi:door-closed
+        {% else %}
+          mdi:alert-outline
+        {% endif %}
+
+    shop_door:
+      value_template: '{% if is_state("binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2", "on") %}Open{% elif is_state("binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2", "off") %}Closed{% else %}unknown{% endif %}'
+      friendly_name: "Shop Door Status"
+      icon_template: >
+        {% set patio_door_state = states.binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2.state %}
+        {% if patio_door_state == 'on' %}
+          mdi:door-open
+        {% elif patio_door_state == 'off' %}
+          mdi:door-closed
+        {% else %}
+          mdi:alert-outline
+        {% endif %}
+
+    garage_door:
+      value_template: >
+        {% if is_state("cover.garage_door", "open") %}
+          Open
+        {% elif is_state("cover.garage_door", "opening") %}
+          Opening
+        {% elif is_state("cover.garage_door", "closing") %}
+          Closing
+        {% elif is_state("cover.garage_door", "closed") %}
+          Closed
+        {% else %}unknown{% endif %}
+      friendly_name: "Garage Door Status"
+      icon_template: >
+        {% set patio_door_state = states.cover.garage_door.state %}
+        {% if patio_door_state == 'open' %}
+          mdi:garage-open-variant
+        {% elif patio_door_state == 'opening' %}
+          mdi:garage-alert-variant
+        {% elif patio_door_state == 'closing' %}
+          mdi:garage-alert-variant
+        {% elif patio_door_state == 'closed' %}
+          mdi:garage-variant
         {% else %}
           mdi:alert-outline
         {% endif %}

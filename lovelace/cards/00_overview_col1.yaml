@@ -187,13 +187,16 @@ cards:
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
-        entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening
+        entity: sensor.patio_door
         name: Patio
         state:
-        - value: 'on'
+        - value: 'unknown'
+          color: rgb(255, 65, 54)
+          icon: mdi:alert-outline
+        - value: 'Open'
           color: rgb(255,65,54)
           icon: mdi:door-open
-        - value: 'off'
+        - value: 'Closed'
           color: rgb(46, 204, 64)
           icon: mdi:door-closed
         style:
@@ -207,7 +210,7 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: cover.garage_door
+        entity: sensor.garage_door
         name: Garage
         tap_action:
           action: call-service
@@ -215,16 +218,19 @@ cards:
           service_data:
             entity_id: cover.garage_door
         state:
-        - value: 'open'
+        - value: 'unknown'
+          color: rgb(255, 65, 54)
+          icon: mdi:alert-outline
+        - value: 'Open'
           color: rgb(255,65,54)
           icon: mdi:garage-open-variant
-        - value: 'opening'
+        - value: 'Opening'
           color: rgb(204, 99, 46)
           icon: mdi:garage-alert-variant
-        - value: 'closing'
+        - value: 'Closing'
           color: rgb(204, 99, 46)
           icon: mdi:garage-alert-variant
-        - value: 'closed'
+        - value: 'Closed'
           color: rgb(46, 204, 64)
           icon: mdi:garage-variant
         style:
@@ -238,13 +244,16 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2
+        entity: sensor.shop_door
         name: Shop
         state:
-        - value: 'on'
+        - value: 'unknown'
+          color: rgb(255, 65, 54)
+          icon: mdi:alert-outline
+        - value: 'Open'
           color: rgb(255,65,54)
           icon: mdi:garage-open
-        - value: 'off'
+        - value: 'Closed'
           color: rgb(46, 204, 64)
           icon: mdi:garage
         style:

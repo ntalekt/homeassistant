@@ -75,7 +75,7 @@ cards:
         - sensor.living_motion_battery
         - sensor.chalkboard_switch_battery
         - sensor.patio_door_battery
-        - sensor.shop_garage_door
+        - sensor.shop_garage_door_battery
         - sensor.kids_leak_sensor_battery
         - sensor.master_leak_sensor_battery
         - sensor.laundry_leak_sensor_battery

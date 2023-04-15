@@ -46,4 +46,7 @@ sensor.nas2_system_temperature:
   unit_of_measurement: C
 sensor.nas2_cpu_temperature:
   unit_of_measurement: C
-
+binary_sensor.lumi_lumi_sensor_magnet_aq2_opening:
+  device_class: door
+binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2:
+  device_class: garage_door
