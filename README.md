@@ -108,23 +108,23 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 
 ## Example Automations
 ### Notification Audio
-* [TTS](https://home-assistant.io/components/tts.google/) notification when _User_ arrives at specific [Zones](https://home-assistant.io/components/zone/).
-* [TTS](https://home-assistant.io/components/tts.google/) notification when _User_ leaves specific zones which includes travel time home.
-* [TTS](https://home-assistant.io/components/tts.google/) notification if the garage door has been open for 30 minutes with no motion in garage.
+* [TTS](https://home-assistant.io/components/tts.google/) notification when _User_ arrives at specific [Zones](https://home-assistant.io/components/zone/)
+* [TTS](https://home-assistant.io/components/tts.google/) notification when _User_ leaves specific zones which includes travel time home
+* [TTS](https://home-assistant.io/components/tts.google/) notification if the garage door has been open for 30 minutes with no motion in garage
 * [TTS](https://home-assistant.io/components/tts.google/) school bell notification (if remote schooling mode enabled)
 * [TTS](https://home-assistant.io/components/tts.google/) test notification
 * [TTS](https://home-assistant.io/components/tts.google/) ring ding & motion events
 
 ### Notification Text
-* [Slack](https://www.home-assistant.io/integrations/slack) notification when new Home Assistant version is available on PyPI.
-* [Slack](https://www.home-assistant.io/integrations/slack) notification when critical network devices go offline.
-* [Slack](https://www.home-assistant.io/integrations/slack) notification if the garage door is left open after we left the house.
-* [Slack](https://www.home-assistant.io/integrations/slack) notification if the garage door is opened and no one is home.
-* [Slack](https://www.home-assistant.io/integrations/slack) notification if the garage door has been open for 30 minutes with no motion in garage.
-* [Slack](https://www.home-assistant.io/integrations/slack) notification test.
+* [Slack](https://www.home-assistant.io/integrations/slack) notification when new Home Assistant version is available on PyPI
+* [Slack](https://www.home-assistant.io/integrations/slack) notification when critical network devices go offline
+* [Slack](https://www.home-assistant.io/integrations/slack) notification if the garage door is left open after we left the house
+* [Slack](https://www.home-assistant.io/integrations/slack) notification if the garage door is opened and no one is home
+* [Slack](https://www.home-assistant.io/integrations/slack) notification if the garage door has been open for 30 minutes with no motion in garage
+* [Slack](https://www.home-assistant.io/integrations/slack) notification test
 * [Slack](https://www.home-assistant.io/integrations/slack) when any battery sensor falls below 20%
-* [Slack](https://www.home-assistant.io/integrations/slack) for a failed login attempt.
-* [Slack](https://www.home-assistant.io/integrations/slack) if new network device is detected.
+* [Slack](https://www.home-assistant.io/integrations/slack) for a failed login attempt
+* [Slack](https://www.home-assistant.io/integrations/slack) if new network device is detected
 
 ### Lights
 * Exterior lights (porch, side entrance, pool, landscape) on 5 minutes before sunset.
@@ -135,34 +135,36 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * Interior lights on if motion
 
 ### Doorbell
-* Exterior lights to 100% if [Ring Pro Doorbell](https://www.amazon.com/gp/product/B01DM6BDA4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DM6BDA4&linkCode=as2&tag=ntalekt0c-20&linkId=5faec88af320aeb157fbb45fa954efc3) detects motion or is pressed after 9:00pm.
-* Exterior lights back to 15% after 30 minutes after doorbell motion or press.
+* Exterior lights to 100% if [Ring Pro Doorbell](https://amzn.to/3Kdnj5t) detects motion or is pressed after 9:00pm
+* Exterior lights back to 15% after 30 minutes after doorbell motion or press
 
 ### Media
-* Start [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt0c-20&linkId=ef1edfe63776ff2e3b5b4e7fdf8e3488) activity if user selects from HA UI `input_select`.
-* Update `input_select` status if physical [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt0c-20&linkId=ef1edfe63776ff2e3b5b4e7fdf8e3488) remote is used to start activity.
-* Start playing music on [Sonos PLAY:1](https://www.amazon.com/gp/product/B00EWCUK1Q/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK1Q&linkCode=as2&tag=ntalekt0c-20&linkId=b90ba9470832833ea363027daabf948a) speakers if user selects music station from `input_select`.
-* Start playing music on [Sonos PLAY:1](https://www.amazon.com/gp/product/B00EWCUK1Q/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK1Q&linkCode=as2&tag=ntalekt0c-20&linkId=b90ba9470832833ea363027daabf948a) speakers if user starts music station using [Amazon Echo Dot](https://www.amazon.com/gp/product/B01DFKC2SO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DFKC2SO&linkCode=as2&tag=ntalekt0c-20&linkId=bb902528d5689ae4e1163dd31b7c646d) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/).
-* Start [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt0c-20&linkId=ef1edfe63776ff2e3b5b4e7fdf8e3488) activity using [Amazon Echo Dot](https://www.amazon.com/gp/product/B01DFKC2SO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DFKC2SO&linkCode=as2&tag=ntalekt0c-20&linkId=bb902528d5689ae4e1163dd31b7c646d) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/).
-* Power off [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt0c-20&linkId=ef1edfe63776ff2e3b5b4e7fdf8e3488) activity using [Amazon Echo Dot](https://www.amazon.com/gp/product/B01DFKC2SO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DFKC2SO&linkCode=as2&tag=ntalekt0c-20&linkId=bb902528d5689ae4e1163dd31b7c646d) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/).
-* Turn on SleepTime mode if [Xiaomi Aqara Smart Wireless Switch](https://www.gearbest.com/access-control/pp_626695.html) is pressed.
-* Pause [Deluge](https://home-assistant.io/components/switch.deluge/) if internet data usage > 90%.
+* Start [Harmony Hub](https://amzn.to/3meKzZ6) activity if user selects from HA UI 
+* Update `input_select` status if physical [Harmony Hub](https://amzn.to/3meKzZ6) remote is used to start activity
+* Start playing music on [Sonos PLAY:1](https://amzn.to/3ZLBe8N) speakers if user selects music station from `input_select`.
+* Start playing music on [Sonos PLAY:1](https://amzn.to/3ZLBe8N) speakers if user starts music station using [Amazon Echo Dot](https://www.amazon.com/gp/product/B01DFKC2SO/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DFKC2SO&linkCode=as2&tag=ntalekt0c-20&linkId=bb902528d5689ae4e1163dd31b7c646d) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/)
+* Start [Harmony Hub](https://amzn.to/3meKzZ6) activity using [Amazon Echo Dot](https://amzn.to/3Gn41tg) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/)
+* Power off [Harmony Hub](https://amzn.to/3meKzZ6) activity using [Amazon Echo Dot](https://amzn.to/3Gn41tg) via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/)
+* Turn on SleepTime mode if [Xiaomi Aqara Smart Wireless Switch](https://amzn.to/40LWP23) is pressed
+* Pause [Deluge](https://home-assistant.io/components/switch.deluge/) if internet data usage > 90%
 
 ### Sonos
-* Reset/Regroup all [Sonos PLAY:1](https://www.amazon.com/gp/product/B00EWCUK1Q/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00EWCUK1Q&linkCode=as2&tag=ntalekt0c-20&linkId=b90ba9470832833ea363027daabf948a) speakers at 6:00am every morning.
-* Group all Sonos' button.
+* Reset/Regroup all [Sonos PLAY:1](https://amzn.to/3ZLBe8N) speakers at 6:00am every morning
+* Group all Sonos' button
 
 ### Occupancy
-* If motion is detected via Aquara Motion or [Tapo cameras, Frigate object detection](https://www.amazon.com/gp/product/B077DPWQCV/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B077DPWQCV&linkCode=as2&tag=ntalekt0c-20&linkId=ac62ed590e7bb7ab3e4aca12348c1db1) turn on `input_boolean` (used in `binary_sensor` for occupancy tracking).
+* If motion is detected via Aquara Motion or [Tapo cameras, Frigate object detection](https://amzn.to/3MdR6Oi) turn on `input_boolean` (used in `binary_sensor` for occupancy tracking)
 * If no motion is detected after certain period of time turn off `input_boolean`.
 
 ### Sleep time
-* Turn off master TV after 30 minutes via [Harmony Hub](https://www.amazon.com/gp/product/B00BQ5RYI4/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00BQ5RYI4&linkCode=as2&tag=ntalekt0c-20&linkId=ef1edfe63776ff2e3b5b4e7fdf8e3488).
+* If [Aqara Wireless Mini Switch](https://amzn.to/40LWP23) pressed turn off master TV after 30 minutes via [Harmony Hub](https://amzn.to/3meKzZ6), turn off loft lamp, and put office air purifier to sleep. 
 
 ### System
-* Run script to collect Cox Internet usage hourly.
-* Clean the TTS cache weekly.
+* Clean the TTS cache weekly
 
 ### Vacation/Climate
 * Turn vacation mode on when household is gone for 24 hours.
-* Toggle office fan on/off based on occupancy using * [Wemo Insight Smart Plug](https://www.amazon.com/gp/product/B01DBXNYCS/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B01DBXNYCS&linkCode=as2&tag=ntalekt0c-20&linkId=934f0720129cf096876ab8b14a26bbbb).
+* Toggle office fan on/off based on occupancy using [Sonoff S31 Lite Zigbee](https://amzn.to/434kBbn)
+* Turn office air purifier [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv) on/off based on occupancy
+* Turn office air purifier [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv) on/off based on air quality sensor
+* Change office air purifier [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv) mode based on air quality sensor
