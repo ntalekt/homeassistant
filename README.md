@@ -6,7 +6,8 @@
   <h4>
     <a href="https://github.com/ntalekt/homeassistant/stargazers"><img src="https://img.shields.io/github/stars/ntalekt/homeassistant.svg"/></a>
     <a href="https://github.com/ntalekt/homeassistant/commits/master"><img src="https://img.shields.io/github/last-commit/ntalekt/homeassistant.svg"/></a>
-    <a href="https://github.com/home-assistant/home-assistant/releases/latest"><img src="https://img.shields.io/badge/Running%20Home%20Assistant-2023.4.3%20-darkblue"/></a>
+    <a href="https://github.com/home-assistant/home-assistant/releases/latest"><img src="https://img.shields.io/badge/Running%20Home%20Assistant-2023.4.4%20-darkblue"/></a>
+	<a href="https://community.home-assistant.io/u/ntalekt/summary"><img src="https://img.shields.io/badge/HA%20community-forum-orange"/></a>
   </h4>
 </div>
 This is my <a href="https://home-assistant.io">Home Assistant</a> configuration which is running on Docker. When starting with home automation I found many well documented configurations and drew inspiration from them in order to achieve my automation goals. I wanted to share my success with the community and hopefully help others on their journey.
