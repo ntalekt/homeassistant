@@ -4,3 +4,4 @@ icon: mdi:robot
 cards:
   - !include /config/lovelace/cards/04_automation_col1.yaml
   - !include /config/lovelace/cards/04_automation_col2.yaml
+  - !include /config/lovelace/cards/04_automation_col3.yaml

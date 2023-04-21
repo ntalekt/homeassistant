@@ -202,3 +202,17 @@ disable_auto_purifier_mode:
   name: Disable Auto Purifier Automations
   initial: off
   icon: mdi:air-filter
+
+##########################################################
+## holiday
+##########################################################
+
+interior_holiday:
+  name: Interior Holiday Lighting Mode
+  initial: off
+  icon: mdi:gift
+
+exterior_holiday:
+  name: Exterior Holiday Lighting Mode
+  initial: off
+  icon: mdi:gift

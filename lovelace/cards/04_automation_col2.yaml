@@ -13,6 +13,8 @@ cards:
         - entity: input_boolean.school_early_dismissal_mode
         - entity: input_boolean.interior_camera_detection_mode
         - entity: input_boolean.interior_camera_recording_mode
+        - entity: input_boolean.interior_holiday
+        - entity: input_boolean.exterior_holiday
   - type: horizontal-stack
     cards:
     - type: entities

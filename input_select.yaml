@@ -79,3 +79,23 @@ office_air_purifier_mode:
     - "Sleep"
     - "Off"
   icon: mdi:air-filter
+
+##########################################################
+## holiday
+##########################################################
+
+holiday:
+  name: Holiday Lighting
+  options:
+    - None
+    - Valentine's Day
+    - St. Patuserone's Day
+    - Easter
+    - Memorial Day
+    - Independence Day
+    - Labor Day
+    - Halloween
+    - Veterans Day
+    - Thanksgiving
+    - Christmas
+  icon: mdi:gift

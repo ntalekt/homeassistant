@@ -1,0 +1,67 @@
+##################################################################
+## Holiday Automations
+##################################################################
+
+        ##########################################################
+        ## Enable Christmas Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Christmas Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.holidays_calendar
+        state: 'Christmas Eve'
+      - condition: state
+        entity_id: sensor.holidays_calendar
+        state: 'Christmas Day'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Christmas'
+
+
+        ##########################################################
+        ## Christmas Lighting
+        ##########################################################
+
+
+
+        ##########################################################
+        ## Enable Halloween Lighting
+        ##########################################################
+
+- alias: Holiday - Enable Halloween Lighting
+
+  trigger:
+    - platform: state
+      entity_id: calendar.holidays_in_united_states
+      to: 'on'
+      for:
+        hours: 9
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sensor.holidays_calendar
+      state: 'Halloween'
+
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: 'Halloween'

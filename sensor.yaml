@@ -93,6 +93,10 @@
     normal_time:
       value_template: '{{ as_timestamp(states("sensor.date_time_iso")) | timestamp_custom("%I:%M %p") }}'
 
+    holidays_calendar:
+      friendly_name: "Upcoming Holiday"
+      value_template: '{{ states.calendar.holidays_in_united_states.attributes.message }}'
+
     normal_date:
       value_template: '{{ as_timestamp(states("sensor.date_time_iso")) | timestamp_custom("%A, %B %-d") }}'
 
