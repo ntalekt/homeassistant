@@ -19,13 +19,14 @@ from homeassistant.components.media_source.models import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.util import dt
 
 from .const import DOMAIN, LOGGER
 
 from .utils import getRecording
 
 from pytapo import Tapo
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 async def async_get_media_source(hass: HomeAssistant) -> TapoMediaSource:
@@ -52,30 +53,37 @@ class TapoMediaSource(MediaSource):
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia:
         path = item.identifier.split("/")
         if len(path) == 5:
-            entry = path[1]
-            if self.hass.data[DOMAIN][entry]["isDownloadingStream"]:
-                raise Unresolvable(
-                    "Already downloading a recording, please try again later."
+            try:
+                entry = path[1]
+                if self.hass.data[DOMAIN][entry]["isDownloadingStream"]:
+                    raise Unresolvable(
+                        "Already downloading a recording, please try again later."
+                    )
+                date = path[2]
+                tapoController: Tapo = self.hass.data[DOMAIN][entry]["controller"]
+                startDate = int(path[3])
+                endDate = int(path[4])
+
+                LOGGER.debug(startDate)
+                LOGGER.debug(endDate)
+
+                self.hass.data[DOMAIN][entry]["isDownloadingStream"] = True
+                url = await getRecording(
+                    self.hass, tapoController, entry, date, startDate, endDate
                 )
-            date = path[2]
-            tapoController: Tapo = self.hass.data[DOMAIN][entry]["controller"]
-            startDate = int(path[3])
-            endDate = int(path[4])
-
-            LOGGER.debug(startDate)
-            LOGGER.debug(endDate)
-
-            self.hass.data[DOMAIN][entry]["isDownloadingStream"] = True
-            url = await getRecording(
-                self.hass, tapoController, entry, date, startDate, endDate
-            )
-            LOGGER.debug(url)
+                LOGGER.debug(url)
+            except Exception as e:
+                LOGGER.error(e)
+                raise Unresolvable(e)
 
             return PlayMedia(url, "video/mp4")
         else:
             raise Unresolvable("Incorrect path.")
 
-    async def async_browse_media(self, item: MediaSourceItem,) -> BrowseMediaSource:
+    async def async_browse_media(
+        self,
+        item: MediaSourceItem,
+    ) -> BrowseMediaSource:
         if item.identifier is None:
             return BrowseMediaSource(
                 domain=DOMAIN,
@@ -147,15 +155,23 @@ class TapoMediaSource(MediaSource):
                 videoNames = []
                 for searchResult in recordingsForDay:
                     for key in searchResult:
-                        # todo: check if this works
-                        startTS = searchResult[key]["startTime"]
-                        endTS = searchResult[key]["endTime"]
-
-                        startDate = datetime.fromtimestamp(startTS)
-                        endDate = datetime.fromtimestamp(endTS)
+                        startTS = (
+                            searchResult[key]["startTime"]
+                            - self.hass.data[DOMAIN][entry]["timezoneOffset"]
+                        )
+                        endTS = (
+                            searchResult[key]["endTime"]
+                            - self.hass.data[DOMAIN][entry]["timezoneOffset"]
+                        )
+                        startDate = dt.as_local(dt.utc_from_timestamp(startTS))
+                        endDate = dt.as_local(dt.utc_from_timestamp(endTS))
                         videoName = f"{startDate.strftime('%H:%M:%S')} - {endDate.strftime('%H:%M:%S')}"
                         videoNames.append(
-                            {"name": videoName, "startDate": startTS, "endDate": endTS}
+                            {
+                                "name": videoName,
+                                "startDate": searchResult[key]["startTime"],
+                                "endDate": searchResult[key]["endTime"],
+                            }
                         )
 
                 return BrowseMediaSource(
@@ -183,4 +199,3 @@ class TapoMediaSource(MediaSource):
 
             else:
                 LOGGER.error("Not implemented")
-

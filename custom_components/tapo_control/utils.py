@@ -73,12 +73,16 @@ def isOpen(ip, port):
         return False
 
 
+def getDataPath():
+    return os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+
+
 def getColdDirPathForEntry(entry_id):
-    return f"./.storage/{DOMAIN}/{entry_id}/"
+    return os.path.join(getDataPath(), f".storage/{DOMAIN}/{entry_id}/")
 
 
 def getHotDirPathForEntry(entry_id):
-    return f"./www/{DOMAIN}/{entry_id}/"
+    return os.path.join(getDataPath(), f"www/{DOMAIN}/{entry_id}/")
 
 
 def mediaCleanup(hass, entry_id):
@@ -131,6 +135,10 @@ def deleteFilesOlderThan(dirPath, deleteOlderThan):
                 os.remove(filePath)
 
 
+def processDownload(status):
+    LOGGER.debug(status)
+
+
 async def getRecording(
     hass: HomeAssistant,
     tapo: Tapo,
@@ -149,6 +157,8 @@ async def getRecording(
 
     pathlib.Path(coldDirPath).mkdir(parents=True, exist_ok=True)
     pathlib.Path(hotDirPath).mkdir(parents=True, exist_ok=True)
+
+    downloadUID = hashlib.md5((str(startDate) + str(endDate)).encode()).hexdigest()
     downloader = Downloader(
         tapo,
         startDate,
@@ -157,25 +167,25 @@ async def getRecording(
         0,
         None,
         None,
-        hashlib.md5((str(startDate) + str(endDate)).encode()).hexdigest() + ".mp4",
+        downloadUID + ".mp4",
     )
     # todo: automatic deletion of recordings longer than X in hot storage
 
     hass.data[DOMAIN][entry_id]["isDownloadingStream"] = True
-    downloadedFile = await downloader.downloadFile(LOGGER)
+    downloadedFile = await downloader.downloadFile(processDownload)
     hass.data[DOMAIN][entry_id]["isDownloadingStream"] = False
     if downloadedFile["currentAction"] == "Recording in progress":
         raise Unresolvable("Recording is currently in progress.")
 
     coldFilePath = downloadedFile["fileName"]
     hotFilePath = (
-        coldFilePath.replace("./.storage/", "./www/").replace(".mp4", "")
+        coldFilePath.replace("/.storage/", "/www/").replace(".mp4", "")
         + UUID
         + ".mp4"
     )
     shutil.copyfile(coldFilePath, hotFilePath)
 
-    fileWebPath = hotFilePath[6:]  # remove ./www/
+    fileWebPath = hotFilePath[hotFilePath.index("/www/") + 5:]  # remove ./www/
 
     return f"/local/{fileWebPath}"
 
@@ -207,10 +217,14 @@ async def isRtspStreamWorking(hass, host, username, password, full_url=""):
         ),
     )
     image = await asyncio.shield(
-        ffmpeg.get_image(streaming_url, output_format=IMAGE_JPEG,)
+        ffmpeg.get_image(
+            streaming_url,
+            output_format=IMAGE_JPEG,
+        )
     )
     LOGGER.debug(
-        "[isRtspStreamWorking][%s] Image data received.", host,
+        "[isRtspStreamWorking][%s] Image data received.",
+        host,
     )
     return not image == b""
 
@@ -305,6 +319,148 @@ async def getCamData(hass, controller):
         person_detection_sensitivity = None
     camData["person_detection_enabled"] = person_detection_enabled
     camData["person_detection_sensitivity"] = person_detection_sensitivity
+
+    try:
+        vehicleDetectionData = data["getVehicleDetectionConfig"]["vehicle_detection"][
+            "detection"
+        ]
+        vehicle_detection_enabled = vehicleDetectionData["enabled"]
+        vehicle_detection_sensitivity = None
+
+        sensitivity = tryParseInt(vehicleDetectionData["sensitivity"])
+        if sensitivity is not None:
+            if sensitivity <= 33:
+                vehicle_detection_sensitivity = "low"
+            elif sensitivity <= 66:
+                vehicle_detection_sensitivity = "normal"
+            else:
+                vehicle_detection_sensitivity = "high"
+    except Exception:
+        vehicle_detection_enabled = None
+        vehicle_detection_sensitivity = None
+    camData["vehicle_detection_enabled"] = vehicle_detection_enabled
+    camData["vehicle_detection_sensitivity"] = vehicle_detection_sensitivity
+
+    try:
+        babyCryDetectionData = data["getBCDConfig"]["sound_detection"]["bcd"]
+        babyCry_detection_enabled = babyCryDetectionData["enabled"]
+        babyCry_detection_sensitivity = None
+
+        sensitivity = babyCryDetectionData["sensitivity"]
+        if sensitivity is not None:
+            if sensitivity == "low":
+                babyCry_detection_sensitivity = "low"
+            elif sensitivity == "medium":
+                babyCry_detection_sensitivity = "normal"
+            else:
+                babyCry_detection_sensitivity = "high"
+    except Exception:
+        babyCry_detection_enabled = None
+        babyCry_detection_sensitivity = None
+    camData["babyCry_detection_enabled"] = babyCry_detection_enabled
+    camData["babyCry_detection_sensitivity"] = babyCry_detection_sensitivity
+
+    try:
+        petDetectionData = data["getPetDetectionConfig"]["pet_detection"]["detection"]
+        pet_detection_enabled = petDetectionData["enabled"]
+        pet_detection_sensitivity = None
+
+        sensitivity = tryParseInt(petDetectionData["sensitivity"])
+        if sensitivity is not None:
+            if sensitivity <= 33:
+                pet_detection_sensitivity = "low"
+            elif sensitivity <= 66:
+                pet_detection_sensitivity = "normal"
+            else:
+                pet_detection_sensitivity = "high"
+    except Exception:
+        pet_detection_enabled = None
+        pet_detection_sensitivity = None
+    camData["pet_detection_enabled"] = pet_detection_enabled
+    camData["pet_detection_sensitivity"] = pet_detection_sensitivity
+
+    try:
+        barkDetectionData = data["getBarkDetectionConfig"]["bark_detection"][
+            "detection"
+        ]
+        bark_detection_enabled = barkDetectionData["enabled"]
+        bark_detection_sensitivity = None
+
+        sensitivity = tryParseInt(barkDetectionData["sensitivity"])
+        if sensitivity is not None:
+            if sensitivity <= 33:
+                bark_detection_sensitivity = "low"
+            elif sensitivity <= 66:
+                bark_detection_sensitivity = "normal"
+            else:
+                bark_detection_sensitivity = "high"
+    except Exception:
+        bark_detection_enabled = None
+        bark_detection_sensitivity = None
+    camData["bark_detection_enabled"] = bark_detection_enabled
+    camData["bark_detection_sensitivity"] = bark_detection_sensitivity
+
+    try:
+        meowDetectionData = data["getMeowDetectionConfig"]["meow_detection"][
+            "detection"
+        ]
+        meow_detection_enabled = meowDetectionData["enabled"]
+        meow_detection_sensitivity = None
+
+        sensitivity = tryParseInt(meowDetectionData["sensitivity"])
+        if sensitivity is not None:
+            if sensitivity <= 33:
+                meow_detection_sensitivity = "low"
+            elif sensitivity <= 66:
+                meow_detection_sensitivity = "normal"
+            else:
+                meow_detection_sensitivity = "high"
+    except Exception:
+        meow_detection_enabled = None
+        meow_detection_sensitivity = None
+    camData["meow_detection_enabled"] = meow_detection_enabled
+    camData["meow_detection_sensitivity"] = meow_detection_sensitivity
+
+    try:
+        glassDetectionData = data["getGlassDetectionConfig"]["glass_detection"][
+            "detection"
+        ]
+        glass_detection_enabled = glassDetectionData["enabled"]
+        glass_detection_sensitivity = None
+
+        sensitivity = tryParseInt(glassDetectionData["sensitivity"])
+        if sensitivity is not None:
+            if sensitivity <= 33:
+                glass_detection_sensitivity = "low"
+            elif sensitivity <= 66:
+                glass_detection_sensitivity = "normal"
+            else:
+                glass_detection_sensitivity = "high"
+    except Exception:
+        glass_detection_enabled = None
+        glass_detection_sensitivity = None
+    camData["glass_detection_enabled"] = glass_detection_enabled
+    camData["glass_detection_sensitivity"] = glass_detection_sensitivity
+
+    try:
+        tamperDetectionData = data["getTamperDetectionConfig"]["tamper_detection"][
+            "tamper_det"
+        ]
+        tamper_detection_enabled = tamperDetectionData["enabled"]
+        tamper_detection_sensitivity = None
+
+        if sensitivity is not None:
+            if sensitivity == "low":
+                tamper_detection_sensitivity = "low"
+            elif sensitivity == "medium":
+                tamper_detection_sensitivity = "normal"
+            else:
+                tamper_detection_sensitivity = "high"
+    except Exception:
+        tamper_detection_enabled = None
+        tamper_detection_sensitivity = None
+    camData["tamper_detection_enabled"] = tamper_detection_enabled
+    camData["tamper_detection_sensitivity"] = tamper_detection_sensitivity
 
     try:
         presets = {
@@ -598,6 +754,20 @@ def pytapoFunctionMap(pytapoFunctionName):
         return ["getDetectionConfig"]
     elif pytapoFunctionName == "getPersonDetection":
         return ["getPersonDetectionConfig"]
+    elif pytapoFunctionName == "getVehicleDetection":
+        return ["getVehicleDetectionConfig"]
+    elif pytapoFunctionName == "getBabyCryDetection":
+        return ["getBCDConfig"]
+    elif pytapoFunctionName == "getPetDetection":
+        return ["getPetDetectionConfig"]
+    elif pytapoFunctionName == "getBarkDetection":
+        return ["getBarkDetectionConfig"]
+    elif pytapoFunctionName == "getMeowDetection":
+        return ["getMeowDetectionConfig"]
+    elif pytapoFunctionName == "getGlassBreakDetection":
+        return ["getGlassDetectionConfig"]
+    elif pytapoFunctionName == "getTamperDetection":
+        return ["getTamperDetectionConfig"]
     elif pytapoFunctionName == "getLdc":
         return ["getLensDistortionCorrection"]
     elif pytapoFunctionName == "getAlarm":

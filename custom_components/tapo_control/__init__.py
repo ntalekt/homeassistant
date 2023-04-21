@@ -13,6 +13,7 @@ from homeassistant.const import (
 )
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
+from homeassistant.util import dt
 
 from .const import (
     CONF_RTSP_TRANSPORT,
@@ -58,7 +59,6 @@ async def async_migrate_entry(hass, config_entry: ConfigEntry):
     LOGGER.debug("Migrating from version %s", config_entry.version)
 
     if config_entry.version == 1:
-
         new = {**config_entry.data}
         new[ENABLE_MOTION_SENSOR] = True
         new[CLOUD_PASSWORD] = ""
@@ -68,7 +68,6 @@ async def async_migrate_entry(hass, config_entry: ConfigEntry):
         config_entry.version = 2
 
     if config_entry.version == 2:
-
         new = {**config_entry.data}
         new[CLOUD_PASSWORD] = ""
 
@@ -77,7 +76,6 @@ async def async_migrate_entry(hass, config_entry: ConfigEntry):
         config_entry.version = 3
 
     if config_entry.version == 3:
-
         new = {**config_entry.data}
         new[ENABLE_STREAM] = True
 
@@ -86,7 +84,6 @@ async def async_migrate_entry(hass, config_entry: ConfigEntry):
         config_entry.version = 4
 
     if config_entry.version == 4:
-
         new = {**config_entry.data}
         new[ENABLE_TIME_SYNC] = False
 
@@ -95,7 +92,6 @@ async def async_migrate_entry(hass, config_entry: ConfigEntry):
         config_entry.version = 5
 
     if config_entry.version == 5:
-
         new = {**config_entry.data}
         new[ENABLE_SOUND_DETECTION] = False
         new[SOUND_DETECTION_PEAK] = -50
@@ -107,7 +103,6 @@ async def async_migrate_entry(hass, config_entry: ConfigEntry):
         config_entry.version = 6
 
     if config_entry.version == 6:
-
         new = {**config_entry.data}
         new[CONF_EXTRA_ARGUMENTS] = ""
 
@@ -116,7 +111,6 @@ async def async_migrate_entry(hass, config_entry: ConfigEntry):
         config_entry.version = 7
 
     if config_entry.version == 7:
-
         new = {**config_entry.data}
         new[CONF_CUSTOM_STREAM] = ""
 
@@ -125,7 +119,6 @@ async def async_migrate_entry(hass, config_entry: ConfigEntry):
         config_entry.version = 8
 
     if config_entry.version == 8:
-
         new = {**config_entry.data}
         new[CONF_RTSP_TRANSPORT] = RTSP_TRANS_PROTOCOLS[0]
 
@@ -352,10 +345,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
                     ].async_schedule_update_ha_state(True)
 
         tapoCoordinator = DataUpdateCoordinator(
-            hass, LOGGER, name="Tapo resource status", update_method=async_update_data,
+            hass,
+            LOGGER,
+            name="Tapo resource status",
+            update_method=async_update_data,
         )
 
         camData = await getCamData(hass, tapoController)
+        cameraTime = await hass.async_add_executor_job(tapoController.getTime)
+        cameraTS = cameraTime["system"]["clock_status"]["seconds_from_1970"]
+        currentTS = dt.as_timestamp(dt.now())
 
         hass.data[DOMAIN][entry.entry_id] = {
             "controller": tapoController,
@@ -381,6 +380,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
             "isChild": False,
             "isParent": False,
             "isDownloadingStream": False,
+            "timezoneOffset": cameraTS - currentTS,
         }
 
         if camData["childDevices"] is False or camData["childDevices"] is None:

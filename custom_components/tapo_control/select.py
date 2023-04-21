@@ -50,7 +50,7 @@ async def async_setup_entry(
         if tapoMotionDetectionSelect:
             LOGGER.debug("Adding TapoMotionDetectionSelect...")
             selects.append(tapoMotionDetectionSelect)
- 
+
         tapoPersonDetectionSelect = await check_and_create(
             entry, hass, TapoPersonDetectionSelect, "getPersonDetection", config_entry
         )
@@ -58,12 +58,73 @@ async def async_setup_entry(
             LOGGER.debug("Adding tapoPersonDetectionSelect...")
             selects.append(tapoPersonDetectionSelect)
 
+        tapoVehicleDetectionSelect = await check_and_create(
+            entry, hass, TapoVehicleDetectionSelect, "getVehicleDetection", config_entry
+        )
+        if tapoVehicleDetectionSelect:
+            LOGGER.debug("Adding tapoVehicleDetectionSelect...")
+            selects.append(tapoVehicleDetectionSelect)
+
+        tapoBabyCryDetectionSelect = await check_and_create(
+            entry, hass, TapoBabyCryDetectionSelect, "getBabyCryDetection", config_entry
+        )
+        if tapoBabyCryDetectionSelect:
+            LOGGER.debug("Adding tapoBabyCryDetectionSelect...")
+            selects.append(tapoBabyCryDetectionSelect)
+
+        tapoPetDetectionSelect = await check_and_create(
+            entry, hass, TapoPetDetectionSelect, "getPetDetection", config_entry
+        )
+        if tapoPetDetectionSelect:
+            LOGGER.debug("Adding tapoPetDetectionSelect...")
+            selects.append(tapoPetDetectionSelect)
+
+        tapoBarkDetectionSelect = await check_and_create(
+            entry, hass, TapoBarkDetectionSelect, "getBarkDetection", config_entry
+        )
+        if tapoBarkDetectionSelect:
+            LOGGER.debug("Adding tapoBarkDetectionSelect...")
+            selects.append(tapoBarkDetectionSelect)
+
+        tapoMeowDetectionSelect = await check_and_create(
+            entry, hass, TapoMeowDetectionSelect, "getMeowDetection", config_entry
+        )
+        if tapoMeowDetectionSelect:
+            LOGGER.debug("Adding tapoMeowDetectionSelect...")
+            selects.append(tapoMeowDetectionSelect)
+
+        tapoGlassBreakDetectionSelect = await check_and_create(
+            entry,
+            hass,
+            TapoGlassBreakDetectionSelect,
+            "getGlassBreakDetection",
+            config_entry,
+        )
+        if tapoGlassBreakDetectionSelect:
+            LOGGER.debug("Adding tapoGlassBreakDetectionSelect...")
+            selects.append(tapoGlassBreakDetectionSelect)
+
+        tapoTamperDetectionSelect = await check_and_create(
+            entry, hass, TapoTamperDetectionSelect, "getTamperDetection", config_entry
+        )
+        if tapoTamperDetectionSelect:
+            LOGGER.debug("Adding tapoTamperDetectionSelect...")
+            selects.append(tapoTamperDetectionSelect)
+
         tapoMoveToPresetSelect = await check_and_create(
             entry, hass, TapoMoveToPresetSelect, "getPresets", config_entry
         )
         if tapoMoveToPresetSelect:
             LOGGER.debug("Adding TapoMoveToPresetSelect...")
             selects.append(tapoMoveToPresetSelect)
+
+        tapoPatrolModeSelect = await check_and_create(
+            entry, hass, TapoPatrolModeSelect, "getPresets", config_entry
+        )
+        if tapoPatrolModeSelect:
+            LOGGER.debug("Adding TapoPatrolModeSelect...")
+            selects.append(tapoPatrolModeSelect)
+
         return selects
 
     selects = await setupEntities(entry)
@@ -71,6 +132,49 @@ async def async_setup_entry(
         selects.extend(await setupEntities(childDevice))
 
     async_add_entities(selects)
+
+
+class TapoPatrolModeSelect(TapoSelectEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
+        self._attr_options = ["Horizontal", "Vertical", "off"]
+        self._attr_current_option = None
+        TapoSelectEntity.__init__(
+            self,
+            "Patrol Mode",
+            entry,
+            hass,
+            config_entry,
+            "mdi:swap-horizontal",
+            "patrol_mode",
+        )
+
+    async def async_update(self) -> None:
+        await self._coordinator.async_request_refresh()
+
+    def updateTapo(self, camData):
+        if not camData:
+            self._attr_state = "unavailable"
+        else:
+            self._attr_current_option = None
+            self._attr_state = self._attr_current_option
+
+    async def async_select_option(self, option: str) -> None:
+        if option == "off":
+            result = await self._hass.async_add_executor_job(
+                self._controller.setCruise, False
+            )
+        else:
+            result = await self._hass.async_add_executor_job(
+                self._controller.setCruise, True, "x" if option == "Horizontal" else "y"
+            )
+        if "error_code" not in result or result["error_code"] == 0:
+            self._attr_state = option
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
+
+    @property
+    def entity_category(self):
+        return None
 
 
 class TapoNightVisionSelect(TapoSelectEntity):
@@ -271,6 +375,309 @@ class TapoPersonDetectionSelect(TapoSelectEntity):
     async def async_select_option(self, option: str) -> None:
         result = await self.hass.async_add_executor_job(
             self._controller.setPersonDetection,
+            option != "off",
+            option if option != "off" else False,
+        )
+        if "error_code" not in result or result["error_code"] == 0:
+            self._attr_state = option
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
+
+
+class TapoVehicleDetectionSelect(TapoSelectEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
+        self._attr_options = ["high", "normal", "low", "off"]
+        self._attr_current_option = None
+        TapoSelectEntity.__init__(
+            self,
+            "Vehicle Detection",
+            entry,
+            hass,
+            config_entry,
+            "mdi:truck-alert-outline",
+            "vehicle_detection",
+        )
+
+    def updateTapo(self, camData):
+        LOGGER.debug("TapoVehicleDetectionSelect updateTapo 1")
+        if not camData:
+            LOGGER.debug("TapoVehicleDetectionSelect updateTapo 2")
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            LOGGER.debug("TapoVehicleDetectionSelect updateTapo 3")
+            if camData["vehicle_detection_enabled"] == "off":
+                LOGGER.debug("TapoVehicleDetectionSelect updateTapo 4")
+                self._attr_current_option = "off"
+            else:
+                LOGGER.debug("TapoVehicleDetectionSelect updateTapo 5")
+                self._attr_current_option = camData["vehicle_detection_sensitivity"]
+            LOGGER.debug("TapoVehicleDetectionSelect updateTapo 6")
+            self._attr_state = self._attr_current_option
+        LOGGER.debug("Updating TapoVehicleDetectionSelect to: " + str(self._attr_state))
+
+    async def async_select_option(self, option: str) -> None:
+        result = await self.hass.async_add_executor_job(
+            self._controller.setVehicleDetection,
+            option != "off",
+            option if option != "off" else False,
+        )
+        if "error_code" not in result or result["error_code"] == 0:
+            self._attr_state = option
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
+
+
+class TapoBabyCryDetectionSelect(TapoSelectEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
+        self._attr_options = ["high", "normal", "low", "off"]
+        self._attr_current_option = None
+        TapoSelectEntity.__init__(
+            self,
+            "Baby Cry Detection",
+            entry,
+            hass,
+            config_entry,
+            "mdi:emoticon-cry-outline",
+            "baby_cry_detection",
+        )
+
+    def updateTapo(self, camData):
+        LOGGER.debug("TapoBabyCryDetectionSelect updateTapo 1")
+        if not camData:
+            LOGGER.debug("TapoBabyCryDetectionSelect updateTapo 2")
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            LOGGER.debug("TapoBabyCryDetectionSelect updateTapo 3")
+            if camData["babyCry_detection_enabled"] == "off":
+                LOGGER.debug("TapoBabyCryDetectionSelect updateTapo 4")
+                self._attr_current_option = "off"
+            else:
+                LOGGER.debug("TapoBabyCryDetectionSelect updateTapo 5")
+                self._attr_current_option = camData["babyCry_detection_sensitivity"]
+            LOGGER.debug("TapoBabyCryDetectionSelect updateTapo 6")
+            self._attr_state = self._attr_current_option
+        LOGGER.debug("Updating TapoBabyCryDetectionSelect to: " + str(self._attr_state))
+
+    async def async_select_option(self, option: str) -> None:
+        result = await self.hass.async_add_executor_job(
+            self._controller.setBabyCryDetection,
+            option != "off",
+            option if option != "off" else False,
+        )
+        if "error_code" not in result or result["error_code"] == 0:
+            self._attr_state = option
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
+
+
+class TapoPetDetectionSelect(TapoSelectEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
+        self._attr_options = ["high", "normal", "low", "off"]
+        self._attr_current_option = None
+        TapoSelectEntity.__init__(
+            self,
+            "Pet Detection",
+            entry,
+            hass,
+            config_entry,
+            "mdi:paw",
+            "pet_detection",
+        )
+
+    def updateTapo(self, camData):
+        LOGGER.debug("TapoPetDetectionSelect updateTapo 1")
+        if not camData:
+            LOGGER.debug("TapoPetDetectionSelect updateTapo 2")
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            LOGGER.debug("TapoPetDetectionSelect updateTapo 3")
+            if camData["pet_detection_enabled"] == "off":
+                LOGGER.debug("TapoPetDetectionSelect updateTapo 4")
+                self._attr_current_option = "off"
+            else:
+                LOGGER.debug("TapoPetDetectionSelect updateTapo 5")
+                self._attr_current_option = camData["pet_detection_sensitivity"]
+            LOGGER.debug("TapoPetDetectionSelect updateTapo 6")
+            self._attr_state = self._attr_current_option
+        LOGGER.debug("Updating TapoPetDetectionSelect to: " + str(self._attr_state))
+
+    async def async_select_option(self, option: str) -> None:
+        result = await self.hass.async_add_executor_job(
+            self._controller.setPetDetection,
+            option != "off",
+            option if option != "off" else False,
+        )
+        if "error_code" not in result or result["error_code"] == 0:
+            self._attr_state = option
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
+
+
+class TapoBarkDetectionSelect(TapoSelectEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
+        self._attr_options = ["high", "normal", "low", "off"]
+        self._attr_current_option = None
+        TapoSelectEntity.__init__(
+            self,
+            "Bark Detection",
+            entry,
+            hass,
+            config_entry,
+            "mdi:dog",
+            "bark_detection",
+        )
+
+    def updateTapo(self, camData):
+        LOGGER.debug("TapoBarkDetectionSelect updateTapo 1")
+        if not camData:
+            LOGGER.debug("TapoBarkDetectionSelect updateTapo 2")
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            LOGGER.debug("TapoBarkDetectionSelect updateTapo 3")
+            if camData["bark_detection_enabled"] == "off":
+                LOGGER.debug("TapoBarkDetectionSelect updateTapo 4")
+                self._attr_current_option = "off"
+            else:
+                LOGGER.debug("TapoBarkDetectionSelect updateTapo 5")
+                self._attr_current_option = camData["bark_detection_sensitivity"]
+            LOGGER.debug("TapoBarkDetectionSelect updateTapo 6")
+            self._attr_state = self._attr_current_option
+        LOGGER.debug("Updating TapoBarkDetectionSelect to: " + str(self._attr_state))
+
+    async def async_select_option(self, option: str) -> None:
+        result = await self.hass.async_add_executor_job(
+            self._controller.setBarkDetection,
+            option != "off",
+            option if option != "off" else False,
+        )
+        if "error_code" not in result or result["error_code"] == 0:
+            self._attr_state = option
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
+
+
+class TapoMeowDetectionSelect(TapoSelectEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
+        self._attr_options = ["high", "normal", "low", "off"]
+        self._attr_current_option = None
+        TapoSelectEntity.__init__(
+            self,
+            "Meow Detection",
+            entry,
+            hass,
+            config_entry,
+            "mdi:cat",
+            "meow_detection",
+        )
+
+    def updateTapo(self, camData):
+        LOGGER.debug("TapoMeowDetectionSelect updateTapo 1")
+        if not camData:
+            LOGGER.debug("TapoMeowDetectionSelect updateTapo 2")
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            LOGGER.debug("TapoMeowDetectionSelect updateTapo 3")
+            if camData["meow_detection_enabled"] == "off":
+                LOGGER.debug("TapoMeowDetectionSelect updateTapo 4")
+                self._attr_current_option = "off"
+            else:
+                LOGGER.debug("TapoMeowDetectionSelect updateTapo 5")
+                self._attr_current_option = camData["meow_detection_sensitivity"]
+            LOGGER.debug("TapoMeowDetectionSelect updateTapo 6")
+            self._attr_state = self._attr_current_option
+        LOGGER.debug("Updating TapoMeowDetectionSelect to: " + str(self._attr_state))
+
+    async def async_select_option(self, option: str) -> None:
+        result = await self.hass.async_add_executor_job(
+            self._controller.setMeowDetection,
+            option != "off",
+            option if option != "off" else False,
+        )
+        if "error_code" not in result or result["error_code"] == 0:
+            self._attr_state = option
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
+
+
+class TapoGlassBreakDetectionSelect(TapoSelectEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
+        self._attr_options = ["high", "normal", "low", "off"]
+        self._attr_current_option = None
+        TapoSelectEntity.__init__(
+            self,
+            "Glass Break Detection",
+            entry,
+            hass,
+            config_entry,
+            "mdi:image-broken-variant",
+            "glass_break_detection",
+        )
+
+    def updateTapo(self, camData):
+        LOGGER.debug("TapoGlassBreakDetectionSelect updateTapo 1")
+        if not camData:
+            LOGGER.debug("TapoGlassBreakDetectionSelect updateTapo 2")
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            LOGGER.debug("TapoGlassBreakDetectionSelect updateTapo 3")
+            if camData["glass_detection_enabled"] == "off":
+                LOGGER.debug("TapoGlassBreakDetectionSelect updateTapo 4")
+                self._attr_current_option = "off"
+            else:
+                LOGGER.debug("TapoGlassBreakDetectionSelect updateTapo 5")
+                self._attr_current_option = camData["glass_detection_sensitivity"]
+            LOGGER.debug("TapoGlassBreakDetectionSelect updateTapo 6")
+            self._attr_state = self._attr_current_option
+        LOGGER.debug(
+            "Updating TapoGlassBreakDetectionSelect to: " + str(self._attr_state)
+        )
+
+    async def async_select_option(self, option: str) -> None:
+        result = await self.hass.async_add_executor_job(
+            self._controller.setGlassBreakDetection,
+            option != "off",
+            option if option != "off" else False,
+        )
+        if "error_code" not in result or result["error_code"] == 0:
+            self._attr_state = option
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
+
+
+class TapoTamperDetectionSelect(TapoSelectEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
+        self._attr_options = ["high", "normal", "low", "off"]
+        self._attr_current_option = None
+        TapoSelectEntity.__init__(
+            self,
+            "Tamper Detection",
+            entry,
+            hass,
+            config_entry,
+            "mdi:camera-enhance",
+            "tamper_detection",
+        )
+
+    def updateTapo(self, camData):
+        LOGGER.debug("TapoTamperDetectionSelect updateTapo 1")
+        if not camData:
+            LOGGER.debug("TapoTamperDetectionSelect updateTapo 2")
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            LOGGER.debug("TapoTamperDetectionSelect updateTapo 3")
+            if camData["tamper_detection_enabled"] == "off":
+                LOGGER.debug("TapoTamperDetectionSelect updateTapo 4")
+                self._attr_current_option = "off"
+            else:
+                LOGGER.debug("TapoTamperDetectionSelect updateTapo 5")
+                self._attr_current_option = camData["tamper_detection_sensitivity"]
+            LOGGER.debug("TapoTamperDetectionSelect updateTapo 6")
+            self._attr_state = self._attr_current_option
+        LOGGER.debug("Updating TapoTamperDetectionSelect to: " + str(self._attr_state))
+
+    async def async_select_option(self, option: str) -> None:
+        result = await self.hass.async_add_executor_job(
+            self._controller.setTamperDetection,
             option != "off",
             option if option != "off" else False,
         )
