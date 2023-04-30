@@ -56,8 +56,8 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Aqara Motion Sensor](https://amzn.to/3zU7xbf) x2 (Office/Living)
 * [Aqara Temperature Humidity Sensor](https://amzn.to/4175Suu) x5
 * [Aqara Leak Sensor](https://amzn.to/3meBoYz) x4
-* [Aqara Window Door Sensor](https://amzn.to/40Cpzu9)
-* [Ikea Vindriktning PM2.5 ESP8266](https://www.briandorey.com/post/monitoring-air-quality-home-assistant) x2
+* [Aqara Window Door Sensor](https://amzn.to/40Cpzu9) x2
+* [Ikea Vindriktning PM2.5 ESP8266](https://www.briandorey.com/post/monitoring-air-quality-home-assistant) x5
   * [Ikea Vindriktning Sensor](https://www.ikea.com/us/en/p/vindriktning-air-quality-sensor-60515911/)
   * [ESP8266 Module](https://amzn.to/3GnjAkS)
 

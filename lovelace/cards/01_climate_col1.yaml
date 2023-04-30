@@ -122,9 +122,25 @@ cards:
     ##########################################################
     ## Row5 - Indoor air quality
     ##########################################################
-
   - type: horizontal-stack
     cards:
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.ikea_air_quality_3_vindriktning_pm2_5
+        name: Master (PM2.5)
+        icon: mdi:air-filter
+        line_width: 8
+        font_size: 75
+        points_per_hour: 6
+        hours_to_show: 24
+        color_thresholds:
+          - value: 35
+            color: "#0F9D58"
+          - value: 85
+            color: "#FFBF00"
+          - value: 86
+            color: "#DB4437"
 
       - type: custom:mini-graph-card
         entities:
@@ -147,6 +163,43 @@ cards:
         entities:
           - sensor.ikea_air_quality_2_vindriktning_pm2_5
         name: Office (PM2.5)
+        icon: mdi:air-filter
+        line_width: 8
+        font_size: 75
+        points_per_hour: 6
+        hours_to_show: 24
+        color_thresholds:
+          - value: 35
+            color: "#0F9D58"
+          - value: 85
+            color: "#FFBF00"
+          - value: 86
+            color: "#DB4437"
+
+  - type: horizontal-stack
+    cards:
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.ikea_air_quality_4_vindriktning_pm2_5
+        name: userthree (PM2.5)
+        icon: mdi:air-filter
+        line_width: 8
+        font_size: 75
+        points_per_hour: 6
+        hours_to_show: 24
+        color_thresholds:
+          - value: 35
+            color: "#0F9D58"
+          - value: 85
+            color: "#FFBF00"
+          - value: 86
+            color: "#DB4437"
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.ikea_air_quality_5_vindriktning_pm2_5
+        name: userfour (PM2.5)
         icon: mdi:air-filter
         line_width: 8
         font_size: 75
