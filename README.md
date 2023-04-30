@@ -6,7 +6,7 @@
   <h4>
     <a href="https://github.com/ntalekt/homeassistant/stargazers"><img src="https://img.shields.io/github/stars/ntalekt/homeassistant.svg"/></a>
     <a href="https://github.com/ntalekt/homeassistant/commits/master"><img src="https://img.shields.io/github/last-commit/ntalekt/homeassistant.svg"/></a>
-    <a href="https://github.com/home-assistant/home-assistant/releases/latest"><img src="https://img.shields.io/badge/Running%20Home%20Assistant-2023.4.5%20-darkblue"/></a>
+    <a href="https://github.com/home-assistant/home-assistant/releases/latest"><img src="https://img.shields.io/badge/Running%20Home%20Assistant-2023.4.6%20-darkblue"/></a>
 	<a href="https://community.home-assistant.io/u/ntalekt/summary"><img src="https://img.shields.io/badge/HA%20community-forum-orange"/></a>
   </h4>
 </div>
@@ -19,11 +19,13 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
   * [Sonoff Zigbee 3.0 USB CC2652P](https://amzn.to/3m8EDRj)
 * Software
   * [vSphere 7.x](https://docs.vmware.com/en/VMware-vSphere/7.0/rn/vsphere-esxi-vcenter-server-70-release-notes.html)
-  * [Docker v20.10.23](https://github.com/docker/docker-ce/releases)
+  * [Docker v23.0.4](https://github.com/docker/docker-ce/releases)
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
   * [Traefik v2.2.1 proxy](https://www.smarthomebeginner.com/traefik-2-docker-tutorial/)
   * SSL via [Let's Encrypt](https://letsencrypt.org/)
   * [Zigbee Home Automation (ZHA)](https://www.home-assistant.io/integrations/zha/)
+  * [Mariadb](https://hub.docker.com/r/linuxserver/mariadb)
+  * [Mosquitto MQTT](https://hub.docker.com/_/eclipse-mosquitto)
   
 # Interface
 ![UI](images/home-lovelace.jpg)
