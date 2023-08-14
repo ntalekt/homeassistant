@@ -2,13 +2,14 @@
 from __future__ import annotations
 
 import logging
-from typing import Any
+from typing import Any, List
 
 import aiohttp
 import voluptuous as vol
 from homeassistant import config_entries
+from homeassistant.components.device_tracker import DOMAIN as TRACKER_DOMAIN
 from homeassistant.const import CONF_NAME
-from homeassistant.core import callback
+from homeassistant.core import HomeAssistant, callback
 from homeassistant.data_entry_flow import FlowResult
 
 from .const import (
@@ -16,6 +17,7 @@ from .const import (
     CONF_GPS_LOC,
     CONF_INTERVAL,
     CONF_TIMEOUT,
+    CONF_TRACKER,
     CONF_ZONE_ID,
     DEFAULT_INTERVAL,
     DEFAULT_NAME,
@@ -29,7 +31,8 @@ JSON_PROPERTIES = "properties"
 JSON_ID = "id"
 
 _LOGGER = logging.getLogger(__name__)
-MENU_OPTIONS = ["zone", "gps_loc"]
+MENU_OPTIONS = ["zone", "gps"]
+MENU_GPS = ["gps_loc", "gps_tracker"]
 
 
 def _get_schema_zone(hass: Any, user_input: list, default_dict: list) -> Any:
@@ -68,6 +71,48 @@ def _get_schema_gps(hass: Any, user_input: list, default_dict: list) -> Any:
             vol.Optional(CONF_TIMEOUT, default=_get_default(CONF_TIMEOUT)): int,
         }
     )
+
+
+def _get_schema_tracker(hass: Any, user_input: list, default_dict: list) -> Any:
+    """Gets a schema using the default_dict as a backup."""
+    if user_input is None:
+        user_input = {}
+
+    def _get_default(key: str, fallback_default: Any = None) -> None:
+        """Gets default value for key."""
+        return user_input.get(key, default_dict.get(key, fallback_default))
+
+    return vol.Schema(
+        {
+            vol.Required(
+                CONF_TRACKER, default=_get_default(CONF_TRACKER, "(none)")
+            ): vol.In(_get_entities(hass, TRACKER_DOMAIN)),
+            vol.Optional(CONF_NAME, default=_get_default(CONF_NAME)): str,
+            vol.Optional(CONF_INTERVAL, default=_get_default(CONF_INTERVAL)): int,
+            vol.Optional(CONF_TIMEOUT, default=_get_default(CONF_TIMEOUT)): int,
+        }
+    )
+
+
+def _get_entities(
+    hass: HomeAssistant,
+    domain: str,
+    search: List[str] = None,
+    extra_entities: List[str] = None,
+) -> List[str]:
+    data = ["(none)"]
+    if domain not in hass.data:
+        return data
+
+    for entity in hass.data[domain].entities:
+        if search is not None and not any(map(entity.entity_id.__contains__, search)):
+            continue
+        data.append(entity.entity_id)
+
+    if extra_entities:
+        data.extend(extra_entities)
+
+    return data
 
 
 async def _get_zone_list(self) -> list | None:
@@ -126,6 +171,36 @@ class NWSAlertsFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     ) -> FlowResult:
         """Handle the flow initialized by the user."""
         return self.async_show_menu(step_id="user", menu_options=MENU_OPTIONS)
+
+    async def async_step_gps(
+        self, user_input: dict[str, Any] | None = None
+    ) -> FlowResult:
+        """Handle the flow initialized by the user."""
+        return self.async_show_menu(step_id="gps", menu_options=MENU_GPS)
+
+    async def async_step_gps_tracker(self, user_input={}):
+        """Handle a flow for device trackers."""
+        self._errors = {}
+        if user_input is not None:
+            self._data.update(user_input)
+            return self.async_create_entry(title=self._data[CONF_NAME], data=self._data)
+        return await self._show_config_gps_tracker(user_input)
+
+    async def _show_config_gps_tracker(self, user_input):
+        """Show the configuration form to edit location data."""
+
+        # Defaults
+        defaults = {
+            CONF_NAME: DEFAULT_NAME,
+            CONF_INTERVAL: DEFAULT_INTERVAL,
+            CONF_TIMEOUT: DEFAULT_TIMEOUT,
+        }
+
+        return self.async_show_form(
+            step_id="gps_tracker",
+            data_schema=_get_schema_tracker(self.hass, user_input, defaults),
+            errors=self._errors,
+        )
 
     async def async_step_gps_loc(self, user_input={}):
         """Handle a flow initialized by the user."""
@@ -214,6 +289,15 @@ class NWSAlertsOptionsFlow(config_entries.OptionsFlow):
             return self.async_create_entry(title="", data=self._data)
         return await self._show_options_form(user_input)
 
+    async def async_step_gps_tracker(self, user_input={}):
+        """Handle a flow initialized by the user."""
+        self._errors = {}
+
+        if user_input is not None:
+            self._data.update(user_input)
+            return self.async_create_entry(title="", data=self._data)
+        return await self._show_options_form(user_input)
+
     async def async_step_zone(self, user_input={}):
         """Handle a flow initialized by the user."""
         self._errors = {}
@@ -236,5 +320,11 @@ class NWSAlertsOptionsFlow(config_entries.OptionsFlow):
             return self.async_show_form(
                 step_id="zone",
                 data_schema=_get_schema_zone(self.hass, user_input, self._data),
+                errors=self._errors,
+            )
+        elif CONF_TRACKER in self.config.data:
+            return self.async_show_form(
+                step_id="gps_tracker",
+                data_schema=_get_schema_tracker(self.hass, user_input, self._data),
                 errors=self._errors,
             )

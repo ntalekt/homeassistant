@@ -7,6 +7,7 @@ CONF_TIMEOUT = "timeout"
 CONF_INTERVAL = "interval"
 CONF_ZONE_ID = "zone_id"
 CONF_GPS_LOC = "gps_loc"
+CONF_TRACKER = "tracker"
 
 # Defaults
 DEFAULT_ICON = "mdi:alert"

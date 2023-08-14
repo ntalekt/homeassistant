@@ -18,6 +18,7 @@ from .const import (
     CONF_GPS_LOC,
     CONF_INTERVAL,
     CONF_TIMEOUT,
+    CONF_TRACKER,
     CONF_ZONE_ID,
     COORDINATOR,
     DEFAULT_ICON,
@@ -40,6 +41,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
         vol.Optional(CONF_ZONE_ID): cv.string,
         vol.Optional(CONF_GPS_LOC): cv.string,
+        vol.Optional(CONF_TRACKER): cv.string,
         vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
         vol.Optional(CONF_INTERVAL, default=DEFAULT_INTERVAL): int,
         vol.Optional(CONF_TIMEOUT, default=DEFAULT_TIMEOUT): int,
@@ -55,16 +57,20 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
             config.entry_id = slugify(f"{config.get(CONF_ZONE_ID)}")
         elif CONF_GPS_LOC in config:
             config.entry_id = slugify(f"{config.get(CONF_GPS_LOC)}")
-        elif CONF_GPS_LOC and CONF_ZONE_ID not in config:
-            raise ValueError("GPS or Zone needs to be configured.")
+        elif CONF_TRACKER in config:
+            config.entry_id = slugify(f"{config.get(CONF_TRACKER)}")            
+        else:
+            raise ValueError("GPS, Zone or Device Tracker needs to be configured.")
         config.data = config
     else:
         if CONF_ZONE_ID in config:
             config.entry_id = slugify(f"{config.get(CONF_ZONE_ID)}")
         elif CONF_GPS_LOC in config:
             config.entry_id = slugify(f"{config.get(CONF_GPS_LOC)}")
-        elif CONF_GPS_LOC and CONF_ZONE_ID not in config:
-            raise ValueError("GPS or Zone needs to be configured.")
+        elif CONF_TRACKER in config:
+            config.entry_id = slugify(f"{config.get(CONF_TRACKER)}")
+        else:
+            raise ValueError("GPS, Zone or Device Tracker needs to be configured.")
         config.data = config
 
     # Setup the data coordinator

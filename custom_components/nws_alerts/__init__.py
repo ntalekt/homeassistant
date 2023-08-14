@@ -19,6 +19,7 @@ from .const import (
     CONF_GPS_LOC,
     CONF_INTERVAL,
     CONF_TIMEOUT,
+    CONF_TRACKER,
     CONF_ZONE_ID,
     COORDINATOR,
     DEFAULT_INTERVAL,
@@ -48,9 +49,20 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
 
         ent_reg = async_get(hass)
         for entity in async_entries_for_config_entry(ent_reg, config_entry.entry_id):
-            ent_reg.async_update_entity(entity.entity_id, new_unique_id=config_entry.entry_id)
+            ent_reg.async_update_entity(
+                entity.entity_id, new_unique_id=config_entry.entry_id
+            )
 
-    config_entry.add_update_listener(update_listener)            
+    updated_config = config_entry.data.copy()
+
+    # Strip spaces from manually entered GPS locations
+    if CONF_GPS_LOC in updated_config:
+        updated_config[CONF_GPS_LOC].replace(" ", "")
+
+    if updated_config != config_entry.data:
+        hass.config_entries.async_update_entry(config_entry, data=updated_config)
+
+    config_entry.add_update_listener(update_listener)
 
     # Setup the data coordinator
     coordinator = AlertsDataUpdateCoordinator(
@@ -89,7 +101,7 @@ async def update_listener(hass: HomeAssistant, config_entry: ConfigEntry):
     if config_entry.data == config_entry.options:
         _LOGGER.debug("No changes detected not reloading sensors.")
         return
-    
+
     new_data = config_entry.options.copy()
     hass.config_entries.async_update_entry(
         entry=config_entry,
@@ -139,58 +151,73 @@ class AlertsDataUpdateCoordinator(DataUpdateCoordinator):
 
     async def _async_update_data(self):
         """Fetch data"""
+        coords = None
+        if CONF_TRACKER in self.config:
+            coords = await self._get_tracker_gps()
         async with timeout(self.timeout):
             try:
-                data = await update_alerts(self.config)
+                data = await update_alerts(self.config, coords)
             except Exception as error:
                 raise UpdateFailed(error) from error
             return data
 
+    async def _get_tracker_gps(self):
+        """Return device tracker GPS data."""
+        tracker = self.config[CONF_TRACKER]
+        entity = self.hass.states.get(tracker)
+        if entity and "source_type" in entity.attributes:
+            return f"{entity.attributes['latitude']},{entity.attributes['longitude']}"
+        return None
 
-async def update_alerts(config) -> dict:
+
+async def update_alerts(config, coords) -> dict:
     """Fetch new state data for the sensor.
     This is the only method that should fetch new data for Home Assistant.
     """
 
-    data = await async_get_state(config)
+    data = await async_get_state(config, coords)
     return data
 
 
-async def async_get_state(config) -> dict:
+async def async_get_state(config, coords) -> dict:
     """Query API for status."""
 
     zone_id = ""
     gps_loc = ""
     url = "%s/alerts/active/count" % API_ENDPOINT
-    values = {}
+    values = {
+        "state": 0,
+        "event": None,
+        "event_id": None,
+        "message_type": None,
+        "event_status": None,
+        "event_severity": None,
+        "event_expires": None,
+        "display_desc": None,
+        "spoken_desc": None,
+    }
     headers = {"User-Agent": USER_AGENT, "Accept": "application/ld+json"}
     data = None
 
     if CONF_ZONE_ID in config:
         zone_id = config[CONF_ZONE_ID]
         _LOGGER.debug("getting state for %s from %s" % (zone_id, url))
-    elif CONF_GPS_LOC in config:
-        gps_loc = config[CONF_GPS_LOC]
+    elif CONF_GPS_LOC in config or CONF_TRACKER in config:
+        if coords is not None:
+            gps_loc = coords
+        else:
+            gps_loc = config[CONF_GPS_LOC].replace(" ", "")
         _LOGGER.debug("getting state for %s from %s" % (gps_loc, url))
 
     async with aiohttp.ClientSession() as session:
         async with session.get(url, headers=headers) as r:
             if r.status == 200:
                 data = await r.json()
+            else:
+                _LOGGER.error("Problem updating NWS data: (%s) - %s", r.status, r.body)
 
     if data is not None:
         # Reset values before reassigning
-        values = {
-            "state": 0,
-            "event": None,
-            "event_id": None,
-            "message_type": None,
-            "event_status": None,
-            "event_severity": None,
-            "event_expires": None,
-            "display_desc": None,
-            "spoken_desc": None,
-        }
         if "zones" in data and zone_id != "":
             for zone in zone_id.split(","):
                 if zone in data["zones"]:
@@ -206,7 +233,17 @@ async def async_get_alerts(zone_id: str = "", gps_loc: str = "") -> dict:
     """Query API for Alerts."""
 
     url = ""
-    values = {}
+    values = {
+        "state": 0,
+        "event": None,
+        "event_id": None,
+        "message_type": None,
+        "event_status": None,
+        "event_severity": None,
+        "event_expires": None,
+        "display_desc": None,
+        "spoken_desc": None,
+    }
     headers = {"User-Agent": USER_AGENT, "Accept": "application/geo+json"}
     data = None
 
@@ -221,6 +258,8 @@ async def async_get_alerts(zone_id: str = "", gps_loc: str = "") -> dict:
         async with session.get(url, headers=headers) as r:
             if r.status == 200:
                 data = await r.json()
+            else:
+                _LOGGER.error("Problem updating NWS data: (%s) - %s", r.status, r.body)
 
     if data is not None:
         events = []
@@ -326,17 +365,5 @@ async def async_get_alerts(zone_id: str = "", gps_loc: str = "") -> dict:
             values["event_expires"] = event_expires
             values["display_desc"] = display_desc
             values["spoken_desc"] = spoken_desc
-        else:
-            values = {
-                "state": 0,
-                "event": None,
-                "event_id": None,
-                "message_type": None,
-                "event_status": None,
-                "event_severity": None,
-                "event_expires": None,
-                "display_desc": None,
-                "spoken_desc": None,
-            }
 
     return values

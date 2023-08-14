@@ -19,6 +19,7 @@ from .const import (
     CONF_RTSP_TRANSPORT,
     ENABLE_SOUND_DETECTION,
     CONF_CUSTOM_STREAM,
+    ENABLE_WEBHOOKS,
     LOGGER,
     DOMAIN,
     ENABLE_MOTION_SENSOR,
@@ -37,6 +38,7 @@ from .utils import (
     deleteDir,
     getColdDirPathForEntry,
     getHotDirPathForEntry,
+    isUsingHTTPS,
     mediaCleanup,
     registerController,
     getCamData,
@@ -126,6 +128,14 @@ async def async_migrate_entry(hass, config_entry: ConfigEntry):
 
         config_entry.version = 9
 
+    if config_entry.version == 9:
+        new = {**config_entry.data}
+        new[ENABLE_WEBHOOKS] = True
+
+        config_entry.data = {**new}
+
+        config_entry.version = 10
+
     LOGGER.info("Migration to version %s successful", config_entry.version)
 
     return True
@@ -173,6 +183,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     cloud_password = entry.data.get(CLOUD_PASSWORD)
     enableTimeSync = entry.data.get(ENABLE_TIME_SYNC)
 
+    if isUsingHTTPS(hass):
+        LOGGER.warn(
+            "Home Assistant is running on HTTPS or it was not able to detect base_url schema. Disabling webhooks."
+        )
+
+    # todo: figure out where to set officially?
+    entry.unique_id = DOMAIN + host
+
     try:
         if cloud_password != "":
             tapoController = await hass.async_add_executor_job(
@@ -209,9 +227,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
                         not hass.data[DOMAIN][entry.entry_id]["eventsDevice"]
                         or not hass.data[DOMAIN][entry.entry_id]["onvifManagement"]
                     ):
-                        LOGGER.debug("Setting up subscription to motion sensor...")
                         # retry if connection to onvif failed
-                        LOGGER.debug("Initiating onvif.")
+                        LOGGER.debug("Setting up subscription to motion sensor...")
                         onvifDevice = await initOnvifEvents(
                             hass, host, username, password
                         )
@@ -233,9 +250,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
                             "Setting up subcription to motion sensor events..."
                         )
                         # retry if subscription to events failed
-                        hass.data[DOMAIN][entry.entry_id][
-                            "eventsSetup"
-                        ] = await setupEvents(hass, entry)
+                        try:
+                            hass.data[DOMAIN][entry.entry_id][
+                                "eventsSetup"
+                            ] = await setupEvents(hass, entry)
+                        except AssertionError as e:
+                            if str(e) != "PullPoint manager already started":
+                                raise AssertionError(e)
+
                     else:
                         LOGGER.debug("Motion sensor: OK")
                 else:
