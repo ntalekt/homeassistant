@@ -68,7 +68,7 @@
           - media_player.loft
           - media_player.office
       target:
-        entity_id: media_player.office
+        entity_id: media_player.kitchen
 
         ##########################################################
         ## Group All Sonos
@@ -93,7 +93,7 @@
           - media_player.loft
           - media_player.office
       target:
-        entity_id: media_player.office
+        entity_id: media_player.kitchen
 
 ##########################################################
 ## Turn off sonos if everyone is gone

@@ -12,7 +12,7 @@ homeassistant:
   customize: !include customize.yaml
   time_zone: !secret homeassistant_timezone
   external_url: "https://ha.useroneREDACTED.com"
-  internal_url: "http://REDACTED54:8123"
+  internal_url: "http://REDACTED:8123"
   allowlist_external_dirs:
     - /shared
     - /config

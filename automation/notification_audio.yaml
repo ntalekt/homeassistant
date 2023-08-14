@@ -17,8 +17,8 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: >
@@ -77,8 +77,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.7'
           mp3: 'http://REDACTED:8123/local/sounds/street_public_alarm.mp3'
           what: 'Alert: Leak detected in the kids bathroom. Alert: Leak detected in the kids bathroom.'
@@ -110,8 +110,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.7'
           mp3: 'http://REDACTED:8123/local/sounds/street_public_alarm.mp3'
           what: 'Alert: Leak detected in the master bathroom. Alert: Leak detected in the master bathroom.'
@@ -143,8 +143,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.7'
           mp3: 'http://REDACTED:8123/local/sounds/street_public_alarm.mp3'
           what: 'Alert: Leak detected in the laundry room. Alert: Leak detected in the laundry room.'
@@ -176,8 +176,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.7'
           mp3: 'http://REDACTED:8123/local/sounds/street_public_alarm.mp3'
           what: 'Alert: Leak detected in the guest bathroom. Alert: Leak detected in the guest bathroom.'
@@ -213,8 +213,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: 'The garage has been open for 30 minutes.'
@@ -250,8 +250,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: 'The shop garage has been open for 30 minutes.'
@@ -260,70 +260,70 @@
 ## Sonos - Ring
 ##########################################################
 
-- alias: notification audio ring motion alert
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.front_door_motion
-      from: 'off'
-      to: 'on'
-  condition:
-    condition: and
-    conditions:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: time
-      after: '07:00'
-      before: '22:00'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.house_cleaning_mode
-      state: 'off'
-  action:
-    - service: script.turn_on
-      entity_id: script.ring_alert
-      data:
-        variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
-          volume: '.5'
-          #mp3: 'http://REDACTED:8123/local/sounds/ring-motion-alert-chimes.mp3'
-          what: 'Motion detected at the front door.'
+# - alias: notification audio ring motion alert
+#   trigger:
+#     - platform: state
+#       entity_id: binary_sensor.front_door_motion
+#       from: 'off'
+#       to: 'on'
+#   condition:
+#     condition: and
+#     conditions:
+#     - condition: state
+#       entity_id: group.household
+#       state: 'home'
+#     - condition: time
+#       after: '07:00'
+#       before: '22:00'
+#     - condition: state
+#       entity_id: input_boolean.disable_voice_greeting
+#       state: 'off'
+#     - condition: state
+#       entity_id: input_boolean.house_cleaning_mode
+#       state: 'off'
+#   action:
+#     - service: script.turn_on
+#       entity_id: script.ring_alert
+#       data:
+#         variables:
+#           master: 'media_player.kitchen'
+#           where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
+#           volume: '.5'
+#           #mp3: 'http://REDACTED:8123/local/sounds/ring-motion-alert-chimes.mp3'
+#           what: 'Motion detected at the front door.'
 
 ##########################################################
 ## Sonos - Ring ding
 ##########################################################
 
-- alias: notification audio ring ding alert
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.front_door_ding
-      from: 'off'
-      to: 'on'
-  condition:
-    condition: and
-    conditions:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: time
-      after: '07:00'
-      before: '22:00'
-    - condition: state
-      entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
-  action:
-    - service: script.turn_on
-      entity_id: script.ring_alert
-      data:
-        variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
-          volume: '.5'
-          #mp3: 'http://REDACTED:8123/local/sounds/ring-ding-alert-doorbell.mp3'
-          what: 'Ding detected at the front door.'
+# - alias: notification audio ring ding alert
+#   trigger:
+#     - platform: state
+#       entity_id: binary_sensor.front_door_ding
+#       from: 'off'
+#       to: 'on'
+#   condition:
+#     condition: and
+#     conditions:
+#     - condition: state
+#       entity_id: group.household
+#       state: 'home'
+#     - condition: time
+#       after: '07:00'
+#       before: '22:00'
+#     - condition: state
+#       entity_id: input_boolean.disable_voice_greeting
+#       state: 'off'
+#   action:
+#     - service: script.turn_on
+#       entity_id: script.ring_alert
+#       data:
+#         variables:
+#           master: 'media_player.kitchen'
+#           where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
+#           volume: '.5'
+#           #mp3: 'http://REDACTED:8123/local/sounds/ring-ding-alert-doorbell.mp3'
+#           what: 'Ding detected at the front door.'
 
 ##########################################################
 ## Sonos - Time to leave for school
@@ -353,8 +353,8 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/school-bell-sound-effect.mp3'
           what: >
@@ -381,8 +381,8 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/school-bell-sound-effect.mp3'
           what: >
@@ -417,8 +417,8 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/school-bell-sound-effect.mp3'
           what: >
@@ -453,8 +453,8 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/school-bell-sound-effect.mp3'
           what: >
@@ -492,8 +492,8 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.6'
           mp3: 'http://REDACTED:8123/local/sounds/school-bell-sound-effect.mp3'
           what: >
@@ -527,8 +527,8 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.6'
           mp3: 'http://REDACTED:8123/local/sounds/school-bell-sound-effect.mp3'
           what: >
@@ -569,8 +569,8 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.6'
           mp3: 'http://REDACTED:8123/local/sounds/school-bell-sound-effect.mp3'
           what: >
@@ -605,8 +605,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: 'usertwo has arrived at work.'
@@ -631,8 +631,8 @@
       entity_id: script.say
       data:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: 'usertwo has arrived at REDACTED.'
@@ -677,8 +677,8 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: "usertwo has left work and will arrive home in about {{states('sensor.waze_usertwo_to_home')}} minutes."
@@ -719,8 +719,8 @@
       entity_id: script.say
       data_template:
         variables:
-          master: 'media_player.office'
-          where: '["media_player.chalkboard_room","media_player.kitchen","media_player.loft","media_player.office"]'
+          master: 'media_player.kitchen'
+          where: '["media_player.kitchen","media_player.chalkboard_room","media_player.loft","media_player.office"]'
           volume: '.5'
           mp3: 'http://REDACTED:8123/local/sounds/two-tone-chime.mp3'
           what: "usertwo has left REDACTED and will arrive home in about {{states('sensor.waze_usertwo_to_home')}} minutes."
