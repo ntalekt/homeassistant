@@ -45,6 +45,7 @@
           Mac-address: {{state_attr(entity,'mac')}}
           Full data: {{trigger.event.data}}
         title: Home Assistant
+        target: "#network"
 
         ##########################################################
         ## Pi-hole update status
