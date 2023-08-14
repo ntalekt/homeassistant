@@ -34,14 +34,6 @@ sensor.allergy_index_forecasted_average:
   unit_of_measurement: " "
 sensor.ha_uptime:
   unit_of_measurement: "Days"
-sensor.octoprint_actual_bed_temp:
-  unit_of_measurement: C
-sensor.octoprint_actual_tool0_temp:
-  unit_of_measurement: C
-sensor.octoprint_target_bed_temp:
-  unit_of_measurement: C
-sensor.octoprint_target_tool0_temp:
-  unit_of_measurement: C
 sensor.nas2_system_temperature:
   unit_of_measurement: C
 sensor.nas2_cpu_temperature:

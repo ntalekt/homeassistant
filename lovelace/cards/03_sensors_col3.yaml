@@ -1,21 +1,23 @@
 # Colors: https://clrs.cc/
 type: vertical-stack
 cards:
-  - type: horizontal-stack
-    cards:
-    - type: custom:threedy-card
-      base_entity: sensor.octoprint
-      name: Anycubic I3 Mega
-      printer_type: I3
-      monitored:
-        - Status
-        - ETA
-        - Elapsed
-        - Remaining
-      theme: 'Default'
-      font: 'Roboto'
-      scale: 1.0
-      round: false 
+  # - type: horizontal-stack
+  #   cards:
+  #   - type: custom:threedy-card
+  #     base_entity: sensor.octoprint
+  #     camera_entity: camera.octoprint_camera
+  #     power_entity: switch.plug_s31_printer
+  #     name: Anycubic I3 Mega
+  #     printer_type: I3
+  #     monitored:
+  #       - Status
+  #       - ETA
+  #       - Elapsed
+  #       - Remaining
+  #     theme: 'Default'
+  #     font: 'Roboto'
+  #     scale: 1.0
+  #     round: false 
   - type: horizontal-stack
     cards:
     - type: entities
