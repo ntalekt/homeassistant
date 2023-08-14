@@ -23,18 +23,8 @@ api:
 frontend:
   themes: !include_dir_merge_named themes
 sun:
-#ios:
 map:
 config:
-discovery:
-  ignore:
-    - netgear_router
-    - harmony
-    - google_cast
-    - philips_hue
-    - yeelight
-    - denonavr
-#conversation:
 logger: !include logger.yaml
 
 logbook: !include logbook.yaml
@@ -164,20 +154,11 @@ monitor_docker:
     containers:
       - homeassistant
 
-rainbird:
-  host: !secret rainbird_host
-  password: !secret rainbird_password
-  trigger_time: 60
-
-ring:
-  username: !secret ring_username
-  password: !secret ring_password
-
 tts:
   - platform: google_translate
     cache: true
     time_memory: 300
-    base_url: http://REDACTED:8123
+    #base_url: http://REDACTED:8123
     
 sonos:
   media_player:
@@ -186,16 +167,6 @@ sonos:
       - REDACTED
       - REDACTED
       - REDACTED
-
-# weather:
-#   - platform: darksky
-#     api_key: !secret darksky_api_key
-#     mode: daily
-
-xiaomi_aqara:
-  discovery_retry: 5
-  gateways:
-    - key: !secret xiaomi_key
 
 yeelight:
   devices:

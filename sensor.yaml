@@ -518,7 +518,7 @@
       value_template: >
         {% set time = states.sensor.qnapups_battery_runtime.state %}
         {% set minutes = ((time | int /  60) | string).split('.')[0] %}
-        {{minutes}} min
+        {{minutes}}
 
     ha_uptime:
       friendly_name: "Home Assistant uptime"
@@ -526,28 +526,6 @@
         {% set up_time =  as_timestamp(now()) - as_timestamp(states('sensor.uptime')) %}
         {% set days = (up_time / 86400) | round(2) %}
         {{ days }}
-
-##########################################################
-## NAS
-##########################################################
-
-- platform: qnap
-  host: !secret nas2_host
-  username: !secret nas_username
-  password: !secret nas_pass
-  nics: eth0
-  monitored_conditions:
-    - status
-    - system_temp
-    - cpu_usage
-    - cpu_temp
-    - memory_percent_used
-    - network_tx
-    - network_rx
-    - volume_size_free
-    - volume_size_used
-    - volume_percentage_used
-    - drive_smart_status
     
 ##########################################################
 ## National Weather Service Alerts
