@@ -2,6 +2,164 @@ type: vertical-stack
 cards:
 
     ##########################################################
+    ## Office Air Purifier
+    ##########################################################
+  - type: 'custom:button-card'
+    color_type: label-card
+    styles:
+      card:
+        - padding: 0
+      name:
+        - border-radius: 0.4em 0.4em 0 0
+        - padding: 0.1em
+        - width: 100%
+      grid:
+        - grid-template-areas: '"i" "n" "buttons"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      custom_fields:
+        buttons:
+          - background-color: 'rgba(0,0,0,0.15)'
+          - margin: 0
+          - padding: 0.3em
+    color: rgb(67, 73, 82)
+    name: Office Air Purifier
+    custom_fields:
+      buttons:
+        card:
+          type: horizontal-stack
+          cards:
+          - type: "custom:button-card"
+            entity: input_select.office_air_purifier_mode
+            color_type: card
+            name: Sleep
+            state:
+            - value: 'Sleep'
+              icon: mdi:power-sleep
+              color: rgb(46, 204, 64)
+            - value: 'Low'
+              icon: mdi:power-sleep
+              color: rgb(67, 73, 82)
+            - value: 'Medium'
+              icon: mdi:power-sleep
+              color: rgb(67, 73, 82)
+            - value: 'High'
+              icon: mdi:power-sleep
+              color: rgb(67, 73, 82)
+            - value: 'Off'
+              icon: mdi:power-sleep
+              color: rgb(67, 73, 82)
+            style:
+            - color: var(--icon-off-color)
+            tap_action:
+              action: call-service
+              service: fan.set_preset_mode
+              service_data:
+                entity_id: fan.office_air_purifier
+                preset_mode: Sleep
+          - type: "custom:button-card"
+            entity: input_select.office_air_purifier_mode
+            color_type: card
+            name: Low
+            state:
+            - value: 'Sleep'
+              icon: mdi:fan-speed-1
+              color: rgb(67, 73, 82)
+            - value: 'Low'
+              icon: mdi:fan-speed-1
+              color: rgb(46, 204, 64)
+            - value: 'Medium'
+              icon: mdi:fan-speed-1
+              color: rgb(67, 73, 82)
+            - value: 'High'
+              icon: mdi:fan-speed-1
+              color: rgb(67, 73, 82)
+            - value: 'Off'
+              icon: mdi:fan-speed-1
+              color: rgb(67, 73, 82)
+            style:
+            - color: var(--icon-off-color)
+            tap_action:
+              action: call-service
+              service: fan.set_preset_mode
+              service_data:
+                entity_id: fan.office_air_purifier
+                preset_mode: Low
+          - type: "custom:button-card"
+            entity: input_select.office_air_purifier_mode
+            color_type: card
+            name: Medium
+            state:
+            - value: 'Sleep'
+              icon: mdi:fan-speed-2
+              color: rgb(67, 73, 82)
+            - value: 'Low'
+              icon: mdi:fan-speed-2
+              color: rgb(67, 73, 82)
+            - value: 'Medium'
+              icon: mdi:fan-speed-2
+              color: rgb(46, 204, 64)
+            - value: 'High'
+              icon: mdi:fan-speed-2
+              color: rgb(67, 73, 82)
+            - value: 'Off'
+              icon: mdi:fan-speed-2
+              color: rgb(67, 73, 82)
+            style:
+            - color: var(--icon-off-color)
+            tap_action:
+              action: call-service
+              service: fan.set_preset_mode
+              service_data:
+                entity_id: fan.office_air_purifier
+                preset_mode: Medium
+          - type: "custom:button-card"
+            entity: input_select.office_air_purifier_mode
+            color_type: card
+            name: High
+            state:
+            - value: 'Sleep'
+              icon: mdi:fan-speed-3
+              color: rgb(67, 73, 82)
+            - value: 'Low'
+              icon: mdi:fan-speed-3
+              color: rgb(67, 73, 82)
+            - value: 'Medium'
+              icon: mdi:fan-speed-3
+              color: rgb(67, 73, 82)
+            - value: 'High'
+              icon: mdi:fan-speed-3
+              color: rgb(46, 204, 64)
+            - value: 'Off'
+              icon: mdi:fan-speed-3
+              color: rgb(67, 73, 82)
+            style:
+            - color: var(--icon-off-color)
+            tap_action:
+              action: call-service
+              service: fan.set_preset_mode
+              service_data:
+                entity_id: fan.office_air_purifier
+                preset_mode: High
+          - type: "custom:button-card"
+            icon: mdi:power
+            color_type: card
+            entity: input_boolean.office_purifier_state
+            name: Power
+            tap_action:
+              action: call-service
+              service: fan.turn_off
+              service_data:
+                entity_id: fan.office_air_purifier
+            state:
+            - value: 'off'
+              color: rgb(255, 220, 0)
+            - value: 'on'
+              color: rgb(255, 65, 54)
+            style:
+            - color: var(--icon-off-color)
+
+    ##########################################################
     ## Air quality
     ##########################################################
 
