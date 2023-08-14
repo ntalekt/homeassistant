@@ -1,0 +1,45 @@
+##############################################################
+## Command Line  ##
+##############################################################
+
+##########################################################
+## Youtube sensor
+##########################################################
+
+- sensor:
+    name: Time Lapse Video Count
+    command: curl -s "https://www.youtube.com/watch?v=u_BThJ7MJbM" | tr '<' '\n' | awk -F'"' '/itemprop="interactionCount"/ { print $4 }'
+    scan_interval: 600
+
+- sensor:
+    name: useronesface channel views
+    command: curl -s "https://www.youtube.com/@useronesface/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.contents.twoColumnBrowseResultsRenderer.tabs[6].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].channelAboutFullMetadataRenderer.viewCountText.simpleText' | sed 's/[^0-9]*//g'
+    scan_interval: 600
+
+- sensor:
+    name: REDACTED channel views
+    command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.contents.twoColumnBrowseResultsRenderer.tabs[6].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].channelAboutFullMetadataRenderer.viewCountText.simpleText' | sed 's/[^0-9]*//g' 
+    scan_interval: 600
+
+- sensor:
+    name: REDACTED channel views
+    command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.contents.twoColumnBrowseResultsRenderer.tabs[4].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].channelAboutFullMetadataRenderer.viewCountText.simpleText' | sed 's/[^0-9]*//g'
+    scan_interval: 600
+
+##########################################################
+## Tasmota version sensor
+##########################################################
+
+- sensor:
+    name: Tasmota Latest Version
+    command: curl -sL https://api.github.com/repos/arendst/Tasmota/releases/latest | jq -r ".tag_name"
+    scan_interval: 600
+
+##########################################################
+## HA Instance
+##########################################################
+
+- sensor:
+    name: Current HA Release
+    command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
+    scan_interval: 3600

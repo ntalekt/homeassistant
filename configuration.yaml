@@ -212,6 +212,7 @@ yeelight:
 
 automation: !include_dir_merge_list automation
 binary_sensor: !include binary_sensor.yaml
+command_line: !include command_line.yaml
 group: !include groups.yaml
 history: !include history.yaml
 input_boolean: !include input_boolean.yaml
