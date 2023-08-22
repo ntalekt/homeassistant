@@ -4,6 +4,7 @@ from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.entity import EntityCategory
+from homeassistant.const import STATE_UNAVAILABLE
 
 from .const import DOMAIN, LOGGER
 from .tapo.entities import TapoButtonEntity
@@ -99,7 +100,11 @@ class TapoSyncTimeButton(TapoButtonEntity):
     def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
         self._entry_id = config_entry.entry_id
         TapoButtonEntity.__init__(
-            self, "Sync Time", entry, hass, "mdi:timer-sync-outline",
+            self,
+            "Sync Time",
+            entry,
+            hass,
+            "mdi:timer-sync-outline",
         )
 
     async def async_press(self) -> None:
@@ -123,7 +128,11 @@ class TapoStartManualAlarmButton(TapoButtonEntity):
 class TapoStopManualAlarmButton(TapoButtonEntity):
     def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
         TapoButtonEntity.__init__(
-            self, "Manual Alarm Stop", entry, hass, "mdi:alarm-light-off-outline",
+            self,
+            "Manual Alarm Stop",
+            entry,
+            hass,
+            "mdi:alarm-light-off-outline",
         )
 
     async def async_press(self) -> None:
@@ -137,6 +146,12 @@ class TapoCalibrateButton(TapoButtonEntity):
     async def async_press(self) -> None:
         await self._hass.async_add_executor_job(self._controller.calibrateMotor)
 
+    def updateTapo(self, camData):
+        if not camData or camData["privacy_mode"] == "on":
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            self._attr_state = None
+
 
 class TapoMoveUpButton(TapoButtonEntity):
     def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
@@ -146,6 +161,12 @@ class TapoMoveUpButton(TapoButtonEntity):
         degrees = self._entry["movement_angle"]
         await self._hass.async_add_executor_job(self._controller.moveMotor, 0, degrees)
         await self._coordinator.async_request_refresh()
+
+    def updateTapo(self, camData):
+        if not camData or camData["privacy_mode"] == "on":
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            self._attr_state = None
 
 
 class TapoMoveDownButton(TapoButtonEntity):
@@ -157,6 +178,12 @@ class TapoMoveDownButton(TapoButtonEntity):
         await self._hass.async_add_executor_job(self._controller.moveMotor, 0, -degrees)
         await self._coordinator.async_request_refresh()
 
+    def updateTapo(self, camData):
+        if not camData or camData["privacy_mode"] == "on":
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            self._attr_state = None
+
 
 class TapoMoveRightButton(TapoButtonEntity):
     def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
@@ -167,6 +194,12 @@ class TapoMoveRightButton(TapoButtonEntity):
         await self._hass.async_add_executor_job(self._controller.moveMotor, degrees, 0)
         await self._coordinator.async_request_refresh()
 
+    def updateTapo(self, camData):
+        if not camData or camData["privacy_mode"] == "on":
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            self._attr_state = None
+
 
 class TapoMoveLeftButton(TapoButtonEntity):
     def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
@@ -176,3 +209,9 @@ class TapoMoveLeftButton(TapoButtonEntity):
         degrees = self._entry["movement_angle"]
         await self._hass.async_add_executor_job(self._controller.moveMotor, -degrees, 0)
         await self._coordinator.async_request_refresh()
+
+    def updateTapo(self, camData):
+        if not camData or camData["privacy_mode"] == "on":
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            self._attr_state = None

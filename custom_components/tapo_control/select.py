@@ -125,6 +125,30 @@ async def async_setup_entry(
             LOGGER.debug("Adding TapoPatrolModeSelect...")
             selects.append(tapoPatrolModeSelect)
 
+        if entry["camData"]["whitelampConfigForceTime"] is not None:
+            tapoWhitelampForceTimeSelect = await check_and_create(
+                entry,
+                hass,
+                TapoWhitelampForceTimeSelect,
+                "getWhitelampConfig",
+                config_entry,
+            )
+            if tapoWhitelampForceTimeSelect:
+                LOGGER.debug("Adding TapoWhitelampForceTimeSelect...")
+                selects.append(tapoWhitelampForceTimeSelect)
+
+        if entry["camData"]["whitelampConfigIntensity"] is not None:
+            tapoWhitelampIntensityLevelSelect = await check_and_create(
+                entry,
+                hass,
+                TapoWhitelampIntensityLevelSelect,
+                "getWhitelampConfig",
+                config_entry,
+            )
+            if tapoWhitelampIntensityLevelSelect:
+                LOGGER.debug("Adding TapoWhitelampIntensityLevelSelect...")
+                selects.append(tapoWhitelampIntensityLevelSelect)
+
         return selects
 
     selects = await setupEntities(entry)
@@ -132,6 +156,92 @@ async def async_setup_entry(
         selects.extend(await setupEntities(childDevice))
 
     async_add_entities(selects)
+
+
+class TapoWhitelampForceTimeSelect(TapoSelectEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
+        self._attr_options = ["5 min", "10 min", "15 min", "30 min"]
+        self._attr_current_option = None
+        TapoSelectEntity.__init__(
+            self,
+            "Spotlight on/off for",
+            entry,
+            hass,
+            config_entry,
+            "mdi:clock-outline",
+        )
+
+    async def async_update(self) -> None:
+        await self._coordinator.async_request_refresh()
+
+    def updateTapo(self, camData):
+        if not camData:
+            self._attr_state = "unavailable"
+        else:
+            if camData["whitelampConfigForceTime"] == "300":
+                self._attr_current_option = self._attr_options[0]
+            elif camData["whitelampConfigForceTime"] == "600":
+                self._attr_current_option = self._attr_options[1]
+            elif camData["whitelampConfigForceTime"] == "900":
+                self._attr_current_option = self._attr_options[2]
+            elif camData["whitelampConfigForceTime"] == "1800":
+                self._attr_current_option = self._attr_options[3]
+            self._attr_state = self._attr_current_option
+
+    async def async_select_option(self, option: str) -> None:
+        if option == "5 min":
+            result = await self._hass.async_add_executor_job(
+                self._controller.setWhitelampConfig, 300
+            )
+        elif option == "10 min":
+            result = await self._hass.async_add_executor_job(
+                self._controller.setWhitelampConfig, 600
+            )
+        elif option == "15 min":
+            result = await self._hass.async_add_executor_job(
+                self._controller.setWhitelampConfig, 900
+            )
+        elif option == "30 min":
+            result = await self._hass.async_add_executor_job(
+                self._controller.setWhitelampConfig, 1800
+            )
+        if "error_code" not in result or result["error_code"] == 0:
+            self._attr_state = option
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
+
+
+class TapoWhitelampIntensityLevelSelect(TapoSelectEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
+        self._attr_options = ["1", "2", "3", "4", "5"]
+        self._attr_current_option = None
+        TapoSelectEntity.__init__(
+            self,
+            "Spotlight Intensity",
+            entry,
+            hass,
+            config_entry,
+            "mdi:lightbulb-on-50",
+        )
+
+    async def async_update(self) -> None:
+        await self._coordinator.async_request_refresh()
+
+    def updateTapo(self, camData):
+        if not camData:
+            self._attr_state = "unavailable"
+        else:
+            self._attr_current_option = camData["whitelampConfigIntensity"]
+            self._attr_state = self._attr_current_option
+
+    async def async_select_option(self, option: str) -> None:
+        result = await self._hass.async_add_executor_job(
+            self._controller.setWhitelampConfig, False, option
+        )
+        if "error_code" not in result or result["error_code"] == 0:
+            self._attr_state = option
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
 
 
 class TapoPatrolModeSelect(TapoSelectEntity):
@@ -152,8 +262,8 @@ class TapoPatrolModeSelect(TapoSelectEntity):
         await self._coordinator.async_request_refresh()
 
     def updateTapo(self, camData):
-        if not camData:
-            self._attr_state = "unavailable"
+        if not camData or camData["privacy_mode"] == "on":
+            self._attr_state = STATE_UNAVAILABLE
         else:
             self._attr_current_option = None
             self._attr_state = self._attr_current_option
@@ -700,7 +810,7 @@ class TapoMoveToPresetSelect(TapoSelectEntity):
         await self._coordinator.async_request_refresh()
 
     def updateTapo(self, camData):
-        if not camData:
+        if not camData or camData["privacy_mode"] == "on":
             self._attr_state = STATE_UNAVAILABLE
         else:
             self._presets = camData["presets"]

@@ -16,6 +16,7 @@ from .utils import (
 )
 from .const import (
     DOMAIN,
+    ENABLE_MEDIA_SYNC,
     ENABLE_MOTION_SENSOR,
     ENABLE_STREAM,
     ENABLE_SOUND_DETECTION,
@@ -23,6 +24,12 @@ from .const import (
     LOGGER,
     CLOUD_PASSWORD,
     ENABLE_TIME_SYNC,
+    MEDIA_SYNC_COLD_STORAGE_PATH,
+    MEDIA_SYNC_HOURS,
+    MEDIA_VIEW_DAYS_ORDER,
+    MEDIA_VIEW_DAYS_ORDER_OPTIONS,
+    MEDIA_VIEW_RECORDINGS_ORDER,
+    MEDIA_VIEW_RECORDINGS_ORDER_OPTIONS,
     SOUND_DETECTION_DURATION,
     SOUND_DETECTION_PEAK,
     SOUND_DETECTION_RESET,
@@ -36,7 +43,7 @@ from .const import (
 class FlowHandler(ConfigFlow):
     """Handle a config flow."""
 
-    VERSION = 10
+    VERSION = 14
 
     @staticmethod
     def async_get_options_flow(config_entry):
@@ -89,7 +96,7 @@ class FlowHandler(ConfigFlow):
         enable_stream = True
         enable_time_sync = False
         enable_sound_detection = False
-        sound_detection_peak = -50
+        sound_detection_peak = -30
         sound_detection_duration = 1
         sound_detection_reset = 10
         extra_arguments = ""
@@ -123,7 +130,7 @@ class FlowHandler(ConfigFlow):
             if SOUND_DETECTION_PEAK in user_input:
                 sound_detection_peak = user_input[SOUND_DETECTION_PEAK]
             else:
-                sound_detection_peak = -50
+                sound_detection_peak = -30
             if CONF_CUSTOM_STREAM in user_input:
                 custom_stream = user_input[CONF_CUSTOM_STREAM]
             else:
@@ -131,11 +138,11 @@ class FlowHandler(ConfigFlow):
             if SOUND_DETECTION_DURATION in user_input:
                 sound_detection_duration = user_input[SOUND_DETECTION_DURATION]
             else:
-                sound_detection_duration = -50
+                sound_detection_duration = -30
             if SOUND_DETECTION_RESET in user_input:
                 sound_detection_reset = user_input[SOUND_DETECTION_RESET]
             else:
-                sound_detection_reset = -50
+                sound_detection_reset = -30
             if CONF_EXTRA_ARGUMENTS in user_input:
                 extra_arguments = user_input[CONF_EXTRA_ARGUMENTS]
             else:
@@ -155,6 +162,11 @@ class FlowHandler(ConfigFlow):
             return self.async_create_entry(
                 title=host,
                 data={
+                    MEDIA_VIEW_DAYS_ORDER: "Ascending",
+                    MEDIA_VIEW_RECORDINGS_ORDER: "Ascending",
+                    ENABLE_MEDIA_SYNC: False,
+                    MEDIA_SYNC_HOURS: "",
+                    MEDIA_SYNC_COLD_STORAGE_PATH: "",
                     ENABLE_MOTION_SENSOR: enable_motion_sensor,
                     ENABLE_WEBHOOKS: enable_webhooks,
                     ENABLE_STREAM: enable_stream,
@@ -551,6 +563,10 @@ class TapoOptionsFlowHandler(OptionsFlow):
                 nextAction = user_input["tapo_config_action"]
                 if nextAction == "Configure device":
                     return await self.async_step_auth()
+                elif nextAction == "Configure media":
+                    return await self.async_step_media()
+                elif nextAction == "Configure sound sensor":
+                    return await self.async_step_sound_sensor()
                 elif nextAction == "Help me debug motion sensor":
                     # TODO
                     """
@@ -569,6 +585,8 @@ class TapoOptionsFlowHandler(OptionsFlow):
                     "select": {
                         "options": [
                             "Configure device",
+                            "Configure sound sensor",
+                            "Configure media"
                             # "Help me debug motion sensor",
                             # "incorrect",
                         ],
@@ -579,6 +597,212 @@ class TapoOptionsFlowHandler(OptionsFlow):
         return self.async_show_form(
             step_id="init",
             data_schema=vol.Schema(data_schema),
+            errors=errors,
+        )
+
+    async def async_step_sound_sensor(self, user_input=None):
+        """Manage the Tapo options."""
+        ip_address = self.config_entry.data[CONF_IP_ADDRESS]
+        LOGGER.debug(
+            "[%s] Opened Tapo options - sound sensor.",
+            ip_address,
+        )
+        errors = {}
+
+        enable_sound_detection = self.config_entry.data[ENABLE_SOUND_DETECTION]
+        sound_detection_peak = self.config_entry.data[SOUND_DETECTION_PEAK]
+        sound_detection_duration = self.config_entry.data[SOUND_DETECTION_DURATION]
+        sound_detection_reset = self.config_entry.data[SOUND_DETECTION_RESET]
+
+        allConfigData = {**self.config_entry.data}
+        if user_input is not None:
+            try:
+                if ENABLE_SOUND_DETECTION in user_input:
+                    enable_sound_detection = user_input[ENABLE_SOUND_DETECTION]
+                else:
+                    enable_sound_detection = False
+
+                if SOUND_DETECTION_PEAK in user_input:
+                    sound_detection_peak = user_input[SOUND_DETECTION_PEAK]
+                else:
+                    sound_detection_peak = -30
+
+                if SOUND_DETECTION_DURATION in user_input:
+                    sound_detection_duration = user_input[SOUND_DETECTION_DURATION]
+                else:
+                    sound_detection_duration = 1
+
+                if SOUND_DETECTION_RESET in user_input:
+                    sound_detection_reset = user_input[SOUND_DETECTION_RESET]
+                else:
+                    sound_detection_reset = 10
+
+                if not (
+                    int(sound_detection_peak) >= -100 and int(sound_detection_peak) <= 0
+                ):
+                    LOGGER.debug(
+                        "[%s] Incorrect range for sound detection peak.",
+                        ip_address,
+                    )
+                    raise Exception("Incorrect sound detection peak value.")
+
+                allConfigData[ENABLE_SOUND_DETECTION] = enable_sound_detection
+                allConfigData[SOUND_DETECTION_PEAK] = sound_detection_peak
+                allConfigData[SOUND_DETECTION_DURATION] = sound_detection_duration
+                allConfigData[SOUND_DETECTION_RESET] = sound_detection_reset
+
+                self.hass.config_entries.async_update_entry(
+                    self.config_entry,
+                    title=ip_address,
+                    data=allConfigData,
+                )
+                return self.async_create_entry(title="", data=None)
+            except Exception as e:
+                if "Failed to establish a new connection" in str(e):
+                    errors["base"] = "connection_failed"
+                    LOGGER.error(e)
+                elif str(e) == "Invalid authentication data":
+                    errors["base"] = "invalid_auth"
+                elif str(e) == "Incorrect cloud password":
+                    errors["base"] = "invalid_auth_cloud"
+                elif str(e) == "Camera requires cloud password":
+                    errors["base"] = "camera_requires_admin"
+                elif str(e) == "Incorrect sound detection peak value.":
+                    errors["base"] = "incorrect_peak_value"
+                else:
+                    errors["base"] = "unknown"
+                    LOGGER.error(e)
+
+        return self.async_show_form(
+            step_id="sound_sensor",
+            data_schema=vol.Schema(
+                {
+                    vol.Optional(
+                        ENABLE_SOUND_DETECTION,
+                        description={"suggested_value": enable_sound_detection},
+                    ): bool,
+                    vol.Optional(
+                        SOUND_DETECTION_PEAK,
+                        description={"suggested_value": sound_detection_peak},
+                    ): int,
+                    vol.Optional(
+                        SOUND_DETECTION_DURATION,
+                        description={"suggested_value": sound_detection_duration},
+                    ): int,
+                    vol.Optional(
+                        SOUND_DETECTION_RESET,
+                        description={"suggested_value": sound_detection_reset},
+                    ): int,
+                }
+            ),
+            errors=errors,
+        )
+
+    async def async_step_media(self, user_input=None):
+        """Manage the Tapo options."""
+        LOGGER.debug(
+            "[%s] Opened Tapo options - media.", self.config_entry.data[CONF_IP_ADDRESS]
+        )
+        errors = {}
+        enable_media_sync = self.config_entry.data[ENABLE_MEDIA_SYNC]
+        media_view_days_order = self.config_entry.data[MEDIA_VIEW_DAYS_ORDER]
+        media_view_recordings_order = self.config_entry.data[
+            MEDIA_VIEW_RECORDINGS_ORDER
+        ]
+        media_sync_hours = self.config_entry.data[MEDIA_SYNC_HOURS]
+        media_sync_cold_storage_path = self.config_entry.data[
+            MEDIA_SYNC_COLD_STORAGE_PATH
+        ]
+        ip_address = self.config_entry.data[CONF_IP_ADDRESS]
+
+        allConfigData = {**self.config_entry.data}
+        if user_input is not None:
+            try:
+                if ENABLE_MEDIA_SYNC in user_input:
+                    enable_media_sync = user_input[ENABLE_MEDIA_SYNC]
+                else:
+                    enable_media_sync = False
+
+                if MEDIA_VIEW_DAYS_ORDER in user_input:
+                    media_view_days_order = user_input[MEDIA_VIEW_DAYS_ORDER]
+                else:
+                    media_view_days_order = "Ascending"
+
+                if MEDIA_VIEW_RECORDINGS_ORDER in user_input:
+                    media_view_recordings_order = user_input[
+                        MEDIA_VIEW_RECORDINGS_ORDER
+                    ]
+                else:
+                    media_view_recordings_order = "Ascending"
+
+                if MEDIA_SYNC_HOURS in user_input:
+                    media_sync_hours = user_input[MEDIA_SYNC_HOURS]
+                else:
+                    media_sync_hours = ""
+
+                if MEDIA_SYNC_COLD_STORAGE_PATH in user_input:
+                    media_sync_cold_storage_path = user_input[
+                        MEDIA_SYNC_COLD_STORAGE_PATH
+                    ]
+                else:
+                    media_sync_cold_storage_path = ""
+
+                allConfigData[ENABLE_MEDIA_SYNC] = enable_media_sync
+                allConfigData[MEDIA_VIEW_DAYS_ORDER] = media_view_days_order
+                allConfigData[MEDIA_VIEW_RECORDINGS_ORDER] = media_view_recordings_order
+                allConfigData[MEDIA_SYNC_HOURS] = media_sync_hours
+                allConfigData[
+                    MEDIA_SYNC_COLD_STORAGE_PATH
+                ] = media_sync_cold_storage_path
+                # todo also initial setup to add the default values!
+                self.hass.config_entries.async_update_entry(
+                    self.config_entry,
+                    title=ip_address,
+                    data=allConfigData,
+                )
+                return self.async_create_entry(title="", data=None)
+            except Exception as e:
+                if "Failed to establish a new connection" in str(e):
+                    errors["base"] = "connection_failed"
+                    LOGGER.error(e)
+                elif str(e) == "Invalid authentication data":
+                    errors["base"] = "invalid_auth"
+                elif str(e) == "Incorrect cloud password":
+                    errors["base"] = "invalid_auth_cloud"
+                elif str(e) == "Camera requires cloud password":
+                    errors["base"] = "camera_requires_admin"
+                elif str(e) == "Incorrect sound detection peak value.":
+                    errors["base"] = "incorrect_peak_value"
+                else:
+                    errors["base"] = "unknown"
+                    LOGGER.error(e)
+
+        return self.async_show_form(
+            step_id="media",
+            data_schema=vol.Schema(
+                {
+                    vol.Required(
+                        MEDIA_VIEW_DAYS_ORDER,
+                        description={"suggested_value": media_view_days_order},
+                    ): vol.In(MEDIA_VIEW_DAYS_ORDER_OPTIONS),
+                    vol.Required(
+                        MEDIA_VIEW_RECORDINGS_ORDER,
+                        description={"suggested_value": media_view_recordings_order},
+                    ): vol.In(MEDIA_VIEW_RECORDINGS_ORDER_OPTIONS),
+                    vol.Optional(
+                        ENABLE_MEDIA_SYNC,
+                        description={"suggested_value": enable_media_sync},
+                    ): bool,
+                    vol.Optional(
+                        MEDIA_SYNC_HOURS,
+                        description={"suggested_value": media_sync_hours},
+                    ): int,
+                    vol.Optional(
+                        MEDIA_SYNC_COLD_STORAGE_PATH,
+                        description={"suggested_value": media_sync_cold_storage_path},
+                    ): str,
+                }
+            ),
             errors=errors,
         )
 
@@ -594,11 +818,7 @@ class TapoOptionsFlowHandler(OptionsFlow):
         enable_motion_sensor = self.config_entry.data[ENABLE_MOTION_SENSOR]
         enable_webhooks = self.config_entry.data[ENABLE_WEBHOOKS]
         enable_stream = self.config_entry.data[ENABLE_STREAM]
-        enable_sound_detection = self.config_entry.data[ENABLE_SOUND_DETECTION]
         enable_time_sync = self.config_entry.data[ENABLE_TIME_SYNC]
-        sound_detection_peak = self.config_entry.data[SOUND_DETECTION_PEAK]
-        sound_detection_duration = self.config_entry.data[SOUND_DETECTION_DURATION]
-        sound_detection_reset = self.config_entry.data[SOUND_DETECTION_RESET]
         extra_arguments = self.config_entry.data[CONF_EXTRA_ARGUMENTS]
         custom_stream = self.config_entry.data[CONF_CUSTOM_STREAM]
         rtsp_transport = self.config_entry.data[CONF_RTSP_TRANSPORT]
@@ -665,35 +885,15 @@ class TapoOptionsFlowHandler(OptionsFlow):
                 else:
                     enable_stream = False
 
-                if ENABLE_SOUND_DETECTION in user_input:
-                    enable_sound_detection = user_input[ENABLE_SOUND_DETECTION]
-                else:
-                    enable_sound_detection = False
-
                 if ENABLE_TIME_SYNC in user_input:
                     enable_time_sync = user_input[ENABLE_TIME_SYNC]
                 else:
                     enable_time_sync = False
 
-                if SOUND_DETECTION_PEAK in user_input:
-                    sound_detection_peak = user_input[SOUND_DETECTION_PEAK]
-                else:
-                    sound_detection_peak = -50
-
                 if CONF_CUSTOM_STREAM in user_input:
                     custom_stream = user_input[CONF_CUSTOM_STREAM]
                 else:
                     custom_stream = ""
-
-                if SOUND_DETECTION_DURATION in user_input:
-                    sound_detection_duration = user_input[SOUND_DETECTION_DURATION]
-                else:
-                    sound_detection_duration = 1
-
-                if SOUND_DETECTION_RESET in user_input:
-                    sound_detection_reset = user_input[SOUND_DETECTION_RESET]
-                else:
-                    sound_detection_reset = 10
 
                 if CONF_EXTRA_ARGUMENTS in user_input:
                     extra_arguments = user_input[CONF_EXTRA_ARGUMENTS]
@@ -704,15 +904,6 @@ class TapoOptionsFlowHandler(OptionsFlow):
                     rtsp_transport = user_input[CONF_RTSP_TRANSPORT]
                 else:
                     rtsp_transport = RTSP_TRANS_PROTOCOLS[0]
-
-                if not (
-                    int(sound_detection_peak) >= -100 and int(sound_detection_peak) <= 0
-                ):
-                    LOGGER.debug(
-                        "[%s] Incorrect range for sound detection peak.",
-                        ip_address,
-                    )
-                    raise Exception("Incorrect sound detection peak value.")
 
                 if (
                     self.config_entry.data[CONF_PASSWORD] != password
@@ -802,26 +993,23 @@ class TapoOptionsFlowHandler(OptionsFlow):
                     "[%s] Updating entry.",
                     ip_address,
                 )
+
+                allConfigData = {**self.config_entry.data}
+                allConfigData[ENABLE_STREAM] = enable_stream
+                allConfigData[ENABLE_MOTION_SENSOR] = enable_motion_sensor
+                allConfigData[ENABLE_WEBHOOKS] = enable_webhooks
+                allConfigData[CONF_IP_ADDRESS] = ip_address
+                allConfigData[CONF_USERNAME] = username
+                allConfigData[CONF_PASSWORD] = password
+                allConfigData[CLOUD_PASSWORD] = cloud_password
+                allConfigData[ENABLE_TIME_SYNC] = enable_time_sync
+                allConfigData[CONF_EXTRA_ARGUMENTS] = extra_arguments
+                allConfigData[CONF_CUSTOM_STREAM] = custom_stream
+                allConfigData[CONF_RTSP_TRANSPORT] = rtsp_transport
                 self.hass.config_entries.async_update_entry(
                     self.config_entry,
                     title=ip_address,
-                    data={
-                        ENABLE_STREAM: enable_stream,
-                        ENABLE_MOTION_SENSOR: enable_motion_sensor,
-                        ENABLE_WEBHOOKS: enable_webhooks,
-                        ENABLE_SOUND_DETECTION: enable_sound_detection,
-                        CONF_IP_ADDRESS: ip_address,
-                        CONF_USERNAME: username,
-                        CONF_PASSWORD: password,
-                        CLOUD_PASSWORD: cloud_password,
-                        ENABLE_TIME_SYNC: enable_time_sync,
-                        SOUND_DETECTION_PEAK: sound_detection_peak,
-                        SOUND_DETECTION_DURATION: sound_detection_duration,
-                        SOUND_DETECTION_RESET: sound_detection_reset,
-                        CONF_EXTRA_ARGUMENTS: extra_arguments,
-                        CONF_CUSTOM_STREAM: custom_stream,
-                        CONF_RTSP_TRANSPORT: rtsp_transport,
-                    },
+                    data=allConfigData,
                 )
                 if ipChanged:
                     LOGGER.debug(
@@ -885,22 +1073,6 @@ class TapoOptionsFlowHandler(OptionsFlow):
                         ENABLE_STREAM,
                         description={"suggested_value": enable_stream},
                     ): bool,
-                    vol.Optional(
-                        ENABLE_SOUND_DETECTION,
-                        description={"suggested_value": enable_sound_detection},
-                    ): bool,
-                    vol.Optional(
-                        SOUND_DETECTION_PEAK,
-                        description={"suggested_value": sound_detection_peak},
-                    ): int,
-                    vol.Optional(
-                        SOUND_DETECTION_DURATION,
-                        description={"suggested_value": sound_detection_duration},
-                    ): int,
-                    vol.Optional(
-                        SOUND_DETECTION_RESET,
-                        description={"suggested_value": sound_detection_reset},
-                    ): int,
                     vol.Optional(
                         CONF_EXTRA_ARGUMENTS,
                         description={"suggested_value": extra_arguments},

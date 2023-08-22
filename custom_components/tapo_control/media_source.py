@@ -21,12 +21,16 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.util import dt
 
-from .const import DOMAIN, LOGGER
+from .const import DOMAIN, LOGGER, MEDIA_VIEW_DAYS_ORDER, MEDIA_VIEW_RECORDINGS_ORDER
 
-from .utils import getRecording
+from .utils import (
+    getRecording,
+    getFileName,
+    getRecordings,
+    getWebFile,
+)
 
 from pytapo import Tapo
-from datetime import datetime, timezone
 
 
 async def async_get_media_source(hass: HomeAssistant) -> TapoMediaSource:
@@ -55,22 +59,26 @@ class TapoMediaSource(MediaSource):
         if len(path) == 5:
             try:
                 entry = path[1]
-                if self.hass.data[DOMAIN][entry]["isDownloadingStream"]:
+                date = path[2]
+                startDate = int(path[3])
+                endDate = int(path[4])
+                if (
+                    self.hass.data[DOMAIN][entry]["isDownloadingStream"]
+                    and getFileName(startDate, endDate, False)
+                    not in self.hass.data[DOMAIN][entry]["downloadedStreams"]
+                ):
                     raise Unresolvable(
                         "Already downloading a recording, please try again later."
                     )
-                date = path[2]
                 tapoController: Tapo = self.hass.data[DOMAIN][entry]["controller"]
-                startDate = int(path[3])
-                endDate = int(path[4])
 
                 LOGGER.debug(startDate)
                 LOGGER.debug(endDate)
 
-                self.hass.data[DOMAIN][entry]["isDownloadingStream"] = True
-                url = await getRecording(
+                await getRecording(
                     self.hass, tapoController, entry, date, startDate, endDate
                 )
+                url = getWebFile(self.hass, entry, startDate, endDate, "videos")
                 LOGGER.debug(url)
             except Exception as e:
                 LOGGER.error(e)
@@ -111,6 +119,14 @@ class TapoMediaSource(MediaSource):
             path = item.identifier.split("/")
             if len(path) == 2:
                 entry = path[1]
+                media_view_days_order = self.hass.data[DOMAIN][entry]["entry"].data.get(
+                    MEDIA_VIEW_DAYS_ORDER
+                )
+                if self.hass.data[DOMAIN][entry]["initialMediaScanDone"] is False:
+                    raise Unresolvable(
+                        "Initial local media scan still running, please try again later."
+                    )
+
                 if self.hass.data[DOMAIN][entry]["usingCloudPassword"] is False:
                     raise Unresolvable(
                         "Cloud password is required in order to play recordings.\nSet cloud password inside Settings > Devices & Services > Tapo: Cameras Control > Configure."
@@ -123,6 +139,10 @@ class TapoMediaSource(MediaSource):
                 for searchResult in recordingsList:
                     for key in searchResult:
                         recordingsDates.append(searchResult[key]["date"])
+
+                recordingsDates.sort(
+                    reverse=True if media_view_days_order == "Descending" else False
+                )
                 return BrowseMediaSource(
                     domain=DOMAIN,
                     identifier=f"tapo/{entry}",
@@ -147,11 +167,17 @@ class TapoMediaSource(MediaSource):
                 )
             elif len(path) == 3:
                 entry = path[1]
+
+                media_view_recordings_order = self.hass.data[DOMAIN][entry][
+                    "entry"
+                ].data.get(MEDIA_VIEW_RECORDINGS_ORDER)
+                if self.hass.data[DOMAIN][entry]["initialMediaScanDone"] is False:
+                    raise Unresolvable(
+                        "Initial local media scan still running, please try again later."
+                    )
                 date = path[2]
                 tapoController: Tapo = self.hass.data[DOMAIN][entry]["controller"]
-                recordingsForDay = await self.hass.async_add_executor_job(
-                    tapoController.getRecordings, date
-                )
+                recordingsForDay = await getRecordings(self.hass, entry, date)
                 videoNames = []
                 for searchResult in recordingsForDay:
                     for key in searchResult:
@@ -174,6 +200,51 @@ class TapoMediaSource(MediaSource):
                             }
                         )
 
+                videoNames = sorted(
+                    videoNames,
+                    key=lambda x: x["startDate"],
+                    reverse=True
+                    if media_view_recordings_order == "Descending"
+                    else False,
+                )
+
+                dateChildren = []
+                for data in videoNames:
+                    fileName = getFileName(data["startDate"], data["endDate"], False)
+                    if fileName in self.hass.data[DOMAIN][entry]["downloadedStreams"]:
+                        thumbLink = getWebFile(
+                            self.hass,
+                            entry,
+                            data["startDate"],
+                            data["endDate"],
+                            "thumbs",
+                        )
+
+                        dateChildren.append(
+                            BrowseMediaSource(
+                                domain=DOMAIN,
+                                identifier=f"tapo/{entry}/{date}/{data['startDate']}/{data['endDate']}",
+                                media_class=MediaClass.VIDEO,
+                                media_content_type=MediaType.VIDEO,
+                                thumbnail=thumbLink,
+                                title=data["name"],
+                                can_play=True,
+                                can_expand=False,
+                            )
+                        )
+                    else:
+                        dateChildren.append(
+                            BrowseMediaSource(
+                                domain=DOMAIN,
+                                identifier=f"tapo/{entry}/{date}/{data['startDate']}/{data['endDate']}",
+                                media_class=MediaClass.VIDEO,
+                                media_content_type=MediaType.VIDEO,
+                                title=data["name"],
+                                can_play=True,
+                                can_expand=False,
+                            )
+                        )
+
                 return BrowseMediaSource(
                     domain=DOMAIN,
                     identifier=f"tapo/{entry}/",
@@ -183,18 +254,7 @@ class TapoMediaSource(MediaSource):
                     can_play=False,
                     can_expand=True,
                     children_media_class=MediaClass.DIRECTORY,
-                    children=[
-                        BrowseMediaSource(
-                            domain=DOMAIN,
-                            identifier=f"tapo/{entry}/{date}/{data['startDate']}/{data['endDate']}",
-                            media_class=MediaClass.VIDEO,
-                            media_content_type=MediaType.VIDEO,
-                            title=data["name"],
-                            can_play=True,
-                            can_expand=False,
-                        )
-                        for data in videoNames
-                    ],
+                    children=dateChildren,
                 )
 
             else:
