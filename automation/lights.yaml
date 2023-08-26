@@ -245,7 +245,7 @@
         transition: 60
     # Front/back 12v landscape lights
     - service: switch.turn_on
-      entity_id: switch.outdoor_plug_1
+      entity_id: switch.outdoor_outdoor1
     # Other Landscape lights
     - service: light.turn_on
       entity_id: light.outdoor_string
@@ -340,7 +340,7 @@
         transition: 60
     # Front/back 12v landscape lights
     - service: switch.turn_off
-      entity_id: switch.outdoor_plug_1
+      entity_id: switch.outdoor_outdoor1
     # Spa and Pool light
     - service: light.turn_off
       entity_id: light.lights

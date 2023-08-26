@@ -12,7 +12,7 @@ household:
 landscape lights:
   name: landscape Lights
   entities:
-    - switch.outdoor_plug_1
+    - switch.outdoor_outdoor1
     - light.outdoor_string
     - light.smart_flood_lights
     - light.front_flood_lights

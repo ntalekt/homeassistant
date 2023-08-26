@@ -52,7 +52,8 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Sonoff S31 WiFi w/tasmota](https://amzn.to/3KzEDDh) x3
 * [Sonoff S31 Lite Zigbee](https://amzn.to/434kBbn) x4
 * [Aqara Wireless Mini Switch](https://amzn.to/40LWP23) x4
-* [Wyze Plug Outdoor](https://amzn.to/40Cpd6N)
+* [Kasa EP40 Wi-Fi Outlet](https://amzn.to/3P6kF5k)
+* ~~[Wyze Plug Outdoor](https://amzn.to/40Cpd6N)~~
 
 #### Sensors
 * [Aqara Motion Sensor](https://amzn.to/3zU7xbf) x2 (Office/Living)
