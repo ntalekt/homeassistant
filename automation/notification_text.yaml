@@ -416,7 +416,7 @@
   mode: single
 
     ##########################################################
-    ## Frigate dog in the front yard
+    ## Frigate dog/cat in the front yard
     ##########################################################
 
 - alias: notification alert frigate dog in front yard
@@ -436,8 +436,25 @@
         title: Frigate
   mode: single
 
+- alias: notification alert frigate cat in front yard
+  description: ""
+  trigger:
+    - platform: mqtt
+      topic: frigate/events
+      payload: new
+      value_template: "{{ value_json.type }}"
+  condition:
+    - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
+    - "{{ 'front_yard' in trigger.payload_json['after']['entered_zones'] }}"
+  action:
+    - service: notify.ntalekt
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        title: Frigate
+  mode: single
+
     ##########################################################
-    ## Frigate dog detected
+    ## Frigate dog/cat detected in back yard
     ##########################################################
 
 - alias: notification alert frigate dog
@@ -449,12 +466,101 @@
       value_template: "{{ value_json.type }}"
   condition:
     - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
-    - "{{ not 'front' in trigger.payload_json['after']['camera'] }}"
+    - "{{ trigger.payload_json['after']['camera'] == 'back' }}"
   action:
     - service: notify.ntalekt
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
+  mode: single
+
+- alias: notification alert frigate cat
+  description: ""
+  trigger:
+    - platform: mqtt
+      topic: frigate/events
+      payload: new
+      value_template: "{{ value_json.type }}"
+  condition:
+    - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
+    - "{{ trigger.payload_json['after']['camera'] == 'back' }}"
+  action:
+    - service: notify.ntalekt
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        title: Frigate
+  mode: single
+
+    ##########################################################
+    ## Frigate coyote detected in back yard
+    ##########################################################
+
+- alias: notification alert frigate coyote nature
+  description: ""
+  trigger:
+    - platform: mqtt
+      topic: frigate/events
+      payload: new
+      value_template: "{{ value_json.type }}"
+  condition:
+    - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
+    - "{{ trigger.payload_json['after']['camera'] == 'nature' }}"
+  action:
+    - service: notify.ntalekt
+      data_template:
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        title: COYOTE
+  mode: single
+
+- alias: notification alert frigate coyote nature2
+  description: ""
+  trigger:
+    - platform: mqtt
+      topic: frigate/events
+      payload: new
+      value_template: "{{ value_json.type }}"
+  condition:
+    - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
+    - "{{ trigger.payload_json['after']['camera'] == 'nature2' }}"
+  action:
+    - service: notify.ntalekt
+      data_template:
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        title: COYOTE
+  mode: single
+
+- alias: notification alert frigate coyote nature cat
+  description: ""
+  trigger:
+    - platform: mqtt
+      topic: frigate/events
+      payload: new
+      value_template: "{{ value_json.type }}"
+  condition:
+    - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
+    - "{{ trigger.payload_json['after']['camera'] == 'nature' }}"
+  action:
+    - service: notify.ntalekt
+      data_template:
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        title: COYOTE
+  mode: single
+
+- alias: notification alert frigate coyote nature2 cat
+  description: ""
+  trigger:
+    - platform: mqtt
+      topic: frigate/events
+      payload: new
+      value_template: "{{ value_json.type }}"
+  condition:
+    - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
+    - "{{ trigger.payload_json['after']['camera'] == 'nature2' }}"
+  action:
+    - service: notify.ntalekt
+      data_template:
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        title: COYOTE
   mode: single
 
 ##########################################################
