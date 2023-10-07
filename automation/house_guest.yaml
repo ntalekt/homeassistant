@@ -6,10 +6,10 @@
         ## Set House Cleaning Mode On thursdays
         ##########################################################
 
-- alias: guest set house cleaning mode on at 10am thursdays
+- alias: guest set house cleaning mode on at 09am thursdays
   trigger:
     - platform: time
-      at: '10:00:00'
+      at: '09:00:00'
   condition:
     - condition: time
       weekday:
@@ -18,7 +18,7 @@
     - service: homeassistant.turn_on
       entity_id: input_boolean.house_cleaning_mode
 
-- alias: guest set house cleaning mode off after 3 hours
+- alias: guest set house cleaning mode off after 4 hours
   trigger:
     - platform: time
       at: '13:00:00'
