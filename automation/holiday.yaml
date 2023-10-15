@@ -7,7 +7,6 @@
         ##########################################################
 
 - alias: Holiday - Enable Christmas Lighting
-
   trigger:
     - platform: state
       entity_id: calendar.holidays_in_united_states
@@ -16,7 +15,6 @@
         hours: 9
         minutes: 0
         seconds: 0
-
   condition:
     condition: or
     conditions:
@@ -26,26 +24,21 @@
       - condition: state
         entity_id: sensor.holidays_calendar
         state: 'Christmas Day'
-
   action:
     - service: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: 'Christmas'
 
-
         ##########################################################
         ## Christmas Lighting
         ##########################################################
-
-
 
         ##########################################################
         ## Enable Halloween Lighting
         ##########################################################
 
 - alias: Holiday - Enable Halloween Lighting
-
   trigger:
     - platform: state
       entity_id: calendar.holidays_in_united_states
@@ -54,14 +47,92 @@
         hours: 9
         minutes: 0
         seconds: 0
-
   condition:
     - condition: state
       entity_id: sensor.holidays_calendar
       state: 'Halloween'
-
   action:
     - service: input_select.select_option
       data:
         entity_id: input_select.holiday
         option: 'Halloween'
+
+        ##########################################################
+        ## Halloween Lighting
+        ##########################################################
+
+- alias: Holiday - Halloween Lighting Front Flood
+  trigger:
+    - platform: state
+      entity_id: input_select.select_option
+      to: 'Halloween'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'On'
+      - condition: state
+        entity_id: light.front_flood_lights
+        state: 'On'
+  action:
+    #turn front floods to purple
+    - service: light.turn_on
+      data:
+        entity_id: light.front_flood_lights
+        rgb_color:
+          - 183
+          - 47
+          - 255
+        brightness_pct: 100
+    #turn on front porch switch
+    - service: light.turn_on
+      data:
+        entity_id: light.front_porch
+        brightness_pct: 100
+    #turn front bulb to red
+    - service: light.turn_on
+      data:
+        entity_id: light.front_bulb
+        rgb_color:
+          - 255
+          - 0
+          - 0
+        brightness_pct: 100
+
+- alias: Holiday - Halloween Lighting Front Floods Switch Color
+  trigger:
+    - platform: state
+      entity_id: light.front_flood_lights
+      to: 'On'
+    - platform: state
+      entity_id: light.front_porch
+      to: 'On'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'On'
+      - condition: state
+        entity_id: sensor.holidays_calendar
+        state: 'Halloween'
+  action:
+    #turn front floods to purple
+    - service: light.turn_on
+      data:
+        entity_id: light.front_flood_lights
+        rgb_color:
+          - 183
+          - 47
+          - 255
+        brightness_pct: 100
+    #turn front bulb to red
+    - service: light.turn_on
+      data:
+        entity_id: light.front_porch_group
+        rgb_color:
+          - 255
+          - 0
+          - 0
+        brightness_pct: 100

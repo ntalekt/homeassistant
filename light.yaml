@@ -25,3 +25,9 @@
     - light.media_lamp_bulb1
     - light.media_lamp_bulb2
     - light.media_lamp_bulb3
+
+- platform: group
+  name: front porch group
+  entities:
+    - light.front_bulb
+    - light.front_porch

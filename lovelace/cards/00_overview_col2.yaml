@@ -138,33 +138,15 @@ cards:
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
-        icon: mdi:floor-lamp
-        size: 30%
-        entity: light.loft_lamp_bulb
-        name: Loft
-        tap_action:
-          action: call-service
-          service: light.toggle
-          service_data:
-            entity_id: light.loft_lamp_bulb
-        state:
-        - value: 'off'
-#          color: rgb(68,115,158)
-        - value: 'on'
-          color: rgb(46, 204, 64)
-        hold_action:
-          action: more-info
-
-      - type: "custom:button-card"
         icon: mdi:ceiling-light
         size: 30%
-        entity: light.front_porch
+        entity: light.front_porch_group
         name: Front
         tap_action:
           action: call-service
           service: light.toggle
           service_data:
-            entity_id: light.front_porch
+            entity_id: light.front_porch_group
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
