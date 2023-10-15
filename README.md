@@ -68,7 +68,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Tapo C320WS](https://amzn.to/3MdR6Oi) x6
 * [Tapo C110](https://amzn.to/3ZJA3GP) x2
 * [Ring Pro Doorbell](https://amzn.to/3Kdnj5t)
-* [Blink Video Doorbell](https://amzn.to/3UfTyFP)
+* [Ring Stick Up Cam Battery](https://amzn.to/3RZQXAX)
 
 #### Media
 * [Amazon Echo Dot 3rd Gen](https://amzn.to/3Gn41tg) x3 (via [Emulated Hue Bridge](https://home-assistant.io/components/emulated_hue/))
