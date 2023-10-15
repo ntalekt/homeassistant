@@ -214,5 +214,4 @@ interior_holiday:
 
 exterior_holiday:
   name: Exterior Holiday Lighting Mode
-  initial: off
   icon: mdi:gift

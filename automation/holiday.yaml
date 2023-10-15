@@ -41,16 +41,16 @@
 - alias: Holiday - Enable Halloween Lighting
   trigger:
     - platform: state
-      entity_id: calendar.holidays_in_united_states
-      to: 'on'
+      entity_id: sensor.holidays_calendar
+      to: 'Halloween'
       for:
-        hours: 9
+        hours: 48
         minutes: 0
         seconds: 0
   condition:
     - condition: state
-      entity_id: sensor.holidays_calendar
-      state: 'Halloween'
+      entity_id: input_boolean.exterior_holiday
+      state: 'On'
   action:
     - service: input_select.select_option
       data:
@@ -115,7 +115,7 @@
         entity_id: input_boolean.exterior_holiday
         state: 'On'
       - condition: state
-        entity_id: sensor.holidays_calendar
+        entity_id: input_select.holiday
         state: 'Halloween'
   action:
     #turn front floods to purple
