@@ -1,0 +1,27 @@
+#################################################################
+## Shell Command
+#################################################################
+
+##########################################################
+## Docker prune commands
+##########################################################
+
+  docker_image_prune_docker1: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED54 'docker image prune -af'"
+  docker_image_prune_docker2: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED53 'docker image prune -af'"
+  docker_image_prune_docker3: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED 'docker image prune -af'"
+
+##########################################################
+## time lapse stuffs
+##########################################################
+
+  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED"
+  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED"
+  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED"
+  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED"
+
+  timelapse_back: "/config/timelapse/bin/createFrame.sh back rtsp://frigate.useroneREDACTED.com:8554/back"
+  timelapse_front: "/config/timelapse/bin/createFrame.sh front rtsp://frigate.useroneREDACTED.com:8554/front"
+  timelapse_garage: "/config/timelapse/bin/createFrame.sh garage rtsp://frigate.useroneREDACTED.com:8554/garage"
+  timelapse_shop: "/config/timelapse/bin/createFrame.sh shop rtsp://frigate.useroneREDACTED.com:8554/shop"
+  timelapse_nature: "/config/timelapse/bin/createFrame.sh nature rtsp://frigate.useroneREDACTED.com:8554/nature"
+  timelapse_nature2: "/config/timelapse/bin/createFrame.sh nature2 rtsp://frigate.useroneREDACTED.com:8554/nature2"

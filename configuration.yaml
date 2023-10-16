@@ -66,11 +66,6 @@ rest_command:
     payload: '{"device": "{{ device }}","model": "{{ model }}","cmd": {"name": "{{ cmd_name }}","value": "{{ cmd_value }}"}}'
     verify_ssl: true
 
-shell_command:
-  docker_image_prune_docker1: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED54 'docker image prune -af'"
-  docker_image_prune_docker2: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED53 'docker image prune -af'"
-  docker_image_prune_docker3: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED 'docker image prune -af'"
-
 system_health:
 
 http:
@@ -193,6 +188,7 @@ input_select: !include input_select.yaml
 light: !include light.yaml
 recorder: !include recorder.yaml
 script: !include scripts.yaml
+shell_command: !include shell_command.yaml
 sensor: !include sensor.yaml
 switch: !include switch.yaml
 zone: !include zones.yaml
