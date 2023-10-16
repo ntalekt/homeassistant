@@ -71,10 +71,10 @@
     conditions:
       - condition: state
         entity_id: input_boolean.exterior_holiday
-        state: 'On'
+        state: 'on'
       - condition: state
         entity_id: light.front_flood_lights
-        state: 'On'
+        state: 'on'
   action:
     #turn front floods to purple
     - service: light.turn_on
@@ -104,16 +104,13 @@
   trigger:
     - platform: state
       entity_id: light.front_flood_lights
-      to: 'On'
-    - platform: state
-      entity_id: light.front_porch
-      to: 'On'
+      to: 'on'
   condition:
     condition: and
     conditions:
       - condition: state
         entity_id: input_boolean.exterior_holiday
-        state: 'On'
+        state: 'on'
       - condition: state
         entity_id: input_select.holiday
         state: 'Halloween'
@@ -127,6 +124,22 @@
           - 47
           - 255
         brightness_pct: 100
+
+- alias: Holiday - Halloween Lighting Front Bulb Switch Color
+  trigger:
+    - platform: state
+      entity_id: light.front_bulb
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'on'
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Halloween'
+  action:
     #turn front bulb to red
     - service: light.turn_on
       data:
