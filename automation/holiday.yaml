@@ -76,24 +76,37 @@
         entity_id: light.front_flood_lights
         state: 'on'
   action:
-    #turn front floods to purple
+    #turn floods to purple
     - service: light.turn_on
       data:
-        entity_id: light.front_flood_lights
+        entity_id: light.exterior_flood_lights
         rgb_color:
           - 183
           - 47
           - 255
         brightness_pct: 100
-    #turn on front porch switch
+    #turn on front group and purple
     - service: light.turn_on
       data:
-        entity_id: light.front_porch
+        entity_id: light.front_porch_group
+        rgb_color:
+          - 183
+          - 47
+          - 255
         brightness_pct: 100
-    #turn front bulb to red
+    #turn on side group and red
     - service: light.turn_on
       data:
-        entity_id: light.front_bulb
+        entity_id: light.side_porch_group
+        rgb_color:
+          - 255
+          - 0
+          - 0
+        brightness_pct: 100
+    #turn on spotlights red
+    - service: light.turn_on
+      data:
+        entity_id: light.front_spotlight
         rgb_color:
           - 255
           - 0
@@ -118,11 +131,20 @@
     #turn front floods to purple
     - service: light.turn_on
       data:
-        entity_id: light.front_flood_lights
+        entity_id: light.exterior_flood_lights
         rgb_color:
           - 183
           - 47
           - 255
+        brightness_pct: 100
+    #turn on spotlights red
+    - service: light.turn_on
+      data:
+        entity_id: light.front_spotlight
+        rgb_color:
+          - 255
+          - 0
+          - 0
         brightness_pct: 100
 
 - alias: Holiday - Halloween Lighting Front Bulb Switch Color
@@ -140,12 +162,58 @@
         entity_id: input_select.holiday
         state: 'Halloween'
   action:
-    #turn front bulb to red
+    #turn front bulb to purple
     - service: light.turn_on
       data:
         entity_id: light.front_porch_group
+        rgb_color:
+          - 183
+          - 47
+          - 255
+        brightness_pct: 100
+
+- alias: Holiday - Halloween Lighting Side Bulb Switch Color
+  trigger:
+    - platform: state
+      entity_id: light.side_bulb
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'on'
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Halloween'
+  action:
+    #turn front bulb to red
+    - service: light.turn_on
+      data:
+        entity_id: light.side_porch_group
         rgb_color:
           - 255
           - 0
           - 0
         brightness_pct: 100
+
+- alias: Holiday - Halloween Lighting Pool Switch Color
+  trigger:
+    - platform: state
+      entity_id: light.lights
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'on'
+      - condition: state
+        entity_id: input_select.holiday
+        state: 'Halloween'
+  action:
+    #turn front pool to red
+    - service: light.turn_on
+      entity_id: light.lights
+      data:
+        effect: Red
