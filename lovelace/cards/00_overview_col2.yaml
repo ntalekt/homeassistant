@@ -157,13 +157,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:outdoor-lamp
         size: 30%
-        entity: light.back_porch
+        entity: light.back_porch_group
         name: Back
         tap_action:
           action: call-service
           service: light.toggle
           service_data:
-            entity_id: light.back_porch
+            entity_id: light.back_porch_group
         state:
         - value: 'off'
 #          color: rgb(68,115,158)
@@ -174,13 +174,13 @@ cards:
       - type: "custom:button-card"
         icon: mdi:outdoor-lamp
         size: 30%
-        entity: light.side
+        entity: light.side_porch_group
         name: Side
         tap_action:
           action: call-service
           service: light.toggle
           service_data:
-            entity_id: light.side
+            entity_id: light.side_porch_group
         state:
         - value: 'off'
 #          color: rgb(68,115,158)

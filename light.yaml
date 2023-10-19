@@ -13,11 +13,17 @@
     - light.media_center_r_strip
 
 - platform: group
-  name: Exterior Lights
+  name: exterior porch lights
   entities:
-    - light.front_porch
-    # - light.back_porch
-    - light.side
+    - light.front_porch_group
+    # - light.back_porch_group
+    - light.side_porch_group
+
+- platform: group
+  name: exterior porch bulbs
+  entities:
+    - light.front_bulb
+    - light.side_bulb
 
 - platform: group
   name: Media Center Lamp Bulbs
@@ -31,3 +37,21 @@
   entities:
     - light.front_bulb
     - light.front_porch
+
+- platform: group
+  name: side porch group
+  entities:
+    - light.side_bulb
+    - light.side
+
+- platform: group
+  name: back porch group
+  entities:
+    - light.back_bulb
+    - light.back_porch
+
+- platform: group
+  name: exterior flood lights
+  entities:
+    - light.front_flood_lights
+    - light.smart_flood_lights

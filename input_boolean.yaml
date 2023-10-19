@@ -49,8 +49,8 @@ disable_exterior_on_sunset:
   name: Disable Exterior Lights On at Sunset
   icon: mdi:weather-sunset-down
 
-disable_exterior_dim_9pm:
-  name: Disable Exterior Lights Dim at 9PM
+disable_exterior_dim_10pm:
+  name: Disable Exterior Lights Dim at 10PM
   icon: mdi:lightbulb-outline
     
 ##########################################################
@@ -125,8 +125,8 @@ disable_interior_on_sunset:
   initial: off
   icon: mdi:lightbulb-off-outline
 
-disable_interior_off_830pm:
-  name: Disable Interior Lights Off at 8:30pm
+disable_interior_off_9pm:
+  name: Disable Interior Lights Off at 9pm
   initial: off
   icon: mdi:lightbulb-off-outline
 

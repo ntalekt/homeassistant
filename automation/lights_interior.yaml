@@ -75,12 +75,6 @@
         kelvin: 4000
         brightness_pct: 60
         transition: 60
-    # - service: light.turn_on
-    #   entity_id: light.loft_lamp_bulb
-    #   data:
-    #     kelvin: 4500
-    #     brightness_pct: 5
-    #     transition: 60
 
 ##########################################################
 ## Interior - Master lamp switch color when TV on
@@ -106,7 +100,7 @@
 ## Interior - Turn off downstairs lights if no motion
 ##########################################################
 
-- alias: "light turn off kitchen cabinets if no motion after 830pm"
+- alias: "light turn off kitchen cabinets if no motion after 9pm"
   trigger:
     - platform: time_pattern
       minutes: "/2"
@@ -115,7 +109,7 @@
     condition: and
     conditions:
       - condition: time
-        after: "20:30:00"
+        after: "21:00:00"
         before: "06:00:00"
       - condition: state
         entity_id: sensor.dark_outside
@@ -130,7 +124,7 @@
         entity_id: binary_sensor.back_occupancy_on
         state: "off"
       - condition: state
-        entity_id: input_boolean.disable_interior_off_830pm
+        entity_id: input_boolean.disable_interior_off_9pm
         state: "off"
       - condition: state
         entity_id: remote.media_center
@@ -222,134 +216,3 @@
       entity_id: switch.cactus
     - service: switch.toggle
       entity_id: switch.neon
-
-##########################################################
-## Exterior
-##########################################################
-
-- alias: lights exterior lights on 5min before sunset
-  trigger:
-    - platform: sun
-      event: sunset
-      offset: "-00:05:00"
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_exterior_on_sunset
-      state: 'off'
-  action:
-    # Porches and side entrance lights
-    - service: light.turn_on
-      entity_id: light.exterior_lights
-      data:
-        brightness_pct: 100
-        transition: 60
-    # Front/back 12v landscape lights
-    - service: switch.turn_on
-      entity_id: switch.outdoor_outdoor1
-    # Other Landscape lights
-    - service: light.turn_on
-      entity_id: light.outdoor_string
-      data:
-        brightness_pct: 100
-    - service: light.turn_on
-      entity_id: light.smart_flood_lights
-      data:
-        brightness_pct: 100
-        kelvin: 3425
-    - service: light.turn_on
-      entity_id: light.front_flood_lights
-      data:
-        brightness_pct: 100
-        kelvin: 3425
-    # Spa and Pool light
-    - service: light.turn_on
-      entity_id: light.lights
-    # govee H7012 sometimes doesn't turn on
-    - delay: 0:30
-    - service: light.turn_on
-      entity_id: light.outdoor_string
-    - delay: 0:30
-    - service: light.turn_on
-      entity_id: light.outdoor_string
- 
-- alias: lights exterior lights dim at 9pm
-  trigger:
-    - platform: time
-      at: '21:00:00'
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_exterior_dim_9pm
-      state: 'off'
-  action:
-    # Porches and side entrance lights
-    - service: light.turn_on
-      entity_id: light.exterior_lights
-      data:
-        brightness_pct: 15
-        transition: 60
-
-- alias: exterior lights off if no motion after 11pm
-  trigger:
-    - platform: time_pattern
-      minutes: "/30"
-      seconds: 00
-  condition:
-    - condition: time
-      after: "23:00:00"
-      before: "05:00:00"
-    - condition: state
-      entity_id: binary_sensor.living_occupancy_on
-      state: "off"
-    - condition: state
-      entity_id: binary_sensor.chalkboard_occupancy_on
-      state: "off"
-    - condition: state
-      entity_id: binary_sensor.back_occupancy_on
-      state: "off"
-    - condition: state
-      entity_id: remote.media_center
-      state: "off"
-  action:
-    # Spa and Pool light
-    - service: light.turn_off
-      entity_id: light.lights
-    # Govee string backyard
-    - service: light.turn_off
-      entity_id: light.outdoor_string
-    # Govee floodlight backyard
-    - service: light.turn_off
-      entity_id: light.smart_flood_lights
-    # Kasa back porch
-    - service: light.turn_off
-      entity_id: light.back_porch
-
-- alias: lights exterior lights off 30min after sunrise
-  trigger:
-    - platform: sun
-      event: sunrise
-      offset: "00:30:00"
-  condition:
-    - condition: state
-      entity_id: input_boolean.disable_exterior_off_sunrise
-      state: 'off'
-  action:
-    # Porches and side entrance lights
-    - service: light.turn_off
-      entity_id: light.exterior_lights
-      data:
-        transition: 60
-    # Front/back 12v landscape lights
-    - service: switch.turn_off
-      entity_id: switch.outdoor_outdoor1
-    # Spa and Pool light
-    - service: light.turn_off
-      entity_id: light.lights
-    # Govee string backyard
-    - service: light.turn_off
-      entity_id: light.outdoor_string
-    # Govee floodlight backyard
-    - service: light.turn_off
-      entity_id: light.smart_flood_lights
-    # Govee floodlight frontyard
-    - service: light.turn_off
-      entity_id: light.front_flood_lights

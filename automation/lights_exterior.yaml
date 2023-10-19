@@ -1,0 +1,161 @@
+#################################################################
+## Lighting Automations
+#################################################################
+
+##########################################################
+## exterior lights on 5min before sunset
+##########################################################
+
+- alias: lights exterior lights on 5min before sunset
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:05:00"
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_exterior_on_sunset
+      state: 'off'
+  action:
+    # porches and side entrance lights
+    - service: light.turn_on
+      entity_id: light.exterior_porch_lights
+      data:
+        brightness_pct: 100
+        transition: 60
+        kelvin: 3425
+    # front/back 12v landscape lights
+    - service: switch.turn_on
+      entity_id: switch.outdoor_outdoor1
+    # back string landscape light
+    - service: light.turn_on
+      entity_id: light.outdoor_string
+      data:
+        brightness_pct: 100
+    # exterior flood lights
+    - service: light.turn_on
+      entity_id: light.exterior_flood_lights
+      data:
+        brightness_pct: 100
+        kelvin: 3425
+    # spa and pool light
+    - service: light.turn_on
+      entity_id: light.lights
+      data:
+        effect: Romance
+    # govee H7012 sometimes doesn't turn on
+    - delay: 0:30
+    - service: light.turn_on
+      entity_id: light.outdoor_string
+    - delay: 0:30
+    - service: light.turn_on
+      entity_id: light.outdoor_string
+
+##########################################################
+## exterior lights dim at 10pm
+##########################################################
+ 
+- alias: lights exterior lights dim at 10pm
+  trigger:
+    - platform: time
+      at: '22:00:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_exterior_dim_10pm
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.back_occupancy_on
+        state: "off"
+  action:
+    # porches and side entrance lights
+    - service: light.turn_on
+      entity_id: light.exterior_porch_bulbs
+      data:
+        brightness_pct: 15
+        transition: 60
+    # flood lights
+    - service: light.turn_on
+      entity_id: light.exterior_flood_lights
+      data:
+        brightness_pct: 15
+        transition: 60
+    # back string landscape light
+    - service: light.turn_on
+      entity_id: light.outdoor_string
+      data:
+        brightness_pct: 15
+        transition: 60
+
+##########################################################
+## exterior lights off at 11pm
+##########################################################
+
+- alias: exterior lights off if no motion after 11pm
+  trigger:
+    - platform: time_pattern
+      minutes: "/30"
+      seconds: 00
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: "23:00:00"
+        before: "05:00:00"
+      - condition: state
+        entity_id: binary_sensor.living_occupancy_on
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.chalkboard_occupancy_on
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.back_occupancy_on
+        state: "off"
+      - condition: state
+        entity_id: remote.media_center
+        state: "off"
+  action:
+    # spa and pool light
+    - service: light.turn_off
+      entity_id: light.lights
+    # govee string backyard
+    - service: light.turn_off
+      entity_id: light.outdoor_string
+    # govee floodlight backyard
+    - service: light.turn_off
+      entity_id: light.smart_flood_lights
+    # kasa back porch
+    - service: light.turn_off
+      entity_id: light.back_porch_group
+
+##########################################################
+## exterior lights off at 11pm
+##########################################################
+
+- alias: lights exterior lights off 30min after sunrise
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: "00:30:00"
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_exterior_off_sunrise
+      state: 'off'
+  action:
+    # porches and side entrance lights
+    - service: light.turn_off
+      entity_id: light.exterior_porch_lights
+      data:
+        transition: 60
+    # front/back 12v landscape lights
+    - service: switch.turn_off
+      entity_id: switch.outdoor_outdoor1
+    # spa and Pool light
+    - service: light.turn_off
+      entity_id: light.lights
+    # govee string backyard
+    - service: light.turn_off
+      entity_id: light.outdoor_string
+    # govee floodlight backyard
+    - service: light.turn_off
+      entity_id: light.exterior_flood_lights
