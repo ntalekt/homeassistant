@@ -14,10 +14,23 @@
 ## time lapse stuffs
 ##########################################################
 
-  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED"
-  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED"
-  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED"
-  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED"
+  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED America/New_York"
+  timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
+  
+  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED America/Chicago"
+  timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
+
+  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED America/Chicago"
+  timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
+  
+  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED America/Chicago"
+  timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
+
+  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED Asia/Gaza"
+  timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"  
+
+  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED Etc/UTC"
+  timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
 
   timelapse_back: "/config/timelapse/bin/createFrame.sh back rtsp://frigate.useroneREDACTED.com:8554/back"
   timelapse_front: "/config/timelapse/bin/createFrame.sh front rtsp://frigate.useroneREDACTED.com:8554/front"
@@ -25,3 +38,15 @@
   timelapse_shop: "/config/timelapse/bin/createFrame.sh shop rtsp://frigate.useroneREDACTED.com:8554/shop"
   timelapse_nature: "/config/timelapse/bin/createFrame.sh nature rtsp://frigate.useroneREDACTED.com:8554/nature"
   timelapse_nature2: "/config/timelapse/bin/createFrame.sh nature2 rtsp://frigate.useroneREDACTED.com:8554/nature2"
+
+  ##########################################################
+  ## time lapse archive
+  ##########################################################
+
+  timelapse_archive: "/config/timelapse/bin/archiveFrames.sh"
+
+##########################################################
+## install imagemagick & coreutils & nimbus font
+##########################################################
+
+  install_imagemagick: "apk add --update imagemagick && apk add --update coreutils && mkdir /usr/share/fonts/opentype && wget -P /usr/share/fonts/opentype https://www.1001fonts.com/download/font/nimbus-sans-l.bold.otf && fc-cache -f"

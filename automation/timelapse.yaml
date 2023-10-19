@@ -1,0 +1,80 @@
+##########################################################
+## time lapse stuffs
+##########################################################
+
+  ##########################################################
+  ## install prerequisites
+  ##########################################################
+
+- alias: install imagemagick so we can use it to manipulate images
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    service: shell_command.install_imagemagick
+
+  ##########################################################
+  ## yt REDACTED
+  ##########################################################
+
+- alias: timelapse_REDACTED
+  trigger:
+    - platform: time_pattern
+      minutes: "/1"
+  action:
+    service: shell_command.timelapse_REDACTED
+
+  ##########################################################
+  ## yt REDACTED
+  ##########################################################
+
+- alias: REDACTED
+  trigger:
+    - platform: time_pattern
+      minutes: "/1"
+  action:
+    service: shell_command.timelapse_REDACTED
+
+  ##########################################################
+  ## yt REDACTED
+  ##########################################################
+
+- alias: REDACTED
+  trigger:
+    - platform: time_pattern
+      minutes: "/1"
+  action:
+    service: shell_command.timelapse_REDACTED
+
+  ##########################################################
+  ## yt REDACTED
+  ##########################################################
+
+- alias: REDACTED
+  trigger:
+    - platform: time_pattern
+      minutes: "/1"
+  action:
+    service: shell_command.timelapse_REDACTED
+
+  ##########################################################
+  ## yt REDACTED
+  ##########################################################
+
+- alias: REDACTED
+  trigger:
+    - platform: time_pattern
+      minutes: "/1"
+  action:
+    service: shell_command.timelapse_REDACTED
+
+  ##########################################################
+  ## yt iss
+  ##########################################################
+
+- alias: REDACTED
+  trigger:
+    - platform: time_pattern
+      minutes: "/1"
+  action:
+    service: shell_command.timelapse_REDACTED
