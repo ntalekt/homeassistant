@@ -37,6 +37,17 @@
       data:
         brightness_pct: 100
         kelvin: 3425
+    # spotlights
+    - service: light.turn_on
+      entity_id: light.front_spotlight
+      data:
+        brightness_pct: 100
+        kelvin: 3425
+    - service: light.turn_on
+      entity_id: light.front_spotlight2
+      data:
+        brightness_pct: 100
+        kelvin: 3425
     # spa and pool light
     - service: light.turn_on
       entity_id: light.lights
@@ -80,6 +91,15 @@
       data:
         brightness_pct: 15
         transition: 60
+    # spotlights
+    - service: light.turn_on
+      entity_id: light.front_spotlight
+      data:
+        brightness_pct: 15
+    - service: light.turn_on
+      entity_id: light.front_spotlight2
+      data:
+        brightness_pct: 15
     # back string landscape light
     - service: light.turn_on
       entity_id: light.outdoor_string
@@ -129,7 +149,7 @@
       entity_id: light.back_porch_group
 
 ##########################################################
-## exterior lights off at 11pm
+## exterior lights off 30min after sunrise
 ##########################################################
 
 - alias: lights exterior lights off 30min after sunrise
@@ -159,3 +179,8 @@
     # govee floodlight backyard
     - service: light.turn_off
       entity_id: light.exterior_flood_lights
+    # spotlights
+    - service: light.turn_off
+      entity_id: light.front_spotlight
+    - service: light.turn_off
+      entity_id: light.front_spotlight2
