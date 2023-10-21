@@ -184,8 +184,8 @@ sprinkler_water_spring:
   sequence:
     - service: notify.ntalekt
       data:
-        title: "Home Assistant"
         message: "Started watering according to spring schedule"
+        target: "#sprinkler"
     - service: rainbird.start_irrigation
       entity_id: switch.rain_bird_sprinkler_1
       data:
@@ -200,15 +200,15 @@ sprinkler_water_winter:
   sequence:
     - service: notify.ntalekt
       data:
-        title: "Home Assistant"
         message: "Started watering according to winter schedule"
+        target: "#sprinkler"
     - service: rainbird.start_irrigation
       entity_id: switch.rain_bird_sprinkler_1
       data:
         duration: 30
 
 ##########################################################
-## Sprinkler - Summer (Mon, Wed, Thur, Sat, & Sun - AM/PM)
+## Sprinkler - Summer (Mon, Wed, Thur, Sat, & Sun - AM)
 ##########################################################
 
 sprinkler_water_summer:
@@ -216,8 +216,8 @@ sprinkler_water_summer:
   sequence:
     - service: notify.ntalekt
       data:
-        title: "Home Assistant"
         message: "Started watering according to summer schedule"
+        target: "#sprinkler"
     - service: rainbird.start_irrigation
       entity_id: switch.rain_bird_sprinkler_1
       data:
@@ -232,8 +232,8 @@ sprinkler_water_test:
   sequence:
     - service: notify.ntalekt
       data:
-        title: "Home Assistant"
         message: "Started watering according to test schedule"
+        target: "#sprinkler"
     - service: rainbird.start_irrigation
       entity_id: switch.rain_bird_sprinkler_1
       data:

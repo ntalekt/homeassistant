@@ -50,19 +50,6 @@ cards:
   - type: horizontal-stack
     cards:
     - type: entities
-      title: Sprinkler
-      entities:
-#        - entity: input_select.sprinkler
-        - entity: switch.rain_bird_sprinkler_1
-          icon: mdi:sprinkler-variant
-#          name: Drippers
-        - entity: sensor.last_run_sprinkler
-          icon: mdi:calendar-check
-        - entity: input_boolean.sprinkler_test
-      show_header_toggle: false
-  - type: horizontal-stack
-    cards:
-    - type: entities
       title: Battery Levels
       entities:
         - sensor.userone_phone_battery

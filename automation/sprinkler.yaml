@@ -39,82 +39,82 @@
   action:
     - service: notify.ntalekt
       data:
-        title: "Home Assistant"
         message: "Stopped watering"
+        target: "#sprinkler"
 
 ##########################################################
-## Sprinkler - Spring (Mon, Wed, Fri, & Sat - AM)
+## Sprinkler - Spring - 45min (180 min week)
 ##########################################################
 
-#- alias: water spring
-#  trigger:
-#    - platform: time
-#      at: "06:00:00"
-#  condition:
-#    condition: and
-#    conditions:
-#      - condition: time
-#        weekday:
-#          - mon
-#          - wed
-#          - fri
-#          - sat
-#      - condition: state
-#        entity_id: input_select.sprinkler
-#        state: "Spring"
-#  action:
-#    - service:
-#        script.sprinkler_water_spring
+- alias: water spring
+  trigger:
+    - platform: time
+      at: "06:00:00"
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+          - mon
+          - wed
+          - fri
+          - sat
+      - condition: state
+        entity_id: input_select.sprinkler
+        state: "Spring"
+  action:
+    - service:
+        script.sprinkler_water_spring
 
 ##########################################################
-## Sprinkler - Winter (Mon, Wed, Fri, - AM)
+## Sprinkler - Winter - 30min (90 min week)
 ##########################################################
 
-#- alias: "water winter"
-#  trigger:
-#    - platform: time
-#      at: "06:00:00"
-#  condition:
-#    condition: and
-#    conditions:
-#      - condition: time
-#        weekday:
-#          - mon
-#          - wed
-#          - fri
-#      - condition: state
-#        entity_id: input_select.sprinkler
-#        state: "Winter"
-#  action:
-#    - service:
-#        script.sprinkler_water_winter
+- alias: "water winter"
+  trigger:
+    - platform: time
+      at: "06:00:00"
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+          - mon
+          - wed
+          - fri
+      - condition: state
+        entity_id: input_select.sprinkler
+        state: "Winter"
+  action:
+    - service:
+        script.sprinkler_water_winter
 
 ##########################################################
-## Sprinkler - Summer (Mon, Wed, Thur, Sat, & Sun - AM/PM)
+## Sprinkler - Summer - 45min (225 min week)
 ##########################################################
 
-#- alias: "water summer"
-#  trigger:
-#    - platform: time
-#      at: "05:00:00"
-#    - platform: time
-#      at: "18:00:00"
-#  condition:
-#    condition: and
-#    conditions:
-#      - condition: time
-#        weekday:
-#          - mon
-#          - wed
-#          - thu
-#          - sat
-#          - sun
-#      - condition: state
-#        entity_id: input_select.sprinkler
-#        state: "Summer"
-#  action:
-#    - service:
-#        script.sprinkler_water_summer
+- alias: "water summer"
+  trigger:
+    - platform: time
+      at: "06:00:00"
+    # - platform: time
+    #   at: "18:00:00"
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+          - mon
+          - wed
+          - thu
+          - sat
+          - sun
+      - condition: state
+        entity_id: input_select.sprinkler
+        state: "Summer"
+  action:
+    - service:
+        script.sprinkler_water_summer
 
 ##########################################################
 ## Sprinkler - Change to Spring
@@ -132,8 +132,8 @@
         option: Spring
     - service: notify.ntalekt
       data:
-        title: "Home Assistant"
         message: "Automatically changed watering schedule to Spring"
+        target: "#sprinkler"
 
 ##########################################################
 ## Sprinkler - Change to Winter
@@ -154,8 +154,8 @@
         option: Winter
     - service: notify.ntalekt
       data:
-        title: "Home Assistant"
         message: "Automatically changed watering schedule to Autumn/Winter"
+        target: "#sprinkler"
 
 ##########################################################
 ## Sprinkler - Change to Summer
@@ -173,5 +173,5 @@
         option: Summer
     - service: notify.ntalekt
       data:
-        title: "Home Assistant"
         message: "Automatically changed watering schedule to Summer"
+        target: "#sprinkler"
