@@ -20,7 +20,7 @@
 - alias: timelapse_archive
   trigger:
     - platform: time
-      at: "02:00:00"
+      at: "05:00:00"
   action:
     service: shell_command.timelapse_archive
 
@@ -38,9 +38,16 @@
 - alias: timelapse_REDACTED_create
   trigger:
     - platform: time
-      at: "23:05:00"
+      at: "02:05:00"
   action:
     service: shell_command.timelapse_create_REDACTED
+
+- alias: timelapse_REDACTED_create_yt
+  trigger:
+    - platform: time
+      at: "02:35:00"
+  action:
+    service: shell_command.timelapse_create_REDACTED_yt
 
   ##########################################################
   ## yt REDACTED
@@ -56,9 +63,16 @@
 - alias: REDACTED_create
   trigger:
     - platform: time
-      at: "23:25:00"
+      at: "02:25:00"
   action:
     service: shell_command.timelapse_create_REDACTED
+    
+- alias: REDACTED_create_yt
+  trigger:
+    - platform: time
+      at: "02:55:00"
+  action:
+    service: shell_command.timelapse_create_REDACTED_yt
 
   ##########################################################
   ## yt REDACTED
@@ -74,9 +88,16 @@
 - alias: REDACTED_create
   trigger:
     - platform: time
-      at: "23:45:00"
+      at: "03:45:00"
   action:
     service: shell_command.timelapse_create_REDACTED
+
+- alias: REDACTED_create_yt
+  trigger:
+    - platform: time
+      at: "04:15:00"
+  action:
+    service: shell_command.timelapse_create_REDACTED_yt
 
   ##########################################################
   ## yt REDACTED
@@ -92,9 +113,16 @@
 - alias: REDACTED_create
   trigger:
     - platform: time
-      at: "22:05:00"
+      at: "01:05:00"
   action:
     service: shell_command.timelapse_create_REDACTED
+
+- alias: REDACTED_create_yt
+  trigger:
+    - platform: time
+      at: "01:35:00"
+  action:
+    service: shell_command.timelapse_create_REDACTED_yt
 
   ##########################################################
   ## yt REDACTED
@@ -114,6 +142,13 @@
   action:
     service: shell_command.timelapse_create_REDACTED
 
+- alias: REDACTED_create_yt
+  trigger:
+    - platform: time
+      at: "15:35:00"
+  action:
+    service: shell_command.timelapse_create_REDACTED_yt
+
   ##########################################################
   ## yt iss
   ##########################################################
@@ -131,3 +166,10 @@
       at: "18:05:00"
   action:
     service: shell_command.timelapse_create_REDACTED
+
+- alias: REDACTED_create_yt
+  trigger:
+    - platform: time
+      at: "18:35:00"
+  action:
+    service: shell_command.timelapse_create_REDACTED_yt
