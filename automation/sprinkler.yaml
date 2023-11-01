@@ -6,6 +6,7 @@
   trigger:
     - platform: state
       entity_id: switch.rain_bird_sprinkler_1
+      from: "off"
       to: "on"
   action:
     - service: script.turn_on
