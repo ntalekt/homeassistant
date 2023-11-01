@@ -49,6 +49,53 @@ cards:
 
   - type: horizontal-stack
     cards:
+
+    ##########################################################
+    ## REDACTED - yt channel views
+    ##########################################################
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.REDACTED_channel_views
+        name: REDACTED (7-day)
+        line_color: '#0074D9'
+        line_width: 8
+        font_size: 75
+        unit: views
+        icon: mdi:eye
+        hours_to_show: 168
+
+  - type: horizontal-stack
+    cards:
+
+    ##########################################################
+    ## REDACTED - yt channel subs
+    ##########################################################
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.REDACTED_channel_subs
+        name: REDACTED (7-day)
+        line_color: '#FF4136'
+        line_width: 8
+        font_size: 75
+        unit: subscribers
+        icon: mdi:youtube-subscription
+        hours_to_show: 168
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.REDACTED_channel_videos
+        name: REDACTED (7-day)
+        line_color: '#FF851B'
+        line_width: 8
+        font_size: 75
+        unit: videos
+        icon: mdi:video-check
+        hours_to_show: 168
+
+  - type: horizontal-stack
+    cards:
     - type: entities
       title: Battery Levels
       entities:

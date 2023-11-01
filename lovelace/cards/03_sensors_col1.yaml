@@ -61,4 +61,3 @@ cards:
         - entity: sensor.pi_hole2_ads_blocked_today
         - entity: sensor.pi_hole2_ads_percentage_blocked_today
       show_header_toggle: false
-
