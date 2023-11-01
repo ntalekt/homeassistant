@@ -60,6 +60,8 @@ lovelace:
       type: module
     - url: /hacsfiles/config-template-card/config-template-card.js
       type: module
+    - url: /hacsfiles/lovelace-layout-card/layout-card.js
+      type: module
 
 rest_command: 
   office_air_purifier:
