@@ -255,6 +255,7 @@
           - 0
           - 0
         brightness_pct: 100
+    - delay: '00:02:00'
     - service: light.turn_on
       data:
         entity_id: light.front_spotlight
@@ -288,6 +289,7 @@
           - 0
           - 0
         brightness_pct: 100
+    - delay: '00:02:00'
     - service: light.turn_on
       data:
         entity_id: light.front_spotlight2

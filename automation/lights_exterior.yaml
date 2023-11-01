@@ -74,9 +74,12 @@
     conditions:
       - condition: state
         entity_id: input_boolean.disable_exterior_dim_10pm
-        state: 'off'
+        state: "off"
       - condition: state
         entity_id: binary_sensor.back_occupancy_on
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
         state: "off"
   action:
     # porches and side entrance lights
