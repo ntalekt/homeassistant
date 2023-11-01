@@ -54,6 +54,8 @@ lovelace:
       type: module
     - url: /hacsfiles/threedy/threedy-card.js
       type: module
+    - url: /hacsfiles/config-template-card/config-template-card.js
+      type: module
 
 rest_command: 
   office_air_purifier:
