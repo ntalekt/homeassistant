@@ -38,12 +38,12 @@
   timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
   timelapse_create_REDACTED_yt: "/config/timelapse/bin/createYoutube.sh REDACTED"
 
-  timelapse_back: "/config/timelapse/bin/createFrame.sh back rtsp://frigate.useroneREDACTED.com:8554/back"
-  timelapse_front: "/config/timelapse/bin/createFrame.sh front rtsp://frigate.useroneREDACTED.com:8554/front"
-  timelapse_garage: "/config/timelapse/bin/createFrame.sh garage rtsp://frigate.useroneREDACTED.com:8554/garage"
-  timelapse_shop: "/config/timelapse/bin/createFrame.sh shop rtsp://frigate.useroneREDACTED.com:8554/shop"
-  timelapse_nature: "/config/timelapse/bin/createFrame.sh nature rtsp://frigate.useroneREDACTED.com:8554/nature"
-  timelapse_nature2: "/config/timelapse/bin/createFrame.sh nature2 rtsp://frigate.useroneREDACTED.com:8554/nature2"
+  timelapse_back: "/config/timelapse/bin/createFrame.sh back rtsp://frigate.REDACTED:8554/back"
+  timelapse_front: "/config/timelapse/bin/createFrame.sh front rtsp://frigate.REDACTED:8554/front"
+  timelapse_garage: "/config/timelapse/bin/createFrame.sh garage rtsp://frigate.REDACTED:8554/garage"
+  timelapse_shop: "/config/timelapse/bin/createFrame.sh shop rtsp://frigate.REDACTED:8554/shop"
+  timelapse_nature: "/config/timelapse/bin/createFrame.sh nature rtsp://frigate.REDACTED:8554/nature"
+  timelapse_nature2: "/config/timelapse/bin/createFrame.sh nature2 rtsp://frigate.REDACTED:8554/nature2"
 
   ##########################################################
   ## time lapse archive

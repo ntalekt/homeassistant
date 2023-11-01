@@ -11,13 +11,13 @@ homeassistant:
   country: US
   customize: !include customize.yaml
   time_zone: !secret homeassistant_timezone
-  external_url: "https://ha.useroneREDACTED.com"
+  external_url: "https://ha.REDACTED"
   internal_url: "http://REDACTED:8123"
   allowlist_external_dirs:
     - /shared
     - /config
   allowlist_external_urls:
-    - "https://ha.useroneREDACTED.com/api/frigate/notifications/"
+    - "https://ha.REDACTED/api/frigate/notifications/"
 
 api:
 frontend:

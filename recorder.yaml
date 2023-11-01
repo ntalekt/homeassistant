@@ -3,4 +3,4 @@
 #################################################################
 
 purge_keep_days: 7
-db_url: mysql://root:REDACTED@mariadb.useroneREDACTED.com/hass_docker_db
+db_url: mysql://root:REDACTED@mariadb.REDACTED/hass_docker_db

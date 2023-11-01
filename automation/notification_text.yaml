@@ -327,7 +327,7 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} has been detected in the driveway. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} has been detected in the driveway. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
   mode: single
 
@@ -348,7 +348,7 @@
 #   action:
 #     - service: notify.ntalekt
 #       data_template:
-#         message: 'A {{trigger.payload_json["after"]["label"]}} has arrived in the driveway. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+#         message: 'A {{trigger.payload_json["after"]["label"]}} has arrived in the driveway. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
 #         title: Frigate
 #   mode: single
 
@@ -369,7 +369,7 @@
 #   action:
 #     - service: notify.ntalekt
 #       data_template:
-#         message: 'A {{trigger.payload_json["after"]["label"]}} has left the driveway. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+#         message: 'A {{trigger.payload_json["after"]["label"]}} has left the driveway. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
 #         title: Frigate
 #   mode: single
 
@@ -390,7 +390,7 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
   mode: single
 
@@ -411,7 +411,7 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
   mode: single
 
@@ -432,7 +432,7 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
   mode: single
 
@@ -449,7 +449,7 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
   mode: single
 
@@ -470,7 +470,7 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
   mode: single
 
@@ -487,7 +487,7 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
   mode: single
 
@@ -508,7 +508,7 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: COYOTE
   mode: single
 
@@ -525,7 +525,7 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: COYOTE
   mode: single
 
@@ -542,7 +542,7 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: COYOTE
   mode: single
 
@@ -559,7 +559,7 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.useroneREDACTED.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: COYOTE
   mode: single
 

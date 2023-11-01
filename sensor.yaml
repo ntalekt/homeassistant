@@ -119,16 +119,16 @@
 
     esxi_vmhost_esxi1_cpu_pct:
       value_template: >
-        {% set usage = states.sensor.esxi_vmhost_REDACTED.attributes.cpuusage_ghz | default(0)  %}
-        {% set total = states.sensor.esxi_vmhost_REDACTED.attributes.cputotal_ghz | default(0) %}
+        {% set usage = states.sensor.esxi_vmhost_esxi1_REDACTED.attributes.cpuusage_ghz | default(0)  %}
+        {% set total = states.sensor.esxi_vmhost_esxi1_REDACTED.attributes.cputotal_ghz | default(0) %}
         {{ (( usage / total ) * 100 ) | round(2) }}
       friendly_name: "ESXi1 CPU %"
       unit_of_measurement: "%"
 
     esxi_vmhost_esxi1_mem_pct:
       value_template: >
-        {% set usage = states.sensor.esxi_vmhost_REDACTED.attributes.memusage_gb | default(0) | int %}
-        {% set total = states.sensor.esxi_vmhost_REDACTED.attributes.memtotal_gb | default(0) | int %}
+        {% set usage = states.sensor.esxi_vmhost_esxi1_REDACTED.attributes.memusage_gb | default(0) | int %}
+        {% set total = states.sensor.esxi_vmhost_esxi1_REDACTED.attributes.memtotal_gb | default(0) | int %}
         {{ (( usage / total ) * 100 ) | round(2) }}
       friendly_name: "ESXi1 MEM %"
       unit_of_measurement: "%"
