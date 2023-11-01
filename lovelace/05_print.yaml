@@ -1,0 +1,7 @@
+title: 3d Print
+id: 3d Print
+icon: mdi:printer-3d-nozzle
+cards:
+  - !include /config/lovelace/cards/05_print_col1.yaml
+  - !include /config/lovelace/cards/05_print_col2.yaml
+  - !include /config/lovelace/cards/05_print_col3.yaml

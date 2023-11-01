@@ -1,0 +1,21 @@
+type: vertical-stack
+cards:
+  - type: custom:mushroom-title-card
+    title: ''
+    subtitle: Print Details
+    alignment: center
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-entity-card
+        entity: sensor.p1p_print_status
+        name: Status
+      - type: custom:mushroom-entity-card
+        entity: sensor.p1p_print_progress
+        name: Progress
+      - type: custom:mushroom-template-card
+        primary: Layer
+        icon_color: var(--rgb-state-entity)
+        secondary: >-
+          {{states('sensor.p1p_current_layer')}} /
+          {{states('sensor.p1p_total_layer_count')}}
+        icon: mdi:layers

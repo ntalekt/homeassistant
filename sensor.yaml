@@ -60,6 +60,17 @@
               False
         {%- endif -%}
 
+    p1p_remaining_time_min:
+      value_template: >-
+        {% set tr = states('sensor.p1p_remaining_time') | int %}
+        {% if tr >= 1 %}
+          {{ tr }} minutes
+        {% elif tr == 1 %}
+          {{ tr }} minute
+        {% else %}
+          less than a minute
+        {% endif %}
+
     guest_ssid_device_count:
       value_template: >-
         {{ states.device_tracker | selectattr('attributes.essid','defined') | selectattr('attributes.essid','eq','REDACTED') | list | count }}

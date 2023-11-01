@@ -1,0 +1,69 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+    - type: picture-elements
+      view_layout:
+        column: 1
+      elements:
+        - type: conditional
+          conditions:
+            - entity: sensor.p1p_print_status
+              state_not: offline
+          elements:
+            - entity: light.p1p_chamber_light
+              type: state-icon
+              style:
+                top: 46%
+                left: 18%
+                '--mdc-icon-size': 2.6em
+              tap_action:
+                action: toggle
+            - entity: sensor.p1p_print_status
+              type: state-label
+              style:
+                top: 9.8%
+                left: 25.2%
+                font-size: 1.2em
+                color: '#FFFFFF'
+            - type: conditional
+              conditions:
+                - entity: sensor.p1p_print_status
+                  state: running
+              elements:
+                - entity: sensor.p1p_print_progress
+                  type: state-badge
+                  tap_action:
+                    action: none
+                  style:
+                    top: 18.5%
+                    left: 81%
+                    font-size: 1em
+                    color: rgba(0,0,0,0)
+                    '--label-badge-red': '#11739D'
+            - entity: sensor.p1p_nozzle_temperature
+              type: state-badge
+              style:
+                top: 31%
+                left: 51%
+                font-size: 0.8em
+                color: rgba(0,0,0,0)
+            - entity: sensor.p1p_bed_temperature
+              type: state-badge
+              style:
+                top: 78%
+                left: 51%
+                font-size: 0.8em
+                color: rgba(0,0,0,0)
+      style: |
+        ha-card {
+          box-shadow: none !important;
+          background: none !important;
+          border: none !important;
+        }
+      image: /local/media/bambuprinter/on_p1p.png
+      entity: light.p1p_chamber_light
+      state_image:
+        unavailable: /local/media/bambuprinter/off_p1p.png
+        'on': /local/media/bambuprinter/on_p1p.png
+        'off': /local/media/bambuprinter/off_p1p.png
