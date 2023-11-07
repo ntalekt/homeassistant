@@ -1,0 +1,33 @@
+##################################################################
+## Pool Automations
+##################################################################
+
+  ##########################################################
+  ## Disable pool heater setting
+  ##########################################################
+
+- alias: "disable pool heating mode"
+  trigger:
+    - platform: time_pattern
+      minutes: "/1"
+      seconds: 00
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_pool_heater
+        state: 'off'
+      - condition: state
+        entity_id: sensor.pool_heater_mode
+        state: 'Gas Heater'
+  action:
+    - service: water_heater.set_operation_mode
+      data:
+        operation_mode: "off"
+      target:
+        entity_id: water_heater.pool
+    - service: notify.ntalekt
+      data:
+        message: "Pool heater mode automatically disabled."
+        target: "#pool"
+

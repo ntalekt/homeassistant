@@ -71,6 +71,11 @@
           less than a minute
         {% endif %}
 
+    pool_heater_mode:
+      value_template: "{{ states.water_heater.pool.attributes.operation_mode }}"
+      friendly_name: "Pool Heater Mode"
+      icon_template: mdi:water-boiler-alert
+
     guest_ssid_device_count:
       value_template: >-
         {{ states.device_tracker | selectattr('attributes.essid','defined') | selectattr('attributes.essid','eq','REDACTED') | list | count }}

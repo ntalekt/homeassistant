@@ -215,3 +215,12 @@ interior_holiday:
 exterior_holiday:
   name: Exterior Holiday Lighting Mode
   icon: mdi:gift
+
+##########################################################
+## pool
+##########################################################
+
+disable_pool_heater:
+  name: Disable Pool Heater Automations
+  icon: mdi:water-boiler-off
+  initial: off

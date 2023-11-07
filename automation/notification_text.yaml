@@ -293,19 +293,30 @@
         message: "The garage door has been closed."
 
 ##########################################################
-## Weather Alerts
+## Pool heater turned on
 ##########################################################
 
-# - alias: notification alert when New Weather Alert
-#   trigger:
-#     - platform: state
-#       entity_id: sensor.weather_alert_title
-#   action:
-#     - service: notify.ntalekt
-#       data:
-#         title: "{{states.sensor.weather_alert_title.state}}"
-#         message: "{{ state_attr('sensor.nws_alerts', 'spoken_desc') }}"
-#   mode: single
+- alias: pool heater turned on
+  trigger:
+    - platform: state
+      entity_id: water_heater.pool
+      to: 'on'
+  action:
+    - service: notify.ntalekt
+      data:
+        message: "Pool heater is running!!"
+        target: "#pool"
+
+- alias: pool heater setting changed
+  trigger:
+    - platform: state
+      entity_id: sensor.pool_heater_mode
+      to: 'Gas Heater'
+  action:
+    - service: notify.ntalekt
+      data:
+        message: "Pool heater mode changed!!"
+        target: "#pool"
 
 ##########################################################
 ## Frigate alerts
