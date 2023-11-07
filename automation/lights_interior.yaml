@@ -8,73 +8,222 @@
 
 - alias: "light sunset transition kitchen cabinets"
   trigger:
-    - platform: time_pattern
-      minutes: "/1"
-      seconds: 00
+    # - platform: state
+    #   entity_id: sensor.dark_outside
+    #   to: "True"
+    - platform: sun
+      event: sunset
+      offset: "-00:15:00"
   condition:
     condition: and
     conditions:
-      - condition: time
-        after: "15:00:00"
-        before: "21:00:00"
-      - condition: numeric_state
-        entity_id: sensor.sun_elevation
-        above: 0
-        below: 9
       - condition: state
         entity_id: input_boolean.disable_interior_on_sunset
         state: "off"
-      - condition: or
-        conditions:
-          - condition: template
-            value_template: "{% if states.light.kitchen_cabinet_lights.attributes.brightness is defined %} {{ states.light.kitchen_cabinet_lights.attributes.brightness < (((0.0625*(states.sun.sun.attributes.elevation**2))-(31.125*states.sun.sun.attributes.elevation)+246.5)|int)}} {% else %} False {% endif %} "
-          - condition: template
-            value_template: "{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} "
+      - condition: state
+        entity_id: light.kitchen_cabinet_lights
+        state: "off"
   action:
     - service: light.turn_on
-      entity_id: light.kitchen_cabinet_lights
-      data_template:
-        brightness: "{{((0.0625*(states.sun.sun.attributes.elevation**2))-(31.125*states.sun.sun.attributes.elevation)+246.5)|int}}"
+      data:
+        entity_id: light.kitchen_cabinet_lights
+        brightness: 5
+    - repeat:
+        until:
+          condition: or
+          conditions:
+            - condition: template
+              value_template: "{{ state_attr('light.kitchen_cabinet_lights', 'brightness') | int(0) >= 254 }}"
+            - condition: state
+              entity_id: light.kitchen_cabinet_lights
+              state: "off"
+        sequence:
+        - service: light.turn_on
+          data:
+            entity_id: light.kitchen_cabinet_lights
+            brightness: "{{ state_attr('light.kitchen_cabinet_lights', 'brightness') | int(0) + 1 }}"
+        - delay:
+            seconds: 10
 
 ##########################################################
-## Interior - Media accent, cactus light, and master
+## Interior - media accents
 ##########################################################
 
-- alias: "light sunset other lights"
+- alias: "light sunset media accents"
   trigger:
-    - platform: state
-      entity_id: light.kitchen_cabinet_lights
-      from: "off"
-      to: "on"
+    # - platform: state
+    #   entity_id: sensor.dark_outside
+    #   to: "True"
+    - platform: sun
+      event: sunset
+      offset: "-00:15:00"
   condition:
     condition: and
     conditions:
-      - condition: time
-        after: "15:00:00"
-        before: "21:00:00"
-      - condition: numeric_state
-        entity_id: sensor.sun_elevation
-        above: 0
-        below: 9
+      - condition: state
+        entity_id: input_boolean.disable_interior_on_sunset
+        state: "off"
+      - condition: state
+        entity_id: light.media_accents
+        state: "off"
+  action:
+    service: light.turn_on
+    data:
+      kelvin: 4500
+      brightness_pct: 30
+    target:
+      entity_id: light.media_accents
+    # - repeat:
+    #     until:
+    #       condition: or
+    #       conditions:
+    #         - condition: template
+    #           value_template: "{{ state_attr('light.media_accents', 'brightness') | int(0) >= 254 }}"
+    #         - condition: state
+    #           entity_id: light.media_accents
+    #           state: "off"
+    #     sequence:
+    #     - service: light.turn_on
+    #       data:
+    #         entity_id: light.media_accents
+    #         brightness: "{{ state_attr('light.media_accents', 'brightness') | int(0) + 1 }}"
+    #     - delay:
+    #         seconds: 10
+
+##########################################################
+## Interior - media center lamp bulbs
+##########################################################
+
+- alias: "light sunset media center lamp bulbs"
+  trigger:
+    # - platform: state
+    #   entity_id: sensor.dark_outside
+    #   to: "True"
+    - platform: sun
+      event: sunset
+      offset: "-00:15:00"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_interior_on_sunset
+        state: "off"
+      - condition: state
+        entity_id: light.media_center_lamp_bulbs
+        state: "off"
   action:
     - service: light.turn_on
-      entity_id: light.media_accents
+      data:
+        entity_id: light.media_center_lamp_bulbs
+        brightness: 30
+        kelvin: 4500
+    # - repeat:
+    #     until:
+    #       condition: or
+    #       conditions:
+    #         - condition: template
+    #           value_template: "{{ state_attr('light.media_center_lamp_bulbs', 'brightness') | int(0) >= 254 }}"
+    #         - condition: state
+    #           entity_id: light.media_center_lamp_bulbs
+    #           state: "off"
+    #     sequence:
+    #     - service: light.turn_on
+    #       data:
+    #         entity_id: light.media_center_lamp_bulbs
+    #         brightness: "{{ state_attr('light.media_center_lamp_bulbs', 'brightness') | int(0) + 1 }}"
+    #     - delay:
+    #         seconds: 10
+
+##########################################################
+## Interior - main bedroom
+##########################################################
+
+- alias: "light sunset main bedroom"
+  trigger:
+    # - platform: state
+    #   entity_id: sensor.dark_outside
+    #   to: "True"
+    - platform: sun
+      event: sunset
+      offset: "-00:15:00"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_interior_on_sunset
+        state: "off"
+      - condition: state
+        entity_id: light.master_bedroom_lamp
+        state: "off"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.master_bedroom_lamp
+        brightness: 5
+        kelvin: 4000
+    - repeat:
+        until:
+          condition: or
+          conditions:
+            - condition: template
+              value_template: "{{ state_attr('light.master_bedroom_lamp', 'brightness') | int(0) >= 254 }}"
+            - condition: state
+              entity_id: light.master_bedroom_lamp
+              state: "off"
+        sequence:
+        - service: light.turn_on
+          data:
+            entity_id: light.master_bedroom_lamp
+            brightness: "{{ state_attr('light.master_bedroom_lamp', 'brightness') | int(0) + 1 }}"
+        - delay:
+            seconds: 10
+
+##########################################################
+## Interior - chalkboard room accents (cactus & neon)
+##########################################################
+
+- alias: "light sunset chalkboard room cactus"
+  trigger:
+    # - platform: state
+    #   entity_id: sensor.dark_outside
+    #   to: "True"
+    - platform: sun
+      event: sunset
+      offset: "-00:15:00"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_interior_on_sunset
+        state: "off"
+      - condition: state
+        entity_id: switch.cactus
+        state: "off"
+  action:
     - service: switch.turn_on
       entity_id: switch.cactus
+
+- alias: "light sunset chalkboard room neon"
+  trigger:
+    # - platform: state
+    #   entity_id: sensor.dark_outside
+    #   to: "True"
+    - platform: sun
+      event: sunset
+      offset: "-00:15:00"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_interior_on_sunset
+        state: "off"
+      - condition: state
+        entity_id: switch.neon
+        state: "off"
+  action:
     - service: switch.turn_on
       entity_id: switch.neon
-    - service: light.turn_on
-      entity_id: light.media_center_lamp_bulbs
-      data:
-        kelvin: 4500
-        brightness_pct: 1
-        transition: 60
-    - service: light.turn_on
-      entity_id: light.master_bedroom_lamp
-      data:
-        kelvin: 4000
-        brightness_pct: 60
-        transition: 60
+
 
 ##########################################################
 ## Interior - Master lamp switch color when TV on
@@ -103,7 +252,7 @@
 - alias: "light turn off kitchen cabinets if no motion after 9pm"
   trigger:
     - platform: time_pattern
-      minutes: "/2"
+      minutes: "/5"
       seconds: 00
   condition:
     condition: and
@@ -177,9 +326,9 @@
         state: "off"
   action:
     - service: light.turn_on
-      entity_id: light.kitchen_cabinet_lights
-      data_template:
-        brightness_pct: "25"
+      data:
+        entity_id: light.kitchen_cabinet_lights
+        brightness: 65
 
 ##########################################################
 ## Interior - Turn off cabinet lights at sunrise if they are still on
