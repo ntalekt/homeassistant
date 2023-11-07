@@ -610,3 +610,32 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.interior_camera_recording_mode
+
+        ##########################################################
+        ## increase work counter
+        ##########################################################
+
+- alias: work counter
+  trigger:
+    - platform: state
+      entity_id: device_tracker.userone_REDACTED
+      to: 'Work'
+      for:
+        minutes: 5
+  action:
+    - service: counter.increment
+      target:
+        entity_id: counter.userone_work
+
+- alias: reset work counter
+  trigger:
+    - platform: time
+      at: "23:59:59"
+  condition:
+    - condition: time
+      weekday:
+        - sun
+  action:
+    service: counter.reset
+    target:
+      entity_id: counter.userone_work

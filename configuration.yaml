@@ -119,6 +119,11 @@ alexa:
         name: "Xbox"
         description: "Downstairs xbox harmony activity"
 
+counter:
+  userone_work:
+    initial: 0
+    step: 1
+
 fan:
   platform: template
   fans:

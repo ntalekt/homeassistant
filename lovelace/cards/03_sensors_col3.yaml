@@ -31,6 +31,32 @@ cards:
         - entity: sensor.deluge_switch_status
           icon: mdi:script
       show_header_toggle: false
+
+
+  - type: "custom:button-card"
+    name: Return to Office
+    styles:
+      card:
+        - font-size: 24px
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        entity: counter.userone_work
+        name: Office Visits
+        show_state: true
+        color: rgb(68,115,158)
+        size: 20%
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: 'sensor.userone_time_work'
+        name: Hours
+        show_state: true
+        color: rgb(68,115,158)
+        size: 20%
+        hold_action:
+          action: more-info
+
   - type: horizontal-stack
     cards:
     - type: entities
