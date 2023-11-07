@@ -224,7 +224,6 @@
     - service: switch.turn_on
       entity_id: switch.neon
 
-
 ##########################################################
 ## Interior - Master lamp switch color when TV on
 ##########################################################
@@ -319,8 +318,8 @@
       - condition: state # it's dark outside
         entity_id: sensor.dark_outside
         state: "True"
-      - condition: template # the lights aren't already on
-        value_template: "{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} "
+      # - condition: template # the lights aren't already on
+      #   value_template: "{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} "
       - condition: state # someone hasn't disabled the interior motion feature
         entity_id: input_boolean.disable_interior_on_motion
         state: "off"
@@ -328,7 +327,7 @@
     - service: light.turn_on
       data:
         entity_id: light.kitchen_cabinet_lights
-        brightness: 65
+        brightness: 100
 
 ##########################################################
 ## Interior - Turn off cabinet lights at sunrise if they are still on
