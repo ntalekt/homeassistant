@@ -18,11 +18,23 @@
   action:
     # porches and side entrance lights
     - service: light.turn_on
-      entity_id: light.exterior_porch_lights
+      entity_id: light.front_bulb
       data:
-        brightness_pct: 100
-        transition: 60
-        kelvin: 3425
+        kelvin: 3500
+        brightness: 50
+    - service: light.turn_on
+      entity_id: light.side_bulb
+      data:
+        kelvin: 3500
+        brightness: 50
+    - service: light.turn_on
+      entity_id: light.front_porch
+      data:
+        brightness: 255
+    - service: light.turn_on
+      entity_id: light.side
+      data:
+        brightness: 255
     # front/back 12v landscape lights
     - service: switch.turn_on
       entity_id: switch.outdoor_outdoor1
@@ -30,24 +42,24 @@
     - service: light.turn_on
       entity_id: light.outdoor_string
       data:
-        brightness_pct: 100
+        brightness: 255
     # exterior flood lights
     - service: light.turn_on
       entity_id: light.exterior_flood_lights
       data:
-        brightness_pct: 100
-        kelvin: 3425
+        kelvin: 4000
+        brightness: 255
     # spotlights
     - service: light.turn_on
       entity_id: light.front_spotlight
       data:
-        brightness_pct: 100
-        kelvin: 3425
+        kelvin: 4000
+        brightness: 255
     - service: light.turn_on
       entity_id: light.front_spotlight2
       data:
-        brightness_pct: 100
-        kelvin: 3425
+        kelvin: 4000
+        brightness: 255
     # spa and pool light
     - service: light.turn_on
       entity_id: light.lights
@@ -86,14 +98,12 @@
     - service: light.turn_on
       entity_id: light.exterior_porch_bulbs
       data:
-        brightness_pct: 15
-        transition: 60
+        brightness: 10
     # flood lights
     - service: light.turn_on
       entity_id: light.exterior_flood_lights
       data:
-        brightness_pct: 15
-        transition: 60
+        brightness: 50
     # spotlights
     - service: light.turn_on
       entity_id: light.front_spotlight
