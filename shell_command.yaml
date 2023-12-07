@@ -22,6 +22,14 @@
   timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
   timelapse_create_REDACTED_yt: "/config/timelapse/bin/createYoutube.sh REDACTED"
 
+  timelapse_nsf_spacecoast: "/config/timelapse/bin/createFrame.sh nsf_spacecoast https://www.youtube.com/watch?v=REDACTED America/New_York"
+  timelapse_create_nsf_spacecoast: "/config/timelapse/bin/createDailyTimelapse.sh nsf_spacecoast"
+  timelapse_create_nsf_spacecoast_yt: "/config/timelapse/bin/createYoutube.sh nsf_spacecoast"
+
+  timelapse_nsf_mcgregor: "/config/timelapse/bin/createFrame.sh nsf_mcgregor https://www.youtube.com/watch?v=REDACTED America/Chicago"
+  timelapse_create_nsf_mcgregor: "/config/timelapse/bin/createDailyTimelapse.sh nsf_mcgregor"
+  timelapse_create_nsf_mcgregor_yt: "/config/timelapse/bin/createYoutube.sh nsf_mcgregor"
+
   timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED America/Chicago"
   timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
   timelapse_create_REDACTED_yt: "/config/timelapse/bin/createYoutube.sh REDACTED"
@@ -34,16 +42,21 @@
   timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"  
   timelapse_create_REDACTED_yt: "/config/timelapse/bin/createYoutube.sh REDACTED"
 
+  #timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED Etc/UTC"
   timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED Etc/UTC"
   timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
   timelapse_create_REDACTED_yt: "/config/timelapse/bin/createYoutube.sh REDACTED"
 
-  timelapse_back: "/config/timelapse/bin/createFrame.sh back rtsp://frigate.REDACTED:8554/back"
-  timelapse_front: "/config/timelapse/bin/createFrame.sh front rtsp://frigate.REDACTED:8554/front"
-  timelapse_garage: "/config/timelapse/bin/createFrame.sh garage rtsp://frigate.REDACTED:8554/garage"
-  timelapse_shop: "/config/timelapse/bin/createFrame.sh shop rtsp://frigate.REDACTED:8554/shop"
-  timelapse_nature: "/config/timelapse/bin/createFrame.sh nature rtsp://frigate.REDACTED:8554/nature"
-  timelapse_nature2: "/config/timelapse/bin/createFrame.sh nature2 rtsp://frigate.REDACTED:8554/nature2"
+  timelapse_kabukicho_shinjuku: "/config/timelapse/bin/createFrame.sh kabukicho_shinjuku https://www.youtube.com/watch?v=REDACTED Asia/Tokyo"
+  timelapse_create_kabukicho_shinjuku: "/config/timelapse/bin/createDailyTimelapse.sh kabukicho_shinjuku"
+  timelapse_create_kabukicho_shinjuku_yt: "/config/timelapse/bin/createYoutube.sh kabukicho_shinjuku"
+
+  timelapse_back: "/config/timelapse/bin/createFrame.sh back rtsp://frigate.REDACTED.com:8554/back"
+  timelapse_front: "/config/timelapse/bin/createFrame.sh front rtsp://frigate.REDACTED.com:8554/front"
+  timelapse_garage: "/config/timelapse/bin/createFrame.sh garage rtsp://frigate.REDACTED.com:8554/garage"
+  timelapse_shop: "/config/timelapse/bin/createFrame.sh shop rtsp://frigate.REDACTED.com:8554/shop"
+  timelapse_nature: "/config/timelapse/bin/createFrame.sh nature rtsp://frigate.REDACTED.com:8554/nature"
+  timelapse_nature2: "/config/timelapse/bin/createFrame.sh nature2 rtsp://frigate.REDACTED.com:8554/nature2"
 
   ##########################################################
   ## time lapse archive

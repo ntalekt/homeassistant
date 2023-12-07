@@ -45,9 +45,59 @@
 - alias: timelapse_REDACTED_create_yt
   trigger:
     - platform: time
-      at: "02:35:00"
+      at: "02:45:00"
   action:
     service: shell_command.timelapse_create_REDACTED_yt
+
+  ##########################################################
+  ## yt nsf_spacecoast
+  ##########################################################
+
+- alias: timelapse_nsf_spacecoast
+  trigger:
+    - platform: time_pattern
+      minutes: "/1"
+  action:
+    service: shell_command.timelapse_nsf_spacecoast
+
+- alias: timelapse_nsf_spacecoast_create
+  trigger:
+    - platform: time
+      at: "01:05:00"
+  action:
+    service: shell_command.timelapse_create_nsf_spacecoast
+
+- alias: timelapse_nsf_spacecoast_create_yt
+  trigger:
+    - platform: time
+      at: "01:45:00"
+  action:
+    service: shell_command.timelapse_create_nsf_spacecoast_yt
+
+  ##########################################################
+  ## yt nsf_mcgregor
+  ##########################################################
+
+- alias: timelapse_nsf_mcgregor
+  trigger:
+    - platform: time_pattern
+      minutes: "/1"
+  action:
+    service: shell_command.timelapse_nsf_mcgregor
+
+- alias: timelapse_nsf_mcgregor_create
+  trigger:
+    - platform: time
+      at: "04:05:00"
+  action:
+    service: shell_command.timelapse_create_nsf_mcgregor
+
+- alias: timelapse_nsf_mcgregor_create_yt
+  trigger:
+    - platform: time
+      at: "04:45:00"
+  action:
+    service: shell_command.timelapse_create_nsf_mcgregor_yt
 
   ##########################################################
   ## yt REDACTED
@@ -63,14 +113,14 @@
 - alias: REDACTED_create
   trigger:
     - platform: time
-      at: "02:25:00"
+      at: "01:25:00"
   action:
     service: shell_command.timelapse_create_REDACTED
     
 - alias: REDACTED_create_yt
   trigger:
     - platform: time
-      at: "02:55:00"
+      at: "01:55:00"
   action:
     service: shell_command.timelapse_create_REDACTED_yt
 
@@ -86,17 +136,17 @@
     service: shell_command.timelapse_REDACTED
 
 - alias: REDACTED_create
+  trigger:
+    - platform: time
+      at: "03:05:00"
+  action:
+    service: shell_command.timelapse_create_REDACTED
+
+- alias: REDACTED_create_yt
   trigger:
     - platform: time
       at: "03:45:00"
   action:
-    service: shell_command.timelapse_create_REDACTED
-
-- alias: REDACTED_create_yt
-  trigger:
-    - platform: time
-      at: "04:15:00"
-  action:
     service: shell_command.timelapse_create_REDACTED_yt
 
   ##########################################################
@@ -113,14 +163,14 @@
 - alias: REDACTED_create
   trigger:
     - platform: time
-      at: "01:05:00"
+      at: "00:05:00"
   action:
     service: shell_command.timelapse_create_REDACTED
 
 - alias: REDACTED_create_yt
   trigger:
     - platform: time
-      at: "01:35:00"
+      at: "00:45:00"
   action:
     service: shell_command.timelapse_create_REDACTED_yt
 
@@ -145,7 +195,7 @@
 - alias: REDACTED_create_yt
   trigger:
     - platform: time
-      at: "15:35:00"
+      at: "15:45:00"
   action:
     service: shell_command.timelapse_create_REDACTED_yt
 
@@ -170,6 +220,6 @@
 - alias: REDACTED_create_yt
   trigger:
     - platform: time
-      at: "18:35:00"
+      at: "18:45:00"
   action:
     service: shell_command.timelapse_create_REDACTED_yt
