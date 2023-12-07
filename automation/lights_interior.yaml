@@ -318,6 +318,9 @@
       - condition: state # it's dark outside
         entity_id: sensor.dark_outside
         state: "True"
+      - condition: state
+        entity_id: sun.sun
+        state: "below_horizon"
       # - condition: template # the lights aren't already on
       #   value_template: "{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} "
       - condition: state # someone hasn't disabled the interior motion feature

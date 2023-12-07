@@ -21,12 +21,12 @@
       entity_id: light.front_bulb
       data:
         kelvin: 3500
-        brightness: 50
+        brightness: 80
     - service: light.turn_on
       entity_id: light.side_bulb
       data:
         kelvin: 3500
-        brightness: 50
+        brightness: 80
     - service: light.turn_on
       entity_id: light.front_porch
       data:
@@ -66,10 +66,10 @@
       data:
         effect: Romance
     # govee H7012 sometimes doesn't turn on
-    - delay: 0:30
+    - delay: 5:00
     - service: light.turn_on
       entity_id: light.outdoor_string
-    - delay: 0:30
+    - delay: 5:00
     - service: light.turn_on
       entity_id: light.outdoor_string
 
