@@ -75,10 +75,24 @@ def getStreamSource(entry, hdStream):
     return streamURL
 
 
+def pytapoLog(msg):
+    LOGGER.debug(f"[pytapo] {msg}")
+
+
 def registerController(
     host, username, password, password_cloud="", super_secret_key="", device_id=None
 ):
-    return Tapo(host, username, password, password_cloud, super_secret_key, device_id)
+    return Tapo(
+        host,
+        username,
+        password,
+        password_cloud,
+        super_secret_key,
+        device_id,
+        reuseSession=False,
+        printDebugInformation=pytapoLog,
+        retryStok=False,
+    )
 
 
 def isOpen(ip, port):
@@ -1034,6 +1048,14 @@ async def getCamData(hass, controller):
         speakerVolume = None
     camData["speakerVolume"] = speakerVolume
 
+    try:
+        autoUpgradeEnabled = data["getFirmwareAutoUpgradeConfig"]["auto_upgrade"][
+            "common"
+        ]["enabled"]
+    except Exception:
+        autoUpgradeEnabled = None
+    camData["autoUpgradeEnabled"] = autoUpgradeEnabled
+
     LOGGER.debug("getCamData - done")
     LOGGER.debug("Processed update data:")
     LOGGER.debug(camData)
@@ -1288,6 +1310,8 @@ def pytapoFunctionMap(pytapoFunctionName):
         return ["getLdc"]
     elif pytapoFunctionName == "getAudioConfig":
         return ["getAudioConfig"]
+    elif pytapoFunctionName == "getFirmwareAutoUpgradeConfig":
+        return ["getFirmwareAutoUpgradeConfig"]
     return []
 
 
