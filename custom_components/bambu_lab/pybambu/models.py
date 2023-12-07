@@ -14,7 +14,9 @@ from .utils import \
     get_sw_version, \
     get_start_time, \
     get_end_time, \
-    get_HMS_error_text
+    get_HMS_error_text, \
+    get_generic_AMS_HMS_error_code
+    
 from .const import LOGGER, Features, FansEnum, SPEED_PROFILE
 from .commands import CHAMBER_LIGHT_ON, CHAMBER_LIGHT_OFF, SPEED_PROFILE_TEMPLATE
 
@@ -35,6 +37,8 @@ class Device:
         self._active_tray = None
         self.push_all_data = None
         self.get_version_data = None
+        if self.supports_feature(Features.CAMERA_IMAGE):
+            self.p1p_camera = P1PCamera(client)
 
     def print_update(self, data):
         """Update from dict"""
@@ -67,7 +71,7 @@ class Device:
             case Features.CHAMBER_LIGHT:
                 return True
             case Features.CHAMBER_FAN:
-                return self.info.device_type == "X1" or self.info.device_type == "X1C" or self.info.device_type == "P1S"
+                return self.info.device_type == "X1" or self.info.device_type == "X1C" or self.info.device_type == "P1P" or self.info.device_type == "P1S"
             case Features.CHAMBER_TEMPERATURE:
                 return self.info.device_type == "X1" or self.info.device_type == "X1C"
             case Features.CURRENT_STAGE:
@@ -79,15 +83,17 @@ class Device:
             case Features.EXTERNAL_SPOOL:
                 return True
             case Features.K_VALUE:
-                return self.info.device_type == "P1P" or self.info.device_type == "P1S"
+                return self.info.device_type == "P1P" or self.info.device_type == "P1S" or self.info.device_type == "A1Mini"
             case Features.START_TIME:
                 return self.info.device_type == "X1" or self.info.device_type == "X1C"
             case Features.START_TIME_GENERATED:
-                return self.info.device_type == "P1P" or self.info.device_type == "P1S"
+                return self.info.device_type == "P1P" or self.info.device_type == "P1S" or self.info.device_type == "A1Mini"
             case Features.AMS_TEMPERATURE:
                 return self.info.device_type == "X1" or self.info.device_type == "X1C"
             case Features.CAMERA_RTSP:
                 return self.info.device_type == "X1" or self.info.device_type == "X1C"
+            case Features.CAMERA_IMAGE:
+                return (self.client.host != "us.mqtt.bambulab.com") and (self.info.device_type == "P1P" or self.info.device_type == "P1S" or self.info.device_type == "A1Mini")
         return False
     
     def get_active_tray(self):
@@ -96,10 +102,9 @@ class Device:
                 return None
             if self.ams.tray_now == 254:
                 return self.external_spool
-            for ams in self.ams.data:
-                active_ams = self.ams.data[math.floor(self.ams.tray_now / 4)]
-                active_tray = self.ams.tray_now % 4
-                return active_ams.tray[active_tray]
+            active_ams = self.ams.data[math.floor(self.ams.tray_now / 4)]
+            active_tray = self.ams.tray_now % 4
+            return active_ams.tray[active_tray]
         else:
             return self.external_spool
 
@@ -483,7 +488,7 @@ class AMSList:
         # what devices to add to humidity_index assistant and add all the sensors as entities. And then then json payload data
         # to populate the values for all those entities.
 
-        # The module entries are of this form:
+        # The module entries are of this form (P1/X1):
         # {
         #     "name": "ams/0",
         #     "project_name": "",
@@ -493,20 +498,36 @@ class AMSList:
         #     "hw_ver": "AMS08",
         #     "sn": "<SERIAL>"
         # }
+        # AMS Lite of the form:
+        # {
+        #   "name": "ams_f1/0",
+        #   "project_name": "",
+        #   "sw_ver": "00.00.07.89",
+        #   "loader_ver": "00.00.00.00",
+        #   "ota_ver": "00.00.00.00",
+        #   "hw_ver": "AMS_F102",
+        #   "sn": "**REDACTED**"
+        # }
 
         received_ams_info = False
         module_list = data.get("module", [])
         for module in module_list:
             name = module["name"]
+            index = -1
             if name.startswith("ams/"):
                 index = int(name[4])
+            elif name.startswith("ams_f1/"):
+                index = int(name[7])
+            
+            if index != -1:
                 # Sometimes we get incomplete version data. We have to skip if that occurs since the serial number is
                 # requires as part of the home assistant device identity.
                 if not module['sn'] == '':
-                    # May get data before info so create entry if necessary
-                    if len(self.data) <= index:
+                    # May get data before info so create entries if necessary
+                    while len(self.data) <= index:
                         received_ams_info = True
                         self.data.append(AMSInstance())
+
                     if self.data[index].serial != module['sn']:
                         received_ams_info = True
                         self.data[index].serial = module['sn']
@@ -551,6 +572,7 @@ class AMSList:
         #                     "bed_temp": "0",
         #                     "nozzle_temp_max": "240",
         #                     "nozzle_temp_min": "190",
+        #                     "remain": 100,
         #                     "xcam_info": "000000000000000000000000",
         #                     "tray_uuid": "00000000000000000000000000000000"
         #                 },
@@ -591,8 +613,9 @@ class AMSList:
                 received_ams_data = True
                 index = int(ams['id'])
                 # May get data before info so create entry if necessary
-                if len(self.data) <= index:
+                while len(self.data) <= index:
                     self.data.append(AMSInstance())
+
                 self.data[index].humidity_index = int(ams['humidity'])
                 self.data[index].temperature = float(ams['temp'])
 
@@ -619,7 +642,9 @@ class AMSTray:
         self.color = "00000000"  # RRGGBBAA
         self.nozzle_temp_min = 0
         self.nozzle_temp_max = 0
+        self.remain = 0
         self.k = 0
+        self.tag_uid = "0000000000000000"
 
     def print_update(self, data):
         if len(data) == 1:
@@ -632,6 +657,8 @@ class AMSTray:
             self.color = "00000000"  # RRGGBBAA
             self.nozzle_temp_min = 0
             self.nozzle_temp_max = 0
+            self.remain = 0
+            self.tag_uid = "0000000000000000"
             self.k = 0
         else:
             self.empty = False
@@ -642,6 +669,8 @@ class AMSTray:
             self.color = data.get('tray_color', self.color)
             self.nozzle_temp_min = data.get('nozzle_temp_min', self.nozzle_temp_min)
             self.nozzle_temp_max = data.get('nozzle_temp_max', self.nozzle_temp_max)
+            self.remain = data.get('remain', self.remain)
+            self.tag_uid = data.get('tag_uid', self.tag_uid)
             self.k = data.get('k', self.k)
 
 
@@ -673,6 +702,7 @@ class ExternalSpool(AMSTray):
         #     "bed_temp": "0",
         #     "nozzle_temp_max": "280",
         #     "nozzle_temp_min": "240",
+        #     "remain": 100,
         #     "xcam_info": "000000000000000000000000",
         #     "tray_uuid": "00000000000000000000000000000000",
         #     "remain": 0,
@@ -730,16 +760,22 @@ class Speed:
 class StageAction:
     """Return Stage Action information"""
     _id: int
+    _print_type: str
     description: str
 
     def __init__(self):
         """Load from dict"""
-        self._id = 99
+        self._id = 255
+        self._print_type = ""
         self.description = get_stage_action(self._id)
 
     def print_update(self, data):
         """Update from dict"""
+        self._print_type = data.get("print_type", self._print_type)
         self._id = int(data.get("stg_cur", self._id))
+        if (self._print_type == "idle") and (self._id == 0):
+            # On boot the printer reports stg_cur == 0 incorrectly instead of 255. Attempt to correct for this.
+            self._id = 255
         self.description = get_stage_action(self._id)
 
 
@@ -770,8 +806,7 @@ class HMSList:
             hmsList = data.get('hms', [])
             self.count = len(hmsList)
             errors = {}
-            if self.count != 0:
-                errors["Count"] = self.count
+            errors["Count"] = self.count
 
             index: int = 0
             for hms in hmsList:
@@ -781,9 +816,23 @@ class HMSList:
                 hms_error = f'{int(attr / 0x10000):0>4X}_{attr & 0xFFFF:0>4X}_{int(code / 0x10000):0>4X}_{code & 0xFFFF:0>4X}'  # 0300_0100_0001_0007
                 LOGGER.warning(f"HMS ERROR: HMS_{hms_error} : {get_HMS_error_text(hms_error)}")
                 errors[f"{index}-Error"] = f"HMS_{hms_error}: {get_HMS_error_text(hms_error)}"
-                errors[f"{index}-Wiki"] = f"https://wiki.bambulab.com/en/x1/troubleshooting/hmscode/{hms_error}"
+                errors[f"{index}-Wiki"] = f"https://wiki.bambulab.com/en/x1/troubleshooting/hmscode/{get_generic_AMS_HMS_error_code(hms_error)}"
 
             if self.errors != errors:
                 self.errors = errors
                 if self.client.callback is not None:
                     self.client.callback("event_hms_errors")
+
+@dataclass
+class P1PCamera:
+    """Returns the latest jpeg date from the P1P camera"""
+    def __init__(self, client):
+        self.client = client
+        self._bytes = bytearray()
+
+    def on_jpeg_received(self, bytes):
+        self._bytes = bytes
+        self.client.callback("p1p_jpeg_received")
+    
+    def get_jpeg(self) -> bytearray:
+        return self._bytes
