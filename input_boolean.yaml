@@ -209,7 +209,6 @@ disable_auto_purifier_mode:
 
 interior_holiday:
   name: Interior Holiday Lighting Mode
-  initial: off
   icon: mdi:gift
 
 exterior_holiday:
