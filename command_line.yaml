@@ -13,7 +13,7 @@
 
 - sensor:
     name: useronesface channel views
-    command: curl -s "https://www.youtube.com/@useronesface/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.contents.twoColumnBrowseResultsRenderer.tabs[6].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].channelAboutFullMetadataRenderer.viewCountText.simpleText' | sed 's/[^0-9]*//g'
+    command: curl -s "https://www.youtube.com/@useronesface/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.onResponseReceivedEndpoints[].showEngagementPanelEndpoint.engagementPanel.engagementPanelSectionListRenderer.content.sectionListRenderer.contents[].itemSectionRenderer.contents[].aboutChannelRenderer.metadata.aboutChannelViewModel.viewCountText' | sed 's/[^0-9]*//g'
     scan_interval: 60
 
 - sensor:
@@ -28,7 +28,7 @@
 
 - sensor:
     name: REDACTED channel views
-    command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.contents.twoColumnBrowseResultsRenderer.tabs[5].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].channelAboutFullMetadataRenderer.viewCountText.simpleText' | sed 's/[^0-9]*//g' 
+    command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.onResponseReceivedEndpoints[].showEngagementPanelEndpoint.engagementPanel.engagementPanelSectionListRenderer.content.sectionListRenderer.contents[].itemSectionRenderer.contents[].aboutChannelRenderer.metadata.aboutChannelViewModel.viewCountText' | sed 's/[^0-9]*//g'
     scan_interval: 60
 
 - sensor:
