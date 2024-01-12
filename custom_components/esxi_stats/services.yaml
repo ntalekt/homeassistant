@@ -1,4 +1,34 @@
+---
+host_power:
+  name: ESXi Host Power
+  description: Sends power commands to vCenter/ESXi Host
+  fields:
+    host:
+      description: Host/vCenter target
+      example: REDACTED
+    command:
+      description: Power command to run against ESXi host
+      example: 'reboot,shutdown'
+    force:
+      description: |
+        Flag to specify whether or not the host should be shut down/rebooted regardless
+        of whether it is in maintenance mode. If true, the host is shut down/rebooted,
+        even if there are virtual machines running or other operations in progress.
+      example: 'true, false'
+
+host_power_policy:
+  name: Host Power Policy
+  description: Changes ESXi Host Power Policy
+  fields:
+    host:
+      description: Host on which to change Power Policy
+      example: REDACTED
+    command:
+      description: Type of power policy to apply
+      example: 'balanced'
+
 vm_power:
+  name: Virtual Machine Power
   description: Sends Virtual Machine power commands to vCenter/ESXi Host
   fields:
     host:
@@ -12,7 +42,10 @@ vm_power:
       example: 'on,off,reboot,reset,shutdown,suspend'
 
 create_snapshot:
-  description: Sends a command to vCenter/ESXi Host to take a Virtual Machine snapshot. For detailed information about snapshots see https://kb.vmware.com/s/article/1015180
+  name: Create Virtual Machine Snapshot
+  description: |
+    Sends a command to vCenter/ESXi Host to take a Virtual Machine snapshot. For
+    detailed information about snapshots see https://kb.vmware.com/s/article/1015180
   fields:
     host:
       description: Host/vCenter where a Virtual Machine resides
@@ -30,11 +63,15 @@ create_snapshot:
       description: (OPTIONAL) Take snapshot with memory dump
       example: 'true/false (default: false)'
     quiesce:
-      description: (OPTIONAL) Quiesce VM's file system. Only used if VM is running and VM Tools are installed.
+      description: |
+        (OPTIONAL) Quiesce VM's file system.
+        Only used if VM is running and VM Tools are installed.
       example: 'true/false (default: false)'
 
 remove_snapshot:
-  description: Sends a command to vCenter/ESXi Host to remove a Virtual Machine snapshot
+  name: Remove Virtual Machine Snapshot
+  description: |
+    Sends a command to vCenter/ESXi Host to remove a Virtual Machine snapshot
   fields:
     host:
       description: Host/vCenter where a Virtual Machine resides

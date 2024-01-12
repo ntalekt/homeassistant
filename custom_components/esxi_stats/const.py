@@ -1,6 +1,6 @@
 """Constants for ESXi Stats."""
 DOMAIN = "esxi_stats"
-DOMAIN_DATA = "{}_data".format(DOMAIN)
+DOMAIN_DATA = f"{DOMAIN}_data"
 
 PLATFORMS = ["sensor"]
 REQUIRED_FILES = [
@@ -12,7 +12,7 @@ REQUIRED_FILES = [
     "services.yaml",
     "translations/en.json",
 ]
-VERSION = "0.6.3"
+VERSION = "0.7.0"
 ISSUE_URL = "https://github.com/wxt9861/esxi_stats/issues"
 
 STARTUP = """
@@ -30,6 +30,7 @@ CONF_DS_STATE = "datastore"
 CONF_HOST_STATE = "vmhost"
 CONF_LIC_STATE = "license"
 CONF_VM_STATE = "vm"
+CONF_NOTIFY = "notify"
 
 # DEFAULT_NAME = "ESXi Stats"
 DEFAULT_NAME = "ESXi"
@@ -44,7 +45,8 @@ DEFAULT_OPTIONS = {
     "datastore": "free_space_gb",
     "vmhost": "vms",
     "license": "status",
-    "vm": "state"
+    "vm": "state",
+    "notify": "true",
 }
 
 DATASTORE_STATES = [
@@ -55,17 +57,15 @@ DATASTORE_STATES = [
     "virtual _machines",
 ]
 
-LICENSE_STATES = [
-    "expiration_days",
-    "status"
-]
+LICENSE_STATES = ["expiration_days", "status"]
 
 VMHOST_STATES = [
     "cpuusage_ghz",
     "memusage_gb",
     "state",
     "uptime_hours",
-    "vms"
+    "vms",
+    "shutdown_supported",
 ]
 
 VM_STATES = [
@@ -75,7 +75,7 @@ VM_STATES = [
     "status",
     "state",
     "uptime_hours",
-    "used_space_gb"
+    "used_space_gb",
 ]
 
 MAP_TO_MEASUREMENT = {
@@ -87,12 +87,14 @@ MAP_TO_MEASUREMENT = {
     "total_space_gb": "Total (GB)",
     "uptime_hours": "Uptime (H)",
     "virtual_machines": "VMs",
-    "vms": "VMs"
+    "vms": "VMs",
 }
 
 SUPPORTED_PRODUCTS = ["VMware ESX Server", "VMware VirtualCenter Server"]
 AVAILABLE_CMND_VM_POWER = ["on", "off", "reboot", "reset", "shutdown", "suspend"]
 AVAILABLE_CMND_VM_SNAP = ["all", "first", "last"]
+AVAILABLE_CMND_HOST_POWER = ["shutdown", "reboot"]
 HOST = "host"
 VM = "vm"
 COMMAND = "command"
+FORCE = "force"

@@ -1,19 +1,17 @@
 """Adds config flow for ESXi Stats."""
 import logging
 from collections import OrderedDict
-
 import voluptuous as vol
 
 from homeassistant import config_entries
 from homeassistant.core import callback
-
-# from homeassistant.helpers import aiohttp_client
 
 from .const import (
     CONF_DS_STATE,
     CONF_HOST_STATE,
     CONF_LIC_STATE,
     CONF_VM_STATE,
+    CONF_NOTIFY,
     DOMAIN,
     DEFAULT_PORT,
     DEFAULT_DS_STATE,
@@ -23,7 +21,7 @@ from .const import (
     DATASTORE_STATES,
     LICENSE_STATES,
     VMHOST_STATES,
-    VM_STATES
+    VM_STATES,
 )
 from .esxi import esx_connect, esx_disconnect
 
@@ -48,7 +46,9 @@ class ESXIiStatslowHandler(config_entries.ConfigFlow):
         """Initialize."""
         self._errors = {}
 
-    async def async_step_user(self, user_input={}):
+    async def async_step_user(
+        self, user_input={}
+    ):  # pylint: disable=dangerous-default-value
         """Handle a flow initialized by the user."""
         self._errors = {}
         if self.hass.data.get(DOMAIN):
@@ -157,7 +157,7 @@ class ESXIiStatslowHandler(config_entries.ConfigFlow):
 
 
 class ESXiStatsOptionsFlow(config_entries.OptionsFlow):
-    """Handle ESXi Stats options"""
+    """Handle ESXi Stats options."""
 
     def __init__(self, config_entry):
         """Initialize ESXi Stats options flow."""
@@ -175,6 +175,7 @@ class ESXiStatsOptionsFlow(config_entries.OptionsFlow):
             self.options[CONF_DS_STATE] = user_input[CONF_DS_STATE]
             self.options[CONF_LIC_STATE] = user_input[CONF_LIC_STATE]
             self.options[CONF_VM_STATE] = user_input[CONF_VM_STATE]
+            self.options[CONF_NOTIFY] = user_input[CONF_NOTIFY]
             return self.async_create_entry(title="", data=self.options)
 
         return self.async_show_form(
@@ -205,6 +206,10 @@ class ESXiStatsOptionsFlow(config_entries.OptionsFlow):
                             CONF_VM_STATE, DEFAULT_VM_STATE
                         ),
                     ): vol.In(VM_STATES),
+                    vol.Optional(
+                        CONF_NOTIFY,
+                        default=self.config_entry.options.get(CONF_NOTIFY, True),
+                    ): bool,
                 }
             ),
         )

@@ -69,11 +69,12 @@ class esxiSensor(Entity):
             )
         else:
             self._state = self._data[self._options[self._cond]]
-            self._measurement = measureFormat(self._options[self._cond])
+            self._measurement = measure_format(self._options[self._cond])
 
         # Set attributes
         for key, value in self._data.items():
-            self._attr[key] = value
+            if key != "uuid":
+                self._attr[key] = value
 
     @property
     def unique_id(self):
@@ -90,7 +91,7 @@ class esxiSensor(Entity):
     @property
     def name(self):
         """Return the name of the sensor."""
-        return "{} {} {}".format(DEFAULT_NAME, self._cond, self._obj)
+        return f"{DEFAULT_NAME} {self._cond} {self._obj}"
 
     @property
     def state(self):
@@ -121,7 +122,7 @@ class esxiSensor(Entity):
         }
 
 
-def measureFormat(input):
+def measure_format(input):
     """Return measurement in readable form."""
     if input in MAP_TO_MEASUREMENT.keys():
         return MAP_TO_MEASUREMENT[input]
