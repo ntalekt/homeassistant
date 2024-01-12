@@ -30,3 +30,5 @@ blueprints/
 govee_learning.yaml
 zigbee.db*
 www/winlab/*
+www/community/lovelace-card-mod/card-mod.js
+www/community/lovelace-card-mod/card-mod.js.gz
