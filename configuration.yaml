@@ -63,6 +63,7 @@ lovelace:
     - url: /hacsfiles/lovelace-layout-card/layout-card.js
       type: module
 
+mobile_app:
 rest_command: 
   office_air_purifier:
     url: https://developer-api.govee.com/v1/appliance/devices/control

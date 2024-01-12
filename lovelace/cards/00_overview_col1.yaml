@@ -8,24 +8,71 @@ cards:
 #    text: Presence
   - type: horizontal-stack
     cards:
-      - type: picture-entity
-        entity: device_tracker.userone_REDACTED
-        tap_action:
-          action: more-info
-        show_name: false
-        image: /local/r.jpg
-      - type: picture-entity
-        entity: device_tracker.REDACTED_REDACTED
-        tap_action:
-          action: more-info
-        show_name: false
-        image: /local/n.jpg
-      - type: picture-entity
-        entity: device_tracker.userthree_REDACTED
-        tap_action:
-          action: more-info
-        show_name: false
-        image: /local/p.jpg
+
+    - type: picture-elements
+      image: /local/r.jpg
+      elements:
+      - type: state-label
+        entity: person.userone
+        style:
+          bottom: 0
+          left: 0
+          pointer-events: none
+          font-size: 18px
+          transform: initial
+          background-color: rgba(0, 0, 0, 0.3)
+          width: 100%
+          color: white
+          line-height: 32px
+          padding: 0px 5px
+      - type: state-icon
+        entity: sensor.userone_pixel_battery_level
+        style:
+          bottom: 0
+          right: 0
+          transform: initial
+          padding: 5px 0px
+
+    - type: picture-elements
+      image: /local/n.jpg
+      elements:
+      - type: state-label
+        entity: person.usertwo
+        style:
+          bottom: 0
+          left: 0
+          pointer-events: none
+          font-size: 18px
+          transform: initial
+          background-color: rgba(0, 0, 0, 0.3)
+          width: 100%
+          color: white
+          line-height: 32px
+          padding: 0px 5px
+      - type: state-icon
+        entity: sensor.usertwos_iphone_2_battery_level
+        style:
+          bottom: 0
+          right: 0
+          transform: initial
+          padding: 5px 0px
+
+    - type: picture-elements
+      image: /local/p.jpg
+      elements:
+      - type: state-label
+        entity: person.userthree
+        style:
+          bottom: 0
+          left: 0
+          pointer-events: none
+          font-size: 18px
+          transform: initial
+          background-color: rgba(0, 0, 0, 0.3)
+          width: 100%
+          color: white
+          line-height: 32px
+          padding: 0px 5px
     ##########################################################
     ## Ring front door camera
     ##########################################################

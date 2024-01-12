@@ -8,6 +8,8 @@ household:
     - device_tracker.userone_REDACTED
     - device_tracker.REDACTED_REDACTED
     - device_tracker.userthree_REDACTED
+    - device_tracker.userthree_iphone
+    - device_tracker.pixel_7_2
 
 landscape lights:
   name: landscape Lights

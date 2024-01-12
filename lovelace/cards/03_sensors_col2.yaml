@@ -99,8 +99,8 @@ cards:
     - type: entities
       title: Battery Levels
       entities:
-        - sensor.userone_phone_battery
-        - sensor.usertwo_phone_battery
+        - sensor.userone_pixel_battery_level
+        - sensor.usertwos_iphone_2_battery_level
         - sensor.userthree_phone_battery
         - sensor.userthree_temp_battery
         - sensor.userfour_temp_battery
