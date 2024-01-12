@@ -484,9 +484,9 @@
       - condition: state
         entity_id: input_boolean.disable_notification_school
         state: "off"
-      - condition: state
-        entity_id: device_tracker.userthree_REDACTED
-        state: "REDACTED"
+      # - condition: state
+      #   entity_id: person.userthree
+      #   state: "REDACTED"
   action:
     - service: script.turn_on
       entity_id: script.say
@@ -519,9 +519,9 @@
       - condition: state
         entity_id: input_boolean.disable_notification_school
         state: "off"
-      - condition: state
-        entity_id: device_tracker.userthree_REDACTED
-        state: "REDACTED"
+      # - condition: state
+      #   entity_id: person.userthree
+      #   state: "REDACTED"
   action:
     - service: script.turn_on
       entity_id: script.say
@@ -593,9 +593,9 @@
       - condition: state
         entity_id: input_boolean.school_early_dismissal_mode
         state: "on"
-      - condition: state
-        entity_id: device_tracker.userthree_REDACTED
-        state: "REDACTED"
+      # - condition: state
+      #   entity_id: person.userthree
+      #   state: "REDACTED"
   action:
     - service: script.turn_on
       entity_id: script.say
@@ -617,7 +617,7 @@
 - alias: notification audio usertwo arrived at REDACTED
   trigger:
     - platform: state
-      entity_id: device_tracker.REDACTED_REDACTED
+      entity_id: person.usertwo
       to: 'Work'
   condition:
     condition: and
@@ -646,7 +646,7 @@
 - alias: notification audio usertwo arrived at REDACTED
   trigger:
     - platform: state
-      entity_id: device_tracker.REDACTED_REDACTED
+      entity_id: person.usertwo
       to: 'REDACTED'
   condition:
     condition: and
@@ -676,15 +676,15 @@
 - alias: notification audio usertwo left Work
   trigger:
     - platform: state
-      entity_id: device_tracker.REDACTED_REDACTED
+      entity_id: person.usertwo
       from: 'Work'
       to: 'not_home'
     - platform: state
-      entity_id: device_tracker.REDACTED_REDACTED
+      entity_id: person.usertwo
       from: 'Work'
       to: 'Driving'
     - platform: state
-      entity_id: device_tracker.REDACTED_REDACTED
+      entity_id: person.usertwo
       from: 'Work'
       to: 'Away'
   condition:
@@ -718,15 +718,15 @@
 - alias: notification audio usertwo left REDACTED
   trigger:
     - platform: state
-      entity_id: device_tracker.REDACTED_REDACTED
+      entity_id: person.usertwo
       from: 'REDACTED'
       to: 'not_home'
     - platform: state
-      entity_id: device_tracker.REDACTED_REDACTED
+      entity_id: person.usertwo
       from: 'REDACTED'
       to: 'Driving'
     - platform: state
-      entity_id: device_tracker.REDACTED_REDACTED
+      entity_id: person.usertwo
       from: 'REDACTED'
       to: 'Away'
   condition:

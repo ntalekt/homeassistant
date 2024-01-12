@@ -8,16 +8,16 @@
 
 - alias: occupancy living turn on if motion detected
   trigger:
-    - platform: state
-      #tapo motion
-      entity_id: binary_sensor.living_motion
-      from: "off"
-      to: "on"
-    - platform: state
-      #frigate motion
-      entity_id: binary_sensor.living_motion_2
-      from: "off"
-      to: "on"
+    # - platform: state
+    #   #tapo motion
+    #   entity_id: binary_sensor.living_motion
+    #   from: "off"
+    #   to: "on"
+    # - platform: state
+    #   #frigate motion
+    #   entity_id: binary_sensor.living_motion_2
+    #   from: "off"
+    #   to: "on"
     - platform: state
       #aqara motion sensor
       entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_iaszone_2
@@ -618,7 +618,7 @@
 - alias: work counter
   trigger:
     - platform: state
-      entity_id: device_tracker.userone_REDACTED
+      entity_id: person.userone
       to: 'Work'
       for:
         minutes: 5
