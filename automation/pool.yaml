@@ -31,3 +31,42 @@
         message: "Pool heater mode automatically disabled."
         target: "#pool"
 
+  ##########################################################
+  ## run pump to check current water temp
+  ##########################################################
+
+# - alias: "run pump to check current pool temp"
+#   trigger:
+#     - platform: time_pattern
+#       hours: "/3"
+#       minutes: 00
+#       seconds: 00
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: state
+#         entity_id: switch.spa
+#         state: 'off'
+#       - condition: state
+#         entity_id: switch.pool
+#         state: 'off'
+#       - condition: time
+#         after: '09:00'
+#         before: '21:00'
+#   action:
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.pool
+#     - service: notify.ntalekt
+#       data:
+#         message: "Pool turned on. {{ states.sensor.pool_last_temp.state }} °F"
+#         target: "#pool"
+#     - delay: '00:00:30'
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.pool
+#     - service: notify.ntalekt
+#       data:
+#         message: "Pool turned off. {{ states.sensor.pool_last_temp.state }} °F"
+#         target: "#pool"
+
