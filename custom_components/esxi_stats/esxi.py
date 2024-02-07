@@ -2,7 +2,7 @@
 
 """ESXi commands for ESXi Stats component."""
 import logging
-from pyVim.connect import SmartConnect, SmartConnectNoSSL
+from pyVim.connect import SmartConnect, Disconnect
 from pyVmomi import vim, vmodl  # pylint: disable=no-name-in-module
 
 from .const import SUPPORTED_PRODUCTS
@@ -17,8 +17,8 @@ def esx_connect(host, user, pwd, port, ssl):
     try:
         # connect depending on SSL_VERIFY setting
         if ssl is False:
-            service_instance = SmartConnectNoSSL(
-                host=host, user=user, pwd=pwd, port=port
+            service_instance = SmartConnect(
+                host=host, user=user, pwd=pwd, port=port, disableSslCertValidation=True
             )
             current_session = service_instance.content.sessionManager.currentSession.key
             _LOGGER.debug("Logged in - session %s", current_session)
@@ -39,7 +39,10 @@ def esx_disconnect(conn):
     if conn:
         current_session = conn.content.sessionManager.currentSession.key
         try:
-            conn._stub.pool[0][0].sock.shutdown(2)  # pylint: disable=protected-access
+            Disconnect(conn)
+            ## This is an old method to disconnect without leaving an active session on the ESXi host
+            ## Keeping this commented out, but will remove in future release
+            # conn._stub.pool[0][0].sock.shutdown(2)  # pylint: disable=protected-access
             _LOGGER.debug("Logged out - session %s", current_session)
         except Exception as error:  # pylint: disable=broad-except
             _LOGGER.debug(error)

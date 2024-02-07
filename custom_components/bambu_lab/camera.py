@@ -65,21 +65,24 @@ class BambuLabCamera(BambuLabEntity, Camera):
     
     @property
     def available(self) -> bool:
-        return self.coordinator.get_model().camera.rtsp_url is not None or "disable"
+        url = self.coordinator.get_model().camera.rtsp_url
+        return url != None and url != "disable"
 
     async def stream_source(self) -> str | None:
         if self.available:
             # rtsps://192.168.1.1/streaming/live/1
 
+            LOGGER.debug(f"Raw RTSP URL: {self.coordinator.get_model().camera.rtsp_url}")
             parsed_url = urlparse(self.coordinator.get_model().camera.rtsp_url)
-            if self.coordinator.get_model().info.mqtt_mode == "local":
+            split_host = parsed_url.netloc.split(':')
+            if self._host != "":
                 # For unknown reasons the returned rtsp URL sometimes has a completely incorrect IP address in it for the host.
-                # Since we know the correct IP (but only in local mqtt connection mode), rewrite the URL to have that.
-                url = fr"{parsed_url.scheme}://bblp:{self._access_code}@{self._host}{parsed_url.path}"
+                # If we have the host IP (may not in bambu cloud mode), rewrite the URL to have that.
+                port = "322" if (len(split_host) == 1) else split_host[1]
+                url = fr"{parsed_url.scheme}://bblp:{self._access_code}@{self._host}:{port}{parsed_url.path}"
             else:
                 url = fr"{parsed_url.scheme}://bblp:{self._access_code}@{parsed_url.netloc}{parsed_url.path}"
-
-            LOGGER.debug(f"Camera RTSP Feed is {url}")
+            LOGGER.debug(f"Adjusted RTSP URL: {url}")
             return str(url)
         LOGGER.debug("No RTSP Feed available")
         return None

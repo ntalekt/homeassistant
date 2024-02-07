@@ -16,7 +16,10 @@ from typing import Any
 import paho.mqtt.client as mqtt
 
 from .bambu_cloud import BambuCloud
-from .const import LOGGER, Features
+from .const import (
+    LOGGER,
+    Features,
+)
 from .models import Device
 from .commands import (
     GET_VERSION,
@@ -118,10 +121,10 @@ class ChamberImageThread(threading.Thread):
         #
         # Further attempts to receive data will get SSLWantReadError until a new image is ready (1-2 seconds later)
         while connect_attempts < MAX_CONNECT_ATTEMPTS and not self._stop_event.is_set():
+            connect_attempts += 1
             try:
                 with socket.create_connection((hostname, port)) as sock:
                     try:
-                        connect_attempts += 1
                         sslSock = ctx.wrap_socket(sock, server_hostname=hostname)
                         sslSock.write(auth_data)
                         img = None
@@ -195,6 +198,15 @@ class ChamberImageThread(threading.Thread):
                             LOGGER.error(f"{self._client._device.info.device_type}: UNEXPECTED DATA RECEIVED: {len(dr)}")
                             time.sleep(1)
 
+            except OSError as e:
+                if e.errno == 113:
+                    LOGGER.debug(f"{self._client._device.info.device_type}: Host is unreachable")
+                else:
+                    LOGGER.error(f"{self._client._device.info.device_type}: A Chamber Image thread outer exception occurred:")
+                    LOGGER.error(f"{self._client._device.info.device_type}: Exception. Type: {type(e)} Args: {e}")
+                if not self._stop_event.is_set():
+                    time.sleep(1)  # Avoid a tight loop if this is a persistent error.
+
             except Exception as e:
                 LOGGER.error(f"{self._client._device.info.device_type}: A Chamber Image thread outer exception occurred:")
                 LOGGER.error(f"{self._client._device.info.device_type}: Exception. Type: {type(e)} Args: {e}")
@@ -241,6 +253,10 @@ def mqtt_listen_thread(self):
             LOGGER.error("A listener loop thread exception occurred:")
             LOGGER.error(f"Exception. Type: {type(e)} Args: {e}")
             time.sleep(1)  # Avoid a tight loop if this is a persistent error.
+
+        if self.client is None:
+            break
+
         self.client.disconnect()
 
     LOGGER.info("MQTT listener thread exited.")
@@ -251,9 +267,10 @@ class BambuClient:
     """Initialize Bambu Client to connect to MQTT Broker"""
     _watchdog = None
     _camera = None
+    _usage_hours: float
 
     def __init__(self, device_type: str, serial: str, host: str, local_mqtt: bool, region: str, email: str,
-                 username: str, auth_token: str, access_code: str):
+                 username: str, auth_token: str, access_code: str, usage_hours: float = 0):
         self.callback = None
         self.host = host
         self._local_mqtt = local_mqtt
@@ -263,10 +280,11 @@ class BambuClient:
         self._username = username
         self._connected = False
         self._device_type = device_type
-        self._device = Device(self)
+        self._usage_hours = usage_hours
         self._port = 1883
         self._refreshed = False
         self._manual_refresh_mode = False
+        self._device = Device(self)
         self.bambu_cloud = BambuCloud(region, email, username, auth_token)
 
     @property
@@ -286,7 +304,7 @@ class BambuClient:
             self.disconnect()
         else:
             # Reconnect normally
-            await self.connect(self.callback)
+            self.connect(self.callback)
 
     def connect(self, callback):
         """Connect to the MQTT Broker"""
@@ -396,7 +414,6 @@ class BambuClient:
             if json_data.get("event"):
                 # These are events from the bambu cloud mqtt feed and allow us to detect when a local
                 # device has connected/disconnected (e.g. turned on/off)
-                LOGGER.debug(f"EVENT DATA: {message}")
                 if json_data.get("event").get("event") == "client.connected":
                     LOGGER.debug("Client connected event received.")
                     self._on_disconnect() # We aren't guaranteed to recieve a client.disconnected event.
@@ -442,7 +459,7 @@ class BambuClient:
         """Force refresh data"""
 
         if self._manual_refresh_mode:
-            await self.connect(self.callback)
+            self.connect(self.callback)
         else:
             LOGGER.debug("Force Refresh: Getting Version Info")
             self._refreshed = True
@@ -469,8 +486,8 @@ class BambuClient:
         result: queue.Queue[bool] = queue.Queue(maxsize=1)
 
         def on_message(client, userdata, message):
-            LOGGER.debug(f"Try Connection: Got '{message}'")
             json_data = json.loads(message.payload)
+            LOGGER.debug(f"Try Connection: Got '{json_data}'")
             if json_data.get("info") and json_data.get("info").get("command") == "get_version":
                 LOGGER.debug("Got Version Command Data")
                 self._device.info_update(data=json_data.get("info"))
