@@ -73,3 +73,32 @@
         entity_id:
           - switch.pi_hole1
           - switch.pi_hole2
+
+        ##########################################################
+        ## Reboot tapo cameras
+        ##########################################################
+
+- alias: reboot tapo cameras
+  trigger:
+    - platform: state
+      entity_id: input_boolean.reboot_tapo_cameras
+      from: 'off'
+      to: 'on'
+  action:
+    - service: button.press
+      target:
+        entity_id:
+          - button.back_reboot_2
+          - button.garage_reboot
+          - button.nature_reboot
+          - button.nature2_reboot
+          - button.chalkboard_reboot
+          - button.shop_reboot
+          - button.front_reboot
+          - button.living_reboot
+    - delay:
+        seconds: 60
+    - service: input_boolean.turn_off
+      target:
+        entity_id:
+          - input_boolean.reboot_tapo_cameras

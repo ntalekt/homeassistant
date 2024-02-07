@@ -223,3 +223,12 @@ disable_pool_heater:
   name: Disable Pool Heater Automations
   icon: mdi:water-boiler-off
   initial: off
+
+##########################################################
+## reboot tapo
+##########################################################
+
+reboot_tapo_cameras:
+  name: Reboot Tapo Cameras
+  icon: mdi:restart
+  initial: off
