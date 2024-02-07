@@ -104,28 +104,28 @@ say:
     - service: media_player.unjoin
       data_template:
         entity_id: "{{ where }}"
-    - delay: '00:00:02'
+    # - delay: '00:00:03'
     - service: media_player.join
       data_template:
         group_members: "{{ where }}"
         entity_id: "{{ master }}"
-    - delay: '00:00:02'
+    # - delay: '00:00:03'
     - service: media_player.volume_set
       data_template:
         entity_id: "{{ where }}"
         volume_level: "{{ volume }}"
-    - delay: '00:00:02'
+    # - delay: '00:00:03'
     - service: media_player.play_media
       data_template:
         entity_id: "{{ master }}"
         media_content_id: "{{ mp3 }}"
         media_content_type: music
-    - delay: '00:00:05'
+    - delay: '00:00:06'
     - service: tts.google_translate_say
       data_template:
         entity_id: "{{ where }}"
         message: "{{ what }}"
-    - delay: '00:00:15'
+    - delay: '00:00:11'
     - service: sonos.restore
       data_template:
         entity_id: "{{ where }}"
