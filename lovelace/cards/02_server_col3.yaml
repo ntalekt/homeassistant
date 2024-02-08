@@ -1,12 +1,26 @@
 type: vertical-stack
 cards:
   - type: "custom:button-card"
-    name: Docker1
-#    color_type: label-card
-#    color: rgb(240,240,240)
+    color_type: label-card
     styles:
       card:
+        - padding: 0
         - font-size: 24px
+      name:
+        - border-radius: 0.4em 0.4em 0 0
+        - padding: 0.1em
+        - width: 100%
+      grid:
+        - grid-template-areas: '"i" "n" "buttons"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      custom_fields:
+        buttons:
+          - background-color: 'rgba(0,0,0,0.15)'
+          - margin: 0
+          - padding: 0.3em
+    color: rgb(67, 73, 82)
+    name: Docker1
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
@@ -106,12 +120,26 @@ cards:
 
 
   - type: "custom:button-card"
-    name: Docker2
-#    color_type: label-card
-#    color: rgb(240,240,240)
+    color_type: label-card
     styles:
       card:
+        - padding: 0
         - font-size: 24px
+      name:
+        - border-radius: 0.4em 0.4em 0 0
+        - padding: 0.1em
+        - width: 100%
+      grid:
+        - grid-template-areas: '"i" "n" "buttons"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      custom_fields:
+        buttons:
+          - background-color: 'rgba(0,0,0,0.15)'
+          - margin: 0
+          - padding: 0.3em
+    color: rgb(67, 73, 82)
+    name: Docker2
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
@@ -209,12 +237,26 @@ cards:
         type: gauge
 
   - type: "custom:button-card"
-    name: Docker3
-#    color_type: label-card
-#    color: rgb(240,240,240)
+    color_type: label-card
     styles:
       card:
+        - padding: 0
         - font-size: 24px
+      name:
+        - border-radius: 0.4em 0.4em 0 0
+        - padding: 0.1em
+        - width: 100%
+      grid:
+        - grid-template-areas: '"i" "n" "buttons"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      custom_fields:
+        buttons:
+          - background-color: 'rgba(0,0,0,0.15)'
+          - margin: 0
+          - padding: 0.3em
+    color: rgb(67, 73, 82)
+    name: Docker3
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
@@ -301,6 +343,123 @@ cards:
         theme: default
         type: gauge
       - entity: sensor.docker3_memory_percent
+        max: 100
+        min: 0
+        name: Memory
+        severity:
+          green: 0
+          red: 90
+          yellow: 70
+        theme: default
+        type: gauge
+
+  - type: "custom:button-card"
+    color_type: label-card
+    styles:
+      card:
+        - padding: 0
+        - font-size: 24px
+      name:
+        - border-radius: 0.4em 0.4em 0 0
+        - padding: 0.1em
+        - width: 100%
+      grid:
+        - grid-template-areas: '"i" "n" "buttons"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      custom_fields:
+        buttons:
+          - background-color: 'rgba(0,0,0,0.15)'
+          - margin: 0
+          - padding: 0.3em
+    color: rgb(67, 73, 82)
+    name: Docker4
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        entity: sensor.docker4_containers_running
+        name: Running
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker4_containers_running'].state == '0';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.docker4_containers_stopped
+        name: Stopped
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker4_containers_stopped'].state != '0';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.docker4_containers_paused
+        name: Paused
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker4_containers_paused'].state != '0';
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: sensor.docker4_images
+        name: Images
+        show_state: true
+        color: rgb(68,115,158)
+        size: 30%
+        tap_action:
+          action: call-service
+          service: shell_command.docker_image_prune_docker3
+        state:
+          - operator: template
+            value: >
+              [[[
+                return states['sensor.docker4_containers_running'].state != states['sensor.docker4_images'].state;
+              ]]]
+            color: rgb(255,65,54)
+          - operator: default
+            color: rgb(46, 204, 64)
+        hold_action:
+          action: more-info
+  - type: horizontal-stack
+    cards:
+      - entity: sensor.qemu_docker4_100_cpu_used
+        max: 100
+        min: 0
+        name: CPU
+        severity:
+          green: 0
+          red: 80
+          yellow: 50
+        theme: default
+        type: gauge
+      - entity: sensor.qemu_docker4_100_memory_used_percentage
         max: 100
         min: 0
         name: Memory

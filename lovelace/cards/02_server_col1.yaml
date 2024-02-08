@@ -2,12 +2,26 @@
 type: vertical-stack
 cards:
   - type: "custom:button-card"
-    name: QNAP TS-251+
-#    color_type: label-card
-#    color: rgb(240,240,240)
+    color_type: label-card
     styles:
       card:
+        - padding: 0
         - font-size: 24px
+      name:
+        - border-radius: 0.4em 0.4em 0 0
+        - padding: 0.1em
+        - width: 100%
+      grid:
+        - grid-template-areas: '"i" "n" "buttons"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      custom_fields:
+        buttons:
+          - background-color: 'rgba(0,0,0,0.15)'
+          - margin: 0
+          - padding: 0.3em
+    color: rgb(67, 73, 82)
+    name: QNAP TS-251+
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"
@@ -138,47 +152,67 @@ cards:
     type: horizontal-stack
 
     ##########################################################
-    ## APC BX1500M UPS
+    ## Proxmox
     ##########################################################
   - type: "custom:button-card"
-    name: APC BX1500M
+    color_type: label-card
     styles:
       card:
+        - padding: 0
         - font-size: 24px
+      name:
+        - border-radius: 0.4em 0.4em 0 0
+        - padding: 0.1em
+        - width: 100%
+      grid:
+        - grid-template-areas: '"i" "n" "buttons"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      custom_fields:
+        buttons:
+          - background-color: 'rgba(0,0,0,0.15)'
+          - margin: 0
+          - padding: 0.3em
+    color: rgb(67, 73, 82)
+    name: Proxmox Host
   - type: horizontal-stack
     cards:
-      # - type: custom:mini-graph-card
-      #   name: Input Voltage
-      #   entities:
-      #     - entity: sensor.qnapups_input_voltage
-      #   hours_to_show: 72
-      #   line_color: '#0074D9'
-      #   show:
-      #     graph: bar
-      - type: custom:mini-graph-card
-        name: Battery Runtime
-        icon: mdi:timer-outline
-        entities:
-          - entity: sensor.qnapups_battery_runtime_min
-        hours_to_show: 72
-        line_color: '#FF4136'
-      - entity: sensor.qnapups_battery_charge
+      - entity: sensor.node_proxmox_cpu_used
         max: 100
         min: 0
-        name: Charge
-        severity:
-          green: 100
-          red: 50
-          yellow: 80
-        theme: default
-        type: gauge
-      - entity: sensor.qnapups_load
-        max: 100
-        min: 0
-        name: Load
+        name: CPU
         severity:
           green: 0
-          red: 70
+          red: 80
           yellow: 50
         theme: default
         type: gauge
+      - entity: sensor.node_proxmox_memory_used_percentage
+        max: 100
+        min: 0
+        name: Memory
+        severity:
+          green: 0
+          red: 90
+          yellow: 70
+        theme: default
+        type: gauge
+  - type: horizontal-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.node_proxmox_disk_free
+        name: local (Free)
+        show:
+          graph: bar
+        hours_to_show: 72
+        line_color: '#FF851B'
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.storage_local_lvm_disk_free
+        name: local-lvm (Free)
+        show:
+          graph: bar
+        hours_to_show: 72
+        line_color: '#FF851B'
+            

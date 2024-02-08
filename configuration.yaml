@@ -64,6 +64,7 @@ lovelace:
       type: module
 
 mobile_app:
+
 rest_command: 
   office_air_purifier:
     url: https://developer-api.govee.com/v1/appliance/devices/control
@@ -162,6 +163,8 @@ monitor_docker:
     url: tcp://REDACTED:2375
     containers:
       - homeassistant
+  - name: docker4
+    url: tcp://REDACTED48:2375
 
 tts:
   - platform: google_translate
