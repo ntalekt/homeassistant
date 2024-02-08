@@ -8,11 +8,11 @@
   radius: 450
   icon: mdi:home
 
-- name: Swim
-  latitude: !secret swim_latitude
-  longitude: !secret swim_longitude
+- name: KC Home
+  latitude: !secret REDACTED_latitude
+  longitude: !secret REDACTED_longitude
   radius: 150
-  icon: mdi:swim
+  icon: mdi:home
 
 - name: !secret work_name
   latitude: !secret work_latitude
