@@ -29,6 +29,8 @@ cox_usage.py
 blueprints/
 govee_learning.yaml
 zigbee.db*
+timelapse/*
 www/winlab/*
+www/timelapse/*
 www/community/lovelace-card-mod/card-mod.js
 www/community/lovelace-card-mod/card-mod.js.gz
