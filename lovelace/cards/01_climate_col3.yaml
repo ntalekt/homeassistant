@@ -173,8 +173,22 @@ cards:
             air_pollution_level: sensor.u_s_air_pollution_level
             air_quality_index: sensor.u_s_air_quality_index
             main_pollutant: sensor.u_s_main_pollutant
-            temp: weather.openweathermap
-            city: 'REDACTED'
+            #weather: weather.openweathermap
+            city: 'Home'
+
+  - type: custom:vertical-stack-in-card
+    cards:
+
+      - type: horizontal-stack
+        cards:
+          
+          - type: custom:air-visual-card
+            air_pollution_level: sensor.u_s_air_pollution_level_2
+            air_quality_index: sensor.u_s_air_quality_index_2
+            main_pollutant: sensor.u_s_main_pollutant_2
+            #weather: weather.openweathermap
+            city: 'Airport'
+
 
     ##########################################################
     ## Allergen - Today and tomorrow

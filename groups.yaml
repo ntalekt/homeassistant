@@ -5,11 +5,14 @@
 household:
   name: Household
   entities:
-    - device_tracker.userone_REDACTED
-    - device_tracker.REDACTED_REDACTED
-    - device_tracker.userthree_REDACTED
-    - device_tracker.userthree_iphone
+    # Mobile App
+    - device_tracker.userone_pixel_5
+    - device_tracker.usertwos_iphone_2
+    # Unifi
     - device_tracker.pixel_7_2
+    - device_tracker.iphone
+    - device_tracker.userthree_iphone
+
 
 landscape lights:
   name: landscape Lights

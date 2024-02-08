@@ -32,6 +32,32 @@ cards:
           right: 0
           transform: initial
           padding: 5px 0px
+      - type: conditional
+        conditions:
+          - entity: sensor.userone_pixel_detected_activity
+            state: "in_vehicle"
+        elements:
+          - type: state-icon
+            entity: sensor.userone_pixel_detected_activity
+            style:
+              top: 0
+              right: 0
+              transform: initial
+              padding: 0px 0px
+              '--paper-item-icon-color': rgb(46, 204, 64)
+      - type: conditional
+        conditions:
+          - entity: sensor.userone_pixel_detected_activity
+            state: "walking"
+        elements:
+          - type: state-icon
+            entity: sensor.userone_pixel_detected_activity
+            style:
+              top: 0
+              right: 0
+              transform: initial
+              padding: 0px 0px
+              '--paper-item-icon-color': rgb(46, 204, 64)
 
     - type: picture-elements
       image: /local/n.jpg
@@ -56,7 +82,20 @@ cards:
           right: 0
           transform: initial
           padding: 5px 0px
-
+      - type: conditional
+        conditions:
+          - entity: sensor.usertwos_iphone_2_activity
+            state: "Automotive"
+        elements:
+          - type: state-icon
+            entity: sensor.usertwos_iphone_2_activity
+            style:
+              top: 0
+              right: 0
+              transform: initial
+              padding: 0px 0px
+              '--paper-item-icon-color': rgb(46, 204, 64)
+              
     - type: picture-elements
       image: /local/p.jpg
       elements:
@@ -74,15 +113,40 @@ cards:
           line-height: 32px
           padding: 0px 5px
     ##########################################################
-    ## Ring front door camera
+    ## front camera
     ##########################################################
   - type: horizontal-stack
     cards:
       - type: picture-glance
+        camera_image: camera.front
+        entities:
+          - binary_sensor.front_person_occupancy
+          - binary_sensor.front_car_occupancy
+          - binary_sensor.front_dog_occupancy
+
+  - type: horizontal-stack
+    cards:
+    - type: conditional
+      conditions:
+        - condition: or
+          conditions:
+            - condition: state
+              entity: binary_sensor.front_door_ding
+              state: 'on'
+            - condition: state
+              entity: binary_sensor.front_door_motion
+              state: 'on'
+      card:
+        type: picture-glance
         camera_image: camera.front_door
         entities:
           - binary_sensor.front_door_ding
           - binary_sensor.front_door_motion
+
+
+
+
+
 # Colors: https://clrs.cc/
     ##########################################################
     ## First row occupancy

@@ -9,6 +9,36 @@ cards:
         entity: weather.openweathermap
         details: false
     ##########################################################
+    ## Spa conditional
+    ##########################################################
+  - type: conditional
+    conditions:
+      - entity: switch.spa
+        state: "on"
+    card:
+      type: custom:simple-thermostat
+      entity: water_heater.spa
+      step_size: 1
+      header:
+        name: Spa
+        icon: mdi:hot-tub
+      service:
+        domain: water_heater
+        service: set_temperature  
+      #title: Washer
+      elements:
+      - type: state-label
+        entity: sensor.washer_job_state
+        style:
+          left: 0
+          top: 0
+          pointer-events: none
+          font-size: 15px
+          line-height: 32px
+          color: white
+          transform: initial
+          padding: 0 10px
+    ##########################################################
     ## Thermostat - Downstairs
     ##########################################################
   - type: horizontal-stack

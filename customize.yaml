@@ -46,3 +46,5 @@ sensor.userone_pixel_battery_level:
   friendly_name: userone Pixel
 sensor.usertwos_iphone_2_battery_level:
   friendly_name: usertwo iPhone
+binary_sensor.front_person_occupancy:
+  icon: mdi:human

@@ -15,7 +15,7 @@ cards:
         line_color: '#0074D9'
         line_width: 8
         font_size: 75
-        hours_to_show: 72
+        hours_to_show: 24
 
       - type: custom:mini-graph-card
         entities:
@@ -24,7 +24,7 @@ cards:
         line_color: '#FF4136'
         line_width: 8
         font_size: 75
-        hours_to_show: 72
+        hours_to_show: 24
 
       - type: custom:mini-graph-card
         entities:
@@ -33,7 +33,7 @@ cards:
         line_color: '#FF851B'
         line_width: 8
         font_size: 75
-        hours_to_show: 72
+        hours_to_show: 24
 
     ##########################################################
     ## Row2 Temp
@@ -49,7 +49,7 @@ cards:
         line_color: '#B10DC9'
         line_width: 8
         font_size: 75
-        hours_to_show: 72
+        hours_to_show: 24
 
       - type: custom:mini-graph-card
         entities:
@@ -58,7 +58,7 @@ cards:
         line_color: '#39CCCC'
         line_width: 8
         font_size: 75
-        hours_to_show: 72
+        hours_to_show: 24
 
     ##########################################################
     ## Row3 - Humidity
@@ -74,7 +74,7 @@ cards:
         line_color: '#0074D9'
         line_width: 8
         font_size: 75
-        hours_to_show: 72
+        hours_to_show: 24
 
       - type: custom:mini-graph-card
         entities:
@@ -83,7 +83,7 @@ cards:
         line_color: '#FF4136'
         line_width: 8
         font_size: 75
-        hours_to_show: 72
+        hours_to_show: 24
 
       - type: custom:mini-graph-card
         entities:
@@ -92,7 +92,7 @@ cards:
         line_color: '#FF851B'
         line_width: 8
         font_size: 75
-        hours_to_show: 72
+        hours_to_show: 24
 
     ##########################################################
     ## Row4 - Humidity
@@ -108,7 +108,7 @@ cards:
         line_color: '#B10DC9'
         line_width: 8
         font_size: 75
-        hours_to_show: 72
+        hours_to_show: 24
 
       - type: custom:mini-graph-card
         entities:
@@ -117,7 +117,7 @@ cards:
         line_color: '#39CCCC'
         line_width: 8
         font_size: 75
-        hours_to_show: 72
+        hours_to_show: 24
 
     ##########################################################
     ## Row5 - Indoor air quality
