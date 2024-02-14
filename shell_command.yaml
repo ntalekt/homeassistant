@@ -60,4 +60,4 @@
 ## install imagemagick & coreutils & nimbus font
 ##########################################################
 
-  install_imagemagick: "apk add --update imagemagick && apk add --update coreutils && mkdir /usr/share/fonts/opentype && wget -P /usr/share/fonts/opentype https://www.1001fonts.com/download/font/nimbus-sans-l.bold.otf && fc-cache -f"
+  install_imagemagick: "apk add --update imagemagick && apk add --update coreutils && mkdir -p /usr/share/fonts/opentype && wget -P /usr/share/fonts/opentype https://www.1001fonts.com/download/font/nimbus-sans-l.bold.otf && fc-cache -f"
