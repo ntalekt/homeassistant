@@ -12,6 +12,12 @@
       entity_id: input_boolean.test_text_notification_slack
       from: "off"
       to: "on"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
   action:
     - service: notify.ntalekt
       data:
@@ -50,6 +56,12 @@
       entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone
       from: "off"
       to: "on"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
   action:
     - service: notify.ntalekt
       data:
@@ -57,20 +69,26 @@
         message: "Leak detected in the kids bathroom."
 
 ##########################################################
-## Water leak - master
+## Water leak - main
 ##########################################################
 
-- alias: notification text water leak master
+- alias: notification text water leak main
   trigger:
     - platform: state
       entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_2
       from: "off"
       to: "on"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
   action:
     - service: notify.ntalekt
       data:
         title: "Home Assistant"
-        message: "Leak detected in the master bathroom."
+        message: "Leak detected in the main bathroom."
 
 ##########################################################
 ## Water leak - laundry
@@ -82,6 +100,12 @@
       entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_3
       from: "off"
       to: "on"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
   action:
     - service: notify.ntalekt
       data:
@@ -98,6 +122,12 @@
       entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_iaszone_4
       from: "off"
       to: "on"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
   action:
     - service: notify.ntalekt
       data:
@@ -185,6 +215,12 @@
   trigger:
     - platform: state
       entity_id: sensor.current_ha_release
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
   action:
     - service: notify.ntalekt
       data:
@@ -203,6 +239,12 @@
   trigger:
     - platform: state
       entity_id: sensor.tasmota_latest_version
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
   action:
     - service: notify.ntalekt
       data:
@@ -223,9 +265,14 @@
       entity_id: group.household
       to: 'not_home'
   condition:
-    - condition: state
-      entity_id: cover.garage_door
-      state: 'open'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - condition: state
+        entity_id: cover.garage_door
+        state: 'open'
   action:
     - service: notify.ntalekt
       data:
@@ -244,12 +291,17 @@
       for:
         minutes: 30
   condition:
-    - condition: state
-      entity_id: group.household
-      state: 'home'
-    - condition: state
-      entity_id: binary_sensor.garage_occupancy_on
-      state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: binary_sensor.garage_occupancy_on
+        state: 'off'
   action:
     - service: notify.ntalekt
       data:
@@ -270,6 +322,12 @@
       entity_id: cover.garage_door
       from: 'closed'
       to: 'open'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
   action:
     - service: notify.ntalekt
       data:
@@ -286,6 +344,12 @@
       entity_id: cover.garage_door
       from: 'open'
       to: 'closed'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
   action:
     - service: notify.ntalekt
       data:
@@ -301,6 +365,12 @@
     - platform: state
       entity_id: water_heater.pool
       to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
   action:
     - service: notify.ntalekt
       data:
@@ -312,6 +382,12 @@
     - platform: state
       entity_id: sensor.pool_heater_mode
       to: 'Gas Heater'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
   action:
     - service: notify.ntalekt
       data:
@@ -333,8 +409,13 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'car' }}"
-    - "{{ 'driveway' in trigger.payload_json['after']['entered_zones'] }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'car' }}"
+      - "{{ 'driveway' in trigger.payload_json['after']['entered_zones'] }}"
   action:
     - service: notify.ntalekt
       data_template:
@@ -353,9 +434,14 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'car' }}"
-    - "{{ 'street' in trigger.payload_json['before']['current_zones'] }}"
-    - "{{ 'driveway' in trigger.payload_json['after']['current_zones'] }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'car' }}"
+      - "{{ 'street' in trigger.payload_json['before']['current_zones'] }}"
+      - "{{ 'driveway' in trigger.payload_json['after']['current_zones'] }}"
   action:
     - service: notify.ntalekt
       data_template:
@@ -374,9 +460,14 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'car' }}"
-    - "{{ 'driveway' in trigger.payload_json['before']['current_zones'] }}"
-    - "{{ 'street' in trigger.payload_json['after']['current_zones'] }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'car' }}"
+      - "{{ 'driveway' in trigger.payload_json['before']['current_zones'] }}"
+      - "{{ 'street' in trigger.payload_json['after']['current_zones'] }}"
   action:
     - service: notify.ntalekt
       data_template:
@@ -396,8 +487,13 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
-    - "{{ 'yard' in trigger.payload_json['after']['entered_zones'] }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+      - "{{ 'yard' in trigger.payload_json['after']['entered_zones'] }}"
   action:
     - service: notify.ntalekt
       data_template:
@@ -417,8 +513,13 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'person' }}"
-    - "{{ not 'front' in trigger.payload_json['after']['camera'] }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'person' }}"
+      - "{{ not 'front' in trigger.payload_json['after']['camera'] }}"
   action:
     - service: notify.ntalekt
       data_template:
@@ -438,8 +539,13 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
-    - "{{ 'yard' in trigger.payload_json['after']['entered_zones'] }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
+      - "{{ 'yard' in trigger.payload_json['after']['entered_zones'] }}"
   action:
     - service: notify.ntalekt
       data_template:
@@ -455,8 +561,13 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
-    - "{{ 'yard' in trigger.payload_json['after']['entered_zones'] }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
+      - "{{ 'yard' in trigger.payload_json['after']['entered_zones'] }}"
   action:
     - service: notify.ntalekt
       data_template:
@@ -476,8 +587,13 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
-    - "{{ trigger.payload_json['after']['camera'] == 'back' }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'back' }}"
   action:
     - service: notify.ntalekt
       data_template:
@@ -493,8 +609,13 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
-    - "{{ trigger.payload_json['after']['camera'] == 'back' }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'back' }}"
   action:
     - service: notify.ntalekt
       data_template:
@@ -514,8 +635,13 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
-    - "{{ trigger.payload_json['after']['camera'] == 'nature' }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'nature' }}"
   action:
     - service: notify.ntalekt
       data_template:
@@ -531,8 +657,13 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
-    - "{{ trigger.payload_json['after']['camera'] == 'nature2' }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'nature2' }}"
   action:
     - service: notify.ntalekt
       data_template:
@@ -548,8 +679,13 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
-    - "{{ trigger.payload_json['after']['camera'] == 'nature' }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'nature' }}"
   action:
     - service: notify.ntalekt
       data_template:
@@ -565,8 +701,13 @@
       payload: new
       value_template: "{{ value_json.type }}"
   condition:
-    - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
-    - "{{ trigger.payload_json['after']['camera'] == 'nature2' }}"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+      - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
+      - "{{ trigger.payload_json['after']['camera'] == 'nature2' }}"
   action:
     - service: notify.ntalekt
       data_template:
