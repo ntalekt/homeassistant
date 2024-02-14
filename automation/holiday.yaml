@@ -3,6 +3,155 @@
 ##################################################################
 
   ##########################################################
+  ## vday - Lighting via calendar
+  ##########################################################
+
+- alias: Holiday - Enable vday Lighting
+  trigger:
+    - platform: state
+      entity_id: sensor.holidays_calendar
+      to: "Valentine's Day"
+      for:
+        hours: 48
+        minutes: 0
+        seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_holiday
+      state: 'On'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: "Valentine's Day"
+
+  ##########################################################
+  ## vday - Lighting via input_select
+  ##########################################################
+
+- alias: Holiday - vday Lighting Front
+  trigger:
+    - platform: state
+      entity_id: input_select.holiday
+      to: "Valentine's Day"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'on'
+      - condition: state
+        entity_id: light.front_flood_lights
+        state: 'on'
+  action:
+    #turn floods to pink
+    - service: light.turn_on
+      data:
+        entity_id: light.exterior_flood_lights
+        rgb_color:
+          - 245
+          - 53
+          - 170
+        brightness_pct: 100
+    #turn on front group and pink
+    - service: light.turn_on
+      data:
+        entity_id: light.front_porch_group
+        rgb_color:
+          - 245
+          - 53
+          - 170
+        brightness_pct: 100
+    #turn on side group and pink
+    - service: light.turn_on
+      data:
+        entity_id: light.side_porch_group
+        rgb_color:
+          - 245
+          - 53
+          - 170
+        brightness_pct: 100
+
+  ##########################################################
+  ## vday - Change colors
+  ##########################################################
+
+- alias: Holiday - vday Lighting Front Floods Switch Color
+  trigger:
+    - platform: state
+      entity_id: light.front_flood_lights
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'on'
+      - condition: state
+        entity_id: input_select.holiday
+        state: "Valentine's Day"
+  action:
+    #turn front floods to pink
+    - service: light.turn_on
+      data:
+        entity_id: light.front_flood_lights
+        rgb_color:
+          - 245
+          - 53
+          - 170
+        brightness_pct: 100
+
+- alias: Holiday - vday Lighting Front Bulb Switch Color
+  trigger:
+    - platform: state
+      entity_id: light.front_bulb
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'on'
+      - condition: state
+        entity_id: input_select.holiday
+        state: "Valentine's Day"
+  action:
+    #turn front bulb to pink
+    - service: light.turn_on
+      data:
+        entity_id: light.front_porch_group
+        rgb_color:
+          - 245
+          - 53
+          - 170
+        brightness_pct: 100
+
+- alias: Holiday - vday Lighting Side Bulb Switch Color
+  trigger:
+    - platform: state
+      entity_id: light.side_bulb
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'on'
+      - condition: state
+        entity_id: input_select.holiday
+        state: "Valentine's Day"
+  action:
+    #turn front bulb to pink
+    - service: light.turn_on
+      data:
+        entity_id: light.side_porch_group
+        rgb_color:
+          - 245
+          - 53
+          - 170
+        brightness_pct: 100
+
+  ##########################################################
   ## Halloween - Lighting via calendar
   ##########################################################
 
