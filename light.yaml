@@ -7,6 +7,18 @@
 ##########################################################
 
 - platform: group
+  name: front porch group
+  entities:
+    - light.front_bulb
+    - light.front_porch
+
+- platform: group
+  name: side porch group
+  entities:
+    - light.side_bulb
+    - light.side
+
+- platform: group
   name: Media Accents
   entities:
     - light.media_center_l_strip
@@ -16,7 +28,6 @@
   name: exterior porch lights
   entities:
     - light.front_porch_group
-    # - light.back_porch_group
     - light.side_porch_group
 
 - platform: group
@@ -31,18 +42,6 @@
     - light.media_lamp_bulb1
     - light.media_lamp_bulb2
     - light.media_lamp_bulb3
-
-- platform: group
-  name: front porch group
-  entities:
-    - light.front_bulb
-    - light.front_porch
-
-- platform: group
-  name: side porch group
-  entities:
-    - light.side_bulb
-    - light.side
 
 - platform: group
   name: back porch group
