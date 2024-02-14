@@ -52,7 +52,7 @@
 
 - sensor:
     name: Tasmota Latest Version
-    command: curl -sL https://api.github.com/repos/arendst/Tasmota/releases/latest | jq -r ".tag_name"
+    command: VER=$(curl --silent -qI https://github.com/arendst/Tasmota/releases/latest | awk -F '/' '/^location/ {print  substr($NF, 1, length($NF)-1)}') && echo ${VER#v}
     scan_interval: 600
 
 ##########################################################
