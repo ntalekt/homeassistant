@@ -27,6 +27,19 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
   * [Mariadb](https://hub.docker.com/r/linuxserver/mariadb)
   * [Mosquitto MQTT](https://hub.docker.com/_/eclipse-mosquitto)
   
+#### Platform v2
+* Hardware
+  * [HP EliteDesk 800 G3 Mini - i5-7600 4C, 16GB, iGPU](https://www.ebay.com/sch/i.html?_dmd=1&_nkw=%28800+g3+mini%29+i5-7600+-7600t&_geositeid=0&_udhi=180.00&_svsrch=1) x2
+  * [Synology DS923+](https://amzn.to/3ULWSLo)
+* Software
+  * [Proxmox VE 8.1](https://www.proxmox.com/en/)
+  * [Docker v25.0.x](https://github.com/docker/docker-ce/releases)
+  * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
+  * [Traefik v2.10.x proxy](https://www.smarthomebeginner.com/traefik-2-docker-tutorial/)
+  * [Zigbee Home Automation (ZHA)](https://www.home-assistant.io/integrations/zha/)
+  * [Mariadb v10.11.x](https://hub.docker.com/r/linuxserver/mariadb)
+  * [Mosquitto MQTT v2.0.18](https://hub.docker.com/_/eclipse-mosquitto)
+  
 # Interface
 ![UI](images/home-lovelace.jpg)
 ![UI](images/climate.jpg)
@@ -93,7 +106,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * [Chamberlain B2405 Smart Garage Door Opener](https://amzn.to/40IVXet)
 
 #### Network
-* [Ubiquiti Unifi Security Gateway (USG)](https://amzn.to/3KzHeNx)
+* [Ubiquiti Unifi UXG-Lite](https://store.ui.com/us/en/products/uxg-lite)
 * [Ubiquiti UniFi Switch 8 60W (US-8-60W)](https://amzn.to/3Gmca15)
 * [Ubiquiti UniFi6 Pro Access Point (U6-Pro-US)](https://amzn.to/3UfDnbq)
 * [Ubiquiti UniFi Access Point (UAP-AC-PRO-US)](https://amzn.to/3MhaF8k) x2
