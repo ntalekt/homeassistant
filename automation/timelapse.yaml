@@ -14,6 +14,21 @@
     service: shell_command.install_imagemagick
 
   ##########################################################
+  ## check uploads
+  ##########################################################
+
+- alias: check we are uploading daily
+  trigger:
+    - platform: template
+      # true if sensor has not updated in 24 hours
+      value_template: "{{ now() - states.sensor.REDACTED_channel_videos.last_changed >= timedelta (minutes=1440) }}"
+  action:
+    - service: notify.ntalekt
+      data:
+        title: "Timelapse - Home Assistant"
+        message: "{{ now().timestamp() | timestamp_local }} Check youtube uploads. No uploads in 24 hours."
+
+  ##########################################################
   ## archive 7+ days old raw snapshots
   ##########################################################
 
