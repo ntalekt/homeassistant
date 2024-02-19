@@ -36,6 +36,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
   * [Docker v25.0.x](https://github.com/docker/docker-ce/releases)
   * [homeassistant/home-assistant](https://hub.docker.com/r/homeassistant/home-assistant)
   * [Traefik v2.10.x proxy](https://www.smarthomebeginner.com/traefik-2-docker-tutorial/)
+  * SSL via [Let's Encrypt](https://letsencrypt.org/)
   * [Zigbee Home Automation (ZHA)](https://www.home-assistant.io/integrations/zha/)
   * [Mariadb v10.11.x](https://hub.docker.com/r/linuxserver/mariadb)
   * [Mosquitto MQTT v2.0.18](https://hub.docker.com/_/eclipse-mosquitto)
