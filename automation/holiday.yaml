@@ -3,10 +3,10 @@
 ##################################################################
 
   ##########################################################
-  ## vday - Lighting via calendar
+  ## VDay - Lighting via calendar
   ##########################################################
 
-- alias: Holiday - Enable vday Lighting
+- alias: Holiday - Enable VDay Lighting
   trigger:
     - platform: state
       entity_id: sensor.holidays_calendar
@@ -26,10 +26,10 @@
         option: "Valentine's Day"
 
   ##########################################################
-  ## vday - Lighting via input_select
+  ## VDay - Lighting via input_select
   ##########################################################
 
-- alias: Holiday - vday Lighting Front
+- alias: Holiday - VDay Lighting Front
   trigger:
     - platform: state
       entity_id: input_select.holiday
@@ -71,12 +71,29 @@
           - 53
           - 170
         brightness_pct: 100
+    - delay: 0:15
+    - service: light.turn_on
+      data:
+        entity_id: light.front_bulb
+        rgb_color:
+          - 245
+          - 53
+          - 170
+        brightness_pct: 100
+    - service: light.turn_on
+      data:
+        entity_id: light.side_bulb
+        rgb_color:
+          - 245
+          - 53
+          - 170
+        brightness_pct: 100
 
   ##########################################################
-  ## vday - Change colors
+  ## VDay - Change colors
   ##########################################################
 
-- alias: Holiday - vday Lighting Front Floods Switch Color
+- alias: Holiday - VDay Lighting Front Floods Switch Color
   trigger:
     - platform: state
       entity_id: light.front_flood_lights
@@ -101,7 +118,7 @@
           - 170
         brightness_pct: 100
 
-- alias: Holiday - vday Lighting Front Bulb Switch Color
+- alias: Holiday - VDay Lighting Front Bulb Switch Color
   trigger:
     - platform: state
       entity_id: light.front_bulb
@@ -126,7 +143,7 @@
           - 170
         brightness_pct: 100
 
-- alias: Holiday - vday Lighting Side Bulb Switch Color
+- alias: Holiday - VDay Lighting Side Bulb Switch Color
   trigger:
     - platform: state
       entity_id: light.side_bulb
