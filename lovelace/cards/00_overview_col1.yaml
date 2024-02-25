@@ -552,7 +552,7 @@ cards:
             line-height: 32px
             padding: 8px 13px
         - type: state-label
-          entity: sensor.p1p_remaining_time_min
+          entity: sensor.p1p_remaining_time_friendly
           style:
             bottom: 0
             left: 0

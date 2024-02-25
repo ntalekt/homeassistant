@@ -71,6 +71,11 @@
           less than a minute
         {% endif %}
 
+    p1p_remaining_time_friendly:
+      value_template: >-
+        {% set time = states('sensor.p1p_end_time')%}
+          Done at {{ as_timestamp(time) | timestamp_custom('%I:%M %p') }}
+
     pool_heater_mode:
       value_template: "{{ states.water_heater.pool.attributes.operation_mode }}"
       friendly_name: "Pool Heater Mode"
