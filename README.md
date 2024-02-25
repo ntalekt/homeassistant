@@ -6,7 +6,7 @@
   <h4>
     <a href="https://github.com/ntalekt/homeassistant/stargazers"><img src="https://img.shields.io/github/stars/ntalekt/homeassistant.svg"/></a>
     <a href="https://github.com/ntalekt/homeassistant/commits/master"><img src="https://img.shields.io/github/last-commit/ntalekt/homeassistant.svg"/></a>
-    <a href="https://github.com/home-assistant/home-assistant/releases/latest"><img src="https://img.shields.io/badge/Running%20Home%20Assistant-2024.2.2%20-darkblue"/></a>
+    <a href="https://github.com/home-assistant/home-assistant/releases/latest"><img src="https://img.shields.io/badge/Running%20Home%20Assistant-2024.2.3%20-darkblue"/></a>
 	<a href="https://community.home-assistant.io/u/ntalekt/summary"><img src="https://img.shields.io/badge/HA%20community-forum-orange"/></a>
   </h4>
 </div>
