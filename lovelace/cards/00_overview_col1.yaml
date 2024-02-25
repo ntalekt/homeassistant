@@ -188,7 +188,7 @@ cards:
         layout: icon_name
         tap_action:
           action: more-info
-          entity: camera.back_2
+          entity: camera.back
         hold_action:
           action: more-info
       - type: "custom:button-card"
@@ -207,7 +207,7 @@ cards:
         layout: icon_name
         tap_action:
           action: more-info
-          entity: camera.garage_2
+          entity: camera.garage
         hold_action:
           action: more-info
       - type: "custom:button-card"
@@ -226,7 +226,7 @@ cards:
         layout: icon_name
         tap_action:
           action: more-info
-          entity: camera.shop_2
+          entity: camera.shop
         hold_action:
           action: more-info
 
