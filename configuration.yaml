@@ -153,8 +153,6 @@ fan:
 ffmpeg:
 
 monitor_docker:
-  - name: docker1
-    url: tcp://REDACTED54:2375
   - name: docker2
     url: tcp://REDACTED53:2375
     containers:
