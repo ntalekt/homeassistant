@@ -21,14 +21,13 @@ cards:
   - type: horizontal-stack
     cards:
     - type: entities
-      title: Deluge
+      title: qBittorrent
       entities:
-        - entity: switch.deluge_switch
-        - entity: sensor.deluge_switch_down_speed
+        - entity: sensor.qbittorrent_download_speed
           icon: mdi:download
-        - entity: sensor.deluge_switch_up_speed
+        - entity: sensor.qbittorrent_upload_speed
           icon: mdi:upload
-        - entity: sensor.deluge_switch_status
+        - entity: sensor.qbittorrent_none
           icon: mdi:script
       show_header_toggle: false
 
