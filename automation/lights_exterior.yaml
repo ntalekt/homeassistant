@@ -3,14 +3,14 @@
 #################################################################
 
 ##########################################################
-## exterior lights on 5min before sunset
+## exterior lights on 15min before sunset
 ##########################################################
 
 - alias: lights exterior lights on 5min before sunset
   trigger:
     - platform: sun
       event: sunset
-      offset: "-00:05:00"
+      offset: "-00:15:00"
   condition:
     - condition: state
       entity_id: input_boolean.disable_exterior_on_sunset
@@ -77,7 +77,7 @@
 ##########################################################
 ## exterior lights dim at 10pm
 ##########################################################
- 
+
 - alias: lights exterior lights dim at 10pm
   trigger:
     - platform: time
