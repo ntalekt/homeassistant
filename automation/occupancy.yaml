@@ -3,6 +3,31 @@
 #################################################################
 
 #################################################################
+## reset interior occupancy every hour
+#################################################################
+
+- alias: reset interior occupancy every hour
+  trigger:
+    - platform: time_pattern
+      minutes: "/59"
+      seconds: 00
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.living_occupancy
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.back_occupancy
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.front_occupancy
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.garage_occupancy
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.chalkboard_occupancy
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.shop_occupancy
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.office_occupancy
+
+#################################################################
 ## Living Room Occupancy
 #################################################################
 
