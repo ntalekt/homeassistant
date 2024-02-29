@@ -197,24 +197,24 @@ cards:
           yellow: 70
         theme: default
         type: gauge
-  - type: horizontal-stack
-    cards:
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.node_proxmox_disk_free
-        name: local (Free)
-        show:
-          graph: bar
-        hours_to_show: 72
-        line_color: '#FF851B'
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.storage_local_lvm_disk_free
-        name: local-lvm (Free)
-        show:
-          graph: bar
-        hours_to_show: 72
-        line_color: '#FF851B'
+  # - type: horizontal-stack
+  #   cards:
+  #     - type: custom:mini-graph-card
+  #       entities:
+  #         - entity: sensor.node_proxmox_disk_free
+  #       name: local (Free)
+  #       show:
+  #         graph: bar
+  #       hours_to_show: 72
+  #       line_color: '#FF851B'
+  #     - type: custom:mini-graph-card
+  #       entities:
+  #         - entity: sensor.storage_local_lvm_disk_free
+  #       name: local-lvm (Free)
+  #       show:
+  #         graph: bar
+  #       hours_to_show: 72
+  #       line_color: '#FF851B'
 
     ##########################################################
     ## Proxmox2
@@ -262,22 +262,22 @@ cards:
           yellow: 70
         theme: default
         type: gauge
-  - type: horizontal-stack
-    cards:
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.node_proxmox2_disk_free
-        name: local (Free)
-        show:
-          graph: bar
-        hours_to_show: 72
-        line_color: '#FF851B'
-      - type: custom:mini-graph-card
-        entities:
-          - entity: sensor.storage_local_lvm_disk_free_2
-        name: local-lvm (Free)
-        show:
-          graph: bar
-        hours_to_show: 72
-        line_color: '#FF851B'
+  # - type: horizontal-stack
+  #   cards:
+  #     - type: custom:mini-graph-card
+  #       entities:
+  #         - entity: sensor.node_proxmox2_disk_free
+  #       name: local (Free)
+  #       show:
+  #         graph: bar
+  #       hours_to_show: 72
+  #       line_color: '#FF851B'
+  #     - type: custom:mini-graph-card
+  #       entities:
+  #         - entity: sensor.storage_local_lvm_disk_free_2
+  #       name: local-lvm (Free)
+  #       show:
+  #         graph: bar
+  #       hours_to_show: 72
+  #       line_color: '#FF851B'
             

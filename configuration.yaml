@@ -163,6 +163,8 @@ monitor_docker:
       - homeassistant
   - name: docker4
     url: tcp://REDACTED48:2375
+  - name: docker5
+    url: tcp://REDACTED:2375
 
 tts:
   - platform: google_translate
