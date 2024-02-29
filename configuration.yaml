@@ -9,7 +9,7 @@ homeassistant:
   unit_system: imperial
   currency: USD
   country: US
-  customize: !include customize.yaml
+  customize: !include include/customize.yaml
   time_zone: !secret homeassistant_timezone
   external_url: "https://ha.REDACTED"
   internal_url: "http://REDACTED:8123"
@@ -25,9 +25,9 @@ frontend:
 sun:
 map:
 config:
-logger: !include logger.yaml
+logger: !include include/logger.yaml
 
-logbook: !include logbook.yaml
+logbook: !include include/logbook.yaml
 
 lovelace:
   mode: yaml
@@ -192,18 +192,18 @@ yeelight:
 #################################################################
 
 automation: !include_dir_merge_list automation
-binary_sensor: !include binary_sensor.yaml
-command_line: !include command_line.yaml
-group: !include groups.yaml
+binary_sensor: !include include/binary_sensor.yaml
+command_line: !include include/command_line.yaml
+group: !include include/groups.yaml
 history:
-input_boolean: !include input_boolean.yaml
-input_button: !include input_button.yaml
-input_datetime: !include input_datetime.yaml
-input_select: !include input_select.yaml
-light: !include light.yaml
-recorder: !include recorder.yaml
-script: !include scripts.yaml
-shell_command: !include shell_command.yaml
-sensor: !include sensor.yaml
-switch: !include switch.yaml
-zone: !include zones.yaml
+input_boolean: !include include/input_boolean.yaml
+input_button: !include include/input_button.yaml
+input_datetime: !include include/input_datetime.yaml
+input_select: !include include/input_select.yaml
+light: !include include/light.yaml
+recorder: !include include/recorder.yaml
+script: !include include/scripts.yaml
+sensor: !include include/sensor.yaml
+shell_command: !include include/shell_command.yaml
+switch: !include include/switch.yaml
+zone: !include include/zones.yaml
