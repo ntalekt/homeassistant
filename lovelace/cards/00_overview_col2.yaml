@@ -409,18 +409,18 @@ cards:
       - type: "custom:button-card"
         icon: mdi:progress-download
         size: 30%
-        entity: switch.deluge_switch
-        name: Deluge
-        tap_action:
-          action: call-service
-          service: switch.toggle
-          service_data:
-            entity_id: switch.deluge_switch
+        entity: sensor.qbittorrent_none
+        name: QBittorrent
         state:
-        - value: 'off'
-#          color: rgb(68,115,158)
-        - value: 'on'
+        - value: 'idle'
+          color: rgb(255, 220, 0)
+          icon: mdi:sleep
+        - value: 'seeding'
           color: rgb(46, 204, 64)
+          icon: mdi:cloud-upload
+        - value: 'downloading'
+          color: rgb(46, 204, 64)
+          icon: mdi:cloud-download
         hold_action:
           action: more-info
     ##########################################################
