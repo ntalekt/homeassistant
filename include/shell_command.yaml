@@ -6,8 +6,6 @@
 ## Docker prune commands
 ##########################################################
 
-  docker_image_prune_docker1: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED54 'docker image prune -af'"
-  docker_image_prune_docker2: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED53 'docker image prune -af'"
   docker_image_prune_docker3: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no vagrant@REDACTED 'docker image prune -af'"
   docker_image_prune_docker4: "ssh -i /shared/id_rsa -oStrictHostKeyChecking=no ubuntu@REDACTED48 'docker image prune -af'"
 

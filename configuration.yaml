@@ -153,10 +153,6 @@ fan:
 ffmpeg:
 
 monitor_docker:
-  - name: docker2
-    url: tcp://REDACTED53:2375
-    containers:
-      - unifi-controller
   - name: docker3
     url: tcp://REDACTED:2375
     containers:
