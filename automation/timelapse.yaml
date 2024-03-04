@@ -29,6 +29,206 @@
         message: "{{ now().timestamp() | timestamp_local }} Check youtube uploads. No uploads in 24 hours."
 
   ##########################################################
+  ## f1
+  ##########################################################
+
+- alias: turn_on_f1_timelapse
+  trigger:
+    - platform: calendar
+      event: start
+      entity_id: calendar.formula_1_calendar_by_racefans_net
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - automation.f1_timelapse_carlossainz
+        - automation.f1_timelapse_charlesleclerc
+        - automation.f1_timelapse_fernandoalonso
+        - automation.f1_timelapse_georgerussell
+        - automation.f1_timelapse_lancestroll
+        - automation.f1_timelapse_landonorris
+        - automation.f1_timelapse_lewishamilton
+        - automation.f1_timelapse_maxverstappen
+        - automation.f1_timelapse_oscarpiastri
+        - automation.f1_timelapse_sergioperez
+        - automation.f1_timelapse_data
+        - automation.f1_timelapse_main
+        - automation.f1_timelapse_tracker
+    - service: notify.ntalekt
+      data:
+        title: "F1 Timelapse Start"
+        message: "F1 timelapse started based on calendar!"
+      
+
+- alias: turn_off_f1_timelapse
+  trigger:
+    - platform: calendar
+      event: end
+      entity_id: calendar.formula_1_calendar_by_racefans_net
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - automation.f1_timelapse_carlossainz
+        - automation.f1_timelapse_charlesleclerc
+        - automation.f1_timelapse_fernandoalonso
+        - automation.f1_timelapse_georgerussell
+        - automation.f1_timelapse_lancestroll
+        - automation.f1_timelapse_landonorris
+        - automation.f1_timelapse_lewishamilton
+        - automation.f1_timelapse_maxverstappen
+        - automation.f1_timelapse_oscarpiastri
+        - automation.f1_timelapse_sergioperez
+        - automation.f1_timelapse_data
+        - automation.f1_timelapse_main
+        - automation.f1_timelapse_tracker
+    - service: notify.ntalekt
+      data:
+        title: "F1 Timelapse Stop"
+        message: "F1 timelapse stopped based on calendar!"
+
+- alias: f1_timelapse_main
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_main
+
+- alias: f1_timelapse_tracker
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_tracker
+
+- alias: f1_timelapse_data
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_data
+
+- alias: f1_timelapse_maxverstappen
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_maxverstappen
+
+- alias: f1_timelapse_sergioperez
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_sergioperez
+
+- alias: f1_timelapse_carlossainz
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_carlossainz
+
+- alias: f1_timelapse_charlesleclerc
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_charlesleclerc
+
+- alias: f1_timelapse_lewishamilton
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_lewishamilton
+
+- alias: f1_timelapse_georgerussell
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_georgerussell
+
+- alias: f1_timelapse_landonorris
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_landonorris
+
+- alias: f1_timelapse_oscarpiastri
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_oscarpiastri
+
+- alias: f1_timelapse_fernandoalonso
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_fernandoalonso
+
+- alias: f1_timelapse_lancestroll
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+    - condition: state
+      entity_id: input_boolean.disable_f1_timelapse
+      state: 'off'
+  action:
+    service: shell_command.timelapse_create_f1_lancestroll
+
+  ##########################################################
   ## archive 7+ days old raw snapshots
   ##########################################################
 

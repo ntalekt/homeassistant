@@ -61,6 +61,10 @@ disable_exterior_on_sunset:
 disable_exterior_dim_10pm:
   name: Disable Exterior Lights Dim at 10PM
   icon: mdi:lightbulb-outline
+
+disable_f1_timelapse:
+  name: Disable F1 Timelapse
+  icon: mdi:flag-checkered
     
 ##########################################################
 ## Occupancy
