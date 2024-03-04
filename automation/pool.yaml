@@ -26,10 +26,12 @@
         operation_mode: "off"
       target:
         entity_id: water_heater.pool
-    - service: notify.ntalekt
+    - service: switch.turn_off
+      entity_id: switch.pool
+    - service: notify.homeassistant_dis
       data:
         message: "Pool heater mode automatically disabled."
-        target: "#pool"
+        target: ["REDACTED"]
 
   ##########################################################
   ## run pump to check current water temp

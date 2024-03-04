@@ -7,6 +7,11 @@ test_text_notification_slack:
   initial: off
   icon: mdi:test-tube
 
+test_text_notification_discord:
+  name: Test Text Notification Discord
+  initial: off
+  icon: mdi:test-tube
+
 test_text_notification_ha:
   name: Test Persistent Notification HA
   initial: off

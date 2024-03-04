@@ -47,6 +47,31 @@
         input_boolean.test_text_notification_ha
 
 ##########################################################
+## Discord - Notification Test
+##########################################################
+
+- alias: notification text test discord
+  trigger:
+    - platform: state
+      entity_id: input_boolean.test_text_notification_discord
+      from: "off"
+      to: "on"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_text_notification
+        state: "off"
+  action:
+    - service: notify.homeassistant_dis
+      data:
+        message: "This is a test."
+        target: ["REDACTED"]
+    - service: homeassistant.turn_off
+      entity_id:
+        input_boolean.test_text_notification_discord
+
+##########################################################
 ## Water leak - kids
 ##########################################################
 
@@ -63,10 +88,10 @@
         entity_id: input_boolean.disable_text_notification
         state: "off"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "Home Assistant"
         message: "Leak detected in the kids bathroom."
+        target: ["REDACTED"]
 
 ##########################################################
 ## Water leak - main
@@ -85,10 +110,10 @@
         entity_id: input_boolean.disable_text_notification
         state: "off"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "Home Assistant"
         message: "Leak detected in the main bathroom."
+        target: ["REDACTED"]
 
 ##########################################################
 ## Water leak - laundry
@@ -107,10 +132,10 @@
         entity_id: input_boolean.disable_text_notification
         state: "off"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "Home Assistant"
         message: "Leak detected in the laundry room."
+        target: ["REDACTED"]
 
 ##########################################################
 ## Water leak - guest
@@ -129,10 +154,10 @@
         entity_id: input_boolean.disable_text_notification
         state: "off"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "Home Assistant"
         message: "Leak detected in the guest bathroom."
+        target: ["REDACTED"]
         
 ##########################################################
 ## slack - Low Battery Alert
@@ -202,10 +227,10 @@
     platform: template
     value_template: "{{ states('persistent_notification.httplogin') != 'unknown' }}"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "Home Assistant"
         message: "Failed Home Assistant login!"
+        target: ["REDACTED"]
 
 ##########################################################
 ## New version of Home Assistant
@@ -222,14 +247,10 @@
         entity_id: input_boolean.disable_text_notification
         state: "off"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "New Home Assistant Release"
         message: "Home Assistant {{ states.sensor.current_ha_release.state }} is now available."
-    - service: persistent_notification.create
-      data:
-        title: "New Home Assistant Release"
-        message: "Home Assistant {{ states.sensor.current_ha_release.state }} is now available."
+        target: ["REDACTED"]
 
 ##########################################################
 ## New version of Tasmota
@@ -246,14 +267,10 @@
         entity_id: input_boolean.disable_text_notification
         state: "off"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "New Tasmota Release"
         message: "Tasmota {{ states.sensor.tasmota_latest_version.state }} is now available."
-    - service: persistent_notification.create
-      data:
-        title: "New Tasmota Release"
-        message: "Tasmota {{ states.sensor.tasmota_latest_version.state }} is now available."
+        target: ["REDACTED"]
 
 ##########################################################
 ## Garage Door - Left it open
@@ -274,10 +291,10 @@
         entity_id: cover.garage_door
         state: 'open'
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "Home Assistant"
         message: "Come back, the garage door is open!"
+        target: ["REDACTED"]
 
 ##########################################################
 ## Garage Door - Open for 30 minutes
@@ -303,10 +320,10 @@
         entity_id: binary_sensor.garage_occupancy_on
         state: 'off'
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "Home Assistant"
         message: "The garage door has been open for 30 minutes."
+        target: ["REDACTED"]
 
 ##########################################################
 ## Garage Door - Opened/Closed
@@ -329,10 +346,10 @@
         entity_id: input_boolean.disable_text_notification
         state: "off"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "Home Assistant"
         message: "The garage door has been opened."
+        target: ["REDACTED"]
 
 - alias: notification garage closed
   trigger:
@@ -351,10 +368,10 @@
         entity_id: input_boolean.disable_text_notification
         state: "off"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "Home Assistant"
         message: "The garage door has been closed."
+        target: ["REDACTED"]
 
 ##########################################################
 ## Pool heater turned on
@@ -372,10 +389,10 @@
         entity_id: input_boolean.disable_text_notification
         state: "off"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
         message: "Pool heater is running!!"
-        target: "#pool"
+        target: ["REDACTED"]
 
 - alias: pool heater setting changed
   trigger:
@@ -389,10 +406,10 @@
         entity_id: input_boolean.disable_text_notification
         state: "off"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
         message: "Pool heater mode changed!!"
-        target: "#pool"
+        target: ["REDACTED"]
 
 ##########################################################
 ## Frigate alerts
@@ -419,8 +436,16 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} has been detected in the driveway. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} has been detected in the driveway. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
+    - service: notify.homeassistant_dis
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} has been detected in the driveway.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -445,8 +470,16 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} has arrived in the driveway. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} has arrived in the driveway. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
+    - service: notify.homeassistant_dis
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} has arrived in the driveway.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -471,8 +504,16 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} has left the driveway. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} has left the driveway. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
+    - service: notify.homeassistant_dis
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} has left the driveway.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -497,8 +538,16 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
+    - service: notify.homeassistant_dis
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -523,8 +572,16 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
+    - service: notify.homeassistant_dis
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -549,8 +606,16 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
+    - service: notify.homeassistant_dis
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
 - alias: notification alert frigate cat in front yard
@@ -571,8 +636,16 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
+    - service: notify.homeassistant_dis
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -597,8 +670,16 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
+    - service: notify.homeassistant_dis
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
 - alias: notification alert frigate cat
@@ -619,8 +700,16 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: Frigate
+    - service: notify.homeassistant_dis
+      data_template:
+        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -645,8 +734,16 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: COYOTE
+    - service: notify.homeassistant_dis
+      data_template:
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
 - alias: notification alert frigate coyote nature2
@@ -667,8 +764,16 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: COYOTE
+    - service: notify.homeassistant_dis
+      data_template:
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
 - alias: notification alert frigate coyote nature cat
@@ -689,8 +794,16 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: COYOTE
+    - service: notify.homeassistant_dis
+      data_template:
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
 - alias: notification alert frigate coyote nature2 cat
@@ -711,109 +824,14 @@
   action:
     - service: notify.ntalekt
       data_template:
-        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
         title: COYOTE
-  mode: single
-
-##########################################################
-## Notify if critical device goes offline
-##########################################################
-
-- alias: notification alert when a critical device goes offline
-  trigger:
-#    - platform: state
-#      entity_id: binary_sensor.synology_nas
-#      to: 'off'
-#      for:
-#        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.usg_gw
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.sw8_60w
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.ap_loft
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.ap_living
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.pihole
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.nas2
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.garage_cam
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.living_cam
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.chalkboard_cam
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.shop_cam
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.front_cam
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.back_cam
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.harmony_living
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.harmony_master
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: binary_sensor.ring_pro
-      to: 'off'
-      for:
-        minutes: 10
-  condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: >
-          {% if states.automation.notification_alert_when_a_critical_device_goes_offline.last_triggered is not none %}
-            {% if as_timestamp(now()) | int   -  as_timestamp(states.automation.notification_alert_when_a_critical_device_goes_offline.attributes.last_triggered) | int > 3600 %} true {% else %} false
-            {% endif %}
-          {% else %}
-          false
-          {% endif %}
-  action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data_template:
-        title: "Home Assistant"
-        message: '{{trigger.to_state.attributes.friendly_name}} has gone offline.'
+        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}.'
+        target: ["REDACTED"]
+        data:
+          embed:
+            image:
+              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+  mode: single

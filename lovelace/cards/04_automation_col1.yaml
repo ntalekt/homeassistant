@@ -7,6 +7,7 @@ cards:
       title: Ad-hoc
       entities:
         - entity: input_boolean.test_text_notification_slack
+        - entity: input_boolean.test_text_notification_discord
         - entity: input_boolean.test_text_notification_ha
         - entity: input_boolean.test_audio_notification
         - entity: input_boolean.reboot_tapo_cameras
