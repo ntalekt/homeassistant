@@ -3,6 +3,172 @@
 ##################################################################
 
   ##########################################################
+  ## St. PatREDACTED's Day - Lighting via calendar stpd
+  ##########################################################
+
+- alias: Holiday - Enable stpd Lighting
+  trigger:
+    - platform: state
+      entity_id: sensor.holidays_calendar
+      to: "St. PatREDACTED's Day"
+      for:
+        hours: 48
+        minutes: 0
+        seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.exterior_holiday
+      state: 'On'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.holiday
+        option: "St. PatREDACTED's Day"
+
+  ##########################################################
+  ## stpd - Lighting via input_select
+  ##########################################################
+
+- alias: Holiday - stpd Lighting Front
+  trigger:
+    - platform: state
+      entity_id: input_select.holiday
+      to: "St. PatREDACTED's Day"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'on'
+      - condition: state
+        entity_id: light.front_flood_lights
+        state: 'on'
+  action:
+    #turn floods to green
+    - service: light.turn_on
+      data:
+        entity_id: light.exterior_flood_lights
+        rgb_color:
+          - 0
+          - 255
+          - 0
+        brightness_pct: 100
+    #turn on front group and green
+    - service: light.turn_on
+      data:
+        entity_id: light.front_porch_group
+        rgb_color:
+          - 0
+          - 255
+          - 0
+        brightness_pct: 100
+    #turn on side group and green
+    - service: light.turn_on
+      data:
+        entity_id: light.side_porch_group
+        rgb_color:
+          - 0
+          - 255
+          - 0
+        brightness_pct: 100
+    - delay: 0:15
+    - service: light.turn_on
+      data:
+        entity_id: light.front_bulb
+        rgb_color:
+          - 0
+          - 255
+          - 0
+        brightness_pct: 100
+    - service: light.turn_on
+      data:
+        entity_id: light.side_bulb
+        rgb_color:
+          - 0
+          - 255
+          - 0
+        brightness_pct: 100
+
+  ##########################################################
+  ## stpd - Change colors
+  ##########################################################
+
+- alias: Holiday - stpd Lighting Front Floods Switch Color
+  trigger:
+    - platform: state
+      entity_id: light.front_flood_lights
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'on'
+      - condition: state
+        entity_id: input_select.holiday
+        state: "St. PatREDACTED's Day"
+  action:
+    #turn front floods to green
+    - service: light.turn_on
+      data:
+        entity_id: light.front_flood_lights
+        rgb_color:
+          - 0
+          - 255
+          - 0
+        brightness_pct: 100
+
+- alias: Holiday - stpd Lighting Front Bulb Switch Color
+  trigger:
+    - platform: state
+      entity_id: light.front_bulb
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'on'
+      - condition: state
+        entity_id: input_select.holiday
+        state: "St. PatREDACTED's Day"
+  action:
+    #turn front bulb to green
+    - service: light.turn_on
+      data:
+        entity_id: light.front_porch_group
+        rgb_color:
+          - 0
+          - 255
+          - 0
+        brightness_pct: 100
+
+- alias: Holiday - stpd Lighting Side Bulb Switch Color
+  trigger:
+    - platform: state
+      entity_id: light.side_bulb
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.exterior_holiday
+        state: 'on'
+      - condition: state
+        entity_id: input_select.holiday
+        state: "St. PatREDACTED's Day"
+  action:
+    #turn front bulb to green
+    - service: light.turn_on
+      data:
+        entity_id: light.side_porch_group
+        rgb_color:
+          - 0
+          - 255
+          - 0
+        brightness_pct: 100
+
+  ##########################################################
   ## VDay - Lighting via calendar
   ##########################################################
 

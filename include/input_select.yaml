@@ -90,12 +90,12 @@ holiday:
     - None
     - Valentine's Day
     - St. PatREDACTED's Day
-    - Easter
-    - Memorial Day
-    - Independence Day
-    - Labor Day
+    # - Easter
+    # - Memorial Day
+    # - Independence Day
+    # - Labor Day
     - Halloween
-    - Veterans Day
-    - Thanksgiving
+    # - Veterans Day
+    # - Thanksgiving
     - Christmas
   icon: mdi:gift
