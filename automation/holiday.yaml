@@ -3,14 +3,14 @@
 ##################################################################
 
   ##########################################################
-  ## St. PatREDACTED's Day - Lighting via calendar stpd
+  ## St. Patuserone's Day - Lighting via calendar stpd
   ##########################################################
 
 - alias: Holiday - Enable stpd Lighting
   trigger:
     - platform: state
       entity_id: sensor.holidays_calendar
-      to: "St. PatREDACTED's Day"
+      to: "St. Patuserone's Day"
       for:
         hours: 48
         minutes: 0
@@ -23,7 +23,7 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.holiday
-        option: "St. PatREDACTED's Day"
+        option: "St. Patuserone's Day"
 
   ##########################################################
   ## stpd - Lighting via input_select
@@ -33,7 +33,7 @@
   trigger:
     - platform: state
       entity_id: input_select.holiday
-      to: "St. PatREDACTED's Day"
+      to: "St. Patuserone's Day"
   condition:
     condition: and
     conditions:
@@ -106,7 +106,7 @@
         state: 'on'
       - condition: state
         entity_id: input_select.holiday
-        state: "St. PatREDACTED's Day"
+        state: "St. Patuserone's Day"
   action:
     #turn front floods to green
     - service: light.turn_on
@@ -131,7 +131,7 @@
         state: 'on'
       - condition: state
         entity_id: input_select.holiday
-        state: "St. PatREDACTED's Day"
+        state: "St. Patuserone's Day"
   action:
     #turn front bulb to green
     - service: light.turn_on
@@ -156,7 +156,7 @@
         state: 'on'
       - condition: state
         entity_id: input_select.holiday
-        state: "St. PatREDACTED's Day"
+        state: "St. Patuserone's Day"
   action:
     #turn front bulb to green
     - service: light.turn_on
