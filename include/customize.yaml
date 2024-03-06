@@ -42,7 +42,7 @@ binary_sensor.lumi_lumi_sensor_magnet_aq2_opening:
   device_class: door
 binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2:
   device_class: garage_door
-sensor.REDACTED_pixel_battery_level:
+sensor.userone_pixel_battery_level:
   friendly_name: userone Pixel
 sensor.usertwos_iphone_2_battery_level:
   friendly_name: usertwo iPhone

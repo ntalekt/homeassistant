@@ -441,7 +441,7 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -471,7 +471,7 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -501,7 +501,7 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -531,7 +531,7 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -561,7 +561,7 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -591,7 +591,7 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
 - alias: notification alert frigate cat in front yard
@@ -617,7 +617,7 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -647,7 +647,7 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
 - alias: notification alert frigate cat
@@ -673,7 +673,7 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
     ##########################################################
@@ -703,7 +703,7 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
 - alias: notification alert frigate coyote nature2
@@ -729,7 +729,7 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
 - alias: notification alert frigate coyote nature cat
@@ -755,7 +755,7 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single
 
 - alias: notification alert frigate coyote nature2 cat
@@ -781,5 +781,5 @@
         data:
           embed:
             image:
-              url: 'https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
+              url: 'https://ha.REDACTED/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image'
   mode: single

@@ -140,16 +140,16 @@
 
     esxi_vmhost_esxi1_cpu_pct:
       value_template: >
-        {% set usage = states.sensor.esxi_vmhost_esxi1_userone_com.attributes.cpuusage_ghz | default(0)  %}
-        {% set total = states.sensor.esxi_vmhost_esxi1_userone_com.attributes.cputotal_ghz | default(0) %}
+        {% set usage = states.sensor.esxi_vmhost_esxi1_REDACTED.attributes.cpuusage_ghz | default(0)  %}
+        {% set total = states.sensor.esxi_vmhost_esxi1_REDACTED.attributes.cputotal_ghz | default(0) %}
         {{ (( usage / total ) * 100 ) | round(2) }}
       friendly_name: "ESXi1 CPU %"
       unit_of_measurement: "%"
 
     esxi_vmhost_esxi1_mem_pct:
       value_template: >
-        {% set usage = states.sensor.esxi_vmhost_esxi1_userone_com.attributes.memusage_gb | default(0) | int %}
-        {% set total = states.sensor.esxi_vmhost_esxi1_userone_com.attributes.memtotal_gb | default(0) | int %}
+        {% set usage = states.sensor.esxi_vmhost_esxi1_REDACTED.attributes.memusage_gb | default(0) | int %}
+        {% set total = states.sensor.esxi_vmhost_esxi1_REDACTED.attributes.memtotal_gb | default(0) | int %}
         {{ (( usage / total ) * 100 ) | round(2) }}
       friendly_name: "ESXi1 MEM %"
       unit_of_measurement: "%"
@@ -192,12 +192,12 @@
     sun_elevation:
       value_template: "{{ states.sun.sun.attributes.elevation }}"
 
-    REDACTED_phone_battery:
-      value_template: "{% if states.device_tracker.REDACTED_REDACTED.state %}{{ states.device_tracker.REDACTED_REDACTED.attributes.battery_level | default(0) | int }}{% endif %}"
+    userone_phone_battery:
+      value_template: "{% if states.device_tracker.userone_REDACTED.state %}{{ states.device_tracker.userone_REDACTED.attributes.battery_level | default(0) | int }}{% endif %}"
       friendly_name: "userone Pixel"
       unit_of_measurement: "%"
       icon_template: >
-        {% set battery_level = states.device_tracker.REDACTED_REDACTED.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.device_tracker.userone_REDACTED.attributes.battery_level | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
         {% if battery_round >= 100 %}
           mdi:battery
@@ -561,7 +561,7 @@
 
 - platform: history_stats
   name: userone time home
-  entity_id: person.REDACTED
+  entity_id: person.userone
   state: 'home'
   type: time
   start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
@@ -569,7 +569,7 @@
 
 - platform: history_stats
   name: userone time lifetime
-  entity_id: person.REDACTED
+  entity_id: person.userone
   state: 'Lifetime'
   type: time
   start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
@@ -577,7 +577,7 @@
 
 - platform: history_stats
   name: userone time school
-  entity_id: person.REDACTED
+  entity_id: person.userone
   state: 'REDACTED'
   type: time
   start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
@@ -585,7 +585,7 @@
 
 - platform: history_stats
   name: userone time not_home
-  entity_id: person.REDACTED
+  entity_id: person.userone
   state: 'not_home'
   type: time
   start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
@@ -593,7 +593,7 @@
 
 - platform: history_stats
   name: userone time work
-  entity_id: person.REDACTED
+  entity_id: person.userone
   state: 'Work'
   type: time
   start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'

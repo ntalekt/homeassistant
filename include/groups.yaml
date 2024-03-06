@@ -6,7 +6,7 @@ household:
   name: Household
   entities:
     # Mobile App
-    - device_tracker.REDACTED_pixel_5
+    - device_tracker.userone_pixel_5
     - device_tracker.usertwos_iphone_2
     # Unifi
     - device_tracker.pixel_7_2
