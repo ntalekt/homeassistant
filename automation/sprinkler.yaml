@@ -38,10 +38,10 @@
       from: "on"
       to: "off"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        message: "Stopped watering"
-        target: "#sprinkler"
+        message: "Stopped watering."
+        target: ["REDACTED"]
 
 ##########################################################
 ## Sprinkler - Spring - 45min (180 min week)
@@ -131,10 +131,10 @@
       data:
         entity_id: input_select.sprinkler
         option: Spring
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        message: "Automatically changed watering schedule to Spring"
-        target: "#sprinkler"
+        message: "Automatically changed watering schedule to Spring."
+        target: ["REDACTED"]
 
 ##########################################################
 ## Sprinkler - Change to Winter
@@ -153,10 +153,10 @@
       data:
         entity_id: input_select.sprinkler
         option: Winter
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        message: "Automatically changed watering schedule to Autumn/Winter"
-        target: "#sprinkler"
+        message: "Automatically changed watering schedule to Autumn/Winter."
+        target: ["REDACTED"]
 
 ##########################################################
 ## Sprinkler - Change to Summer
@@ -172,7 +172,7 @@
       data:
         entity_id: input_select.sprinkler
         option: Summer
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        message: "Automatically changed watering schedule to Summer"
-        target: "#sprinkler"
+        message: "Automatically changed watering schedule to Summer."
+        target: ["REDACTED"]

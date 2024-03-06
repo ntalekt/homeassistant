@@ -434,10 +434,6 @@
       - "{{ trigger.payload_json['after']['label'] == 'car' }}"
       - "{{ 'driveway' in trigger.payload_json['after']['entered_zones'] }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} has been detected in the driveway. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: Frigate
     - service: notify.homeassistant_dis
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} has been detected in the driveway.'
@@ -468,10 +464,6 @@
       - "{{ 'street' in trigger.payload_json['before']['current_zones'] }}"
       - "{{ 'driveway' in trigger.payload_json['after']['current_zones'] }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} has arrived in the driveway. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: Frigate
     - service: notify.homeassistant_dis
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} has arrived in the driveway.'
@@ -502,10 +494,6 @@
       - "{{ 'driveway' in trigger.payload_json['before']['current_zones'] }}"
       - "{{ 'street' in trigger.payload_json['after']['current_zones'] }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} has left the driveway. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: Frigate
     - service: notify.homeassistant_dis
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} has left the driveway.'
@@ -536,10 +524,6 @@
       - "{{ trigger.payload_json['after']['label'] == 'person' }}"
       - "{{ 'yard' in trigger.payload_json['after']['entered_zones'] }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: Frigate
     - service: notify.homeassistant_dis
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard.'
@@ -570,10 +554,6 @@
       - "{{ trigger.payload_json['after']['label'] == 'person' }}"
       - "{{ not 'front' in trigger.payload_json['after']['camera'] }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: Frigate
     - service: notify.homeassistant_dis
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}.'
@@ -604,10 +584,6 @@
       - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
       - "{{ 'yard' in trigger.payload_json['after']['entered_zones'] }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: Frigate
     - service: notify.homeassistant_dis
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard.'
@@ -634,10 +610,6 @@
       - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
       - "{{ 'yard' in trigger.payload_json['after']['entered_zones'] }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: Frigate
     - service: notify.homeassistant_dis
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the front yard.'
@@ -668,10 +640,6 @@
       - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
       - "{{ trigger.payload_json['after']['camera'] == 'back' }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: Frigate
     - service: notify.homeassistant_dis
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}.'
@@ -698,10 +666,6 @@
       - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
       - "{{ trigger.payload_json['after']['camera'] == 'back' }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: Frigate
     - service: notify.homeassistant_dis
       data_template:
         message: 'A {{trigger.payload_json["after"]["label"]}} was detected in the {{trigger.payload_json["after"]["camera"]}}.'
@@ -732,10 +696,6 @@
       - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
       - "{{ trigger.payload_json['after']['camera'] == 'nature' }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: COYOTE
     - service: notify.homeassistant_dis
       data_template:
         message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}.'
@@ -762,10 +722,6 @@
       - "{{ trigger.payload_json['after']['label'] == 'dog' }}"
       - "{{ trigger.payload_json['after']['camera'] == 'nature2' }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: COYOTE
     - service: notify.homeassistant_dis
       data_template:
         message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}.'
@@ -792,10 +748,6 @@
       - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
       - "{{ trigger.payload_json['after']['camera'] == 'nature' }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: COYOTE
     - service: notify.homeassistant_dis
       data_template:
         message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}.'
@@ -822,10 +774,6 @@
       - "{{ trigger.payload_json['after']['label'] == 'cat' }}"
       - "{{ trigger.payload_json['after']['camera'] == 'nature2' }}"
   action:
-    - service: notify.ntalekt
-      data_template:
-        message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}. <https://ha.userone.com/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/snapshot.jpg?bbox=1&timestamp=0|Image>'
-        title: COYOTE
     - service: notify.homeassistant_dis
       data_template:
         message: 'A COYOTE was detected in the {{trigger.payload_json["after"]["camera"]}}.'

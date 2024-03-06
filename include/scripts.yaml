@@ -182,10 +182,10 @@ update_sprinkler_last_run_timer:
 sprinkler_water_spring:
   alias: "Sprinkler Water Spring"
   sequence:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        message: "Started watering according to spring schedule"
-        target: "#sprinkler"
+        message: "Started watering according to spring schedule."
+        target: ["REDACTED"]
     - service: rainbird.start_irrigation
       entity_id: switch.rain_bird_sprinkler_1
       data:
@@ -198,10 +198,10 @@ sprinkler_water_spring:
 sprinkler_water_winter:
   alias: "Sprinkler Water Winter"
   sequence:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        message: "Started watering according to winter schedule"
-        target: "#sprinkler"
+        message: "Started watering according to winter schedule."
+        target: ["REDACTED"]
     - service: rainbird.start_irrigation
       entity_id: switch.rain_bird_sprinkler_1
       data:
@@ -214,10 +214,10 @@ sprinkler_water_winter:
 sprinkler_water_summer:
   alias: "Sprinkler Water Summer"
   sequence:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        message: "Started watering according to summer schedule"
-        target: "#sprinkler"
+        message: "Started watering according to summer schedule."
+        target: ["REDACTED"]
     - service: rainbird.start_irrigation
       entity_id: switch.rain_bird_sprinkler_1
       data:
@@ -230,10 +230,10 @@ sprinkler_water_summer:
 sprinkler_water_test:
   alias: "Sprinkler Water Test"
   sequence:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        message: "Started watering according to test schedule"
-        target: "#sprinkler"
+        message: "Started watering according to test schedule."
+        target: ["REDACTED"]
     - service: rainbird.start_irrigation
       entity_id: switch.rain_bird_sprinkler_1
       data:

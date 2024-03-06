@@ -23,10 +23,10 @@
       # true if sensor has not updated in 24 hours
       value_template: "{{ now() - states.sensor.REDACTED_channel_videos.last_changed >= timedelta (minutes=1440) }}"
   action:
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "Timelapse - Home Assistant"
         message: "{{ now().timestamp() | timestamp_local }} Check youtube uploads. No uploads in 24 hours."
+        target: ["REDACTED"]
 
   ##########################################################
   ## f1
@@ -53,11 +53,10 @@
         - automation.f1_timelapse_data
         - automation.f1_timelapse_main
         - automation.f1_timelapse_tracker
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "F1 Timelapse Start"
         message: "F1 timelapse started based on calendar!"
-      
+        target: ["REDACTED"]
 
 - alias: turn_off_f1_timelapse
   trigger:
@@ -80,10 +79,10 @@
         - automation.f1_timelapse_data
         - automation.f1_timelapse_main
         - automation.f1_timelapse_tracker
-    - service: notify.ntalekt
+    - service: notify.homeassistant_dis
       data:
-        title: "F1 Timelapse Stop"
         message: "F1 timelapse stopped based on calendar!"
+        target: ["REDACTED"]
 
 - alias: f1_timelapse_main
   initial_state: off
