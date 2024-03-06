@@ -64,7 +64,7 @@
       event: end
       entity_id: calendar.formula_1_calendar_by_racefans_net
   action:
-    - service: homeassistant.turn_on
+    - service: homeassistant.turn_off
       entity_id:
         - automation.f1_timelapse_carlossainz
         - automation.f1_timelapse_charlesleclerc
@@ -88,144 +88,183 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_main
+    - service: shell_command.timelapse_create_f1_main
 
 - alias: f1_timelapse_tracker
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_tracker
+    - service: shell_command.timelapse_create_f1_tracker
 
 - alias: f1_timelapse_data
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_data
+    - service: shell_command.timelapse_create_f1_data
 
 - alias: f1_timelapse_maxverstappen
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_maxverstappen
+    - service: shell_command.timelapse_create_f1_maxverstappen
 
 - alias: f1_timelapse_sergioperez
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_sergioperez
+    - service: shell_command.timelapse_create_f1_sergioperez
 
 - alias: f1_timelapse_carlossainz
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_carlossainz
+    - service: shell_command.timelapse_create_f1_carlossainz
 
 - alias: f1_timelapse_charlesleclerc
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_charlesleclerc
+    - service: shell_command.timelapse_create_f1_charlesleclerc
 
 - alias: f1_timelapse_lewishamilton
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_lewishamilton
+    - service: shell_command.timelapse_create_f1_lewishamilton
 
 - alias: f1_timelapse_georgerussell
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_georgerussell
+    - service: shell_command.timelapse_create_f1_georgerussell
 
 - alias: f1_timelapse_landonorris
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_landonorris
+    - service: shell_command.timelapse_create_f1_landonorris
 
 - alias: f1_timelapse_oscarpiastri
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_oscarpiastri
+    - service: shell_command.timelapse_create_f1_oscarpiastri
 
 - alias: f1_timelapse_fernandoalonso
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_fernandoalonso
+    - service: shell_command.timelapse_create_f1_fernandoalonso
 
 - alias: f1_timelapse_lancestroll
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
-    - condition: state
-      entity_id: input_boolean.disable_f1_timelapse
-      state: 'off'
+      seconds: "/15"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
   action:
-    service: shell_command.timelapse_create_f1_lancestroll
+    - service: shell_command.timelapse_create_f1_lancestroll
 
   ##########################################################
   ## archive 7+ days old raw snapshots
