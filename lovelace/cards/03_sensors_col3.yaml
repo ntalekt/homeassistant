@@ -29,6 +29,8 @@ cards:
           icon: mdi:upload
         - entity: sensor.qbittorrent_none
           icon: mdi:script
+        - entity: sensor.qbittorrent_all_torrents
+          icon: mdi:script
       show_header_toggle: false
 
 
