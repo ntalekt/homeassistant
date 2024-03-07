@@ -614,15 +614,18 @@ class ProxmoxDiskCoordinator(ProxmoxCoordinator):
             if disk["devpath"] == self.resource_id:
                 disk_attributes = {}
                 api_path = f"nodes/{self.node_name}/disks/smart?disk={self.resource_id}"
-                disk_attributes_api = await self.hass.async_add_executor_job(
-                    poll_api,
-                    self.hass,
-                    self.config_entry,
-                    self.proxmox,
-                    api_path,
-                    ProxmoxType.Disk,
-                    self.resource_id,
-                )
+                try:
+                    disk_attributes_api = await self.hass.async_add_executor_job(
+                        poll_api,
+                        self.hass,
+                        self.config_entry,
+                        self.proxmox,
+                        api_path,
+                        ProxmoxType.Disk,
+                        self.resource_id,
+                    )
+                except UpdateFailed:
+                    disk_attributes_api = None
 
                 attributes_json = []
                 if (
@@ -665,6 +668,8 @@ class ProxmoxDiskCoordinator(ProxmoxCoordinator):
                         power_hours_raw = disk_attribute["raw"]
                         if len(power_hours_h := power_hours_raw.strip().split("h")) > 1:
                             disk_attributes["power_hours"] = power_hours_h[0].strip()
+                        if len(power_hours_s := power_hours_raw.strip().split(" ")) > 1:
+                            disk_attributes["power_hours"] = power_hours_s[0].strip()
                         else:
                             disk_attributes["power_hours"] = disk_attribute["raw"]
 
@@ -685,7 +690,7 @@ class ProxmoxDiskCoordinator(ProxmoxCoordinator):
                     disk_type=disk_type,
                     size=float(disk["size"]) if "size" in disk else UNDEFINED,
                     health=disk["health"] if "health" in disk else UNDEFINED,
-                    disk_rpm=float(disk["rpm"]) if ("rpm" in disk and disk_type.upper() not in ("SSD", None)) else UNDEFINED,
+                    disk_rpm=float(disk["rpm"]) if ("rpm" in disk and disk_type.upper() not in ("SSD", "NVME", "USB", None)) else UNDEFINED,
                     temperature_air=disk_attributes["temperature_air"]
                     if "temperature_air" in disk_attributes
                     else UNDEFINED,
