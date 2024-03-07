@@ -34,25 +34,32 @@
 
 - alias: turn_on_f1_timelapse
   trigger:
-    - platform: calendar
-      event: start
-      entity_id: calendar.formula_1_calendar_by_racefans_net
+  # turn on timelapse 10min before calendar event
+    - platform: template
+      value_template: >
+        {% if state_attr('calendar.formula_1_calendar_by_racefans_net','start_time') != none %}
+          {% set start = state_attr('calendar.formula_1_calendar_by_racefans_net','start_time')|as_datetime|as_local %}
+          {{ start - now() < timedelta(minutes=10) }}
+        {% endif %}
+    # - platform: calendar
+    #   event: start
+    #   entity_id: calendar.formula_1_calendar_by_racefans_net
   action:
     - service: homeassistant.turn_on
       entity_id:
         - automation.f1_timelapse_carlossainz
         - automation.f1_timelapse_charlesleclerc
-        - automation.f1_timelapse_fernandoalonso
+        # - automation.f1_timelapse_fernandoalonso
         - automation.f1_timelapse_georgerussell
-        - automation.f1_timelapse_lancestroll
-        - automation.f1_timelapse_landonorris
+        # - automation.f1_timelapse_lancestroll
+        # - automation.f1_timelapse_landonorris
         - automation.f1_timelapse_lewishamilton
         - automation.f1_timelapse_maxverstappen
-        - automation.f1_timelapse_oscarpiastri
+        # - automation.f1_timelapse_oscarpiastri
         - automation.f1_timelapse_sergioperez
-        - automation.f1_timelapse_data
-        - automation.f1_timelapse_main
-        - automation.f1_timelapse_tracker
+        # - automation.f1_timelapse_data
+        # - automation.f1_timelapse_main
+        # - automation.f1_timelapse_tracker
     - service: notify.homeassistant_dis
       data:
         message: "F1 timelapse started based on calendar!"
@@ -64,21 +71,27 @@
       event: end
       entity_id: calendar.formula_1_calendar_by_racefans_net
   action:
+  # turn off timelapse 10min after calendar end
+    - service: notify.homeassistant_dis
+      data:
+        message: "F1 timelapse stopping in 10 minutes!"
+        target: ["REDACTED"]
+    - delay: '00:10:00'
     - service: homeassistant.turn_off
       entity_id:
         - automation.f1_timelapse_carlossainz
         - automation.f1_timelapse_charlesleclerc
-        - automation.f1_timelapse_fernandoalonso
+        # - automation.f1_timelapse_fernandoalonso
         - automation.f1_timelapse_georgerussell
-        - automation.f1_timelapse_lancestroll
-        - automation.f1_timelapse_landonorris
+        # - automation.f1_timelapse_lancestroll
+        # - automation.f1_timelapse_landonorris
         - automation.f1_timelapse_lewishamilton
         - automation.f1_timelapse_maxverstappen
-        - automation.f1_timelapse_oscarpiastri
+        # - automation.f1_timelapse_oscarpiastri
         - automation.f1_timelapse_sergioperez
-        - automation.f1_timelapse_data
-        - automation.f1_timelapse_main
-        - automation.f1_timelapse_tracker
+        # - automation.f1_timelapse_data
+        # - automation.f1_timelapse_main
+        # - automation.f1_timelapse_tracker
     - service: notify.homeassistant_dis
       data:
         message: "F1 timelapse stopped based on calendar!"
