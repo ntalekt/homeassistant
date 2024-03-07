@@ -49,20 +49,20 @@
       entity_id:
         - automation.f1_timelapse_carlossainz
         - automation.f1_timelapse_charlesleclerc
-        # - automation.f1_timelapse_fernandoalonso
+        - automation.f1_timelapse_fernandoalonso
         - automation.f1_timelapse_georgerussell
-        # - automation.f1_timelapse_lancestroll
-        # - automation.f1_timelapse_landonorris
+        - automation.f1_timelapse_lancestroll
+        - automation.f1_timelapse_landonorris
         - automation.f1_timelapse_lewishamilton
         - automation.f1_timelapse_maxverstappen
-        # - automation.f1_timelapse_oscarpiastri
+        - automation.f1_timelapse_oscarpiastri
         - automation.f1_timelapse_sergioperez
         # - automation.f1_timelapse_data
         # - automation.f1_timelapse_main
         # - automation.f1_timelapse_tracker
     - service: notify.homeassistant_dis
       data:
-        message: "F1 timelapse started based on calendar!"
+        message: 'F1 {{ states("sensor.f1_next_event") }} timelapse started based on calendar!'
         target: ["REDACTED"]
 
 - alias: turn_off_f1_timelapse
@@ -81,13 +81,13 @@
       entity_id:
         - automation.f1_timelapse_carlossainz
         - automation.f1_timelapse_charlesleclerc
-        # - automation.f1_timelapse_fernandoalonso
+        - automation.f1_timelapse_fernandoalonso
         - automation.f1_timelapse_georgerussell
-        # - automation.f1_timelapse_lancestroll
-        # - automation.f1_timelapse_landonorris
+        - automation.f1_timelapse_lancestroll
+        - automation.f1_timelapse_landonorris
         - automation.f1_timelapse_lewishamilton
         - automation.f1_timelapse_maxverstappen
-        # - automation.f1_timelapse_oscarpiastri
+        - automation.f1_timelapse_oscarpiastri
         - automation.f1_timelapse_sergioperez
         # - automation.f1_timelapse_data
         # - automation.f1_timelapse_main
@@ -101,7 +101,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -115,7 +115,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -129,7 +129,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -143,7 +143,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -157,7 +157,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -171,7 +171,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -185,7 +185,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -199,7 +199,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -213,7 +213,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -227,7 +227,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -241,7 +241,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -255,7 +255,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -269,7 +269,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/15"
+      seconds: "/12"
   condition:
     condition: and
     conditions:

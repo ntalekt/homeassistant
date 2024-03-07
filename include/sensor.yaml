@@ -71,6 +71,23 @@
           less than a minute
         {% endif %}
 
+    f1_next_event:
+      value_template: >-
+        {% if state_attr('calendar.formula_1_calendar_by_racefans_net','message') != none %}
+          {% set message = state_attr('calendar.formula_1_calendar_by_racefans_net','message') %}
+          {% if 'FP1:' in message %}
+              FP1
+          {% elif 'FP2:' in message %}
+              FP2
+          {% elif 'FP3:' in message %}
+              FP3
+          {% elif 'Q:' in message %}
+              Q
+          {% elif 'GP:' in message %}
+              GP
+          {% endif %}
+        {% endif %}
+
     p1p_remaining_time_friendly:
       value_template: >-
         {% set time = states('sensor.p1p_end_time')%}
