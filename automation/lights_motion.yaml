@@ -69,7 +69,7 @@
       from: 'off'
       to: 'on'
     - platform: state
-      entity_id: binary_sensor.binary_sensor.side_motion
+      entity_id: binary_sensor.side_motion
       from: 'off'
       to: 'on'
   condition:
@@ -125,7 +125,7 @@
 - alias: side reset exterior lights to 15 after motion detected after 10pm
   trigger:
     - platform: state
-      entity_id: binary_sensor.binary_sensor.side_motion
+      entity_id: binary_sensor.side_motion
       from: 'on'
       to: 'off'
       for:
