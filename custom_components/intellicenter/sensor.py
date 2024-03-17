@@ -6,7 +6,7 @@ from typing import Optional
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
     CONCENTRATION_PARTS_PER_MILLION,
-    POWER_WATT,
+    UnitOfPower,
 )
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -72,7 +72,7 @@ async def async_setup_entry(
                         controller,
                         object,
                         device_class=SensorDeviceClass.POWER,
-                        unit_of_measurement=POWER_WATT,
+                        unit_of_measurement=UnitOfPower.WATT,
                         attribute_key=PWR_ATTR,
                         name="+ power",
                         rounding_factor=25,

@@ -12,11 +12,14 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers.typing import HomeAssistantType
 
 from . import PoolEntity
-from .const import CONST_RPM, DOMAIN
+from .const import DOMAIN
 from homeassistant.const import PERCENTAGE
 from .pyintellicenter import (
+    BODY_ATTR,
+    BODY_TYPE,
     CHEM_TYPE,
     PRIM_ATTR,
+    SEC_ATTR,
     ModelController,
     PoolObject,
 )
@@ -42,16 +45,30 @@ async def async_setup_entry(
             and object.subtype == "ICHLOR"
             and PRIM_ATTR in object.attributes
         ):
-            numbers.append(
-                PoolNumber(
-                    entry,
-                    controller,
-                    object,
-                    unit_of_measurement=PERCENTAGE,
-                    attribute_key=PRIM_ATTR,
-                    name="+ Output %",
-                )
-            )
+            bodies = controller.model.getByType(BODY_TYPE)
+            intellichlor_bodies = object[BODY_ATTR].split(" ")
+
+            body: PoolObject
+            for body in bodies:
+                intellichlor_index = intellichlor_bodies.index(body.objnam)
+                attribute_key = None
+                if intellichlor_index == 0:
+                    attribute_key = PRIM_ATTR
+                elif intellichlor_index == 1:
+                    attribute_key = SEC_ATTR
+                if attribute_key is not None:
+                    numbers.append(
+                        PoolNumber(
+                            entry,
+                            controller,
+                            # body,
+                            object,
+                            unit_of_measurement=PERCENTAGE,
+                            attribute_key=attribute_key,
+                            name=f"+ Output % ({body.sname})",
+                        )
+                    )
+
     async_add_entities(numbers)
 
 

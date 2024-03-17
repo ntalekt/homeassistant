@@ -44,6 +44,7 @@ QUALTY_ATTR = "QUALTY"
 READY_ATTR = "READY"
 RPM_ATTR = "RPM"
 SALT_ATTR = "SALT"
+SEC_ATTR = "SEC"
 SELECT_ATTR = "SELECT"
 SHOMNU_ATTR = "SHOMNU"
 SNAME_ATTR = "SNAME"
@@ -114,7 +115,6 @@ BODY_ATTRIBUTES = {
     VOL_ATTR,  # (int) Volume in Gallons
 }
 
-
 CHEM_ATTRIBUTES = {
     "ALK",  # (int) IntelliChem: Alkalinity setting
     BODY_ATTR,  # (objnam) BODY being managed
@@ -133,10 +133,10 @@ CHEM_ATTRIBUTES = {
     "PHSET",  # (float) IntelliChem Ph level setting
     PHTNK_ATTR,  # (int) IntelliChem: Ph Tank Level
     PHVAL_ATTR,  # (float) IntelliChem: Ph Level
-    PRIM_ATTR,  # (int) Intellichor: output setting in %
-    QUALTY_ATTR,  # (float) Intellichem: Water Quality (Saturation Index)
+    PRIM_ATTR,  # (int) IntelliChlor: primary body output setting in %
+    QUALTY_ATTR,  # (float) IntelliChem: Water Quality (Saturation Index)
     SALT_ATTR,  # (int) Salt level
-    "SEC",  # (int) IntelliChlor ??
+    SEC_ATTR,  # (int) IntelliChlor: secondary body output setting in %
     "SHARE",  # (objnam) ??
     "SINDEX",  # (int) ??
     SNAME_ATTR,  # friendly name
@@ -144,6 +144,7 @@ CHEM_ATTRIBUTES = {
     SUPER_ATTR,  # (ON/OFF) IntelliChlor: turn on Boost mode (aka Super Chlorinate)
     TIMOUT_ATTR,  # (int) IntelliChlor: in seconds ??
 }
+
 CIRCGRP_ATTRIBUTES = {
     ACT_ATTR,
     CIRCUIT_ATTR,

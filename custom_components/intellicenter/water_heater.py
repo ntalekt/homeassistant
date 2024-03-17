@@ -4,9 +4,8 @@ import logging
 from typing import Any, Dict, Optional
 
 from homeassistant.components.water_heater import (
-    SUPPORT_OPERATION_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
     WaterHeaterEntity,
+    WaterHeaterEntityFeature,
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE, STATE_IDLE, STATE_OFF, STATE_ON
@@ -123,7 +122,7 @@ class PoolWaterHeater(PoolEntity, WaterHeaterEntity, RestoreEntity):
     @property
     def supported_features(self):
         """Return the list of supported features."""
-        return SUPPORT_TARGET_TEMPERATURE | SUPPORT_OPERATION_MODE
+        return WaterHeaterEntityFeature.TARGET_TEMPERATURE | WaterHeaterEntityFeature.OPERATION_MODE
 
     @property
     def temperature_unit(self):

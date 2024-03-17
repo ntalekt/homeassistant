@@ -99,7 +99,6 @@ class ICProtocol(asyncio.Protocol):
             f"PROTOCOL: writing to transport: (size {len(request)}): {request}"
         )
         self._transport.write(request.encode())
-        self._transport.write(b"\r\n")
 
     def sendRequest(self, request: str) -> None:
         """Either send the request to the wire or queue it for later."""

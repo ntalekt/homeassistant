@@ -62,6 +62,12 @@ async def async_setup_entry(
         ):
             switches.append(
                 PoolCircuit(entry, controller, object, icon="mdi:alpha-f-box-outline"))
+        elif (
+            object.objtype == CIRCUIT_TYPE
+            and object.subtype == "CIRCGRP"
+        ):
+            switches.append(
+                PoolCircuit(entry, controller, object, icon="mdi:alpha-g-box-outline"))
         elif object.objtype == SYSTEM_TYPE:
             switches.append(
                 PoolCircuit(

@@ -13,8 +13,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
     CONF_HOST,
     EVENT_HOMEASSISTANT_STOP,
-    TEMP_CELSIUS,
-    TEMP_FAHRENHEIT,
+    UnitOfTemperature
 )
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ConfigEntryNotReady
@@ -348,5 +347,5 @@ class PoolEntity(Entity):
     def pentairTemperatureSettings(self):
         """Return the temperature units from the Pentair system."""
         return (
-            TEMP_CELSIUS if self._controller.systemInfo.usesMetric else TEMP_FAHRENHEIT
+            UnitOfTemperature.CELSIUS if self._controller.systemInfo.usesMetric else UnitOfTemperature.FAHRENHEIT
         )
