@@ -88,6 +88,10 @@
           {% endif %}
         {% endif %}
 
+    f1_timelapse_running:
+      value_template: >-
+          {{ [states.automation.f1_timelapse_carlossainz, states.automation.f1_timelapse_charlesleclerc, states.automation.f1_timelapse_fernandoalonso, states.automation.f1_timelapse_georgerussell, states.automation.f1_timelapse_lancestroll, states.automation.f1_timelapse_landonorris, states.automation.f1_timelapse_lewishamilton, states.automation.f1_timelapse_maxverstappen, states.automation.f1_timelapse_oscarpiastri, states.automation.f1_timelapse_sergioperez, states.automation.f1_timelapse_data, states.automation.f1_timelapse_main, states.automation.f1_timelapse_tracker]| selectattr('state', 'eq', 'on') | list | count > 0 }}
+
     p1p_remaining_time_friendly:
       value_template: >-
         {% set time = states('sensor.p1p_end_time')%}
