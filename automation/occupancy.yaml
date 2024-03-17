@@ -186,16 +186,16 @@
 
 - alias: occupancy garage turn on if motion detected
   trigger:
-    - platform: state
+    #- platform: state
       #tapo motion
-      entity_id: binary_sensor.garage_motion
-      from: "off"
-      to: "on"
-    - platform: state
+    #  entity_id: binary_sensor.garage_motion
+    #  from: "off"
+    #  to: "on"
+    #- platform: state
       #frigate motion
-      entity_id: binary_sensor.garage_motion_2
-      from: "off"
-      to: "on"
+    #  entity_id: binary_sensor.garage_motion_2
+    #  from: "off"
+    #  to: "on"
     - platform: state
       #frigate person detection
       entity_id: binary_sensor.garage_person_occupancy
@@ -235,14 +235,14 @@
 
 - alias: occupancy garage turn off if unavailable
   trigger:
-    - platform: state
+    #- platform: state
       #tapo motion
-      entity_id: binary_sensor.garage_motion
-      to: "unavailable"
-    - platform: state
-      #frigate motion
-      entity_id: binary_sensor.garage_motion_2
-      to: "unavailable"
+    #  entity_id: binary_sensor.garage_motion
+    #  to: "unavailable"
+    #- platform: state
+    #  #frigate motion
+    #  entity_id: binary_sensor.garage_motion_2
+    #  to: "unavailable"
     - platform: state
       #frigate person detection
       entity_id: binary_sensor.garage_person_occupancy
@@ -257,16 +257,16 @@
 
 - alias: occupancy chalkboard turn on if motion detected
   trigger:
-    - platform: state
-      #tapo motion
-      entity_id: binary_sensor.chalkboard_motion
-      from: "off"
-      to: "on"
-    - platform: state
-      #frigate motion
-      entity_id: binary_sensor.chalkboard_motion_2
-      from: "off"
-      to: "on"
+    # - platform: state
+    #   #tapo motion
+    #   entity_id: binary_sensor.chalkboard_motion
+    #   from: "off"
+    #   to: "on"
+    # - platform: state
+    #   #frigate motion
+    #   entity_id: binary_sensor.chalkboard_motion_2
+    #   from: "off"
+    #   to: "on"
     - platform: state
       #frigate person detection
       entity_id: binary_sensor.chalkboard_person_occupancy
@@ -283,13 +283,13 @@
 - alias: occupancy chalkboard turn off after 10min of no motion
   trigger:
     - platform: state
-      #tapo motion
+      # tapo motion
       entity_id: binary_sensor.chalkboard_motion
       to: "off"
       for:
         minutes: 10
     - platform: state
-      #frigate motion
+      # frigate motion
       entity_id: binary_sensor.chalkboard_motion_2
       to: "off"
       for:
@@ -328,16 +328,16 @@
 
 - alias: occupancy shop turn on if motion detected
   trigger:
-    - platform: state
-      #tapo motion
-      entity_id: binary_sensor.shop_motion
-      from: "off"
-      to: "on"
-    - platform: state
+    #- platform: state
+    #  #tapo motion
+    #  entity_id: binary_sensor.shop_motion
+    #  from: "off"
+    #  to: "on"
+    #- platform: state
       #frigate motion
-      entity_id: binary_sensor.shop_motion_2
-      from: "off"
-      to: "on"
+    #  entity_id: binary_sensor.shop_motion_2
+    #  from: "off"
+    #  to: "on"
     - platform: state
       #frigate person detection
       entity_id: binary_sensor.shop_person_occupancy
