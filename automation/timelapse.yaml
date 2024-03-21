@@ -171,7 +171,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/12"
+      seconds: "/10"
   condition:
     condition: and
     conditions:
@@ -185,7 +185,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/12"
+      seconds: "/10"
   condition:
     condition: and
     conditions:
@@ -227,7 +227,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/12"
+      seconds: "/10"
   condition:
     condition: and
     conditions:
@@ -241,7 +241,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/12"
+      seconds: "/10"
   condition:
     condition: and
     conditions:
