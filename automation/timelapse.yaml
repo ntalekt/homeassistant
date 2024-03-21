@@ -48,11 +48,11 @@
     - service: homeassistant.turn_on
       entity_id:
         # - automation.f1_timelapse_carlossainz
-        - automation.f1_timelapse_charlesleclerc
+        # - automation.f1_timelapse_charlesleclerc
         # - automation.f1_timelapse_fernandoalonso
         - automation.f1_timelapse_georgerussell
         # - automation.f1_timelapse_lancestroll
-        - automation.f1_timelapse_landonorris
+        # - automation.f1_timelapse_landonorris
         - automation.f1_timelapse_lewishamilton
         - automation.f1_timelapse_maxverstappen
         # - automation.f1_timelapse_oscarpiastri
