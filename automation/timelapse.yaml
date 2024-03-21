@@ -96,6 +96,29 @@
       data:
         message: "F1 timelapse stopped based on calendar!"
         target: ["REDACTED"]
+    - service: notify.homeassistant_dis
+      data:
+        message: "Producing George Russell's video."
+        target: ["REDACTED"]
+    - service: shell_command.timelapse_create_f1_georgerussell_vid
+    - delay: '00:05:00'
+    - service: notify.homeassistant_dis
+      data:
+        message: "Producing Lewis Hamilton's video"
+        target: ["REDACTED"]
+    - service: shell_command.timelapse_create_f1_lewishamilton_vid
+    - delay: '00:05:00'
+    - service: notify.homeassistant_dis
+      data:
+        message: "Producing Max Verstappen's video"
+        target: ["REDACTED"]
+    - service: shell_command.timelapse_create_f1_maxverstappen_vid
+    - delay: '00:05:00'
+    - service: notify.homeassistant_dis
+      data:
+        message: "Producing Sergio Perez's video"
+        target: ["REDACTED"]
+    - service: shell_command.timelapse_create_f1_sergioperez_vid
 
 - alias: f1_timelapse_main
   initial_state: off
@@ -143,7 +166,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/12"
+      seconds: "/10"
   condition:
     condition: and
     conditions:
@@ -157,7 +180,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/12"
+      seconds: "/10"
   condition:
     condition: and
     conditions:
@@ -171,7 +194,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -185,7 +208,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -199,7 +222,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/12"
+      seconds: "/10"
   condition:
     condition: and
     conditions:
@@ -213,7 +236,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/12"
+      seconds: "/10"
   condition:
     condition: and
     conditions:
@@ -227,7 +250,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -241,7 +264,7 @@
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
