@@ -8,9 +8,8 @@ from wyzeapy import CameraService, Wyzeapy
 from wyzeapy.services.camera_service import Camera
 
 from homeassistant.components.siren import (
-    SUPPORT_TURN_OFF,
-    SUPPORT_TURN_ON,
     SirenEntity,
+    SirenEntityFeature,
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import ATTR_ATTRIBUTION
@@ -58,7 +57,7 @@ class WyzeCameraSiren(SirenEntity):
         self._service = camera_service
 
         self._attr_supported_features = (
-            SUPPORT_TURN_OFF | SUPPORT_TURN_ON
+            SirenEntityFeature.TURN_OFF | SirenEntityFeature.TURN_ON
         )
 
     @token_exception_handler
@@ -100,17 +99,6 @@ class WyzeCameraSiren(SirenEntity):
     @property
     def unique_id(self):
         return f"{self._device.mac}-siren"
-
-    @property
-    def extra_state_attributes(self):
-        """Return device attributes of the entity."""
-        return {
-            ATTR_ATTRIBUTION: ATTRIBUTION,
-            "state": self.is_on,
-            "available": self.available,
-            "device model": f"{self._device.product_model}.siren",
-            "mac": self.unique_id
-        }
 
     @property
     def device_info(self):
