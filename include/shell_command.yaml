@@ -13,8 +13,6 @@
 ## time lapse stuffs
 ##########################################################
 
-
-
   timelapse_create_f1_main: "/config/timelapse/bin/createFrameF1.sh main"
   timelapse_create_f1_tracker: "/config/timelapse/bin/createFrameF1.sh tracker"
   timelapse_create_f1_data: "/config/timelapse/bin/createFrameF1.sh data"

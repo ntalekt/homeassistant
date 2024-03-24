@@ -96,71 +96,72 @@
       data:
         message: "F1 timelapse stopped based on calendar!"
         target: ["REDACTED"]
+
+  ##########################################################
+  ## George Russell
+  ##########################################################
+
+- alias: f1_timelapse_georgerussell
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/12"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
+  action:
+    - service: shell_command.timelapse_create_f1_georgerussell
+
+- alias: produce_f1_timelapse_georgerussell
+  trigger:
+    - platform: calendar
+      event: end
+      entity_id: calendar.formula_1_calendar_by_racefans_net
+  action:
+    - delay: '00:12:00'
     - service: notify.homeassistant_dis
       data:
         message: "Producing George Russell's video."
         target: ["REDACTED"]
     - service: shell_command.timelapse_create_f1_georgerussell_vid
-    - delay: '00:05:00'
+
+  ##########################################################
+  ## Lewis Hamilton
+  ##########################################################
+
+- alias: f1_timelapse_lewishamilton
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/10"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
+  action:
+    - service: shell_command.timelapse_create_f1_lewishamilton
+
+- alias: produce_f1_timelapse_lewishamilton
+  trigger:
+    - platform: calendar
+      event: end
+      entity_id: calendar.formula_1_calendar_by_racefans_net
+  action:
+    - delay: '00:17:00'
     - service: notify.homeassistant_dis
       data:
-        message: "Producing Lewis Hamilton's video"
+        message: "Producing Lewis Hamilton's video."
         target: ["REDACTED"]
     - service: shell_command.timelapse_create_f1_lewishamilton_vid
-    - delay: '00:05:00'
-    - service: notify.homeassistant_dis
-      data:
-        message: "Producing Max Verstappen's video"
-        target: ["REDACTED"]
-    - service: shell_command.timelapse_create_f1_maxverstappen_vid
-    - delay: '00:05:00'
-    - service: notify.homeassistant_dis
-      data:
-        message: "Producing Sergio Perez's video"
-        target: ["REDACTED"]
-    - service: shell_command.timelapse_create_f1_sergioperez_vid
 
-- alias: f1_timelapse_main
-  initial_state: off
-  trigger:
-    - platform: time_pattern
-      seconds: "/12"
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.disable_f1_timelapse
-        state: "off"
-  action:
-    - service: shell_command.timelapse_create_f1_main
-
-- alias: f1_timelapse_tracker
-  initial_state: off
-  trigger:
-    - platform: time_pattern
-      seconds: "/12"
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.disable_f1_timelapse
-        state: "off"
-  action:
-    - service: shell_command.timelapse_create_f1_tracker
-
-- alias: f1_timelapse_data
-  initial_state: off
-  trigger:
-    - platform: time_pattern
-      seconds: "/12"
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.disable_f1_timelapse
-        state: "off"
-  action:
-    - service: shell_command.timelapse_create_f1_data
+  ##########################################################
+  ## Max Verstappen
+  ##########################################################
 
 - alias: f1_timelapse_maxverstappen
   initial_state: off
@@ -176,11 +177,28 @@
   action:
     - service: shell_command.timelapse_create_f1_maxverstappen
 
+- alias: produce_f1_timelapse_maxverstappen
+  trigger:
+    - platform: calendar
+      event: end
+      entity_id: calendar.formula_1_calendar_by_racefans_net
+  action:
+    - delay: '00:22:00'
+    - service: notify.homeassistant_dis
+      data:
+        message: "Producing Max Verstappen's video."
+        target: ["REDACTED"]
+    - service: shell_command.timelapse_create_f1_maxverstappen_vid
+
+  ##########################################################
+  ## Sergio Perez
+  ##########################################################
+
 - alias: f1_timelapse_sergioperez
   initial_state: off
   trigger:
     - platform: time_pattern
-      seconds: "/10"
+      seconds: "/12"
   condition:
     condition: and
     conditions:
@@ -189,6 +207,73 @@
         state: "off"
   action:
     - service: shell_command.timelapse_create_f1_sergioperez
+
+- alias: produce_f1_timelapse_sergioperez
+  trigger:
+    - platform: calendar
+      event: end
+      entity_id: calendar.formula_1_calendar_by_racefans_net
+  action:
+    - delay: '00:27:00'
+    - service: notify.homeassistant_dis
+      data:
+        message: "Producing Sergio Perez's video."
+        target: ["REDACTED"]
+    - service: shell_command.timelapse_create_f1_sergioperez_vid
+
+  ##########################################################
+  ## Main
+  ##########################################################
+
+- alias: f1_timelapse_main
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/12"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
+  action:
+    - service: shell_command.timelapse_create_f1_main
+
+  ##########################################################
+  ## Tracker
+  ##########################################################
+
+- alias: f1_timelapse_tracker
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/12"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
+  action:
+    - service: shell_command.timelapse_create_f1_tracker
+
+  ##########################################################
+  ## Data
+  ##########################################################
+
+- alias: f1_timelapse_data
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/12"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
+  action:
+    - service: shell_command.timelapse_create_f1_data
 
 - alias: f1_timelapse_carlossainz
   initial_state: off
@@ -218,33 +303,9 @@
   action:
     - service: shell_command.timelapse_create_f1_charlesleclerc
 
-- alias: f1_timelapse_lewishamilton
-  initial_state: off
-  trigger:
-    - platform: time_pattern
-      seconds: "/10"
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.disable_f1_timelapse
-        state: "off"
-  action:
-    - service: shell_command.timelapse_create_f1_lewishamilton
 
-- alias: f1_timelapse_georgerussell
-  initial_state: off
-  trigger:
-    - platform: time_pattern
-      seconds: "/10"
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.disable_f1_timelapse
-        state: "off"
-  action:
-    - service: shell_command.timelapse_create_f1_georgerussell
+
+
 
 - alias: f1_timelapse_landonorris
   initial_state: off
