@@ -48,7 +48,7 @@
     - service: homeassistant.turn_on
       entity_id:
         # - automation.f1_timelapse_carlossainz
-        # - automation.f1_timelapse_charlesleclerc
+        - automation.f1_timelapse_charlesleclerc
         # - automation.f1_timelapse_fernandoalonso
         - automation.f1_timelapse_georgerussell
         # - automation.f1_timelapse_lancestroll
@@ -222,6 +222,37 @@
     - service: shell_command.timelapse_create_f1_sergioperez_vid
 
   ##########################################################
+  ## Charles Leclerc
+  ##########################################################
+
+- alias: f1_timelapse_charlesleclerc
+  initial_state: off
+  trigger:
+    - platform: time_pattern
+      seconds: "/12"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_f1_timelapse
+        state: "off"
+  action:
+    - service: shell_command.timelapse_create_f1_charlesleclerc
+
+- alias: produce_f1_timelapse_charlesleclerc
+  trigger:
+    - platform: calendar
+      event: end
+      entity_id: calendar.formula_1_calendar_by_racefans_net
+  action:
+    - delay: '00:32:00'
+    - service: notify.homeassistant_dis
+      data:
+        message: "Producing Charles Leclerc's video."
+        target: ["REDACTED"]
+    - service: shell_command.timelapse_create_f1_charlesleclerc_vid
+
+  ##########################################################
   ## Main
   ##########################################################
 
@@ -288,22 +319,6 @@
         state: "off"
   action:
     - service: shell_command.timelapse_create_f1_carlossainz
-
-- alias: f1_timelapse_charlesleclerc
-  initial_state: off
-  trigger:
-    - platform: time_pattern
-      seconds: "/12"
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.disable_f1_timelapse
-        state: "off"
-  action:
-    - service: shell_command.timelapse_create_f1_charlesleclerc
-
-
 
 
 
