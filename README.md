@@ -186,3 +186,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 * Turn office air purifier [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv) on/off based on occupancy
 * Turn office air purifier [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv) on/off based on air quality sensor
 * Change office air purifier [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv) mode based on air quality sensor
+
+### Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=ntalekt/homeassistant&type=Date)](https://star-history.com/#ntalekt/homeassistant&Date)
