@@ -105,6 +105,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 
 #### Garage/Cover
 * [Chamberlain B2405 Smart Garage Door Opener](https://amzn.to/40IVXet)
+* [ratgdo 2.53i](https://paulwieland.github.io/ratgdo/)
 
 #### Network
 * [Ubiquiti Unifi UXG-Lite](https://store.ui.com/us/en/products/uxg-lite)

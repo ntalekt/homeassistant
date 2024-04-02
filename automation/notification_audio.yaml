@@ -189,7 +189,7 @@
 - alias: notification audio garage open for 30min
   trigger:
     - platform: state
-      entity_id: cover.garage_door
+      entity_id: cover.ratgdov25i_885dfb_door
       to: 'open'
       for:
         minutes: 30

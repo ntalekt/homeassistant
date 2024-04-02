@@ -526,18 +526,18 @@
 
     garage_door:
       value_template: >
-        {% if is_state("cover.garage_door", "open") %}
+        {% if is_state("cover.ratgdov25i_885dfb_door", "open") %}
           Open
-        {% elif is_state("cover.garage_door", "opening") %}
+        {% elif is_state("cover.ratgdov25i_885dfb_door", "opening") %}
           Opening
-        {% elif is_state("cover.garage_door", "closing") %}
+        {% elif is_state("cover.ratgdov25i_885dfb_door", "closing") %}
           Closing
-        {% elif is_state("cover.garage_door", "closed") %}
+        {% elif is_state("cover.ratgdov25i_885dfb_door", "closed") %}
           Closed
         {% else %}unknown{% endif %}
       friendly_name: "Garage Door Status"
       icon_template: >
-        {% set patio_door_state = states.cover.garage_door.state %}
+        {% set patio_door_state = states.cover.ratgdov25i_885dfb_door.state %}
         {% if patio_door_state == 'open' %}
           mdi:garage-open-variant
         {% elif patio_door_state == 'opening' %}

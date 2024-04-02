@@ -288,7 +288,7 @@
         entity_id: input_boolean.disable_text_notification
         state: "off"
       - condition: state
-        entity_id: cover.garage_door
+        entity_id: cover.ratgdov25i_885dfb_door
         state: 'open'
   action:
     - service: notify.homeassistant_dis
@@ -303,7 +303,7 @@
 - alias: notification garage open for 30min
   trigger:
     - platform: state
-      entity_id: cover.garage_door
+      entity_id: cover.ratgdov25i_885dfb_door
       to: 'open'
       for:
         minutes: 30
@@ -332,11 +332,11 @@
 - alias: notification garage opened
   trigger:
     - platform: state
-      entity_id: cover.garage_door
+      entity_id: cover.ratgdov25i_885dfb_door
       from: 'opening'
       to: 'open'
     - platform: state
-      entity_id: cover.garage_door
+      entity_id: cover.ratgdov25i_885dfb_door
       from: 'closed'
       to: 'open'
   condition:
@@ -354,11 +354,11 @@
 - alias: notification garage closed
   trigger:
     - platform: state
-      entity_id: cover.garage_door
+      entity_id: cover.ratgdov25i_885dfb_door
       from: 'closing'
       to: 'closed'
     - platform: state
-      entity_id: cover.garage_door
+      entity_id: cover.ratgdov25i_885dfb_door
       from: 'open'
       to: 'closed'
   condition:

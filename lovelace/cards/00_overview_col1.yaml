@@ -325,9 +325,9 @@ cards:
         name: Garage
         tap_action:
           action: call-service
-          service: cover.toggle
+          service: button.press
           service_data:
-            entity_id: cover.garage_door
+            entity_id: button.ratgdov25i_885dfb_toggle_door
         state:
         - value: 'unknown'
           color: rgb(255, 65, 54)
