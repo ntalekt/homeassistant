@@ -71,6 +71,17 @@
           less than a minute
         {% endif %}
 
+    p1s_remaining_time_min:
+      value_template: >-
+        {% set tr = states('sensor.p1s_remaining_time') | int %}
+        {% if tr >= 1 %}
+          {{ tr }} minutes
+        {% elif tr == 1 %}
+          {{ tr }} minute
+        {% else %}
+          less than a minute
+        {% endif %}
+
     f1_next_event:
       value_template: >-
         {% if state_attr('calendar.formula_1_calendar_by_racefans_net','message') != none %}
@@ -95,6 +106,11 @@
     p1p_remaining_time_friendly:
       value_template: >-
         {% set time = states('sensor.p1p_end_time')%}
+          Done at {{ as_timestamp(time) | timestamp_custom('%I:%M %p') }}
+
+    p1s_remaining_time_friendly:
+      value_template: >-
+        {% set time = states('sensor.p1s_end_time')%}
           Done at {{ as_timestamp(time) | timestamp_custom('%I:%M %p') }}
 
     pool_heater_mode:

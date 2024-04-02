@@ -509,6 +509,10 @@ cards:
             line-height: 32px
             padding: 10px 16px
 
+    ##########################################################
+    ## BambuLab P1P
+    ##########################################################
+
   - type: horizontal-stack
     cards:
     - type: conditional
@@ -567,6 +571,76 @@ cards:
         - type: icon
           icon: mdi:progress-clock
           entity: sensor.p1p_remaining_time_min
+          style:
+            bottom: 0
+            right: 0
+            transform: initial
+            color: white
+            line-height: 32px
+            padding: 10px 16px
+
+    ##########################################################
+    ## BambuLab P1S
+    ##########################################################
+
+  - type: horizontal-stack
+    cards:
+    - type: conditional
+      conditions:
+      - entity: sensor.p1s_print_status
+        state: "running"
+      card:
+        type: picture-elements
+        image: /local/bambulab_p1s.jpg
+        elements:
+        - type: state-label
+          entity: sensor.p1s_print_progress
+          style:
+            left: 0
+            top: 0
+            pointer-events: none
+            font-size: 18px
+            line-height: 32px
+            color: white
+            transform: initial
+            padding: 0 10px
+        - type: state-label
+          entity: sensor.p1s_current_stage
+          style:
+            top: 0
+            right: 0
+            pointer-events: none
+            transform: initial
+            font-size: 18px
+            color: rgba(255,255,255,0.8)
+            line-height: 32px
+            padding: 0px 35px
+        - type: icon
+          icon: mdi:printer-3d-nozzle
+          style:
+            top: 0
+            right: 0
+            pointer-events: none
+            transform: scale(0.8)
+            color: rgba(255,255,255,0.8)
+            line-height: 32px
+            padding: 8px 13px
+        - type: state-label
+          entity: sensor.p1s_remaining_time_friendly
+          style:
+            bottom: 0
+            left: 0
+            pointer-events: none
+            font-size: 15px
+            transform: initial
+            background-color: rgba(0, 0, 0, 0.3)
+            width: 100%
+            color: white
+            line-height: 32px
+            padding: 0px 10px
+        - type: icon
+          icon: mdi:progress-clock
+          entity: sensor.p1s_remaining_time_min
           style:
             bottom: 0
             right: 0

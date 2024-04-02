@@ -1,69 +1,121 @@
 type: vertical-stack
 cards:
+  - type: custom:mushroom-title-card
+    title: ''
+    subtitle: Print Details
+    alignment: center
   - type: horizontal-stack
     cards:
-    - type: picture-elements
-      view_layout:
-        column: 1
-      elements:
-        - type: conditional
-          conditions:
-            - entity: sensor.p1p_print_status
-              state_not: offline
-          elements:
-            - entity: light.p1p_chamber_light
-              type: state-icon
-              style:
-                top: 46%
-                left: 18%
-                '--mdc-icon-size': 2.6em
-              tap_action:
-                action: toggle
-            - entity: sensor.p1p_print_status
-              type: state-label
-              style:
-                top: 9.8%
-                left: 25.2%
-                font-size: 1.2em
-                color: '#FFFFFF'
-            - type: conditional
-              conditions:
-                - entity: sensor.p1p_print_status
-                  state: running
-              elements:
-                - entity: sensor.p1p_print_progress
-                  type: state-badge
-                  tap_action:
-                    action: none
-                  style:
-                    top: 18.5%
-                    left: 81%
-                    font-size: 1em
-                    color: rgba(0,0,0,0)
-                    '--label-badge-red': '#11739D'
-            - entity: sensor.p1p_nozzle_temperature
-              type: state-badge
-              style:
-                top: 31%
-                left: 51%
-                font-size: 0.8em
-                color: rgba(0,0,0,0)
-            - entity: sensor.p1p_bed_temperature
-              type: state-badge
-              style:
-                top: 78%
-                left: 51%
-                font-size: 0.8em
-                color: rgba(0,0,0,0)
+      - type: custom:mushroom-entity-card
+        entity: sensor.p1s_print_status
+        name: Status
+      - type: custom:mushroom-entity-card
+        entity: sensor.p1s_print_progress
+        name: Progress
+      - type: custom:mushroom-template-card
+        primary: Layer
+        icon_color: var(--rgb-state-entity)
+        secondary: >-
+          {{states('sensor.p1s_current_layer')}} /
+          {{states('sensor.p1s_total_layer_count')}}
+        icon: mdi:layers
+  - type: picture-elements
+    view_layout:
+      column: 1
+    elements:
+      - type: conditional
+        conditions:
+          - entity: sensor.p1s_print_status
+            state_not: offline
+        elements:
+          - entity: light.p1s_chamber_light
+            type: state-icon
+            style:
+              top: 46%
+              left: 18%
+              '--mdc-icon-size': 2.6em
+            tap_action:
+              action: toggle
+          - entity: sensor.p1s_print_status
+            type: state-label
+            style:
+              top: 9.8%
+              left: 25.2%
+              font-size: 1.2em
+              color: '#FFFFFF'
+          - type: conditional
+            conditions:
+              - entity: sensor.p1s_print_status
+                state: 
+                - running
+                - pause
+            elements:
+              - type: conditional
+                conditions:
+                  - entity: image.p1s_cover_image
+                    state_not: 
+                      - "unavailable"
+                      - "unknown"
+                elements:
+                  - type: custom:hui-element
+                    card_type: picture-entity
+                    show_name: false
+                    show_state: false
+                    entity: image.p1s_cover_image
+                    style:
+                      top: 50%
+                      left: 50%
+                      transform: translate(-45%, -40%) scale(75%, 75%)
+                      '--ha-card-border-width': 0px
+                      '--ha-card-background': none
+              - entity: sensor.p1s_print_progress
+                type: state-badge
+                tap_action:
+                  action: none
+                style:
+                  top: 18.5%
+                  left: 81%
+                  font-size: 1em
+                  color: rgba(0,0,0,0)
+                  '--label-badge-red': '#11739D'
+          - entity: sensor.p1s_nozzle_temperature
+            type: state-badge
+            style:
+              top: 31%
+              left: 51%
+              font-size: 0.8em
+              color: rgba(0,0,0,0)
+          - entity: sensor.p1s_bed_temperature
+            type: state-badge
+            style:
+              top: 78%
+              left: 51%
+              font-size: 0.8em
+              color: rgba(0,0,0,0)
+          - type: conditional
+            conditions:
+              - entity: sensor.p1s_chamber_temperature
+                state_not: 
+                    - "unavailable"
+                    - "unknown"  
+            elements:
+              - entity: sensor.p1s_chamber_temperature
+                type: state-badge
+                style:
+                  font-size: 0.8em
+                  top: 31%
+                  left: 19%
+                  color: rgba(0,0,0,0)
+    card_mod:
       style: |
-        ha-card {
-          box-shadow: none !important;
-          background: none !important;
-          border: none !important;
-        }
-      image: /local/media/bambuprinter/on_p1p.png
-      entity: light.p1p_chamber_light
-      state_image:
-        unavailable: /local/media/bambuprinter/off_p1p.png
-        'on': /local/media/bambuprinter/on_p1p.png
-        'off': /local/media/bambuprinter/off_p1p.png
+          ha-card {
+            box-shadow: none !important;
+            background: none !important;
+            border: none !important;
+          }
+    image: /local/media/bambuprinter/on_p1s.png
+    entity: light.p1s_chamber_light
+    state_image:
+      unavailable: /local/media/bambuprinter/off_p1s.png
+      'on': /local/media/bambuprinter/on_p1s.png
+      'off': /local/media/bambuprinter/off_p1s.png
