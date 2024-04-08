@@ -3,20 +3,20 @@
 #################################################################
 
 ##########################################################
-## exterior lights on 15min before sunset
+## exterior lights on 30min before sunset
 ##########################################################
 
-- alias: lights exterior lights on 5min before sunset
+- alias: lights exterior lights on 30min before sunset
   trigger:
     - platform: sun
       event: sunset
-      offset: "-00:15:00"
+      offset: "-00:30:00"
   condition:
     - condition: state
       entity_id: input_boolean.disable_exterior_on_sunset
       state: 'off'
   action:
-    # porches and side entrance lights
+    # porches and side entrance switches
     - service: light.turn_on
       entity_id: light.front_porch
       data:
@@ -25,6 +25,7 @@
       entity_id: light.side
       data:
         brightness_pct: 100
+    # porches and side entrance bulbs
     - delay: 0:15
     - service: light.turn_on
       entity_id: light.front_bulb
@@ -43,36 +44,42 @@
     - service: light.turn_on
       entity_id: light.outdoor_string
       data:
-        brightness: 255
+        brightness_pct: 100
     # exterior flood lights
     - service: light.turn_on
       entity_id: light.exterior_flood_lights
       data:
         kelvin: 4000
-        brightness: 255
-    # spotlights
-    - service: light.turn_on
-      entity_id: light.front_spotlight
-      data:
-        kelvin: 4000
-        brightness: 255
-    - service: light.turn_on
-      entity_id: light.front_spotlight2
-      data:
-        kelvin: 4000
-        brightness: 255
+        brightness_pct: 100
     # spa and pool light
     - service: light.turn_on
       entity_id: light.lights
       data:
         effect: Romance
-    # govee H7012 sometimes doesn't turn on
-    - delay: 5:00
+
+##########################################################
+## govee H7012 & H7061 retry
+##########################################################
+
+- alias: lights exterior lights on 20min before sunset
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:20:00"
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_exterior_on_sunset
+      state: 'off'
+  action:
     - service: light.turn_on
       entity_id: light.outdoor_string
-    - delay: 5:00
+      data:
+        brightness_pct: 100
     - service: light.turn_on
-      entity_id: light.outdoor_string
+      entity_id: light.exterior_flood_lights
+      data:
+        kelvin: 4000
+        brightness_pct: 100
 
 ##########################################################
 ## exterior lights dim at 10pm
@@ -105,15 +112,6 @@
       entity_id: light.exterior_flood_lights
       data:
         brightness_pct: 50
-    # spotlights
-    - service: light.turn_on
-      entity_id: light.front_spotlight
-      data:
-        brightness_pct: 15
-    - service: light.turn_on
-      entity_id: light.front_spotlight2
-      data:
-        brightness_pct: 15
     # back string landscape light
     - service: light.turn_on
       entity_id: light.outdoor_string
