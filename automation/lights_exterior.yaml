@@ -186,11 +186,6 @@
     # govee floodlight backyard
     - service: light.turn_off
       entity_id: light.exterior_flood_lights
-    # spotlights
-    - service: light.turn_off
-      entity_id: light.front_spotlight
-    - service: light.turn_off
-      entity_id: light.front_spotlight2
     # govee string backyard
     - service: light.turn_off
       entity_id: light.outdoor_string
