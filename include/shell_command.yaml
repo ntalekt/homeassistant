@@ -62,7 +62,11 @@
   timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
   timelapse_create_REDACTED_yt: "/config/timelapse/bin/createYoutube.sh REDACTED"
 
-  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED America/New_York"
+  # timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED America/New_York"
+  # timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
+  # timelapse_create_REDACTED_yt: "/config/timelapse/bin/createYoutube.sh REDACTED"
+
+  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=E1uVzfQG_Yo America/New_York"
   timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
   timelapse_create_REDACTED_yt: "/config/timelapse/bin/createYoutube.sh REDACTED"
 

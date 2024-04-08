@@ -48,7 +48,7 @@
     - service: homeassistant.turn_on
       entity_id:
         # - automation.f1_timelapse_carlossainz
-        - automation.f1_timelapse_charlesleclerc
+        # - automation.f1_timelapse_charlesleclerc
         # - automation.f1_timelapse_fernandoalonso
         - automation.f1_timelapse_georgerussell
         # - automation.f1_timelapse_lancestroll
@@ -239,18 +239,18 @@
   action:
     - service: shell_command.timelapse_create_f1_charlesleclerc
 
-- alias: produce_f1_timelapse_charlesleclerc
-  trigger:
-    - platform: calendar
-      event: end
-      entity_id: calendar.formula_1_calendar_by_racefans_net
-  action:
-    - delay: '00:32:00'
-    - service: notify.homeassistant_dis
-      data:
-        message: "Producing Charles Leclerc's video."
-        target: ["REDACTED"]
-    - service: shell_command.timelapse_create_f1_charlesleclerc_vid
+# - alias: produce_f1_timelapse_charlesleclerc
+#   trigger:
+#     - platform: calendar
+#       event: end
+#       entity_id: calendar.formula_1_calendar_by_racefans_net
+#   action:
+#     - delay: '00:32:00'
+#     - service: notify.homeassistant_dis
+#       data:
+#         message: "Producing Charles Leclerc's video."
+#         target: ["REDACTED"]
+#     - service: shell_command.timelapse_create_f1_charlesleclerc_vid
 
   ##########################################################
   ## Main
@@ -543,6 +543,31 @@
   ## yt Cornell Cam
   ##########################################################
 
+# - alias: REDACTED
+#   trigger:
+#     - platform: time_pattern
+#       minutes: "/1"
+#   action:
+#     service: shell_command.timelapse_REDACTED
+
+# - alias: REDACTED_create
+#   trigger:
+#     - platform: time
+#       at: "00:15:00"
+#   action:
+#     service: shell_command.timelapse_create_REDACTED
+
+# - alias: REDACTED_create_yt
+#   trigger:
+#     - platform: time
+#       at: "00:55:00"
+#   action:
+#     service: shell_command.timelapse_create_REDACTED_yt
+
+  ##########################################################
+  ## yt SpaceX Cape Canaveral Space
+  ##########################################################
+
 - alias: REDACTED
   trigger:
     - platform: time_pattern
@@ -553,14 +578,14 @@
 - alias: REDACTED_create
   trigger:
     - platform: time
-      at: "00:15:00"
+      at: "02:25:00"
   action:
     service: shell_command.timelapse_create_REDACTED
 
 - alias: REDACTED_create_yt
   trigger:
     - platform: time
-      at: "00:55:00"
+      at: "02:55:00"
   action:
     service: shell_command.timelapse_create_REDACTED_yt
 
