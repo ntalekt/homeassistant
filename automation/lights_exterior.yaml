@@ -73,6 +73,8 @@
   action:
     - service: light.turn_on
       entity_id: light.outdoor_string
+    - service: light.turn_on
+      entity_id: light.outdoor_string
       data:
         brightness_pct: 100
     - service: light.turn_on
