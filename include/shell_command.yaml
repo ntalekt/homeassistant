@@ -17,21 +17,24 @@
   timelapse_create_f1_tracker: "/config/timelapse/bin/createFrameF1.sh tracker"
   timelapse_create_f1_data: "/config/timelapse/bin/createFrameF1.sh data"
 
+  timelapse_create_f1_georgerussell: "/config/timelapse/bin/createFrameF1.sh georgerussell"
+  timelapse_create_f1_georgerussell_vid: "/config/timelapse/bin/createF1Timelapse.sh georgerussell 15"
+
+  timelapse_create_f1_lewishamilton: "/config/timelapse/bin/createFrameF1.sh lewishamilton"
+  timelapse_create_f1_lewishamilton_vid: "/config/timelapse/bin/createF1Timelapse.sh lewishamilton 15"
+
   timelapse_create_f1_maxverstappen: "/config/timelapse/bin/createFrameF1.sh maxverstappen"
   timelapse_create_f1_maxverstappen_vid: "/config/timelapse/bin/createF1Timelapse.sh maxverstappen 15"
 
   timelapse_create_f1_sergioperez: "/config/timelapse/bin/createFrameF1.sh sergioperez"
   timelapse_create_f1_sergioperez_vid: "/config/timelapse/bin/createF1Timelapse.sh sergioperez 15"
 
-  timelapse_create_f1_carlossainz: "/config/timelapse/bin/createFrameF1.sh carlossainz"
   timelapse_create_f1_charlesleclerc: "/config/timelapse/bin/createFrameF1.sh charlesleclerc"
+  timelapse_create_f1_charlesleclerc_vid: "/config/timelapse/bin/createF1Timelapse.sh charlesleclerc 15"
 
-  timelapse_create_f1_lewishamilton: "/config/timelapse/bin/createFrameF1.sh lewishamilton"
-  timelapse_create_f1_lewishamilton_vid: "/config/timelapse/bin/createF1Timelapse.sh lewishamilton 15"
-
-  timelapse_create_f1_georgerussell: "/config/timelapse/bin/createFrameF1.sh georgerussell"
-  timelapse_create_f1_georgerussell_vid: "/config/timelapse/bin/createF1Timelapse.sh georgerussell 15"
-
+  timelapse_create_f1_carlossainz: "/config/timelapse/bin/createFrameF1.sh carlossainz"
+  timelapse_create_f1_carlossainz_vid: "/config/timelapse/bin/createF1Timelapse.sh carlossainz 15"
+  
   timelapse_create_f1_landonorris: "/config/timelapse/bin/createFrameF1.sh landonorris"
   timelapse_create_f1_oscarpiastri: "/config/timelapse/bin/createFrameF1.sh oscarpiastri"
 
@@ -58,9 +61,9 @@
   timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
   timelapse_create_REDACTED_yt: "/config/timelapse/bin/createYoutube.sh REDACTED"
 
-  timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED America/New_York"
-  timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
-  timelapse_create_REDACTED_yt: "/config/timelapse/bin/createYoutube.sh REDACTED"
+  # timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED America/New_York"
+  # timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
+  # timelapse_create_REDACTED_yt: "/config/timelapse/bin/createYoutube.sh REDACTED"
 
   # timelapse_REDACTED: "/config/timelapse/bin/createFrame.sh REDACTED https://www.youtube.com/watch?v=REDACTED America/New_York"
   # timelapse_create_REDACTED: "/config/timelapse/bin/createDailyTimelapse.sh REDACTED"
