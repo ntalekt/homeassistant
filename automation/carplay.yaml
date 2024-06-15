@@ -1,0 +1,18 @@
+##################################################################
+## Carplay Actions
+##################################################################
+
+  ##########################################################
+  ## Garage
+  ##########################################################
+
+- alias: Carplay - Garage Action
+  trigger:
+    - platform: event
+      event_type: ios.action_fired
+      event_data:
+        actionName: "Garage"
+  action:
+    - service: button.press
+      target:
+        entity_id: button.ratgdov25i_885dfb_toggle_door

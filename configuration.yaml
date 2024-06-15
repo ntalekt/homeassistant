@@ -152,6 +152,14 @@ fan:
 
 ffmpeg:
 
+ios:
+  actions:
+    - name: Garage
+      icon:
+        icon: mdi:garage-variant
+      show_in_carplay: true
+      show_in_watch: true
+
 monitor_docker:
   - name: docker3
     url: tcp://REDACTED:2375
