@@ -1,16 +1,10 @@
 """Models for Proxmox VE integration."""
+
 from __future__ import annotations
 
 import dataclasses
-from dataclasses import dataclass
 
-from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.typing import UndefinedType
-
-
-@dataclass(frozen=True, kw_only=True)
-class ProxmoxEntityDescription(EntityDescription):
-    """Describe a Proxmox entity."""
 
 
 @dataclasses.dataclass
@@ -85,8 +79,8 @@ class ProxmoxStorageData:
 
     type: str
     node: str
+    name: str
     content: str | UndefinedType
-    disk_free: float | UndefinedType
     disk_used: float | UndefinedType
     disk_total: float | UndefinedType
 
@@ -122,3 +116,4 @@ class ProxmoxDiskData:
     power_hours: int | UndefinedType
     life_left: int | UndefinedType
     power_loss: int | UndefinedType
+    disk_wearout: float | UndefinedType

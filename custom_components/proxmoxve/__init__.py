@@ -1,4 +1,5 @@
 """Support for Proxmox VE."""
+
 from __future__ import annotations
 
 import warnings
@@ -65,7 +66,7 @@ from .coordinator import (
     ProxmoxStorageCoordinator,
     ProxmoxUpdateCoordinator,
 )
-from .models import ProxmoxDiskData
+from .models import ProxmoxDiskData, ProxmoxStorageData
 
 PLATFORMS = [
     Platform.BINARY_SENSOR,
@@ -488,7 +489,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
 
     for storage_id in config_entry.data[CONF_STORAGE]:
         if storage_id in [
-            (resource["storage"] if "storage" in resource else None)
+            (resource.get("storage", None))
             for resource in (resources if resources is not None else [])
         ]:
             async_delete_issue(
@@ -577,7 +578,7 @@ def device_info(
     node: str | None = None,
     resource_id: int | None = None,
     create: bool | None = False,
-    cordinator_resource: ProxmoxDiskData | None = None,
+    cordinator_resource: ProxmoxDiskData | ProxmoxStorageData | None = None,
 ):
     """Return the Device Info."""
 
@@ -609,7 +610,7 @@ def device_info(
         if (coordinator_data := coordinator.data) is not None:
             node = coordinator_data.node
 
-        name = f"{api_category.capitalize()} {resource_id}"
+        name = cordinator_resource.name
         identifier = f"{config_entry.entry_id}_{api_category.upper()}_{resource_id}"
         url = f"https://{host}:{port}/#v1:0:={api_category}/{node}/{resource_id}"
         via_device = (
@@ -631,7 +632,8 @@ def device_info(
         model = model_processor
 
     elif api_category is ProxmoxType.Disk:
-        name = f"{api_category.capitalize()} {node}:{resource_id}"
+        model = cordinator_resource.model
+        name = f"{api_category.capitalize()} {node}: {model.replace("_"," ")} ({resource_id})"
         identifier = (
             f"{config_entry.entry_id}_{api_category.upper()}_{node}_{resource_id}"
         )
@@ -645,9 +647,9 @@ def device_info(
         else:
             disk_type = cordinator_resource.disk_type
             model = (
-                f"{disk_type.upper()} {cordinator_resource.model} "
+                f"{disk_type.upper()} {model.replace("_"," ")} "
                 if disk_type is not None
-                else f"{disk_type}{cordinator_resource.model}"
+                else f"{disk_type}{model.replace("_"," ")}"
             )
             manufacturer = cordinator_resource.vendor
             serial_number = cordinator_resource.serial

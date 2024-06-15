@@ -1,4 +1,5 @@
 """Sensor to read Proxmox VE data."""
+
 from __future__ import annotations
 
 from collections.abc import Callable, Mapping
@@ -39,8 +40,7 @@ from .const import (
     ProxmoxKeyAPIParse,
     ProxmoxType,
 )
-from .entity import ProxmoxEntity
-from .models import ProxmoxDiskData, ProxmoxEntityDescription
+from .entity import ProxmoxEntity, ProxmoxEntityDescription
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -49,7 +49,9 @@ class ProxmoxSensorEntityDescription(ProxmoxEntityDescription, SensorEntityDescr
 
     conversion_fn: Callable | None = None  # conversion factor to be applied to units
     value_fn: Callable[[Any], Any | str] | None = None
-    api_category: ProxmoxType | None = None  # Set when the sensor applies to only QEMU or LXC, if None applies to both.
+    api_category: ProxmoxType | None = (
+        None  # Set when the sensor applies to only QEMU or LXC, if None applies to both.
+    )
     extra_attrs: list[str] | None = None
 
 
@@ -457,6 +459,16 @@ PROXMOX_SENSOR_DISKS: Final[tuple[ProxmoxSensorEntityDescription, ...]] = (
         suggested_display_precision=0,
         translation_key="life_left",
     ),
+    ProxmoxSensorEntityDescription(
+        key="disk_wearout",
+        name="Wearout",
+        icon="mdi:clipboard-pulse-outline",
+        native_unit_of_measurement=PERCENTAGE,
+        conversion_fn=lambda x: (100 - x) / 100 if x != UNDEFINED else None,
+        state_class=SensorStateClass.MEASUREMENT,
+        suggested_display_precision=0,
+        translation_key="disk_wearout",
+    ),
 )
 
 
@@ -759,6 +771,7 @@ async def async_setup_sensors_storages(
                                 config_entry=config_entry,
                                 api_category=ProxmoxType.Storage,
                                 resource_id=storage_id,
+                                cordinator_resource=coordinator.data,
                             ),
                             description=description,
                             resource_id=storage_id,
@@ -815,10 +828,15 @@ class ProxmoxSensorEntity(ProxmoxEntity, SensorEntity):
             elif self.entity_description.key in (
                 ProxmoxKeyAPIParse.CPU,
                 ProxmoxKeyAPIParse.UPDATE_TOTAL,
+                ProxmoxKeyAPIParse.MEMORY_USED,
+                ProxmoxKeyAPIParse.DISK_USED,
+                ProxmoxKeyAPIParse.SWAP_USED,
             ):
                 return 0
             else:
                 return None
+        elif getattr(data, self.entity_description.key, False) == UNDEFINED:
+            return None
         else:
             native_value = getattr(data, self.entity_description.key)
 
