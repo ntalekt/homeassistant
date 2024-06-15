@@ -65,13 +65,13 @@
     conditions:
     - condition: state
       entity_id: group.household
-      state: 'home'
+      state: "on"
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
+      state: "off"
     - condition: state
       entity_id: input_boolean.house_cleaning_mode
-      state: 'off'
+      state: "off"
   action:
     - service: script.turn_on
       entity_id: script.say
@@ -98,13 +98,13 @@
     conditions:
     - condition: state
       entity_id: group.household
-      state: 'home'
+      state: "on"
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
+      state: "off"
     - condition: state
       entity_id: input_boolean.house_cleaning_mode
-      state: 'off'
+      state: "off"
   action:
     - service: script.turn_on
       entity_id: script.say
@@ -131,13 +131,13 @@
     conditions:
     - condition: state
       entity_id: group.household
-      state: 'home'
+      state: "on"
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
+      state: "off"
     - condition: state
       entity_id: input_boolean.house_cleaning_mode
-      state: 'off'
+      state: "off"
   action:
     - service: script.turn_on
       entity_id: script.say
@@ -164,13 +164,13 @@
     conditions:
     - condition: state
       entity_id: group.household
-      state: 'home'
+      state: "on"
     - condition: state
       entity_id: input_boolean.disable_voice_greeting
-      state: 'off'
+      state: "off"
     - condition: state
       entity_id: input_boolean.house_cleaning_mode
-      state: 'off'
+      state: "off"
   action:
     - service: script.turn_on
       entity_id: script.say
@@ -198,7 +198,7 @@
     conditions:
     - condition: state
       entity_id: group.household
-      state: 'home'
+      state: "on"
     - condition: time
       after: '07:00'
       before: '22:00'
@@ -235,7 +235,7 @@
     conditions:
     - condition: state
       entity_id: group.household
-      state: 'home'
+      state: "on"
     - condition: time
       after: '07:00'
       before: '22:00'
@@ -338,7 +338,7 @@
     conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: time
         weekday:
             - mon
@@ -369,7 +369,7 @@
     conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: time
         weekday:
             - fri
@@ -401,7 +401,7 @@
     conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: time
         weekday:
             - mon
@@ -437,7 +437,7 @@
     conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: time
         weekday:
             - mon
@@ -473,7 +473,7 @@
     conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: time
         weekday:
             #- mon
@@ -512,7 +512,7 @@
     conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: time
         weekday:
             - mon
@@ -547,7 +547,7 @@
     conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: time
         weekday:
             - mon
@@ -579,7 +579,7 @@
     conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: time
         weekday:
             - mon
@@ -624,7 +624,7 @@
     conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: time
         after: '06:00'
         before: '10:00'
@@ -653,7 +653,7 @@
     conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: state
         entity_id: input_boolean.disable_voice_greeting
         state: 'off'
@@ -692,7 +692,7 @@
     conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: time
         after: '13:00'
         before: '18:00'
@@ -734,7 +734,7 @@
     conditions:
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: time
         after: '13:00'
         before: '18:00'

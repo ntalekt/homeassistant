@@ -278,7 +278,7 @@
         state: "off"
       - condition: state
         entity_id: group.household
-        state: "home"
+        state: "on"
   action:
     - service: light.turn_on
       entity_id: light.kitchen_cabinet_lights

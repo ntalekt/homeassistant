@@ -10,7 +10,6 @@
   trigger:
     - platform: time_pattern
       minutes: "/59"
-      seconds: 00
   condition:
     condition: and
     conditions:
@@ -479,8 +478,8 @@
   trigger:
     - platform: state
       entity_id: group.household
-      from: 'home'
-      to: 'not_home'
+      from: "on"
+      to: "off"
       for:
         hours: 24
         minutes: 0
@@ -502,7 +501,7 @@
     - platform: state
       entity_id: group.household
 #      from: 'not_home'
-      to: 'home'
+      to: "on"
   condition:
     - condition: state
       entity_id: input_boolean.disable_home_away
@@ -583,7 +582,7 @@
   trigger:
     - platform: state
       entity_id: group.household
-      to: 'home'
+      to: "on"
   condition:
     - condition: state
       entity_id: input_boolean.disable_interior_camera_detection
@@ -600,7 +599,7 @@
   trigger:
     - platform: state
       entity_id: group.household
-      to: 'not_home'
+      to: "off"
   condition:
     - condition: state
       entity_id: input_boolean.disable_interior_camera_detection
@@ -617,7 +616,7 @@
   trigger:
     - platform: state
       entity_id: group.household
-      to: 'home'
+      to: "on"
   condition:
     - condition: state
       entity_id: input_boolean.disable_interior_camera_recording
@@ -634,7 +633,7 @@
   trigger:
     - platform: state
       entity_id: group.household
-      to: 'not_home'
+      to: "off"
   condition:
     - condition: state
       entity_id: input_boolean.disable_interior_camera_recording

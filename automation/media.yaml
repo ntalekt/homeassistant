@@ -78,12 +78,12 @@
   trigger:
     - platform: state
       entity_id: input_boolean.group_all_sonos
-      from: 'off'
-      to: 'on'
+      from: "off"
+      to: "on"
   condition:
     - condition: state
       entity_id: group.household
-      state: 'home'
+      state: "on"
   action:
     - service: media_player.join
       data:
@@ -103,7 +103,7 @@
   trigger:
     - platform: state
       entity_id: group.household
-      to: 'not_home'
+      to: "off"
   action:
     - service: media_player.media_pause
       target:

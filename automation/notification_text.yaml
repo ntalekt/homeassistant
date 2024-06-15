@@ -280,7 +280,7 @@
   trigger:
     - platform: state
       entity_id: group.household
-      to: 'not_home'
+      to: "off"
   condition:
     condition: and
     conditions:
@@ -315,10 +315,10 @@
         state: "off"
       - condition: state
         entity_id: group.household
-        state: 'home'
+        state: "on"
       - condition: state
         entity_id: binary_sensor.garage_occupancy_on
-        state: 'off'
+        state: "off"
   action:
     - service: notify.homeassistant_dis
       data:
