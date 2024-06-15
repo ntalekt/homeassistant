@@ -18,12 +18,12 @@
 
 - sensor:
     name: REDACTED channel subs
-    command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.header.c4TabbedHeaderRenderer.subscriberCountText.simpleText' | sed 's/[^0-9]*//g'
+    command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.onResponseReceivedEndpoints[].showEngagementPanelEndpoint.engagementPanel.engagementPanelSectionListRenderer.content.sectionListRenderer.contents[].itemSectionRenderer.contents[].aboutChannelRenderer.metadata.aboutChannelViewModel.subscriberCountText' | sed 's/[^0-9]*//g'
     scan_interval: 60
 
 - sensor:
     name: REDACTED channel videos
-    command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.header.c4TabbedHeaderRenderer.videosCountText.runs[0].text' | sed 's/[^0-9]*//g'
+    command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.onResponseReceivedEndpoints[].showEngagementPanelEndpoint.engagementPanel.engagementPanelSectionListRenderer.content.sectionListRenderer.contents[].itemSectionRenderer.contents[].aboutChannelRenderer.metadata.aboutChannelViewModel.videoCountText' | sed 's/[^0-9]*//g'
     scan_interval: 60
 
 - sensor:
@@ -33,12 +33,12 @@
 
 - sensor:
     name: REDACTED channel subs
-    command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.header.c4TabbedHeaderRenderer.subscriberCountText.simpleText' | sed 's/[^0-9]*//g'
+    command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.onResponseReceivedEndpoints[].showEngagementPanelEndpoint.engagementPanel.engagementPanelSectionListRenderer.content.sectionListRenderer.contents[].itemSectionRenderer.contents[].aboutChannelRenderer.metadata.aboutChannelViewModel.subscriberCountText' | sed 's/[^0-9]*//g'
     scan_interval: 60
 
 - sensor:
     name: REDACTED channel videos
-    command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.header.c4TabbedHeaderRenderer.videosCountText.runs[0].text' | sed 's/[^0-9]*//g'
+    command: curl -s "https://www.youtube.com/@REDACTED/about" | sed -n '/var *ytInitialData/,$p' | tr -d '\n' | sed ' s_^.*var ytInitialData *=__ ; s_;</script>.*__ ;' | jq --raw-output '.onResponseReceivedEndpoints[].showEngagementPanelEndpoint.engagementPanel.engagementPanelSectionListRenderer.content.sectionListRenderer.contents[].itemSectionRenderer.contents[].aboutChannelRenderer.metadata.aboutChannelViewModel.videoCountText' | sed 's/[^0-9]*//g'
     scan_interval: 60
 
 ##########################################################
