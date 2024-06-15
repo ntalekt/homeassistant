@@ -19,7 +19,6 @@
   trigger:
     - platform: time_pattern
       minutes: "/10"
-      seconds: 00
   condition:
     condition: and
     conditions:
