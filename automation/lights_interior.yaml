@@ -13,7 +13,7 @@
     #   to: "True"
     - platform: sun
       event: sunset
-      offset: "-00:15:00"
+      offset: "-00:20:00"
   condition:
     condition: and
     conditions:
@@ -56,7 +56,7 @@
     #   to: "True"
     - platform: sun
       event: sunset
-      offset: "-00:15:00"
+      offset: "-00:20:00"
   condition:
     condition: and
     conditions:
@@ -101,7 +101,7 @@
     #   to: "True"
     - platform: sun
       event: sunset
-      offset: "-00:15:00"
+      offset: "-00:20:00"
   condition:
     condition: and
     conditions:
@@ -145,7 +145,7 @@
     #   to: "True"
     - platform: sun
       event: sunset
-      offset: "-00:15:00"
+      offset: "-00:20:00"
   condition:
     condition: and
     conditions:
@@ -189,7 +189,7 @@
     #   to: "True"
     - platform: sun
       event: sunset
-      offset: "-00:15:00"
+      offset: "-00:20:00"
   condition:
     condition: and
     conditions:
@@ -210,7 +210,7 @@
     #   to: "True"
     - platform: sun
       event: sunset
-      offset: "-00:15:00"
+      offset: "-00:20:00"
   condition:
     condition: and
     conditions:
@@ -278,7 +278,7 @@
         state: "off"
       - condition: state
         entity_id: group.household
-        state: "on"
+        state: "home"
   action:
     - service: light.turn_on
       entity_id: light.kitchen_cabinet_lights
