@@ -119,7 +119,7 @@
     - service: light.turn_on
       entity_id: light.exterior_porch_bulbs
       data:
-        brightness_pct: 10
+        brightness_pct: 50
     # flood lights
     - service: light.turn_on
       entity_id: light.exterior_flood_lights
@@ -134,7 +134,7 @@
     - service: light.turn_on
       entity_id: light.outdoor_string
       data:
-        brightness_pct: 15
+        brightness_pct: 50
         transition: 60
 
 ##########################################################

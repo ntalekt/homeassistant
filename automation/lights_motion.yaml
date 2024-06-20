@@ -25,12 +25,12 @@
       entity_id: light.exterior_porch_lights
       data:
         brightness_pct: 100
-        kelvin: 3425
+        kelvin: 3500
     - service: light.turn_on
       entity_id: light.exterior_flood_lights
       data:
         brightness_pct: 100
-        kelvin: 3425
+        kelvin: 4000
     - service: light.turn_on
       entity_id: light.front_spotlights
       data:
@@ -59,13 +59,11 @@
     - service: light.turn_on
       entity_id: light.exterior_porch_lights
       data:
-        brightness_pct: 15
-        transition: 60
+        brightness_pct: 50
     - service: light.turn_on
       entity_id: light.exterior_flood_lights
       data:
-        brightness_pct: 15
-        transition: 60
+        brightness_pct: 50
     - service: light.turn_on
       entity_id: light.front_spotlights
       data:
@@ -94,12 +92,13 @@
       entity_id: light.exterior_porch_lights
       data:
         brightness_pct: 100
-        kelvin: 3425
+        kelvin: 3500
     - service: light.turn_on
       entity_id: light.exterior_flood_lights
       data:
         brightness_pct: 100
-        kelvin: 3425
+        kelvin: 4000
+    - service: light.turn_on
       entity_id: light.front_spotlights
       data:
         brightness_pct: 100
@@ -127,13 +126,11 @@
     - service: light.turn_on
       entity_id: light.exterior_porch_lights
       data:
-        brightness_pct: 15
-        transition: 60
+        brightness_pct: 50
     - service: light.turn_on
       entity_id: light.exterior_flood_lights
       data:
-        brightness_pct: 15
-        transition: 60
+        brightness_pct: 50
     - service: light.turn_on
       entity_id: light.front_spotlights
       data:
@@ -161,13 +158,11 @@
     - service: light.turn_on
       entity_id: light.exterior_porch_lights
       data:
-        brightness_pct: 15
-        transition: 60
+        brightness_pct: 50
     - service: light.turn_on
       entity_id: light.exterior_flood_lights
       data:
-        brightness_pct: 15
-        transition: 60
+        brightness_pct: 50
     - service: light.turn_on
       entity_id: light.front_spotlights
       data:
