@@ -31,6 +31,11 @@
       data:
         brightness_pct: 100
         kelvin: 3425
+    - service: light.turn_on
+      entity_id: light.front_spotlights
+      data:
+        brightness_pct: 100
+        kelvin: 4000
 
 - alias: doorbell reset exterior lights to 15 after ring after 10pm
   trigger:
@@ -61,6 +66,10 @@
       data:
         brightness_pct: 15
         transition: 60
+    - service: light.turn_on
+      entity_id: light.front_spotlights
+      data:
+        brightness_pct: 50
 
 - alias: doorbell turn exterior lights to 100 when motion detected after 10pm
   trigger:
@@ -91,6 +100,10 @@
       data:
         brightness_pct: 100
         kelvin: 3425
+      entity_id: light.front_spotlights
+      data:
+        brightness_pct: 100
+        kelvin: 4000
 
 - alias: doorbell reset exterior lights to 15 after motion detected after 10pm
   trigger:
@@ -121,6 +134,10 @@
       data:
         brightness_pct: 15
         transition: 60
+    - service: light.turn_on
+      entity_id: light.front_spotlights
+      data:
+        brightness_pct: 50
 
 - alias: side reset exterior lights to 15 after motion detected after 10pm
   trigger:
@@ -151,3 +168,7 @@
       data:
         brightness_pct: 15
         transition: 60
+    - service: light.turn_on
+      entity_id: light.front_spotlights
+      data:
+        brightness_pct: 50

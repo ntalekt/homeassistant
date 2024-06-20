@@ -51,6 +51,12 @@
       data:
         kelvin: 4000
         brightness_pct: 100
+    # exterior spotlights
+    - service: light.turn_on
+      entity_id: light.front_spotlights
+      data:
+        kelvin: 4000
+        brightness_pct: 100
     # spa and pool light
     - service: light.turn_on
       entity_id: light.lights
@@ -79,6 +85,11 @@
         brightness_pct: 100
     - service: light.turn_on
       entity_id: light.exterior_flood_lights
+      data:
+        kelvin: 4000
+        brightness_pct: 100
+    - service: light.turn_on
+      entity_id: light.front_spotlights
       data:
         kelvin: 4000
         brightness_pct: 100
@@ -112,6 +123,11 @@
     # flood lights
     - service: light.turn_on
       entity_id: light.exterior_flood_lights
+      data:
+        brightness_pct: 50
+    # exterior spotlights
+    - service: light.turn_on
+      entity_id: light.front_spotlights
       data:
         brightness_pct: 50
     # back string landscape light
@@ -187,6 +203,9 @@
     # govee floodlight backyard
     - service: light.turn_off
       entity_id: light.exterior_flood_lights
+    # exterior spotlights
+    - service: light.turn_off
+      entity_id: light.front_spotlights
     # govee string backyard
     - service: light.turn_off
       entity_id: light.outdoor_string
