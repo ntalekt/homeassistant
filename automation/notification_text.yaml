@@ -280,7 +280,7 @@
   trigger:
     - platform: state
       entity_id: group.household
-      to: "off"
+      to: "away"
   condition:
     condition: and
     conditions:
@@ -315,7 +315,7 @@
         state: "off"
       - condition: state
         entity_id: group.household
-        state: "on"
+        state: "home"
       - condition: state
         entity_id: binary_sensor.garage_occupancy_on
         state: "off"

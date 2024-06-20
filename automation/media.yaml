@@ -83,7 +83,7 @@
   condition:
     - condition: state
       entity_id: group.household
-      state: "on"
+      state: "home"
   action:
     - service: media_player.join
       data:
@@ -103,7 +103,7 @@
   trigger:
     - platform: state
       entity_id: group.household
-      to: "off"
+      state: "home"
   action:
     - service: media_player.media_pause
       target:
