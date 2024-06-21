@@ -159,14 +159,14 @@
     - service: light.turn_on
       data:
         entity_id: light.master_bedroom_lamp
-        brightness: 5
+        brightness: 10
         kelvin: 4000
     - repeat:
         until:
           condition: or
           conditions:
             - condition: template
-              value_template: "{{ state_attr('light.master_bedroom_lamp', 'brightness') | int(0) >= 254 }}"
+              value_template: "{{ state_attr('light.master_bedroom_lamp', 'brightness') | int(0) >= 127 }}"
             - condition: state
               entity_id: light.master_bedroom_lamp
               state: "off"
@@ -276,9 +276,9 @@
       - condition: state
         entity_id: remote.media_center
         state: "off"
-      - condition: state
-        entity_id: group.household
-        state: "home"
+      # - condition: state
+      #   entity_id: group.household
+      #   state: "home"
   action:
     - service: light.turn_on
       entity_id: light.kitchen_cabinet_lights
@@ -321,7 +321,7 @@
         entity_id: sun.sun
         state: "below_horizon"
       # - condition: template # the lights aren't already on
-      #   value_template: "{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }} "
+      #   value_template: "{{ states.light.kitchen_cabinet_lights.attributes.brightness==null }}"
       - condition: state # someone hasn't disabled the interior motion feature
         entity_id: input_boolean.disable_interior_on_motion
         state: "off"
