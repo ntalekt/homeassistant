@@ -110,6 +110,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 #### Network
 * [Ubiquiti Unifi UXG-Lite](https://store.ui.com/us/en/products/uxg-lite)
 * [Ubiquiti UniFi Switch 8 60W (US-8-60W)](https://amzn.to/3Gmca15)
+* [Ubiquiti UniFi Switch Lite 16 (USW-Lite-16-POE)](https://amzn.to/3z4Ke0X)
 * [Ubiquiti UniFi6 Pro Access Point (U6-Pro-US)](https://amzn.to/3UfDnbq)
 * [Ubiquiti UniFi Access Point (UAP-AC-PRO-US)](https://amzn.to/3MhaF8k) x2
 * [Ubiquiti UniFi6 Access Point U6 Mesh (U6-Mesh-US)](https://amzn.to/3UcEnNC)
