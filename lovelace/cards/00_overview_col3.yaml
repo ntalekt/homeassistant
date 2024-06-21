@@ -8,6 +8,7 @@ cards:
       - type: custom:weather-card
         entity: weather.openweathermap
         details: false
+      
     ##########################################################
     ## Spa conditional
     ##########################################################
