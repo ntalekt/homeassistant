@@ -142,39 +142,51 @@ cards:
           - value: 86
             color: "#DB4437"
 
-      - type: custom:mini-graph-card
-        entities:
-          - sensor.ikea_air_quality_1_vindriktning_pm2_5
-        name: Playroom (PM2.5)
-        icon: mdi:air-filter
-        line_width: 8
-        font_size: 75
-        points_per_hour: 6
-        hours_to_show: 24
-        color_thresholds:
-          - value: 35
-            color: "#0F9D58"
-          - value: 85
-            color: "#FFBF00"
-          - value: 86
-            color: "#DB4437"
+      - type: conditional
+        conditions:
+        - condition: numeric_state
+          entity: sensor.ikea_air_quality_1_vindriktning_pm2_5
+          above: 10
+        card:
+          type: custom:mini-graph-card
+          entities:
+            - sensor.ikea_air_quality_1_vindriktning_pm2_5
+          name: Playroom (PM2.5)
+          icon: mdi:air-filter
+          line_width: 8
+          font_size: 75
+          points_per_hour: 6
+          hours_to_show: 24
+          color_thresholds:
+            - value: 35
+              color: "#0F9D58"
+            - value: 85
+              color: "#FFBF00"
+            - value: 86
+              color: "#DB4437"
 
-      - type: custom:mini-graph-card
-        entities:
-          - sensor.ikea_air_quality_2_vindriktning_pm2_5
-        name: Office (PM2.5)
-        icon: mdi:air-filter
-        line_width: 8
-        font_size: 75
-        points_per_hour: 6
-        hours_to_show: 24
-        color_thresholds:
-          - value: 35
-            color: "#0F9D58"
-          - value: 85
-            color: "#FFBF00"
-          - value: 86
-            color: "#DB4437"
+      - type: conditional
+        conditions:
+        - condition: numeric_state
+          entity: sensor.ikea_air_quality_2_vindriktning_pm2_5
+          above: 10
+        card:
+          type: custom:mini-graph-card
+          entities:
+            - sensor.ikea_air_quality_2_vindriktning_pm2_5
+          name: Office (PM2.5)
+          icon: mdi:air-filter
+          line_width: 8
+          font_size: 75
+          points_per_hour: 6
+          hours_to_show: 24
+          color_thresholds:
+            - value: 35
+              color: "#0F9D58"
+            - value: 85
+              color: "#FFBF00"
+            - value: 86
+              color: "#DB4437"
 
   - type: horizontal-stack
     cards:
