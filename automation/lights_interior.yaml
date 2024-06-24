@@ -67,18 +67,17 @@
         entity_id: light.media_accents
         state: "off"
   action:
-    service: light.turn_on
-    data:
-      kelvin: 4500
-      brightness_pct: 30
-    target:
-      entity_id: light.media_accents
+    - service: light.turn_on
+      data:
+        entity_id: light.media_accents
+        brightness: 80
+        kelvin: 4500
     # - repeat:
     #     until:
     #       condition: or
     #       conditions:
     #         - condition: template
-    #           value_template: "{{ state_attr('light.media_accents', 'brightness') | int(0) >= 254 }}"
+    #           value_template: "{{ state_attr('light.media_accents', 'brightness') | int(0) >= 100 }}"
     #         - condition: state
     #           entity_id: light.media_accents
     #           state: "off"
@@ -88,7 +87,7 @@
     #         entity_id: light.media_accents
     #         brightness: "{{ state_attr('light.media_accents', 'brightness') | int(0) + 1 }}"
     #     - delay:
-    #         seconds: 10
+    #         seconds: 30
 
 ##########################################################
 ## Interior - media center lamp bulbs
@@ -115,14 +114,14 @@
     - service: light.turn_on
       data:
         entity_id: light.media_center_lamp_bulbs
-        brightness: 30
+        brightness: 60
         kelvin: 4500
     # - repeat:
     #     until:
     #       condition: or
     #       conditions:
     #         - condition: template
-    #           value_template: "{{ state_attr('light.media_center_lamp_bulbs', 'brightness') | int(0) >= 254 }}"
+    #           value_template: "{{ state_attr('light.media_center_lamp_bulbs', 'brightness') | int(0) >= 80 }}"
     #         - condition: state
     #           entity_id: light.media_center_lamp_bulbs
     #           state: "off"
@@ -132,7 +131,7 @@
     #         entity_id: light.media_center_lamp_bulbs
     #         brightness: "{{ state_attr('light.media_center_lamp_bulbs', 'brightness') | int(0) + 1 }}"
     #     - delay:
-    #         seconds: 10
+    #         seconds: 30
 
 ##########################################################
 ## Interior - main bedroom
@@ -176,7 +175,7 @@
             entity_id: light.master_bedroom_lamp
             brightness: "{{ state_attr('light.master_bedroom_lamp', 'brightness') | int(0) + 1 }}"
         - delay:
-            seconds: 10
+            seconds: 20
 
 ##########################################################
 ## Interior - chalkboard room accents (cactus & neon)
