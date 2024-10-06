@@ -19,12 +19,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST, CONF_USERNAME
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed
-from homeassistant.helpers import device_registry as dr
-from homeassistant.helpers.issue_registry import (
-    IssueSeverity,
-    async_create_issue,
-    delete_issue,
-)
+from homeassistant.helpers import device_registry as dr, issue_registry as ir
 from homeassistant.helpers.typing import UNDEFINED, UndefinedType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
@@ -424,7 +419,7 @@ class ProxmoxStorageCoordinator(ProxmoxCoordinator):
 
         for resource in resources if resources is not None else []:
             if "storage" in resource:
-                if resource["storage"] == self.resource_id:
+                if resource["id"] == self.resource_id:
                     node_name = resource["node"]
 
         api_path = "cluster/resources?type=storage"
@@ -440,13 +435,12 @@ class ProxmoxStorageCoordinator(ProxmoxCoordinator):
 
         api_status = []
         for api_storage in api_storages:
-            if api_storage["storage"] == self.resource_id:
+            if api_storage["id"] == self.resource_id:
                 api_status = api_storage
 
         if api_status is None or "content" not in api_status:
             raise UpdateFailed(f"Storage {self.resource_id} unable to be found")
 
-        update_device_via(self, ProxmoxType.Storage, node_name)
         storage_id = api_status["id"]
         name = f"Storage {storage_id.replace("storage/", "")}"
         return ProxmoxStorageData(
@@ -513,16 +507,12 @@ class ProxmoxUpdateCoordinator(ProxmoxCoordinator):
             )
 
         updates_list = []
-        total = 0
         for update in api_status:
             updates_list.append(f"{update['Title']} - {update['Version']}")
-            total += 1
 
         updates_list.sort()
-
-        update_avail = False
-        if total > 0:
-            update_avail = True
+        total = len(updates_list) if updates_list is not None else 0
+        update_avail = total > 0
 
         return ProxmoxUpdateData(
             type=ProxmoxType.Update,
@@ -792,7 +782,7 @@ def poll_api(
                 return "Unmapped"
 
     try:
-        delete_issue(
+        ir.delete_issue(
             hass,
             DOMAIN,
             f"{config_entry.entry_id}_{resource_id}_forbiden",
@@ -811,12 +801,12 @@ def poll_api(
         raise UpdateFailed(error) from error
     except ResourceException as error:
         if error.status_code == 403 and issue_crete_permissions:
-            async_create_issue(
+            ir.create_issue(
                 hass,
                 DOMAIN,
                 f"{config_entry.entry_id}_{resource_id}_forbiden",
                 is_fixable=False,
-                severity=IssueSeverity.ERROR,
+                severity=ir.IssueSeverity.ERROR,
                 translation_key="resource_exception_forbiden",
                 translation_placeholders={
                     "resource": f"{api_category.capitalize()} {resource_id}",
