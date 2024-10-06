@@ -48,9 +48,3 @@
   entities:
     - light.back_bulb
     - light.back_porch
-
-- platform: group
-  name: exterior flood lights
-  entities:
-    - light.front_flood_lights
-    - light.smart_flood_lights
