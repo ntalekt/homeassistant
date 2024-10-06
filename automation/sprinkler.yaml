@@ -68,7 +68,7 @@
         script.sprinkler_water_spring
 
 ##########################################################
-## Sprinkler - Winter - 30min (90 min week)
+## Sprinkler - Winter - 30min (120 min week)
 ##########################################################
 
 - alias: "water winter"
@@ -83,6 +83,7 @@
           - mon
           - wed
           - fri
+          - sat
       - condition: state
         entity_id: input_select.sprinkler
         state: "Winter"
