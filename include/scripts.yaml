@@ -13,6 +13,13 @@ shield_activity_on:
         entity_id: remote.media_center
         activity: "Shield"
 
+appletv_activity_on:
+  sequence:
+    - service: remote.turn_on
+      data:
+        entity_id: remote.media_center
+        activity: "Watch Apple TV"
+
 switch_activity_on:
   sequence:
     - service: remote.turn_on

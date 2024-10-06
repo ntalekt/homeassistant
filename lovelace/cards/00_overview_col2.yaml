@@ -496,12 +496,12 @@ cards:
       - type: "custom:button-card"
         entity: sensor.media_center_remote
         color_type: card
-        name: Shield
+        name: AppleTV
         state:
         - value: 'PowerOff'
           icon: mdi:television
           color: rgb(67, 73, 82)
-        - value: 'Shield'
+        - value: 'Watch Apple TV'
           icon: mdi:television
           color: rgb(46, 204, 64)
         - value: 'Switch'
@@ -516,7 +516,7 @@ cards:
           action: call-service
           service: script.turn_on
           service_data:
-            entity_id: script.shield_activity_on
+            entity_id: script.appletv_activity_on
       - type: "custom:button-card"
         icon: mdi:nintendo-switch
         color_type: card
@@ -530,7 +530,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(67, 73, 82)
-        - value: 'Shield'
+        - value: 'Watch Apple TV'
           color: rgb(67, 73, 82)
         - value: 'Switch'
           color: rgb(46, 204, 64)
@@ -551,7 +551,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(67, 73, 82)
-        - value: 'Shield'
+        - value: 'Watch Apple TV'
           color: rgb(67, 73, 82)
         - value: 'Switch'
           color: rgb(67, 73, 82)
@@ -572,7 +572,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(255, 220, 0)
-        - value: 'Shield'
+        - value: 'Watch Apple TV'
           color: rgb(255, 65, 54)
         - value: 'Switch'
           color: rgb(255, 65, 54)
@@ -599,7 +599,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(67, 73, 82)
-        - value: 'Shield'
+        - value: 'Watch Apple TV'
           color: rgb(255, 220, 0)
         - value: 'Switch'
           color: rgb(255, 220, 0)
@@ -620,7 +620,7 @@ cards:
         state:
         - value: 'PowerOff'
           color: rgb(67, 73, 82)
-        - value: 'Shield'
+        - value: 'Watch Apple TV'
           color: rgb(255, 220, 0)
         - value: 'Switch'
           color: rgb(255, 220, 0)
