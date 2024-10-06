@@ -37,58 +37,6 @@ from .const import (
 
 _LOGGER = logging.getLogger(__name__)
 
-PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
-    {
-        vol.Optional(CONF_ZONE_ID): cv.string,
-        vol.Optional(CONF_GPS_LOC): cv.string,
-        vol.Optional(CONF_TRACKER): cv.string,
-        vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
-        vol.Optional(CONF_INTERVAL, default=DEFAULT_INTERVAL): int,
-        vol.Optional(CONF_TIMEOUT, default=DEFAULT_TIMEOUT): int,
-    }
-)
-
-
-async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
-    """Configuration from yaml"""
-    if DOMAIN not in hass.data.keys():
-        hass.data.setdefault(DOMAIN, {})
-        if CONF_ZONE_ID in config:
-            config.entry_id = slugify(f"{config.get(CONF_ZONE_ID)}")
-        elif CONF_GPS_LOC in config:
-            config.entry_id = slugify(f"{config.get(CONF_GPS_LOC)}")
-        elif CONF_TRACKER in config:
-            config.entry_id = slugify(f"{config.get(CONF_TRACKER)}")            
-        else:
-            raise ValueError("GPS, Zone or Device Tracker needs to be configured.")
-        config.data = config
-    else:
-        if CONF_ZONE_ID in config:
-            config.entry_id = slugify(f"{config.get(CONF_ZONE_ID)}")
-        elif CONF_GPS_LOC in config:
-            config.entry_id = slugify(f"{config.get(CONF_GPS_LOC)}")
-        elif CONF_TRACKER in config:
-            config.entry_id = slugify(f"{config.get(CONF_TRACKER)}")
-        else:
-            raise ValueError("GPS, Zone or Device Tracker needs to be configured.")
-        config.data = config
-
-    # Setup the data coordinator
-    coordinator = AlertsDataUpdateCoordinator(
-        hass,
-        config,
-        config[CONF_TIMEOUT],
-        config[CONF_INTERVAL],
-    )
-
-    # Fetch initial data so we have data when entities subscribe
-    await coordinator.async_refresh()
-
-    hass.data[DOMAIN][config.entry_id] = {
-        COORDINATOR: coordinator,
-    }
-    async_add_entities([NWSAlertSensor(hass, config)], True)
-
 
 async def async_setup_entry(hass, entry, async_add_entities):
     """Setup the sensor platform."""
@@ -124,12 +72,12 @@ class NWSAlertSensor(CoordinatorEntity):
         return self._icon
 
     @property
-    def state(self):
+    def state(self) -> int | None:
         """Return the state of the sensor."""
         if self.coordinator.data is None:
             return None
         elif "state" in self.coordinator.data.keys():
-            return self.coordinator.data["state"]
+            return int(self.coordinator.data["state"])
         return None
 
     @property
@@ -141,15 +89,9 @@ class NWSAlertSensor(CoordinatorEntity):
             return attrs
 
         attrs[ATTR_ATTRIBUTION] = ATTRIBUTION
-        attrs["title"] = self.coordinator.data["event"]
-        attrs["event_id"] = self.coordinator.data["event_id"]
-        attrs["message_type"] = self.coordinator.data["message_type"]
-        attrs["event_status"] = self.coordinator.data["event_status"]
-        attrs["event_severity"] = self.coordinator.data["event_severity"]
-        attrs["event_expires"] = self.coordinator.data["event_expires"]
-        attrs["display_desc"] = self.coordinator.data["display_desc"]
-        attrs["spoken_desc"] = self.coordinator.data["spoken_desc"]
-
+        x = 0
+        if "alerts" in self.coordinator.data:
+            attrs["Alerts"] = self.coordinator.data["alerts"]
         return attrs
 
     @property

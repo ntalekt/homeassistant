@@ -1,4 +1,5 @@
 """Adds config flow for NWS Alerts."""
+
 from __future__ import annotations
 
 import logging

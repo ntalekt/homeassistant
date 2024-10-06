@@ -1,3 +1,5 @@
+from homeassistant.const import Platform
+
 # API
 API_ENDPOINT = "https://api.weather.gov"
 USER_AGENT = "Home Assistant"
@@ -23,4 +25,4 @@ DOMAIN = "nws_alerts"
 PLATFORM = "sensor"
 ATTRIBUTION = "Data provided by Weather.gov"
 COORDINATOR = "coordinator"
-PLATFORMS = ["sensor"]
+PLATFORMS = [Platform.SENSOR]
