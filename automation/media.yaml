@@ -103,7 +103,7 @@
   trigger:
     - platform: state
       entity_id: group.household
-      state: "home"
+      to: "away"
   action:
     - service: media_player.media_pause
       target:
