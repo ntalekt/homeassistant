@@ -43,101 +43,101 @@
   ## yt REDACTED
   ##########################################################
 
-- alias: REDACTED
-  trigger:
-    - platform: time_pattern
-      minutes: "/1"
-  action:
-    service: shell_command.timelapse_REDACTED
+# - alias: REDACTED
+#   trigger:
+#     - platform: time_pattern
+#       minutes: "/1"
+#   action:
+#     service: shell_command.timelapse_REDACTED
 
-- alias: REDACTED_create
-  trigger:
-    - platform: time
-      at: "00:05:00"
-  action:
-    service: shell_command.timelapse_create_REDACTED
+# - alias: REDACTED_create
+#   trigger:
+#     - platform: time
+#       at: "00:05:00"
+#   action:
+#     service: shell_command.timelapse_create_REDACTED
 
-- alias: REDACTED_create_yt
-  trigger:
-    - platform: time
-      at: "00:45:00"
-  action:
-    service: shell_command.timelapse_create_REDACTED_yt
+# - alias: REDACTED_create_yt
+#   trigger:
+#     - platform: time
+#       at: "00:45:00"
+#   action:
+#     service: shell_command.timelapse_create_REDACTED_yt
 
   ##########################################################
   ## yt iss
   ##########################################################
 
-- alias: REDACTED
-  trigger:
-    - platform: time_pattern
-      minutes: "/1"
-  action:
-    service: shell_command.timelapse_REDACTED
+# - alias: REDACTED
+#   trigger:
+#     - platform: time_pattern
+#       minutes: "/1"
+#   action:
+#     service: shell_command.timelapse_REDACTED
 
-- alias: REDACTED_create
-  trigger:
-    - platform: time
-      at: "18:05:00"
-  action:
-    service: shell_command.timelapse_create_REDACTED
+# - alias: REDACTED_create
+#   trigger:
+#     - platform: time
+#       at: "18:05:00"
+#   action:
+#     service: shell_command.timelapse_create_REDACTED
 
-- alias: REDACTED_create_yt
-  trigger:
-    - platform: time
-      at: "18:45:00"
-  action:
-    service: shell_command.timelapse_create_REDACTED_yt
+# - alias: REDACTED_create_yt
+#   trigger:
+#     - platform: time
+#       at: "18:45:00"
+#   action:
+#     service: shell_command.timelapse_create_REDACTED_yt
 
   ##########################################################
   ## yt REDACTED
   ##########################################################
 
-- alias: REDACTED
-  trigger:
-    - platform: time_pattern
-      minutes: "/1"
-  action:
-    service: shell_command.timelapse_REDACTED
+# - alias: REDACTED
+#   trigger:
+#     - platform: time_pattern
+#       minutes: "/1"
+#   action:
+#     service: shell_command.timelapse_REDACTED
 
-- alias: REDACTED_create
-  trigger:
-    - platform: time
-      at: "19:05:00"
-  action:
-    service: shell_command.timelapse_create_REDACTED
+# - alias: REDACTED_create
+#   trigger:
+#     - platform: time
+#       at: "19:05:00"
+#   action:
+#     service: shell_command.timelapse_create_REDACTED
 
-- alias: REDACTED_create_yt
-  trigger:
-    - platform: time
-      at: "19:45:00"
-  action:
-    service: shell_command.timelapse_create_REDACTED_yt
+# - alias: REDACTED_create_yt
+#   trigger:
+#     - platform: time
+#       at: "19:45:00"
+#   action:
+#     service: shell_command.timelapse_create_REDACTED_yt
 
   ##########################################################
   ## yt SpaceX Cape Canaveral Space
   ##########################################################
 
-- alias: REDACTED
-  trigger:
-    - platform: time_pattern
-      minutes: "/1"
-  action:
-    service: shell_command.timelapse_REDACTED
+# - alias: REDACTED
+#   trigger:
+#     - platform: time_pattern
+#       minutes: "/1"
+#   action:
+#     service: shell_command.timelapse_REDACTED
 
-- alias: REDACTED_create
-  trigger:
-    - platform: time
-      at: "02:25:00"
-  action:
-    service: shell_command.timelapse_create_REDACTED
+# - alias: REDACTED_create
+#   trigger:
+#     - platform: time
+#       at: "02:25:00"
+#   action:
+#     service: shell_command.timelapse_create_REDACTED
 
-- alias: REDACTED_create_yt
-  trigger:
-    - platform: time
-      at: "02:55:00"
-  action:
-    service: shell_command.timelapse_create_REDACTED_yt
+# - alias: REDACTED_create_yt
+#   trigger:
+#     - platform: time
+#       at: "02:55:00"
+#   action:
+#     service: shell_command.timelapse_create_REDACTED_yt
 
   ##########################################################
   ## home cameras

@@ -30,4 +30,3 @@ cards:
         - entity: input_boolean.disable_home_away
         - entity: input_boolean.disable_interior_camera_detection
         - entity: input_boolean.disable_interior_camera_recording
-        - entity: input_boolean.disable_f1_timelapse
