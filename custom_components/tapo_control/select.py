@@ -5,7 +5,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import DOMAIN, LOGGER
 from .tapo.entities import TapoSelectEntity
-from .utils import check_and_create
+from .utils import check_and_create, getNightModeName, getNightModeValue
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
@@ -23,11 +23,37 @@ async def async_setup_entry(
     async def setupEntities(entry):
         selects = []
 
-        tapoNightVisionSelect = await check_and_create(
-            entry, hass, TapoNightVisionSelect, "getDayNightMode", config_entry
-        )
-        if tapoNightVisionSelect:
-            LOGGER.debug("Adding tapoNightVisionSelect...")
+        if (
+            "night_vision_mode_switching" in entry["camData"]
+            and entry["camData"]["night_vision_mode_switching"] is not None
+        ):
+            tapoNightVisionSelect = TapoNightVisionSelect(
+                entry,
+                hass,
+                config_entry,
+                "Night Vision Switching",
+                ["auto", "on", "off"],
+                "night_vision_mode_switching",
+                entry["controller"].setDayNightMode,
+            )
+            LOGGER.debug("Adding tapoNightVisionSelect (Night Vision Switching)...")
+            selects.append(tapoNightVisionSelect)
+
+        if (
+            "night_vision_mode" in entry["camData"]
+            and entry["camData"]["night_vision_mode"] is not None
+            and entry["camData"]["night_vision_capability"] is not None
+        ):
+            tapoNightVisionSelect = TapoNightVisionSelect(
+                entry,
+                hass,
+                config_entry,
+                "Night Vision",
+                entry["camData"]["night_vision_capability"],
+                "night_vision_mode",
+                entry["controller"].setNightVisionModeConfig,
+            )
+            LOGGER.debug("Adding tapoNightVisionSelect (Night Vision)...")
             selects.append(tapoNightVisionSelect)
 
         tapoLightFrequencySelect = await check_and_create(
@@ -40,9 +66,33 @@ async def async_setup_entry(
         tapoAutomaticAlarmModeSelect = await check_and_create(
             entry, hass, TapoAutomaticAlarmModeSelect, "getAlarm", config_entry
         )
+
+        if not tapoAutomaticAlarmModeSelect:
+            tapoAutomaticAlarmModeSelect = await check_and_create(
+                entry,
+                hass,
+                TapoAutomaticAlarmModeSelect,
+                "getAlarmConfig",
+                config_entry,
+            )
+
         if tapoAutomaticAlarmModeSelect:
             LOGGER.debug("Adding tapoAutomaticAlarmModeSelect...")
             selects.append(tapoAutomaticAlarmModeSelect)
+
+        tapoSirenTypeSelect = await check_and_create(
+            entry, hass, TapoSirenTypeSelect, "getSirenTypeList", config_entry
+        )
+        if tapoSirenTypeSelect:
+            LOGGER.debug("Adding tapoSirenTypeSelect...")
+            selects.append(tapoSirenTypeSelect)
+
+        tapoAlertTypeSelect = await check_and_create(
+            entry, hass, TapoAlertTypeSelect, "getAlertTypeList", config_entry
+        )
+        if tapoAlertTypeSelect:
+            LOGGER.debug("Adding tapoAlertTypeSelect...")
+            selects.append(tapoAlertTypeSelect)
 
         tapoMotionDetectionSelect = await check_and_create(
             entry, hass, TapoMotionDetectionSelect, "getMotionDetection", config_entry
@@ -137,7 +187,10 @@ async def async_setup_entry(
                 LOGGER.debug("Adding TapoWhitelampForceTimeSelect...")
                 selects.append(tapoWhitelampForceTimeSelect)
 
-        if entry["camData"]["whitelampConfigIntensity"] is not None:
+        if (
+            entry["camData"]["whitelampConfigIntensity"] is not None
+            and entry["camData"]["smartwtl_digital_level"] is None
+        ):
             tapoWhitelampIntensityLevelSelect = await check_and_create(
                 entry,
                 hass,
@@ -288,12 +341,26 @@ class TapoPatrolModeSelect(TapoSelectEntity):
 
 
 class TapoNightVisionSelect(TapoSelectEntity):
-    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
-        self._attr_options = ["auto", "on", "off"]
+    def __init__(
+        self,
+        entry: dict,
+        hass: HomeAssistant,
+        config_entry,
+        entityName: str,
+        nightVisionOptions: list,
+        currentValueKey: str,
+        method,
+    ):
+        self._attr_options = []
+        self.method = method
+        self.currentValueKey = currentValueKey
+        for nightVisionCapability in nightVisionOptions:
+            self._attr_options.append(getNightModeName(nightVisionCapability))
+
         self._attr_current_option = None
         TapoSelectEntity.__init__(
             self,
-            "Night Vision",
+            entityName,
             entry,
             hass,
             config_entry,
@@ -308,12 +375,13 @@ class TapoNightVisionSelect(TapoSelectEntity):
         if not camData:
             self._attr_state = "unavailable"
         else:
-            self._attr_current_option = camData["day_night_mode"]
+            self._attr_current_option = getNightModeName(camData[self.currentValueKey])
             self._attr_state = self._attr_current_option
 
     async def async_select_option(self, option: str) -> None:
+        LOGGER.debug("Calling " + self.method.__name__ + " with " + option + "...")
         result = await self._hass.async_add_executor_job(
-            self._controller.setDayNightMode, option
+            self.method, getNightModeValue(option)
         )
         if "error_code" not in result or result["error_code"] == 0:
             self._attr_state = option
@@ -370,11 +438,11 @@ class TapoAutomaticAlarmModeSelect(TapoSelectEntity):
         if not camData:
             self._attr_state = STATE_UNAVAILABLE
         else:
-            if camData["alarm"] == "off":
+            if camData["alarm_config"]["automatic"] == "off":
                 self._attr_current_option = "off"
             else:
-                light = "light" in camData["alarm_mode"]
-                sound = "sound" in camData["alarm_mode"]
+                light = "light" in camData["alarm_config"]["mode"]
+                sound = "sound" in camData["alarm_config"]["mode"]
                 if light and sound:
                     self._attr_current_option = "both"
                 elif light and not sound:
@@ -837,3 +905,136 @@ class TapoMoveToPresetSelect(TapoSelectEntity):
     @property
     def entity_category(self):
         return None
+
+
+class TapoSirenTypeSelect(TapoSelectEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
+        self._attr_options = entry["camData"]["alarm_siren_type_list"]
+        self._attr_current_option = entry["camData"]["alarm_config"]["siren_type"]
+        self.hub = entry["camData"]["alarm_is_hubSiren"]
+        TapoSelectEntity.__init__(
+            self,
+            "Siren Type",
+            entry,
+            hass,
+            config_entry,
+            "mdi:home-sound-in-outline",
+        )
+
+    def updateTapo(self, camData):
+        if not camData:
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            if "siren_type" in camData["alarm_config"]:
+                self._attr_current_option = camData["alarm_config"]["siren_type"]
+            else:
+                self._attr_state = STATE_UNAVAILABLE
+
+            self._attr_state = self._attr_current_option
+        LOGGER.debug("Updating TapoHubSirenTypeSelect to: " + str(self._attr_state))
+
+    async def async_select_option(self, option: str) -> None:
+        if self.hub:
+            result = await self.hass.async_add_executor_job(
+                self._controller.setHubSirenConfig, None, option
+            )
+        else:
+            result = await self.hass.async_add_executor_job(
+                self._controller.executeFunction,
+                "setAlarmConfig",
+                {
+                    "msg_alarm": {
+                        "siren_type": option,
+                    }
+                },
+            )
+        if "error_code" not in result or result["error_code"] == 0:
+            self._attr_state = option
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()
+
+
+class TapoAlertTypeSelect(TapoSelectEntity):
+    def __init__(self, entry: dict, hass: HomeAssistant, config_entry):
+        self.hub = entry["camData"]["alarm_is_hubSiren"]
+        self.startID = 10
+        self.alarm_siren_type_list = entry["camData"]["alarm_siren_type_list"]
+        self.typeOfAlarm = entry["camData"]["alarm_config"]["typeOfAlarm"]
+
+        if entry["camData"]["alarm_user_start_id"] is not None:
+            self.startID = int(entry["camData"]["alarm_user_start_id"])
+
+        TapoSelectEntity.__init__(
+            self,
+            "Siren Type",
+            entry,
+            hass,
+            config_entry,
+            "mdi:home-sound-in-outline",
+        )
+
+    def updateTapo(self, camData):
+        if not camData:
+            self._attr_state = STATE_UNAVAILABLE
+        else:
+            self._attr_options = camData["alarm_siren_type_list"]
+            self.user_sounds = {}
+            for user_sound in camData["alarm_user_sounds"]:
+                if "name" in user_sound:
+                    self._attr_options.append(user_sound["name"])
+                    if "id" in user_sound:
+                        self.user_sounds[user_sound["id"]] = user_sound["name"]
+
+            self.alarm_enabled = camData["alarm_config"]["automatic"] == "on"
+            self.alarm_mode = camData["alarm_config"]["mode"]
+            currentSirenType = int(camData["alarm_config"]["siren_type"])
+            if currentSirenType == 0:
+                self._attr_current_option = camData["alarm_siren_type_list"][0]
+            elif currentSirenType < self.startID:
+                # on these cameras, the 0 is the first entry, but then it starts from 3
+                # and it has 3 and 4 values, assuming -2 for the rest
+                self._attr_current_option = camData["alarm_siren_type_list"][
+                    currentSirenType - 2
+                ]
+            else:
+                self._attr_current_option = self.user_sounds[currentSirenType]
+
+            self._attr_state = self._attr_current_option
+        LOGGER.debug("Updating TapoHubSirenTypeSelect to: " + str(self._attr_state))
+
+    async def async_select_option(self, option: str) -> None:
+        optionIndex = None
+        for index in self.user_sounds:
+            indexValue = self.user_sounds[index]
+            if indexValue == option:
+                optionIndex = index
+        if optionIndex is None:
+            optionIndex = self.alarm_siren_type_list.index(option)
+            if optionIndex > 0 and optionIndex < self.startID:
+                optionIndex += 2
+
+        if self.typeOfAlarm == "getAlarm":
+            result = await self._hass.async_add_executor_job(
+                self._controller.setAlarm,
+                self.alarm_enabled,
+                "sound" in self.alarm_mode,
+                "siren" in self.alarm_mode or "light" in self.alarm_mode,
+                None,
+                None,
+                optionIndex,
+            )
+        else:
+            # No idea if this works, cannot test on camera
+            result = await self.hass.async_add_executor_job(
+                self._controller.executeFunction,
+                "setAlarmConfig",
+                {
+                    "msg_alarm": {
+                        "siren_type": optionIndex,
+                    }
+                },
+            )
+        if "error_code" not in result or result["error_code"] == 0:
+            self._attr_state = option
+        self.async_write_ha_state()
+        await self._coordinator.async_request_refresh()

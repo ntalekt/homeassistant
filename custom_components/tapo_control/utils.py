@@ -9,7 +9,7 @@ import socket
 import time
 import urllib.parse
 import uuid
-import pathlib
+
 from homeassistant.core import HomeAssistant
 from homeassistant.config_entries import ConfigEntry
 from pytapo.media_stream.downloader import Downloader
@@ -113,31 +113,46 @@ def getDataPath():
 
 
 def getColdDirPathForEntry(hass: HomeAssistant, entry_id: str):
-    if hass.data[DOMAIN][entry_id]["mediaSyncColdDir"] is False:
-        entry: ConfigEntry = hass.data[DOMAIN][entry_id]["entry"]
-        media_sync_cold_storage_path = entry.data.get(MEDIA_SYNC_COLD_STORAGE_PATH)
-        if media_sync_cold_storage_path == "":
-            coldDirPath = os.path.join(getDataPath(), f".storage/{DOMAIN}/{entry_id}/")
-        else:
-            coldDirPath = f"{media_sync_cold_storage_path}/"
+    # Fast retrieval of path without file IO
+    if (
+        entry_id in hass.data[DOMAIN]
+        and hass.data[DOMAIN][entry_id]["mediaSyncColdDir"] is not False
+    ):
+        return hass.data[DOMAIN][entry_id]["mediaSyncColdDir"].rstrip("/")
 
+    coldDirPath = os.path.join(getDataPath(), f".storage/{DOMAIN}/{entry_id}/")
+    if entry_id in hass.data[DOMAIN]:
+        entry: ConfigEntry = hass.data[DOMAIN][entry_id]["entry"]
+    else:  # if device is disabled, get entry from HA storage
+        entry: ConfigEntry = hass.config_entries.async_get_entry(entry_id)
+
+    media_sync_cold_storage_path = entry.data.get(MEDIA_SYNC_COLD_STORAGE_PATH)
+
+    if not media_sync_cold_storage_path == "":
+        coldDirPath = f"{media_sync_cold_storage_path}/"
+
+    if entry_id in hass.data[DOMAIN]:
         pathlib.Path(coldDirPath + "/videos").mkdir(parents=True, exist_ok=True)
         pathlib.Path(coldDirPath + "/thumbs").mkdir(parents=True, exist_ok=True)
         hass.data[DOMAIN][entry_id]["mediaSyncColdDir"] = coldDirPath
 
-    coldDirPath = hass.data[DOMAIN][entry_id]["mediaSyncColdDir"]
-    return coldDirPath
+    return coldDirPath.rstrip("/")
 
 
 def getHotDirPathForEntry(hass: HomeAssistant, entry_id: str):
-    if hass.data[DOMAIN][entry_id]["mediaSyncHotDir"] is False:
-        hotDirPath = os.path.join(getDataPath(), f"www/{DOMAIN}/{entry_id}/")
-        pathlib.Path(hotDirPath + "/videos").mkdir(parents=True, exist_ok=True)
-        pathlib.Path(hotDirPath + "/thumbs").mkdir(parents=True, exist_ok=True)
-        hass.data[DOMAIN][entry_id]["mediaSyncHotDir"] = hotDirPath
+    if hass.data[DOMAIN][entry_id]["mediaSyncHotDir"] is not False:
+        return hass.data[DOMAIN][entry_id]["mediaSyncHotDir"].rstrip("/")
 
-    hotDirPath = hass.data[DOMAIN][entry_id]["mediaSyncHotDir"]
-    return hotDirPath
+    hotDirPath = os.path.join(getDataPath(), f"www/{DOMAIN}/{entry_id}/")
+
+    if entry_id in hass.data[DOMAIN]:
+        if hass.data[DOMAIN][entry_id]["mediaSyncHotDir"] is False:
+            pathlib.Path(hotDirPath + "/videos").mkdir(parents=True, exist_ok=True)
+            pathlib.Path(hotDirPath + "/thumbs").mkdir(parents=True, exist_ok=True)
+            hass.data[DOMAIN][entry_id]["mediaSyncHotDir"] = hotDirPath
+
+        hotDirPath = hass.data[DOMAIN][entry_id]["mediaSyncHotDir"]
+    return hotDirPath.rstrip("/")
 
 
 async def getRecordings(hass, entry_id, date):
@@ -262,17 +277,21 @@ async def generateThumb(hass, entry_id, startDate: int, endDate: int):
                 output_format=IMAGE_JPEG,
             )
         )
-        with open(filePathThumb, "wb") as binary_file:
+        openHandler = await hass.async_add_executor_job(open, filePathThumb, "wb")
+        with openHandler as binary_file:
             binary_file.write(image)
     return filePathThumb
 
 
 # todo: findMedia needs to run periodically because of this function!!!
-def deleteFilesNoLongerPresentInCamera(hass, entry_id, extension, folder):
+async def deleteFilesNoLongerPresentInCamera(hass, entry_id, extension, folder):
     if hass.data[DOMAIN][entry_id]["initialMediaScanDone"] is True:
         coldDirPath = getColdDirPathForEntry(hass, entry_id)
         if os.path.exists(coldDirPath + "/" + folder + "/"):
-            for f in os.listdir(coldDirPath + "/" + folder + "/"):
+            listDirFiles = await hass.async_add_executor_job(
+                os.listdir, coldDirPath + "/" + folder + "/"
+            )
+            for f in listDirFiles:
                 fileName = f.replace(extension, "")
                 filePath = os.path.join(coldDirPath + "/" + folder + "/", f)
                 if fileName not in hass.data[DOMAIN][entry_id]["mediaScanResult"]:
@@ -304,7 +323,10 @@ async def deleteColdFilesOlderThanMaxSyncTime(hass, entry, extension, folder):
         entry_id = entry.entry_id
         ts = datetime.datetime.utcnow().timestamp()
         if os.path.exists(coldDirPath + "/" + folder + "/"):
-            for f in os.listdir(coldDirPath + "/" + folder + "/"):
+            listDirFiles = await hass.async_add_executor_job(
+                os.listdir, coldDirPath + "/" + folder + "/"
+            )
+            for f in listDirFiles:
                 fileName = f.replace(extension, "")
                 filePath = os.path.join(coldDirPath + "/" + folder + "/", f)
                 splitFileName = fileName.split("-")
@@ -349,11 +371,11 @@ async def mediaCleanup(hass, entry):
     LOGGER.debug(
         "Removing cache files from old HA instances for entity " + entry_id + "..."
     )
-    deleteFilesNotIncluding(hotDirPath + "/videos/", UUID)
-    deleteFilesNotIncluding(hotDirPath + "/thumbs/", UUID)
+    await deleteFilesNotIncluding(hass, hotDirPath + "/videos/", UUID)
+    await deleteFilesNotIncluding(hass, hotDirPath + "/thumbs/", UUID)
 
-    deleteFilesNoLongerPresentInCamera(hass, entry_id, ".mp4", "videos")
-    deleteFilesNoLongerPresentInCamera(hass, entry_id, ".jpg", "thumbs")
+    await deleteFilesNoLongerPresentInCamera(hass, entry_id, ".mp4", "videos")
+    await deleteFilesNoLongerPresentInCamera(hass, entry_id, ".jpg", "thumbs")
 
     await deleteColdFilesOlderThanMaxSyncTime(hass, entry, ".mp4", "videos")
     await deleteColdFilesOlderThanMaxSyncTime(hass, entry, ".jpg", "thumbs")
@@ -366,11 +388,11 @@ async def mediaCleanup(hass, entry):
         + entry_id
         + "..."
     )
-    deleteFilesOlderThan(hotDirPath + "/videos/", HOT_DIR_DELETE_TIME)
-    deleteFilesOlderThan(hotDirPath + "/thumbs/", HOT_DIR_DELETE_TIME)
+    await deleteFilesOlderThan(hass, hotDirPath + "/videos/", HOT_DIR_DELETE_TIME)
+    await deleteFilesOlderThan(hass, hotDirPath + "/thumbs/", HOT_DIR_DELETE_TIME)
 
 
-def deleteDir(dirPath):
+async def deleteDir(hass, dirPath):
     if (
         os.path.exists(dirPath)
         and os.path.isdir(dirPath)
@@ -378,13 +400,15 @@ def deleteDir(dirPath):
         and "tapo_control/" in dirPath
     ):
         LOGGER.debug("Deleting folder " + dirPath + "...")
-        shutil.rmtree(dirPath)
+        await hass.async_add_executor_job(shutil.rmtree, dirPath)
 
 
-def deleteFilesOlderThan(dirPath, deleteOlderThan):
+async def deleteFilesOlderThan(hass: HomeAssistant, dirPath, deleteOlderThan):
     now = datetime.datetime.utcnow().timestamp()
     if os.path.exists(dirPath):
-        for f in os.listdir(dirPath):
+
+        listDirFiles = await hass.async_add_executor_job(os.listdir, dirPath)
+        for f in listDirFiles:
             filePath = os.path.join(dirPath, f)
             last_modified = os.stat(filePath).st_mtime
             if now - last_modified > deleteOlderThan:
@@ -392,9 +416,10 @@ def deleteFilesOlderThan(dirPath, deleteOlderThan):
                 os.remove(filePath)
 
 
-def deleteFilesNotIncluding(dirPath, includingString):
+async def deleteFilesNotIncluding(hass: HomeAssistant, dirPath, includingString):
     if os.path.exists(dirPath):
-        for f in os.listdir(dirPath):
+        listDirFiles = await hass.async_add_executor_job(os.listdir, dirPath)
+        for f in listDirFiles:
             filePath = os.path.join(dirPath, f)
             if includingString not in filePath:
                 LOGGER.debug("[deleteFilesOlderThan] Removing " + filePath + "...")
@@ -449,7 +474,7 @@ def getColdFile(
     return coldDirPath + "/" + folder + "/" + fileName + extension
 
 
-def getHotFile(
+async def getHotFile(
     hass: HomeAssistant, entry_id: str, startDate: int, endDate: int, folder: str
 ):
     coldFilePath = getColdFile(hass, entry_id, startDate, endDate, folder)
@@ -465,14 +490,14 @@ def getHotFile(
     if not os.path.exists(hotFilePath):
         if not os.path.exists(coldFilePath):
             raise Unresolvable("Failed to get file from cold storage: " + coldFilePath)
-        shutil.copyfile(coldFilePath, hotFilePath)
+        await hass.async_add_executor_job(shutil.copyfile, coldFilePath, hotFilePath)
     return hotFilePath
 
 
-def getWebFile(
+async def getWebFile(
     hass: HomeAssistant, entry_id: str, startDate: int, endDate: int, folder: str
 ):
-    hotFilePath = getHotFile(hass, entry_id, startDate, endDate, folder)
+    hotFilePath = await getHotFile(hass, entry_id, startDate, endDate, folder)
     fileWebPath = hotFilePath[hotFilePath.index("/www/") + 5 :]  # remove ./www/
 
     return f"/local/{fileWebPath}"
@@ -620,6 +645,44 @@ def tryParseInt(value):
     except Exception as e:
         LOGGER.error("Couldnt parse as integer: %s", str(e))
         return None
+
+
+def getDataForController(hass, entry, controller):
+    for controller in hass.data[DOMAIN][entry.entry_id]["allControllers"]:
+        if controller == hass.data[DOMAIN][entry.entry_id]["controller"]:
+            return hass.data[DOMAIN][entry.entry_id]
+        elif (
+            "childDevices" in hass.data[DOMAIN][entry.entry_id]
+            and hass.data[DOMAIN][entry.entry_id]["childDevices"] is not False
+        ):
+            for childDevice in hass.data[DOMAIN][entry.entry_id]["childDevices"]:
+                if controller == childDevice["controller"]:
+                    return childDevice
+
+
+def getNightModeMap():
+    return {
+        "inf_night_vision": "Infrared Mode",
+        "wtl_night_vision": "Full Color Mode",
+        "md_night_vision": "Smart Mode",
+        "dbl_night_vision": "Doorbell Mode",
+        "shed_night_vision": "Scheduled Mode",
+    }
+
+
+def getNightModeName(value: str):
+    nightModeMap = getNightModeMap()
+    if value in nightModeMap:
+        return nightModeMap[value]
+    return value
+
+
+def getNightModeValue(value: str):
+    night_mode_map = getNightModeMap()
+    for key, val in night_mode_map.items():
+        if val == value:
+            return key
+    return value
 
 
 async def getCamData(hass, controller):
@@ -888,42 +951,49 @@ async def getCamData(hass, controller):
     camData["light_frequency_mode"] = light_frequency_mode
 
     try:
-        day_night_mode = data["getLdc"][0]["image"]["common"]["inf_type"]
+        night_vision_mode = data["getNightVisionModeConfig"][0]["image"]["switch"][
+            "night_vision_mode"
+        ]
     except Exception:
-        day_night_mode = None
+        night_vision_mode = None
+    camData["night_vision_mode"] = night_vision_mode
 
-    if day_night_mode is None:
+    try:
+        night_vision_capability = data["getNightVisionCapability"][0][
+            "image_capability"
+        ]["supplement_lamp"]["night_vision_mode_range"]
+    except Exception:
+        night_vision_capability = None
+    camData["night_vision_capability"] = night_vision_capability
+
+    try:
+        night_vision_mode_switching = data["getLdc"][0]["image"]["common"]["inf_type"]
+    except Exception:
+        night_vision_mode_switching = None
+    camData["night_vision_mode_switching"] = night_vision_mode_switching
+
+    if night_vision_mode_switching is None:
         try:
-            if (
-                data["getNightVisionModeConfig"][0]["image"]["switch"][
-                    "night_vision_mode"
-                ]
-                == "inf_night_vision"
-            ):
-                day_night_mode = "on"
-            elif (
-                data["getNightVisionModeConfig"][0]["image"]["switch"][
-                    "night_vision_mode"
-                ]
-                == "wtl_night_vision"
-            ):
-                day_night_mode = "off"
-            elif (
-                data["getNightVisionModeConfig"][0]["image"]["switch"][
-                    "night_vision_mode"
-                ]
-                == "md_night_vision"
-            ):
-                day_night_mode = "auto"
+            night_vision_mode_switching = data["getLightFrequencyInfo"][0]["image"][
+                "common"
+            ]["inf_type"]
         except Exception:
-            day_night_mode = None
-    camData["day_night_mode"] = day_night_mode
+            night_vision_mode_switching = None
+        camData["night_vision_mode_switching"] = night_vision_mode_switching
 
     try:
         force_white_lamp_state = data["getLdc"][0]["image"]["switch"]["force_wtl_state"]
     except Exception:
         force_white_lamp_state = None
     camData["force_white_lamp_state"] = force_white_lamp_state
+
+    try:
+        smartwtl_digital_level = data["getLdc"][0]["image"]["common"][
+            "smartwtl_digital_level"
+        ]
+    except Exception:
+        smartwtl_digital_level = None
+    camData["smartwtl_digital_level"] = smartwtl_digital_level
 
     try:
         flip = (
@@ -946,24 +1016,160 @@ async def getCamData(hass, controller):
             flip = None
     camData["flip"] = flip
 
+    hubSiren = False
+    alarmConfig = None
+    alarmStatus = False
+    alarmSirenTypeList = []
     try:
-        alarmData = data["getLastAlarmInfo"][0]["msg_alarm"]["chn1_msg_alarm_info"]
-        alarm = alarmData["enabled"]
-        alarm_mode = alarmData["alarm_mode"]
-    except Exception:
-        alarm = None
-        alarm_mode = None
+        if data["getSirenConfig"][0] != False:
+            hubSiren = True
+            sirenData = data["getSirenConfig"][0]
+            alarmConfig = {
+                "typeOfAlarm": "getSirenConfig",
+                "siren_type": sirenData["siren_type"],
+                "siren_volume": sirenData["volume"],
+                "siren_duration": sirenData["duration"],
+            }
+    except Exception as err:
+        LOGGER.error(f"getSirenConfig unexpected error {err=}, {type(err)=}")
 
-    if alarm is None or alarm_mode is None:
-        try:
+    try:
+        if not hubSiren and data["getAlarmConfig"][0] != False:
             alarmData = data["getAlarmConfig"][0]
-            alarm = alarmData["enabled"]
-            alarm_mode = alarmData["alarm_mode"]
-        except Exception:
-            alarm = None
-            alarm_mode = None
-    camData["alarm"] = alarm
-    camData["alarm_mode"] = alarm_mode
+            alarmConfig = {
+                "typeOfAlarm": "getAlarmConfig",
+                "mode": alarmData["alarm_mode"],
+                "automatic": alarmData["enabled"],
+            }
+            if "light_type" in alarmData:
+                alarmConfig["light_type"] = alarmData["light_type"]
+            if "siren_type" in alarmData:
+                alarmConfig["siren_type"] = alarmData["siren_type"]
+            if "siren_duration" in alarmData:
+                alarmConfig["siren_duration"] = alarmData["siren_duration"]
+            if "alarm_duration" in alarmData:
+                alarmConfig["alarm_duration"] = alarmData["alarm_duration"]
+            if "siren_volume" in alarmData:
+                alarmConfig["siren_volume"] = alarmData["siren_volume"]
+            if "alarm_volume" in alarmData:
+                alarmConfig["alarm_volume"] = alarmData["alarm_volume"]
+
+    except Exception as err:
+        LOGGER.error(f"getAlarmConfig unexpected error {err=}, {type(err)=}")
+
+    try:
+        if (
+            alarmConfig is None
+            and "msg_alarm" in data["getLastAlarmInfo"][0]
+            and "chn1_msg_alarm_info" in data["getLastAlarmInfo"][0]["msg_alarm"]
+            and data["getLastAlarmInfo"][0]["msg_alarm"]["chn1_msg_alarm_info"]
+            is not False
+        ):
+            alarmData = data["getLastAlarmInfo"][0]["msg_alarm"]["chn1_msg_alarm_info"]
+            alarmConfig = {
+                "typeOfAlarm": "getAlarm",
+                "mode": alarmData["alarm_mode"],
+                "automatic": alarmData["enabled"],
+            }
+            if "light_type" in alarmData:
+                alarmConfig["light_type"] = alarmData["light_type"]
+            if "siren_type" in alarmData:
+                alarmConfig["siren_type"] = alarmData["siren_type"]
+            if "alarm_type" in alarmData:
+                alarmConfig["siren_type"] = alarmData["alarm_type"]
+            if "siren_duration" in alarmData:
+                alarmConfig["siren_duration"] = alarmData["siren_duration"]
+            if "alarm_duration" in alarmData:
+                alarmConfig["alarm_duration"] = alarmData["alarm_duration"]
+            if "siren_volume" in alarmData:
+                alarmConfig["siren_volume"] = alarmData["siren_volume"]
+            if "alarm_volume" in alarmData:
+                alarmConfig["alarm_volume"] = alarmData["alarm_volume"]
+    except Exception as err:
+        LOGGER.error(f"getLastAlarmInfo unexpected error {err=}, {type(err)=}")
+
+    try:
+        if (
+            data["getSirenStatus"][0] is not False
+            and "status" in data["getSirenStatus"][0]
+        ):
+            alarmStatus = data["getSirenStatus"][0]["status"]
+    except Exception as err:
+        LOGGER.error(f"getSirenStatus unexpected error {err=}, {type(err)=}")
+
+    if alarmConfig is not None:
+        try:
+            if (
+                data["getSirenTypeList"][0] is not False
+                and "siren_type_list" in data["getSirenTypeList"][0]
+            ):
+                alarmSirenTypeList = data["getSirenTypeList"][0]["siren_type_list"]
+        except Exception as err:
+            LOGGER.error(f"getSirenTypeList unexpected error {err=}, {type(err)=}")
+
+    if len(alarmSirenTypeList) == 0:
+        try:
+            if (
+                data["getAlertTypeList"][0] is not False
+                and "msg_alarm" in data["getAlertTypeList"][0]
+                and "alert_type" in data["getAlertTypeList"][0]["msg_alarm"]
+                and "alert_type_list"
+                in data["getAlertTypeList"][0]["msg_alarm"]["alert_type"]
+            ):
+                alarmSirenTypeList = data["getAlertTypeList"][0]["msg_alarm"][
+                    "alert_type"
+                ]["alert_type_list"]
+        except Exception as err:
+            LOGGER.error(f"getSirenTypeList unexpected error {err=}, {type(err)=}")
+
+    alarm_user_sounds = None
+    try:
+        if (
+            data["getAlertConfig"][0] is not False
+            and "msg_alarm" in data["getAlertConfig"][0]
+            and "usr_def_audio" in data["getAlertConfig"][0]["msg_alarm"]
+        ):
+            alarm_user_sounds = []
+            for alarm_sound in data["getAlertConfig"][0]["msg_alarm"]["usr_def_audio"]:
+                first_key = next(iter(alarm_sound))
+                first_value = alarm_sound[first_key]
+                alarm_user_sounds.append(first_value)
+    except Exception:
+        alarm_user_sounds = None
+
+    alarm_user_start_id = None
+    try:
+        if (
+            data["getAlertConfig"][0] is not False
+            and "msg_alarm" in data["getAlertConfig"][0]
+            and "capability" in data["getAlertConfig"][0]["msg_alarm"]
+            and "usr_def_start_file_id"
+            in data["getAlertConfig"][0]["msg_alarm"]["capability"]
+        ):
+            alarm_user_start_id = data["getAlertConfig"][0]["msg_alarm"]["capability"][
+                "usr_def_start_file_id"
+            ]
+    except Exception:
+        alarm_user_start_id = None
+    camData["alarm_user_start_id"] = alarm_user_start_id
+    camData["alarm_user_sounds"] = alarm_user_sounds
+    camData["alarm_config"] = alarmConfig
+    camData["alarm_status"] = alarmStatus
+    camData["alarm_is_hubSiren"] = hubSiren
+    camData["alarm_siren_type_list"] = alarmSirenTypeList
+
+    try:
+        if (
+            "image_capability" in data["getNightVisionCapability"][0]
+            and "supplement_lamp"
+            in data["getNightVisionCapability"][0]["image_capability"]
+        ):
+            nightVisionCapability = data["getNightVisionCapability"][0][
+                "image_capability"
+            ]["supplement_lamp"]
+    except Exception:
+        nightVisionCapability = None
+    camData["nightVisionCapability"] = nightVisionCapability
 
     try:
         led = data["getLedStatus"][0]["led"]["config"]["enabled"]
@@ -1075,6 +1281,18 @@ async def getCamData(hass, controller):
         connectionInformation = None
     camData["connectionInformation"] = connectionInformation
 
+    try:
+        videoCapability = data["getVideoCapability"][0]
+    except Exception:
+        videoCapability = None
+    camData["videoCapability"] = videoCapability
+
+    try:
+        videoQualities = data["getVideoQualities"][0]
+    except Exception:
+        videoQualities = None
+    camData["videoQualities"] = videoQualities
+
     LOGGER.debug("getCamData - done")
     LOGGER.debug("Processed update data:")
     LOGGER.debug(camData)
@@ -1179,6 +1397,7 @@ async def getLatestFirmwareVersion(hass, config_entry, entry, controller):
 async def syncTime(hass, entry_id):
     device_mgmt = hass.data[DOMAIN][entry_id]["onvifManagement"]
     if device_mgmt:
+        LOGGER.debug("Syncing time for " + entry_id + "...")
         now = datetime.datetime.utcnow()
 
         time_params = device_mgmt.create_type("SetSystemDateAndTime")
@@ -1224,7 +1443,10 @@ async def setupEvents(hass, config_entry):
         "Webhook enabled: " + str(config_entry.data.get(ENABLE_WEBHOOKS) is True)
     )
     LOGGER.debug("Using Webhooks: " + str(shouldUseWebhooks))
-    if not hass.data[DOMAIN][config_entry.entry_id]["events"].started:
+    if (
+        hass.data[DOMAIN][config_entry.entry_id]["events"] is not False
+        and not hass.data[DOMAIN][config_entry.entry_id]["events"].started
+    ):
         LOGGER.debug("Setting up events...")
         events = hass.data[DOMAIN][config_entry.entry_id]["events"]
         onvif_capabilities = await hass.data[DOMAIN][config_entry.entry_id][
@@ -1273,12 +1495,6 @@ def pytapoFunctionMap(pytapoFunctionName):
         return ["getLensMaskConfig"]
     elif pytapoFunctionName == "getNotificationsEnabled":
         return ["getMsgPushConfig"]
-    elif pytapoFunctionName == "getWhitelampStatus":
-        return ["getWhitelampStatus"]
-    elif pytapoFunctionName == "getRecordPlan":
-        return ["getRecordPlan"]
-    elif pytapoFunctionName == "getWhitelampConfig":
-        return ["getWhitelampConfig"]
     elif pytapoFunctionName == "getBasicInfo":
         return ["getDeviceInfo"]
     elif pytapoFunctionName == "getMotionDetection":
@@ -1309,16 +1525,10 @@ def pytapoFunctionMap(pytapoFunctionName):
         return ["getTargetTrackConfig"]
     elif pytapoFunctionName == "getPresets":
         return ["getPresetConfig"]
-    elif pytapoFunctionName == "getFirmwareUpdateStatus":
-        return ["getFirmwareUpdateStatus"]
-    elif pytapoFunctionName == "getMediaEncrypt":
-        return ["getMediaEncrypt"]
     elif pytapoFunctionName == "getLightFrequencyMode":
         return ["getLightFrequencyInfo", "getLightFrequencyCapability"]
     elif pytapoFunctionName == "getChildDevices":
         return ["getChildDeviceList"]
-    elif pytapoFunctionName == "getRotationStatus":
-        return ["getRotationStatus"]
     elif pytapoFunctionName == "getForceWhitelampState":
         return ["getLdc"]
     elif pytapoFunctionName == "getDayNightMode":
@@ -1327,67 +1537,66 @@ def pytapoFunctionMap(pytapoFunctionName):
         return ["getRotationStatus", "getLdc"]
     elif pytapoFunctionName == "getLensDistortionCorrection":
         return ["getLdc"]
-    elif pytapoFunctionName == "getAudioConfig":
-        return ["getAudioConfig"]
-    elif pytapoFunctionName == "getFirmwareAutoUpgradeConfig":
-        return ["getFirmwareAutoUpgradeConfig"]
-    elif pytapoFunctionName == "getSirenTypeList":
-        return ["getSirenTypeList"]
-    return []
+    return [pytapoFunctionName]
 
 
 def isCacheSupported(check_function, rawData):
     rawFunctions = pytapoFunctionMap(check_function)
     for function in rawFunctions:
-        if function in rawData and rawData[function][0]:
-            if check_function == "getForceWhitelampState":
-                return (
-                    "image" in rawData["getLdc"][0]
-                    and "switch" in rawData["getLdc"][0]["image"]
-                    and "force_wtl_state" in rawData["getLdc"][0]["image"]["switch"]
+        if function in rawData:
+            if rawData[function][0]:
+                if check_function == "getForceWhitelampState":
+                    return (
+                        "image" in rawData["getLdc"][0]
+                        and "switch" in rawData["getLdc"][0]["image"]
+                        and "force_wtl_state" in rawData["getLdc"][0]["image"]["switch"]
+                    )
+                elif check_function == "getDayNightMode":
+                    return (
+                        "image" in rawData["getLightFrequencyInfo"][0]
+                        and "common" in rawData["getLightFrequencyInfo"][0]["image"]
+                        and "inf_type"
+                        in rawData["getLightFrequencyInfo"][0]["image"]["common"]
+                    )
+                elif check_function == "getImageFlipVertical":
+                    return (
+                        "image" in rawData["getLdc"][0]
+                        and "switch" in rawData["getLdc"][0]["image"]
+                        and "flip_type" in rawData["getLdc"][0]["image"]["switch"]
+                    ) or (
+                        "image" in rawData["getRotationStatus"][0]
+                        and "switch" in rawData["getRotationStatus"][0]["image"]
+                        and "flip_type"
+                        in rawData["getRotationStatus"][0]["image"]["switch"]
+                    )
+                elif check_function == "getLensDistortionCorrection":
+                    return (
+                        "image" in rawData["getLdc"][0]
+                        and "switch" in rawData["getLdc"][0]["image"]
+                        and "ldc" in rawData["getLdc"][0]["image"]["switch"]
+                    )
+                return True
+            else:
+                raise Exception(
+                    f"Capability {check_function} (mapped to:{function}) cached but not supported."
                 )
-            elif check_function == "getDayNightMode":
-                return (
-                    "image" in rawData["getLightFrequencyInfo"][0]
-                    and "common" in rawData["getLightFrequencyInfo"][0]["image"]
-                    and "inf_type"
-                    in rawData["getLightFrequencyInfo"][0]["image"]["common"]
-                )
-            elif check_function == "getImageFlipVertical":
-                return (
-                    "image" in rawData["getLdc"][0]
-                    and "switch" in rawData["getLdc"][0]["image"]
-                    and "flip_type" in rawData["getLdc"][0]["image"]["switch"]
-                ) or (
-                    "image" in rawData["getRotationStatus"][0]
-                    and "switch" in rawData["getRotationStatus"][0]["image"]
-                    and "flip_type"
-                    in rawData["getRotationStatus"][0]["image"]["switch"]
-                )
-            elif check_function == "getLensDistortionCorrection":
-                return (
-                    "image" in rawData["getLdc"][0]
-                    and "switch" in rawData["getLdc"][0]["image"]
-                    and "ldc" in rawData["getLdc"][0]["image"]["switch"]
-                )
-            return True
     return False
 
 
 async def check_and_create(entry, hass, cls, check_function, config_entry):
-    if isCacheSupported(check_function, entry["camData"]["raw"]):
-        LOGGER.debug(
-            f"Found cached capability {check_function}, creating {cls.__name__}"
-        )
-        return cls(entry, hass, config_entry)
-    else:
-        LOGGER.debug(f"Capability {check_function} not found, querying again...")
-        try:
+    try:
+        if isCacheSupported(check_function, entry["camData"]["raw"]):
+            LOGGER.debug(
+                f"Found cached capability {check_function}, creating {cls.__name__}"
+            )
+            return cls(entry, hass, config_entry)
+        else:
+            LOGGER.debug(f"Capability {check_function} not found, querying again...")
             await hass.async_add_executor_job(
                 getattr(entry["controller"], check_function)
             )
-        except Exception:
-            LOGGER.info(f"Camera does not support {cls.__name__}")
-            return None
-        LOGGER.debug(f"Creating {cls.__name__}")
-        return cls(entry, hass, config_entry)
+            LOGGER.debug(f"Creating {cls.__name__}")
+            return cls(entry, hass, config_entry)
+    except Exception as err:
+        LOGGER.info(f"Camera does not support {cls.__name__}: {err}")
+        return None
