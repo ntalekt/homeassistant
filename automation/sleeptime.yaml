@@ -59,8 +59,3 @@
       entity_id: light.master_bedroom_lamp
     - service: light.turn_off
       entity_id: light.loft_lamp_bulb
-    - service: fan.set_preset_mode
-      target:
-        entity_id: fan.office_air_purifier
-      data:
-        preset_mode: Sleep
