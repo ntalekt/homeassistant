@@ -27,7 +27,7 @@
         brightness_pct: 100
         kelvin: 3500
     - service: light.turn_on
-      entity_id: light.exterior_flood_lights
+      entity_id: light.front_flood_lights
       data:
         brightness_pct: 100
         kelvin: 4000
@@ -61,7 +61,7 @@
       data:
         brightness_pct: 50
     - service: light.turn_on
-      entity_id: light.exterior_flood_lights
+      entity_id: light.front_flood_lights
       data:
         brightness_pct: 50
     - service: light.turn_on
@@ -94,7 +94,7 @@
         brightness_pct: 100
         kelvin: 3500
     - service: light.turn_on
-      entity_id: light.exterior_flood_lights
+      entity_id: light.front_flood_lights
       data:
         brightness_pct: 100
         kelvin: 4000
@@ -128,7 +128,7 @@
       data:
         brightness_pct: 50
     - service: light.turn_on
-      entity_id: light.exterior_flood_lights
+      entity_id: light.front_flood_lights
       data:
         brightness_pct: 50
     - service: light.turn_on
@@ -160,7 +160,7 @@
       data:
         brightness_pct: 50
     - service: light.turn_on
-      entity_id: light.exterior_flood_lights
+      entity_id: light.front_flood_lights
       data:
         brightness_pct: 50
     - service: light.turn_on

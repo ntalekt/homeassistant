@@ -13,7 +13,7 @@
     #   to: "True"
     - platform: sun
       event: sunset
-      offset: "-00:20:00"
+      offset: "-00:30:00"
   condition:
     condition: and
     conditions:
@@ -56,7 +56,7 @@
     #   to: "True"
     - platform: sun
       event: sunset
-      offset: "-00:20:00"
+      offset: "-00:30:00"
   condition:
     condition: and
     conditions:
@@ -100,7 +100,7 @@
     #   to: "True"
     - platform: sun
       event: sunset
-      offset: "-00:20:00"
+      offset: "-00:30:00"
   condition:
     condition: and
     conditions:
@@ -114,7 +114,7 @@
     - service: light.turn_on
       data:
         entity_id: light.media_center_lamp_bulbs
-        brightness: 60
+        brightness: 30
         kelvin: 4500
     # - repeat:
     #     until:
@@ -144,7 +144,7 @@
     #   to: "True"
     - platform: sun
       event: sunset
-      offset: "-00:20:00"
+      offset: "-00:30:00"
   condition:
     condition: and
     conditions:
@@ -188,7 +188,7 @@
     #   to: "True"
     - platform: sun
       event: sunset
-      offset: "-00:20:00"
+      offset: "-00:30:00"
   condition:
     condition: and
     conditions:
@@ -209,7 +209,7 @@
     #   to: "True"
     - platform: sun
       event: sunset
-      offset: "-00:20:00"
+      offset: "-00:30:00"
   condition:
     condition: and
     conditions:

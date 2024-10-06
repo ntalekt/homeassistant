@@ -47,7 +47,7 @@
         brightness_pct: 100
     # exterior flood lights
     - service: light.turn_on
-      entity_id: light.exterior_flood_lights
+      entity_id: light.front_flood_lights
       data:
         kelvin: 4000
         brightness_pct: 100
@@ -79,12 +79,14 @@
   action:
     - service: light.turn_on
       entity_id: light.outdoor_string
+      data:
+        brightness_pct: 100
     - service: light.turn_on
       entity_id: light.outdoor_string
       data:
         brightness_pct: 100
     - service: light.turn_on
-      entity_id: light.exterior_flood_lights
+      entity_id: light.front_flood_lights
       data:
         kelvin: 4000
         brightness_pct: 100
@@ -122,7 +124,7 @@
         brightness_pct: 50
     # flood lights
     - service: light.turn_on
-      entity_id: light.exterior_flood_lights
+      entity_id: light.front_flood_lights
       data:
         brightness_pct: 50
     # exterior spotlights
@@ -135,7 +137,6 @@
       entity_id: light.outdoor_string
       data:
         brightness_pct: 50
-        transition: 60
 
 ##########################################################
 ## exterior lights off at 11pm
@@ -170,9 +171,6 @@
     # govee string backyard
     - service: light.turn_off
       entity_id: light.outdoor_string
-    # govee floodlight backyard
-    - service: light.turn_off
-      entity_id: light.smart_flood_lights
     # kasa back porch
     - service: light.turn_off
       entity_id: light.back_porch_group
@@ -202,7 +200,7 @@
       entity_id: light.lights
     # govee floodlight backyard
     - service: light.turn_off
-      entity_id: light.exterior_flood_lights
+      entity_id: light.front_flood_lights
     # exterior spotlights
     - service: light.turn_off
       entity_id: light.front_spotlights
