@@ -6,7 +6,7 @@
   <h4>
     <a href="https://github.com/ntalekt/homeassistant/stargazers"><img src="https://img.shields.io/github/stars/ntalekt/homeassistant.svg"/></a>
     <a href="https://github.com/ntalekt/homeassistant/commits/master"><img src="https://img.shields.io/github/last-commit/ntalekt/homeassistant.svg"/></a>
-    <a href="https://github.com/home-assistant/home-assistant/releases/latest"><img src="https://img.shields.io/badge/Running%20Home%20Assistant-2024.6.4%20-darkblue"/></a>
+    <a href="https://github.com/home-assistant/home-assistant/releases/latest"><img src="https://img.shields.io/badge/Running%20Home%20Assistant-2024.9.3%20-darkblue"/></a>
 	<a href="https://community.home-assistant.io/u/ntalekt/summary"><img src="https://img.shields.io/badge/HA%20community-forum-orange"/></a>
   </h4>
 </div>
@@ -101,7 +101,7 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 #### Climate/Air Quality
 * [Trane XL824](https://amzn.to/3GlbVUf) x2
 * [Pentair EasyTouch Pool/Spa Controller](https://www.pentair.com/en-us/products/residential/pool-spa-equipment/pool-automation/easytouch_controlsystems.html)
-* [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv)
+* ~~[Govee H7121 Air Purifier](https://amzn.to/3nRNVBv)~~
 
 #### Garage/Cover
 * [Chamberlain B2405 Smart Garage Door Opener](https://amzn.to/40IVXet)
@@ -185,9 +185,9 @@ This is my <a href="https://home-assistant.io">Home Assistant</a> configuration 
 ### Vacation/Climate
 * Turn vacation mode on when household is gone for 24 hours.
 * Toggle office fan on/off based on occupancy using [Sonoff S31 Lite Zigbee](https://amzn.to/434kBbn)
-* Turn office air purifier [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv) on/off based on occupancy
-* Turn office air purifier [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv) on/off based on air quality sensor
-* Change office air purifier [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv) mode based on air quality sensor
+* ~~Turn office air purifier [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv) on/off based on occupancy~~
+* ~~Turn office air purifier [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv) on/off based on air quality sensor~~
+* ~~Change office air purifier [Govee H7121 Air Purifier](https://amzn.to/3nRNVBv) mode based on air quality sensor~~
 
 ### Star History
 
