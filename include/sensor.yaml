@@ -14,7 +14,6 @@
     - 'date_time_iso'
     - 'time_date'
     - 'time_utc'
-    - 'beat'
 
 ##########################################################
 ## Templates
@@ -584,13 +583,6 @@
         {% set up_time =  as_timestamp(now()) - as_timestamp(states('sensor.uptime')) %}
         {% set days = (up_time / 86400) | round(2) %}
         {{ days }}
-    
-##########################################################
-## National Weather Service Alerts
-##########################################################
-
-- platform: nws_alerts
-  zone_id: 'AZC013'
 
 ##########################################################
 ## History stats
